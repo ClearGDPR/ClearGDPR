@@ -1,5 +1,7 @@
 # ClearGDPR Platform
 
+![Logo](logo.png)
+
 version 0.0.1
 
 ## Overview
