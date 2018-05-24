@@ -171,6 +171,7 @@ See the [Troubleshooting guide](TROUBLESHOOTING.md)
 * Usage of Quorum’s custom privateFor method for whitelisting of nodes that are privy to specific events
 * Fleshing out an SDK for implementing CG interaction from your frontend
 * Drop in wordpress plugin
+* Commercial middleware plugin(s)
 
 # License
 
