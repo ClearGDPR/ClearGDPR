@@ -1,0 +1,2 @@
+generated_configs/*
+!generated_configs/.gitkeep

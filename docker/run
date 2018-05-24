@@ -1,0 +1,75 @@
+#!/bin/bash
+
+set -e
+
+COMPOSE_PROJECT_NAME=clear-gdpr
+
+# Linux fix
+CONFIG_FILE=docker-compose.yml
+
+CACHE_INIT=false
+
+SERVICES=(cg api frontend)
+SERVICES_DIR=(cg api frontend)
+
+BUILD_CMD="docker-compose -f $CONFIG_FILE build"
+UP_CMD="docker-compose -f $CONFIG_FILE up"
+
+function rmContainers() {
+  echo "Removing containers"
+  docker-compose -f $CONFIG_FILE rm -fv $SERVICE_NAME || true
+}
+
+function initCache() {
+  # Init empty cache file
+  touch $SERVICE_DIR/yarn.lock
+  if [ ! -f $SERVICE_DIR/.yarn-cache.tgz ]; then
+    echo "Init empty $SERVICE_DIR/.yarn-cache.tgz"
+    tar cvzf $SERVICE_DIR/.yarn-cache.tgz --files-from /dev/null
+    CACHE_INIT=true
+  fi
+}
+
+function retrieveYarnCache() {
+  echo "Checking if I need to retrieve Yarn cache and lock file for $SERVICE_NAME"
+  RETRIEVE=false
+
+  # Case #1: we initialized an empty cache (usually, first run after cloning)
+  if [ "$CACHE_INIT" = true ]; then
+    RETRIEVE=true
+  fi
+
+  # Case #2: yarn packages changed during build
+  docker run --rm --entrypoint cat ${COMPOSE_PROJECT_NAME}_$SERVICE_NAME:latest /cache/yarn.lock > /tmp/${SERVICE_NAME}_yarn.lock
+  if ! diff -q $SERVICE_DIR/yarn.lock /tmp/${SERVICE_NAME}_yarn.lock > /dev/null  2>&1; then
+    RETRIEVE=true
+  fi
+
+  if [ "$RETRIEVE" = true ]; then
+    echo "Retrieving"
+    docker run --rm --entrypoint cat ${COMPOSE_PROJECT_NAME}_$SERVICE_NAME:latest /.yarn-cache.tgz > $SERVICE_DIR/.yarn-cache.tgz
+    cp /tmp/${SERVICE_NAME}_yarn.lock $SERVICE_DIR/yarn.lock
+  else
+    echo "Not retrieving"
+  fi
+  echo "Done"
+}
+
+for i in "${!SERVICES[@]}"
+do
+  SERVICE_NAME=${SERVICES[$i]} SERVICE_DIR=${SERVICES_DIR[$i]} rmContainers
+  SERVICE_NAME=${SERVICES[$i]} SERVICE_DIR=${SERVICES_DIR[$i]} initCache
+done
+
+COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME $BUILD_CMD
+
+if [ "$1" = "--build" ] || [ "$1" = "-b" ] ; then
+  exit 0
+fi
+
+for i in "${!SERVICES[@]}"
+do
+  SERVICE_NAME=${SERVICES[$i]} SERVICE_DIR=${SERVICES_DIR[$i]} retrieveYarnCache
+done
+
+COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME $UP_CMD

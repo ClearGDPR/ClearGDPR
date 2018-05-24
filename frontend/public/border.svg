@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2600" height="200" viewBox="0 0 2600 200">
+  <defs>
+    <rect id="border-a" width="2600" height="200"/>
+    <rect id="border-c" width="2600" height="200"/>
+    <rect id="border-e" width="2600" height="200"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="matrix(1 0 0 -1 0 200)">
+    <rect width="2600" height="200" fill="#99F0DC" fill-rule="nonzero"/>
+    <mask id="border-b" fill="#fff">
+      <use xlink:href="#border-a"/>
+    </mask>
+    <path fill="#FFF" fill-rule="nonzero" d="M-29,154.999191 C647.355079,154.80705 1067.50169,188.904955 1715.23191,188.904955 C2104.01908,188.904955 2366.00167,184.959329 2597.89856,181.532654 C2600,181.532655 2600,207.674435 2600,207.674435 L2600,523 L-29,523 L-28.9999928,351.189751 C-28.9999928,351.189751 -28.9999857,154.80705 -29,154.999191 Z" mask="url(#border-b)"/>
+    <g>
+      <mask id="border-d" fill="#fff">
+        <use xlink:href="#border-c"/>
+      </mask>
+      <path fill="#FFF" fill-rule="nonzero" d="M-23.9025221,136.752387 C-8.17664546,136.801213 13.0312863,136.687225 29.5351771,136.752387 C1315.44765,141.829489 1550.54447,120 2194.4985,120 C2345.78734,120 2482.98707,121.53584 2601.78319,125.1297 C2606.77101,125.1297 2601.78319,524 2601.78319,524 L-22.0803946,524 L-22.0803852,376.299474 C-22.0803852,376.299474 -27.1771204,136.923267 -23.9025221,136.752387 Z" mask="url(#border-d)" opacity=".413"/>
+    </g>
+    <g>
+      <mask id="border-f" fill="#fff">
+        <use xlink:href="#border-e"/>
+      </mask>
+      <path fill="#FFF" fill-rule="nonzero" d="M-29,149.561275 C249.898236,145.834807 412.903872,141 763.824958,141 C1386.35114,141 1543.23252,164.96224 2600,165.789323 C2600,179.815678 2582.09784,524 2582.09784,524 L-29,524 C-29,524 -28.9999987,149.561276 -29,149.561275 Z" mask="url(#border-f)" opacity=".413"/>
+    </g>
+  </g>
+</svg>

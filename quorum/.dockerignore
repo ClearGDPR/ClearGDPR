@@ -1,0 +1,5 @@
+.git
+.dockerignore
+Dockerfile
+.gitignore
+generated_configs/

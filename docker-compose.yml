@@ -1,0 +1,159 @@
+version: '2.1'
+services:
+  cg:
+    build: cg/.
+    command: 'yarn run start-dev'
+    depends_on:
+      - db
+    env_file:
+      - cg/.env
+      - cg/.controller.env
+    ports:
+      - '8082:8082'
+      - '9230:9230'
+      - '9231:9231'
+    expose:
+      - 9230
+      - 9231
+    volumes:
+      - './cg/.:/opt/app'
+      - /opt/app/node_modules
+    image: 'clear-gdpr_cg:latest'
+
+  cg_processor:
+    build: cg/.
+    command: 'yarn run start-dev'
+    depends_on:
+      - db
+    env_file:
+      - cg/.env
+      - cg/.processor.env
+    ports:
+      - '8083:8082'
+      - '9240:9230'
+      - '9241:9231'
+    expose:
+      - 9230
+      - 9231
+    volumes:
+      - './cg/.:/opt/app'
+      - /opt/app/node_modules
+    image: 'clear-gdpr_cg:latest'
+  api:
+    build: api/.
+    command: 'yarn run start-dev'
+    depends_on:
+      - db
+      - cg
+    env_file:
+      - api/.env
+    ports:
+      - '8080:8080'
+      - '9229:9229'
+    expose:
+      - 9229
+    volumes:
+      - './api/.:/opt/app'
+      - /opt/app/node_modules
+    image: 'clear-gdpr_api:latest'
+  frontend:
+    build: frontend/.
+    command: 'npm start'
+    ports:
+      - '0.0.0.0:3000:3000'
+      - '0.0.0.0:3001:3001'
+      - '0.0.0.0:3002:3002'
+    env_file:
+      - frontend/.env
+    volumes:
+      - './frontend/.:/opt/app'
+      - /opt/app/node_modules
+    image: 'clear-gdpr_frontend:latest'
+  db:
+    build: docker/definitions/postgres
+    image: 'clear-gdpr_postgres:latest'
+    restart: always
+    env_file:
+      - docker/definitions/postgres/.env
+    environment:
+      POSTGRES_DB: clear_gdpr_local
+      POSTGRES_USER: clear_gdpr
+    ports:
+      - '5432:5432'
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - '8081:8080'
+
+  constellation1:
+    build: quorum/.
+    image: 'clear-gdpr_quorum:latest'
+    env_file: quorum/node_1/.env
+    environment: 
+      - SERVICE=constellation
+    volumes:
+      - 'quorum_data1:/qdata'
+    networks:
+      quorum_net:
+        ipv4_address: '172.13.0.2'
+  constellation2:
+    image: 'clear-gdpr_quorum:latest'
+    env_file: quorum/node_2/.env
+    environment: 
+      - SERVICE=constellation
+    volumes:
+      - 'quorum_data2:/qdata'
+    networks:
+      quorum_net:
+        ipv4_address: '172.13.0.3'
+
+  geth1:
+    image: 'clear-gdpr_quorum:latest'
+    env_file: quorum/node_1/.env
+    environment: 
+      - SERVICE=geth
+    depends_on: 
+      - constellation1
+    volumes:
+      - 'quorum_data1:/qdata'
+    networks:
+      default:
+        aliases:
+        - quorum1
+      quorum_net:
+        ipv4_address: '172.13.0.4'
+    ports:
+      - 22001:8545
+      - 33001:8546
+  geth2:
+    image: 'clear-gdpr_quorum:latest'
+    env_file: quorum/node_2/.env
+    environment: 
+      - SERVICE=geth
+    depends_on: 
+      - constellation2
+    volumes:
+      - 'quorum_data2:/qdata'
+    networks:
+      default:
+        aliases:
+        - quorum2
+      quorum_net:
+        ipv4_address: '172.13.0.5'
+    ports:
+      - 22002:8545
+      - 33002:8546
+
+networks:
+  quorum_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.13.0.0/16
+
+# volumes for mutable storage in quorum nodes
+volumes:
+  quorum_data1:
+  quorum_data2:

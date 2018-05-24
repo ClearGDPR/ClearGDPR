@@ -1,0 +1,169 @@
+[
+  {
+    "constant": true,
+    "inputs": [{ "name": "_processor", "type": "address" }],
+    "name": "isProcessor",
+    "outputs": [{ "name": "", "type": "bool" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      { "name": "_subjectIdHash", "type": "bytes32" },
+      { "name": "_processorIdHash", "type": "address" },
+      { "name": "_state", "type": "uint8" }
+    ],
+    "name": "setSubjectDataState",
+    "outputs": [{ "name": "", "type": "bool" }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      { "name": "_subjectIdHash", "type": "bytes32" },
+      { "name": "_processorsWhiteListedBySubject", "type": "address[]" }
+    ],
+    "name": "recordConsentGivenTo",
+    "outputs": [{ "name": "", "type": "bool" }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      { "name": "_subjectIdHash", "type": "bytes32" },
+      { "name": "_processorIdHash", "type": "address" }
+    ],
+    "name": "getSubjectDataState",
+    "outputs": [{ "name": "", "type": "uint8" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      { "name": "_subjectIdHash", "type": "bytes32" },
+      { "name": "_processor", "type": "address" }
+    ],
+    "name": "recordErasureByProcessor",
+    "outputs": [{ "name": "", "type": "bool" }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [{ "name": "_newProcessors", "type": "address[]" }],
+    "name": "recordProcessorsUpdate",
+    "outputs": [{ "name": "", "type": "bool" }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [{ "name": "_subjectIdHash", "type": "bytes32" }],
+    "name": "recordErasureByController",
+    "outputs": [{ "name": "", "type": "bool" }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getProcessors",
+    "outputs": [{ "name": "", "type": "address[]" }, { "name": "", "type": "uint256" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [{ "name": "_newProcessors", "type": "address[]" }],
+    "name": "setProcessors",
+    "outputs": [{ "name": "", "type": "bool" }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [{ "name": "_processors", "type": "address[]" }],
+    "name": "areAllValidProcessors",
+    "outputs": [{ "name": "", "type": "bool" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [{ "name": "_subjectIdHash", "type": "bytes32" }],
+    "name": "getIsErased",
+    "outputs": [{ "name": "", "type": "bool" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [{ "name": "_subjectIdHash", "type": "bytes32" }],
+    "name": "recordAccessByController",
+    "outputs": [{ "name": "", "type": "uint8[]" }],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "controller",
+    "outputs": [{ "name": "", "type": "address" }],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  { "inputs": [], "payable": false, "stateMutability": "nonpayable", "type": "constructor" },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "name": "newProcessors", "type": "address[]" }],
+    "name": "Controller_ProcessorsUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "name": "subjectIdHash", "type": "bytes32" },
+      { "indexed": false, "name": "newProcessorsWhiteListed", "type": "address[]" }
+    ],
+    "name": "Controller_ConsentGivenTo",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "name": "subjectIdHash", "type": "bytes32" }],
+    "name": "Controller_SubjectDataAccessed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [{ "indexed": false, "name": "subjectIdHash", "type": "bytes32" }],
+    "name": "Controller_SubjectDataErased",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      { "indexed": false, "name": "subjectIdHash", "type": "bytes32" },
+      { "indexed": false, "name": "processorIdHash", "type": "address" }
+    ],
+    "name": "Processor_SubjectDataErased",
+    "type": "event"
+  }
+]

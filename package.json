@@ -1,0 +1,46 @@
+{
+  "name": "clear-gdpr",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ClearGDPR",
+  "author": "Clevertech <support@clevertech.biz>",
+  "scripts": {
+    "precommit": "lint-staged",
+    "lint": "eslint .",
+    "e2e": "testcafe chrome e2e/*.test.js",
+    "db-client": "bnr --path=./api/.env db-client",
+    "browse": "browse"
+  },
+  "betterScripts": {
+    "db-client": "PGPASSWORD=$DB_PASSWORD psql -h 127.0.0.1 -U $DB_USER $DB_DATABASE"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": ["eslint --fix", "git add"],
+    "*.{json,css,scss}": ["prettier --write", "git add"],
+    "*.md": ["doctoc", "git add"],
+    "*.*": ["findsecrets", "git add"]
+  },
+  "devDependencies": {
+    "@clevertech.biz/browse": "^0.1.2",
+    "@clevertech.biz/findsecrets": "^0.1.1",
+    "babel-eslint": "^7.2.3",
+    "better-npm-run": "^0.1.0",
+    "doctoc": "*",
+    "eslint": "^4.1.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-config-react-app": "^2.0.1",
+    "eslint-plugin-flowtype": "^2.34.1",
+    "eslint-plugin-import": "^2.6.0",
+    "eslint-plugin-jest": "^21.5.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-prettier": "^2.4.0",
+    "eslint-plugin-react": "^7.1.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.9.2",
+    "testcafe": "^0.18.6"
+  },
+  "dependencies": {
+    "bluebird": "3.5.1"
+  }
+}

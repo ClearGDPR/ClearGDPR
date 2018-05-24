@@ -1,0 +1,8 @@
+const VALID_RUN_MODES = {
+  PROCESSOR: 'PROCESSOR',
+  CONTROLLER: 'CONTROLLER'
+};
+
+module.exports = {
+  VALID_RUN_MODES
+};

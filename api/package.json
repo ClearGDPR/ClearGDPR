@@ -1,0 +1,66 @@
+{
+  "name": "clear-gdpr-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ClearGDPR API",
+  "author": "Clevertech <support@clevertech.biz>",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "bnr start",
+    "start-dev": "bnr start-dev",
+    "knex": "bnr knex",
+    "test": "bnr test",
+    "test:integration": "bnr test:integration",
+    "pretest": "false | cp -i .env.example .env || true"
+  },
+  "betterScripts": {
+    "start": "knex migrate:latest && node src/index.js",
+    "start-dev": "node src/wait-for-db.js && knex migrate:latest && nodemon --inspect=0.0.0.0:9229",
+    "knex": "knex",
+    "test": {
+      "command": "jest --forceExit",
+      "env": {
+        "DB_POOL_MIN": "0",
+        "PORT": "0",
+        "DB_DATABASE": "clear_gdpr_api_test"
+      }
+    },
+    "test:integration": {
+      "command": "jest --forceExit",
+      "env": {
+        "DB_POOL_MIN": "0",
+        "TEST_INTEGRATION": "true"
+      }
+    }
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "setupFiles": ["dotenv/config"],
+    "collectCoverage": true,
+    "collectCoverageFrom": ["src/**/*.js", "!**/node_modules/**"],
+    "globalSetup": "./test/global-setup.js",
+    "globalTeardown": "./test/global-teardown.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.13.3",
+    "helmet": "^3.9.0",
+    "jsonwebtoken": "^8.1.0",
+    "knex": "^0.13.0",
+    "knex-db-manager": "^0.4.0",
+    "node-fetch": "^1.7.3",
+    "pg": "^7.4.1",
+    "pg-escape": "^0.2.0",
+    "raven": "^2.2.1",
+    "winston": "*"
+  },
+  "devDependencies": {
+    "better-npm-run": "^0.1.0",
+    "cpy-cli": "^1.0.1",
+    "crypto-random-string": "^1.0.0",
+    "jest": "^22.4",
+    "nodemon": "^1.12.1"
+  }
+}

@@ -1,0 +1,54 @@
+const bcryptjs = require('bcryptjs');
+const { db } = require('../../../db');
+const { BadRequest, Unauthorized } = require('../../../utils/errors');
+
+class UserService {
+  constructor(database = db) {
+    this.db = database;
+  }
+
+  _hashPassword(password) {
+    return bcryptjs.hash(password, parseInt(process.env.BCRYPT_ROUNDS, 10));
+  }
+  _comparePassword(password, validate) {
+    return bcryptjs.compare(password, validate);
+  }
+
+  async getUserByUsername(username) {
+    const [user] = await this.db('users')
+      .where({ username })
+      .limit(1);
+    return user;
+  }
+
+  async createNewUser(username, password) {
+    const passwordHash = await this._hashPassword(password);
+    const user = await this.getUserByUsername(username);
+    if (user) throw new BadRequest('User already exists');
+    await this.db('users').insert({ username, password_hash: passwordHash });
+  }
+
+  async verifyUser(username, password) {
+    const user = await this.getUserByUsername(username);
+    if (!user) throw new Unauthorized('Invalid credentials');
+
+    const passwordCheck = await this._comparePassword(password, user.password_hash);
+
+    if (!passwordCheck) throw new Unauthorized('Invalid credentials');
+
+    return { id: user.id };
+  }
+
+  async updatePassword(userId, newPassword) {
+    const [user] = await this.db('users').where({ id: userId });
+
+    if (!user) throw new BadRequest('User not found');
+    await this.db('users')
+      .update({ password_hash: await this._hashPassword(newPassword) })
+      .where({ id: userId });
+
+    return true;
+  }
+}
+
+module.exports = UserService;

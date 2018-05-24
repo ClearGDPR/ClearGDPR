@@ -1,0 +1,48 @@
+@import 'variables';
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.label {
+  margin-left: 16px;
+
+  &::-moz-selection {
+    background: none;
+  }
+
+  &::selection {
+    background: none;
+  }
+}
+
+.checkbox,
+.checkbox[type='checkbox'] {
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  height: 16px;
+  width: 16px;
+  padding: 11px;
+  background: white;
+  position: relative;
+  border: 2px solid #aaa;
+  border-radius: 3px;
+
+  &:checked {
+    border-color: $green;
+    background: $green;
+
+    &::after {
+      content: '\2714';
+      font-size: 14px;
+      color: white;
+      position: absolute;
+      top: 2px;
+      left: 5px;
+    }
+  }
+}
