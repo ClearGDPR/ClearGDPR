@@ -595,5 +595,55 @@ describe('Get data status', () => {
       const data = await res.json();
       expect(data).toEqual(expect.objectContaining(payload.personalData));
     });
+    it('Should give a userful error if the user has erased their data', async () => {
+
+      const subjectId = 'user8dsdsaqqw';
+      const token = await subjectJWT.sign({ subjectId: subjectId });
+      const personalData = {
+        name: 'Dan Dan Dan 2',
+        address: 'Tomorrow'
+      };
+      const payload = {
+        personalData,
+        processors: []
+      };
+
+      await fetch('/api/subject/give-consent', {
+        method: 'POST',
+        body: payload,
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      const res = await fetch('/api/subject/access-data', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      const data = await res.json();
+      expect(data).toEqual(expect.objectContaining(payload.personalData));
+
+      const res2 = await fetch('/api/subject/erase-data', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }); 
+
+      expect(res2.status).toEqual(200);
+      
+      const res3 = await fetch('/api/subject/access-data', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      expect(res3.status !== 500).toEqual(true);
+      expect(res3.status).toEqual(404);
+    });
   });
+
 });

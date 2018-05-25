@@ -11,7 +11,7 @@ const {
   getSubjectDataState,
   recordErasureByProcessor
 } = require('../../utils/blockchain');
-const { ValidationError } = require('../../utils/errors');
+const { ValidationError, NotFound  } = require('../../utils/errors');
 const winston = require('winston');
 
 const { inControllerMode } = require('./../../utils/helpers');
@@ -184,6 +184,7 @@ class SubjectsService {
       .select('personal_data')
       .select('key')
       .where({ subject_id: subjectId });
+    if(!data) throw new NotFound('Subject not found');
     const decryptedData = decryptFromStorage(data.personal_data, data.key);
     return JSON.parse(decryptedData);
   }
