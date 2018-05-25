@@ -14,4 +14,4 @@ const pass = process.argv[3] || '';
 
 const keyObj = JSON.parse(fs.readFileSync(path));
 const privateKey = keythereum.recover(pass, keyObj);
-winston.info(`Private key: ${privateKey.toString('hex')}`);
+console.log(`0x${privateKey.toString('hex')}`);

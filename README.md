@@ -80,8 +80,6 @@ quorum/scripts/create_node.sh node1 172.13.0.2 172.13.0.4 9000 30303 50400 8545 
   quorum/scripts/generate_env_vars.sh node1 node2
 ```
 
-TODO: get wallet private key for tests
-
 6. Copy generated .env files to the right directories:
 
 ```bash
@@ -105,7 +103,7 @@ DB_PASSWORD=super_secret_psw
 8. Generate configs for the `cg` service:
 
 ```bash
-SUBJECTS_SECRET="$(cg/scripts/generate_config.sh $CONTROLLER_ACCOUNT $PROCESSOR_ACCOUNT $ACCOUNT_PASS $DB_PASSWORD)"
+SUBJECTS_SECRET="$(cg/scripts/generate_config.sh $CONTROLLER_ACCOUNT $PROCESSOR_ACCOUNT $ACCOUNT_PASS $DB_PASSWORD quorum/generated_configs/node1)"
 ```
 
 This will also set the `SUBJECTS_SECRET` environment variable so it can be added to `api` service `.env` file in the next step.
@@ -162,7 +160,8 @@ See the [Troubleshooting guide](TROUBLESHOOTING.md)
 * ~~Encryption of all data on CG nodes~~
 * ~~Robust integration test suite of CG nodes for both processor and controller mode~~
 * ~~Admin dashboard design + front-end code (configuration, subject & processor status)~~
-* Automated Quick Start
+* Automate Quick Start script
+* Interactive Quick Start wizard
 * Admin dashboard hooked up to controller state via the CG api
 * Adding the remaining GDPR article actions/rights
 * More granular controls of consent/revoking of data (ie. which data can be shared specifically)

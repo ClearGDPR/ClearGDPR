@@ -84,10 +84,10 @@ You can use the command below to get the private key of a node:
 COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec geth1 /bin/sh -c "cat /qdata/dd/keystore/*"
 ```
 
-Save the output to a file in `cg/` subdirector, ex. `cg/test-key.json`, and then run:
+Save the output to a file in `cg/` subdirector, ex. `cg/test-key.temp.json`, and then run:
 
 ```bash
-COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec cg node scripts/get-wallet-pk.js test-key.json [PASSWORD FROM .env - default is empty]
+COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec cg node scripts/get-wallet-pk.js test-key.temp.json [PASSWORD FROM .env - default is empty]
 ```
 
 Then remove the key file.

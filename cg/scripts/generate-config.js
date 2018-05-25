@@ -7,7 +7,7 @@ const randomBytes = Promise.promisify(crypto.randomBytes);
 const writeFile = Promise.promisify(fs.writeFile);
 
 const arguments = process.argv.slice(2);
-const [ controllerAccount, processorAccount, accountPassword, dbPassword ] = arguments;
+const [ controllerAccount, processorAccount, accountPassword, dbPassword, walletPrivateKey ] = arguments;
 
 const subjectsSecret = cryptoRandomString(20);
 
@@ -46,7 +46,7 @@ APP_KEY_HEX=${appHexKey}
 # blockchain quorum settings:
 QUORUM_ACCOUNT_PASSWORD=${accountPassword}
 CONTRACT_OWNER_ADDRESS=${controllerAccount}
-# TODO: WALLET_PRIVATE_KEY=...
+WALLET_PRIVATE_KEY=${walletPrivateKey}
 MY_ADDRESS=${controllerAccount}
 
 # for processor, but also for tests

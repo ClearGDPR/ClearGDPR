@@ -68,5 +68,6 @@ Vagrantfile
 helm-*.yml
 
 
-# ignore .temp.js
+# ignore .temp.js .temp.json
 *.temp.js
+*.temp.json
