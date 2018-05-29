@@ -1,0 +1,10 @@
+sudo: required
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_1f8d325dded8_key -iv $encrypted_1f8d325dded8_iv -in cg/.env.enc -out cg/.env -d
+
+services:
+  - docker
+
+script:
+  - docker-compose ---version
