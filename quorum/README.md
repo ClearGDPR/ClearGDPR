@@ -73,7 +73,7 @@ Example:
 Run:
 
 ```bash
-docker-compose down -v
+COMPOSE_PROJECT_NAME=clear-gdpr docker-compose down -v
 ```
 
 ### Getting account private key:
