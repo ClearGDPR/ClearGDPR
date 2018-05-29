@@ -36,9 +36,9 @@
 
 ## Introduction
 
-This document describes the CG API. This API enables you to manage all aspects of user data when you use CG as a backend. It offers endpoints so your users can submit new data, retrieve it and manage how and by who is accessed.
+This document describes the CG API. This API enables you to manage all aspects of user data when you use CG as a backend. It offers endpoints so your users can submit new data, retrieve it and manage how and by whom it is processed.
 
-To now more about ClearGDPR [link to CG implementation]
+To learn more about ClearGDPR [link to CG implementation]
 
 ## Base URL
 
@@ -82,15 +82,13 @@ When an error occurs, you will receive an error object. All error objects have a
 
 If you get an 4xx HTTP response code, then you can assume that there is a bad request from your end. In this case, check the Standard Error Responses for more context.
 
-5xx errors suggest a problem on CG API end, so in this case.
+5xx errors suggest a problem on CG API end, so in this case ???.
 
 In any other case you can use our support options.
 
 ## Support
 
-If you have problems or need help with your case you can always reach out to our Support.
-
-You can open new issues over https://github.com/clevertech/ClearGDPR. Please follow the `CONTRIBUTION` guidelines.
+You can reach out to us or open an issue on https://github.com/clevertech/ClearGDPR, we will try our best to hep you :)
 
 ## Endpoints
 
