@@ -94,6 +94,7 @@ CONTROLLER_ACCOUNT=0x$(cat quorum/generated_configs/node1/dd/account.txt) && \
   PROCESSOR_ACCOUNT=0x$(cat quorum/generated_configs/node2/dd/account.txt)
 ```
 
+
 8. Define password for Postgres service and databases as environment variable:
 
 ```bash
@@ -145,6 +146,7 @@ Each part of the project has additional README documentation in its subfolder:
 * [Docker definitions README](docker/README.md)
 * [Demo backend README](api/README.md)
 * [Demo frontend README](frontend/README.md)
+* [Updating Travis Configuration](TRAVIS.md)
 
 # Troubleshooting
 

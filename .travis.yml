@@ -1,13 +1,12 @@
 sudo: required
 language: node_js
 node_js:
-  - "8"
-
+- '8'
 before_install:
-  - openssl aes-256-cbc -K $encrypted_1f8d325dded8_key -iv $encrypted_1f8d325dded8_iv -in cg/.env.enc -out cg/.env -d
-
+- openssl aes-256-cbc -K $encrypted_1f8d325dded8_key -iv $encrypted_1f8d325dded8_iv -in secrets.tar.enc -out secrets.tar -d
+- tar xvf secrets.tar
 services:
-  - docker
-
+- docker
 script:
-  - docker-compose --version
+- docker-compose --version
+- find . -name "*.env" -type f
