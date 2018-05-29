@@ -1,6 +1,6 @@
 ## INITIAL NOTES
 
-Before starting to troubleshoot, make sure you **followed carefully** the steps in [Quick Start guide](README.md).
+Before starting to troubleshoot, make sure you **followed carefully** the steps in the [Quick Start guide](README.md).
 Also, have [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/) properly installed in your environment. This project is built with container technology, and relies on Docker to run. It's recommended to have a good understanding about [containers](https://docs.docker.com/get-started/part2/), [services](https://docs.docker.com/get-started/part3/), [volumes](https://docs.docker.com/storage/volumes/) and [networks](https://docs.docker.com/network/) in a Docker context to be able to comprehend the project.
 
 ## USEFUL COMMANDS
