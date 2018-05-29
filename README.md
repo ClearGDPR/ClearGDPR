@@ -175,3 +175,7 @@ See the [Troubleshooting guide](TROUBLESHOOTING.md)
 # License
 
 This project is licensed under [GNU LGPL LICENSE](LICENSE)
+
+# Contributing
+
+See [Contributing](CONTRIBUTING.md) 

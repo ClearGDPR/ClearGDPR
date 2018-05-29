@@ -90,7 +90,7 @@ In any other case you can use our support options.
 
 If you have problems or need help with your case you can always reach out to our Support.
 
-You can open new issues over https://github.com/clevertech/ClearGDPR. Please follow the `CONTRIBUTION` guidelines.
+You can open new issues over https://github.com/ClearGDPR/ClearGDPR. Please follow the `CONTRIBUTION` guidelines.
 
 ## Endpoints
 
