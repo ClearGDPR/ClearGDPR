@@ -7,8 +7,11 @@ const router = express.Router();
 const ContractController = require('./contract/contract.controller');
 const contractController = new ContractController();
 
-const UsersController = require('./users/users.controller');
+const UsersController = require('./users/users.controller'); // For managers
 const usersController = new UsersController();
+
+const SubjectsController = require('./subjects/subjects.controller'); // For data subjects
+const subjectsController = new SubjectsController();
 
 const ProcessorsController = require('./processors/processors.controller');
 const processorsController = new ProcessorsController();
@@ -21,7 +24,7 @@ const {
 module.exports = app => {
   app.use('/management', router);
 
-  // keep this before the jwt middleware for now...
+  // keep this before the jwt middleware for now
   router.ws('/events/feed', async (ws, req) => {
     try {
       await contractController.subscribeToEventFeed(ws, req);
@@ -46,9 +49,13 @@ module.exports = app => {
   );
 
   router.get(
+    '/subjects/list',
+    asyncHandler(async (req, res) => subjectsController.listSubjects(req, res))
+  );
+
+  router.get(
     '/processors/list',
     asyncHandler(async (req, res) => processorsController.listProcessors(req, res))
-    // asyncHandler(async (req, res) => {res.send('Oi');})
   );
 
   router.post(

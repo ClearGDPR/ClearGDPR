@@ -87,7 +87,7 @@ describe('Add processor', () => {
   });
 
   it('should not allow empty body', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/add', {
       method: 'POST',
@@ -107,7 +107,7 @@ describe('Add processor', () => {
   });
 
   it('should not allow processor without a name', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/add', {
       method: 'POST',
@@ -129,7 +129,7 @@ describe('Add processor', () => {
   });
 
   it('should not allow processor with ID', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/add', {
       method: 'POST',
@@ -152,7 +152,7 @@ describe('Add processor', () => {
   });
 
   it('should not allow processor with arbitrary key', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/add', {
       method: 'POST',
@@ -175,7 +175,7 @@ describe('Add processor', () => {
   });
 
   it('should not improper address format', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/add', {
       method: 'POST',
@@ -199,7 +199,7 @@ describe('Add processor', () => {
   });
 
   it('should not allow scopes that are not an array', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/add', {
       method: 'POST',
@@ -222,7 +222,7 @@ describe('Add processor', () => {
   });
 
   it('should verify the types of name parameter', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/add', {
       method: 'POST',
@@ -244,7 +244,7 @@ describe('Add processor', () => {
   });
 
   it('should add new processor and update the blockchain', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     let payload = {
       name: 'Processor 123ABC unique name',
@@ -298,7 +298,7 @@ describe('Update processor', () => {
   });
 
   it('should not allow empty body', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/update', {
       method: 'POST',
@@ -318,7 +318,7 @@ describe('Update processor', () => {
   });
 
   it('should not allow processor without an ID', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/update', {
       method: 'POST',
@@ -341,7 +341,7 @@ describe('Update processor', () => {
   });
 
   it('should not allow updating an address', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/update', {
       method: 'POST',
@@ -365,7 +365,7 @@ describe('Update processor', () => {
   });
 
   it('should return not found when processor does not exist', async () => {
-    const token = await managementJWT.sign({ id: 1 }); //This ID refers to a subject?
+    const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/update', {
       method: 'POST',
