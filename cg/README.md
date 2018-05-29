@@ -124,7 +124,7 @@ docker-compose exec cg yarn run knex migrate:latest                         Run 
 
 Migrations are run everytime the server starts with `yarn run start` or `yarn run start-dev`
 
-### Running test tests
+### Running tests
 
 Integration tests access the API server and the database. These tests require the containers to be up to pass.
 
