@@ -74,7 +74,7 @@ If your Docker-compose is not finding a running service or not executing a comma
 
 `COMPOSE_PROJECT_NAME=clear-gdpr`
 
-Example docker-compose command with the above prepended:
+Example Docker-compose command with the above prepended:
 
 `COMPOSE_PROJECT_NAME=clear-gdpr docker-compose ps`
 
