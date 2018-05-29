@@ -22,7 +22,14 @@ Most issues are fixed by resetting the containers environment. In order to do th
 
 * `docker-compose down -v --rmi all`: Stops all running services, and also removes their containers, images, networks and volumes.
 
-In some cases there's need to forcefully remove the images and volumes, when those are shared for example.
+In some cases there's need to **_forcefully_** remove the images and volumes, when those are shared for example.
+
+* `docker stop $(docker ps -q)`
+* `docker rm $(docker ps -a -q)`
+* `docker rmi $(docker images -q)`
+* `docker network rm $(docker network ls -q)`
+* `docker volume rm $(docker volume ls -q)`
+
 You can check if all containers, images, networks and volumes were succesfully removed with these commands:
 
 * `docker container ls`: To see all containers, both running and not running.
