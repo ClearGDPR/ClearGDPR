@@ -4,6 +4,7 @@ const { sessionJWT, cgJWT } = require('../utils/jwt');
 const ensureAuthenticated = require('../utils/ensureAuthenticated');
 const { Unauthorized, BadRequest } = require('../utils/errors');
 const { db } = require('../db');
+const {comparePassword, hashPassword} = require('./../utils/password')
 
 module.exports = app => {
   app.use('/users', router);
@@ -16,8 +17,12 @@ module.exports = app => {
     const [userFromDb] = await db('users').where({ username: username });
 
     if (!userFromDb) {
-      return next(new Unauthorized('User not registered'));
+      return next(new Unauthorized('Invalid Credentials'));
     }
+
+    const passwordCheck = await comparePassword(password, userFromDb.password_hash);
+    if(!passwordCheck) return next(new Unauthorized('Invalid Credentials'));
+
     const apiToken = await sessionJWT.sign({ username });
     const cgToken = await cgJWT.sign({ subjectId: userFromDb.id });
     res.json({
@@ -39,10 +44,11 @@ module.exports = app => {
     if (userFromDb) {
       return next(new BadRequest('User already registered'));
     }
+
     const [userId] = await db('users')
       .insert({
         username: username,
-        password: password
+        password_hash: await hashPassword(password),
       })
       .returning('id');
 

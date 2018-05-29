@@ -35,13 +35,19 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFiles": ["dotenv/config"],
+    "setupFiles": [
+      "dotenv/config"
+    ],
     "collectCoverage": true,
-    "collectCoverageFrom": ["src/**/*.js", "!**/node_modules/**"],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/node_modules/**"
+    ],
     "globalSetup": "./test/global-setup.js",
     "globalTeardown": "./test/global-teardown.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
