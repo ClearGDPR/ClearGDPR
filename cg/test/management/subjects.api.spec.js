@@ -44,42 +44,6 @@ describe('List subjects that have given consent', () => {
     );
   });
 
-  it('should not allow an authentic manager to list subjects whose personal data is empty', async () => {
-    //GIVEN
-    const subjectData = {}; // Empty subject's personal data implies that the subject should not be listed
-    const encryptionKey = generateClientKey();
-    const encryptedSubjectData = encryptForStorage(JSON.stringify(subjectData), encryptionKey);
-    const subjectIdHash = hash('subject652848158'); // Random ID to not influence other tests
-
-    await db('subjects').insert({
-      id: subjectIdHash,
-      personal_data: encryptedSubjectData
-    });
-
-    await db('subject_keys').insert({
-      subject_id: subjectIdHash,
-      key: encryptionKey
-    });
-
-    //WHEN
-    const managementToken = await managementJWT.sign({ id: 1 });
-
-    const res = await fetch('/api/management/subjects/list', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${managementToken}`
-      }
-    });
-
-    //THEN
-    expect(res.ok).toBeTruthy();
-    expect(res.status).toBe(200);
-    expect(await res.json()).toEqual(
-      expect.arrayContaining([])
-      // Expects an empty array because a subject without personal data in the DB is filtered out by the listSubjects() function in the subjectsService class
-    );
-  });
-
   it('should not allow an authentic manager to list subjects without an encryption key', async () => {
     //GIVEN
     const subjectData = {
@@ -113,9 +77,13 @@ describe('List subjects that have given consent', () => {
     //THEN
     expect(res.ok).toBeTruthy();
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual(
-      expect.arrayContaining([])
-      // Expects an empty array because a subject without an encryption key in the DB is filtered out by the listSubjects function in the subjectsService class
+    expect(await res.json()).not.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          username: 'subject',
+          email: 'subject@clevertech.biz'
+        })
+      ])
     );
   });
 
@@ -152,54 +120,52 @@ describe('List subjects that have given consent', () => {
     //THEN
     expect(res.ok).toBeTruthy();
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual(
-      expect.arrayContaining([])
-      // Expects an empty array because a subject with an invalid encryption key in the DB is filtered out by the listSubjects function in the subjectsService class
+    expect(await res.json()).not.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          username: 'subject',
+          email: 'subject@clevertech.biz'
+        })
+      ])
     );
   });
 
   it('should allow an authentic manager to list subjects', async () => {
     //GIVEN
-    const subjectData_1 = {
+    const subjectData1 = {
       username: 'subject1',
       email: 'subject1@clevertech.biz'
     };
-    const encryptionKey_1 = generateClientKey();
-    const encryptedSubjectData_1 = encryptForStorage(
-      JSON.stringify(subjectData_1),
-      encryptionKey_1
-    );
-    const subjectIdHash_1 = hash('user15786'); // Random ID to not influence other tests
+    const encryptionKey1 = generateClientKey();
+    const encryptedSubjectData1 = encryptForStorage(JSON.stringify(subjectData1), encryptionKey1);
+    const subjectIdHash1 = hash('user15786'); // Random ID to not influence other tests
 
     await db('subjects').insert({
-      id: subjectIdHash_1,
-      personal_data: encryptedSubjectData_1
+      id: subjectIdHash1,
+      personal_data: encryptedSubjectData1
     });
 
     await db('subject_keys').insert({
-      subject_id: subjectIdHash_1,
-      key: encryptionKey_1
+      subject_id: subjectIdHash1,
+      key: encryptionKey1
     });
 
-    const subjectData_2 = {
+    const subjectData2 = {
       username: 'subject2',
       email: 'subject2@clevertech.biz'
     };
-    const encryptionKey_2 = generateClientKey();
-    const encryptedSubjectData_2 = encryptForStorage(
-      JSON.stringify(subjectData_2),
-      encryptionKey_2
-    );
-    const subjectIdHash_2 = hash('user68751'); // Random ID to not influence other tests
+    const encryptionKey2 = generateClientKey();
+    const encryptedSubjectData2 = encryptForStorage(JSON.stringify(subjectData2), encryptionKey2);
+    const subjectIdHash2 = hash('user68751'); // Random ID to not influence other tests
 
     await db('subjects').insert({
-      id: subjectIdHash_2,
-      personal_data: encryptedSubjectData_2
+      id: subjectIdHash2,
+      personal_data: encryptedSubjectData2
     });
 
     await db('subject_keys').insert({
-      subject_id: subjectIdHash_2,
-      key: encryptionKey_2
+      subject_id: subjectIdHash2,
+      key: encryptionKey2
     });
 
     //WHEN
