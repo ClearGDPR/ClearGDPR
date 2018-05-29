@@ -84,8 +84,12 @@ If the error persists, try changing the version of your Docker-compose.
 
 **Problems with dependencies**
 
-Make sure you ran `yarn install` in the root directory. 
-If the issue persists, start the servers with `docker/run` and then try running `docker exec $CONTAINER_NAME yarn install` inside the container that is showing the issue. 
+If one or more dependencies are not found, try running `yarn install` in the root directory. 
+If the issue persists, start the servers with `docker/run`, open another terminal tab/window and try running `docker exec $CONTAINER_NAME yarn install` inside the container that is showing the issue.
+
+**ERROR: gyp ERR!**
+
+Try running `yarn install` in the root directory. This is a dependecy issue.
 
 **ERROR: Couldn't find env file**
 
