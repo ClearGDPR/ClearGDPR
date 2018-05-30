@@ -6,11 +6,13 @@ const bodyParser = require('body-parser');
 
 const { apiErrorHandler } = require('./utils/errors');
 
-// Security HTTP headers
-// See https://helmetjs.github.io/docs/
+const corsOptions = {
+  origin: process.env.ALLOWED_REQUEST_ORIGIN,
+}
+
 app.use(helmet());
 
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

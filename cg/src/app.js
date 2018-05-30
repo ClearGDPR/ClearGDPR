@@ -8,6 +8,11 @@ const expressWs = require('express-ws');
 const { apiErrorHandler } = require('./utils/errors');
 const { errors } = require('celebrate');
 
+
+const corsOptions = {
+  origin: process.env.ALLOWED_REQUEST_ORIGIN,
+}
+
 // Security HTTP headers
 // See https://helmetjs.github.io/docs/
 app.use(helmet());
