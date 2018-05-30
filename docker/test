@@ -4,9 +4,16 @@ set -e
 
 docker/run -d
 
+TRIES=0
 until curl http://127.0.0.1:8082/healthz; do
+    TRIES=$TRIES+1
     echo 'Waiting for OG to be ready'
     sleep 5
+    TRIES=$((TRIES+1))
+    if [ "$TRIES" -gt "20"  ]; then
+      echo "Exiting after 20 attempts"
+      exit 1
+    fi
 done
 sleep 1;
 
