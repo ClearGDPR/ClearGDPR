@@ -89,7 +89,6 @@ services:
       - '8081:8080'
 
   constellation1:
-    build: quorum/.
     image: cleargpdr/quorum:${DOCKER_TAG:-latest}
     env_file: quorum/node_1/.env
     environment: 
