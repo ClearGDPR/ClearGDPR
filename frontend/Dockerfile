@@ -5,8 +5,7 @@ LABEL maintainer="Clevertech DevOps <support@clevertech.biz>"
 RUN apk --no-cache add ca-certificates && update-ca-certificates
 
 # Force python update to install Sass
-RUN apk update && \
-  apk upgrade && \
+RUN apk upgrade && \
   apk add --no-cache git \
     make gcc g++ python
 

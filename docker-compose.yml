@@ -1,6 +1,7 @@
 version: '2.1'
 services:
   cg:
+    build: cg/.
     image: cleargpdr/cg:${DOCKER_TAG:-latest}
     command: 'yarn run start-dev'
     depends_on:
