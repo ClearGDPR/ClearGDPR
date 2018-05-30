@@ -9,6 +9,23 @@ before_install:
   - tar xvf secrets.tar
 services:
   - docker
-script:
-  - docker/test
+
+stages:
+  - test
+  - publish
   
+jobs:
+  include:
+    - stage: test
+      script: docker/test
+    - stage: publish
+      script:
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - cd cg
+        - make release
+        - cd ..
+        - cd api
+        - make release
+        - cd ..
+        - cd frontend
+        - make release
