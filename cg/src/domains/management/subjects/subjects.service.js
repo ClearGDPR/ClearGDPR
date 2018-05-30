@@ -13,7 +13,8 @@ class SubjectsService {
       .select('personal_data')
       .whereNotNull('personal_data')
       .select('key')
-      .whereNotNull('key');
+      .whereNotNull('key')
+      .orderBy('id', 'desc');
 
     const decryptedData = data
       .map(item => {
