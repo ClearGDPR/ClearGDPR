@@ -1,9 +1,9 @@
 const { db } = require('../src/db');
-const { initResources, fetch, closeRources } = require('./utils');
+const { initResources, fetch, closeResources } = require('./utils');
 const { BadRequest, Unauthorized } = require('../src/utils/errors');
 
 beforeAll(initResources);
-afterAll(closeRources);
+afterAll(closeResources);
 
 describe('Login', () => {
   it('should allow login ', async () => {
