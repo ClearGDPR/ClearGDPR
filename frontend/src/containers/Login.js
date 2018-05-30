@@ -4,8 +4,13 @@ import config from '../config';
 const { API_BASE } = config;
 
 class Login extends Component {
+  state = {
+    isLoading: false
+  };
+
   async onSubmit(e) {
     e.preventDefault();
+    this.setState({ isLoading: true });
     const { email, password } = this.refs;
     const url = API_BASE + '/api/users/login';
     const token = await fetch(url, {
@@ -18,6 +23,7 @@ class Login extends Component {
         password: password.value
       })
     }).then(res => res.json());
+    this.setState({ isLoading: false });
 
     localStorage.setItem('cgToken', token.cgToken);
 
@@ -46,7 +52,12 @@ class Login extends Component {
                   </div>
                 </div>
 
-                <input type="submit" value="Sign in" className="button is-primary" />
+                <button
+                  type="submit"
+                  className={`button is-primary ${this.state.isLoading ? 'is-loading' : ''}`}
+                >
+                  Sign in
+                </button>
               </form>
             </div>
           </div>

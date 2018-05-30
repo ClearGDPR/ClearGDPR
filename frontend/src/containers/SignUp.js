@@ -6,6 +6,15 @@ import Elements from '../elements/components/Elements';
 Elements();
 
 class SignUp extends Component {
+  state = {
+    isLoading: false
+  };
+
+  onSubmit(e) {
+    e.preventDefault();
+    this.setState({ isLoading: true });
+  }
+
   render() {
     const ConsentFormController = Element.create({
       source: 'consent',
@@ -36,7 +45,7 @@ class SignUp extends Component {
               <h3 className="title"> Create your account </h3>
               <p>{`To create your Account simply fill the short form below`}</p>
               <hr />
-              <form action="/success">
+              <form action="/success" onSubmit={e => this.onSubmit(e)}>
                 <div className="field">
                   <label className="label">First Name</label>
                   <div className="control">
@@ -111,7 +120,12 @@ class SignUp extends Component {
                 <br />
                 <br />
 
-                <input type="submit" value="Save my details" className="button is-primary" />
+                <button
+                  type="submit"
+                  className={`button is-primary ${this.state.isLoading ? 'is-loading' : ''}`}
+                >
+                  Save my details
+                </button>
               </form>
             </div>
           </div>
