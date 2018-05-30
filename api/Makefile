@@ -1,0 +1,23 @@
+NS = cleargdpr
+VERSION ?= latest
+
+REPO = demo-api
+NAME = demo-api
+INSTANCE = default
+PORTS = -p 8080:8080
+ENV = \
+  -e NODE_ENV=development
+
+build:
+	docker build -t $(NS)/$(REPO):$(VERSION) .
+
+push:
+	docker push $(NS)/$(REPO):$(VERSION)
+
+shell:
+	docker run --rm --name $(NAME)-$(INSTANCE) -i -t $(PORTS) $(VOLUMES) $(ENV) $(NS)/$(REPO):$(VERSION) /bin/bash
+
+release: build
+	make push -e VERSION=$(VERSION)
+
+default: build
