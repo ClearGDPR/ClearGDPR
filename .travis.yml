@@ -1,11 +1,12 @@
 sudo: required
 language: node_js
 node_js:
-- '8'
+  - '8'
 before_install:
-- openssl aes-256-cbc -K $encrypted_1f8d325dded8_key -iv $encrypted_1f8d325dded8_iv -in secrets.tar.enc -out secrets.tar -d
-- tar xvf secrets.tar
+  - sudo /etc/init.d/postgresql stop
+  - openssl aes-256-cbc -K $encrypted_1f8d325dded8_key -iv $encrypted_1f8d325dded8_iv -in secrets.tar.enc -out secrets.tar -d
+  - tar xvf secrets.tar
 services:
-- docker
+  - docker
 script:
-- docker/test
+  - docker/test
