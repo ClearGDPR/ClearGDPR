@@ -90,7 +90,7 @@ services:
       - '8081:8080'
 
   constellation1:
-    image: cleargpdr/quorum:${DOCKER_TAG:-latest}
+    image: cleargdpr/quorum:${DOCKER_TAG:-latest}
     env_file: quorum/node_1/.env
     environment: 
       - SERVICE=constellation
@@ -100,7 +100,7 @@ services:
       quorum_net:
         ipv4_address: '172.13.0.2'
   constellation2:
-    image: cleargpdr/quorum:${DOCKER_TAG:-latest}
+    image: cleargdpr/quorum:${DOCKER_TAG:-latest}
     env_file: quorum/node_2/.env
     environment: 
       - SERVICE=constellation
@@ -111,7 +111,7 @@ services:
         ipv4_address: '172.13.0.3'
 
   geth1:
-    image: cleargpdr/quorum:${DOCKER_TAG:-latest}
+    image: cleargdpr/quorum:${DOCKER_TAG:-latest}
     env_file: quorum/node_1/.env
     environment: 
       - SERVICE=geth
@@ -129,7 +129,7 @@ services:
       - 22001:8545
       - 33001:8546
   geth2:
-    image: cleargpdr/quorum:${DOCKER_TAG:-latest}
+    image: cleargdpr/quorum:${DOCKER_TAG:-latest}
     env_file: quorum/node_2/.env
     environment: 
       - SERVICE=geth
