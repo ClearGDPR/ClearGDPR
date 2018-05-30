@@ -1,14 +1,18 @@
 import React from 'react';
+import _ from 'lodash';
 import Elements from '../components/Elements';
 import styles from '../theme/SubjectData.scss';
 
 // Check if OG is initialized
 Elements();
 
+const SUBJECT_DATA_STATUS = ['Not shareable', 'Shareable', 'Erased'];
+
 class UserData extends React.PureComponent {
   state = {
     data: null,
-    status: null
+    status: null,
+    processors: []
   };
 
   componentDidMount() {
@@ -17,6 +21,18 @@ class UserData extends React.PureComponent {
       const cgToken = localStorage.getItem('cgToken');
 
       window.cg.setAccessToken(cgToken);
+      window.cg.Subject.getProcessors()
+        .then(processors => {
+          processors.map(p => {
+            p.enabled = true;
+            return p;
+          });
+          this.setState({ processors });
+        })
+        .catch(err => {
+          console.log('failure', err);
+        });
+
       window.cg.Subject.accessData()
         .then(data => {
           this.setState({ data });
@@ -36,10 +52,20 @@ class UserData extends React.PureComponent {
   }
 
   render() {
-    const { data, status } = this.state;
+    const { data, status, processors } = this.state;
 
     if (!data || !status) {
       return <div>Loading</div>;
+    }
+
+    let processorsList = [];
+
+    if (processors && status.processors) {
+      processorsList = processors.map(p => {
+        const s = _.find(status.processors, { id: p.id });
+        p.status = SUBJECT_DATA_STATUS[s.status];
+        return p;
+      });
     }
 
     return (
@@ -58,18 +84,21 @@ class UserData extends React.PureComponent {
         <div>Controller: {status.controller}</div>
         <br />
         <b>Processors</b>
-        <ul>
-          {status.processors.map(p => (
-            <div key={p.id} className={styles.processor}>
-              <span
-                className={[styles.status, p.status ? styles.isActive : styles.isInactive].join(
-                  ' '
-                )}
-              />
-              <span>{p.id}</span>
+        {processorsList.map(p => (
+          <div key={p.id} className={styles.processor}>
+            <div>
+              <img src={p.logoUrl} alt={p.name} />
             </div>
-          ))}
-        </ul>
+            <div>{p.name}</div>
+            <div>{p.description}</div>
+            <div>
+              <b>Status</b>: {p.status}
+            </div>
+            <div>
+              <b>Scopes</b>: <i>{p.scopes.join(', ')}</i>
+            </div>
+          </div>
+        ))}
       </div>
     );
   }
