@@ -26,7 +26,7 @@ rpc_port=$7
 ws_port=$8
 password=$9
 
-image=clear-gdpr_quorum
+image=cleargpdr/quorum
 
 if [ -d $target_dir ]; then
     rm -rf $target_dir

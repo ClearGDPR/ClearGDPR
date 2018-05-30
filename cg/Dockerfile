@@ -5,8 +5,8 @@ LABEL maintainer="Clevertech DevOps <support@clevertech.biz>"
 RUN apk --no-cache add ca-certificates && update-ca-certificates
 RUN apk update && \
     apk upgrade && \
-    apk add --no-cache git && \
-    apk add --no-cache make gcc g++ python
+    apk add --no-cache git \
+      make gcc g++ python
 
 
 EXPOSE 3000

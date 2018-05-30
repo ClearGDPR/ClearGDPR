@@ -7,7 +7,7 @@ gid=`id -g`
 pwd=`pwd`
 
 cg_image=clear-gdpr_cg
-quorum_image=clear-gdpr_quorum
+quorum_image=cleargpdr/quorum
 
 cg_dir=$pwd/cg
 qdata_dir=$pwd/$5

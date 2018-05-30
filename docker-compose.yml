@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   cg:
-    build: cg/.
+    image: cleargpdr/cg:${DOCKER_TAG:-latest}
     command: 'yarn run start-dev'
     depends_on:
       - db
@@ -21,7 +21,7 @@ services:
     image: 'clear-gdpr_cg:latest'
 
   cg_processor:
-    build: cg/.
+    image: cleargpdr/cg:${DOCKER_TAG:-latest}
     command: 'yarn run start-dev'
     depends_on:
       - db
@@ -40,6 +40,7 @@ services:
       - /opt/app/node_modules
     image: 'clear-gdpr_cg:latest'
   api:
+    image: cleargpdr/demo-api:${DOCKER_TAG:-latest}
     build: api/.
     command: 'yarn run start-dev'
     depends_on:
@@ -57,6 +58,7 @@ services:
       - /opt/app/node_modules
     image: 'clear-gdpr_api:latest'
   frontend:
+    image: cleargpdr/demo-frontend:${DOCKER_TAG:-latest}
     build: frontend/.
     command: 'npm start'
     ports:
@@ -71,7 +73,7 @@ services:
     image: 'clear-gdpr_frontend:latest'
   db:
     build: docker/definitions/postgres
-    image: 'clear-gdpr_postgres:latest'
+    image: cleargpdr/postgres:${DOCKER_TAG:-latest}
     restart: always
     env_file:
       - docker/definitions/postgres/.env
@@ -88,7 +90,7 @@ services:
 
   constellation1:
     build: quorum/.
-    image: 'clear-gdpr_quorum:latest'
+    image: cleargpdr/quorum:${DOCKER_TAG:-latest}
     env_file: quorum/node_1/.env
     environment: 
       - SERVICE=constellation
@@ -98,7 +100,7 @@ services:
       quorum_net:
         ipv4_address: '172.13.0.2'
   constellation2:
-    image: 'clear-gdpr_quorum:latest'
+    image: cleargpdr/quorum:${DOCKER_TAG:-latest}
     env_file: quorum/node_2/.env
     environment: 
       - SERVICE=constellation
@@ -109,7 +111,7 @@ services:
         ipv4_address: '172.13.0.3'
 
   geth1:
-    image: 'clear-gdpr_quorum:latest'
+    image: cleargpdr/quorum:${DOCKER_TAG:-latest}
     env_file: quorum/node_1/.env
     environment: 
       - SERVICE=geth
@@ -127,7 +129,7 @@ services:
       - 22001:8545
       - 33001:8546
   geth2:
-    image: 'clear-gdpr_quorum:latest'
+    image: cleargpdr/quorum:${DOCKER_TAG:-latest}
     env_file: quorum/node_2/.env
     environment: 
       - SERVICE=geth
