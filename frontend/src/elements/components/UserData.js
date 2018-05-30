@@ -94,9 +94,6 @@ class UserData extends React.PureComponent {
             <div>
               <b>Status</b>: {p.status}
             </div>
-            <div>
-              <b>Scopes</b>: <i>{p.scopes.join(', ')}</i>
-            </div>
           </div>
         ))}
       </div>
