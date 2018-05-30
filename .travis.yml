@@ -8,5 +8,4 @@ before_install:
 services:
 - docker
 script:
-- docker-compose --version
-- find . -name "*.env" -type f
+- docker/test

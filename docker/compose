@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+COMPOSE_PROJECT_NAME=clear-gdpr
+
+# Linux fix
+CONFIG_FILE=docker-compose.yml
+
+COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME docker-compose "$@"

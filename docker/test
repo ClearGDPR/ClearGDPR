@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+docker/run -d
+
+until curl http://127.0.0.1:8082/healthz; do
+    echo 'Waiting for OG to be ready'
+    sleep 5
+done
+sleep 1;
+
+COMPOSE_PROJECT_NAME=clear-gdpr
+
+# Linux fix
+CONFIG_FILE=docker-compose.yml
+
+TEST_CMD="docker-compose -f $CONFIG_FILE exec cg yarn test"
+
+COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME $TEST_CMD

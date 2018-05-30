@@ -13,7 +13,12 @@ SERVICES=(cg api frontend)
 SERVICES_DIR=(cg api frontend)
 
 BUILD_CMD="docker-compose -f $CONFIG_FILE build"
-UP_CMD="docker-compose -f $CONFIG_FILE up"
+
+if [ "$1" = "--detached" ] || [ "$1" = "-d" ] ; then
+  UP_CMD="docker-compose -f $CONFIG_FILE up -d"
+else
+  UP_CMD="docker-compose -f $CONFIG_FILE up"
+fi
 
 function rmContainers() {
   echo "Removing containers"
