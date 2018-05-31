@@ -10,6 +10,9 @@ before_install:
 services:
   - docker
 
+env:
+  - VERSION: $TRAVIS_TAG
+
 stages:
   - test
   - publish
@@ -20,13 +23,19 @@ jobs:
     - stage: test
       script: docker/test
     - stage: publish
+      if: tag =~ ^(\d*\.)+\d*$
       script:
         - docker/run --build
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - make -C cg push
         - make -C api push
         - make -C frontend push
+        - VERSION=latest make -C cg push
+        - VERSION=latest make -C api push
+        - VERSION=latest make -C frontend push
     - stage: deploy
+      if: tag =~ ^(\d*\.)+\d*$
       script:
+        - echo "Genering kubeDef.json for version v$VERSION"
         - node travis/generate-kubedef.js
         # - curl -X POST --data "@kubeDef.json" -H "x-api-key: $LAMBDA_TOKEN" $LAMBDA_URL
