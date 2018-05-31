@@ -1,5 +1,5 @@
 const crypto = require('crypto');
-var exec = require('child_process').exec;
+const exec = require('child_process').execSync;
 
 const readline = require('readline');
 
@@ -31,25 +31,83 @@ function checkPrereqs() {
 }
 
 // const args = process.argv.slice(2);
+function logProgress(msg) {
+  console.log(msg);
+}
 
 async function run() {
   await checkPrereqs();
   const defaultAccountPassword = await getKey();
-  const ACCOUNT_PASSWORD = getInput(
+  const defaultDbPassword = await getKey();
+
+  let accountPassword = await getInput(
     `Enter an account password: default [${defaultAccountPassword}]`
   );
+
+  if (!accountPassword) accountPassword = defaultAccountPassword;
+
+  logProgress('Creating initial env files...');
 
   exec(`touch cg/.env cg/.controller.env cg/.processor.env api/.env \\
     quorum/node_1/.env quorum/node_2/.env \\
     docker/definitions/postgres/.env \\
     && cp frontend/.env.example frontend/.env`);
 
-  exec(`quorum/scripts/create_node.sh node1 172.13.0.2 172.13.0.4 9000 30303 50400 8545 8546 ${ACCOUNT_PASSWORD} && \\
-    quorum/scripts/create_node.sh node2 172.13.0.3 172.13.0.5 9000 30303 50400 8545 8546 ${ACCOUNT_PASSWORD} && \\
+  logProgress('Generating quorum node configs');
+
+  exec(`quorum/scripts/create_node.sh node1 172.13.0.2 172.13.0.4 9000 30303 50400 8545 8546 ${accountPassword} && \\
+    quorum/scripts/create_node.sh node2 172.13.0.3 172.13.0.5 9000 30303 50400 8545 8546 ${accountPassword} && \\
     quorum/scripts/generate_env_vars.sh node1 node2`);
+
+  logProgress('Copying quorum env files');
 
   exec(`cp quorum/generated_configs/node1/.env quorum/node_1/.env && \\
     cp quorum/generated_configs/node2/.env quorum/node_2/.env`);
+
+  logProgress('Reading generated account addresses');
+
+  const controllerAccount = `0x${exec(
+    'cat quorum/generated_configs/node1/dd/account.txt'
+  )}`.replace(/\n$/, '');
+  const processorAccount = `0x${exec('cat quorum/generated_configs/node2/dd/account.txt')}`.replace(
+    /\n$/,
+    ''
+  );
+
+  let dbPassword = await getInput(`Enter a db password: default [${defaultDbPassword}]`);
+  if (!dbPassword) dbPassword = defaultDbPassword;
+
+  // TODO: what does this step do?
+  logProgress('Generating more config?');
+
+  const subjectSecret = exec(
+    `cg/scripts/generate_config.sh ${controllerAccount} ${processorAccount} ${accountPassword} ${dbPassword} quorum/generated_configs/node1`
+  );
+
+  // TODO: what does this step do?
+  logProgress('Generating more config2?');
+
+  exec(`api/scripts/generate_config.sh ${dbPassword} ${subjectSecret}`);
+
+  await getInput(
+    `You're almost there! run 'docker/run' in another terminal to start the docker containers, press enter when complete`
+  );
+
+  logProgress('Creating DB config...');
+
+  exec(`echo "POSTGRES_PASSWORD=${dbPassword}" > docker/definitions/postgres/.env`);
+
+  logProgress('Deploying initial contract...');
+
+  exec(`COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec cg yarn run deploy-contract`);
+
+  logProgress('Adding initial processor');
+
+  exec(
+    `COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec cg yarn run add-processor ${processorAccount}`
+  );
+
+  logProgress('All done, the example UI should be accessible at http://localhost:3000');
 }
 
 run().catch(console.error);

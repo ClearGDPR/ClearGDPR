@@ -12,8 +12,11 @@ module.exports = {
     'array-callback-return': 'warn',
     complexity: ['warn', { max: 20 }]
   },
+  parserOptions: {
+    ecmaVersion: 2017
+  },
   env: {
     es6: true, // otherwise you cannot use const and many other things
-    node: true, // otherwise we get errors for using require, process, etc.
+    node: true // otherwise we get errors for using require, process, etc.
   }
 };
