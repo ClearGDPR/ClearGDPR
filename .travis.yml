@@ -20,12 +20,13 @@ jobs:
       script: docker/test
     - stage: publish
       script:
+        - docker/run --build
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - cd cg
-        - make release
+        - make push
         - cd ..
         - cd api
-        - make release
+        - make push
         - cd ..
         - cd frontend
-        - make release
+        - make push
