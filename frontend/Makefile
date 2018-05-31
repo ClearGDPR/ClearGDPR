@@ -14,6 +14,9 @@ build:
 push:
 	docker push $(NS)/$(REPO):$(VERSION)
 
+tag:
+	docker tag $(NS)/$(REPO) $(NS)/$(REPO):$(VERSION)
+
 shell:
 	docker run --rm --name $(NAME)-$(INSTANCE) -i -t $(PORTS) $(VOLUMES) $(ENV) $(NS)/$(REPO):$(VERSION) /bin/bash
 

@@ -1,7 +1,9 @@
 const fs = require('fs');
 
 const REPO = 'cleargdpr';
-const VERSION = process.env.VARSION || 'latest';
+const QUORUM_VERSION = '0.0.1';
+
+const VERSION = process.env.VERSION || 'latest';
 
 const KUBE_CLUSTER = process.env.KUBE_CLUSTER;
 const KUBE_NS = 'open-gdpr-dev';
@@ -34,7 +36,7 @@ let kubeDef = [
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_CONSTELLATION1_CONTAINER,
     image: `${REPO}/${QUORUM_IMAGE}`,
-    tag: VERSION
+    tag: QUORUM_VERSION
   },
   {
     cluster: KUBE_CLUSTER,
@@ -42,7 +44,7 @@ let kubeDef = [
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_CONSTELLATION2_CONTAINER,
     image: `${REPO}/${QUORUM_IMAGE}`,
-    tag: VERSION
+    tag: QUORUM_VERSION
   },
   {
     cluster: KUBE_CLUSTER,
@@ -50,7 +52,7 @@ let kubeDef = [
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_GETH1_CONTAINER,
     image: `${REPO}/${QUORUM_IMAGE}`,
-    tag: VERSION
+    tag: QUORUM_VERSION
   },
   {
     cluster: KUBE_CLUSTER,
@@ -58,7 +60,7 @@ let kubeDef = [
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_GETH2_CONTAINER,
     image: `${REPO}/${QUORUM_IMAGE}`,
-    tag: VERSION
+    tag: QUORUM_VERSION
   },
   {
     cluster: KUBE_CLUSTER,

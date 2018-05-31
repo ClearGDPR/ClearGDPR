@@ -2,7 +2,7 @@ version: '2.1'
 services:
   cg:
     build: cg/.
-    image: cleargdpr/cg:${DOCKER_TAG:-latest}
+    image: cleargdpr/cg:${VERSION:-latest}
     command: 'yarn run start-dev'
     depends_on:
       - db
@@ -22,7 +22,7 @@ services:
 
   cg_processor:
     build: cg/.
-    image: cleargdpr/cg:${DOCKER_TAG:-latest}
+    image: cleargdpr/cg:${VERSION:-latest}
     command: 'yarn run start-dev'
     depends_on:
       - db
@@ -40,7 +40,7 @@ services:
       - './cg/.:/opt/app'
       - /opt/app/node_modules
   demo-api:
-    image: cleargdpr/demo-api:${DOCKER_TAG:-latest}
+    image: cleargdpr/demo-api:${VERSION:-latest}
     build: api/.
     command: 'yarn run start-dev'
     depends_on:
@@ -57,7 +57,7 @@ services:
       - './api/.:/opt/app'
       - /opt/app/node_modules
   demo-frontend:
-    image: cleargdpr/demo-frontend:${DOCKER_TAG:-latest}
+    image: cleargdpr/demo-frontend:${VERSION:-latest}
     build: frontend/.
     command: 'npm start'
     ports:
@@ -71,7 +71,7 @@ services:
       - /opt/app/node_modules
   db:
     build: docker/definitions/postgres
-    image: cleargdpr/postgres:${DOCKER_TAG:-latest}
+    image: cleargdpr/postgres:${VERSION:-latest}
     restart: always
     env_file:
       - docker/definitions/postgres/.env
@@ -87,7 +87,7 @@ services:
       - '8081:8080'
 
   constellation1:
-    image: cleargdpr/quorum:${DOCKER_TAG:-latest}
+    image: cleargdpr/quorum:${VERSION:-latest}
     env_file: quorum/node_1/.env
     environment: 
       - SERVICE=constellation
@@ -97,7 +97,7 @@ services:
       quorum_net:
         ipv4_address: '172.13.0.2'
   constellation2:
-    image: cleargdpr/quorum:${DOCKER_TAG:-latest}
+    image: cleargdpr/quorum:${VERSION:-latest}
     env_file: quorum/node_2/.env
     environment: 
       - SERVICE=constellation
@@ -108,7 +108,7 @@ services:
         ipv4_address: '172.13.0.3'
 
   geth1:
-    image: cleargdpr/quorum:${DOCKER_TAG:-latest}
+    image: cleargdpr/quorum:${VERSION:-latest}
     env_file: quorum/node_1/.env
     environment: 
       - SERVICE=geth
@@ -126,7 +126,7 @@ services:
       - 22001:8545
       - 33001:8546
   geth2:
-    image: cleargdpr/quorum:${DOCKER_TAG:-latest}
+    image: cleargdpr/quorum:${VERSION:-latest}
     env_file: quorum/node_2/.env
     environment: 
       - SERVICE=geth
