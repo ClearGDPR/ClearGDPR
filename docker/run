@@ -2,14 +2,14 @@
 
 set -e
 
-COMPOSE_PROJECT_NAME=clear-gdpr
+COMPOSE_PROJECT_NAME=cleargdpr
 
 # Linux fix
 CONFIG_FILE=docker-compose.yml
 
 CACHE_INIT=false
 
-SERVICES=(cg api frontend)
+SERVICES=(cg demo-api demo-frontend)
 SERVICES_DIR=(cg api frontend)
 
 BUILD_CMD="docker-compose -f $CONFIG_FILE build"
@@ -45,14 +45,14 @@ function retrieveYarnCache() {
   fi
 
   # Case #2: yarn packages changed during build
-  docker run --rm --entrypoint cat ${COMPOSE_PROJECT_NAME}_$SERVICE_NAME:latest /cache/yarn.lock > /tmp/${SERVICE_NAME}_yarn.lock
+  docker run --rm --entrypoint cat ${COMPOSE_PROJECT_NAME}/$SERVICE_NAME:latest /cache/yarn.lock > /tmp/${SERVICE_NAME}_yarn.lock
   if ! diff -q $SERVICE_DIR/yarn.lock /tmp/${SERVICE_NAME}_yarn.lock > /dev/null  2>&1; then
     RETRIEVE=true
   fi
 
   if [ "$RETRIEVE" = true ]; then
     echo "Retrieving"
-    docker run --rm --entrypoint cat ${COMPOSE_PROJECT_NAME}_$SERVICE_NAME:latest /.yarn-cache.tgz > $SERVICE_DIR/.yarn-cache.tgz
+    docker run --rm --entrypoint cat ${COMPOSE_PROJECT_NAME}/$SERVICE_NAME:latest /.yarn-cache.tgz > $SERVICE_DIR/.yarn-cache.tgz
     cp /tmp/${SERVICE_NAME}_yarn.lock $SERVICE_DIR/yarn.lock
   else
     echo "Not retrieving"

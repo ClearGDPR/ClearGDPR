@@ -2,7 +2,7 @@
 
 set -e
 
-COMPOSE_PROJECT_NAME=clear-gdpr
+COMPOSE_PROJECT_NAME=cleargdpr
 
 # Linux fix
 CONFIG_FILE=docker-compose.yml

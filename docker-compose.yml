@@ -2,7 +2,7 @@ version: '2.1'
 services:
   cg:
     build: cg/.
-    image: cleargpdr/cg:${DOCKER_TAG:-latest}
+    image: cleargdpr/cg:${DOCKER_TAG:-latest}
     command: 'yarn run start-dev'
     depends_on:
       - db
@@ -22,7 +22,7 @@ services:
 
   cg_processor:
     build: cg/.
-    image: cleargpdr/cg:${DOCKER_TAG:-latest}
+    image: cleargdpr/cg:${DOCKER_TAG:-latest}
     command: 'yarn run start-dev'
     depends_on:
       - db
@@ -39,8 +39,8 @@ services:
     volumes:
       - './cg/.:/opt/app'
       - /opt/app/node_modules
-  api:
-    image: cleargpdr/demo-api:${DOCKER_TAG:-latest}
+  demo-api:
+    image: cleargdpr/demo-api:${DOCKER_TAG:-latest}
     build: api/.
     command: 'yarn run start-dev'
     depends_on:
@@ -56,8 +56,8 @@ services:
     volumes:
       - './api/.:/opt/app'
       - /opt/app/node_modules
-  frontend:
-    image: cleargpdr/demo-frontend:${DOCKER_TAG:-latest}
+  demo-frontend:
+    image: cleargdpr/demo-frontend:${DOCKER_TAG:-latest}
     build: frontend/.
     command: 'npm start'
     ports:
@@ -71,7 +71,7 @@ services:
       - /opt/app/node_modules
   db:
     build: docker/definitions/postgres
-    image: cleargpdr/postgres:${DOCKER_TAG:-latest}
+    image: cleargdpr/postgres:${DOCKER_TAG:-latest}
     restart: always
     env_file:
       - docker/definitions/postgres/.env

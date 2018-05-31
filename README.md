@@ -12,16 +12,17 @@ This repository contains implementation of the ClearGDPR platform as well as an 
 # Table of contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
-
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-* [Architecture](#architecture)
-  * [Project structure](#project-structure)
-* [Quick Start guide](#quick-start-guide)
-* [Further reading](#further-reading)
-* [Troubleshooting](#troubleshooting)
-* [Roadmap](#roadmap)
-* [License](#license)
+- [Architecture](#architecture)
+  - [Project structure](#project-structure)
+- [Quick Start guide](#quick-start-guide)
+- [Further reading](#further-reading)
+- [Troubleshooting](#troubleshooting)
+- [Roadmap](#roadmap)
+- [License](#license)
+- [Contributing](#contributing)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -126,14 +127,14 @@ echo "POSTGRES_PASSWORD=$DB_PASSWORD" > docker/definitions/postgres/.env
 13. Deploy the smart contract:
 
 ```bash
-COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec cg yarn run deploy-contract
+COMPOSE_PROJECT_NAME=cleargdpr docker-compose exec cg yarn run deploy-contract
 ```
 
 14. Create an example processor
 
 ```
 PROCESSOR_ACCOUNT=0x$(cat quorum/generated_configs/node2/dd/account.txt) && \
-  COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec cg yarn run add-processor $PROCESSOR_ACCOUNT
+  COMPOSE_PROJECT_NAME=cleargdpr docker-compose exec cg yarn run add-processor $PROCESSOR_ACCOUNT
 ```
 
 Later you can change the data of the processor using the [management API](cg/docs/CG_API.md).

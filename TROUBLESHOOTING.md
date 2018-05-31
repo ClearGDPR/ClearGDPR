@@ -1,3 +1,15 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [INITIAL NOTES](#initial-notes)
+- [USEFUL COMMANDS](#useful-commands)
+- [IMPORTANT NOTE](#important-note)
+- [COMMON ISSUES](#common-issues)
+- [IF NOTHING WORKS](#if-nothing-works)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## INITIAL NOTES
 
 Before starting to troubleshoot, make sure you **followed carefully** the steps in the [Quick Start guide](README.md).
@@ -79,11 +91,11 @@ Don't try to run the command `docker-compose up`, instead always run: `docker/ru
 
 If your Docker-compose is not finding a running service or not executing a command properly, then try prepending the following into your docker-compose command:
 
-`COMPOSE_PROJECT_NAME=clear-gdpr`
+`COMPOSE_PROJECT_NAME=cleargdpr`
 
 Example Docker-compose command with the above prepended:
 
-`COMPOSE_PROJECT_NAME=clear-gdpr docker-compose ps`
+`COMPOSE_PROJECT_NAME=cleargdpr docker-compose ps`
 
 This specifies the current target project for Docker-compose.
 
