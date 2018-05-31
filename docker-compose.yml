@@ -19,7 +19,6 @@ services:
     volumes:
       - './cg/.:/opt/app'
       - /opt/app/node_modules
-    image: 'clear-gdpr_cg:latest'
 
   cg_processor:
     image: cleargpdr/cg:${DOCKER_TAG:-latest}
@@ -39,7 +38,6 @@ services:
     volumes:
       - './cg/.:/opt/app'
       - /opt/app/node_modules
-    image: 'clear-gdpr_cg:latest'
   api:
     image: cleargpdr/demo-api:${DOCKER_TAG:-latest}
     build: api/.
@@ -57,7 +55,6 @@ services:
     volumes:
       - './api/.:/opt/app'
       - /opt/app/node_modules
-    image: 'clear-gdpr_api:latest'
   frontend:
     image: cleargpdr/demo-frontend:${DOCKER_TAG:-latest}
     build: frontend/.
@@ -71,7 +68,6 @@ services:
     volumes:
       - './frontend/.:/opt/app'
       - /opt/app/node_modules
-    image: 'clear-gdpr_frontend:latest'
   db:
     build: docker/definitions/postgres
     image: cleargpdr/postgres:${DOCKER_TAG:-latest}
