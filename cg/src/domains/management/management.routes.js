@@ -21,6 +21,8 @@ const {
   deleteProcessorValidator
 } = require('./processors/processors.validators');
 
+const { listSubjectsValidator } = require('./subjects/subjects.validators');
+
 module.exports = app => {
   app.use('/management', router);
 
@@ -50,6 +52,7 @@ module.exports = app => {
 
   router.get(
     '/subjects/list',
+    listSubjectsValidator,
     asyncHandler(async (req, res) => subjectsController.listSubjects(req, res))
   );
 
