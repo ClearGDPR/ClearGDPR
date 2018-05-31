@@ -40,7 +40,8 @@ project root
 ├─ og                               # Code for the ClearGDPR API implementation
 ├─ frontend                         # Example React UI to interact with ClearGDPR API
 ├─ api                              # Example back-end React UI to interact with ClearGDPR API
-└─ docs                             # Documentation artifacts (images, documents, etc.)
+├─ docs                             # Documentation artifacts (images, documents, etc.)
+└─ travis                           # Scripts used on the CI server
 ```
 
 # Quick Start guide

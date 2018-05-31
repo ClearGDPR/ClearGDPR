@@ -13,6 +13,7 @@ services:
 stages:
   - test
   - publish
+  - deploy
   
 jobs:
   include:
@@ -25,3 +26,7 @@ jobs:
         - make -C cg push
         - make -C api push
         - make -C frontend push
+    - stage: deploy
+      script:
+        - node travis/generate-kubedef.js
+        # - curl -X POST --data "@kubeDef.json" -H "x-api-key: $LAMBDA_TOKEN" $LAMBDA_URL

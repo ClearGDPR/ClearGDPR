@@ -71,3 +71,6 @@ helm-*.yml
 # ignore .temp.js .temp.json
 *.temp.js
 *.temp.json
+
+# ignore kube definitions
+kubeDef.json
