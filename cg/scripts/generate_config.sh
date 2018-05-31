@@ -6,7 +6,7 @@ uid=`id -u`
 gid=`id -g`
 pwd=`pwd`
 
-cg_image=clear-gdpr_cg
+cg_image=cleargdpr/cg
 quorum_image=cleargdpr/quorum
 
 cg_dir=$pwd/cg
