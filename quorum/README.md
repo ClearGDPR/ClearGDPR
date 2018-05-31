@@ -14,6 +14,8 @@
 
 # CG Quorum – The docker image and configuration for Quorum docker containers
 
+[![Build Status](https://travis-ci.org/ClearGDPR/ClearGDPR.svg?branch=master)](https://travis-ci.org/ClearGDPR/ClearGDPR)
+
 ## Setting up the environment
 
 The .env.example file contains settings and keys for local development. Some of the values are base64 encoded.
