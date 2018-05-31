@@ -127,14 +127,14 @@ echo "POSTGRES_PASSWORD=$DB_PASSWORD" > docker/definitions/postgres/.env
 13. Deploy the smart contract:
 
 ```bash
-COMPOSE_PROJECT_NAME=cleargdpr docker-compose exec cg yarn run deploy-contract
+docker/compose exec cg yarn run deploy-contract
 ```
 
 14. Create an example processor
 
 ```
 PROCESSOR_ACCOUNT=0x$(cat quorum/generated_configs/node2/dd/account.txt) && \
-  COMPOSE_PROJECT_NAME=cleargdpr docker-compose exec cg yarn run add-processor $PROCESSOR_ACCOUNT
+  docker/compose exec cg yarn run add-processor $PROCESSOR_ACCOUNT
 ```
 
 Later you can change the data of the processor using the [management API](cg/docs/CG_API.md).
