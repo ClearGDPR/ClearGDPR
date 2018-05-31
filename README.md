@@ -13,7 +13,7 @@ This repository contains implementation of the ClearGDPR platform as well as an 
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
 
 - [Architecture](#architecture)
   - [Project structure](#project-structure)

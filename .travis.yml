@@ -22,11 +22,6 @@ jobs:
       script:
         - docker/run --build
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - cd cg
-        - make push
-        - cd ..
-        - cd api
-        - make push
-        - cd ..
-        - cd frontend
-        - make push
+        - make -C cg push
+        - make -C api push
+        - make -C frontend push
