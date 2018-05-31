@@ -31,9 +31,9 @@ jobs:
         - make -C cg push
         - make -C api push
         - make -C frontend push
-        - VERSION=latest make -C cg tag
-        - VERSION=latest make -C api tag
-        - VERSION=latest make -C frontend tag
+        - make -C cg tag-latest
+        - make -C api tag-latest
+        - make -C frontend tag-latest
         - VERSION=latest make -C cg push
         - VERSION=latest make -C api push
         - VERSION=latest make -C frontend push
