@@ -21,6 +21,7 @@ services:
       - /opt/app/node_modules
 
   cg_processor:
+    build: cg/.
     image: cleargpdr/cg:${DOCKER_TAG:-latest}
     command: 'yarn run start-dev'
     depends_on:
