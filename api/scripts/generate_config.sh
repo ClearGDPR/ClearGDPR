@@ -6,7 +6,7 @@ uid=`id -u`
 gid=`id -g`
 pwd=`pwd`
 
-image=clear-gdpr_api
+image=cleargdpr/demo-api
 
 target_dir=$pwd/api
 
