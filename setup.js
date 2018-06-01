@@ -26,13 +26,27 @@ function getInput(question) {
   });
 }
 
-function checkPrereqs() {
-  // check docker
-}
+
 
 // const args = process.argv.slice(2);
 function logProgress(msg) {
   console.log(msg);
+}
+
+function checkPrereqs() {
+  // check docker
+  try {
+    exec('docker -v');
+  } catch (e) {
+    logProgress('docker not found, exiting')
+    process.exit(1);
+  }
+  try {
+    exec('docker-compose -v');
+  } catch(e) {
+    logProgress('docker-compose not found, exiting')
+    process.exit(1);
+  }
 }
 
 /* eslint max-statements: 0 */
@@ -42,7 +56,7 @@ async function run() {
   const defaultDbPassword = await getKey();
 
   let accountPassword = await getInput(
-    `Enter an account password: default [${defaultAccountPassword}]`
+    `Enter an account password: default [${defaultAccountPassword}] `
   );
 
   if (!accountPassword) accountPassword = defaultAccountPassword;
@@ -79,10 +93,10 @@ async function run() {
     ''
   );
 
-  let dbPassword = await getInput(`Enter a db password: default [${defaultDbPassword}]`);
+  let dbPassword = await getInput(`Enter a db password: default [${defaultDbPassword}] `);
   if (!dbPassword) dbPassword = defaultDbPassword;
 
-  logProgress('Generating config for CG controller and CG processor?');
+  logProgress('Generating config for CG controller and CG processor');
 
   const subjectSecret = exec(
     `cg/scripts/generate_config.sh ${controllerAccount} ${processorAccount} ${accountPassword} ${dbPassword} quorum/generated_configs/node1`
@@ -111,4 +125,7 @@ async function run() {
   logProgress('All done, the example UI should be accessible at http://localhost:3000');
 }
 
-run().catch(console.error);
+run().catch(console.error).then(() => {
+  // clean up
+  rl.close();
+})
