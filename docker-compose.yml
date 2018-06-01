@@ -75,6 +75,8 @@ services:
     restart: always
     env_file:
       - docker/definitions/postgres/.env
+    volumes: 
+      - /var/lib/postgresql/data
     environment:
       POSTGRES_DB: clear_gdpr_local
       POSTGRES_USER: clear_gdpr
