@@ -1,11 +1,14 @@
 const fs = require('fs');
 
+let [deploymentType] = process.argv.slice(2);
+
 const REPO = 'cleargdpr';
 const QUORUM_VERSION = '0.0.1';
 
 const VERSION = process.env.VERSION || 'latest';
 
 const KUBE_CLUSTER = process.env.KUBE_CLUSTER;
+const KOPS_STATE_STORE = process.env.KOPS_STATE_STORE;
 const KUBE_NS = 'open-gdpr-dev';
 
 const QUORUM_IMAGE = 'quroum';
@@ -29,9 +32,8 @@ const FRONTEND_IMAGE = 'demo-frontend';
 const KUBE_FRONTEND_DEPLOYMENT = 'open-gdpr-frontend-dev';
 const KUBE_FRONTEND_CONTAINER = 'open-gdpr-frontend-dev';
 
-let kubeDef = [
+const quorumModules = [
   {
-    cluster: KUBE_CLUSTER,
     ns: KUBE_NS,
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_CONSTELLATION1_CONTAINER,
@@ -39,7 +41,6 @@ let kubeDef = [
     tag: QUORUM_VERSION
   },
   {
-    cluster: KUBE_CLUSTER,
     ns: KUBE_NS,
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_CONSTELLATION2_CONTAINER,
@@ -47,7 +48,6 @@ let kubeDef = [
     tag: QUORUM_VERSION
   },
   {
-    cluster: KUBE_CLUSTER,
     ns: KUBE_NS,
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_GETH1_CONTAINER,
@@ -55,15 +55,16 @@ let kubeDef = [
     tag: QUORUM_VERSION
   },
   {
-    cluster: KUBE_CLUSTER,
     ns: KUBE_NS,
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_GETH2_CONTAINER,
     image: `${REPO}/${QUORUM_IMAGE}`,
     tag: QUORUM_VERSION
-  },
+  }
+];
+
+const webModules = [
   {
-    cluster: KUBE_CLUSTER,
     ns: KUBE_NS,
     deployment: KUBE_CONTROLLER_DEPLOYMENT,
     container: KUBE_CONTROLLER_CONTAINER,
@@ -71,7 +72,6 @@ let kubeDef = [
     tag: VERSION
   },
   {
-    cluster: KUBE_CLUSTER,
     ns: KUBE_NS,
     deployment: KUBE_PROCESSOR_DEPLOYMENT,
     container: KUBE_PROCESSOR_CONTAINER,
@@ -79,7 +79,6 @@ let kubeDef = [
     tag: VERSION
   },
   {
-    cluster: KUBE_CLUSTER,
     ns: KUBE_NS,
     deployment: KUBE_API_DEPLOYMENT,
     container: KUBE_API_CONTAINER,
@@ -87,7 +86,6 @@ let kubeDef = [
     tag: VERSION
   },
   {
-    cluster: KUBE_CLUSTER,
     ns: KUBE_NS,
     deployment: KUBE_FRONTEND_DEPLOYMENT,
     container: KUBE_FRONTEND_CONTAINER,
@@ -95,5 +93,23 @@ let kubeDef = [
     tag: VERSION
   }
 ];
+
+const kubeDef = {
+  cluster: KUBE_CLUSTER,
+  kops_state_store: KOPS_STATE_STORE
+};
+
+switch (deploymentType) {
+  case '--quorum':
+    kubeDef.modules = quorumModules;
+    break;
+  case '--web-app':
+    kubeDef.modules = webModules;
+    break;
+  case undefined:
+  case null:
+    kubeDef.modules = quorumModules.concat(webModules);
+    break;
+}
 
 fs.writeFileSync('kubeDef.json', JSON.stringify(kubeDef));
