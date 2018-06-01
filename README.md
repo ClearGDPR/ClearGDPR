@@ -52,7 +52,7 @@ To get started with the project the only pre-reqs are node (v7.6+), docker and d
 
 Our interactive quick start will get you up and running, simply run `node setup.js` from the root of the project and follow the prompts. 
 
-If you have issues getting up and running, be sure to checkout our [troubshooting](TROUBLESHOOTING.md) guide. 
+If you have issues getting up and running, be sure to check out our [troubleshooting guide](TROUBLESHOOTING.md). 
 
 # Further reading
 
