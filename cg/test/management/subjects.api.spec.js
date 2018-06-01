@@ -2,9 +2,13 @@ const { initResources, fetch, closeResources } = require('../utils');
 const { db } = require('../../src/db');
 const { generateClientKey, encryptForStorage, hash } = require('../../src/utils/encryption');
 const { managementJWT } = require('../../src/utils/jwt');
-const { Unauthorized } = require('../../src/utils/errors');
+const { BadRequest, Unauthorized } = require('../../src/utils/errors');
 
 beforeAll(initResources);
+// beforeEach(async () => {
+//   await db('subject_keys').del();
+//   await db('subjects').del();
+// });
 afterAll(closeResources);
 
 describe('List subjects that have given consent', () => {
@@ -66,7 +70,6 @@ describe('List subjects that have given consent', () => {
 
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    console.log(managementToken);
 
     const res = await fetch('/api/management/subjects/list', {
       method: 'GET',
@@ -131,7 +134,7 @@ describe('List subjects that have given consent', () => {
     );
   });
 
-  it('should allow an authentic manager to list subjects', async () => {
+  it('should allow an authentic manager to list subjects with encryption keys', async () => {
     //GIVEN
     const subjectData1 = {
       username: 'subject1',
@@ -193,6 +196,170 @@ describe('List subjects that have given consent', () => {
           email: 'subject2@clevertech.biz'
         })
       ])
+    );
+  });
+
+  it('should not allow a page query with a negative page number', async () => {
+    //WHEN
+    const managementToken = await managementJWT.sign({ id: 1 });
+
+    const res = await fetch('/api/management/subjects/list?page=-1', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toBe(BadRequest.StatusCode);
+    expect(await res.json()).toEqual(
+      expect.objectContaining({
+        message: 'child "page" fails because ["page" must be a positive number]',
+        validation: {
+          source: 'query',
+          keys: ['page']
+        }
+      })
+    );
+  });
+
+  it('should not allow a page query with the zero page number', async () => {
+    //WHEN
+    const managementToken = await managementJWT.sign({ id: 1 });
+
+    const res = await fetch('/api/management/subjects/list?page=0', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toBe(BadRequest.StatusCode);
+    expect(await res.json()).toEqual(
+      expect.objectContaining({
+        message: 'child "page" fails because ["page" must be a positive number]',
+        validation: {
+          source: 'query',
+          keys: ['page']
+        }
+      })
+    );
+  });
+
+  it('should not allow a page query with a page number too big', async () => {
+    //WHEN
+    const managementToken = await managementJWT.sign({ id: 1 });
+
+    const res = await fetch('/api/management/subjects/list?page=99999999999999', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual(
+      expect.objectContaining({
+        error: 'page number too big, maximum page number is 1'
+      })
+    );
+  });
+
+  it('should not allow a page query without an integer page number', async () => {
+    //WHEN
+    const managementToken = await managementJWT.sign({ id: 1 });
+
+    const res = await fetch('/api/management/subjects/list?page=string', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toBe(BadRequest.StatusCode);
+    expect(await res.json()).toEqual(
+      expect.objectContaining({
+        message: 'child "page" fails because ["page" must be a number]',
+        validation: {
+          source: 'query',
+          keys: ['page']
+        }
+      })
+    );
+  });
+
+  it('should allow a page query with a valid page number', async () => {
+    //WHEN
+    const subjectData1 = {
+      username: 'subject1',
+      email: 'subject1@clevertech.biz'
+    };
+    const encryptionKey1 = generateClientKey();
+    const encryptedSubjectData1 = encryptForStorage(JSON.stringify(subjectData1), encryptionKey1);
+    const subjectIdHash1 = hash('user15786856756469'); // Random ID to not influence other tests
+
+    await db('subjects').insert({
+      id: subjectIdHash1,
+      personal_data: encryptedSubjectData1
+    });
+
+    await db('subject_keys').insert({
+      subject_id: subjectIdHash1,
+      key: encryptionKey1
+    });
+
+    const subjectData2 = {
+      username: 'subject2',
+      email: 'subject2@clevertech.biz'
+    };
+    const encryptionKey2 = generateClientKey();
+    const encryptedSubjectData2 = encryptForStorage(JSON.stringify(subjectData2), encryptionKey2);
+    const subjectIdHash2 = hash('user6875165419841965487'); // Random ID to not influence other tests
+
+    await db('subjects').insert({
+      id: subjectIdHash2,
+      personal_data: encryptedSubjectData2
+    });
+
+    await db('subject_keys').insert({
+      subject_id: subjectIdHash2,
+      key: encryptionKey2
+    });
+
+    //WHEN
+    const managementToken = await managementJWT.sign({ id: 1 });
+
+    const res = await fetch('/api/management/subjects/list?page=1', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual(
+      expect.objectContaining({
+        pages: expect.any(Number),
+        requestedPage: expect.arrayContaining([
+          expect.objectContaining({
+            email: 'subject1@clevertech.biz',
+            username: 'subject1'
+          }),
+          expect.objectContaining({
+            email: 'subject2@clevertech.biz',
+            username: 'subject2'
+          })
+        ])
+      })
     );
   });
 });

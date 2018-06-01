@@ -9,31 +9,39 @@ class SubjectsController {
 
   async listSubjects(req, res) {
     const subjectsList = await this.subjectsService.listSubjects();
-
-    if (req.query.page === undefined) {
-      return res.json(subjectsList);
-    }
-
-    if (subjectsList.length < PAGINATION_COUNT) {
-      return res.json({
-        pages: 1,
-        subjects: subjectsList
-      });
-    }
-
+    var requestedPage = req.query.page;
     var pages = [];
+
+    if (requestedPage === undefined) {
+      requestedPage = 1;
+    }
+
     for (var i = 0; i * PAGINATION_COUNT < subjectsList.length; i++) {
       pages[i] = subjectsList.slice(i * PAGINATION_COUNT, (i + 1) * PAGINATION_COUNT);
     }
 
-    if (req.query.page >= i) {
-      return res.json({ error: `page number too big, maximum page number is ${i - 1}` });
-      // should throw an error here?
+    if (i == 0) {
+      // This block handles the case in which there are no subjects in the db
+      if (requestedPage == 1) {
+        return res.json({
+          pages: 1,
+          requestedPage,
+          subjects: [] //Empty page
+        });
+      }
+      if (requestedPage != 1) {
+        return res.json({ error: `page number too big, maximum page number is 1` });
+      }
+    }
+
+    if (requestedPage > i) {
+      return res.json({ error: `page number too big, maximum page number is ${i}` });
     }
 
     res.json({
       pages: i,
-      requestedPage: pages[req.query.page]
+      requestedPage,
+      subjects: pages[requestedPage - 1]
     });
   }
 }
