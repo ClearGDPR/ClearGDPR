@@ -35,5 +35,14 @@ describe('App', () => {
     expect(await res.text()).toEqual('User-agent: *\nDisallow: /\n');
   });
 
+  it('OPTIONS should return proper allowed origins', async () => {
+    const res = await fetch('/', {
+      method: 'OPTIONS'
+    });
+
+    expect(res.ok).toBeTruthy();
+    expect(res.headers['Access-Control-Allow-Origin']).toEqual(process.env.ALLOWED_REQUEST_ORIGIN);
+  });
+
   afterAll(closeResources);
 });
