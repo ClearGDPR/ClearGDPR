@@ -59,7 +59,7 @@ async function run() {
 
   logProgress('Generating quorum node configs');
 
-  exec(`quorum/scripts/create_node.sh node1 172.13.0.2 172.13.0.4 9000 30303 50400 8545 8546 ${accountPassword} && \\
+  const output = exec(`quorum/scripts/create_node.sh node1 172.13.0.2 172.13.0.4 9000 30303 50400 8545 8546 ${accountPassword} && \\
     quorum/scripts/create_node.sh node2 172.13.0.3 172.13.0.5 9000 30303 50400 8545 8546 ${accountPassword} && \\
     quorum/scripts/generate_env_vars.sh node1 node2`);
 
@@ -103,12 +103,13 @@ async function run() {
 
   logProgress('Deploying initial contract...');
 
-  exec(`COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec cg yarn run deploy-contract`);
+  exec(`COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec -T cg yarn run deploy-contract`);
 
   logProgress('Adding initial processor');
 
   exec(
-    `COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec cg yarn run add-processor ${processorAccount}`
+    `COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec -T cg yarn run add-processor ${processorAccount}`,
+    {stdio: 'inherit'}
   );
 
   logProgress('All done, the example UI should be accessible at http://localhost:3000');
