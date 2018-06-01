@@ -1,4 +1,4 @@
-const { initResources, fetch, integration, appUnit, closeResources } = require('./utils');
+const { initResources, fetch, appUnit, closeResources } = require('./utils');
 
 describe('App', () => {
   beforeAll(initResources);
@@ -15,7 +15,7 @@ describe('App', () => {
     expect(await res.json()).toEqual({ status: 'OK' });
   });
 
-  integration('Long healthz should return a JSON with status OK', async () => {
+  it('Long healthz should return a JSON with status OK', async () => {
     const res = await fetch(`/healthz/long/${process.env.HEALTH_CHECK_SECRET}`);
     expect(res.status).toEqual(200);
     expect(await res.json()).toEqual({ db: 'OK' });
@@ -33,6 +33,17 @@ describe('App', () => {
     const res = await fetch('/robots.txt');
     expect(res.status).toEqual(200);
     expect(await res.text()).toEqual('User-agent: *\nDisallow: /\n');
+  });
+
+  it('OPTIONS should return proper allowed origins', async () => {
+    const res = await fetch('/', {
+      method: 'OPTIONS'
+    });
+
+    expect(res.ok).toBeTruthy();
+    expect(res.headers.get('access-control-allow-origin')).toEqual(
+      process.env.ALLOWED_REQUEST_ORIGIN
+    );
   });
 
   afterAll(closeResources);
