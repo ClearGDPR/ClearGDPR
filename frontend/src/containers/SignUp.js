@@ -18,7 +18,7 @@ class SignUp extends Component {
   render() {
     const ConsentFormController = Element.create({
       source: 'consent',
-      label: `The Clevertech Times would like to 
+      label: `The Sport Times would like to 
       keep you informed about other offers, promotions and
       services that might interest you by email. Let us know if you would
       like to hear from us by ticking the box.`,
@@ -115,7 +115,7 @@ class SignUp extends Component {
                 {ConsentFormController}
 
                 <br />
-                <small>{`By registering with The Clevertech Times you agree to our Terms
+                <small>{`By registering with The Sport Times you agree to our Terms
                 and Conditions and our Privacy Policy.`}</small>
                 <br />
                 <br />
