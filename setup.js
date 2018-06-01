@@ -35,6 +35,7 @@ function logProgress(msg) {
   console.log(msg);
 }
 
+/* eslint max-statements: 0 */
 async function run() {
   await checkPrereqs();
   const defaultAccountPassword = await getKey();
@@ -59,7 +60,7 @@ async function run() {
 
   logProgress('Generating quorum node configs');
 
-  const output = exec(`quorum/scripts/create_node.sh node1 172.13.0.2 172.13.0.4 9000 30303 50400 8545 8546 ${accountPassword} && \\
+  exec(`quorum/scripts/create_node.sh node1 172.13.0.2 172.13.0.4 9000 30303 50400 8545 8546 ${accountPassword} && \\
     quorum/scripts/create_node.sh node2 172.13.0.3 172.13.0.5 9000 30303 50400 8545 8546 ${accountPassword} && \\
     quorum/scripts/generate_env_vars.sh node1 node2`);
 
@@ -81,15 +82,13 @@ async function run() {
   let dbPassword = await getInput(`Enter a db password: default [${defaultDbPassword}]`);
   if (!dbPassword) dbPassword = defaultDbPassword;
 
-  // TODO: what does this step do?
-  logProgress('Generating more config?');
+  logProgress('Generating config for CG controller and CG processor?');
 
   const subjectSecret = exec(
     `cg/scripts/generate_config.sh ${controllerAccount} ${processorAccount} ${accountPassword} ${dbPassword} quorum/generated_configs/node1`
   );
 
-  // TODO: what does this step do?
-  logProgress('Generating more config2?');
+  logProgress('Generating config for demo API project');
 
   exec(`api/scripts/generate_config.sh ${dbPassword} ${subjectSecret}`);
 
@@ -103,14 +102,11 @@ async function run() {
 
   logProgress('Deploying initial contract...');
 
-  exec(`COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec -T cg yarn run deploy-contract`);
+  exec(`docker/compose exec -T cg yarn run deploy-contract`);
 
   logProgress('Adding initial processor');
 
-  exec(
-    `COMPOSE_PROJECT_NAME=clear-gdpr docker-compose exec -T cg yarn run add-processor ${processorAccount}`,
-    {stdio: 'inherit'}
-  );
+  exec(`docker/compose exec -T cg yarn run add-processor ${processorAccount}`);
 
   logProgress('All done, the example UI should be accessible at http://localhost:3000');
 }
