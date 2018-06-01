@@ -53,6 +53,10 @@ async function run() {
     docker/definitions/postgres/.env \\
     && cp frontend/.env.example frontend/.env`);
 
+  logProgress('Building docker images... this will take a while');
+
+  exec(`docker/run --build`);
+
   logProgress('Generating quorum node configs');
 
   exec(`quorum/scripts/create_node.sh node1 172.13.0.2 172.13.0.4 9000 30303 50400 8545 8546 ${accountPassword} && \\
@@ -89,13 +93,13 @@ async function run() {
 
   exec(`api/scripts/generate_config.sh ${dbPassword} ${subjectSecret}`);
 
-  await getInput(
-    `You're almost there! run 'docker/run' in another terminal to start the docker containers, press enter when complete`
-  );
-
   logProgress('Creating DB config...');
 
   exec(`echo "POSTGRES_PASSWORD=${dbPassword}" > docker/definitions/postgres/.env`);
+
+  await getInput(
+    `You're almost there! run 'docker/run' in another terminal to start the docker containers, press enter when complete`
+  );
 
   logProgress('Deploying initial contract...');
 
