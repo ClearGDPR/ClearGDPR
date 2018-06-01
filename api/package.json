@@ -1,6 +1,6 @@
 {
   "name": "clear-gdpr-api",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "private": true,
   "description": "ClearGDPR API",
   "author": "Clevertech <support@clevertech.biz>",
@@ -35,14 +35,9 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "setupFiles": [
-      "dotenv/config"
-    ],
+    "setupFiles": ["dotenv/config"],
     "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.js",
-      "!**/node_modules/**"
-    ],
+    "collectCoverageFrom": ["src/**/*.js", "!**/node_modules/**"],
     "globalSetup": "./test/global-setup.js",
     "globalTeardown": "./test/global-teardown.js"
   },
