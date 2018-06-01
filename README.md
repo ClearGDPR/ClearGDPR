@@ -48,97 +48,11 @@ project root
 
 The `docker-compose.yml` contains configuration for a reference development environment of one Data Controller and one Data Processor and all required dependencies.
 
-In order to run and test this environment follow the instructions below"
+To get started with the project the only pre-reqs are node (v7.6+), docker and docker-compose.
 
-1. Follow the [Installation guide](INSTALL.md) for required dependencies
-2. Invent a password to be used with your quorum node account secrets. Set it as environment variable by executing this in your terminal:
+Our interactive quick start will get you up and running, simply run `node setup.js` from the root of the project and follow the prompts. 
 
-```bash
-ACCOUNT_PASS=super_secret_psw
-```
-
-This variable will be used in the remainder of the setup in the Quick Start guide.
-
-3. Create empty .env files:
-
-```bash
-touch cg/.env cg/.controller.env cg/.processor.env api/.env \
-  quorum/node_1/.env quorum/node_2/.env \
-  docker/definitions/postgres/.env \
-  && cp frontend/.env.example frontend/.env
-```
-
-4. Build the docker images:
-
-```
-docker/run --build
-```
-
-5. Generate environment configuration for Quorum nodes:
-
-```bash
-quorum/scripts/create_node.sh node1 172.13.0.2 172.13.0.4 9000 30303 50400 8545 8546 $ACCOUNT_PASS && \
-  quorum/scripts/create_node.sh node2 172.13.0.3 172.13.0.5 9000 30303 50400 8545 8546 $ACCOUNT_PASS && \
-  quorum/scripts/generate_env_vars.sh node1 node2
-```
-
-6. Copy generated .env files to the right directories:
-
-```bash
-cp quorum/generated_configs/node1/.env quorum/node_1/.env && \
-  cp quorum/generated_configs/node2/.env quorum/node_2/.env
-```
-
-7. Store node addresses as environment variables:
-
-```bash
-CONTROLLER_ACCOUNT=0x$(cat quorum/generated_configs/node1/dd/account.txt) && \
-  PROCESSOR_ACCOUNT=0x$(cat quorum/generated_configs/node2/dd/account.txt)
-```
-
-
-8. Define password for Postgres service and databases as environment variable:
-
-```bash
-DB_PASSWORD=super_secret_psw
-```
-
-8. Generate configs for the `cg` service:
-
-```bash
-SUBJECTS_SECRET="$(cg/scripts/generate_config.sh $CONTROLLER_ACCOUNT $PROCESSOR_ACCOUNT $ACCOUNT_PASS $DB_PASSWORD quorum/generated_configs/node1)"
-```
-
-This will also set the `SUBJECTS_SECRET` environment variable so it can be added to `api` service `.env` file in the next step.
-
-9. Generate configs for the `api` service:
-
-```bash
-api/scripts/generate_config.sh $DB_PASSWORD $SUBJECTS_SECRET
-```
-
-10. Create `.env` file for `postgres` service with DB password:
-
-```
-echo "POSTGRES_PASSWORD=$DB_PASSWORD" > docker/definitions/postgres/.env
-```
-
-11. Run: `docker/run`
-12. Open up a new terminal tab / window
-13. Deploy the smart contract:
-
-```bash
-docker/compose exec cg yarn run deploy-contract
-```
-
-14. Create an example processor
-
-```
-PROCESSOR_ACCOUNT=0x$(cat quorum/generated_configs/node2/dd/account.txt) && \
-  docker/compose exec cg yarn run add-processor $PROCESSOR_ACCOUNT
-```
-
-Later you can change the data of the processor using the [management API](cg/docs/CG_API.md).
+If you have issues getting up and running, be sure to checkout our [troubshooting](TROUBLESHOOTING.md) guide. 
 
 # Further reading
 
