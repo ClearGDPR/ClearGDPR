@@ -32,7 +32,7 @@ const FRONTEND_IMAGE = 'demo-frontend';
 const KUBE_FRONTEND_DEPLOYMENT = 'open-gdpr-frontend-dev';
 const KUBE_FRONTEND_CONTAINER = 'open-gdpr-frontend-dev';
 
-const quorumModules = [
+const quorum1Modules = [
   {
     ns: KUBE_NS,
     deployment: KUBE_QUORUM_DEPLOYMENT,
@@ -43,14 +43,17 @@ const quorumModules = [
   {
     ns: KUBE_NS,
     deployment: KUBE_QUORUM_DEPLOYMENT,
-    container: KUBE_CONSTELLATION2_CONTAINER,
+    container: KUBE_GETH1_CONTAINER,
     image: `${REPO}/${QUORUM_IMAGE}`,
     tag: QUORUM_VERSION
-  },
+  }
+];
+
+const quorum2Modules = [
   {
     ns: KUBE_NS,
     deployment: KUBE_QUORUM_DEPLOYMENT,
-    container: KUBE_GETH1_CONTAINER,
+    container: KUBE_CONSTELLATION2_CONTAINER,
     image: `${REPO}/${QUORUM_IMAGE}`,
     tag: QUORUM_VERSION
   },
@@ -100,15 +103,18 @@ const kubeDef = {
 };
 
 switch (deploymentType) {
-  case '--quorum':
-    kubeDef.modules = quorumModules;
+  case '--quorum1':
+    kubeDef.modules = quorum1Modules;
+    break;
+  case '--quorum2':
+    kubeDef.modules = quorum2Modules;
     break;
   case '--web-app':
     kubeDef.modules = webModules;
     break;
   case undefined:
   case null:
-    kubeDef.modules = quorumModules.concat(webModules);
+    kubeDef.modules = quorum1Modules.concat(webModules).concat();
     break;
 }
 
