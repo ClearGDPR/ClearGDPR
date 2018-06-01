@@ -40,10 +40,10 @@ jobs:
     - stage: deploy
       if: tag =~ ^(\d*\.)+\d*$
       script:
-        - echo "Genering kubeDef.json for version v$VERSION"
+        - echo "Deploying version v$VERSION"
         - node travis/generate-kubedef.js --quorum1
-        - curl -X POST --data "@kubeDef.json" -H "x-api-key: $LAMBDA_TOKEN" $LAMBDA_URL
+        - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
         - node travis/generate-kubedef.js --quorum2
-        - curl -X POST --data "@kubeDef.json" -H "x-api-key: $LAMBDA_TOKEN" $LAMBDA_URL
+        - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
         - node travis/generate-kubedef.js --web-app
-        - curl -X POST --data "@kubeDef.json" -H "x-api-key: $LAMBDA_TOKEN" $LAMBDA_URL
+        - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
