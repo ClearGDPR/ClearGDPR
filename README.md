@@ -1,4 +1,4 @@
-# ClearGDPR Platform
+# ClearGDPR Platform [![Build Status](https://travis-ci.com/ClearGDPR/ClearGDPR.svg?branch=master)](https://travis-ci.com/ClearGDPR/ClearGDPR)
 
 ![Logo](logo.png)
 
