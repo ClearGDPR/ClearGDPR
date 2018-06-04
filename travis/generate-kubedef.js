@@ -11,7 +11,7 @@ const KUBE_CLUSTER = process.env.KUBE_CLUSTER;
 const KOPS_STATE_STORE = process.env.KOPS_STATE_STORE;
 const KUBE_NS = 'open-gdpr-dev';
 
-const QUORUM_IMAGE = 'quroum';
+const QUORUM_IMAGE = 'quorum';
 const KUBE_QUORUM_DEPLOYMENT = 'open-gdpr-quorum-dev';
 const KUBE_CONSTELLATION1_CONTAINER = 'constellation1';
 const KUBE_CONSTELLATION2_CONTAINER = 'constellation2';
