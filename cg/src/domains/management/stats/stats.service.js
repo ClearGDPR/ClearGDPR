@@ -7,12 +7,12 @@ class StatsService {
 
   async stats() {
     const [result] = await db('subjects')
-      .select(db.raw('count subjects.id as consented'))
+      .select(db.raw('count(subjects.id) as consented'))
       .join('subject_keys', 'subjects.id', 'subject_keys.subject_id');
-    const consentedSubjectCount = result.consented;
+    const consentedSubjectCount = parseInt(result.consented, 10);
 
-    const [result2] = await db('subjects').select(db.raw('count subjects.id as total'));
-    const totalSubjectCount = result2.total;
+    const [result2] = await db('subjects').select(db.raw('count(subjects.id) as total'));
+    const totalSubjectCount = parseInt(result2.total, 10);
 
     const unconsentedSubjectCount = totalSubjectCount - consentedSubjectCount;
 
@@ -23,13 +23,13 @@ class StatsService {
     };
 
     const processorsWithSubjectCount = await db('subjects')
-      .join('subjects_processors', 'subjects.id', 'subjects_processors.subject_id')
-      .groupBy('subjects_processors.processor_id')
+      .join('subject_processors', 'subjects.id', 'subject_processors.subject_id')
+      .groupBy('subject_processors.processor_id')
       .select(db.raw('count(subjects.id) as subject_count'))
-      .select('subjects_processors.processor_id');
+      .select('subject_processors.processor_id');
 
     const processorData = processorsWithSubjectCount.reduce((current, processor) => {
-      current[processor.processor_id] = { consented: processor.subject_count };
+      current[processor.processor_id] = { consented: parseInt(processor.subject_count, 10) };
       return current;
     }, {});
 

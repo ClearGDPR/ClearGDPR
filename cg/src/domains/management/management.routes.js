@@ -13,6 +13,9 @@ const usersController = new UsersController();
 const SubjectsController = require('./subjects/subjects.controller'); // For data subjects
 const subjectsController = new SubjectsController();
 
+const StatsController = require('./stats/stats.controller.js');
+const statsController = new StatsController();
+
 const ProcessorsController = require('./processors/processors.controller');
 const processorsController = new ProcessorsController();
 
@@ -89,4 +92,6 @@ module.exports = app => {
     '/users/:userId/update-password',
     asyncHandler(async (req, res) => usersController.updatePassword(req, res))
   );
+
+  router.get('/stats', asyncHandler(async (req, res) => statsController.stats(req, res)));
 };

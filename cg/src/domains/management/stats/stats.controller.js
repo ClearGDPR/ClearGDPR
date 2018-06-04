@@ -1,4 +1,4 @@
-const StatsService = require('./users.service');
+const StatsService = require('./stats.service');
 
 class StatsController {
   constructor() {
