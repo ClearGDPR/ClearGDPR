@@ -3,6 +3,7 @@ const app = require('../src/app');
 const fetch = require('node-fetch');
 const http = require('http');
 const db = require('../src/db');
+const Promise = require('bluebird');
 
 const integrationTests = !!process.env.TEST_INTEGRATION;
 

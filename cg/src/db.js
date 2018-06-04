@@ -1,4 +1,4 @@
-const config = require('../knexfile');
+const config = require('../knex-config-factory')();
 
 const db = require('knex')(config);
 exports.db = db;

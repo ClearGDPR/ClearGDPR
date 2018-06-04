@@ -48,12 +48,10 @@
     "add-processor": "node scripts/add-processor.js"
   },
   "jest": {
-    "testEnvironment": "node",
+    "testEnvironment": "./test/random-test-db-environment.js",
     "setupFiles": ["dotenv/config"],
     "collectCoverage": true,
-    "collectCoverageFrom": ["src/**/*.js", "!**/node_modules/**"],
-    "globalSetup": "./test/global-setup.js",
-    "globalTeardown": "./test/global-teardown.js"
+    "collectCoverageFrom": ["src/**/*.js", "!**/node_modules/**"]
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -87,7 +85,8 @@
     "cpy-cli": "^1.0.1",
     "crypto-random-string": "^1.0.0",
     "ganache-cli": "6.1.0",
-    "jest": "^22.4",
+    "jest": "^23.1",
+    "jest-environment-node": "^23.1",
     "keythereum": "1.0.2",
     "nodemon": "^1.12.1",
     "webpack": "^4.8.3",

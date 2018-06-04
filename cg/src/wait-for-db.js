@@ -1,5 +1,5 @@
 const winston = require('winston');
-const config = require('../knexfile');
+const config = require('../knex-config-factory')();
 const db = require('knex')(config);
 
 const maxInterval = 1000 * 5;
