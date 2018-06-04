@@ -69,6 +69,19 @@ services:
     volumes:
       - './frontend/.:/opt/app'
       - /opt/app/node_modules
+  admin:
+    image: cleargdpr/admin:${VERSION:-latest}
+    build: admin/.
+    command: 'yarn start'
+    ports:
+      - '0.0.0.0:3000:4000'
+      - '0.0.0.0:3001:4001'
+      - '0.0.0.0:3002:4002'
+    env_file:
+      - admin/.env
+    volumes:
+      - './admin/.:/opt/app'
+      - /opt/app/node_modules
   db:
     build: docker/definitions/postgres
     image: cleargdpr/postgres:${VERSION:-latest}
