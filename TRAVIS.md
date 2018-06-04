@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Configure Travis env](#configure-travis-env)
+  - [Prerequisities](#prerequisities)
+  - [Encrypting secrets](#encrypting-secrets)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Configure Travis env
 
 ## Prerequisities
@@ -19,7 +29,7 @@ tar cvf secrets.tar cg/.env cg/.controller.env cg/.processor.env api/.env \
 ```
 2. Run:
 ```bash
-travis encrypt-file secrets.tar
+travis encrypt-file secrets.tar --pro
 ```
 3. Remove secrets.tar:
 ```bash
