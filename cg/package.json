@@ -1,6 +1,6 @@
 {
   "name": "clear-gdpr-cg",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "description": "CG - the ClearGDPR framework implementation",
   "author": "Clevertech <support@clevertech.biz>",
