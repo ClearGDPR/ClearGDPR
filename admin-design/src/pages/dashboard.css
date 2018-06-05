@@ -180,14 +180,23 @@
   width: 140px;
 }
 
-.graph-card.number {
+.graph-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100% - 1rem);
+}
+
+.graph-card > .graph {
+  flex: 2;
+  width: 100%;
+}
+
+.graph-card > .number {
   font-size: 3rem;
   font-weight: 600;
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  z-index: 100;
+  margin: 0;
+  flex: 1;
 }
 
 /* ITEMS CARD COMPONENT */
