@@ -12,6 +12,8 @@ until curl http://127.0.0.1:8082/healthz; do
     TRIES=$((TRIES+1))
     if [ "$TRIES" -gt "20"  ]; then
       echo "Exiting after 20 attempts"
+      echo "docker-compose logs output:"
+      docker/compose logs
       exit 1
     fi
 done
