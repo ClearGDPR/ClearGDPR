@@ -11,7 +11,7 @@ class App extends Component {
         <nav className="navbar is-white" aria-label="main navigation">
           <div className="navbar-brand">
             <Link className="navbar-item" to="/">
-              <img alt="clevertech" src="/the_clevertech_times.png" />
+              <img alt="clevertech" src="/the_clevertech_times.png" style={{ width: '174px' }} />
             </Link>
           </div>
           <div className="navbar-menu">
