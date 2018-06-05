@@ -42,6 +42,37 @@ beforeEach(() => {
 afterAll(closeResources);
 
 describe('Stats endpoint', () => {
+  it('Should display 0 stats properly if there is no entries yet', async () => {
+
+    const managementToken = await managementJWT.sign({
+      id: 1
+    });
+
+    const res = await fetch('/api/management/stats', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    expect(await res.json()).toEqual(
+      expect.objectContaining({
+        data: {
+          controller: {
+            consented: 0,
+            unconsented: 0,
+            total: 0
+          },
+          processors: {
+            '201': {
+              // I was expecting this to be 1 originally, but it appears the be 2 because requesting erasure does not cascade, should it?
+              consented: 0
+            }
+          }
+        }
+      })
+    );
+  });
   it('Should display the stats for the current system state', async () => {
     const managementToken = await managementJWT.sign({
       id: 1
