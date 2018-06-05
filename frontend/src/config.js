@@ -6,7 +6,7 @@ function buildPrefixedApiUri(prefix) {
     '//' +
     prefix +
     location.hostname +
-    `${location.port ? ':${location.port}' : ''}`
+    `${location.port ? `:${location.port}` : ''}`
   );
 }
 
