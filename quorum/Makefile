@@ -8,6 +8,8 @@ PORTS = -p 3000:3000
 ENV = \
   -e ENVIRONMENT=development
 
+.PHONY: build push shell tag-latest release
+
 build:
 	docker build -t $(NS)/$(REPO):$(VERSION) .
 

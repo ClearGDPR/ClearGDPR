@@ -8,6 +8,8 @@ PORTS = -p 8080:8080
 ENV = \
   -e NODE_ENV=development
 
+.PHONY: build push shell tag-latest release
+
 build:
 	docker build -t $(NS)/$(REPO):$(VERSION) .
 

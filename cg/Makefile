@@ -8,6 +8,8 @@ PORTS = -p 8082:8082
 ENV = \
   -e ENVIRONMENT=development
 
+.PHONY: build push shell tag-latest release
+
 build:
 	docker build -t $(NS)/$(REPO):$(VERSION) .
 

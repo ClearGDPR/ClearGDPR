@@ -8,6 +8,8 @@ PORTS = -p 3000:3000
 ENV = \
   -e NODE_ENV=development
 
+.PHONY: build build-dev push shell test tag-latest run start stop rm release dist
+
 dist:
 	yarn && yarn run build
 
