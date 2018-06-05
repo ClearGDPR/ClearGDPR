@@ -25,12 +25,12 @@ jobs:
     - stage: publish
       if: tag =~ ^(\d*\.)+\d*$
       script:
-        - docker/run --build
+        - touch cg/.yarn-cache.tgz api/.yarn-cache.tgz frontend/.yarn-cache.tgz
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - echo "Pushing docker images v$VERSION"
-        - make -C cg push
-        - make -C api push
-        - make -C frontend push
+        - echo "Building and pushing docker images v$VERSION"
+        - make -C cg build && make -C cg push
+        - make -C api build && make -C api push
+        - make -C frontend dist && make -C frontend build && make -C frontend push
         - make -C cg tag-latest
         - make -C api tag-latest
         - make -C frontend tag-latest
