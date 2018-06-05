@@ -7,10 +7,10 @@ RUN apk --no-cache add ca-certificates && update-ca-certificates
 # Force python update to install Sass
 RUN apk upgrade && \
   apk add --no-cache git \
-    make gcc g++ python
+  make gcc g++ python
 
 EXPOSE 4000
-CMD ["node", "src/index.js"]
+CMD ["npm", "start"]
 
 # Create the working dir
 RUN mkdir -p /opt/app && mkdir /cache
