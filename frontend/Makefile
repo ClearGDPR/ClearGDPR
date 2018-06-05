@@ -8,8 +8,14 @@ PORTS = -p 3000:3000
 ENV = \
   -e NODE_ENV=development
 
-build:
+dist:
+	yarn && yarn run build
+
+build-dev:
 	docker build -t $(NS)/$(REPO):$(VERSION) .
+
+build:
+	docker build -f Dockerfile-prod -t $(NS)/$(REPO):$(VERSION) .
 
 push:
 	docker push $(NS)/$(REPO):$(VERSION)
