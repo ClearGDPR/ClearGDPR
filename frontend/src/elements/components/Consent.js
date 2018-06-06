@@ -72,6 +72,10 @@ class Consent extends React.PureComponent {
     let data = {};
     let processors = this.state.processors.slice();
 
+    if (processors.length < 1 && !ReactDOM.findDOMNode(this)) {
+      return null;
+    }
+
     // Get Data from parent form
     const form = ReactDOM.findDOMNode(this).parentNode;
 
