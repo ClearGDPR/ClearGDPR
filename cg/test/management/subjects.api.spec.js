@@ -48,7 +48,7 @@ describe('List subjects that have given consent', () => {
     );
   });
 
-  it('should not allow an authentic manager to list subjects without an encryption key', async () => {
+  it('should not allow an authentic manager to list subjects which dont have an encryption key', async () => {
     //GIVEN
     const subjectData = {
       username: 'subject',
@@ -91,7 +91,7 @@ describe('List subjects that have given consent', () => {
     );
   });
 
-  it('should not allow an authentic manager to list subjects with an invalid encryption key', async () => {
+  it('should not allow an authentic manager to list subjects which have an invalid encryption key', async () => {
     //GIVEN
     const subjectData = {
       username: 'subject',
@@ -134,7 +134,7 @@ describe('List subjects that have given consent', () => {
     );
   });
 
-  it('should allow an authentic manager to list subjects with encryption keys', async () => {
+  it('should allow an authentic manager to list subjects which have valid encryption keys', async () => {
     //GIVEN
     const subjectData1 = {
       username: 'subject1',
@@ -197,6 +197,23 @@ describe('List subjects that have given consent', () => {
         })
       ])
     );
+  });
+
+  it('should return an empty subjects list when no subject has given consent', async () => {
+    //WHEN
+    const managementToken = await managementJWT.sign({ id: 1 });
+
+    const res = await fetch('/api/management/subjects/list', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual(expect.arrayContaining([]));
   });
 
   it('should not allow a page query with a negative page number', async () => {
