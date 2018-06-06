@@ -76,7 +76,7 @@ services:
     env_file:
       - docker/definitions/postgres/.env
     volumes: 
-      - /var/lib/postgresql/data
+      - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: clear_gdpr_local
       POSTGRES_USER: clear_gdpr
@@ -156,5 +156,6 @@ networks:
 
 # volumes for mutable storage in quorum nodes
 volumes:
+  db_data:
   quorum_data1:
   quorum_data2:
