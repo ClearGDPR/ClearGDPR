@@ -70,7 +70,7 @@ services:
       - './frontend/.:/opt/app'
       - /opt/app/node_modules
   admin:
-    image: cleargdpr/admin:${VERSION:-latest}
+    image: cleargdpr/admin:latest
     build: admin/.
     command: 'yarn start'
     ports:
