@@ -361,15 +361,20 @@ describe('List subjects that have given consent', () => {
 
   it('should allow a page query with a valid page number that is greater than 1', async () => {
     //GIVEN
-    for (var i = 0; i < 11; i++) {
+    let subjectData;
+    let encryptionKey;
+    let encryptedSubjectData;
+    let subjectId;
+
+    for (let i = 0; i < 11; i++) {
       //PAGE_SIZE is 10
-      var subjectData = {
+      subjectData = {
         username: `subject${i}`,
         email: `subject${i}@clevertech.biz`
       };
-      var encryptionKey = generateClientKey();
-      var encryptedSubjectData = encryptForStorage(JSON.stringify(subjectData), encryptionKey);
-      var subjectId = i; // The IDs are not hashed here because they introduce a random factor in the test
+      encryptionKey = generateClientKey();
+      encryptedSubjectData = encryptForStorage(JSON.stringify(subjectData), encryptionKey);
+      subjectId = i; // The IDs are not hashed here because they introduce a random factor in the test
       // That is, the query in the db is ordered by ID, and if it was hashed it would not be possible to determine the order of the IDs
 
       await db('subjects').insert({

@@ -15,6 +15,7 @@ const subjectsController = new SubjectsController();
 
 const ProcessorsController = require('./processors/processors.controller');
 const processorsController = new ProcessorsController();
+
 const {
   addProcessorValidator,
   updateProcessorValidator,

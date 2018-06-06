@@ -19,10 +19,10 @@ class SubjectsService {
       .whereNotNull('key')
       .count('personal_data');
 
-    var numberOfsubjects = numberOfsubjectsObject.count;
-    var lastPage = Math.ceil(numberOfsubjects / PAGE_SIZE);
+    const numberOfsubjects = numberOfsubjectsObject.count;
+    let lastPage = Math.ceil(numberOfsubjects / PAGE_SIZE);
     if (lastPage === 0) {
-      // Handles the case in which there are no valid subjects in the db
+      // Handles the case in which there are no valid subjects, with valid encryption keys and all, in the db
       lastPage = 1;
     }
     if (requestedPage > lastPage) {
