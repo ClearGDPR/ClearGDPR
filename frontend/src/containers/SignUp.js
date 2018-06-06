@@ -13,6 +13,11 @@ class SignUp extends Component {
   onSubmit(e) {
     e.preventDefault();
     this.setState({ isLoading: true });
+    setTimeout(() => {
+      window.location = '/success';
+      // this.props.history.push(`/success`);
+    }, 1500);
+    return false;
   }
 
   render() {
@@ -27,6 +32,7 @@ class SignUp extends Component {
           fontSize: '12px'
         }
       },
+      callbackUrl: '/success',
       required: true
     });
 
@@ -45,7 +51,7 @@ class SignUp extends Component {
               <h3 className="title"> Create your account </h3>
               <p>{`To create your Account simply fill the short form below`}</p>
               <hr />
-              <form action="/success" onSubmit={e => this.onSubmit(e)}>
+              <form onSubmit={e => this.onSubmit(e)}>
                 <div className="field">
                   <label className="label">First Name</label>
                   <div className="control">
