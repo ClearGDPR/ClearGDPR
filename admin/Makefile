@@ -8,8 +8,16 @@ PORTS = -p 4001:4001
 ENV = \
   -e NODE_ENV=development
 
-build:
+.PHONY: build build-dev push shell test tag-latest run start stop rm release dist
+
+dist:
+	yarn && yarn run build
+
+build-dev:
 	docker build -t $(NS)/$(REPO):$(VERSION) .
+
+build:
+	docker build -f Dockerfile-prod -t $(NS)/$(REPO):$(VERSION) .
 
 push:
 	docker push $(NS)/$(REPO):$(VERSION)
