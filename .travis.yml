@@ -8,6 +8,7 @@ cache:
     - $HOME/.yarn_cache
 before_install:
   - sudo /etc/init.d/postgresql stop
+  - sudo apt-get install ncftp
   - openssl aes-256-cbc -K $encrypted_1f8d325dded8_key -iv $encrypted_1f8d325dded8_iv -in secrets.tar.enc -out secrets.tar -d
   - tar xvf secrets.tar
   - travis/restore_yarn_cache.sh
@@ -15,7 +16,6 @@ before_cache:
   - travis/prepare_yarn_cache.sh
 services:
   - docker
-
 env:
   - VERSION: $TRAVIS_TAG
 
@@ -56,3 +56,4 @@ jobs:
         - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
         - node travis/generate-kubedef.js --web-app
         - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
+        - ./travis/deploy-docs.sh 

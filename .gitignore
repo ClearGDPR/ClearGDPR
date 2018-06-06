@@ -74,3 +74,4 @@ helm-*.yml
 
 # ignore kube definitions
 kubeDef.json
+.docs/
