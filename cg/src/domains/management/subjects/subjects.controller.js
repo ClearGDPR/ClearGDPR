@@ -18,6 +18,9 @@ class SubjectsController {
 
   async listSubjects(req, res) {
     const subjectsPage = await this.subjectsService.listSubjects(req.query.page);
+    if (subjectsPage.hasOwnProperty('error')) {
+      return res.json(subjectsPage);
+    }
     subjectsPage.map(subject => {
       // Covers the subjects data with '*'s
       _.mapObject(subject, (value, key) => {

@@ -188,12 +188,12 @@ describe('List subjects that have given consent', () => {
     expect(await res.json()).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          username: 'subject1',
-          email: 'subject1@clevertech.biz'
+          username: 's******1',
+          email: 's*********************z'
         }),
         expect.objectContaining({
-          username: 'subject2',
-          email: 'subject2@clevertech.biz'
+          username: 's******2',
+          email: 's*********************z'
         })
       ])
     );
@@ -348,12 +348,12 @@ describe('List subjects that have given consent', () => {
     expect(await res.json()).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          username: 'subject1',
-          email: 'subject1@clevertech.biz'
+          username: 's******1',
+          email: 's*********************z'
         }),
         expect.objectContaining({
-          username: 'subject2',
-          email: 'subject2@clevertech.biz'
+          username: 's******2',
+          email: 's*********************z'
         })
       ])
     );
@@ -402,8 +402,8 @@ describe('List subjects that have given consent', () => {
     expect(await res.json()).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          username: 'subject9',
-          email: 'subject9@clevertech.biz'
+          username: 's******9',
+          email: 's*********************z'
         })
       ])
     );
