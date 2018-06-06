@@ -45,7 +45,7 @@ exports.seed = function(knex, Promise) {
       { processor_id: 4, address: address3 }
     ]);
 
-    let allProcessors = await this.db('processor_address').select('address');
+    let allProcessors = await knex('processor_address').select('address');
     await setProcessors(allProcessors.map(p => p.address));
   });
 };
