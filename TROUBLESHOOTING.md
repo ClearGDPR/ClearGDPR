@@ -17,10 +17,10 @@ Also, have [Docker](https://docs.docker.com/install/) and [Docker Compose](https
 
 ## USEFUL COMMANDS
 
-* `docker-compose ps`: To see the services currently running.
+* `docker-compose config --service`: To see the services currently running.
 * `docker ps`: To see the containers currently running.
-* `docker container ls`: To see all containers, both running and not running.
-* `docker image ls`: To see all images.
+* `docker container ls --all`: To see all containers, both running and not running.
+* `docker image ls --all`: To see all images.
 * `docker network ls`: To see all networks, both running and not running.
 * `docker volume ls`: To see all volumes.
 * `docker inspect $CONTAINER_NAME`: Provide details on the container configuration, including the mounted volumes (See `Mounts` section).
@@ -34,18 +34,10 @@ Most issues are fixed by resetting the containers environment. In order to do th
 
 * `docker-compose down -v --rmi all`: Stops all running services, and also removes their containers, images, networks and volumes.
 
-In some cases there's need to **_forcefully_** remove the images and volumes, when those are shared for example.
-
-* `docker stop $(docker ps -q)`
-* `docker rm $(docker ps -a -q)`
-* `docker rmi $(docker images -q)`
-* `docker network rm $(docker network ls -q)`
-* `docker volume rm $(docker volume ls -q)`
-
 You can check if all containers, images, networks and volumes were succesfully removed with these commands:
 
-* `docker container ls`: To see all containers, both running and not running.
-* `docker image ls`: To see all images.
+* `docker container ls --all`: To see all containers, both running and not running.
+* `docker image ls --all`: To see all images.
 * `docker network ls`: To see all networks, both running and not running.
 * `docker volume ls`: To see all volumes.
 
@@ -60,6 +52,7 @@ Or remove all dangling Docker artifacts with:
 
 * `docker container rm $(docker container ls --all --quiet --filter "status=exited")`: Removes exited Docker containers.
 * `docker image rm $(docker image ls --all --quiet --filter "dangling=true")`: Removes all dangling images.
+* `docker network prune`: Removes all dangling networks.
 * `docker volume rm $(docker volume ls --quiet --filter "dangling=true")`: Removes all dangling volumes.
 
 Or yet, forcefully remove all of them at once with:
@@ -81,7 +74,7 @@ If an error persists, proceed to the next section.
 
 If when trying to execute `docker/run` you get `ERROR: Bad response from Docker engine`
 
-Resetting to factory defaults in the docker menu (settings) fixed the issue.
+Try resetting to factory defaults in the Docker menu (settings).
 
 **ERROR: No such file or directory**
 
@@ -89,7 +82,7 @@ Don't try to run the command `docker-compose up`, instead always run: `docker/ru
 
 **Docker-compose not working properly**
 
-If your Docker-compose is not finding a running service or not executing a command properly, then try prepending the following into your docker-compose command:
+If your Docker-compose is not finding a running service or not executing a command properly, then try prepending the following into your Docker-compose command:
 
 `COMPOSE_PROJECT_NAME=cleargdpr`
 
