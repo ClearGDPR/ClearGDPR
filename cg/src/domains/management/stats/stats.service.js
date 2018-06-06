@@ -28,10 +28,18 @@ class StatsService {
       .select(db.raw('count(subjects.id) as subject_count'))
       .select('subject_processors.processor_id');
 
+    const processors = await db('processors');
+
     const processorData = processorsWithSubjectCount.reduce((current, processor) => {
       current[processor.processor_id] = { consented: parseInt(processor.subject_count, 10) };
       return current;
     }, {});
+
+    processors.forEach(processor => {
+      if (!processorData[processor.id]) {
+        processorData[processor.id] = { consented: 0 };
+      }
+    });
 
     return {
       controller: controllerData,
