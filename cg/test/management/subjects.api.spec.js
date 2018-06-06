@@ -5,10 +5,10 @@ const { managementJWT } = require('../../src/utils/jwt');
 const { BadRequest, Unauthorized } = require('../../src/utils/errors');
 
 beforeAll(initResources);
-// beforeEach(async () => {
-//   await db('subject_keys').del();
-//   await db('subjects').del();
-// });
+beforeEach(async () => {
+  await db('subject_keys').del();
+  await db('subjects').del();
+});
 afterAll(closeResources);
 
 describe('List subjects that have given consent', () => {
@@ -296,14 +296,14 @@ describe('List subjects that have given consent', () => {
   });
 
   it('should allow a page query with a valid page number', async () => {
-    //WHEN
+    //GIVEN
     const subjectData1 = {
       username: 'subject1',
       email: 'subject1@clevertech.biz'
     };
     const encryptionKey1 = generateClientKey();
     const encryptedSubjectData1 = encryptForStorage(JSON.stringify(subjectData1), encryptionKey1);
-    const subjectIdHash1 = hash('user15786856756469'); // Random ID to not influence other tests
+    const subjectIdHash1 = hash('1');
 
     await db('subjects').insert({
       id: subjectIdHash1,
@@ -321,7 +321,7 @@ describe('List subjects that have given consent', () => {
     };
     const encryptionKey2 = generateClientKey();
     const encryptedSubjectData2 = encryptForStorage(JSON.stringify(subjectData2), encryptionKey2);
-    const subjectIdHash2 = hash('user6875165419841965487'); // Random ID to not influence other tests
+    const subjectIdHash2 = hash('2');
 
     await db('subjects').insert({
       id: subjectIdHash2,
@@ -335,7 +335,6 @@ describe('List subjects that have given consent', () => {
 
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-
     const res = await fetch('/api/management/subjects/list?page=1', {
       method: 'GET',
       headers: {
@@ -347,19 +346,61 @@ describe('List subjects that have given consent', () => {
     expect(res.ok).toBeTruthy();
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual(
-      expect.objectContaining({
-        pages: expect.any(Number),
-        requestedPage: expect.arrayContaining([
-          expect.objectContaining({
-            email: 'subject1@clevertech.biz',
-            username: 'subject1'
-          }),
-          expect.objectContaining({
-            email: 'subject2@clevertech.biz',
-            username: 'subject2'
-          })
-        ])
-      })
+      expect.arrayContaining([
+        expect.objectContaining({
+          username: 'subject1',
+          email: 'subject1@clevertech.biz'
+        }),
+        expect.objectContaining({
+          username: 'subject2',
+          email: 'subject2@clevertech.biz'
+        })
+      ])
+    );
+  });
+
+  it('should allow a page query with a valid page number that is greater than 1', async () => {
+    //GIVEN
+    for (var i = 0; i < 11; i++) {
+      //PAGE_SIZE is 10
+      var subjectData = {
+        username: `subject${i}`,
+        email: `subject${i}@clevertech.biz`
+      };
+      var encryptionKey = generateClientKey();
+      var encryptedSubjectData = encryptForStorage(JSON.stringify(subjectData), encryptionKey);
+      var subjectId = i; // The IDs are not hashed here because they introduce a random factor in the test
+      // That is, the query in the db is ordered by ID, and if it was hashed it would not be possible to determine the order of the IDs
+
+      await db('subjects').insert({
+        id: subjectId,
+        personal_data: encryptedSubjectData
+      });
+
+      await db('subject_keys').insert({
+        subject_id: subjectId,
+        key: encryptionKey
+      });
+    }
+    //WHEN
+    const managementToken = await managementJWT.sign({ id: 1 });
+    const res = await fetch('/api/management/subjects/list?page=2', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          username: 'subject9',
+          email: 'subject9@clevertech.biz'
+        })
+      ])
     );
   });
 });
