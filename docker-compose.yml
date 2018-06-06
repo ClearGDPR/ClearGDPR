@@ -74,11 +74,9 @@ services:
     build: admin/.
     command: 'yarn start'
     ports:
-      - '0.0.0.0:3000:4000'
-      - '0.0.0.0:3001:4001'
-      - '0.0.0.0:3002:4002'
-    env_file:
-      - admin/.env
+      - '0.0.0.0:4000:4000'
+      - '0.0.0.0:4001:4001'
+      - '0.0.0.0:4002:4002'
     volumes:
       - './admin/.:/opt/app'
       - /opt/app/node_modules
