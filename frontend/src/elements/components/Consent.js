@@ -85,7 +85,9 @@ class Consent extends React.PureComponent {
 
     this.giveConsent(data, processors.filter(p => p.enabled).map(p => p.id))
       .then(() => {
-        e.target.submit(); // Submit parent form callback
+        if (this.props.callbackUrl) {
+          window.location(this.props.callbackUrl);
+        }
       })
       .catch(err => {
         console.log(err);
