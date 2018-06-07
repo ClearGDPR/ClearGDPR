@@ -9,6 +9,9 @@ const router = express.Router();
 const SubjectsController = require('./subjects.controller');
 const subjectsController = new SubjectsController();
 
+const dataShareController = require('./data_shares.controller');
+const DataShareController = new dataShareController();
+
 const ProcessorsController = require('./processors.controller');
 const processorsController = new ProcessorsController();
 
@@ -50,5 +53,20 @@ module.exports = app => {
   router.get(
     '/data-status',
     asyncHandler(async (req, res) => subjectsController.getPersonalDataStatus(req, res))
+  );
+
+  router.post(
+    '/data-shares/:dataShareId/remove',
+    asyncHandler(async (req, res) => DataShareController.removeDataShare(req, res))
+  );
+
+  router.post(
+    '/data-shares/create',
+    asyncHandler(async (req, res) => DataShareController.createDataShare(req, res))
+  );
+
+  router.get(
+    '/data-shares/list',
+    asyncHandler(async (req, res) => DataShareController.getDataShares(req, res))
   );
 };
