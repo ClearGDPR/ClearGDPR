@@ -1,6 +1,7 @@
 const { db } = require('../../../db');
 const { decryptFromStorage } = require('../../../utils/encryption');
 const winston = require('winston');
+const { ValidationError } = require('../../../utils/errors');
 
 const PAGE_SIZE = 10; // This could go in constants, inside utils
 
@@ -26,7 +27,7 @@ class SubjectsService {
       lastPage = 1;
     }
     if (requestedPage > lastPage) {
-      return { error: `page number too big, maximum page number is ${lastPage}` };
+      throw new ValidationError(`error: page number too big, maximum page number is ${lastPage}`);
     }
     const encryptedSubjectsData = await this.db('subjects')
       .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
