@@ -2,11 +2,17 @@ sudo: required
 language: node_js
 node_js:
   - '8'
-cache: yarn
+cache: 
+  yarn: true
+  directories:
+    - $HOME/.yarn_cache
 before_install:
   - sudo /etc/init.d/postgresql stop
   - openssl aes-256-cbc -K $encrypted_1f8d325dded8_key -iv $encrypted_1f8d325dded8_iv -in secrets.tar.enc -out secrets.tar -d
   - tar xvf secrets.tar
+  - travis/restore_yarn_cache.sh
+before_cache:
+  - travis/prepare_yarn_cache.sh
 services:
   - docker
 
