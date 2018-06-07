@@ -4,11 +4,11 @@ const _ = require('underscore');
 function coverString(string) {
   const firstCharacter = string[0];
   const lastCharacter = string[string.length - 1];
-  let coveredString = new Array(string.length).fill('*');
-  coveredString[0] = firstCharacter;
-  coveredString[string.length - 1] = lastCharacter;
-  coveredString = coveredString.join('');
-  return coveredString;
+  const fullyCoveredArray = new Array(string.length).fill('*');
+  fullyCoveredArray[0] = firstCharacter;
+  fullyCoveredArray[string.length - 1] = lastCharacter;
+  let partiallyCoveredString = fullyCoveredArray.join('');
+  return partiallyCoveredString;
 }
 
 class SubjectsController {
