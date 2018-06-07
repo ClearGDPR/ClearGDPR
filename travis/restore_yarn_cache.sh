@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SERVICES_DIR=(cg api frontend)
+SERVICES_DIR=(cg admin api frontend)
 CACHE_DIR=$HOME/.yarn_cache
 
 if [ ! -d $CACHE_DIR ]; then
