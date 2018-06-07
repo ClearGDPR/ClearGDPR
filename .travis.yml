@@ -20,8 +20,8 @@ env:
   - VERSION: $TRAVIS_TAG
 
 stages:
-  - test
-  - publish
+  # - test
+  # - publish
   - deploy
   
 jobs:
@@ -47,13 +47,13 @@ jobs:
         - VERSION=latest make -C api push
         - VERSION=latest make -C frontend push
     - stage: deploy
-      if: tag =~ ^(\d*\.)+\d*$
+    #   if: tag =~ ^(\d*\.)+\d*$
       script:
-        - echo "Deploying version v$VERSION"
-        - node travis/generate-kubedef.js --quorum1
-        - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
-        - node travis/generate-kubedef.js --quorum2
-        - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
-        - node travis/generate-kubedef.js --web-app
-        - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
+        # - echo "Deploying version v$VERSION"
+        # - node travis/generate-kubedef.js --quorum1
+        # - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
+        # - node travis/generate-kubedef.js --quorum2
+        # - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
+        # - node travis/generate-kubedef.js --web-app
+        # - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
         - ./travis/deploy-docs.sh 
