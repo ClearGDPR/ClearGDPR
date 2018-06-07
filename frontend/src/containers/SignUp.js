@@ -13,10 +13,19 @@ class SignUp extends Component {
   onSubmit(e) {
     e.preventDefault();
     this.setState({ isLoading: true });
+    // This timeout is just for demo purpose, to give the user a visual feedback
+    // when the form is sent. In localhost the transaction happens to fast in the
+    // backend and user is redirected automatically, and cannot see the spinner.
     setTimeout(() => {
+      // TODO: forcing the redirect after the form is processed.
+      // Usually a form in a Client side is pointing to some endpoint to process
+      // data sent by the user. Since we are handling part of that with the
+      // `GiveConsent` component we should allow the developer to point to specific
+      // callback.
       window.location = '/success';
-      // this.props.history.push(`/success`);
-    }, 1500);
+    }, 1000);
+
+    // Prevent to send data to default action. This interaction should be improved.
     return false;
   }
 
