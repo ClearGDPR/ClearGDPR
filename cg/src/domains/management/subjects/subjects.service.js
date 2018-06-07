@@ -27,7 +27,7 @@ class SubjectsService {
       lastPage = 1;
     }
     if (requestedPage > lastPage) {
-      throw new ValidationError(`error: page number too big, maximum page number is ${lastPage}`);
+      throw new ValidationError(`page number too big, maximum page number is ${lastPage}`);
     }
     const encryptedSubjectsData = await this.db('subjects')
       .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')

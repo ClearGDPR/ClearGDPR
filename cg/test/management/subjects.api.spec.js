@@ -2,7 +2,7 @@ const { initResources, fetch, closeResources } = require('../utils');
 const { db } = require('../../src/db');
 const { generateClientKey, encryptForStorage, hash } = require('../../src/utils/encryption');
 const { managementJWT } = require('../../src/utils/jwt');
-const { BadRequest, Unauthorized } = require('../../src/utils/errors');
+const { BadRequest, Unauthorized, ValidationError } = require('../../src/utils/errors');
 
 beforeAll(initResources);
 beforeEach(async () => {
@@ -278,8 +278,8 @@ describe('List subjects that have given consent', () => {
     });
 
     //THEN
-    expect(res.ok).toBeTruthy();
-    expect(res.status).toBe(200);
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toBe(ValidationError.StatusCode);
     expect(await res.json()).toEqual(
       expect.objectContaining({
         error: 'page number too big, maximum page number is 1'

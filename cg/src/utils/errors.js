@@ -12,8 +12,6 @@ class BadRequest extends Error {
   }
 }
 
-class ValidationError extends BadRequest {}
-
 class Unauthorized extends Error {
   static get StatusCode() {
     return 401;
@@ -23,12 +21,21 @@ class Unauthorized extends Error {
   }
 }
 
+class ValidationError extends BadRequest {
+  static get StatusCode() {
+    return 402;
+  }
+  get httpStatusCode() {
+    return ValidationError.StatusCode;
+  }
+}
+
 class Forbidden extends Error {
   static get StatusCode() {
     return 403;
   }
   get httpStatusCode() {
-    return 403;
+    return Forbidden.StatusCode;
   }
 }
 
