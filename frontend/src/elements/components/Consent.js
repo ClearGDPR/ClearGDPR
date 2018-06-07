@@ -55,14 +55,14 @@ class Consent extends React.PureComponent {
   }
 
   onChange(e) {
-    if (this.props.options.onSubmit) {
+    if (this.props.options.onChange) {
       this.props.options.onChange();
     }
   }
 
   callback(e) {
-    if (this.props.options.onSubmit) {
-      this.props.options.callback();
+    if (this.props.options.callbackFn) {
+      this.props.options.callbackFn();
     }
   }
 
@@ -85,8 +85,8 @@ class Consent extends React.PureComponent {
 
     this.giveConsent(data, processors.filter(p => p.enabled).map(p => p.id))
       .then(() => {
-        if (this.props.callbackUrl) {
-          window.location(this.props.callbackUrl);
+        if (this.props.options.callbackUrl) {
+          window.location(this.props.options.callbackUrl);
         }
       })
       .catch(err => {
