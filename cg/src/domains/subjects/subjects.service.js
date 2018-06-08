@@ -11,7 +11,7 @@ const {
   getSubjectDataState,
   recordErasureByProcessor
 } = require('../../utils/blockchain');
-const { ValidationError, NotFound  } = require('../../utils/errors');
+const { ValidationError, NotFound } = require('../../utils/errors');
 const winston = require('winston');
 
 const { inControllerMode } = require('./../../utils/helpers');
@@ -135,6 +135,12 @@ class SubjectsService {
         .where('subject_id', subjectId)
         .delete();
 
+      await this.db('subject_processors')
+        .where({
+          subject_id: subjectId
+        })
+        .del();
+
       if (inControllerMode()) {
         winston.info('Emitting erasure event to blockchain');
         await recordErasureByController(subjectId);
@@ -184,7 +190,7 @@ class SubjectsService {
       .select('personal_data')
       .select('key')
       .where({ subject_id: subjectId });
-    if(!data) throw new NotFound('Subject not found');
+    if (!data) throw new NotFound('Subject not found');
     const decryptedData = decryptFromStorage(data.personal_data, data.key);
     return JSON.parse(decryptedData);
   }
