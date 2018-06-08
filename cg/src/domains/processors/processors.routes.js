@@ -15,7 +15,7 @@ module.exports = app => {
   router.get(
     '/subject/:subjectId/data',
     controllerOnly,
-    ensureProcessorAccessToSubject,
+    asyncHandler(ensureProcessorAccessToSubject),
     asyncHandler(async (req, res) => controller.getData(req, res))
   );
 

@@ -19,7 +19,10 @@ const _canProcessorAccessSubject = async (processorId, subjectId) => {
 };
 
 const ensureProcessorAccessToSubject = async (req, res, next) => {
-  if (await _canProcessorAccessSubject(req.processor.id, req.params.subjectId)) {
+  if (
+    req.processor.id &&
+    (await _canProcessorAccessSubject(req.processor.id, req.params.subjectId))
+  ) {
     return next();
   }
   return next(new Unauthorized('Processor does not have access to that subject'));
