@@ -14,7 +14,7 @@ waitForGeth()
       winston.info(`Api listening on port ${server.address().port}!`);
     });
   })
-  .then(startupRoutines)
+  // .then(startupRoutines)
   .catch(err => {
     winston.error(err);
   });
