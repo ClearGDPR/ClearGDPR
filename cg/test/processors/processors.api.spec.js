@@ -31,7 +31,20 @@ describe('Processor requesting data', () => {
     expect(res.status).toBe(Unauthorized.StatusCode);
   });
 
-  it('should not allow the processor to request data for a subject they dont have access to', async () => {
+  it('should not allow access if token payload does not have id', async () => {
+    const token = await processorJWT.sign({ somethingElse: 1201 });
+    const res = await fetch('/api/processors/subject/1000000/data', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toBe(Unauthorized.StatusCode);
+  });
+
+  it("should not allow the processor to request data for a subject they don't have access to", async () => {
     const token = await processorJWT.sign({ id: 1201 });
     const res = await fetch('/api/processors/subject/1000000/data', {
       method: 'GET',
