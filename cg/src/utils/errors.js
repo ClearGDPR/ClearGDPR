@@ -42,6 +42,7 @@ class NotFound extends Error {
 }
 
 const apiErrorHandler = (err, req, res, next) => {
+  console.log(err);
   const statusCode = err.httpStatusCode || 500;
   res.status(statusCode).json({ error: err.message || String(err) });
 };

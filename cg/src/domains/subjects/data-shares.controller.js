@@ -1,4 +1,4 @@
-const DataShareService = require('./data-share.service');
+const DataShareService = require('./data-shares.service');
 
 class DataShareController {
   constructor(processorsService = null) {
@@ -10,7 +10,7 @@ class DataShareController {
   }
 
   async createDataShare(req, res) {
-    await this.service.createDataShare(req.body.name);
+    await this.service.createDataShare(req.subject.id, req.body.name);
     res.json({ success: true });
   }
 

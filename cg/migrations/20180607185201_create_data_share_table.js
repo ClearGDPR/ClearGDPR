@@ -4,12 +4,12 @@ exports.up = function(knex, Promise) {
     table.string('name').notNullable();
     table.string('token').notNullable();
     table
-      .integer('subject_id')
-      .unsigned()
-      .notNullable();
+      .string('subject_id')
+      .notNullable()
+      .references('subjects.id');
   });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTable('data_share_tokens');
+  return knex.schema.dropTable('data_shares');
 };

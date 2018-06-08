@@ -9,7 +9,7 @@ const router = express.Router();
 const SubjectsController = require('./subjects.controller');
 const subjectsController = new SubjectsController();
 
-const dataShareController = require('./data_shares.controller');
+const dataShareController = require('./data-shares.controller');
 const DataShareController = new dataShareController();
 
 const ProcessorsController = require('./processors.controller');
