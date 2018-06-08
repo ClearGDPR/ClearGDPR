@@ -7,7 +7,7 @@ function coverString(string) {
   const fullyCoveredArray = new Array(string.length).fill('*');
   fullyCoveredArray[0] = firstCharacter;
   fullyCoveredArray[string.length - 1] = lastCharacter;
-  let partiallyCoveredString = fullyCoveredArray.join('');
+  const partiallyCoveredString = fullyCoveredArray.join('');
   return partiallyCoveredString;
 }
 
