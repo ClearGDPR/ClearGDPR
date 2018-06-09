@@ -4,6 +4,8 @@ const { requireSubjectId, transformSubjectId } = require('./subjects.helpers');
 const asyncHandler = require('express-async-handler');
 const { controllerOnly } = require('./../../utils/middleware');
 
+const { createDataShareValidator, removeDataShareValidator } = require('./data-shares.validators');
+
 const router = express.Router();
 
 const SubjectsController = require('./subjects.controller');
@@ -57,11 +59,13 @@ module.exports = app => {
 
   router.post(
     '/data-shares/:dataShareId/remove',
+    removeDataShareValidator,
     asyncHandler(async (req, res) => DataShareController.removeDataShare(req, res))
   );
 
   router.post(
     '/data-shares/create',
+    createDataShareValidator,
     asyncHandler(async (req, res) => DataShareController.createDataShare(req, res))
   );
 

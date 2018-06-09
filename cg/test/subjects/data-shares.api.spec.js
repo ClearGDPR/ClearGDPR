@@ -4,6 +4,7 @@ const { db } = require('../../src/db');
 const { subjectJWT } = require('../../src/utils/jwt');
 const { deployContract } = require('../blockchain-setup');
 const { hash } = require('../../src/utils/encryption');
+const { BadRequest } = require('../../src/utils/errors');
 
 beforeAll(initResources);
 
@@ -90,6 +91,16 @@ describe('Data share create', () => {
     expect(dataShare).toBeTruthy();
     expect(dataShare.token).toBeTruthy();
   });
+
+  it('Should error if no name is provided', async () => {
+    const subjectId = '8421511011';
+    const token = await createUser(subjectId);
+    const res = await fetchWithAuthorization('/api/subject/data-shares/create', token, {
+      method: 'POST',
+      body: {}
+    });
+    expect(res.status).toEqual(BadRequest.StatusCode);
+  });
 });
 
 describe('Data share remove', () => {
@@ -114,5 +125,16 @@ describe('Data share remove', () => {
     expect(res.status).toEqual(200);
     const [dataShare2] = await db('data_shares').where({ name: 'test7' });
     expect(dataShare2).not.toBeTruthy();
+  });
+
+  it('Should error if the share does not exist', async () => {
+    const subjectId = '8422291211';
+    const token = await createUser(subjectId);
+
+    const res = await fetchWithAuthorization(`/api/subject/data-shares/439101111/remove`, token, {
+      method: 'POST'
+    });
+
+    expect(res.status).toEqual(BadRequest.StatusCode);
   });
 });
