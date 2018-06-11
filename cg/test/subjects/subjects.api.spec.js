@@ -521,6 +521,55 @@ describe('Tests of subject erasing data and revoking consent', () => {
     expect(await getIsErased(subjectId)).toBe(true);
     expect(await getSubjectDataState(subjectId)).toBe(SubjectDataStatus.erased);
   });
+
+  it('should remove the consent from the processors when a subject data is erased', async () => {
+    // Given
+    const subjectToken = await subjectJWT.sign({ subjectId: '57' });
+    const personalData = {
+      name: 'user1',
+      email: 'user1@clevertech.biz'
+    };
+    const res1 = await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      },
+      body: {
+        personalData,
+        processors: [201]
+      }
+    });
+
+    // When
+    const res2 = await fetch('/api/subject/erase-data', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      }
+    });
+    const res3 = await fetch('/api/subject/data-status', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      }
+    });
+
+    // Then
+    expect(res1.ok).toBeTruthy();
+    expect(res1.status).toBe(200);
+    expect(await res1.text()).toBe('OK');
+    expect(res2.ok).toBeTruthy();
+    expect(res2.status).toBe(200);
+    expect(await res2.text()).toBe('OK');
+    expect(res3.ok).toBeTruthy();
+    expect(res3.status).toBe(200);
+    expect(await res3.json()).toEqual(
+      expect.objectContaining({
+        controller: 2,
+        processors: []
+      })
+    );
+  });
 });
 
 describe('Get data status', () => {
@@ -564,86 +613,85 @@ describe('Get data status', () => {
       })
     );
   });
+});
 
-  describe('Get Data', () => {
-    it('Should allow the user to get their data', async () => {
-      const subjectId = 'user8kdfkkdsks';
-      const token = await subjectJWT.sign({ subjectId: subjectId });
-      const personalData = {
-        name: 'Dan Dan Dan',
-        address: 'Yesterday'
-      };
-      const payload = {
-        personalData,
-        processors: []
-      };
+describe('Get Data', () => {
+  it('Should allow the user to get their data', async () => {
+    const subjectId = 'user8kdfkkdsks';
+    const token = await subjectJWT.sign({ subjectId: subjectId });
+    const personalData = {
+      name: 'Dan Dan Dan',
+      address: 'Yesterday'
+    };
+    const payload = {
+      personalData,
+      processors: []
+    };
 
-      await fetch('/api/subject/give-consent', {
-        method: 'POST',
-        body: payload,
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-
-      const res = await fetch('/api/subject/access-data', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      const data = await res.json();
-      expect(data).toEqual(expect.objectContaining(payload.personalData));
+    await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      body: payload,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
-    it('Should give a userful error if the user has erased their data', async () => {
 
-      const subjectId = 'user8dsdsaqqw';
-      const token = await subjectJWT.sign({ subjectId: subjectId });
-      const personalData = {
-        name: 'Dan Dan Dan 2',
-        address: 'Tomorrow'
-      };
-      const payload = {
-        personalData,
-        processors: []
-      };
-
-      await fetch('/api/subject/give-consent', {
-        method: 'POST',
-        body: payload,
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-
-      const res = await fetch('/api/subject/access-data', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-      const data = await res.json();
-      expect(data).toEqual(expect.objectContaining(payload.personalData));
-
-      const res2 = await fetch('/api/subject/erase-data', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }); 
-
-      expect(res2.status).toEqual(200);
-      
-      const res3 = await fetch('/api/subject/access-data', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
-
-      expect(res3.status !== 500).toEqual(true);
-      expect(res3.status).toEqual(404);
+    const res = await fetch('/api/subject/access-data', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
+    const data = await res.json();
+    expect(data).toEqual(expect.objectContaining(payload.personalData));
   });
 
+  it('Should give a useful error if the user has erased their data', async () => {
+    const subjectId = 'user8dsdsaqqw';
+    const token = await subjectJWT.sign({ subjectId: subjectId });
+    const personalData = {
+      name: 'Dan Dan Dan 2',
+      address: 'Tomorrow'
+    };
+    const payload = {
+      personalData,
+      processors: []
+    };
+
+    await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      body: payload,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const res = await fetch('/api/subject/access-data', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+    const data = await res.json();
+    expect(data).toEqual(expect.objectContaining(payload.personalData));
+
+    const res2 = await fetch('/api/subject/erase-data', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    expect(res2.status).toEqual(200);
+
+    const res3 = await fetch('/api/subject/access-data', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    expect(res3.status !== 500).toEqual(true);
+    expect(res3.status).toEqual(404);
+  });
 });

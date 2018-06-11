@@ -174,7 +174,7 @@ describe('Add processor', () => {
     );
   });
 
-  it('should not improper address format', async () => {
+  it('should not allow improper address format', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
     const res = await fetch('/api/management/processors/add', {

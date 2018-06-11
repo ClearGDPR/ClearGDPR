@@ -133,9 +133,10 @@ class SubjectsService {
       await this.db('subject_keys')
         .transacting(trx)
         .where('subject_id', subjectId)
-        .delete();
+        .del();
 
       await this.db('subject_processors')
+        .transacting(trx)
         .where({
           subject_id: subjectId
         })

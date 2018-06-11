@@ -43,7 +43,6 @@ afterAll(closeResources);
 
 describe('Stats endpoint', () => {
   it('Should display 0 stats properly if there is no entries yet', async () => {
-
     const managementToken = await managementJWT.sign({
       id: 1
     });
@@ -127,8 +126,7 @@ describe('Stats endpoint', () => {
           },
           processors: {
             '201': {
-              // I was expecting this to be 1 originally, but it appears the be 2 because requesting erasure does not cascade, should it?
-              consented: 2
+              consented: 1
             }
           }
         }

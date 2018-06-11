@@ -113,7 +113,6 @@ describe('List subjects that have given consent', () => {
 
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-
     const res = await fetch('/api/management/subjects/list', {
       method: 'GET',
       headers: {
