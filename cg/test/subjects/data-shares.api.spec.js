@@ -111,6 +111,16 @@ describe('Data share remove', () => {
     expect(dataShare2).not.toBeTruthy();
   });
 
+  it('Should not error if there are no data-shares', async () => {
+    const subjectId = '84291212';
+    const token = await createUser(subjectId);
+
+    const res = await fetchWithAuthorization(`/api/subject/data-shares/list`, token);
+
+    expect(res.status).toEqual(200);
+    expect(await res.json()).toHaveLength(0);
+  });
+
   it('Should error if the share does not exist', async () => {
     const subjectId = '8422291211';
     const token = await createUser(subjectId);
