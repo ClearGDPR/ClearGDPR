@@ -18,6 +18,11 @@ class DataShareController {
     await this.service.removeDataShare(req.params.dataShareId);
     return res.json({ success: true });
   }
+
+  async share(req, res) {
+    const userData = await this.service.getDataForShare(req.params.dataShareId);
+    return res.json(userData);
+  }
 }
 
 module.exports = DataShareController;

@@ -1,6 +1,7 @@
 const { db } = require('../../db');
 const crypto = require('crypto');
-const { NotFound } = require('./../../utils/errors');
+const { NotFound, BadRequest } = require('./../../utils/errors');
+const { decryptFromStorage } = require('../../utils/encryption');
 
 class DataShareService {
   async getDataShares(subjectId) {
@@ -24,6 +25,26 @@ class DataShareService {
       .where({
         id: dataShareId
       });
+  }
+
+  async getDataForShare(token) {
+    const [data] = await db('data_shares')
+      .where({ token })
+      .join('subjects', 'data_shares.subject_id', 'subjects.id')
+      .join('subject_keys', 'subjects.id', 'subject_keys.subject_id')
+      .select('personal_data')
+      .select('key');
+
+    if (!data) {
+      throw new NotFound('Data share not found');
+    }
+
+    if (!data.key) {
+      throw new BadRequest('Could not access subjects data');
+    }
+
+    const decryptedData = decryptFromStorage(data.personal_data, data.key);
+    return JSON.parse(decryptedData);
   }
 }
 

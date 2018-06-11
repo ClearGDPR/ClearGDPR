@@ -8,11 +8,11 @@ const { NotFound, BadRequest } = require('../../src/utils/errors');
 
 afterAll(closeResources);
 
-async function createUser(id) {
+async function createUser(id, data = { name: 'test' }) {
   const token = await subjectJWT.sign({ subjectId: id });
   await fetch('/api/subject/give-consent', {
     method: 'POST',
-    body: { personalData: { name: 'test' } },
+    body: { personalData: data },
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -129,5 +129,54 @@ describe('Data share remove', () => {
     });
 
     expect(res.status).toEqual(NotFound.StatusCode);
+});
+
+describe('Data share sharing', () => {
+  it('Should provide the users personal data in a json format if token is correct', async () => {
+    const subjectId = '2';
+    const token = await createUser(subjectId, { customData: true });
+    const res = await fetchWithAuthorization('/api/subject/data-shares/create', token, {
+      method: 'POST',
+      body: { name: 'testdatasharing' }
+    });
+    expect(res.status).toEqual(200);
+    const [dataShare] = await db('data_shares').where({ name: 'testdatasharing' });
+
+    const res2 = await fetch(`/api/subject/data-shares/share?token=${dataShare.token}`);
+
+    expect(res2.status).toEqual(200);
+    expect(await res2.json()).toEqual(expect.objectContaining({ customData: true }));
+  });
+
+  it('Should error if token is invalid', async () => {
+    const res = await fetch(`/api/subject/data-shares/share?token=badtoken`);
+    expect(res.status).toEqual(NotFound.StatusCode);
+  });
+
+  it('Should error if no token is provided', async () => {
+    const res = await fetch(`/api/subject/data-shares/share?token=badtoken`);
+    expect(res.status).toEqual(BadRequest.StatusCode);
+  });
+
+  it('Should error if the user has no decrpytion key', async () => {
+    const subjectId = '3';
+    const idHash = hash(subjectId);
+    const token = await createUser(subjectId);
+
+    const res = await fetchWithAuthorization('/api/subject/data-shares/create', token, {
+      method: 'POST',
+      body: { name: 'testdatasharing' }
+    });
+
+    expect(res.status).toEqual(200);
+    const [dataShare] = await db('data_shares').where({ name: 'testdatasharing' });
+
+    await db('subject_keys')
+      .where({ subject_id: idHash })
+      .delete();
+
+    const res2 = await fetch(`/api/subject/data-shares/share?token=${dataShare.token}`);
+
+    expect(res2.status).toEqual(BadRequest.StatusCode);
   });
 });

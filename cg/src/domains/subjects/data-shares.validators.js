@@ -14,7 +14,14 @@ const removeDataShareValidator = celebrate({
   })
 });
 
+const shareDataShareValidator = celebrate({
+  query: Joi.object().keys({
+    token: Joi.string().required()
+  })
+});
+
 module.exports = {
   removeDataShareValidator,
-  createDataShareValidator
+  createDataShareValidator,
+  shareDataShareValidator
 };

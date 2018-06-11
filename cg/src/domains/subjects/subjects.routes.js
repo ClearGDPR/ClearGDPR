@@ -4,7 +4,11 @@ const { requireSubjectId, transformSubjectId } = require('./subjects.helpers');
 const asyncHandler = require('express-async-handler');
 const { controllerOnly } = require('./../../utils/middleware');
 
-const { createDataShareValidator, removeDataShareValidator } = require('./data-shares.validators');
+const {
+  createDataShareValidator,
+  removeDataShareValidator,
+  shareDataShareValidator
+} = require('./data-shares.validators');
 
 const router = express.Router();
 
@@ -29,6 +33,12 @@ module.exports = app => {
     '/processors',
     controllerOnly,
     asyncHandler(processorsController.getProcessors.bind(processorsController))
+  );
+
+  router.get(
+    '/data-shares/share',
+    shareDataShareValidator,
+    asyncHandler(async (req, res) => dataShareController.share(req, res))
   );
 
   // JWT SECURED ENDPOINTS.
