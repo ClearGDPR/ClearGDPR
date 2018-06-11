@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './theme/main.scss';
+import './theme/main.css';
 import registerServiceWorker from './registerServiceWorker';
 import Routes from './routes';
 
