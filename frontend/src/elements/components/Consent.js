@@ -86,7 +86,7 @@ class Consent extends React.PureComponent {
     this.giveConsent(data, processors.filter(p => p.enabled).map(p => p.id))
       .then(() => {
         if (this.props.options.callbackUrl) {
-          window.location(this.props.options.callbackUrl);
+          window.location.assign(this.props.options.callbackUrl);
         }
       })
       .catch(err => {
