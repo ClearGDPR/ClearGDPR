@@ -1,8 +1,8 @@
 const DataShareService = require('./data-shares.service');
 
 class DataShareController {
-  constructor(processorsService = null) {
-    this.service = processorsService || new DataShareService();
+  constructor(dataShareService = null) {
+    this.service = dataShareService || new DataShareService();
   }
 
   async getDataShares(req, res) {

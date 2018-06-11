@@ -1,12 +1,10 @@
 jest.mock('../../src/utils/blockchain/web3-provider-factory');
-const { initResources, fetch, closeResources } = require('../utils');
+const { initResources, fetch, closeResources, fetchWithAuthorization } = require('../utils');
 const { db } = require('../../src/db');
 const { subjectJWT } = require('../../src/utils/jwt');
 const { deployContract } = require('../blockchain-setup');
 const { hash } = require('../../src/utils/encryption');
-const { BadRequest } = require('../../src/utils/errors');
-
-beforeAll(initResources);
+const { NotFound } = require('../../src/utils/errors');
 
 afterAll(closeResources);
 
@@ -22,20 +20,6 @@ async function createUser(id) {
   return token;
 }
 
-function fetchWithAuthorization(path, token, overrides) {
-  return fetch(
-    path,
-    Object.assign(
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      },
-      overrides
-    )
-  );
-}
 beforeAll(async () => {
   try {
     await deployContract();
@@ -99,7 +83,7 @@ describe('Data share create', () => {
       method: 'POST',
       body: {}
     });
-    expect(res.status).toEqual(BadRequest.StatusCode);
+    expect(res.status).toEqual(NotFound.BadRequest);
   });
 });
 
@@ -135,6 +119,6 @@ describe('Data share remove', () => {
       method: 'POST'
     });
 
-    expect(res.status).toEqual(BadRequest.StatusCode);
+    expect(res.status).toEqual(NotFound.StatusCode);
   });
 });

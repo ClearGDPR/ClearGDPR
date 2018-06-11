@@ -30,6 +30,21 @@ exports.fetch = (path, options) => {
   return fetch(baseURL + path, options);
 };
 
+exports.fetchWithAuthorization = (path, token, overrides) => {
+  return exports.fetch(
+    path,
+    Object.assign(
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      },
+      overrides
+    )
+  );
+};
+
 exports.initResources = async () => {
   if (integrationTests) return;
   return new Promise((resolve, reject) => {

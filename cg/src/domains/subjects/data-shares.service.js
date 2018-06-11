@@ -1,10 +1,9 @@
 const { db } = require('../../db');
 const crypto = require('crypto');
-const { BadRequest } = require('./../../utils/errors');
+const { NotFound } = require('./../../utils/errors');
 
 class DataShareService {
   async getDataShares(subjectId) {
-    console.log(subjectId);
     return db('data_shares').where({ subject_id: subjectId });
   }
 
@@ -19,7 +18,7 @@ class DataShareService {
   }
   async removeDataShare(dataShareId) {
     const [dataShare] = await db('data_shares').where({ id: dataShareId });
-    if (!dataShare) throw new BadRequest('Data Share not found');
+    if (!dataShare) throw new NotFound('Data Share not found');
     await db('data_shares')
       .delete()
       .where({
