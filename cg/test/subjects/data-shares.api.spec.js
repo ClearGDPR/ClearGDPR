@@ -129,6 +129,7 @@ describe('Data share remove', () => {
     });
 
     expect(res.status).toEqual(NotFound.StatusCode);
+  });
 });
 
 describe('Data share sharing', () => {
@@ -154,7 +155,7 @@ describe('Data share sharing', () => {
   });
 
   it('Should error if no token is provided', async () => {
-    const res = await fetch(`/api/subject/data-shares/share?token=badtoken`);
+    const res = await fetch(`/api/subject/data-shares/share`);
     expect(res.status).toEqual(BadRequest.StatusCode);
   });
 
@@ -165,11 +166,12 @@ describe('Data share sharing', () => {
 
     const res = await fetchWithAuthorization('/api/subject/data-shares/create', token, {
       method: 'POST',
-      body: { name: 'testdatasharing' }
+      body: { name: 'no-decryption-key' }
     });
 
     expect(res.status).toEqual(200);
-    const [dataShare] = await db('data_shares').where({ name: 'testdatasharing' });
+    const [dataShare] = await db('data_shares').where({ name: 'no-decryption-key' });
+    console.log(dataShare);
 
     await db('subject_keys')
       .where({ subject_id: idHash })

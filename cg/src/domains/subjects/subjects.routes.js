@@ -15,8 +15,8 @@ const router = express.Router();
 const SubjectsController = require('./subjects.controller');
 const subjectsController = new SubjectsController();
 
-const dataShareController = require('./data-shares.controller');
-const DataShareController = new dataShareController();
+const DataShareController = require('./data-shares.controller');
+const dataShareController = new DataShareController();
 
 const ProcessorsController = require('./processors.controller');
 const processorsController = new ProcessorsController();
@@ -70,17 +70,17 @@ module.exports = app => {
   router.post(
     '/data-shares/:dataShareId/remove',
     removeDataShareValidator,
-    asyncHandler(async (req, res) => DataShareController.removeDataShare(req, res))
+    asyncHandler(async (req, res) => dataShareController.removeDataShare(req, res))
   );
 
   router.post(
     '/data-shares/create',
     createDataShareValidator,
-    asyncHandler(async (req, res) => DataShareController.createDataShare(req, res))
+    asyncHandler(async (req, res) => dataShareController.createDataShare(req, res))
   );
 
   router.get(
     '/data-shares/list',
-    asyncHandler(async (req, res) => DataShareController.getDataShares(req, res))
+    asyncHandler(async (req, res) => dataShareController.getDataShares(req, res))
   );
 };

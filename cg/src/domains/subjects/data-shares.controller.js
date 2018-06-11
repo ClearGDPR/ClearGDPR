@@ -20,7 +20,7 @@ class DataShareController {
   }
 
   async share(req, res) {
-    const userData = await this.service.getDataForShare(req.params.dataShareId);
+    const userData = await this.service.getDataForShare(req.query.token);
     return res.json(userData);
   }
 }

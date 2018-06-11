@@ -31,7 +31,7 @@ class DataShareService {
     const [data] = await db('data_shares')
       .where({ token })
       .join('subjects', 'data_shares.subject_id', 'subjects.id')
-      .join('subject_keys', 'subjects.id', 'subject_keys.subject_id')
+      .leftJoin('subject_keys', 'subjects.id', 'subject_keys.subject_id')
       .select('personal_data')
       .select('key');
 
