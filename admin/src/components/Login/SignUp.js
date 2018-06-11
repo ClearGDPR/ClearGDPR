@@ -11,7 +11,23 @@ export default class SignUp extends React.PureComponent {
   onSignUp(e) {
     e.preventDefault();
     this.setState({ isLoading: true });
-    // console.log(e, this.refs, this.refs.name.value);
+    fetch('/management/users/register', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => {
+        this.setState({ isLoading: false });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
