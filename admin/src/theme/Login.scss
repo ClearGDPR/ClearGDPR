@@ -1,0 +1,55 @@
+/* LOGIN SECTION */
+
+.login-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+  padding: 2rem;
+  box-shadow: 0 10px 20px var(--block-fx-shadow);
+}
+
+.login-card > .logo {
+  width: 220px;
+  margin: var(--spacing) 0;
+}
+
+.login-card > p {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.login-card > p > small {
+  text-decoration: underline;
+  font-size: 0.7rem;
+}
+
+.login-card > form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: var(--spacing) 0;
+}
+
+.login-card > form > input {
+  font-size: 0.8rem;
+  width: 100%;
+  margin: 0.2rem 0;
+  padding: 0.8rem 0.6rem;
+}
+
+.login-card .btn {
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: var(--spacing);
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+}
