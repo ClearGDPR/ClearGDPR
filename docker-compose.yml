@@ -64,8 +64,6 @@ services:
       - '0.0.0.0:3000:3000'
       - '0.0.0.0:3001:3001'
       - '0.0.0.0:3002:3002'
-    env_file:
-      - frontend/.env
     volumes:
       - './frontend/.:/opt/app'
       - /opt/app/node_modules

@@ -15,7 +15,7 @@ const env = {
     location.hostname === 'localhost' ? 'http://localhost:8080' : buildPrefixedApiUri('cg-'),
   CG_API_BASE:
     location.hostname === 'localhost' ? 'http://localhost:8082' : buildPrefixedApiUri('api-'),
-  CG_API_KEY: process.env.REACT_APP_CG_API_KEY
+  CG_API_KEY: 'notusedyet'
 };
 
 export default env;

@@ -26,8 +26,6 @@ function getInput(question) {
   });
 }
 
-
-
 // const args = process.argv.slice(2);
 function logProgress(msg) {
   console.log(msg);
@@ -38,13 +36,13 @@ function checkPrereqs() {
   try {
     exec('docker -v');
   } catch (e) {
-    logProgress('docker not found, exiting')
+    logProgress('docker not found, exiting');
     process.exit(1);
   }
   try {
     exec('docker-compose -v');
-  } catch(e) {
-    logProgress('docker-compose not found, exiting')
+  } catch (e) {
+    logProgress('docker-compose not found, exiting');
     process.exit(1);
   }
 }
@@ -65,8 +63,7 @@ async function run() {
 
   exec(`touch cg/.env cg/.controller.env cg/.processor.env api/.env \\
     quorum/node_1/.env quorum/node_2/.env \\
-    docker/definitions/postgres/.env \\
-    && cp frontend/.env.example frontend/.env`);
+    docker/definitions/postgres/.env`);
 
   logProgress('Building docker images... this will take a while');
 
@@ -125,7 +122,9 @@ async function run() {
   logProgress('All done, the example UI should be accessible at http://localhost:3000');
 }
 
-run().catch(console.error).then(() => {
-  // clean up
-  rl.close();
-})
+run()
+  .catch(console.error)
+  .then(() => {
+    // clean up
+    rl.close();
+  });
