@@ -5,7 +5,12 @@ const { decryptFromStorage } = require('../../utils/encryption');
 
 class DataShareService {
   async getDataShares(subjectId) {
-    return db('data_shares').where({ subject_id: subjectId });
+    return db('data_shares')
+      .where({ subject_id: subjectId })
+      .map(dataShare => ({
+        name: dataShare.name,
+        url: `${process.env.url}/api/subjects/data-shares/share?token=${dataShare.token}`
+      }));
   }
 
   async createDataShare(subjectId, name) {

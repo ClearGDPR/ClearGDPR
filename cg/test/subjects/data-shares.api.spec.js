@@ -48,13 +48,13 @@ describe('Listing data-shares', () => {
     expect(jsonBody[0]).toEqual(
       expect.objectContaining({
         name: 'test1',
-        token: 'token1'
+        url: `${process.env.PUBLIC_URL}/api/subjects/data-shares/share?token=token1`
       })
     );
     expect(jsonBody[1]).toEqual(
       expect.objectContaining({
         name: 'test2',
-        token: 'token2'
+        url: `${process.env.PUBLIC_URL}/api/subjects/data-shares/share?token=token2`
       })
     );
   });
