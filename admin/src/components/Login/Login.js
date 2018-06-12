@@ -19,7 +19,7 @@ export default class Login extends React.Component {
         <input type="text" ref="email" placeholder="Your email" />
         <input type="password" ref="password" placeholder="*********" />
         <button type="submit" className={`button ${this.state.isLoading ? 'is-loading' : null}`}>
-          Sign Up
+          Login
         </button>
       </form>
     );

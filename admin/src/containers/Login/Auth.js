@@ -23,8 +23,7 @@ export default class Auth {
         this.setSession(res);
       })
       .catch(err => {
-        console.log(err);
-        return;
+        return err;
       });
   }
 
