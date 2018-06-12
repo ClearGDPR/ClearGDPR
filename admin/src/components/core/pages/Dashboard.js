@@ -50,9 +50,7 @@ class Dashboard extends Component {
   render() {
     return (
       <main className="dashboard">
-        {this.state.isPanelOpen ? (
-          <section className="overlay" onClick={this.togglePanel} />
-        ) : null}
+        {this.state.isPanelOpen ? <section className="overlay" onClick={this.togglePanel} /> : null}
         <Sidenav isSidenavOpen={this.state.isSidenavOpen} />
         <section className="content">
           <Header
@@ -85,11 +83,7 @@ class Dashboard extends Component {
                 />
               )}
             />
-            <Route
-              exact
-              path="/dashboard/preferences"
-              render={() => <Loader />}
-            />
+            <Route exact path="/dashboard/preferences" render={() => <Loader />} />
           </Switch>
           <Panel
             isPanelOpen={this.state.isPanelOpen}

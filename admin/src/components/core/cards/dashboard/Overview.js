@@ -20,16 +20,8 @@ const Overview = props => {
           </div>
         </div>
         <div className="row">
-          <NumberCard
-            cols="2"
-            data={activeUsers}
-            togglePanel={props.togglePanel}
-          />
-          <NumberCard
-            cols="2"
-            data={erasedUsers}
-            togglePanel={props.togglePanel}
-          />
+          <NumberCard cols="2" data={activeUsers} togglePanel={props.togglePanel} />
+          <NumberCard cols="2" data={erasedUsers} togglePanel={props.togglePanel} />
           <ItemsCard
             cols="4"
             title="Consented by Processor"
