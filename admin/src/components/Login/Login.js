@@ -18,7 +18,7 @@ export default class Login extends React.Component {
       <form onSubmit={e => this.onLogin(e, auth)}>
         <input type="text" ref="email" placeholder="Your email" />
         <input type="password" ref="password" placeholder="*********" />
-        <button type="submit" className={`button ${this.state.isLoading ? 'is-loading' : null}`}>
+        <button type="submit" className="btn ui-action">
           Login
         </button>
       </form>
