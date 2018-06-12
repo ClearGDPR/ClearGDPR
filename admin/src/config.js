@@ -1,15 +1,17 @@
-const envs = {
-  development: {
-    API_URL: 'http://localhost:8082'
-  },
-  staging: {
-    API_URL: 'http://localhost:8082'
-  },
-  production: {
-    API_URL: 'http://localhost:8082'
-  }
-};
+const location = window.location;
 
-const config = Object.assign({}, envs[process.env.NODE_ENV]);
+function buildPrefixedApiUri(prefix) {
+  return (
+    location.protocol +
+    '//' +
+    prefix +
+    location.hostname +
+    `${location.port ? `:${location.port}` : ''}`
+  );
+}
+
+const config = {
+  API_URL: location.hostname === 'localhost' ? 'http://localhost:8082' : buildPrefixedApiUri('cg-')
+};
 
 export default config;
