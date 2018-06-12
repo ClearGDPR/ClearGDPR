@@ -28,8 +28,7 @@ const NumberCard = props => {
           <p className="description">
             <em>
               <small>
-                {props.data.change > 0 ? 'Increased' : 'Decreased'} by{' '}
-                {Math.abs(props.data.change)}%
+                {props.data.change > 0 ? 'Increased' : 'Decreased'} by {Math.abs(props.data.change)}%
               </small>
             </em>
           </p>

@@ -3,11 +3,7 @@ import Card from './Card';
 
 const TableCard = props => {
   return (
-    <Card
-      cols={props.cols}
-      title={props.data.title}
-      togglePanel={props.togglePanel}
-    >
+    <Card cols={props.cols} title={props.data.title} togglePanel={props.togglePanel}>
       <div className="content">
         <table className="responsive-table">
           <thead>

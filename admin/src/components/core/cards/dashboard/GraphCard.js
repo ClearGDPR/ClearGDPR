@@ -16,21 +16,15 @@ const Chart = () => {
       endAngle={-90}
       innerRadius={25}
       padAngle={3}
-      containerComponent={
-        <VictoryContainer width={100} height={50} />
-      }
-      labelComponent={<VictoryLabel style={{ fill: "#191c27", fontSize: 5 }} />}
+      containerComponent={<VictoryContainer width={100} height={50} />}
+      labelComponent={<VictoryLabel style={{ fill: '#191c27', fontSize: 5 }} />}
     />
   );
 };
 
 const GraphCard = props => {
   return (
-    <Card
-      cols={props.cols}
-      title={props.data.title}
-      togglePanel={props.togglePanel}
-    >
+    <Card cols={props.cols} title={props.data.title} togglePanel={props.togglePanel}>
       <div className="graph-card">
         <div className="graph">
           <Chart />

@@ -18,13 +18,7 @@ const Processors = props => {
         </div>
         <div className="row">
           {processors.map((processor, id) => {
-            return (
-              <ProcessorCard
-                key={id}
-                data={processor}
-                togglePanel={props.togglePanel}
-              />
-            );
+            return <ProcessorCard key={id} data={processor} togglePanel={props.togglePanel} />;
           })}
         </div>
       </section>

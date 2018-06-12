@@ -14,16 +14,9 @@ const data = [
 
 const Chart = () => {
   return (
-    <VictoryChart
-      height={160}
-      padding={{ top: 20, bottom: 30, left: 40, right: 16 }}
-    >
+    <VictoryChart height={160} padding={{ top: 20, bottom: 30, left: 40, right: 16 }}>
       <VictoryAxis dependentAxis />
-      <VictoryArea
-        data={data}
-        interpolation="natural"
-        style={{ data: { fill: '#82efa6' } }}
-      />
+      <VictoryArea data={data} interpolation="natural" style={{ data: { fill: '#82efa6' } }} />
       <VictoryAxis />
     </VictoryChart>
   );
@@ -31,11 +24,7 @@ const Chart = () => {
 
 const ChartCard = props => {
   return (
-    <Card
-      cols={props.cols}
-      title={props.data.title}
-      togglePanel={props.togglePanel}
-    >
+    <Card cols={props.cols} title={props.data.title} togglePanel={props.togglePanel}>
       <Chart />
     </Card>
   );
