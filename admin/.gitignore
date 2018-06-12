@@ -20,6 +20,8 @@ npm-debug.log
 
 # testing
 /coverage
+.jest/
+
 
 # production
 /build
