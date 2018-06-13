@@ -171,8 +171,6 @@ describe('Data share sharing', () => {
 
     expect(res.status).toEqual(200);
     const [dataShare] = await db('data_shares').where({ name: 'no-decryption-key' });
-    console.log(dataShare);
-
     await db('subject_keys')
       .where({ subject_id: idHash })
       .delete();
