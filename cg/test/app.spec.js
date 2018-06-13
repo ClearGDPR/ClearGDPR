@@ -37,13 +37,30 @@ describe('App', () => {
 
   it('OPTIONS should return proper allowed origins', async () => {
     const res = await fetch('/', {
-      method: 'OPTIONS'
+      method: 'OPTIONS',
+      headers: {
+        origin: 'http://google.com'
+      }
     });
 
-    expect(res.ok).toBeTruthy();
-    expect(res.headers.get('access-control-allow-origin')).toEqual(
-      process.env.ALLOWED_REQUEST_ORIGIN
-    );
+    expect(res.headers.get('access-control-allow-origin')).toBeFalsy();
+
+    const res2 = await fetch('/', {
+      method: 'OPTIONS',
+      headers: {
+        origin: process.env.ALLOWED_REQUEST_ORIGIN.split(',')[0]
+      }
+    });
+    expect(res2.headers.get('access-control-allow-origin')).toBeTruthy();
+
+    const res3 = await fetch('/', {
+      method: 'OPTIONS',
+      headers: {
+        origin: process.env.ALLOWED_REQUEST_ORIGIN.split(',')[1]
+      }
+    });
+
+    expect(res3.headers.get('access-control-allow-origin')).toBeTruthy();
   });
 
   afterAll(closeResources);

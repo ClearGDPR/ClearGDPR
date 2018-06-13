@@ -7,8 +7,8 @@ const bodyParser = require('body-parser');
 const { apiErrorHandler } = require('./utils/errors');
 
 const corsOptions = {
-  origin: process.env.ALLOWED_REQUEST_ORIGIN,
-}
+  origin: process.env.ALLOWED_REQUEST_ORIGIN.split(',')
+};
 
 app.use(helmet());
 

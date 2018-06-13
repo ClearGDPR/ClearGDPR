@@ -56,7 +56,8 @@ WALLET_PRIVATE_KEY=${walletPrivateKey}
 MY_ADDRESS=${controllerAccount}
 
 # for processor, but also for tests
-CONTROLLER_URL=http://cg:8082`;
+CONTROLLER_URL=http://cg:8082
+ALLOWED_REQUEST_ORIGIN=http://localhost:3000,http://localhost:4000`;
 
     return writeFile('.env', dotEnv);
   })

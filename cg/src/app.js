@@ -9,13 +9,12 @@ const { apiErrorHandler } = require('./utils/errors');
 const { errors } = require('celebrate');
 
 const corsOptions = {
-  origin: process.env.ALLOWED_REQUEST_ORIGIN
+  origin: process.env.ALLOWED_REQUEST_ORIGIN.split(',')
 };
 
 // Security HTTP headers
 // See https://helmetjs.github.io/docs/
 app.use(helmet());
-
 app.use(cors(corsOptions));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
