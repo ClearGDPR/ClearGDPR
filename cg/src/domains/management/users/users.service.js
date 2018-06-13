@@ -31,23 +31,27 @@ class UserService {
   async verifyUser(username, password) {
     const user = await this.getUserByUsername(username);
     if (!user) throw new Unauthorized('Invalid credentials');
-
     const passwordCheck = await this._comparePassword(password, user.password_hash);
-
     if (!passwordCheck) throw new Unauthorized('Invalid credentials');
-
     return { id: user.id };
   }
 
   async updatePassword(userId, newPassword) {
     const [user] = await this.db('users').where({ id: userId });
-
     if (!user) throw new BadRequest('User not found');
     await this.db('users')
       .update({ password_hash: await this._hashPassword(newPassword) })
       .where({ id: userId });
 
     return true;
+  }
+
+  async listManagementUsers() {
+    const managementUsers = await this.db('users')
+      .select('id')
+      .select('username');
+
+    return managementUsers;
   }
 }
 

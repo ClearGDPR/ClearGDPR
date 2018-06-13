@@ -4,28 +4,28 @@ const { db } = require('../../src/db');
 // const { Unauthorized, BadRequest, NotFound } = require('../../src/utils/errors');
 // const blockchain = require('../../src/utils/blockchain');
 
-let managementUsersJWT;
+let managementToken;
 beforeAll(async () => {
   await initResources();
-  managementUsersJWT = await managementJWT.sign({ id: 1 });
+  managementToken = await managementJWT.sign({ id: 1 });
 });
 
 afterAll(closeResources);
 
-describe('User Registration', () => {
+describe('Management user Registration', () => {
   it('Should fail if no username/password is provided', async () => {
     const res = await fetch('/api/management/users/register', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${managementUsersJWT}` },
+      headers: { Authorization: `Bearer ${managementToken}` },
       body: {}
     });
     expect(res.status).toEqual(400);
   });
 
-  it('Should allow a user to register', async () => {
+  it('Should allow a manager to register', async () => {
     const res = await fetch('/api/management/users/register', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${managementUsersJWT}` },
+      headers: { Authorization: `Bearer ${managementToken}` },
       body: {
         username: 'test900',
         password: 'password'
@@ -37,7 +37,7 @@ describe('User Registration', () => {
   });
 });
 
-describe('User Login', () => {
+describe('Management user Login', () => {
   it('Return unauthorized for invalid usernames', async () => {
     const res = await fetch('/api/management/users/login', {
       method: 'POST',
@@ -52,7 +52,7 @@ describe('User Login', () => {
   it('Return unauthorized for invalid passwords', async () => {
     await fetch('/api/management/users/register', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${managementUsersJWT}` },
+      headers: { Authorization: `Bearer ${managementToken}` },
       body: {
         username: 'test905',
         password: 'somepassword...'
@@ -69,10 +69,10 @@ describe('User Login', () => {
     expect(res.status).toEqual(401);
   });
 
-  it('Should allow a user to login', async () => {
+  it('Should allow a manager to login', async () => {
     await fetch('/api/management/users/register', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${managementUsersJWT}` },
+      headers: { Authorization: `Bearer ${managementToken}` },
       body: {
         username: 'test901',
         password: 'password'
@@ -96,11 +96,11 @@ describe('User Login', () => {
   });
 });
 
-describe('User password update', () => {
-  it('Should fail if the user id in the route doesnt exist', async () => {
+describe('Management user password update', () => {
+  it('Should fail if the manager id in the route doesnt exist', async () => {
     const res = await fetch(`/api/management/users/3923219/update-password`, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${managementUsersJWT}` },
+      headers: { Authorization: `Bearer ${managementToken}` },
       body: {
         password: 'password2'
       }
@@ -110,15 +110,15 @@ describe('User password update', () => {
   it('Should fail if no password is provided', async () => {
     const res = await fetch(`/api/management/users/1/update-password`, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${managementUsersJWT}` },
+      headers: { Authorization: `Bearer ${managementToken}` },
       body: {}
     });
     expect(res.status).toEqual(400);
   });
-  it('Should allow a users password to be updated', async () => {
+  it('Should allow a managers password to be updated', async () => {
     await fetch('/api/management/users/register', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${managementUsersJWT}` },
+      headers: { Authorization: `Bearer ${managementToken}` },
       body: {
         username: 'test902',
         password: 'password'
@@ -129,7 +129,7 @@ describe('User password update', () => {
 
     const res = await fetch(`/api/management/users/${user.id}/update-password`, {
       method: 'POST',
-      headers: { Authorization: `Bearer ${managementUsersJWT}` },
+      headers: { Authorization: `Bearer ${managementToken}` },
       body: {
         password: 'password2'
       }
@@ -143,7 +143,7 @@ describe('User password update', () => {
 
     const res2 = await fetch('/api/management/users/login', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${managementUsersJWT}` },
+      headers: { Authorization: `Bearer ${managementToken}` },
       body: {
         username: 'test902',
         password: 'password2'
@@ -152,5 +152,72 @@ describe('User password update', () => {
 
     expect(res2.status).toEqual(200);
     expect((await res2.json()).jwt).toBeTruthy();
+  });
+});
+
+describe('Listing management users', () => {
+  it('Should display an empty list when no manager is registered', async () => {
+    //Given
+    await db('users').del(); // It's fine to delete the contents of the managers table because no other table references it
+
+    //When
+    const res = await fetch('/api/management/users/list', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //Then
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual(expect.arrayContaining([]));
+  });
+
+  it('Should display correctly the registered managers', async () => {
+    //Given
+    await db('users').del(); // It's fine to delete the contents of the managers table because no other table references it
+    const managementToken1 = await managementJWT.sign({ id: '1' });
+    const managementToken2 = await managementJWT.sign({ id: '2' });
+    await fetch('/api/management/users/register', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${managementToken1}` },
+      body: {
+        username: 'manager1',
+        password: 'manager1_password'
+      }
+    });
+    await fetch('/api/management/users/register', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${managementToken2}` },
+      body: {
+        username: 'manager2',
+        password: 'manager2_password'
+      }
+    });
+
+    //When
+    const res = await fetch('/api/management/users/list', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //Then
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: 5, // ID is 5 because 1 through 4 were deleted previously in the tests
+          username: 'manager1'
+        }),
+        expect.objectContaining({
+          id: 6,
+          username: 'manager2'
+        })
+      ])
+    );
   });
 });

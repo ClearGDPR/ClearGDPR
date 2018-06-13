@@ -19,7 +19,6 @@ class UserController {
   async login(req, res) {
     const { username, password } = req.body;
     const user = await this.userService.verifyUser(username, password);
-
     const token = await managementJWT.sign(user);
     return res.json({ jwt: token });
   }
@@ -27,12 +26,14 @@ class UserController {
   async updatePassword(req, res) {
     const { userId } = req.params;
     const { password } = req.body;
-
     if (!password) throw new BadRequest('No password provided');
-
     await this.userService.updatePassword(userId, password);
-
     return res.json({ success: true });
+  }
+
+  async listManagementUsers(req, res) {
+    const managersList = await this.userService.listManagementUsers();
+    return res.json(managersList);
   }
 }
 
