@@ -6,11 +6,11 @@ import config from '../../config';
 import '../../theme/Login.css';
 
 const handleLogin = (username, password) => {
-  fetch(`${config.API_URL}/management/users/login`, {
+  fetch(`${config.API_URL}/api/management/users/login`, {
     method: 'POST',
     body: JSON.stringify({
-      email: username,
-      password: password
+      username,
+      password
     }),
     headers: {
       'Content-Type': 'application/json'
