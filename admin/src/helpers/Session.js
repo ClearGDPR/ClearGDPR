@@ -1,6 +1,6 @@
 import cookie from 'cookie';
 
-export default class Session {
+export class Session {
   set(authResult) {
     const maxAge = 1 * 24 * 60 * 60; // 1 day long;
     document.cookie = cookie.serialize('auth', authResult, { maxAge });
@@ -17,3 +17,5 @@ export default class Session {
     return new Date().getTime() < expiresAt;
   }
 }
+
+export default new Session();

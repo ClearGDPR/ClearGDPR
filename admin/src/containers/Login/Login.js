@@ -1,11 +1,9 @@
 import React from 'react';
 import logo from '../../assets/logo.png';
 import Login from '../../components/Login/Login';
-import Session from '../../helpers/Session';
+import session from '../../helpers/Session';
 import config from '../../config';
 import '../../theme/Login.css';
-
-const session = new Session();
 
 const handleLogin = (username, password) => {
   fetch(`${config.API_URL}/management/users/login`, {
@@ -19,6 +17,7 @@ const handleLogin = (username, password) => {
     }
   })
     .then(res => {
+      console.log(res);
       session.set(res);
     })
     .catch(err => {
