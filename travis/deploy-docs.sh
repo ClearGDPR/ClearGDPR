@@ -6,4 +6,5 @@ cp -r docs ./.docs/docs
 cp *.png ./.docs/
 cp index.html ./.docs/
 
-ncftpput -R -v -u $FTP_USERNAME -p $FTP_PASSWORD $FTP_HOST /docs/ ./.docs/*
+aws s3 ls s3://clear-gdpr-com
+aws s3 sync .docs $S3_DOCS_DESTINATION

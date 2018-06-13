@@ -9,6 +9,8 @@ cache:
 before_install:
   - sudo /etc/init.d/postgresql stop
   - sudo apt-get install ncftp
+  # - sudo /etc/init.d/postgresql stop
+  - pip install --user awscli
   - openssl aes-256-cbc -K $encrypted_1f8d325dded8_key -iv $encrypted_1f8d325dded8_iv -in secrets.tar.enc -out secrets.tar -d
   - tar xvf secrets.tar
   - travis/restore_yarn_cache.sh
