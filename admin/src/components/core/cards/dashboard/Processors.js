@@ -1,8 +1,9 @@
 import React from 'react';
 import ProcessorCard from './ProcessorCard';
-import { processors } from '../../utils/data';
 
 const Processors = props => {
+  const { processors } = props;
+
   return (
     <React.Fragment>
       <section className="cards">

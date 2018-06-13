@@ -4,12 +4,10 @@ import ChartCard from './ChartCard';
 import GraphCard from './GraphCard';
 import ItemsCard from './ItemsCard';
 import TableCard from './TableCard';
-import { users, processors } from './../../utils/data';
-
-let activeUsers = users[0];
-let erasedUsers = users[1];
 
 const Overview = props => {
+  const { activeUsers, erasedUsers, processors } = props;
+
   return (
     <React.Fragment>
       <section className="cards">

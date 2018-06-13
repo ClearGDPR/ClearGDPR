@@ -1,6 +1,6 @@
 import React from 'react';
 import Particles from 'react-particles-js';
-import LoginCard from './../components/LoginCard';
+import LoginCard from './../cards/LoginCard';
 import './login.css';
 
 const Login = () => {

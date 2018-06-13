@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Icon from './Icon';
-import IconOverview from './../../assets/icons/overview.svg';
-import IconProcessors from './../../assets/icons/processors.svg';
-import dashLogo from './../../assets/images/dash-logo.svg';
+import IconOverview from './../../../../assets/icons/overview.svg';
+import IconProcessors from './../../../../assets/icons/processors.svg';
+import dashLogo from './../../../../assets/images/dash-logo.svg';
 
 const Sidenav = props => {
   return (
