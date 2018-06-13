@@ -17,7 +17,6 @@ const handleLogin = (username, password) => {
     }
   })
     .then(res => {
-      console.log(res);
       session.set(res);
     })
     .catch(err => {

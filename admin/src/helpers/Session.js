@@ -13,7 +13,7 @@ export class Session {
   }
 
   isLoggedIn() {
-    let expiresAt = cookie.parse(document.cookie).expires_at || '';
+    const expiresAt = cookie.parse(document.cookie).expires_at || '';
     return new Date().getTime() < expiresAt;
   }
 }
