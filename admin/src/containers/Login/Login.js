@@ -7,7 +7,7 @@ import '../../theme/Login.css';
 
 const session = new Session();
 
-const login = (username, password) => {
+const handleLogin = (username, password) => {
   fetch(`${config.API_URL}/management/users/login`, {
     method: 'POST',
     body: JSON.stringify({
@@ -30,7 +30,7 @@ const LoginContainer = () => (
   <section className="login-section">
     <div className="login-card">
       <img className="logo" src={logo} alt="Clear logo" />
-      <Login auth={login} />
+      <Login auth={handleLogin} />
     </div>
   </section>
 );
