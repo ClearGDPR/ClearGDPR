@@ -2,7 +2,7 @@ const bcryptjs = require('bcryptjs');
 const { db } = require('../../../db');
 const { BadRequest, Unauthorized } = require('../../../utils/errors');
 
-class UserService {
+class UsersService {
   constructor(database = db) {
     this.db = database;
   }
@@ -46,13 +46,11 @@ class UserService {
     return true;
   }
 
-  async listManagementUsers() {
-    const managementUsers = await this.db('users')
-      .select('id')
-      .select('username');
+  async listUsers() {
+    const managementUsers = await this.db('users').select('id', 'username');
 
     return managementUsers;
   }
 }
 
-module.exports = UserService;
+module.exports = UsersService;

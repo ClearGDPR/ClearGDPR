@@ -1,10 +1,10 @@
 const { managementJWT } = require('./../../../utils/jwt');
-const UserService = require('./users.service');
+const UsersService = require('./users.service');
 const { BadRequest } = require('../../../utils/errors');
 
-class UserController {
+class UsersController {
   constructor() {
-    this.userService = this.userService || new UserService();
+    this.usersService = this.usersService || new UsersService();
   }
 
   async register(req, res) {
@@ -12,13 +12,13 @@ class UserController {
     if (!username || !password) {
       throw new BadRequest('Cannot register without an username or password');
     }
-    await this.userService.createNewUser(username, password);
+    await this.usersService.createNewUser(username, password);
     res.json({ success: true });
   }
 
   async login(req, res) {
     const { username, password } = req.body;
-    const user = await this.userService.verifyUser(username, password);
+    const user = await this.usersService.verifyUser(username, password);
     const token = await managementJWT.sign(user);
     return res.json({ jwt: token });
   }
@@ -27,14 +27,14 @@ class UserController {
     const { userId } = req.params;
     const { password } = req.body;
     if (!password) throw new BadRequest('No password provided');
-    await this.userService.updatePassword(userId, password);
+    await this.usersService.updatePassword(userId, password);
     return res.json({ success: true });
   }
 
-  async listManagementUsers(req, res) {
-    const managersList = await this.userService.listManagementUsers();
+  async listUsers(req, res) {
+    const managersList = await this.usersService.listUsers();
     return res.json(managersList);
   }
 }
 
-module.exports = UserController;
+module.exports = UsersController;

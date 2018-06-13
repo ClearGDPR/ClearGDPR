@@ -9,7 +9,6 @@ beforeAll(async () => {
   await initResources();
   managementToken = await managementJWT.sign({ id: 1 });
 });
-
 afterAll(closeResources);
 
 describe('Management user Registration', () => {
@@ -171,17 +170,15 @@ describe('Listing management users', () => {
     //Then
     expect(res.ok).toBeTruthy();
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual(expect.arrayContaining([]));
+    expect(await res.json()).toEqual([]);
   });
 
   it('Should display correctly the registered managers', async () => {
     //Given
     await db('users').del(); // It's fine to delete the contents of the managers table because no other table references it
-    const managementToken1 = await managementJWT.sign({ id: '1' });
-    const managementToken2 = await managementJWT.sign({ id: '2' });
     await fetch('/api/management/users/register', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${managementToken1}` },
+      headers: { Authorization: `Bearer ${managementToken}` },
       body: {
         username: 'manager1',
         password: 'manager1_password'
@@ -189,7 +186,7 @@ describe('Listing management users', () => {
     });
     await fetch('/api/management/users/register', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${managementToken2}` },
+      headers: { Authorization: `Bearer ${managementToken}` },
       body: {
         username: 'manager2',
         password: 'manager2_password'
@@ -210,11 +207,11 @@ describe('Listing management users', () => {
     expect(await res.json()).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          id: 5, // ID is 5 because 1 through 4 were deleted previously in the tests
+          id: expect.any(Number), // Since other tests insert managers in the DB, this ID is random
           username: 'manager1'
         }),
         expect.objectContaining({
-          id: 6,
+          id: expect.any(Number),
           username: 'manager2'
         })
       ])

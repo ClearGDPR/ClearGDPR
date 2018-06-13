@@ -93,10 +93,7 @@ module.exports = app => {
     asyncHandler(async (req, res) => usersController.updatePassword(req, res))
   );
 
-  router.get(
-    '/users/list',
-    asyncHandler(async (req, res) => usersController.listManagementUsers(req, res))
-  );
+  router.get('/users/list', asyncHandler(async (req, res) => usersController.listUsers(req, res)));
 
   router.get('/stats', asyncHandler(async (req, res) => statsController.stats(req, res)));
 };
