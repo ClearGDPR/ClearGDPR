@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class Login extends React.Component {
+class Login extends React.Component {
   state = {
     isLoading: false
   };
@@ -8,7 +9,7 @@ export default class Login extends React.Component {
   onLogin(e, auth) {
     e.preventDefault();
     this.setState({ isLoading: true });
-    auth.login(this.refs.email.value, this.refs.password.value);
+    auth(this.refs.email.value, this.refs.password.value);
   }
 
   render() {
@@ -25,3 +26,9 @@ export default class Login extends React.Component {
     );
   }
 }
+
+Login.propTypes = {
+  auth: PropTypes.func.isRequired
+};
+
+export default Login;
