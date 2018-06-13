@@ -9,7 +9,7 @@ class Login extends React.Component {
   onLoginSubmit(e, auth) {
     e.preventDefault();
     this.setState({ isLoading: true });
-    auth(this.refs.email.value, this.refs.password.value);
+    auth(this.refs.username.value, this.refs.password.value);
   }
 
   render() {
@@ -17,7 +17,7 @@ class Login extends React.Component {
 
     return (
       <form onSubmit={e => this.onLoginSubmit(e, auth)}>
-        <input type="text" ref="email" placeholder="Your email" />
+        <input type="text" ref="username" placeholder="Your username" />
         <input type="password" ref="password" placeholder="*********" />
         <button type="submit" className="btn ui-action">
           Login
