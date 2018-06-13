@@ -15,6 +15,9 @@ module.exports = {
     'max-depth': ['warn', 7],
     'max-lines': ['warn', 750],
     'array-callback-return': 'warn',
-    complexity: ['warn', { max: 20 }]
+    complexity: ['warn', { max: 20 }],
+
+    'react/prop-types': ['warn'],
+    'react/no-unused-prop-types': ['warn']
   }
 };
