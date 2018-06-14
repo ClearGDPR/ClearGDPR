@@ -16,8 +16,8 @@ const handleLogin = (username, password) => {
       'Content-Type': 'application/json'
     }
   })
-    .then(res => {
-      session.set(res);
+    .then(async res => {
+      session.set(await res.json());
     })
     .catch(err => {
       return err;
