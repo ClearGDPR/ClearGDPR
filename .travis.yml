@@ -49,7 +49,7 @@ jobs:
     - stage: deploy
     #   if: tag =~ ^(\d*\.)+\d*$
       script:
-        - cd website && yarn && NODE_ENV=production yarn build
+        - cd website && yarn && NODE_ENV=production yarn build && cd ..
         # - echo "Deploying version v$VERSION"
         # - node travis/generate-kubedef.js --quorum1
         # - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
