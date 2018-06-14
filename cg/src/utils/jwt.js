@@ -13,7 +13,6 @@ class JWT {
   sign(payload, options) {
     const opts = Object.assign({}, this.defaultOptions, options);
     const tokenExpiresIn = getTokenExpiry();
-    console.log(tokenExpiresIn);
     if (tokenExpiresIn) opts.expiresIn = tokenExpiresIn;
     return new Promise((resolve, reject) => {
       jwt.sign(payload, this.secretOrPrivateKey, opts, (err, token) => {
