@@ -2,11 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import logo from '../../assets/logo.png';
 import Login from '../../components/Login/Login';
 import session from '../../helpers/Session';
 import config from '../../config';
-import '../../theme/Login.css';
 
 const LoginContainer = withRouter(props => {
   const { from } = props.location.state || { from: { pathname: '/' } };
@@ -32,14 +30,7 @@ const LoginContainer = withRouter(props => {
       });
   };
 
-  return (
-    <section className="login-section">
-      <div className="login-card">
-        <img className="logo" src={logo} alt="Clear logo" />
-        <Login auth={handleLogin} />
-      </div>
-    </section>
-  );
+  return <Login auth={handleLogin} />;
 });
 
 LoginContainer.propTypes = {
