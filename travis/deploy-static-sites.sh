@@ -8,3 +8,4 @@ cp index.html ./.docs/
 
 aws s3 ls s3://clear-gdpr-com
 aws s3 sync .docs $S3_DOCS_DESTINATION
+aws s3 sync website/build $S3_SITE_DESTINATION

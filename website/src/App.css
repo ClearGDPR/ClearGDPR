@@ -1,0 +1,201 @@
+.feature {
+  flex: 1;
+  margin: 1rem;
+  padding: 1rem;
+  border: 5px solid white;
+  transition: transform 0.2s ease-in-out, border 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    color 0.3s ease-in-out;
+}
+
+.feature h3 {
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 50px;
+}
+
+.feature:hover {
+  border: 5px solid #82efa6;
+  transform: scale(1.02);
+}
+
+.feature:hover h3 span {
+  background-color: #82efa6;
+  color: #191d28;
+}
+
+.graphic {
+  text-align: center;
+}
+
+.separator .graphic img {
+  margin: 8rem 0;
+  width: 30%;
+  max-width: 680px;
+}
+
+.white {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing);
+  color: var(--color-black);
+  background-color: var(--color-white);
+  flex-direction: column;
+  animation: fadein 0.6s ease-in;
+  overflow: hidden;
+  justify-content: center;
+  padding: 4em 1rem;
+  box-shadow: 0 10px 40px #000000c2;
+  background: url('./assets/images/topography.png');
+}
+
+.center {
+  text-align: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.support {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.support > img {
+  width: 100%;
+  margin: 2em;
+  max-width: 300px;
+}
+
+.support > img.madred {
+  max-width: 240px;
+}
+
+.support > img.adledger {
+  max-width: 320px;
+}
+
+.support > img.ct {
+  max-width: 280px;
+}
+
+@media screen and (max-width: 840px) {
+  .separator .graphic img {
+    margin: 5rem 0;
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .separator .graphic img {
+    margin: 3rem 0;
+    width: 50%;
+  }
+}
+
+.hero {
+  display: flex;
+  padding: var(--spacing);
+  position: relative;
+  height: calc(100vh - 6rem);
+}
+
+.graphic {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.graphic > img {
+  width: 80%;
+  max-width: 680px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scroll-down {
+  position: absolute;
+  bottom: 3rem;
+  text-align: center;
+  width: calc(100% - 2rem);
+}
+
+.scroll-down > img {
+  width: 50px;
+  animation: bounce 0.6s 5s infinite alternate;
+}
+
+/* NAV */
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+.logo {
+  width: 100px;
+}
+
+a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-transform: uppercase;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease;
+  color: var(--color-white);
+  padding: 0.1rem 0.3rem;
+}
+a.active {
+  background-color: var(--color-green);
+  color: var(--color-black);
+}
+
+nav a:first-of-type {
+  margin-left: 0;
+  background-color: transparent;
+}
+
+nav a:last-of-type {
+  margin-right: 0;
+  background-color: transparent;
+}
+a:last-of-type:hover {
+  transform: scale(1.2);
+  transition: transform 0.4s ease;
+}
+
+a:hover {
+  background-color: var(--color-green);
+  color: var(--color-black);
+}
+
+@media screen and (max-width: 840px) {
+  .content {
+    justify-content: flex-start;
+    flex: 2;
+    font-size: 70%;
+  }
+
+  .scroll-down {
+    bottom: 1.2rem;
+  }
+
+  .scroll-down > img {
+    width: 30px;
+  }
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(-15px);
+  }
+}
