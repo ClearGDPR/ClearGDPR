@@ -1,11 +1,26 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import Icon from './Icon';
 import IconOverview from './../../../../assets/icons/overview.svg';
 import IconProcessors from './../../../../assets/icons/processors.svg';
 import dashLogo from './../../../../assets/images/dash-logo.svg';
 
+import session from '../../../../helpers/Session';
+
 const Sidenav = props => {
+  // TODO: move when refactoring dashboard to presentational and container components
+  const logout = () => {
+    session.destroy();
+    props.history.push('/');
+  };
+
+  function handleLogoutClick(e) {
+    e.preventDefault();
+    logout();
+  }
+
   return (
     <nav className={props.isSidenavOpen ? 'sidenav' : 'sidenav closed'}>
       <NavLink to="/dashboard/overview">
@@ -24,11 +39,15 @@ const Sidenav = props => {
         <small className="label">Account</small>
       </p>
       <NavLink to="/dashboard/preferences">Preferences</NavLink>
-      <NavLink to="/" exact>
+      <a href="#" onClick={handleLogoutClick}>
         Logout
-      </NavLink>
+      </a>
     </nav>
   );
 };
 
-export default Sidenav;
+Sidenav.propTypes = {
+  history: PropTypes.object.isRequired
+};
+
+export default withRouter(Sidenav);
