@@ -11,7 +11,7 @@ export default () => (
   <Router>
     <Switch>
       <Route path="/login" component={Login} exact />
-      <PrivateRoute path="/" component={Dashboard} />
+      <PrivateRoute path="/" component={Dashboard} exact />
       <Route component={NoMatch} />
     </Switch>
   </Router>
