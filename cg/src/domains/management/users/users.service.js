@@ -48,7 +48,6 @@ class UsersService {
 
   async listUsers() {
     const managementUsers = await this.db('users').select('id', 'username');
-
     return managementUsers;
   }
 }

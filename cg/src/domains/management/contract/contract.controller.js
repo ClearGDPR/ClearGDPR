@@ -9,7 +9,7 @@ class ContractController {
 
   async deployContract(req, res) {
     if (!req.body.abiJson || !req.body.compiledData) {
-      throw new BadRequest(`The contract must contain values for 'abiJson' and 'compiledData'.`);
+      throw new BadRequest(`The contract must contain values for 'abiJson' and 'compiledData'.`); // Never executed
     }
     let parsedAbi = JSON.parse(req.body.abiJson);
     res.json({

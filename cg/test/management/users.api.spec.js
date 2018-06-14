@@ -18,6 +18,7 @@ describe('Management user Registration', () => {
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {}
     });
+    expect(res.ok).toBeFalsy();
     expect(res.status).toEqual(400);
   });
 
@@ -30,6 +31,7 @@ describe('Management user Registration', () => {
         password: 'password'
       }
     });
+    expect(res.ok).toBeTruthy();
     expect(res.status).toEqual(200);
     const [user] = await db('users').where({ username: 'test900' });
     expect(user).toBeTruthy();
@@ -45,6 +47,7 @@ describe('Management user Login', () => {
         password: 'badpasswword'
       }
     });
+    expect(res.ok).toBeFalsy();
     expect(res.status).toEqual(401);
   });
 
@@ -65,6 +68,7 @@ describe('Management user Login', () => {
         password: 'wrongpassword'
       }
     });
+    expect(res.ok).toBeFalsy();
     expect(res.status).toEqual(401);
   });
 
@@ -77,7 +81,6 @@ describe('Management user Login', () => {
         password: 'password'
       }
     });
-
     const res = await fetch('/api/management/users/login', {
       method: 'POST',
       body: {
@@ -85,11 +88,9 @@ describe('Management user Login', () => {
         password: 'password'
       }
     });
-
     const [user] = await db('users').where({ username: 'test901' });
-
     const jwt = await managementJWT.sign(Object.assign({}, { id: user.id }));
-
+    expect(res.ok).toBeTruthy();
     expect(res.status).toEqual(200);
     expect((await res.json()).jwt).toEqual(jwt);
   });
@@ -104,6 +105,7 @@ describe('Management user password update', () => {
         password: 'password2'
       }
     });
+    expect(res.ok).toBeFalsy();
     expect(res.status).toEqual(400);
   });
   it('Should fail if no password is provided', async () => {
@@ -112,6 +114,7 @@ describe('Management user password update', () => {
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {}
     });
+    expect(res.ok).toBeFalsy();
     expect(res.status).toEqual(400);
   });
   it('Should allow a managers password to be updated', async () => {
@@ -123,9 +126,7 @@ describe('Management user password update', () => {
         password: 'password'
       }
     });
-
     const [user] = await db('users').where({ username: 'test902' });
-
     const res = await fetch(`/api/management/users/${user.id}/update-password`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
@@ -133,7 +134,7 @@ describe('Management user password update', () => {
         password: 'password2'
       }
     });
-
+    expect(res.ok).toBeTruthy();
     expect(res.status).toEqual(200);
 
     const [user2] = await db('users').where({ username: 'test902' });
@@ -148,7 +149,7 @@ describe('Management user password update', () => {
         password: 'password2'
       }
     });
-
+    expect(res2.ok).toBeTruthy();
     expect(res2.status).toEqual(200);
     expect((await res2.json()).jwt).toBeTruthy();
   });

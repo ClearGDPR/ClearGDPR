@@ -19,6 +19,8 @@ const statsController = new StatsController();
 const ProcessorsController = require('./processors/processors.controller');
 const processorsController = new ProcessorsController();
 
+const { contractDeployValidator } = require('./contract/contract.validators');
+
 const {
   addProcessorValidator,
   updateProcessorValidator,
@@ -26,6 +28,12 @@ const {
 } = require('./processors/processors.validators');
 
 const { listSubjectsValidator } = require('./subjects/subjects.validators');
+
+const {
+  usersLoginValidator,
+  usersRegistrationValidator,
+  usersUpdatePasswordValidator
+} = require('./users/users.validators');
 
 module.exports = app => {
   app.use('/management', router);
@@ -40,12 +48,17 @@ module.exports = app => {
     }
   });
 
-  router.post('/users/login', asyncHandler(async (req, res) => usersController.login(req, res)));
+  router.post(
+    '/users/login',
+    usersLoginValidator,
+    asyncHandler(async (req, res) => usersController.login(req, res))
+  );
 
   router.use(verifyJWT);
 
   router.post(
     '/contract/deploy',
+    contractDeployValidator,
     asyncHandler(async (req, res) => contractController.deployContract(req, res))
   );
 
@@ -85,11 +98,13 @@ module.exports = app => {
 
   router.post(
     '/users/register',
+    usersRegistrationValidator,
     asyncHandler(async (req, res) => usersController.register(req, res))
   );
 
   router.post(
     '/users/:userId/update-password',
+    usersUpdatePasswordValidator,
     asyncHandler(async (req, res) => usersController.updatePassword(req, res))
   );
 
