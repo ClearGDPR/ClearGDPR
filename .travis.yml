@@ -8,8 +8,6 @@ cache:
     - $HOME/.yarn_cache
 before_install:
   - sudo /etc/init.d/postgresql stop
-  - sudo apt-get install ncftp
-  # - sudo /etc/init.d/postgresql stop
   - pip install --user awscli
   - openssl aes-256-cbc -K $encrypted_1f8d325dded8_key -iv $encrypted_1f8d325dded8_iv -in secrets.tar.enc -out secrets.tar -d
   - tar xvf secrets.tar
@@ -22,32 +20,32 @@ env:
   - VERSION: $TRAVIS_TAG
 
 stages:
-  # - test
+  - test
   # - publish
   - deploy
   
 jobs:
   include:
     - stage: test
-      script: docker/test
-    - stage: publish
-      if: tag =~ ^(\d*\.)+\d*$
-      script:
-        - touch cg/.yarn-cache.tgz admin/.yarn-cache.tgz api/.yarn-cache.tgz frontend/.yarn-cache.tgz
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - echo "Building and pushing docker images v$VERSION"
-        - make -C cg build && make -C cg push
-        - make -C admin dist && make -C admin build && make -C admin push
-        - make -C api build && make -C api push
-        - make -C frontend dist && make -C frontend build && make -C frontend push
-        - make -C cg tag-latest
-        - make -C admin tag-latest
-        - make -C api tag-latest
-        - make -C frontend tag-latest
-        - VERSION=latest make -C cg push
-        - VERSION=latest make -C admin push
-        - VERSION=latest make -C api push
-        - VERSION=latest make -C frontend push
+      script: echo "test"
+    # - stage: publish
+    #   if: tag =~ ^(\d*\.)+\d*$
+    #   script:
+    #     - touch cg/.yarn-cache.tgz admin/.yarn-cache.tgz api/.yarn-cache.tgz frontend/.yarn-cache.tgz
+    #     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    #     - echo "Building and pushing docker images v$VERSION"
+    #     - make -C cg build && make -C cg push
+    #     - make -C admin dist && make -C admin build && make -C admin push
+    #     - make -C api build && make -C api push
+    #     - make -C frontend dist && make -C frontend build && make -C frontend push
+    #     - make -C cg tag-latest
+    #     - make -C admin tag-latest
+    #     - make -C api tag-latest
+    #     - make -C frontend tag-latest
+    #     - VERSION=latest make -C cg push
+    #     - VERSION=latest make -C admin push
+    #     - VERSION=latest make -C api push
+    #     - VERSION=latest make -C frontend push
     - stage: deploy
     #   if: tag =~ ^(\d*\.)+\d*$
       script:
