@@ -9,20 +9,18 @@ class Login extends React.Component {
     isLoading: false
   };
 
-  onLoginSubmit(e, auth) {
+  onLoginSubmit(e) {
     e.preventDefault();
     this.setState({ isLoading: true });
-    auth(this.refs.username.value, this.refs.password.value);
+    this.props.auth(this.refs.username.value, this.refs.password.value);
   }
 
   render() {
-    const { auth } = this.props;
-
     return (
       <section className="login-section">
         <div className="login-card">
           <img className="logo" src={logo} alt="Clear logo" />
-          <form onSubmit={e => this.onLoginSubmit(e, auth)}>
+          <form onSubmit={this.onLoginSubmit.bind(this)}>
             <input type="text" ref="username" placeholder="Your username" />
             <input type="password" ref="password" placeholder="*********" />
             <button type="submit" className="btn ui-action">
