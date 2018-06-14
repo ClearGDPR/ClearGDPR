@@ -26,7 +26,7 @@ class JWT {
     const opts = Object.assign({}, { algorithm: this.algorithm }, options);
     return new Promise((resolve, reject) => {
       jwt.verify(token, this.secretOrPublicKey, opts, (err, decoded) => {
-        if (err.name === 'TokenExpiredError') {
+        if (err && err.name === 'TokenExpiredError') {
           return reject(new BadRequest('JWT token expired'));
         }
         err ? reject(err) : resolve(decoded);
