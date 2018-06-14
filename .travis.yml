@@ -60,3 +60,4 @@ jobs:
         # - node travis/generate-kubedef.js --web-app
         # - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
         - ./travis/deploy-static-sites.sh 
+        
