@@ -1,4 +1,5 @@
 jest.mock('../../src/utils/blockchain/web3-provider-factory');
+jest.mock('../../src/utils/helpers');
 
 const encryption = require('./../../src/utils/encryption');
 const winston = require('winston');
@@ -18,6 +19,8 @@ const {
 const { SubjectDataStatus } = require('../../src/utils/blockchain/models');
 
 const { VALID_RUN_MODES } = require('../../src/utils/constants');
+
+const helpers = require('./../../src/utils/helpers');
 
 const processor1Address = '0x00000000000000000000000000000000000000A1';
 const processor2Address = '0x00000000000000000000000000000000000000A2';
@@ -89,6 +92,24 @@ describe('Tests of subject giving consent', () => {
         error: 'You are not authorized to perform this action'
       })
     );
+  });
+
+  it('Should return an error if the jwt token is expired', async done => {
+    helpers.getTokenExpiry.mockImplementation(() => 1);
+    const token = await subjectJWT.sign({ test: '10' });
+
+    setTimeout(async () => {
+      const res = await fetch('/api/subject/give-consent', {
+        method: 'POST',
+        body: {},
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      expect(res.status).toEqual(BadRequest.StatusCode);
+      done();
+    }, 1100);
   });
 
   it('should return Unauthorized when not in controller mode', async () => {

@@ -10,6 +10,9 @@ function inControllerMode() {
 function getMyAddress() {
   return process.env.MY_ADDRESS;
 }
+function getTokenExpiry() {
+  return process.env.JWT_TOKEN_EXPIRY;
+}
 
 const timeout = ms => new Promise(res => setTimeout(res, ms));
 
@@ -36,6 +39,7 @@ async function retryAsync(promise, options = {}) {
 }
 
 module.exports = {
+  getTokenExpiry,
   inControllerMode,
   getMyAddress,
   timeout,

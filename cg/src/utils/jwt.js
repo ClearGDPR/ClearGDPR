@@ -1,4 +1,6 @@
 const jwt = require('jsonwebtoken');
+const { getTokenExpiry } = require('./helpers');
+const { BadRequest } = require('./errors');
 
 class JWT {
   constructor(algorithm, secretOrPrivateKey, secretOrPublicKey, options) {
@@ -10,6 +12,9 @@ class JWT {
 
   sign(payload, options) {
     const opts = Object.assign({}, this.defaultOptions, options);
+    const tokenExpiresIn = getTokenExpiry();
+    console.log(tokenExpiresIn);
+    if (tokenExpiresIn) opts.expiresIn = tokenExpiresIn;
     return new Promise((resolve, reject) => {
       jwt.sign(payload, this.secretOrPrivateKey, opts, (err, token) => {
         err ? reject(err) : resolve(token);
@@ -21,6 +26,9 @@ class JWT {
     const opts = Object.assign({}, { algorithm: this.algorithm }, options);
     return new Promise((resolve, reject) => {
       jwt.verify(token, this.secretOrPublicKey, opts, (err, decoded) => {
+        if (err.name === 'TokenExpiredError') {
+          return reject(new BadRequest('JWT token expired'));
+        }
         err ? reject(err) : resolve(decoded);
       });
     });
@@ -37,10 +45,6 @@ exports.managementJWT = new JWT(
   process.env.MANAGEMENT_SECRET
 );
 
-exports.jwtFactory = function (secret) {
-  return new JWT(
-    'HS256',
-    secret,
-    secret
-  );
-}
+exports.jwtFactory = function(secret) {
+  return new JWT('HS256', secret, secret);
+};

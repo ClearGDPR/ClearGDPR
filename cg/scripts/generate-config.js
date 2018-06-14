@@ -55,6 +55,9 @@ CONTRACT_OWNER_ADDRESS=${controllerAccount}
 WALLET_PRIVATE_KEY=${walletPrivateKey}
 MY_ADDRESS=${controllerAccount}
 
+# expire tokens after 7 days
+JWT_TOKEN_EXPIRY=604800
+
 # for processor, but also for tests
 CONTROLLER_URL=http://cg:8082
 ALLOWED_REQUEST_ORIGIN=http://localhost:3000,http://localhost:4000`;
