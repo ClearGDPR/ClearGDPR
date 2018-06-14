@@ -21,41 +21,41 @@ env:
 
 stages:
   - test
-  # - publish
+  - publish
   - deploy
   
 jobs:
   include:
     - stage: test
       script: echo "test"
-    # - stage: publish
-    #   if: tag =~ ^(\d*\.)+\d*$
-    #   script:
-    #     - touch cg/.yarn-cache.tgz admin/.yarn-cache.tgz api/.yarn-cache.tgz frontend/.yarn-cache.tgz
-    #     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    #     - echo "Building and pushing docker images v$VERSION"
-    #     - make -C cg build && make -C cg push
-    #     - make -C admin dist && make -C admin build && make -C admin push
-    #     - make -C api build && make -C api push
-    #     - make -C frontend dist && make -C frontend build && make -C frontend push
-    #     - make -C cg tag-latest
-    #     - make -C admin tag-latest
-    #     - make -C api tag-latest
-    #     - make -C frontend tag-latest
-    #     - VERSION=latest make -C cg push
-    #     - VERSION=latest make -C admin push
-    #     - VERSION=latest make -C api push
-    #     - VERSION=latest make -C frontend push
+    - stage: publish
+      if: tag =~ ^(\d*\.)+\d*$
+      script:
+        - touch cg/.yarn-cache.tgz admin/.yarn-cache.tgz api/.yarn-cache.tgz frontend/.yarn-cache.tgz
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - echo "Building and pushing docker images v$VERSION"
+        - make -C cg build && make -C cg push
+        - make -C admin dist && make -C admin build && make -C admin push
+        - make -C api build && make -C api push
+        - make -C frontend dist && make -C frontend build && make -C frontend push
+        - make -C cg tag-latest
+        - make -C admin tag-latest
+        - make -C api tag-latest
+        - make -C frontend tag-latest
+        - VERSION=latest make -C cg push
+        - VERSION=latest make -C admin push
+        - VERSION=latest make -C api push
+        - VERSION=latest make -C frontend push
     - stage: deploy
-    #   if: tag =~ ^(\d*\.)+\d*$
+      if: tag =~ ^(\d*\.)+\d*$
       script:
         - cd website && yarn && NODE_ENV=production yarn build && cd ..
-        # - echo "Deploying version v$VERSION"
-        # - node travis/generate-kubedef.js --quorum1
-        # - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
-        # - node travis/generate-kubedef.js --quorum2
-        # - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
-        # - node travis/generate-kubedef.js --web-app
-        # - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
+        - echo "Deploying version v$VERSION"
+        - node travis/generate-kubedef.js --quorum1
+        - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
+        - node travis/generate-kubedef.js --quorum2
+        - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
+        - node travis/generate-kubedef.js --web-app
+        - "curl -X POST --data \"@kubeDef.json\" -H \"x-api-key: $LAMBDA_TOKEN\" $LAMBDA_URL"
         - ./travis/deploy-static-sites.sh 
         
