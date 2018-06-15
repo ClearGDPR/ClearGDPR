@@ -135,8 +135,9 @@ class Dashboard extends Component {
           </Switch>
           <Panel
             isPanelOpen={this.state.isPanelOpen}
-            closePanel={this.closePanel}
-            data={this.state.panelData}
+            onCloseClick={this.closePanel}
+            title={this.state.panelData.title}
+            content="Some demo content"
           />
         </section>
       </main>
