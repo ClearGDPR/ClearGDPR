@@ -37,16 +37,12 @@ exports.JWT = JWT;
 exports.subjectJWT = new JWT('HS256', process.env.SUBJECTS_SECRET, process.env.SUBJECTS_SECRET, {
   expiresIn: getTokenExpiry()
 });
-exports.processorJWT = new JWT(
-  'HS256',
-  process.env.PROCESSOR_SECRET,
-  process.env.PROCESSOR_SECRET,
-  { expiresIn: getTokenExpiry() }
-);
+exports.processorJWT = new JWT('HS256', process.env.PROCESSOR_SECRET, process.env.PROCESSOR_SECRET);
 exports.managementJWT = new JWT(
   'HS256',
   process.env.MANAGEMENT_SECRET,
-  process.env.MANAGEMENT_SECRET
+  process.env.MANAGEMENT_SECRET,
+  { expiresIn: getTokenExpiry() }
 );
 
 exports.jwtFactory = function(secret) {
