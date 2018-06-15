@@ -12,7 +12,7 @@ const SidenavContainer = props => {
     props.history.push('/');
   };
 
-  return <Sidenav handleLogoutClick={logout} isSidenavOpen={props.isSidenavOpen} />;
+  return <Sidenav onLogoutClick={logout} isSidenavOpen={props.isSidenavOpen} />;
 };
 
 SidenavContainer.propTypes = {

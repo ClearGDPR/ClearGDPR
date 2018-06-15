@@ -10,7 +10,7 @@ import dashLogo from '../../assets/images/dash-logo.svg';
 const Sidenav = props => {
   function handleLogoutClick(e) {
     e.preventDefault();
-    props.handleLogoutClick();
+    props.onLogoutClick();
   }
 
   return (
@@ -41,7 +41,7 @@ const Sidenav = props => {
 
 Sidenav.propTypes = {
   isSidenavOpen: PropTypes.bool,
-  handleLogoutClick: PropTypes.func.isRequired
+  onLogoutClick: PropTypes.func.isRequired
 };
 
 export default Sidenav;
