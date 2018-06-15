@@ -39,7 +39,7 @@ class MainLayout extends React.Component {
         <Sidenav isSidenavOpen={this.props.isSidenavOpen} />
         <section className="content">
           <Header
-            toggleSidenav={this.eventHandler.bind(this.props.onMenuClick)}
+            onMenuClick={this.eventHandler.bind(this.props.onMenuClick)}
             title="GDPR Advanced Tools"
             greeting={`Welcome ${this.props.username}`}
           />

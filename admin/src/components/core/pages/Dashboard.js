@@ -98,7 +98,7 @@ class Dashboard extends Component {
         <Sidenav isSidenavOpen={this.state.isSidenavOpen} />
         <section className="content">
           <Header
-            toggleSidenav={this.toggleSidenav}
+            onMenuClick={this.toggleSidenav}
             title="GDPR Advanced Tools"
             greeting="Welcome, Admin"
           />
