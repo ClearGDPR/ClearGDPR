@@ -11,7 +11,7 @@ function getMyAddress() {
   return process.env.MY_ADDRESS;
 }
 function getTokenExpiry() {
-  return process.env.JWT_TOKEN_EXPIRY;
+  return process.env.JWT_TOKEN_EXPIRY || 604800;
 }
 
 const timeout = ms => new Promise(res => setTimeout(res, ms));

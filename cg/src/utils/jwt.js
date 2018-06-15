@@ -11,7 +11,7 @@ class JWT {
   }
 
   sign(payload, options) {
-    const opts = Object.assign({ expiresIn: getTokenExpiry() }, this.defaultOptions, options);
+    const opts = Object.assign({}, this.defaultOptions, options);
     return new Promise((resolve, reject) => {
       jwt.sign(payload, this.secretOrPrivateKey, opts, (err, token) => {
         err ? reject(err) : resolve(token);
@@ -34,8 +34,15 @@ class JWT {
 
 exports.JWT = JWT;
 
-exports.subjectJWT = new JWT('HS256', process.env.SUBJECTS_SECRET, process.env.SUBJECTS_SECRET);
-exports.processorJWT = new JWT('HS256', process.env.PROCESSOR_SECRET, process.env.PROCESSOR_SECRET);
+exports.subjectJWT = new JWT('HS256', process.env.SUBJECTS_SECRET, process.env.SUBJECTS_SECRET, {
+  expiresIn: getTokenExpiry()
+});
+exports.processorJWT = new JWT(
+  'HS256',
+  process.env.PROCESSOR_SECRET,
+  process.env.PROCESSOR_SECRET,
+  { expiresIn: getTokenExpiry() }
+);
 exports.managementJWT = new JWT(
   'HS256',
   process.env.MANAGEMENT_SECRET,
