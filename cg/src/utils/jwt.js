@@ -11,9 +11,7 @@ class JWT {
   }
 
   sign(payload, options) {
-    const opts = Object.assign({}, this.defaultOptions, options);
-    const tokenExpiresIn = getTokenExpiry();
-    if (tokenExpiresIn) opts.expiresIn = tokenExpiresIn;
+    const opts = Object.assign({ expiresIn: getTokenExpiry() }, this.defaultOptions, options);
     return new Promise((resolve, reject) => {
       jwt.sign(payload, this.secretOrPrivateKey, opts, (err, token) => {
         err ? reject(err) : resolve(token);
