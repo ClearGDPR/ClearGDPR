@@ -105,7 +105,7 @@ class Dashboard extends Component {
           <Switch>
             <Route
               exact
-              path="/dashboard/overview"
+              path="/kitchen-sink/overview"
               render={() => (
                 <Overview
                   title="Overview"
@@ -120,7 +120,7 @@ class Dashboard extends Component {
             />
             <Route
               exact
-              path="/dashboard/processors"
+              path="/kitchen-sink/processors"
               render={() => (
                 <Processors
                   title="Processors"
@@ -131,7 +131,7 @@ class Dashboard extends Component {
                 />
               )}
             />
-            <Route exact path="/dashboard/preferences" render={() => <Loader />} />
+            <Route exact path="/kitchen-sink/loader" render={() => <Loader />} />
           </Switch>
           <Panel
             isPanelOpen={this.state.isPanelOpen}

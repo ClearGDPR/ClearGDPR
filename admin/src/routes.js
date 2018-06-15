@@ -3,7 +3,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import App from './containers/App';
 import Login from './containers/Login/Login';
-import Dashboard from './components/core/pages/Dashboard';
+
+import KitchenSink from './components/core/pages/Dashboard';
+
 import NoMatch from './components/NoMatch';
 import PrivateRoute from './helpers/routing/PrivateRoute';
 
@@ -11,7 +13,13 @@ export default () => (
   <Router>
     <Switch>
       <Route path="/login" component={Login} exact />
-      <PrivateRoute path="/" component={Dashboard} exact />
+      <PrivateRoute path="/" component={KitchenSink} exact />
+
+      <Route path="/kitchen-sink" component={KitchenSink} exact />
+      <Route path="/kitchen-sink/overview" component={KitchenSink} exact />
+      <Route path="/kitchen-sink/processors" component={KitchenSink} exact />
+      <Route path="/kitchen-sink/loader" component={KitchenSink} exact />
+
       <Route component={NoMatch} />
     </Switch>
   </Router>
