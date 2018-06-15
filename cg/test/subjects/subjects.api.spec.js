@@ -111,6 +111,7 @@ describe('Tests of subject giving consent', () => {
   });
 
   it('should return Unauthorized when not in controller mode', async () => {
+    process.env.MODE = VALID_RUN_MODES.PROCESSOR;
     const token = await subjectJWT.sign({ subjectId: '1aa22b' });
     const res = await fetch('/api/subject/give-consent', {
       method: 'POST',
