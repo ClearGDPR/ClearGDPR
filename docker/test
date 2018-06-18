@@ -25,5 +25,7 @@ COMPOSE_PROJECT_NAME=cleargdpr
 CONFIG_FILE=docker-compose.yml
 
 TEST_CMD="docker-compose -f $CONFIG_FILE exec cg yarn test"
+ADMIN_TEST_CMD="docker-compose -f $CONFIG_FILE exec admin yarn test"
 
 COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME $TEST_CMD
+COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME $ADMIN_TEST_CMD
