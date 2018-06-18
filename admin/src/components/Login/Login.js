@@ -23,7 +23,7 @@ class Login extends React.Component {
           <form onSubmit={this.onLoginSubmit.bind(this)}>
             <input type="text" ref="username" placeholder="Your username" />
             <input type="password" ref="password" placeholder="*********" />
-            <button type="submit" className="btn ui-action">
+            <button type="submit" className="btn">
               Login
             </button>
           </form>
