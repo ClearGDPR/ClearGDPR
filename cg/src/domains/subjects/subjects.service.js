@@ -195,6 +195,25 @@ class SubjectsService {
     const decryptedData = decryptFromStorage(data.personal_data, data.key);
     return JSON.parse(decryptedData);
   }
+
+  async initiateRectification(subjectId, { rectificationPayload, requestReason }) {
+    const [subjectKeyData] = await this.db('subject_keys')
+      .where({ subject_id: subjectId })
+      .select('key');
+    if (!subjectKeyData || !subjectKeyData.key) throw new NotFound('Subject keys not found');
+
+    const encryptedRectificationPayload = encryptForStorage(
+      JSON.stringify(rectificationPayload),
+      subjectKeyData.key
+    );
+
+    return await this.db('rectification_requests', {
+      subject_id: subjectId,
+      request_reason: requestReason,
+      encrypted_rectification_payload: encryptedRectificationPayload,
+      status: 'PENDING'
+    });
+  }
 }
 
 module.exports = SubjectsService;

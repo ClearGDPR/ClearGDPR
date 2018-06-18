@@ -27,7 +27,10 @@ const {
   deleteProcessorValidator
 } = require('./processors/processors.validators');
 
-const { listSubjectsValidator } = require('./subjects/subjects.validators');
+const {
+  listSubjectsValidator,
+  listRectificationRequestsValidator
+} = require('./subjects/subjects.validators');
 
 const {
   usersLoginValidator,
@@ -71,6 +74,12 @@ module.exports = app => {
     '/subjects/list',
     listSubjectsValidator,
     asyncHandler(async (req, res) => subjectsController.listSubjects(req, res))
+  );
+
+  router.get(
+    '/subjects/rectification_requests',
+    listRectificationRequestsValidator,
+    asyncHandler(async (req, res) => subjectsController.listRectificationRequests(req, res))
   );
 
   router.get(

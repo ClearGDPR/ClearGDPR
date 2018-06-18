@@ -10,6 +10,8 @@ const {
   shareDataShareValidator
 } = require('./data-shares.validators');
 
+const { rectificationRequestValidator } = require('./subjects.validators');
+
 const router = express.Router();
 
 const SubjectsController = require('./subjects.controller');
@@ -65,6 +67,12 @@ module.exports = app => {
   router.get(
     '/data-status',
     asyncHandler(async (req, res) => subjectsController.getPersonalDataStatus(req, res))
+  );
+
+  router.post(
+    '/initiate-rectification',
+    rectificationRequestValidator,
+    asyncHandler(async (req, res) => subjectsController.initiateRectification)
   );
 
   router.post(

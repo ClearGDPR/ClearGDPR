@@ -9,6 +9,16 @@ const listSubjectsValidator = celebrate({
   })
 });
 
+const listRectificationRequestValidator = celebrate({
+  //   query: Joi.object().keys({
+  query: Joi.object().keys({
+    page: Joi.number()
+      .integer()
+      .positive()
+  })
+});
+
 module.exports = {
-  listSubjectsValidator
+  listSubjectsValidator,
+  listRectificationRequestValidator
 };

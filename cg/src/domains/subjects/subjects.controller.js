@@ -1,4 +1,5 @@
 const SubjectsService = require('./subjects.service');
+const { pick } = require('underscore');
 
 class SubjectsController {
   constructor(subjectsService = null) {
@@ -27,6 +28,15 @@ class SubjectsController {
 
   async getPersonalDataStatus(req, res) {
     res.json(await this.subjectsService.getPerProcessorDataStatus(req.subject.id));
+  }
+
+  async initiateRectification(req, res) {
+    res.json(
+      await this.subjectsService.initiateRectification(
+        req.subject.id,
+        pick(req.body, ['rectifcationPayload', 'requestReason'])
+      )
+    );
   }
 }
 

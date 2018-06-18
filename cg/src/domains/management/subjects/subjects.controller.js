@@ -30,6 +30,14 @@ class SubjectsController {
       subjects: coveredSubjects
     });
   }
+
+  async listRectificationRequests(req, res) {
+    const rectificationRequests = await this.subjectsService.listRectificationRequests(
+      req.query.page
+    );
+
+    return res.json(rectificationRequests);
+  }
 }
 
 module.exports = SubjectsController;
