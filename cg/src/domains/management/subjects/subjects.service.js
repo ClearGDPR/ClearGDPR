@@ -88,6 +88,37 @@ class SubjectsService {
       }
     };
   }
+
+  async listRectifcationRequests(requestedPage) {
+    if (requestedPage == undefined) {
+      requestedPage = 1;
+    }
+
+    const [{ total_pages }] = await this.db('rectification_requests')
+      .where('status', 'PENDING')
+      .select('count(id)')
+      .as('total_pages');
+
+    if (requestedPage > total_pages) {
+      throw new ValidationError(`page number too big, maximum page number is ${total_pages}`);
+    }
+
+    const requests = await this.db('rectification_requests')
+      .select('id')
+      .select('request_reason')
+      .select('created_at')
+      .where('status', 'PENDING')
+      .limit(PAGE_SIZE)
+      .offset(requestedPage - 1);
+
+    return {
+      data: requests,
+      paging: {
+        current: requestedPage,
+        total: total_pages
+      }
+    };
+  }
 }
 
 module.exports = SubjectsService;

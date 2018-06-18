@@ -203,9 +203,6 @@ class SubjectsService {
       .select('key');
     if (!subjectKeyData || !subjectKeyData.key) throw new NotFound('Subject keys not found');
 
-    console.log(rectificationPayload);
-    console.log(subjectKeyData.key);
-
     const encryptedRectificationPayload = encryptForStorage(
       JSON.stringify(rectificationPayload),
       subjectKeyData.key
