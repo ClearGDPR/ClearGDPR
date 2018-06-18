@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add processor should not allow empty body 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"name\\" fails because [\\"name\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "name",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Add processor should not allow improper address format 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"address\\" fails because [\\"address\\" with value \\"1234\\" fails to match the required pattern: /^0x[\\\\da-fA-F]{40}$/]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "address",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Add processor should not allow processor without a name 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"name\\" fails because [\\"name\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "name",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Add processor should not allow scopes that are not an array 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"scopes\\" fails because [\\"scopes\\" must be an array]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "scopes",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Add processor should verify the types of name parameter 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"name\\" fails because [\\"name\\" must be a string]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "name",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Remove processors should not allow empty IDs array 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"processorIds\\" fails because [\\"processorIds\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "processorIds",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Remove processors should not allow missing IDS 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"processorIds\\" fails because [\\"processorIds\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "processorIds",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Remove processors should not allow numbers in processors IDs 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"processorIds\\" fails because [\\"processorIds\\" at position 1 fails because [\\"1\\" must be a number]]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "processorIds.1",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Update processor should not allow empty body 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"id\\" fails because [\\"id\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "id",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Update processor should not allow processor without an ID 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"id\\" fails because [\\"id\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "id",
+    ],
+    "source": "body",
+  },
+}
+`;

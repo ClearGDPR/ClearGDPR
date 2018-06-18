@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Deploying contract should reject missing contract data 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"abiJson\\" fails because [\\"abiJson\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "abiJson",
+    ],
+    "source": "body",
+  },
+}
+`;
