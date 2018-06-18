@@ -1,0 +1,2756 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Component) Users should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Users
+    users={
+      Array [
+        Object {
+          "id": 1,
+          "username": "admin",
+        },
+        Object {
+          "id": 2,
+          "username": "joe",
+        },
+        Object {
+          "id": 3,
+          "username": "marc",
+        },
+        Object {
+          "id": 4,
+          "username": "gina",
+        },
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <section
+        className="cards"
+      >
+        <div
+          className="action-bar"
+        >
+          <div
+            className="text"
+          >
+            <h4>
+              Users
+            </h4>
+            <p>
+              Manage users that can access the administrative panel
+            </p>
+          </div>
+        </div>
+        <div
+          className="row"
+        >
+          <Card
+            cols={8}
+          >
+            <div
+              className="content"
+            >
+              <table
+                className="responsive-table"
+              >
+                <thead>
+                  <tr>
+                    <th>
+                      ID
+                    </th>
+                    <th>
+                      Username
+                    </th>
+                    <th>
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td
+                      data-label="ID"
+                    >
+                      1
+                    </td>
+                    <td
+                      data-label="Username"
+                    >
+                      admin
+                    </td>
+                    <td
+                      data-label="Actions"
+                    >
+                      <button
+                        className="ui-action btn"
+                        onClick={[Function]}
+                      >
+                        Change password
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      data-label="ID"
+                    >
+                      2
+                    </td>
+                    <td
+                      data-label="Username"
+                    >
+                      joe
+                    </td>
+                    <td
+                      data-label="Actions"
+                    >
+                      <button
+                        className="ui-action btn"
+                        onClick={[Function]}
+                      >
+                        Change password
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      data-label="ID"
+                    >
+                      3
+                    </td>
+                    <td
+                      data-label="Username"
+                    >
+                      marc
+                    </td>
+                    <td
+                      data-label="Actions"
+                    >
+                      <button
+                        className="ui-action btn"
+                        onClick={[Function]}
+                      >
+                        Change password
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      data-label="ID"
+                    >
+                      4
+                    </td>
+                    <td
+                      data-label="Username"
+                    >
+                      gina
+                    </td>
+                    <td
+                      data-label="Actions"
+                    >
+                      <button
+                        className="ui-action btn"
+                        onClick={[Function]}
+                      >
+                        Change password
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        </div>
+      </section>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="action-bar"
+          >
+            <div
+              className="text"
+            >
+              <h4>
+                Users
+              </h4>
+              <p>
+                Manage users that can access the administrative panel
+              </p>
+            </div>
+          </div>,
+          <div
+            className="row"
+          >
+            <Card
+              cols={8}
+            >
+              <div
+                className="content"
+              >
+                <table
+                  className="responsive-table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        ID
+                      </th>
+                      <th>
+                        Username
+                      </th>
+                      <th>
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        1
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        admin
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        2
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        joe
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        3
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        marc
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        4
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        gina
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </Card>
+          </div>,
+        ],
+        "className": "cards",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="text"
+            >
+              <h4>
+                Users
+              </h4>
+              <p>
+                Manage users that can access the administrative panel
+              </p>
+            </div>,
+            "className": "action-bar",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <h4>
+                  Users
+                </h4>,
+                <p>
+                  Manage users that can access the administrative panel
+                </p>,
+              ],
+              "className": "text",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Users",
+                },
+                "ref": null,
+                "rendered": "Users",
+                "type": "h4",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "Manage users that can access the administrative panel",
+                },
+                "ref": null,
+                "rendered": "Manage users that can access the administrative panel",
+                "type": "p",
+              },
+            ],
+            "type": "div",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <Card
+              cols={8}
+            >
+              <div
+                className="content"
+              >
+                <table
+                  className="responsive-table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        ID
+                      </th>
+                      <th>
+                        Username
+                      </th>
+                      <th>
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        1
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        admin
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        2
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        joe
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        3
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        marc
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        4
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        gina
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </Card>,
+            "className": "row",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "children": <div
+                className="content"
+              >
+                <table
+                  className="responsive-table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        ID
+                      </th>
+                      <th>
+                        Username
+                      </th>
+                      <th>
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        1
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        admin
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        2
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        joe
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        3
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        marc
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        4
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        gina
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>,
+              "cols": 8,
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <table
+                  className="responsive-table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        ID
+                      </th>
+                      <th>
+                        Username
+                      </th>
+                      <th>
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        1
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        admin
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        2
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        joe
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        3
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        marc
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        4
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        gina
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>,
+                "className": "content",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <thead>
+                      <tr>
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Username
+                        </th>
+                        <th>
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>,
+                    <tbody>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          1
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          admin
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          2
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          joe
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          3
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          marc
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          4
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          gina
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>,
+                  ],
+                  "className": "responsive-table",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <tr>
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Username
+                        </th>
+                        <th>
+                          Actions
+                        </th>
+                      </tr>,
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <th>
+                            ID
+                          </th>,
+                          <th>
+                            Username
+                          </th>,
+                          <th>
+                            Actions
+                          </th>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "ID",
+                          },
+                          "ref": null,
+                          "rendered": "ID",
+                          "type": "th",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Username",
+                          },
+                          "ref": null,
+                          "rendered": "Username",
+                          "type": "th",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Actions",
+                          },
+                          "ref": null,
+                          "rendered": "Actions",
+                          "type": "th",
+                        },
+                      ],
+                      "type": "tr",
+                    },
+                    "type": "thead",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <tr>
+                          <td
+                            data-label="ID"
+                          >
+                            1
+                          </td>
+                          <td
+                            data-label="Username"
+                          >
+                            admin
+                          </td>
+                          <td
+                            data-label="Actions"
+                          >
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Change password
+                            </button>
+                          </td>
+                        </tr>,
+                        <tr>
+                          <td
+                            data-label="ID"
+                          >
+                            2
+                          </td>
+                          <td
+                            data-label="Username"
+                          >
+                            joe
+                          </td>
+                          <td
+                            data-label="Actions"
+                          >
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Change password
+                            </button>
+                          </td>
+                        </tr>,
+                        <tr>
+                          <td
+                            data-label="ID"
+                          >
+                            3
+                          </td>
+                          <td
+                            data-label="Username"
+                          >
+                            marc
+                          </td>
+                          <td
+                            data-label="Actions"
+                          >
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Change password
+                            </button>
+                          </td>
+                        </tr>,
+                        <tr>
+                          <td
+                            data-label="ID"
+                          >
+                            4
+                          </td>
+                          <td
+                            data-label="Username"
+                          >
+                            gina
+                          </td>
+                          <td
+                            data-label="Actions"
+                          >
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Change password
+                            </button>
+                          </td>
+                        </tr>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": "0",
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <td
+                              data-label="ID"
+                            >
+                              1
+                            </td>,
+                            <td
+                              data-label="Username"
+                            >
+                              admin
+                            </td>,
+                            <td
+                              data-label="Actions"
+                            >
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>
+                            </td>,
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": 1,
+                              "data-label": "ID",
+                            },
+                            "ref": null,
+                            "rendered": 1,
+                            "type": "td",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "admin",
+                              "data-label": "Username",
+                            },
+                            "ref": null,
+                            "rendered": "admin",
+                            "type": "td",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>,
+                              "data-label": "Actions",
+                            },
+                            "ref": null,
+                            "rendered": Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "Change password",
+                                "className": "ui-action btn",
+                                "onClick": [Function],
+                              },
+                              "ref": null,
+                              "rendered": "Change password",
+                              "type": "button",
+                            },
+                            "type": "td",
+                          },
+                        ],
+                        "type": "tr",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": "1",
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <td
+                              data-label="ID"
+                            >
+                              2
+                            </td>,
+                            <td
+                              data-label="Username"
+                            >
+                              joe
+                            </td>,
+                            <td
+                              data-label="Actions"
+                            >
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>
+                            </td>,
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": 2,
+                              "data-label": "ID",
+                            },
+                            "ref": null,
+                            "rendered": 2,
+                            "type": "td",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "joe",
+                              "data-label": "Username",
+                            },
+                            "ref": null,
+                            "rendered": "joe",
+                            "type": "td",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>,
+                              "data-label": "Actions",
+                            },
+                            "ref": null,
+                            "rendered": Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "Change password",
+                                "className": "ui-action btn",
+                                "onClick": [Function],
+                              },
+                              "ref": null,
+                              "rendered": "Change password",
+                              "type": "button",
+                            },
+                            "type": "td",
+                          },
+                        ],
+                        "type": "tr",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": "2",
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <td
+                              data-label="ID"
+                            >
+                              3
+                            </td>,
+                            <td
+                              data-label="Username"
+                            >
+                              marc
+                            </td>,
+                            <td
+                              data-label="Actions"
+                            >
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>
+                            </td>,
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": 3,
+                              "data-label": "ID",
+                            },
+                            "ref": null,
+                            "rendered": 3,
+                            "type": "td",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "marc",
+                              "data-label": "Username",
+                            },
+                            "ref": null,
+                            "rendered": "marc",
+                            "type": "td",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>,
+                              "data-label": "Actions",
+                            },
+                            "ref": null,
+                            "rendered": Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "Change password",
+                                "className": "ui-action btn",
+                                "onClick": [Function],
+                              },
+                              "ref": null,
+                              "rendered": "Change password",
+                              "type": "button",
+                            },
+                            "type": "td",
+                          },
+                        ],
+                        "type": "tr",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": "3",
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <td
+                              data-label="ID"
+                            >
+                              4
+                            </td>,
+                            <td
+                              data-label="Username"
+                            >
+                              gina
+                            </td>,
+                            <td
+                              data-label="Actions"
+                            >
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>
+                            </td>,
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": 4,
+                              "data-label": "ID",
+                            },
+                            "ref": null,
+                            "rendered": 4,
+                            "type": "td",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "gina",
+                              "data-label": "Username",
+                            },
+                            "ref": null,
+                            "rendered": "gina",
+                            "type": "td",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>,
+                              "data-label": "Actions",
+                            },
+                            "ref": null,
+                            "rendered": Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "Change password",
+                                "className": "ui-action btn",
+                                "onClick": [Function],
+                              },
+                              "ref": null,
+                              "rendered": "Change password",
+                              "type": "button",
+                            },
+                            "type": "td",
+                          },
+                        ],
+                        "type": "tr",
+                      },
+                    ],
+                    "type": "tbody",
+                  },
+                ],
+                "type": "table",
+              },
+              "type": "div",
+            },
+            "type": [Function],
+          },
+          "type": "div",
+        },
+      ],
+      "type": "section",
+    },
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <section
+          className="cards"
+        >
+          <div
+            className="action-bar"
+          >
+            <div
+              className="text"
+            >
+              <h4>
+                Users
+              </h4>
+              <p>
+                Manage users that can access the administrative panel
+              </p>
+            </div>
+          </div>
+          <div
+            className="row"
+          >
+            <Card
+              cols={8}
+            >
+              <div
+                className="content"
+              >
+                <table
+                  className="responsive-table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        ID
+                      </th>
+                      <th>
+                        Username
+                      </th>
+                      <th>
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        1
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        admin
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        2
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        joe
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        3
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        marc
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        data-label="ID"
+                      >
+                        4
+                      </td>
+                      <td
+                        data-label="Username"
+                      >
+                        gina
+                      </td>
+                      <td
+                        data-label="Actions"
+                      >
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Change password
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </Card>
+          </div>
+        </section>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="action-bar"
+            >
+              <div
+                className="text"
+              >
+                <h4>
+                  Users
+                </h4>
+                <p>
+                  Manage users that can access the administrative panel
+                </p>
+              </div>
+            </div>,
+            <div
+              className="row"
+            >
+              <Card
+                cols={8}
+              >
+                <div
+                  className="content"
+                >
+                  <table
+                    className="responsive-table"
+                  >
+                    <thead>
+                      <tr>
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Username
+                        </th>
+                        <th>
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          1
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          admin
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          2
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          joe
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          3
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          marc
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          4
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          gina
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </Card>
+            </div>,
+          ],
+          "className": "cards",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="text"
+              >
+                <h4>
+                  Users
+                </h4>
+                <p>
+                  Manage users that can access the administrative panel
+                </p>
+              </div>,
+              "className": "action-bar",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h4>
+                    Users
+                  </h4>,
+                  <p>
+                    Manage users that can access the administrative panel
+                  </p>,
+                ],
+                "className": "text",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Users",
+                  },
+                  "ref": null,
+                  "rendered": "Users",
+                  "type": "h4",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Manage users that can access the administrative panel",
+                  },
+                  "ref": null,
+                  "rendered": "Manage users that can access the administrative panel",
+                  "type": "p",
+                },
+              ],
+              "type": "div",
+            },
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <Card
+                cols={8}
+              >
+                <div
+                  className="content"
+                >
+                  <table
+                    className="responsive-table"
+                  >
+                    <thead>
+                      <tr>
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Username
+                        </th>
+                        <th>
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          1
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          admin
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          2
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          joe
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          3
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          marc
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          4
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          gina
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </Card>,
+              "className": "row",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "children": <div
+                  className="content"
+                >
+                  <table
+                    className="responsive-table"
+                  >
+                    <thead>
+                      <tr>
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Username
+                        </th>
+                        <th>
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          1
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          admin
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          2
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          joe
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          3
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          marc
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          4
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          gina
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>,
+                "cols": 8,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <table
+                    className="responsive-table"
+                  >
+                    <thead>
+                      <tr>
+                        <th>
+                          ID
+                        </th>
+                        <th>
+                          Username
+                        </th>
+                        <th>
+                          Actions
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          1
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          admin
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          2
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          joe
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          3
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          marc
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td
+                          data-label="ID"
+                        >
+                          4
+                        </td>
+                        <td
+                          data-label="Username"
+                        >
+                          gina
+                        </td>
+                        <td
+                          data-label="Actions"
+                        >
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Change password
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>,
+                  "className": "content",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <thead>
+                        <tr>
+                          <th>
+                            ID
+                          </th>
+                          <th>
+                            Username
+                          </th>
+                          <th>
+                            Actions
+                          </th>
+                        </tr>
+                      </thead>,
+                      <tbody>
+                        <tr>
+                          <td
+                            data-label="ID"
+                          >
+                            1
+                          </td>
+                          <td
+                            data-label="Username"
+                          >
+                            admin
+                          </td>
+                          <td
+                            data-label="Actions"
+                          >
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Change password
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            data-label="ID"
+                          >
+                            2
+                          </td>
+                          <td
+                            data-label="Username"
+                          >
+                            joe
+                          </td>
+                          <td
+                            data-label="Actions"
+                          >
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Change password
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            data-label="ID"
+                          >
+                            3
+                          </td>
+                          <td
+                            data-label="Username"
+                          >
+                            marc
+                          </td>
+                          <td
+                            data-label="Actions"
+                          >
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Change password
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td
+                            data-label="ID"
+                          >
+                            4
+                          </td>
+                          <td
+                            data-label="Username"
+                          >
+                            gina
+                          </td>
+                          <td
+                            data-label="Actions"
+                          >
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Change password
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>,
+                    ],
+                    "className": "responsive-table",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <tr>
+                          <th>
+                            ID
+                          </th>
+                          <th>
+                            Username
+                          </th>
+                          <th>
+                            Actions
+                          </th>
+                        </tr>,
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <th>
+                              ID
+                            </th>,
+                            <th>
+                              Username
+                            </th>,
+                            <th>
+                              Actions
+                            </th>,
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "ID",
+                            },
+                            "ref": null,
+                            "rendered": "ID",
+                            "type": "th",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "Username",
+                            },
+                            "ref": null,
+                            "rendered": "Username",
+                            "type": "th",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "Actions",
+                            },
+                            "ref": null,
+                            "rendered": "Actions",
+                            "type": "th",
+                          },
+                        ],
+                        "type": "tr",
+                      },
+                      "type": "thead",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <tr>
+                            <td
+                              data-label="ID"
+                            >
+                              1
+                            </td>
+                            <td
+                              data-label="Username"
+                            >
+                              admin
+                            </td>
+                            <td
+                              data-label="Actions"
+                            >
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>
+                            </td>
+                          </tr>,
+                          <tr>
+                            <td
+                              data-label="ID"
+                            >
+                              2
+                            </td>
+                            <td
+                              data-label="Username"
+                            >
+                              joe
+                            </td>
+                            <td
+                              data-label="Actions"
+                            >
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>
+                            </td>
+                          </tr>,
+                          <tr>
+                            <td
+                              data-label="ID"
+                            >
+                              3
+                            </td>
+                            <td
+                              data-label="Username"
+                            >
+                              marc
+                            </td>
+                            <td
+                              data-label="Actions"
+                            >
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>
+                            </td>
+                          </tr>,
+                          <tr>
+                            <td
+                              data-label="ID"
+                            >
+                              4
+                            </td>
+                            <td
+                              data-label="Username"
+                            >
+                              gina
+                            </td>
+                            <td
+                              data-label="Actions"
+                            >
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Change password
+                              </button>
+                            </td>
+                          </tr>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": "0",
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              <td
+                                data-label="ID"
+                              >
+                                1
+                              </td>,
+                              <td
+                                data-label="Username"
+                              >
+                                admin
+                              </td>,
+                              <td
+                                data-label="Actions"
+                              >
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>
+                              </td>,
+                            ],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": 1,
+                                "data-label": "ID",
+                              },
+                              "ref": null,
+                              "rendered": 1,
+                              "type": "td",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "admin",
+                                "data-label": "Username",
+                              },
+                              "ref": null,
+                              "rendered": "admin",
+                              "type": "td",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>,
+                                "data-label": "Actions",
+                              },
+                              "ref": null,
+                              "rendered": Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Change password",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Change password",
+                                "type": "button",
+                              },
+                              "type": "td",
+                            },
+                          ],
+                          "type": "tr",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": "1",
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              <td
+                                data-label="ID"
+                              >
+                                2
+                              </td>,
+                              <td
+                                data-label="Username"
+                              >
+                                joe
+                              </td>,
+                              <td
+                                data-label="Actions"
+                              >
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>
+                              </td>,
+                            ],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": 2,
+                                "data-label": "ID",
+                              },
+                              "ref": null,
+                              "rendered": 2,
+                              "type": "td",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "joe",
+                                "data-label": "Username",
+                              },
+                              "ref": null,
+                              "rendered": "joe",
+                              "type": "td",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>,
+                                "data-label": "Actions",
+                              },
+                              "ref": null,
+                              "rendered": Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Change password",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Change password",
+                                "type": "button",
+                              },
+                              "type": "td",
+                            },
+                          ],
+                          "type": "tr",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": "2",
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              <td
+                                data-label="ID"
+                              >
+                                3
+                              </td>,
+                              <td
+                                data-label="Username"
+                              >
+                                marc
+                              </td>,
+                              <td
+                                data-label="Actions"
+                              >
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>
+                              </td>,
+                            ],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": 3,
+                                "data-label": "ID",
+                              },
+                              "ref": null,
+                              "rendered": 3,
+                              "type": "td",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "marc",
+                                "data-label": "Username",
+                              },
+                              "ref": null,
+                              "rendered": "marc",
+                              "type": "td",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>,
+                                "data-label": "Actions",
+                              },
+                              "ref": null,
+                              "rendered": Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Change password",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Change password",
+                                "type": "button",
+                              },
+                              "type": "td",
+                            },
+                          ],
+                          "type": "tr",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": "3",
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              <td
+                                data-label="ID"
+                              >
+                                4
+                              </td>,
+                              <td
+                                data-label="Username"
+                              >
+                                gina
+                              </td>,
+                              <td
+                                data-label="Actions"
+                              >
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>
+                              </td>,
+                            ],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": 4,
+                                "data-label": "ID",
+                              },
+                              "ref": null,
+                              "rendered": 4,
+                              "type": "td",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "gina",
+                                "data-label": "Username",
+                              },
+                              "ref": null,
+                              "rendered": "gina",
+                              "type": "td",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>,
+                                "data-label": "Actions",
+                              },
+                              "ref": null,
+                              "rendered": Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Change password",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Change password",
+                                "type": "button",
+                              },
+                              "type": "td",
+                            },
+                          ],
+                          "type": "tr",
+                        },
+                      ],
+                      "type": "tbody",
+                    },
+                  ],
+                  "type": "table",
+                },
+                "type": "div",
+              },
+              "type": [Function],
+            },
+            "type": "div",
+          },
+        ],
+        "type": "section",
+      },
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
