@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import MainLayout from '../../components/MainLayout/MainLayout';
+import UsersContainer from '../Users/Users';
 
 class MainLayoutContainer extends Component {
   state = {
@@ -57,7 +58,7 @@ class MainLayoutContainer extends Component {
               path="/processors"
               render={() => <React.Fragment>Processors</React.Fragment>}
             />
-            <Route exact path="/users" render={() => <React.Fragment>Users</React.Fragment>} />
+            <Route exact path="/users" render={() => <UsersContainer />} />
             <Route exact path="/profile" render={() => <React.Fragment>Profile</React.Fragment>} />
           </Switch>
         }
