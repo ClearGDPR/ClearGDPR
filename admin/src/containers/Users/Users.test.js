@@ -8,6 +8,7 @@ import session from '../../helpers/Session';
 jest.mock('../../helpers/Session');
 
 function flushPromises() {
+  // or: return new Promise(res => process.nextTick(res));
   return new Promise(resolve => setImmediate(resolve));
 }
 
