@@ -1,10 +1,11 @@
-pragma solidity 0.4.21; 
+pragma solidity 0.4.24; 
 contract ClearGDPR {
   address public controller; 
   address[] private processors;  
   enum State {notShareable, shareable, erased} 
   struct subjectData{
-    bool isErased; 
+    bool isErased;
+    uint256 rectificationCount;
     mapping(address => State) statePerProcessor;  
   }
   mapping(bytes32 => subjectData) private subjects;
@@ -12,6 +13,7 @@ contract ClearGDPR {
   event Controller_ProcessorsUpdated(address[] newProcessors);
   event Controller_ConsentGivenTo(bytes32 subjectIdHash, address[] newProcessorsWhiteListed); 
   event Controller_SubjectDataAccessed(bytes32 subjectIdHash);
+  event Controller_SubjectDataRectified(bytes32 subjectIdHash, uint256 rectificationCount);
   event Controller_SubjectDataErased(bytes32 subjectIdHash); 
   event Processor_SubjectDataErased(bytes32 subjectIdHash, address processorIdHash);
 
@@ -30,8 +32,12 @@ contract ClearGDPR {
     _;
   }
 
-  function ClearGDPR() public {
+  constructor() public {
     controller = msg.sender; 
+  }
+
+  function getRectifiedCount(bytes32 _subjectIdHash) public view returns(uint256){
+    return subjects[_subjectIdHash].rectificationCount;
   }
 
   function getIsErased(bytes32 _subjectIdHash) public view returns(bool){
@@ -99,6 +105,12 @@ contract ClearGDPR {
     }
     emit Controller_SubjectDataAccessed(_subjectIdHash);
     return states;
+  }
+  
+  function recordRectificationByController(bytes32 _subjectIdHash) public onlyController notErased(_subjectIdHash) returns (bool){
+    subjects[_subjectIdHash].rectificationCount++;
+    emit Controller_SubjectDataRectified(_subjectIdHash, subjects[_subjectIdHash].rectificationCount);
+    return true;
   }
 
   function recordErasureByController(bytes32 _subjectIdHash) public onlyController notErased(_subjectIdHash) returns (bool){
