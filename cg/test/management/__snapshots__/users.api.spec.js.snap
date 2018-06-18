@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Management user Login Return unauthorized for unregistered usernames 1`] = `
+Object {
+  "error": "Invalid credentials",
+}
+`;
+
+exports[`Management user Login Return unauthorized for wrong passwords 1`] = `
+Object {
+  "error": "Invalid credentials",
+}
+`;
+
+exports[`Management user Login Should not allow the login of an unregistered manager 1`] = `
+Object {
+  "error": "Invalid credentials",
+}
+`;
+
+exports[`Management user Registration Should fail if no username/password is provided 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"username\\" fails because [\\"username\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "username",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Management user Registration Should not allow the registration of an already registered manager 1`] = `
+Object {
+  "success": true,
+}
+`;
+
+exports[`Management user Registration Should not allow the registration of an already registered manager 2`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"username\\" fails because [\\"username\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "username",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Management user password update Should fail if no password is provided 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"password\\" fails because [\\"password\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "password",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Management user password update Should fail if the manager id in the route doesnt exist 1`] = `
+Object {
+  "error": "User not found",
+}
+`;

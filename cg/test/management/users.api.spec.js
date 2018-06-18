@@ -1,7 +1,7 @@
 const { initResources, fetch, closeResources } = require('../utils');
 const { managementJWT } = require('../../src/utils/jwt');
 const { db } = require('../../src/db');
-// const { Unauthorized, BadRequest, NotFound } = require('../../src/utils/errors');
+const { Unauthorized, BadRequest } = require('../../src/utils/errors');
 // const blockchain = require('../../src/utils/blockchain');
 
 let managementToken;
@@ -13,33 +13,71 @@ afterAll(closeResources);
 
 describe('Management user Registration', () => {
   it('Should fail if no username/password is provided', async () => {
+    // When
     const res = await fetch('/api/management/users/register', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {}
     });
+
+    // Then
     expect(res.ok).toBeFalsy();
-    expect(res.status).toEqual(400);
+    expect(res.status).toEqual(BadRequest.StatusCode);
+    expect(await res.json()).toMatchSnapshot();
+  });
+
+  it('Should not allow the registration of an already registered manager', async () => {
+    // Given
+    const manager = {
+      username: 'manager1',
+      password: 'manager1_password'
+    };
+    const res1 = await fetch('/api/management/users/register', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${managementToken}` },
+      body: manager
+    });
+
+    // When
+    const res2 = await fetch('/api/management/users/register', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${managementToken}` },
+      body: {
+        manager
+      }
+    });
+
+    // Then
+    expect(res1.ok).toBeTruthy();
+    expect(res1.status).toEqual(200);
+    expect(await res1.json()).toMatchSnapshot();
+    expect(res2.ok).toBeFalsy();
+    expect(res2.status).toEqual(BadRequest.StatusCode);
+    expect(await res2.json()).toMatchSnapshot();
   });
 
   it('Should allow a manager to register', async () => {
+    //When
     const res = await fetch('/api/management/users/register', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
-        username: 'test900',
-        password: 'password'
+        username: 'manager2',
+        password: 'manager2_password'
       }
     });
+
+    //Then
     expect(res.ok).toBeTruthy();
     expect(res.status).toEqual(200);
-    const [user] = await db('users').where({ username: 'test900' });
+    const [user] = await db('users').where({ username: 'manager2' });
     expect(user).toBeTruthy();
   });
 });
 
 describe('Management user Login', () => {
-  it('Return unauthorized for invalid usernames', async () => {
+  it('Return unauthorized for unregistered usernames', async () => {
+    //When
     const res = await fetch('/api/management/users/login', {
       method: 'POST',
       body: {
@@ -47,49 +85,80 @@ describe('Management user Login', () => {
         password: 'badpasswword'
       }
     });
+
+    //Then
     expect(res.ok).toBeFalsy();
-    expect(res.status).toEqual(401);
+    expect(res.status).toEqual(Unauthorized.StatusCode);
+    expect(await res.json()).toMatchSnapshot();
   });
 
-  it('Return unauthorized for invalid passwords', async () => {
+  it('Return unauthorized for wrong passwords', async () => {
+    //Given
     await fetch('/api/management/users/register', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
-        username: 'test905',
+        username: 'manager3',
         password: 'somepassword...'
       }
     });
 
+    //When
     const res = await fetch('/api/management/users/login', {
       method: 'POST',
       body: {
-        username: 'test905',
+        username: 'manager3',
         password: 'wrongpassword'
       }
     });
+
+    //Then
     expect(res.ok).toBeFalsy();
-    expect(res.status).toEqual(401);
+    expect(res.status).toEqual(Unauthorized.StatusCode);
+    expect(await res.json()).toMatchSnapshot();
+  });
+
+  it('Should not allow the login of an unregistered manager', async () => {
+    //When
+    const res = await fetch('/api/management/users/login', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${managementToken}` },
+      body: {
+        username: 'unregistered_manager',
+        password: 'unregistered_password'
+      }
+    });
+
+    //Then
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toEqual(Unauthorized.StatusCode);
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('Should allow a manager to login', async () => {
+    //Given
     await fetch('/api/management/users/register', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
-        username: 'test901',
+        username: 'manager4',
         password: 'password'
       }
     });
+
+    //When
     const res = await fetch('/api/management/users/login', {
       method: 'POST',
       body: {
-        username: 'test901',
+        username: 'manager4',
         password: 'password'
       }
     });
-    const [user] = await db('users').where({ username: 'test901' });
+
+    const [user] = await db('users').where({ username: 'manager4' });
     const jwt = await managementJWT.sign(Object.assign({}, { id: user.id }));
+
+    //Then
     expect(res.ok).toBeTruthy();
     expect(res.status).toEqual(200);
     expect((await res.json()).jwt).toEqual(jwt);
@@ -98,6 +167,7 @@ describe('Management user Login', () => {
 
 describe('Management user password update', () => {
   it('Should fail if the manager id in the route doesnt exist', async () => {
+    //When
     const res = await fetch(`/api/management/users/3923219/update-password`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
@@ -105,50 +175,61 @@ describe('Management user password update', () => {
         password: 'password2'
       }
     });
+
+    //Then
     expect(res.ok).toBeFalsy();
-    expect(res.status).toEqual(400);
+    expect(res.status).toEqual(BadRequest.StatusCode);
+    expect(await res.json()).toMatchSnapshot();
   });
+
   it('Should fail if no password is provided', async () => {
+    //When
     const res = await fetch(`/api/management/users/1/update-password`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {}
     });
+
+    //Then
     expect(res.ok).toBeFalsy();
-    expect(res.status).toEqual(400);
+    expect(res.status).toEqual(BadRequest.StatusCode);
+    expect(await res.json()).toMatchSnapshot();
   });
+
   it('Should allow a managers password to be updated', async () => {
+    //Given
     await fetch('/api/management/users/register', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
-        username: 'test902',
+        username: 'manager5',
         password: 'password'
       }
     });
-    const [user] = await db('users').where({ username: 'test902' });
-    const res = await fetch(`/api/management/users/${user.id}/update-password`, {
+
+    //When
+    const [user] = await db('users').where({ username: 'manager5' });
+    const res1 = await fetch(`/api/management/users/${user.id}/update-password`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
         password: 'password2'
       }
     });
-    expect(res.ok).toBeTruthy();
-    expect(res.status).toEqual(200);
-
-    const [user2] = await db('users').where({ username: 'test902' });
-
-    expect(user2.password_hash).not.toEqual(user.password_hash);
 
     const res2 = await fetch('/api/management/users/login', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
-        username: 'test902',
+        username: 'manager5',
         password: 'password2'
       }
     });
+
+    //Then
+    expect(res1.status).toEqual(200);
+    const [user2] = await db('users').where({ username: 'manager5' });
+    expect(user2.password_hash).not.toEqual(user.password_hash);
     expect(res2.ok).toBeTruthy();
     expect(res2.status).toEqual(200);
     expect((await res2.json()).jwt).toBeTruthy();
