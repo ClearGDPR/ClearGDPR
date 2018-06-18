@@ -19,7 +19,7 @@ Panel.propTypes = {
   isPanelOpen: PropTypes.bool.isRequired,
   onCloseClick: PropTypes.func.isRequired,
   title: PropTypes.string,
-  content: PropTypes.element
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
 };
 
 export default Panel;
