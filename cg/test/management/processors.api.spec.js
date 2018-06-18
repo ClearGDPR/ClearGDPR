@@ -99,11 +99,7 @@ describe('Add processor', () => {
 
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message: 'child "name" fails because ["name" is required]'
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should not allow processor without a name', async () => {
@@ -121,11 +117,7 @@ describe('Add processor', () => {
 
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message: 'child "name" fails because ["name" is required]'
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should not allow processor with ID', async () => {
@@ -190,12 +182,7 @@ describe('Add processor', () => {
 
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message:
-          'child "address" fails because ["address" with value "1234" fails to match the required pattern: /^0x[\\da-fA-F]{40}$/]'
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should not allow scopes that are not an array', async () => {
@@ -214,11 +201,7 @@ describe('Add processor', () => {
 
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message: 'child "scopes" fails because ["scopes" must be an array]'
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should verify the types of name parameter', async () => {
@@ -236,11 +219,7 @@ describe('Add processor', () => {
 
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message: 'child "name" fails because ["name" must be a string]'
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should add new processor and update the blockchain', async () => {
@@ -310,11 +289,7 @@ describe('Update processor', () => {
 
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message: 'child "id" fails because ["id" is required]'
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should not allow processor without an ID', async () => {
@@ -333,11 +308,7 @@ describe('Update processor', () => {
 
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message: 'child "id" fails because ["id" is required]'
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should not allow updating an address', async () => {
@@ -490,11 +461,7 @@ describe('Remove processors', () => {
 
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message: 'child "processorIds" fails because ["processorIds" is required]'
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should not allow empty IDs array', async () => {
@@ -512,11 +479,7 @@ describe('Remove processors', () => {
 
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message: 'child "processorIds" fails because ["processorIds" is required]'
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should not allow numbers in processors IDs', async () => {
@@ -537,12 +500,7 @@ describe('Remove processors', () => {
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
 
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message:
-          'child "processorIds" fails because ["processorIds" at position 1 fails because ["1" must be a number]]'
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should remove processors from DB and blockchain', async () => {

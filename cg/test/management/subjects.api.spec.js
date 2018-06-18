@@ -229,15 +229,7 @@ describe('List subjects that have given consent', () => {
     //THEN
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message: 'child "page" fails because ["page" must be a positive number]',
-        validation: {
-          source: 'query',
-          keys: ['page']
-        }
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should not allow a page query with the zero page number', async () => {
@@ -254,15 +246,7 @@ describe('List subjects that have given consent', () => {
     //THEN
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message: 'child "page" fails because ["page" must be a positive number]',
-        validation: {
-          source: 'query',
-          keys: ['page']
-        }
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should not allow a page query with a page number too big', async () => {
@@ -300,15 +284,7 @@ describe('List subjects that have given consent', () => {
     //THEN
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
-    expect(await res.json()).toEqual(
-      expect.objectContaining({
-        message: 'child "page" fails because ["page" must be a number]',
-        validation: {
-          source: 'query',
-          keys: ['page']
-        }
-      })
-    );
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should allow a page query with a valid page number', async () => {

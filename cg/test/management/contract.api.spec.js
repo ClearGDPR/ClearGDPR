@@ -38,6 +38,7 @@ describe('Deploying contract', () => {
 
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('should reject wrong JSON', async () => {
@@ -157,13 +158,14 @@ describe('Event feed websocket', () => {
       console.error(err);
     });
   });
+
   it('should emit events that occur on the blockchain in nicer format', async done => {
     expect.assertions(5);
     socketSubscription.on('message', event => {
       const data = JSON.parse(event);
       expect(data.eventName).toEqual('Controller_ConsentGivenTo');
       expect(data.params.subjectIdHash).toEqual(sha3('websocket-test'));
-      expect(data.params.newProcessorsWhiteListed.length).toEqual(1);
+      expect(data.params.newProcessorsWhiteListed).toHaveLength(1);
       expect(data.params.newProcessorsWhiteListed[0].toLowerCase()).toEqual(
         process.env.CONTRACT_OWNER_ADDRESS.toLowerCase()
       );
@@ -172,6 +174,7 @@ describe('Event feed websocket', () => {
     });
     await recordConsentGivenTo(sha3('websocket-test'), []);
   });
+
   afterAll(() => {
     socketSubscription.close();
   });
