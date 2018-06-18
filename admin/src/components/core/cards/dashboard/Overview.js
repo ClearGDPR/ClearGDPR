@@ -18,13 +18,13 @@ const Overview = props => {
           </div>
         </div>
         <div className="row">
-          <NumberCard cols="2" data={activeUsers} togglePanel={props.togglePanel} />
-          <NumberCard cols="2" data={erasedUsers} togglePanel={props.togglePanel} />
+          <NumberCard cols="2" data={activeUsers} onClick={props.onClick} />
+          <NumberCard cols="2" data={erasedUsers} onClick={props.onClick} />
           <ItemsCard
             cols="4"
             title="Consented by Processor"
             data={processors}
-            togglePanel={props.togglePanel}
+            onClick={props.onClick}
           />
         </div>
         <div className="row">
@@ -32,7 +32,7 @@ const Overview = props => {
           <ChartCard cols="5" data={{ title: 'Requests - Last 7 days' }} />
         </div>
         <div className="row">
-          <TableCard cols="8" data={{ title: 'Some Table' }} />
+          <TableCard cols="8" data={{ title: 'Some Table' }} onClick={props.onClick} />
         </div>
       </section>
     </React.Fragment>

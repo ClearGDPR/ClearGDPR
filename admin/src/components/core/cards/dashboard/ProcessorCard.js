@@ -3,7 +3,7 @@ import Card from './Card';
 
 const ProcessorCard = props => {
   return (
-    <Card cols="3" togglePanel={props.togglePanel}>
+    <Card cols="3" onClick={props.onClick}>
       <div className="processor">
         <div className="image-container">
           <img src={props.data.img} alt="" />

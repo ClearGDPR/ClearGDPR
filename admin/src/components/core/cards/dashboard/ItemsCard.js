@@ -4,7 +4,7 @@ import GraphBar from './GraphBar';
 
 const ItemsCard = props => {
   return (
-    <Card size={props.size} cols={props.cols} title={props.title} togglePanel={props.togglePanel}>
+    <Card size={props.size} cols={props.cols} title={props.title} onClick={props.onClick}>
       <div className="row items-container">
         {props.data.map((processor, id) => {
           return (

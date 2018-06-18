@@ -24,7 +24,7 @@ const Chart = () => {
 
 const ChartCard = props => {
   return (
-    <Card cols={props.cols} title={props.data.title} togglePanel={props.togglePanel}>
+    <Card cols={props.cols} title={props.data.title} onClick={props.onClick}>
       <Chart />
     </Card>
   );

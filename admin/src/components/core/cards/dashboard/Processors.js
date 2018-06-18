@@ -13,13 +13,13 @@ const Processors = props => {
             <p>{props.desc}</p>
           </div>
           <div className="spacer" />
-          <button className="ui-action btn" onClick={props.togglePanel}>
+          <button className="ui-action btn" onClick={props.onClick}>
             + Add Processor
           </button>
         </div>
         <div className="row">
           {processors.map((processor, id) => {
-            return <ProcessorCard key={id} data={processor} togglePanel={props.togglePanel} />;
+            return <ProcessorCard key={id} data={processor} onClick={props.onClick} />;
           })}
         </div>
       </section>

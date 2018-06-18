@@ -111,7 +111,7 @@ class Dashboard extends Component {
                 <Overview
                   title="Overview"
                   desc="This is an overview of all the processed data."
-                  togglePanel={this.togglePanel}
+                  onClick={this.togglePanel}
                   closePanel={this.closePanel}
                   processors={processors}
                   activeUsers={users[0]}
@@ -126,7 +126,7 @@ class Dashboard extends Component {
                 <Processors
                   title="Processors"
                   desc="This is an overview of all the current data processors."
-                  togglePanel={this.togglePanel}
+                  onClick={this.togglePanel}
                   closePanel={this.closePanel}
                   processors={processors}
                 />

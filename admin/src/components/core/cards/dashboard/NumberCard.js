@@ -6,12 +6,7 @@ import IconDown from './../../../../assets/icons/down-arrow.svg';
 
 const NumberCard = props => {
   return (
-    <Card
-      size={props.size}
-      cols={props.cols}
-      title={props.data.title}
-      togglePanel={props.togglePanel}
-    >
+    <Card size={props.size} cols={props.cols} title={props.data.title} onClick={props.onClick}>
       <div className="content">
         {props.data.change > 0 ? (
           <div className="indicator up">
