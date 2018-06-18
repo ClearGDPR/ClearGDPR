@@ -7,6 +7,10 @@ import session from '../../helpers/Session';
 
 jest.mock('../../helpers/Session');
 
+function flushPromises() {
+  return new Promise(resolve => setImmediate(resolve));
+}
+
 beforeEach(() => {
   session.getToken.mockReturnValue('token');
 });
@@ -31,7 +35,7 @@ describe('(Component) Users', () => {
     }
   ];
 
-  it('should have correct state after mounting', done => {
+  it('should have correct state after mounting', async () => {
     global.fetch = jest.fn().mockImplementationOnce(() =>
       Promise.resolve({
         status: 200,
@@ -42,17 +46,16 @@ describe('(Component) Users', () => {
     );
 
     const component = mount(<UsersContainer />);
-    setTimeout(() => {
-      expect(component.state()).toEqual(
-        expect.objectContaining({
-          users: users
-        })
-      );
-      done();
-    }, 100);
+    await flushPromises();
+
+    expect(component.state()).toEqual(
+      expect.objectContaining({
+        users: users
+      })
+    );
   });
 
-  it('should render correctly', done => {
+  it('should render correctly', async () => {
     global.fetch = jest.fn().mockImplementationOnce(() =>
       Promise.resolve({
         status: 200,
@@ -63,9 +66,8 @@ describe('(Component) Users', () => {
     );
 
     const component = shallow(<UsersContainer />);
-    setTimeout(() => {
-      expect(component).toMatchSnapshot();
-      done();
-    }, 100);
+
+    await flushPromises();
+    expect(component).toMatchSnapshot();
   });
 });
