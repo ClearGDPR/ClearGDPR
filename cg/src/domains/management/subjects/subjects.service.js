@@ -89,33 +89,35 @@ class SubjectsService {
     };
   }
 
-  async listRectifcationRequests(requestedPage) {
-    if (requestedPage == undefined) {
-      requestedPage = 1;
-    }
+  async listRectificationRequests(requestedPage) {
+    const page = requestedPage === undefined ? 1 : parseInt(requestedPage, 10);
 
-    const [{ total_pages }] = await this.db('rectification_requests')
+    const [{ total_items }] = await this.db('rectification_requests')
       .where('status', 'PENDING')
-      .select('count(id)')
-      .as('total_pages');
+      .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
+      .select(this.db.raw('count(id) as total_items'))
+      .as('total_items');
 
-    if (requestedPage > total_pages) {
-      throw new ValidationError(`page number too big, maximum page number is ${total_pages}`);
+    const totalPages = Math.ceil(total_items / PAGE_SIZE || 1);
+
+    if (page > totalPages) {
+      throw new ValidationError(`Page number too big, maximum page number is ${totalPages}`);
     }
 
     const requests = await this.db('rectification_requests')
       .select('id')
       .select('request_reason')
-      .select('created_at')
+      .select('rectification_requests.created_at')
       .where('status', 'PENDING')
+      .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
       .limit(PAGE_SIZE)
-      .offset(requestedPage - 1);
+      .offset(page - 1);
 
     return {
       data: requests,
       paging: {
-        current: requestedPage,
-        total: total_pages
+        current: page,
+        total: totalPages
       }
     };
   }

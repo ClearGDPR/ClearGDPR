@@ -44,6 +44,7 @@ class SubjectsController {
       req.query.page
     );
 
+    console.log(rectificationRequests);
     return res.json(rectificationRequests);
   }
 }

@@ -776,9 +776,13 @@ describe('Initiate Rectification', () => {
     const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
     const [subjectKey] = await db('subject_keys').where({ subject_id: hash(id) });
 
+<<<<<<< HEAD
     expect(
       JSON.parse(decryptFromStorage(requestData.encrypted_rectification_payload, subjectKey.key))
     ).toEqual({
+=======
+    expect(decryptFromStorage(requestData.encrypted_rectification_payload, subjectKey)).toEqual({
+>>>>>>> tests passing
       name: 'dave'
     });
   });
