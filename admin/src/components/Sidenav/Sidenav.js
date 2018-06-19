@@ -32,7 +32,7 @@ const Sidenav = props => {
         <small className="label">Account</small>
       </p>
       <NavLink to="/profile">Profile</NavLink>
-      <a href="#" onClick={handleLogoutClick}>
+      <a href={'#logout'} onClick={handleLogoutClick}>
         Logout
       </a>
     </nav>
