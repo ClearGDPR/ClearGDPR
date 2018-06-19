@@ -1,9 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Users from '../../components/Users/Users';
 import config from '../../config';
 import session from '../../helpers/Session';
+import { PanelConsumer } from '../MainLayout/PanelContext';
+import Form from '../../components/core/cards/dashboard/Form';
 
 class UsersContainer extends React.Component {
+  static propTypes = {
+    openPanel: PropTypes.func
+  };
+
   state = {
     users: [],
     isLoading: true
@@ -37,9 +45,23 @@ class UsersContainer extends React.Component {
       });
   }
 
+  openChangePasswordForm() {
+    this.props.openPanel(Form);
+  }
+
   render() {
-    return <Users users={this.state.users} isLoading={this.state.isLoading} />;
+    return (
+      <Users
+        users={this.state.users}
+        isLoading={this.state.isLoading}
+        onChangePasswordClick={this.openChangePasswordForm.bind(this)}
+      />
+    );
   }
 }
 
-export default UsersContainer;
+export default props => (
+  <PanelConsumer>
+    {({ openPanel }) => <UsersContainer {...props} openPanel={openPanel} />}
+  </PanelConsumer>
+);

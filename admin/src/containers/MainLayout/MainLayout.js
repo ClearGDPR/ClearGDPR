@@ -36,7 +36,7 @@ class MainLayoutContainer extends Component {
     return (
       <PanelProvider>
         <PanelConsumer>
-          {({ component: Component, props, closePanel, isPanelOpen }) => (
+          {({ component: Component, title: panelTitle, props, closePanel, isPanelOpen }) => (
             <MainLayout
               isSidenavOpen={this.state.isSidenavOpen}
               isPanelOpen={isPanelOpen}
@@ -45,7 +45,7 @@ class MainLayoutContainer extends Component {
               onOverlayClick={closePanel}
               onClosePanelClick={closePanel}
               panelContent={Component ? <Component {...props} /> : null}
-              panelTitle={'test test'}
+              panelTitle={panelTitle}
               content={
                 <Switch>
                   <Route exact path="/" render={() => <React.Fragment>Dashboard</React.Fragment>} />

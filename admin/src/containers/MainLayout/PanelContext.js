@@ -12,11 +12,11 @@ const PanelContext = createContext({
 
 export class PanelProvider extends Component {
   static propTypes = {
-    children: PropTypes.oneOf(
+    children: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.object,
       PropTypes.arrayOf(PropTypes.element)
-    )
+    ])
   };
 
   openPanel = (component, title = null, props = {}) => {
