@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../core/cards/dashboard/Card';
+import Loader from '../core/cards/dashboard/Loader';
 
-const Users = ({ users, onChangePasswordClick }) => {
+const Users = ({ users, onChangePasswordClick, isLoading }) => {
   function onChangePasswordClickHandler(e, userId) {
     e.preventDefault();
     if (!onChangePasswordClick) return;
@@ -36,16 +37,20 @@ const Users = ({ users, onChangePasswordClick }) => {
         <div className="row">
           <Card cols={8}>
             <div className="content">
-              <table className="responsive-table">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>{renderUsers()}</tbody>
-              </table>
+              {!isLoading ? (
+                <table className="responsive-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Username</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>{renderUsers()}</tbody>
+                </table>
+              ) : (
+                <Loader />
+              )}
             </div>
           </Card>
         </div>
@@ -56,7 +61,8 @@ const Users = ({ users, onChangePasswordClick }) => {
 
 Users.propTypes = {
   users: PropTypes.arrayOf(PropTypes.object),
-  onChangePasswordClick: PropTypes.func
+  onChangePasswordClick: PropTypes.func,
+  isLoading: PropTypes.bool
 };
 
 export default Users;

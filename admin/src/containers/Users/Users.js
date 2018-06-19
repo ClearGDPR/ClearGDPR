@@ -5,7 +5,8 @@ import session from '../../helpers/Session';
 
 class UsersContainer extends React.Component {
   state = {
-    users: []
+    users: [],
+    isLoading: true
   };
 
   async getUsers() {
@@ -24,14 +25,20 @@ class UsersContainer extends React.Component {
     this.getUsers()
       .then(users =>
         this.setState({
-          users
+          users,
+          isLoading: false
         })
       )
-      .catch(console.error);
+      .catch(e => {
+        console.error(e);
+        this.setState({
+          isLoading: false
+        });
+      });
   }
 
   render() {
-    return <Users users={this.state.users} />;
+    return <Users users={this.state.users} isLoading={this.state.isLoading} />;
   }
 }
 
