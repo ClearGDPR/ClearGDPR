@@ -713,3 +713,10 @@ describe('Get Data', () => {
     expect(res3.status).toEqual(404);
   });
 });
+
+describe('Initiate Rectification', () => {
+  it('Should allow a subject to being the rectification process', (req, res) => {});
+  it('Store the update payload in an encrypted format');
+  it('Error if reason and payload are not provided', (req, res) => {});
+  it('Should error if the subject has no key');
+});

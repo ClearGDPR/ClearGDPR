@@ -410,4 +410,11 @@ describe('List subjects that have given consent', () => {
       })
     );
   });
+
+  describe('List rectification requests', () => {
+    it('Should list the requests sucessfully', () => {});
+    it('Should fail if page number is too big', () => {});
+    it('Should only serve pending rectification requests', () => {});
+    it('Should list rectification requets for users without encryption keys', () => {});
+  });
 });
