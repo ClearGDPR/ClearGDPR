@@ -20,7 +20,7 @@ class SubjectsController {
     const subjectsInfo = await this.subjectsService.listSubjects(req.query.page);
     const coveredSubjects = subjectsInfo.subjects.map(subject => {
       // Covers the subjects data with '*'s
-      return _.mapObject(subject, (value, key) => {
+      return _.mapObject(subject, value => {
         return coverString(value);
       });
     });
