@@ -6,6 +6,7 @@ import Overview from './../cards/dashboard/Overview';
 import Processors from './../cards/dashboard/Processors';
 import Panel from './../cards/dashboard/Panel';
 import Loader from './../cards/dashboard/Loader';
+import Form from './../cards/dashboard/Form';
 import './dashboard.css';
 
 import nielsenIMG from '../../../assets/images/processors/nielsen.svg';
@@ -55,7 +56,7 @@ export const users = [
 class Dashboard extends Component {
   state = {
     isSidenavOpen: true,
-    isPanelOpen: false,
+    isPanelOpen: true,
     error: false,
     panelData: { title: 'Details' }
   };
@@ -137,7 +138,7 @@ class Dashboard extends Component {
             isPanelOpen={this.state.isPanelOpen}
             onCloseClick={this.closePanel}
             title={this.state.panelData.title}
-            content="Some demo content"
+            content={<Form />}
           />
         </section>
       </main>
