@@ -10,10 +10,7 @@ class SubjectsService {
     this.db = database;
   }
 
-  async listSubjects(requestedPage) {
-    if (requestedPage == undefined) {
-      requestedPage = 1;
-    }
+  async listSubjects(requestedPage = 1) {
     const [numberOfsubjectsObject] = await this.db('subjects')
       .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
       .whereNotNull('personal_data')
@@ -51,7 +48,11 @@ class SubjectsService {
       })
       .filter(subject => subject !== null);
 
-    return decryptedSubjectsData;
+    return {
+      requestedPage,
+      numberOfPages: lastPage,
+      subjects: decryptedSubjectsData
+    };
   }
 }
 

@@ -173,7 +173,6 @@ describe('List subjects that have given consent', () => {
 
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-
     const res = await fetch('/api/management/subjects/list', {
       method: 'GET',
       headers: {
@@ -185,16 +184,20 @@ describe('List subjects that have given consent', () => {
     expect(res.ok).toBeTruthy();
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          username: 's******1',
-          email: 's*********************z'
-        }),
-        expect.objectContaining({
-          username: 's******2',
-          email: 's*********************z'
-        })
-      ])
+      expect.objectContaining({
+        requestedPage: 1,
+        numberOfPages: 1,
+        subjects: expect.arrayContaining([
+          expect.objectContaining({
+            username: 's******1',
+            email: 's*********************z'
+          }),
+          expect.objectContaining({
+            username: 's******2',
+            email: 's*********************z'
+          })
+        ])
+      })
     );
   });
 
@@ -273,7 +276,6 @@ describe('List subjects that have given consent', () => {
   it('should not allow a page query without an integer page number', async () => {
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-
     const res = await fetch('/api/management/subjects/list?page=string', {
       method: 'GET',
       headers: {
@@ -338,16 +340,20 @@ describe('List subjects that have given consent', () => {
     expect(res.ok).toBeTruthy();
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          username: 's******1',
-          email: 's*********************z'
-        }),
-        expect.objectContaining({
-          username: 's******2',
-          email: 's*********************z'
-        })
-      ])
+      expect.objectContaining({
+        requestedPage: 1,
+        numberOfPages: 1,
+        subjects: expect.arrayContaining([
+          expect.objectContaining({
+            username: 's******1',
+            email: 's*********************z'
+          }),
+          expect.objectContaining({
+            username: 's******2',
+            email: 's*********************z'
+          })
+        ])
+      })
     );
   });
 
@@ -392,12 +398,16 @@ describe('List subjects that have given consent', () => {
     expect(res.ok).toBeTruthy();
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          username: 's******9',
-          email: 's*********************z'
-        })
-      ])
+      expect.objectContaining({
+        requestedPage: 2,
+        numberOfPages: 2,
+        subjects: expect.arrayContaining([
+          expect.objectContaining({
+            username: 's******9',
+            email: 's*********************z'
+          })
+        ])
+      })
     );
   });
 });
