@@ -715,8 +715,131 @@ describe('Get Data', () => {
 });
 
 describe('Initiate Rectification', () => {
-  it('Should allow a subject to being the rectification process', (req, res) => {});
-  it('Store the update payload in an encrypted format');
-  it('Error if reason and payload are not provided', (req, res) => {});
-  it('Should error if the subject has no key');
+  it('Should allow a subject to being the rectification process', async () => {
+    const id = '2-4';
+    const token = await subjectJWT.sign({ subjectId: id });
+    const payload = {
+      personalData: {},
+      processors: []
+    };
+
+    await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      body: payload,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const res = await fetch('/api/subject/initiate-rectification', {
+      method: 'POST',
+      body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    expect(res.status).toEqual(200);
+
+    const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
+    await db('subject_keys').where({ subject_id: hash(id) });
+
+    expect(requestData.request_reason).toEqual('my name is dave');
+    expect(requestData.status).toEqual('PENDING');
+  });
+  it('Store the update payload in an encrypted format', async () => {
+    const id = '2-1';
+    const token = await subjectJWT.sign({ subjectId: id });
+    const payload = {
+      personalData: {},
+      processors: []
+    };
+
+    await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      body: payload,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const res = await fetch('/api/subject/initiate-rectification', {
+      method: 'POST',
+      body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    expect(res.status).toEqual(200);
+
+    const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
+    const [subjectKey] = await db('subject_keys').where({ subject_id: hash(id) });
+
+    expect(decryptFromStorage(requestData.encrypted_rectification_payload, subjectKey)).toEqual({
+      name: 'dave'
+    });
+  });
+  it('Error if error reason and payload are not provided', async () => {
+    const id = '2-5';
+    const token = await subjectJWT.sign({ subjectId: id });
+    const payload = {
+      personalData: {},
+      processors: []
+    };
+
+    await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      body: payload,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const res = await fetch('/api/subject/initiate-rectification', {
+      method: 'POST',
+      body: {},
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const body = await res.json();
+    expect(res.status).toEqual(400);
+    expect(body).toMatchSnapshot();
+  });
+  it('Should error if the subject has no key', async () => {
+    const id = '2-3';
+    const token = await subjectJWT.sign({ subjectId: id });
+    const payload = {
+      personalData: {},
+      processors: []
+    };
+
+    await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      body: payload,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    await db('subject_keys')
+      .where({ subject_id: hash(id) })
+      .delete();
+
+    const res = await fetch('/api/subject/initiate-rectification', {
+      method: 'POST',
+      body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const body = await res.json();
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toEqual(400);
+
+    expect(body).toEqual('');
+  });
 });

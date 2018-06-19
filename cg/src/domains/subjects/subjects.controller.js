@@ -34,7 +34,7 @@ class SubjectsController {
     res.json(
       await this.subjectsService.initiateRectification(
         req.subject.id,
-        pick(req.body, ['rectifcationPayload', 'requestReason'])
+        pick(req.body, ['rectificationPayload', 'requestReason'])
       )
     );
   }

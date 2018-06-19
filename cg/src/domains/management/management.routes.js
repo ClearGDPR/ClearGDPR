@@ -77,7 +77,7 @@ module.exports = app => {
   );
 
   router.get(
-    '/subjects/rectification_requests',
+    '/subjects/rectification-requests/list',
     listRectificationRequestsValidator,
     asyncHandler(async (req, res) => subjectsController.listRectificationRequests(req, res))
   );

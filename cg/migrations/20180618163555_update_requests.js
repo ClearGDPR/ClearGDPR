@@ -1,5 +1,5 @@
 exports.up = function(knex, Promise) {
-  knex.schema.createTable('rectifcation_requests', t => {
+  return knex.schema.createTable('rectification_requests', t => {
     t.increments('id');
     t
       .string('subject_id')

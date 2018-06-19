@@ -1,7 +1,6 @@
 const { celebrate, Joi } = require('celebrate');
 
 const listSubjectsValidator = celebrate({
-  //   query: Joi.object().keys({
   query: Joi.object().keys({
     page: Joi.number()
       .integer()
@@ -9,8 +8,7 @@ const listSubjectsValidator = celebrate({
   })
 });
 
-const listRectificationRequestValidator = celebrate({
-  //   query: Joi.object().keys({
+const listRectificationRequestsValidator = celebrate({
   query: Joi.object().keys({
     page: Joi.number()
       .integer()
@@ -20,5 +18,5 @@ const listRectificationRequestValidator = celebrate({
 
 module.exports = {
   listSubjectsValidator,
-  listRectificationRequestValidator
+  listRectificationRequestsValidator
 };

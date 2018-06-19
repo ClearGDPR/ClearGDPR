@@ -7,6 +7,7 @@ const { BadRequest, Unauthorized, ValidationError } = require('../../src/utils/e
 beforeAll(initResources);
 beforeEach(async () => {
   await db('subject_keys').del();
+  await db('rectification_requests').del();
   await db('subjects').del();
 });
 afterAll(closeResources);
@@ -412,9 +413,120 @@ describe('List subjects that have given consent', () => {
   });
 
   describe('List rectification requests', () => {
-    it('Should list the requests sucessfully', () => {});
-    it('Should fail if page number is too big', () => {});
-    it('Should only serve pending rectification requests', () => {});
-    it('Should list rectification requets for users without encryption keys', () => {});
+    async function createSubjectWithRectification(overrides) {
+      const idHash = hash(
+        Math.random()
+          .toString(36)
+          .substring(2, 15)
+      );
+      await db('subjects')
+        .insert({
+          id: idHash,
+          personal_data: ''
+        })
+        .returning('id');
+
+      await db('subject_keys').insert({
+        subject_id: idHash,
+        key: 'test'
+      });
+
+      await db('rectification_requests').insert(
+        Object.assign(
+          {
+            subject_id: idHash,
+            request_reason: 'none',
+            encrypted_rectification_payload: '',
+            status: 'PENDING'
+          },
+          overrides
+        )
+      );
+
+      return idHash;
+    }
+    it('Should list the requests sucessfully', async () => {
+      const managementToken = await managementJWT.sign({ id: 1 });
+      await createSubjectWithRectification();
+      await createSubjectWithRectification();
+      const res = await fetch('/api/management/subjects/rectification-requests/list', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${managementToken}`
+        }
+      });
+
+      const body = await res.json();
+      console.log(body);
+      expect(res.status).toEqual(200);
+      expect(body.data).toHaveLength(2);
+    });
+    it('Should list the requests sucessfully when there is 0', async () => {
+      const managementToken = await managementJWT.sign({ id: 1 });
+
+      const res = await fetch('/api/management/subjects/rectification-requests/list', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${managementToken}`
+        }
+      });
+
+      const body = await res.json();
+      expect(res.status).toEqual(200);
+      expect(body.data).toHaveLength(0);
+      expect(body.paging).toEqual({ current: 1, total: 1 });
+    });
+    it('Should fail if page number is too big', async () => {
+      const managementToken = await managementJWT.sign({ id: 1 });
+
+      const res = await fetch('/api/management/subjects/rectification-requests/list?page=6', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${managementToken}`
+        }
+      });
+
+      const body = await res.json();
+
+      expect(res.status).toEqual(400);
+      expect(body.error).toEqual('Page number too big, maximum page number is 1');
+    });
+    it('Should only serve pending rectification requests', async () => {
+      await createSubjectWithRectification({ status: 'APPROVED' });
+      await createSubjectWithRectification({ status: 'DISSAPROVED' });
+      const managementToken = await managementJWT.sign({ id: 1 });
+
+      const res = await fetch('/api/management/subjects/rectification-requests/list', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${managementToken}`
+        }
+      });
+
+      const body = await res.json();
+      expect(res.status).toEqual(200);
+      expect(body.data).toHaveLength(0);
+    });
+    it('Should not list rectification requests for users without encryption keys', async () => {
+      const managementToken = await managementJWT.sign({ id: 1 });
+
+      const subjectId = await createSubjectWithRectification();
+
+      await db('subject_keys')
+        .delete()
+        .where({ subject_id: subjectId });
+
+      const res = await fetch('/api/management/subjects/rectification-requests/list', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${managementToken}`
+        }
+      });
+
+      const body = await res.json();
+
+      expect(res.status).toEqual(200);
+      expect(body.data).toHaveLength(0);
+    });
   });
 });
