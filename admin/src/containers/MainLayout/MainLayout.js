@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import MainLayout from '../../components/MainLayout/MainLayout';
+
+import { PanelProvider, PanelConsumer } from './PanelContext';
+
 import UsersContainer from '../Users/Users';
 
 class MainLayoutContainer extends Component {
@@ -29,40 +32,40 @@ class MainLayoutContainer extends Component {
     }));
   };
 
-  togglePanel = () => {
-    this.setState(prevState => ({
-      isPanelOpen: !prevState.isPanelOpen
-    }));
-  };
-
-  closePanel = () => {
-    this.setState({
-      isPanelOpen: false
-    });
-  };
-
   render() {
     return (
-      <MainLayout
-        isSidenavOpen={this.state.isSidenavOpen}
-        isPanelOpen={this.state.isPanelOpen}
-        username="admin"
-        onMenuClick={this.toggleSidenav.bind(this)}
-        onOverlayClick={this.closePanel.bind(this)}
-        onClosePanelClick={this.closePanel.bind(this)}
-        content={
-          <Switch>
-            <Route exact path="/" render={() => <React.Fragment>Dashboard</React.Fragment>} />
-            <Route
-              exact
-              path="/processors"
-              render={() => <React.Fragment>Processors</React.Fragment>}
+      <PanelProvider>
+        <PanelConsumer>
+          {({ component: Component, props, closePanel, isPanelOpen }) => (
+            <MainLayout
+              isSidenavOpen={this.state.isSidenavOpen}
+              isPanelOpen={isPanelOpen}
+              username="admin"
+              onMenuClick={this.toggleSidenav.bind(this)}
+              onOverlayClick={closePanel}
+              onClosePanelClick={closePanel}
+              panelContent={Component ? <Component {...props} /> : null}
+              panelTitle={'test test'}
+              content={
+                <Switch>
+                  <Route exact path="/" render={() => <React.Fragment>Dashboard</React.Fragment>} />
+                  <Route
+                    exact
+                    path="/processors"
+                    render={() => <React.Fragment>Processors</React.Fragment>}
+                  />
+                  <Route exact path="/users" render={() => <UsersContainer />} />
+                  <Route
+                    exact
+                    path="/profile"
+                    render={() => <React.Fragment>Profile</React.Fragment>}
+                  />
+                </Switch>
+              }
             />
-            <Route exact path="/users" render={() => <UsersContainer />} />
-            <Route exact path="/profile" render={() => <React.Fragment>Profile</React.Fragment>} />
-          </Switch>
-        }
-      />
+          )}
+        </PanelConsumer>
+      </PanelProvider>
     );
   }
 }

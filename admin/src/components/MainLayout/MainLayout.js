@@ -15,7 +15,9 @@ class MainLayout extends React.Component {
     onMenuClick: PropTypes.func.isRequired,
     onOverlayClick: PropTypes.func.isRequired,
     onClosePanelClick: PropTypes.func.isRequired,
-    content: PropTypes.element.isRequired
+    content: PropTypes.element.isRequired,
+    panelTitle: PropTypes.string,
+    panelContent: PropTypes.oneOf([PropTypes.element, PropTypes.object, PropTypes.string])
   };
 
   eventHandler(e) {
@@ -47,8 +49,8 @@ class MainLayout extends React.Component {
           <Panel
             isPanelOpen={this.props.isPanelOpen}
             onCloseClick={this.eventHandler.bind(this.props.onClosePanelClick)}
-            title="Temporary title"
-            content="Temporary content"
+            title={this.props.panelTitle}
+            content={this.props.panelContent}
           />
         </section>
       </main>
