@@ -18,14 +18,17 @@ class SubjectsController {
 
   async listSubjects(req, res) {
     const subjectsInfo = await this.subjectsService.listSubjects(req.query.page);
-    subjectsInfo.subjects.map(subject => {
+    const coveredSubjects = subjectsInfo.subjects.map(subject => {
       // Covers the subjects data with '*'s
-      _.mapObject(subject, (value, key) => {
-        subject[key] = coverString(value);
-        return subject[key];
+      return _.mapObject(subject, (value, key) => {
+        return coverString(value);
       });
     });
-    return res.json(subjectsInfo);
+    return res.json({
+      requestedPage: subjectsInfo.requestedPage,
+      numberOfPages: subjectsInfo.numberOfPages,
+      subjects: coveredSubjects
+    });
   }
 }
 
