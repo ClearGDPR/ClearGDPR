@@ -2,7 +2,7 @@ import React from 'react';
 
 import { shallow, mount } from 'enzyme';
 
-import UsersContainer from './Users';
+import { UsersContainer } from './Users';
 import session from '../../helpers/Session';
 
 jest.mock('../../helpers/Session');

@@ -7,7 +7,7 @@ import session from '../../helpers/Session';
 import { PanelConsumer } from '../MainLayout/PanelContext';
 import Form from '../../components/core/cards/dashboard/Form';
 
-class UsersContainer extends React.Component {
+export class UsersContainer extends React.Component {
   static propTypes = {
     openPanel: PropTypes.func
   };
