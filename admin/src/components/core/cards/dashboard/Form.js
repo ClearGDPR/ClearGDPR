@@ -10,6 +10,7 @@ const Form = () => {
         label="Example w/ error"
         placeholder="This is an input example with error"
         error
+        errorMessage="This is a medium length error message"
       />
       <fieldset>
         <legend>Radio Buttons</legend>
