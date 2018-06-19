@@ -17,6 +17,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
+      "isLoading": true,
       "users": Array [],
     },
     "ref": null,
@@ -29,6 +30,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
+        "isLoading": true,
         "users": Array [],
       },
       "ref": null,
