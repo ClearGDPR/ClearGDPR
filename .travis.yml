@@ -17,27 +17,25 @@ before_cache:
 services:
   - docker
 env:
-  # - VERSION: $TRAVIS_TAG
-  # temporary for testing
-  - VERSION: 0.0.6
+  - VERSION: $TRAVIS_TAG
 
 stages:
-  # - test
+  - test
   - publish
   - deploy
   
 jobs:
   include:
-    # - stage: test
-    #   script: docker/test
+    - stage: test
+      script: docker/test
     - stage: publish
-      # if: tag =~ ^(\d*\.)+\d*$
+      if: tag =~ ^(\d*\.)+\d*$
       script:
         - touch cg/.yarn-cache.tgz admin/.yarn-cache.tgz api/.yarn-cache.tgz frontend/.yarn-cache.tgz
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - echo "Building and pushing docker images v$VERSION"
         - make -C cg build && make -C cg push
-        # temporary setting CI=false cause admin project has warnings that need fixing
+        temporary setting CI=false cause admin project has warnings that need fixing
         - CI=false make -C admin dist && make -C admin build && make -C admin push
         - make -C api build && make -C api push
         - make -C frontend dist && make -C frontend build && make -C frontend push
@@ -50,7 +48,7 @@ jobs:
         - VERSION=latest make -C api push
         - VERSION=latest make -C frontend push
     - stage: deploy
-      # if: tag =~ ^(\d*\.)+\d*$
+      if: tag =~ ^(\d*\.)+\d*$
       script:
         - cd website && yarn && NODE_ENV=production yarn build && cd ..
         - echo "Deploying version v$VERSION"
