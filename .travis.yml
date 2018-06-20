@@ -17,7 +17,9 @@ before_cache:
 services:
   - docker
 env:
-  - VERSION: $TRAVIS_TAG
+  # - VERSION: $TRAVIS_TAG
+  # temporary for testing
+  - VERSION: 0.0.6
 
 stages:
   # - test
