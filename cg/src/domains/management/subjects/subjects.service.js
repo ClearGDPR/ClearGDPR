@@ -1,7 +1,7 @@
 const { db } = require('../../../db');
 const { decryptFromStorage } = require('../../../utils/encryption');
 const winston = require('winston');
-const { ValidationError } = require('../../../utils/errors');
+const { ValidationError, NotFound, BadRequest } = require('../../../utils/errors');
 const { RECTIFICATION_STATUSES } = require('./../../../utils/constants');
 
 const PAGE_SIZE = 10; // This could go in constants, inside utils
@@ -89,36 +89,40 @@ class SubjectsService {
     };
   }
 
-  async listRectificationRequests(requestedPage) {
-    const page = requestedPage === undefined ? 1 : parseInt(requestedPage, 10);
+  async updateRectificationRequestStatus(requestId, status) {
+    await this.db('rectification_requests')
+      .where({ id: requestId })
+      .update({ status });
 
-    const [{ total_items }] = await this.db('rectification_requests')
-      .where('status', 'PENDING')
-      .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
-      .select(this.db.raw('count(id) as total_items'))
-      .as('total_items');
+    return { success: true };
+  }
 
-    const totalPages = Math.ceil(total_items / PAGE_SIZE || 1);
-
-    if (page > totalPages) {
-      throw new ValidationError(`Page number too big, maximum page number is ${totalPages}`);
-    }
-
-    const requests = await this.db('rectification_requests')
-      .select('id')
-      .select('request_reason')
+  async getRectificationRequest(requestId) {
+    const [requestData] = await this.db('rectification_requests')
+      .select('rectification_requests.id')
+      .as('rectification_request_id')
       .select('rectification_requests.created_at')
-      .where('status', 'PENDING')
-      .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
-      .limit(PAGE_SIZE)
-      .offset(page - 1);
+      .as('rectification_request_created_at')
+      .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
+      .join('subject_keys', 'subject_keys.subject_id', 'subjects.id')
+      .where({ id: requestId });
+    if (!requestId) throw new NotFound('Request not found');
 
+    if (!requestData.key) throw new BadRequest('Decryption key not found');
+
+    const decryptedUpdatePayload = JSON.parse(
+      decryptFromStorage(requestData.encrypted_rectification_payload, requestData.key)
+    );
+
+    const decryptedCurrentData = JSON.parse(
+      decryptFromStorage(requestData.personal_data, requestData.key)
+    );
     return {
-      data: requests,
-      paging: {
-        current: page,
-        total: totalPages
-      }
+      id: requestData.rectification_request_id,
+      currentData: decryptedCurrentData,
+      updates: decryptedUpdatePayload,
+      createdAt: requestData.rectification_request_created_at,
+      status: requestData.status
     };
   }
 }

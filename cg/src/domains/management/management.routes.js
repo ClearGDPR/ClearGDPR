@@ -29,7 +29,9 @@ const {
 
 const {
   listSubjectsValidator,
-  listRectificationRequestsValidator
+  listRectificationRequestsValidator,
+  getRectificiationValidator,
+  updateRectificationStatusValidator
 } = require('./subjects/subjects.validators');
 
 const {
@@ -79,6 +81,18 @@ module.exports = app => {
   router.get(
     '/subjects/rectification-requests/list',
     listRectificationRequestsValidator,
+    asyncHandler(async (req, res) => subjectsController.listRectificationRequests(req, res))
+  );
+
+  router.get(
+    '/subjects/rectification-requests/:rectificationRequestId',
+    getRectificiationValidator,
+    asyncHandler(async (req, res) => subjectsController.listRectificationRequests(req, res))
+  );
+
+  router.post(
+    '/subjects/rectification-requests/:rectificationRequestId/update-status',
+    updateRectificationStatusValidator,
     asyncHandler(async (req, res) => subjectsController.listRectificationRequests(req, res))
   );
 

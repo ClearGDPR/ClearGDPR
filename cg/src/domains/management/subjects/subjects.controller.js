@@ -47,6 +47,16 @@ class SubjectsController {
     console.log(rectificationRequests);
     return res.json(rectificationRequests);
   }
+
+  async getRectificationRequest(req, res) {
+    return res.json(await this.subjectsService.getRectificationRequest(req.params.id));
+  }
+
+  async updateRectificationRequestStatus(req, res) {
+    return res.json(
+      await this.subjectsService.updateRectificationRequestStatus(req.params.id, req.body.status)
+    );
+  }
 }
 
 module.exports = SubjectsController;
