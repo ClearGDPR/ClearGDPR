@@ -32,6 +32,10 @@ const FRONTEND_IMAGE = 'demo-frontend';
 const KUBE_FRONTEND_DEPLOYMENT = 'open-gdpr-frontend-dev';
 const KUBE_FRONTEND_CONTAINER = 'open-gdpr-frontend-dev';
 
+const ADMIN_IMAGE = 'admin';
+const KUBE_ADMIN_DEPLOYMENT = 'open-gdpr-admin-dev';
+const KUBE_ADMIN_CONTAINER = 'open-gdpr-admin-dev';
+
 const quorum1Modules = [
   {
     ns: KUBE_NS,
@@ -66,7 +70,7 @@ const quorum2Modules = [
   }
 ];
 
-const webModules = [
+const backendModules = [
   {
     ns: KUBE_NS,
     deployment: KUBE_CONTROLLER_DEPLOYMENT,
@@ -87,12 +91,22 @@ const webModules = [
     container: KUBE_API_CONTAINER,
     image: `${REPO}/${API_IMAGE}`,
     tag: VERSION
-  },
+  }
+];
+
+const frontendModules = [
   {
     ns: KUBE_NS,
     deployment: KUBE_FRONTEND_DEPLOYMENT,
     container: KUBE_FRONTEND_CONTAINER,
     image: `${REPO}/${FRONTEND_IMAGE}`,
+    tag: VERSION
+  },
+  {
+    ns: KUBE_NS,
+    deployment: KUBE_ADMIN_DEPLOYMENT,
+    container: KUBE_ADMIN_CONTAINER,
+    image: `${REPO}/${ADMIN_IMAGE}`,
     tag: VERSION
   }
 ];
@@ -109,12 +123,18 @@ switch (deploymentType) {
   case '--quorum2':
     kubeDef.modules = quorum2Modules;
     break;
-  case '--web-app':
-    kubeDef.modules = webModules;
+  case '--back-end':
+    kubeDef.modules = backendModules;
+    break;
+  case '--front-end':
+    kubeDef.modules = frontendModules;
     break;
   case undefined:
   case null:
-    kubeDef.modules = quorum1Modules.concat(webModules).concat();
+    kubeDef.modules = quorum1Modules
+      .concat(quorum2Modules)
+      .concat(backendModules)
+      .concat(frontendModules);
     break;
 }
 
