@@ -1,3 +1,10 @@
+/*  ClearGDPR smart contract version 6
+*       A piece of art made by CleverTech
+*       Author contact: sindelio.lima@clevertech.biz
+*       Coffee => Code!
+*/
+
+//This code is compiled without errors and all functions were tested 
 pragma solidity 0.4.24; 
 contract ClearGDPR {
   address public controller; 
@@ -125,3 +132,22 @@ contract ClearGDPR {
   }
 
 }
+
+/*  ASSUMPTIONS:
+*       1. Only 1 controller per smart contract.
+*       2. Users can only interact directly with the controller. That means data access requests don't need to be informed to the processors.
+*       3. Only controllers can initiate data erasure events.
+*       4. The controller always has consent to use the user data. Else how could the user data be stored in the first place?
+*
+*   NOTES:
+*       1. We should move any processing of data to the back-end if possible. The only processing done in the smart contract is to ascertain that the data stored is valid.
+*       2. Controllers and processors have a different set of possible actions in the system. Hence the events each can fire are also different.
+*      We need a way to enforce this difference in the back-end if we stick with this smart contract.
+*       3. There's a bug when we use bytes32 instead of address to identificate the processors. The memory seems to not be cleared out. 
+*       
+*   TODO: 
+*       1. Change accessibility of setters to private (they are public for testing purposes)
+*       2. Implement the add/remove function of processor nodes in the network, or use a system ID for each processor, which would be simpler
+*       3. Study more about memory allocation/deallocation in Solidity. Will need to dive in inline Assembly
+*       4. Consider that each processor can delete their data of a subject, without the data being deleted from the whole network
+*/
