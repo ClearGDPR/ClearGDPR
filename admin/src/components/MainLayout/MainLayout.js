@@ -17,7 +17,7 @@ class MainLayout extends React.Component {
     onClosePanelClick: PropTypes.func.isRequired,
     content: PropTypes.element.isRequired,
     panelTitle: PropTypes.string,
-    panelContent: PropTypes.oneOf([PropTypes.element, PropTypes.object, PropTypes.string])
+    panelContent: PropTypes.oneOfType([PropTypes.element, PropTypes.object, PropTypes.string])
   };
 
   eventHandler(e) {
