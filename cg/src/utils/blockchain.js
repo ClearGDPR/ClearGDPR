@@ -59,6 +59,11 @@ async function deployContract(abiJson, compiledData) {
 
 // SMART CONTRACT AUXILIARY FUNCTIONS
 
+async function getRectificationCount(subjectId) {
+  const quorumContract = await getContract();
+  return await quorumContract.methods.getRectificationCount(subjectId).call();
+}
+
 async function getIsErased(subjectId) {
   const quorumContract = await getContract();
   return await quorumContract.methods.getIsErased(subjectId).call();
@@ -106,6 +111,10 @@ async function recordConsentGivenTo(subjectId, newProcessors = []) {
 
 async function recordAccessByController(subjectId) {
   return await runContractMethod('recordAccessByController', [subjectId]);
+}
+
+async function recordRectificationByController(subjectId) {
+  return await runContractMethod('recordRectificationByController', [subjectId]);
 }
 
 async function recordErasureByController(subjectId) {
@@ -223,6 +232,7 @@ module.exports = {
   deployContract,
   getContract,
   sha3: web3.utils.sha3,
+  getRectificationCount,
   getIsErased,
   getSubjectDataState,
   getProcessors,
@@ -232,10 +242,11 @@ module.exports = {
   areAllValidProcessors,
   recordProcessorsUpdate,
   recordConsentGivenTo,
-  allEvents,
   recordAccessByController,
+  recordRectificationByController,
   recordErasureByController,
   recordErasureByProcessor,
+  allEvents,
   listenForConsent,
   listenForErasureRequest,
   listenForProcessorErasureRequest,
