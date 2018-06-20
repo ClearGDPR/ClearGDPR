@@ -14,6 +14,7 @@ const {
 const { ValidationError, NotFound } = require('../../utils/errors');
 const winston = require('winston');
 
+const { RECTIFICATION_STATUSES } = require('./../../utils/constants');
 const { inControllerMode } = require('./../../utils/helpers');
 
 class SubjectsService {
@@ -202,16 +203,18 @@ class SubjectsService {
       .select('key');
     if (!subjectKeyData || !subjectKeyData.key) throw new NotFound('Subject keys not found');
 
+    console.log(rectificationPayload);
+    console.log(subjectKeyData.key);
+
     const encryptedRectificationPayload = encryptForStorage(
       JSON.stringify(rectificationPayload),
       subjectKeyData.key
     );
-
-    await this.db('rectification_requests', {
+    await this.db('rectification_requests').insert({
       subject_id: subjectId,
       request_reason: requestReason,
       encrypted_rectification_payload: encryptedRectificationPayload,
-      status: 'PENDING'
+      status: RECTIFICATION_STATUSES.PENDING
     });
     return { success: true };
   }

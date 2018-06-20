@@ -2,6 +2,7 @@ const { db } = require('../../../db');
 const { decryptFromStorage } = require('../../../utils/encryption');
 const winston = require('winston');
 const { ValidationError } = require('../../../utils/errors');
+const { RECTIFICATION_STATUSES } = require('./../../../utils/constants');
 
 const PAGE_SIZE = 10; // This could go in constants, inside utils
 
@@ -59,7 +60,7 @@ class SubjectsService {
     const page = requestedPage === undefined ? 1 : parseInt(requestedPage, 10);
 
     const [{ total_items }] = await this.db('rectification_requests')
-      .where('status', 'PENDING')
+      .where('status', RECTIFICATION_STATUSES.PENDING)
       .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
       .select(this.db.raw('count(id) as total_items'))
       .as('total_items');
@@ -74,7 +75,7 @@ class SubjectsService {
       .select('id')
       .select('request_reason')
       .select('rectification_requests.created_at')
-      .where('status', 'PENDING')
+      .where('status', RECTIFICATION_STATUSES.PENDING)
       .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
       .limit(PAGE_SIZE)
       .offset(page - 1);

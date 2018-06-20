@@ -776,7 +776,9 @@ describe('Initiate Rectification', () => {
     const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
     const [subjectKey] = await db('subject_keys').where({ subject_id: hash(id) });
 
-    expect(decryptFromStorage(requestData.encrypted_rectification_payload, subjectKey)).toEqual({
+    expect(
+      JSON.parse(decryptFromStorage(requestData.encrypted_rectification_payload, subjectKey.key))
+    ).toEqual({
       name: 'dave'
     });
   });
@@ -838,8 +840,8 @@ describe('Initiate Rectification', () => {
 
     const body = await res.json();
     expect(res.ok).toBeFalsy();
-    expect(res.status).toEqual(400);
+    expect(res.status).toEqual(404);
 
-    expect(body).toEqual('');
+    expect(body.error).toEqual('Subject keys not found');
   });
 });

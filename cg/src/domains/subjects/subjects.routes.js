@@ -72,7 +72,7 @@ module.exports = app => {
   router.post(
     '/initiate-rectification',
     rectificationRequestValidator,
-    asyncHandler(async (req, res) => subjectsController.initiateRectification)
+    asyncHandler(async (req, res) => subjectsController.initiateRectification(req, res))
   );
 
   router.post(

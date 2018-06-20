@@ -445,6 +445,7 @@ describe('List subjects that have given consent', () => {
 
       return idHash;
     }
+
     it('Should list the requests sucessfully', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
       await createSubjectWithRectification();
@@ -460,6 +461,7 @@ describe('List subjects that have given consent', () => {
       expect(res.status).toEqual(200);
       expect(body.data).toHaveLength(2);
     });
+
     it('Should list the requests sucessfully when there is 0', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
 
@@ -475,6 +477,7 @@ describe('List subjects that have given consent', () => {
       expect(body.data).toHaveLength(0);
       expect(body.paging).toEqual({ current: 1, total: 1 });
     });
+
     it('Should fail if page number is too big', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
 
@@ -490,9 +493,10 @@ describe('List subjects that have given consent', () => {
       expect(res.status).toEqual(400);
       expect(body.error).toEqual('Page number too big, maximum page number is 1');
     });
+
     it('Should only serve pending rectification requests', async () => {
       await createSubjectWithRectification({ status: 'APPROVED' });
-      await createSubjectWithRectification({ status: 'DISSAPROVED' });
+      await createSubjectWithRectification({ status: 'DISAPPROVED' });
       const managementToken = await managementJWT.sign({ id: 1 });
 
       const res = await fetch('/api/management/subjects/rectification-requests/list', {
@@ -506,6 +510,7 @@ describe('List subjects that have given consent', () => {
       expect(res.status).toEqual(200);
       expect(body.data).toHaveLength(0);
     });
+
     it('Should not list rectification requests for users without encryption keys', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
 

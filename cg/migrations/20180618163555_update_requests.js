@@ -8,8 +8,10 @@ exports.up = function(knex, Promise) {
     t.string('request_reason');
     t.text('encrypted_rectification_payload');
     t.timestamp('created_at').defaultTo(knex.fn.now());
-    t.enu('status', ['PENDING', 'APPROVED', 'DISSAPROVED']);
+    t.enu('status', ['PENDING', 'APPROVED', 'DISAPPROVED']);
   });
 };
 
-exports.down = function(knex, Promise) {};
+exports.down = function(knex, Promise) {
+  return knex.schema.dropTable('rectification_requests');
+};
