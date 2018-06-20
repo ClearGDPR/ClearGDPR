@@ -207,12 +207,13 @@ class SubjectsService {
       subjectKeyData.key
     );
 
-    return await this.db('rectification_requests', {
+    await this.db('rectification_requests', {
       subject_id: subjectId,
       request_reason: requestReason,
       encrypted_rectification_payload: encryptedRectificationPayload,
       status: 'PENDING'
     });
+    return { success: true };
   }
 }
 

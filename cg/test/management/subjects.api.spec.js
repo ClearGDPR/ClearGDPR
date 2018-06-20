@@ -457,7 +457,6 @@ describe('List subjects that have given consent', () => {
       });
 
       const body = await res.json();
-      console.log(body);
       expect(res.status).toEqual(200);
       expect(body.data).toHaveLength(2);
     });
