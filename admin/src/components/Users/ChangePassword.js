@@ -12,17 +12,6 @@ export class ChangePassword extends React.Component {
     errors: PropTypes.object
   };
 
-  state = {
-    newPassword: {
-      text: '',
-      error: null
-    },
-    newPasswordRepeat: {
-      text: '',
-      error: null
-    }
-  };
-
   validatePassword(password) {
     // TODO: todo add proper validation
     if (!password) {
@@ -44,7 +33,6 @@ export class ChangePassword extends React.Component {
     return (
       <React.Fragment>
         <TextInput
-          value={this.state.newPassword.text}
           label="New password"
           placeholder="*********"
           error={
@@ -57,7 +45,6 @@ export class ChangePassword extends React.Component {
           validate={this.validatePassword}
         />
         <TextInput
-          value={this.state.newPasswordRepeat.text}
           label="Repeat new password"
           placeholder="*********"
           error={

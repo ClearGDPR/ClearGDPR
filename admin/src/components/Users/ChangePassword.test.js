@@ -42,6 +42,29 @@ describe('(Component) Change Password', () => {
     expect(onSubmit).toHaveBeenCalled();
   });
 
+  it('should render correct props when touched', async () => {
+    const { component } = setupShallow({
+      isLoading: false,
+      touched: { newPassword: true }
+    });
+
+    const newPasswordInput = component.find('TextInput[field="newPassword"]').at(0);
+
+    expect(newPasswordInput.props().error).toBeFalsy();
+  });
+
+  it('should render correct props when touched and there are errors', async () => {
+    const { component } = setupShallow({
+      isLoading: false,
+      touched: { newPassword: true },
+      errors: { newPassword: 'Error message' }
+    });
+
+    const newPasswordInput = component.find('TextInput[field="newPassword"]').at(0);
+
+    expect(newPasswordInput.props().error).toEqual('Error message');
+  });
+
   describe('Validate password', () => {
     it('should return error when password is null or empty', async () => {
       const { component } = setupShallow();
