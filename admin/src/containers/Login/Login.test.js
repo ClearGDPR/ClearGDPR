@@ -4,7 +4,6 @@ import toJson from 'enzyme-to-json';
 import { createMemoryHistory } from 'history';
 
 import { LoginContainer } from './Login';
-// import session from '../../helpers/Session';
 
 jest.mock('../../helpers/Session');
 
@@ -37,7 +36,7 @@ describe('(Container) Login', () => {
 
     const { component } = setup();
     const instance = component.instance();
-    const response = await instance.handleLogin(null, null);
+    const response = await instance.handleLogin('username', 'password');
 
     await flushPromises();
     expect(global.fetch).toBeCalled();
