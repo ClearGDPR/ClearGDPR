@@ -6,11 +6,11 @@ import Login from '../../components/Login/Login';
 import session from '../../helpers/Session';
 import config from '../../config';
 
-export const LoginContainer = props => {
-  const { from } = props.location.state || { from: { pathname: '/' } };
-  const { history } = props;
+export class LoginContainer extends React.Component {
+  handleLogin(username, password) {
+    const { history, location } = this.props;
+    const { from } = location.state || { from: { pathname: '/' } };
 
-  const handleLogin = (username, password) => {
     return new Promise((resolve, reject) => {
       fetch(`${config.API_URL}/api/management/users/login`, {
         method: 'POST',
@@ -25,16 +25,18 @@ export const LoginContainer = props => {
         .then(async res => {
           session.set(await res.json());
           history.push(from);
-          resolve();
+          resolve(res);
         })
         .catch(err => {
           reject(err);
         });
-    });
-  };
+      });
+  }
 
-  return <Login auth={handleLogin} />;
-};
+  render() {
+    return <Login auth={this.handleLogin} />;
+  }
+}
 
 LoginContainer.propTypes = {
   location: PropTypes.object,
