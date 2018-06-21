@@ -1,5 +1,7 @@
 const { celebrate, Joi } = require('celebrate');
-const { PENDING, DISAPPROVED, APPROVED } = require('./../../../utils/constants');
+const {
+  RECTIFICATION_STATUSES: { PENDING, DISAPPROVED, APPROVED }
+} = require('./../../../utils/constants');
 
 const listSubjectsValidator = celebrate({
   query: Joi.object().keys({
@@ -23,14 +25,18 @@ const updateRectificationStatusValidator = celebrate({
       .valid(PENDING, DISAPPROVED, APPROVED)
       .required()
   },
-  param: {
-    rectificationId: Joi.integer().required()
+  params: {
+    rectificationRequestId: Joi.number()
+      .integer()
+      .required()
   }
 });
 
 const getRectificiationValidator = celebrate({
-  param: {
-    rectificationId: Joi.integer().required()
+  params: {
+    rectificationRequestId: Joi.number()
+      .integer()
+      .required()
   }
 });
 

@@ -49,12 +49,17 @@ class SubjectsController {
   }
 
   async getRectificationRequest(req, res) {
-    return res.json(await this.subjectsService.getRectificationRequest(req.params.id));
+    return res.json(
+      await this.subjectsService.getRectificationRequest(req.params.rectificationRequestId)
+    );
   }
 
   async updateRectificationRequestStatus(req, res) {
     return res.json(
-      await this.subjectsService.updateRectificationRequestStatus(req.params.id, req.body.status)
+      await this.subjectsService.updateRectificationRequestStatus(
+        req.params.rectificationRequestId,
+        req.body.status
+      )
     );
   }
 }

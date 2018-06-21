@@ -90,23 +90,26 @@ class SubjectsService {
   }
 
   async updateRectificationRequestStatus(requestId, status) {
-    await this.db('rectification_requests')
+    const [updatedId] = await this.db('rectification_requests')
       .where({ id: requestId })
-      .update({ status });
+      .update({ status })
+      .returning('id');
+
+    if (!updatedId) throw new NotFound('Rectification request not found');
 
     return { success: true };
   }
 
   async getRectificationRequest(requestId) {
     const [requestData] = await this.db('rectification_requests')
-      .select('rectification_requests.id')
-      .as('rectification_request_id')
-      .select('rectification_requests.created_at')
-      .as('rectification_request_created_at')
+      .select('key', 'personal_data', 'status', 'encrypted_rectification_payload')
+      .select(this.db.raw('rectification_requests.id as rectification_request_id'))
+      .select(this.db.raw('rectification_requests.created_at as rectification_request_created_at'))
       .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
       .join('subject_keys', 'subject_keys.subject_id', 'subjects.id')
-      .where({ id: requestId });
-    if (!requestId) throw new NotFound('Request not found');
+      .where({ 'rectification_requests.id': requestId });
+
+    if (!requestData) throw new NotFound('Request not found');
 
     if (!requestData.key) throw new BadRequest('Decryption key not found');
 
