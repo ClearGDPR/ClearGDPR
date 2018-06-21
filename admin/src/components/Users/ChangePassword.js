@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'react-form';
 import TextInput from '../core/cards/dashboard/TextInput';
+import Loader from '../core/cards/dashboard/Loader';
 
 export class ChangePassword extends React.Component {
   static propTypes = {
+    isLoading: PropTypes.func,
     onSubmit: PropTypes.func,
     touched: PropTypes.array,
     errors: PropTypes.array
@@ -38,9 +40,9 @@ export class ChangePassword extends React.Component {
     };
   }
 
-  render() {
+  renderForm() {
     return (
-      <form onSubmit={this.props.onSubmit}>
+      <React.Fragment>
         <TextInput
           value={this.state.newPassword.text}
           label="New password"
@@ -70,18 +72,27 @@ export class ChangePassword extends React.Component {
         <div>
           <input type="submit" className="btn" value="Save" />
         </div>
+      </React.Fragment>
+    );
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.props.onSubmit}>
+        {this.props.isLoading ? <Loader /> : this.renderForm()}
       </form>
     );
   }
 }
 
-const changePasswordForm = ({ onSubmit }) => (
-  <Form onSubmit={submittedValues => onSubmit && onSubmit(submittedValues)}>
+const changePasswordForm = props => (
+  <Form onSubmit={submittedValues => props.onSubmit && props.onSubmit(submittedValues)}>
     {formApi => (
       <ChangePassword
         onSubmit={formApi.submitForm}
         errors={formApi.errors}
         touched={formApi.touched}
+        {...props}
       />
     )}
   </Form>
