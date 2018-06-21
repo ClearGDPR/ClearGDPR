@@ -10,7 +10,7 @@ const Nav = () => {
           <img className="logo" src={navLogo} alt="Clear GDPR logo" />
         </a>
         <div className="spacer" />
-
+        <a href="https://demo.cleargdpr.com">Demo</a>
         <a href="https://docs.cleargdpr.com">Documentation</a>
 
         <a target="_blank" rel="noopener noreferrer" href="https://github.com/ClearGDPR/ClearGDPR">
