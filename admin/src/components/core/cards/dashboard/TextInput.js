@@ -1,34 +1,27 @@
 import React from 'react';
+import { Text } from 'react-form';
 import PropTypes from 'prop-types';
 
 const TextInput = props => {
-  const onChange = e => {
-    e.preventDefault();
-    props.onTextChange && props.onTextChange(e.target.value);
-  };
-
   return (
     <div className={props.error ? 'input-field input-error' : 'input-field'}>
-      <label htmlFor={props.for}>{props.label}</label>
-      {props.error ? <span className="error-msg">{props.errorMessage}</span> : ''}
-      <input
+      <label htmlFor={props.field}>{props.label}</label>
+      {props.error ? <span className="error-msg">{props.error}</span> : ''}
+      <Text
         type={props.type || 'text'}
-        id={props.for}
-        name={props.for}
+        id={props.field}
         placeholder={props.placeholder}
-        value={props.value}
-        onChange={onChange}
+        validate={props.validate}
+        field={props.field}
       />
     </div>
   );
 };
 
 TextInput.propTypes = {
-  error: PropTypes.bool,
-  errorMessage: PropTypes.string,
+  error: PropTypes.string,
   label: PropTypes.string,
-  for: PropTypes.string,
-  value: PropTypes.string,
+  field: PropTypes.string,
   type: PropTypes.oneOf([
     'text',
     'password',
@@ -46,7 +39,7 @@ TextInput.propTypes = {
     'week'
   ]),
   placeholder: PropTypes.string,
-  onTextChange: PropTypes.func
+  validate: PropTypes.func
 };
 
 export default TextInput;
