@@ -1,28 +1,78 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
-import { ChangePassword } from './ChangePassword';
+import ChangePasswordForm, { ChangePassword } from './ChangePassword';
 
-const setup = propOverrides => {
+const setupShallow = propOverrides => {
   const props = Object.assign({}, propOverrides);
   const component = shallow(<ChangePassword {...props} />);
 
   return { props, component };
 };
 
+const setupMount = propOverrides => {
+  const props = Object.assign({}, propOverrides);
+  const component = mount(<ChangePasswordForm {...props} />);
+
+  return { props, component };
+};
+
 describe('(Component) Change Password', () => {
   it('should render correctly when no props provided', async () => {
-    const { component } = setup();
+    const { component } = setupShallow();
     expect(component).toMatchSnapshot();
   });
 
   it('should render correctly when the prop isLoading is set to false', async () => {
-    const { component } = setup({ isLoading: false });
+    const { component } = setupShallow({ isLoading: false });
     expect(component).toMatchSnapshot();
   });
 
   it('should render correctly when the prop isLoading is set to true', async () => {
-    const { component } = setup({ isLoading: true });
+    const { component } = setupShallow({ isLoading: true });
     expect(component).toMatchSnapshot();
+  });
+
+  it('should call onSubmit when submit button clicked', async () => {
+    const onSubmit = jest.fn();
+    const { component } = setupMount({ onSubmit });
+
+    const submitButton = component.find('input[type="submit"]').at(0);
+    submitButton.simulate('submit');
+    expect(onSubmit).toHaveBeenCalled();
+  });
+
+  describe('Validate password', () => {
+    it('should return error when password is null or empty', async () => {
+      const { component } = setupShallow();
+      let result = component.instance().validatePassword('');
+      expect(result).toEqual(
+        expect.objectContaining({
+          error: 'Field required'
+        })
+      );
+      result = component.instance().validatePassword();
+      expect(result).toEqual(
+        expect.objectContaining({
+          error: 'Field required'
+        })
+      );
+    });
+
+    it('should return error when password is too short', async () => {
+      const { component } = setupShallow();
+      let result = component.instance().validatePassword('asc');
+      expect(result).toEqual(
+        expect.objectContaining({
+          error: 'Password must have min. 8 characters'
+        })
+      );
+      result = component.instance().validatePassword('asffas');
+      expect(result).toEqual(
+        expect.objectContaining({
+          error: 'Password must have min. 8 characters'
+        })
+      );
+    });
   });
 });

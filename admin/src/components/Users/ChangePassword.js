@@ -8,8 +8,8 @@ export class ChangePassword extends React.Component {
   static propTypes = {
     isLoading: PropTypes.bool,
     onSubmit: PropTypes.func,
-    touched: PropTypes.array,
-    errors: PropTypes.array
+    touched: PropTypes.object,
+    errors: PropTypes.object
   };
 
   state = {
