@@ -13,6 +13,8 @@
   background-color: var(--color-background);
   padding: 2rem;
   box-shadow: 0 10px 20px var(--block-fx-shadow);
+  min-width: 285px;
+  min-height: 325px;
 }
 
 .login-card > .logo {
