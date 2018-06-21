@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { Form } from 'react-form';
 import TextInput from '../core/cards/dashboard/TextInput';
 
-class ChangePassword extends React.Component {
+export class ChangePassword extends React.Component {
   static propTypes = {
-    onSubmit: PropTypes.func
+    onSubmit: PropTypes.func,
+    touched: PropTypes.array,
+    errors: PropTypes.array
   };
 
   state = {
@@ -36,53 +38,57 @@ class ChangePassword extends React.Component {
     };
   }
 
-  onSubmit(submittedValues) {
-    this.props.onSubmit && this.props.onSubmit(submittedValues);
-  }
-
   render() {
     return (
-      <Form onSubmit={submittedValues => this.onSubmit(submittedValues)}>
-        {formApi => (
-          <form onSubmit={formApi.submitForm}>
-            <TextInput
-              value={this.state.newPassword.text}
-              label="New password"
-              placeholder="*********"
-              error={
-                formApi.touched &&
-                formApi.touched['newPassword'] &&
-                formApi.errors &&
-                formApi.errors['newPassword']
-              }
-              field="newPassword"
-              validate={this.validatePassword}
-            />
-            <TextInput
-              value={this.state.newPasswordRepeat.text}
-              label="Repeat new password"
-              placeholder="*********"
-              error={
-                formApi.touched &&
-                formApi.touched['newPasswordRepeat'] &&
-                formApi.errors &&
-                formApi.errors['newPasswordRepeat']
-              }
-              field="newPasswordRepeat"
-              validate={this.validatePassword}
-            />
-            <div>
-              <input type="submit" className="btn" value="Save" />
-            </div>
-          </form>
-        )}
-      </Form>
+      <form onSubmit={this.props.onSubmit}>
+        <TextInput
+          value={this.state.newPassword.text}
+          label="New password"
+          placeholder="*********"
+          error={
+            this.props.touched &&
+            this.props.touched['newPassword'] &&
+            this.props.errors &&
+            this.props.errors['newPassword']
+          }
+          field="newPassword"
+          validate={this.validatePassword}
+        />
+        <TextInput
+          value={this.state.newPasswordRepeat.text}
+          label="Repeat new password"
+          placeholder="*********"
+          error={
+            this.props.touched &&
+            this.props.touched['newPasswordRepeat'] &&
+            this.props.errors &&
+            this.props.errors['newPasswordRepeat']
+          }
+          field="newPasswordRepeat"
+          validate={this.validatePassword}
+        />
+        <div>
+          <input type="submit" className="btn" value="Save" />
+        </div>
+      </form>
     );
   }
 }
 
-ChangePassword.propTypes = {
+const changePasswordForm = ({ onSubmit }) => (
+  <Form onSubmit={submittedValues => onSubmit && onSubmit(submittedValues)}>
+    {formApi => (
+      <ChangePassword
+        onSubmit={formApi.submitForm}
+        errors={formApi.errors}
+        touched={formApi.touched}
+      />
+    )}
+  </Form>
+);
+
+changePasswordForm.propTypes = {
   onSubmit: PropTypes.func
 };
 
-export default ChangePassword;
+export default changePasswordForm;
