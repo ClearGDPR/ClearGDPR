@@ -11,4 +11,9 @@ describe('(Component) Login', () => {
     const component = shallow(<Login {...props} />);
     expect(component).toMatchSnapshot();
   });
+
+  it('should render errors', () => {
+    const component = shallow(<Login {...props} />);
+    expect(component).toMatchSnapshot();
+  });
 });
