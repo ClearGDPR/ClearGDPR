@@ -496,7 +496,7 @@ describe('List subjects that have given consent', () => {
     });
     it('Should only serve pending rectification requests', async () => {
       await createSubjectWithRectification({ status: 'APPROVED' });
-      await createSubjectWithRectification({ status: 'DISSAPROVED' });
+      await createSubjectWithRectification({ status: 'DISAPPROVED' });
       const managementToken = await managementJWT.sign({ id: 1 });
 
       const res = await fetch('/api/management/subjects/rectification-requests/list', {

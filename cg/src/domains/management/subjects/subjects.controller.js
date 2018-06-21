@@ -39,15 +39,6 @@ class SubjectsController {
     return res.json(rectificationRequests);
   }
 
-  async listRectificationRequests(req, res) {
-    const rectificationRequests = await this.subjectsService.listRectificationRequests(
-      req.query.page
-    );
-
-    console.log(rectificationRequests);
-    return res.json(rectificationRequests);
-  }
-
   async getRectificationRequest(req, res) {
     return res.json(
       await this.subjectsService.getRectificationRequest(req.params.rectificationRequestId)

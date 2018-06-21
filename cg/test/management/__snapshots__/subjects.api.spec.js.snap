@@ -13,3 +13,45 @@ Object {
   },
 }
 `;
+
+exports[`List subjects that have given consent should not allow a page query with a negative page number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"page\\" fails because [\\"page\\" must be a positive number]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "page",
+    ],
+    "source": "query",
+  },
+}
+`;
+
+exports[`List subjects that have given consent should not allow a page query with the zero page number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"page\\" fails because [\\"page\\" must be a positive number]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "page",
+    ],
+    "source": "query",
+  },
+}
+`;
+
+exports[`List subjects that have given consent should not allow a page query without an integer page number 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"page\\" fails because [\\"page\\" must be a number]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "page",
+    ],
+    "source": "query",
+  },
+}
+`;
