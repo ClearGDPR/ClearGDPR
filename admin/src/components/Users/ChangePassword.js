@@ -6,7 +6,7 @@ import Loader from '../core/cards/dashboard/Loader';
 
 export class ChangePassword extends React.Component {
   static propTypes = {
-    isLoading: PropTypes.func,
+    isLoading: PropTypes.bool,
     onSubmit: PropTypes.func,
     touched: PropTypes.array,
     errors: PropTypes.array
