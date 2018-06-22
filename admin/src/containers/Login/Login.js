@@ -11,30 +11,24 @@ export class LoginContainer extends React.Component {
     const { history, location } = this.props;
     const { from } = location.state || { from: { pathname: '/' } };
 
-    return new Promise((resolve, reject) => {
-      fetch(`${config.API_URL}/api/management/users/login`, {
-        method: 'POST',
-        body: JSON.stringify({
-          username,
-          password
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(async res => {
-          session.set(await res.json());
-          history.push(from);
-          resolve(res);
-        })
-        .catch(err => {
-          reject(err);
-        });
-      });
+    return fetch(`${config.API_URL}/api/management/users/login`, {
+      method: 'POST',
+      body: JSON.stringify({
+        username,
+        password
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(async res => {
+      session.set(await res.json());
+      history.push(from);
+      return res;
+    });
   }
 
   render() {
-    return <Login auth={this.handleLogin} />;
+    return <Login auth={this.handleLogin.bind(this)} />;
   }
 }
 
