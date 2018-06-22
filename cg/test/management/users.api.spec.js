@@ -236,7 +236,7 @@ describe('Management user Login', () => {
 });
 
 describe('Management user password update', () => {
-  it('Should fail if the manager id in the route doesnt exist', async () => {
+  it('Should fail if the manager is not registered', async () => {
     //When
     const res = await fetch(`/api/management/users/3923219/update-password`, {
       method: 'POST',
@@ -248,7 +248,7 @@ describe('Management user password update', () => {
 
     //Then
     expect(res.ok).toBeFalsy();
-    expect(res.status).toEqual(BadRequest.StatusCode);
+    expect(res.status).toEqual(NotFound.StatusCode);
     expect(await res.json()).toMatchSnapshot();
   });
 

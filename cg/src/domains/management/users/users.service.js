@@ -53,7 +53,7 @@ class UsersService {
 
   async updatePassword(userId, newPassword) {
     const [user] = await this.db('users').where({ id: userId });
-    if (!user) throw new BadRequest('User not found'); // This should be a not found
+    if (!user) throw new NotFound('User not found');
     await this.db('users')
       .update({ password_hash: await this._hashPassword(newPassword) })
       .where({ id: userId });
