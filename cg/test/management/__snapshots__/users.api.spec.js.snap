@@ -66,7 +66,7 @@ Object {
 }
 `;
 
-exports[`Management user password update Should fail if the manager id in the route doesnt exist 1`] = `
+exports[`Management user password update Should fail if the manager is not registered 1`] = `
 Object {
   "error": "User not found",
 }
