@@ -1,5 +1,5 @@
 const { db } = require('../../../db');
-const { decryptFromStorage } = require('../../../utils/encryption');
+const { decryptFromStorage, encryptForStorage } = require('../../../utils/encryption');
 const winston = require('winston');
 const { ValidationError, NotFound, BadRequest } = require('../../../utils/errors');
 const { RECTIFICATION_STATUSES } = require('./../../../utils/constants');
@@ -9,6 +9,17 @@ const PAGE_SIZE = 10; // This could go in constants, inside utils
 class SubjectsService {
   constructor(database = db) {
     this.db = database;
+  }
+
+  async getRequestData(id) {
+    const [requestData] = await this.db('rectification_requests')
+      .select('key', 'personal_data', 'status', 'encrypted_rectification_payload', 'subject_id')
+      .select(this.db.raw('rectification_requests.id as rectification_request_id'))
+      .select(this.db.raw('rectification_requests.created_at as rectification_request_created_at'))
+      .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
+      .join('subject_keys', 'subject_keys.subject_id', 'subjects.id')
+      .where({ 'rectification_requests.id': id });
+    return requestData;
   }
 
   async listSubjects(requestedPage = 1) {
@@ -90,24 +101,47 @@ class SubjectsService {
   }
 
   async updateRectificationRequestStatus(requestId, status) {
-    const [updatedId] = await this.db('rectification_requests')
-      .where({ id: requestId })
-      .update({ status })
-      .returning('id');
+    const [request] = await this.db('rectification_requests').where({ id: requestId });
 
-    if (!updatedId) throw new NotFound('Rectification request not found');
+    if (!request.id) throw new NotFound('Rectification request not found');
+
+    if (status === request.status) {
+      throw new BadRequest(`Status is already ${status}`);
+    }
+
+    await this.db.transaction(async trx => {
+      // if the status is becoming approved -> apply the update to the users data
+      if (status === RECTIFICATION_STATUSES.APPROVED) {
+        const requestData = await this.getRequestData(request.id);
+        const decryptedUpdatePayload = JSON.parse(
+          decryptFromStorage(requestData.encrypted_rectification_payload, requestData.key)
+        );
+
+        const decryptedCurrentData = JSON.parse(
+          decryptFromStorage(requestData.personal_data, requestData.key)
+        );
+
+        const newData = Object.assign({}, decryptedCurrentData, decryptedUpdatePayload);
+
+        await this.db('subjects')
+          .transacting(trx)
+          .update({ personal_data: encryptForStorage(JSON.stringify(newData), requestData.key) })
+          .where({ id: requestData.subject_id });
+      }
+
+      await this.db('rectification_requests')
+        .transacting(trx)
+        .where({ id: requestId })
+        .update({ status });
+
+      await trx.commit();
+    });
 
     return { success: true };
   }
 
   async getRectificationRequest(requestId) {
-    const [requestData] = await this.db('rectification_requests')
-      .select('key', 'personal_data', 'status', 'encrypted_rectification_payload')
-      .select(this.db.raw('rectification_requests.id as rectification_request_id'))
-      .select(this.db.raw('rectification_requests.created_at as rectification_request_created_at'))
-      .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
-      .join('subject_keys', 'subject_keys.subject_id', 'subjects.id')
-      .where({ 'rectification_requests.id': requestId });
+    const [requestData] = await this.getRequestData(requestId);
 
     if (!requestData) throw new NotFound('Request not found');
 

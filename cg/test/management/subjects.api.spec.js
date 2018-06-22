@@ -1,8 +1,14 @@
 const { initResources, fetch, closeResources } = require('../utils');
 const { db } = require('../../src/db');
-const { generateClientKey, encryptForStorage, hash } = require('../../src/utils/encryption');
+const {
+  generateClientKey,
+  encryptForStorage,
+  decryptFromStorage,
+  hash
+} = require('../../src/utils/encryption');
 const { managementJWT } = require('../../src/utils/jwt');
 const { BadRequest, Unauthorized, ValidationError } = require('../../src/utils/errors');
+const { omit } = require('underscore');
 
 beforeAll(initResources);
 beforeEach(async () => {
@@ -37,10 +43,13 @@ async function createSubjectWithRectification(overrides) {
         {
           subject_id: idHash,
           request_reason: 'none',
-          encrypted_rectification_payload: encryptForStorage(JSON.stringify({ test: true }), key),
+          encrypted_rectification_payload: encryptForStorage(
+            JSON.stringify(overrides.rectification_payload || { test: true }),
+            key
+          ),
           status: 'PENDING'
         },
-        overrides
+        omit(overrides, ['rectification_payload'])
       )
     )
     .returning('id');
@@ -599,9 +608,43 @@ describe('List subjects that have given consent', () => {
       expect(res.status).toEqual(200);
 
       const [request] = await db('rectification_requests').where({ id: rectificationRequestId });
-
       expect(request.status).toEqual('APPROVED');
     });
+
+    it('Should apply the rectification if the request is approved', async () => {
+      const managementToken = await managementJWT.sign({ id: 1 });
+
+      const { rectificationRequestId } = await createSubjectWithRectification({
+        rectification_payload: { custom_payload: true }
+      });
+
+      const res = await fetch(
+        `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
+        {
+          method: 'POST',
+          body: {
+            status: 'APPROVED'
+          },
+          headers: {
+            Authorization: `Bearer ${managementToken}`
+          }
+        }
+      );
+
+      expect(res.status).toEqual(200);
+
+      const [request] = await db('rectification_requests').where({ id: rectificationRequestId });
+      expect(request.status).toEqual('APPROVED');
+
+      const [subject] = await db('subjects')
+        .join('subject_keys', 'subjects.id', 'subject_keys.subject_id')
+        .where({ subject_id: request.subejct_id });
+
+      expect(
+        JSON.parse(decryptFromStorage(subject.personal_data, subject.key)).custom_payload
+      ).toEqual(true);
+    });
+
     it('Should be able to disapprove the rectification request', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
 
