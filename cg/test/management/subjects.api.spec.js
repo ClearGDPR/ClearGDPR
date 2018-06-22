@@ -627,7 +627,7 @@ describe('List subjects that have given consent', () => {
       expect(request.status).toEqual('DISAPPROVED');
     });
 
-    it('Should error no status is provided', async () => {
+    it('Should error if no status is provided', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
 
       const { rectificationRequestId } = await createSubjectWithRectification();

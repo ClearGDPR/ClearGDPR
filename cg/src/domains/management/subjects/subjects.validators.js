@@ -28,6 +28,7 @@ const updateRectificationStatusValidator = celebrate({
   params: {
     rectificationRequestId: Joi.number()
       .integer()
+      .positive()
       .required()
   }
 });
@@ -36,6 +37,7 @@ const getRectificiationValidator = celebrate({
   params: {
     rectificationRequestId: Joi.number()
       .integer()
+      .positive()
       .required()
   }
 });
