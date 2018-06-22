@@ -29,9 +29,9 @@ class Login extends React.Component {
     errors: null
   };
 
-  onLoginSubmit(values) {
+  onLoginSubmit({ username, password }) {
     this.setState({ isLoading: true });
-    this.props.auth(values.username, values.password).catch(err => {
+    this.props.auth(username, password).catch(err => {
       this.setState({
         isLoading: false,
         errors: { server: `There was a problem: ${err.message}` }
