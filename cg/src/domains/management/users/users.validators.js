@@ -12,6 +12,15 @@ const usersRegistrationValidator = celebrate({
   })
 });
 
+const usersRemovalValidator = celebrate({
+  params: Joi.object().keys({
+    userId: Joi.number()
+      .integer()
+      .positive()
+      .required()
+  })
+});
+
 const usersLoginValidator = celebrate({
   body: Joi.object().keys({
     username: Joi.string()
@@ -40,6 +49,7 @@ const usersUpdatePasswordValidator = celebrate({
 
 module.exports = {
   usersRegistrationValidator,
+  usersRemovalValidator,
   usersLoginValidator,
   usersUpdatePasswordValidator
 };

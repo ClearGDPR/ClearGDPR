@@ -1,13 +1,16 @@
 const { initResources, fetch, closeResources } = require('../utils');
 const { managementJWT } = require('../../src/utils/jwt');
 const { db } = require('../../src/db');
-const { Unauthorized, BadRequest } = require('../../src/utils/errors');
+const { Unauthorized, BadRequest, NotFound } = require('../../src/utils/errors');
 // const blockchain = require('../../src/utils/blockchain');
 
 let managementToken;
 beforeAll(async () => {
   await initResources();
   managementToken = await managementJWT.sign({ id: 1 });
+});
+beforeEach(async () => {
+  await db('users').del();
 });
 afterAll(closeResources);
 
@@ -29,8 +32,8 @@ describe('Management user Registration', () => {
   it('Should not allow the registration of an already registered manager', async () => {
     // Given
     const manager = {
-      username: 'manager1',
-      password: 'manager1_password'
+      username: 'manager',
+      password: 'manager_password'
     };
     const res1 = await fetch('/api/management/users/register', {
       method: 'POST',
@@ -62,16 +65,83 @@ describe('Management user Registration', () => {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
-        username: 'manager2',
-        password: 'manager2_password'
+        username: 'manager',
+        password: 'manager_password'
       }
     });
 
     //Then
     expect(res.ok).toBeTruthy();
     expect(res.status).toEqual(200);
-    const [user] = await db('users').where({ username: 'manager2' });
+    const [user] = await db('users').where({ username: 'manager' });
     expect(user).toBeTruthy();
+  });
+});
+
+describe('Management user removal', () => {
+  it('Should not allow the removal of unregistered managers', async () => {
+    //When
+    const res = await fetch('/api/management/users/999/remove', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //Then
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toEqual(NotFound.StatusCode);
+    expect(await res.json()).toEqual({
+      error: 'User not found'
+    });
+  });
+
+  it('Should not allow the removal with an ID thats not a positive integer', async () => {
+    //When
+    const res = await fetch('/api/management/users/string/remove', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //Then
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toEqual(BadRequest.StatusCode);
+    expect(await res.json()).toMatchSnapshot();
+  });
+
+  it('Should allow the removal of a registered manager', async () => {
+    //Given
+    await fetch('/api/management/users/register', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${managementToken}` },
+      body: {
+        username: 'manager',
+        password: 'manager_password'
+      }
+    });
+
+    const res1 = await fetch('/api/management/users/list', {
+      method: 'GET',
+      headers: { Authorization: `Bearer ${managementToken}` }
+    });
+    const [{ id }] = await res1.json();
+
+    //When
+    const res2 = await fetch(`/api/management/users/${id}/remove`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //Then
+    expect(res2.ok).toBeTruthy();
+    expect(res2.status).toEqual(200);
+    expect(await res2.json()).toEqual({
+      success: true
+    });
   });
 });
 
@@ -82,7 +152,7 @@ describe('Management user Login', () => {
       method: 'POST',
       body: {
         username: 'baduser',
-        password: 'badpasswword'
+        password: 'badpassword'
       }
     });
 
@@ -98,8 +168,8 @@ describe('Management user Login', () => {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
-        username: 'manager3',
-        password: 'somepassword...'
+        username: 'manager',
+        password: 'somepassword'
       }
     });
 
@@ -107,7 +177,7 @@ describe('Management user Login', () => {
     const res = await fetch('/api/management/users/login', {
       method: 'POST',
       body: {
-        username: 'manager3',
+        username: 'manager',
         password: 'wrongpassword'
       }
     });
@@ -141,8 +211,8 @@ describe('Management user Login', () => {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
-        username: 'manager4',
-        password: 'password'
+        username: 'manager',
+        password: 'manager_password'
       }
     });
 
@@ -150,12 +220,12 @@ describe('Management user Login', () => {
     const res = await fetch('/api/management/users/login', {
       method: 'POST',
       body: {
-        username: 'manager4',
-        password: 'password'
+        username: 'manager',
+        password: 'manager_password'
       }
     });
 
-    const [user] = await db('users').where({ username: 'manager4' });
+    const [user] = await db('users').where({ username: 'manager' });
     const jwt = await managementJWT.sign(Object.assign({}, { id: user.id }));
 
     //Then
@@ -202,18 +272,18 @@ describe('Management user password update', () => {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
-        username: 'manager5',
-        password: 'password'
+        username: 'manager',
+        password: 'manager_password'
       }
     });
 
     //When
-    const [user] = await db('users').where({ username: 'manager5' });
+    const [user] = await db('users').where({ username: 'manager' });
     const res1 = await fetch(`/api/management/users/${user.id}/update-password`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
-        password: 'password2'
+        password: 'manager_password2'
       }
     });
 
@@ -221,14 +291,14 @@ describe('Management user password update', () => {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
-        username: 'manager5',
-        password: 'password2'
+        username: 'manager',
+        password: 'manager_password2'
       }
     });
 
     //Then
     expect(res1.status).toEqual(200);
-    const [user2] = await db('users').where({ username: 'manager5' });
+    const [user2] = await db('users').where({ username: 'manager' });
     expect(user2.password_hash).not.toEqual(user.password_hash);
     expect(res2.ok).toBeTruthy();
     expect(res2.status).toEqual(200);
@@ -238,9 +308,6 @@ describe('Management user password update', () => {
 
 describe('Listing management users', () => {
   it('Should display an empty list when no manager is registered', async () => {
-    //Given
-    await db('users').del(); // It's fine to delete the contents of the managers table because no other table references it
-
     //When
     const res = await fetch('/api/management/users/list', {
       method: 'GET',
@@ -257,7 +324,6 @@ describe('Listing management users', () => {
 
   it('Should display correctly the registered managers', async () => {
     //Given
-    await db('users').del(); // It's fine to delete the contents of the managers table because no other table references it
     await fetch('/api/management/users/register', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },

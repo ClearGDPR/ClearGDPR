@@ -37,6 +37,7 @@ const {
 const {
   usersLoginValidator,
   usersRegistrationValidator,
+  usersRemovalValidator,
   usersUpdatePasswordValidator
 } = require('./users/users.validators');
 
@@ -122,6 +123,12 @@ module.exports = app => {
     '/users/register',
     usersRegistrationValidator,
     asyncHandler(async (req, res) => usersController.register(req, res))
+  );
+
+  router.post(
+    '/users/:userId/remove',
+    usersRemovalValidator,
+    asyncHandler(async (req, res) => usersController.remove(req, res))
   );
 
   router.post(

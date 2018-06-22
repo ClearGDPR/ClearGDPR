@@ -71,3 +71,17 @@ Object {
   "error": "User not found",
 }
 `;
+
+exports[`Management user removal Should not allow the removal with an ID thats not a positive integer 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"userId\\" fails because [\\"userId\\" must be a number]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "userId",
+    ],
+    "source": "params",
+  },
+}
+`;

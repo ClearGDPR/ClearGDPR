@@ -12,6 +12,12 @@ class UsersController {
     res.json({ success: true });
   }
 
+  async remove(req, res) {
+    const { userId } = req.params;
+    await this.usersService.removeUser(userId);
+    res.json({ success: true });
+  }
+
   async login(req, res) {
     const { username, password } = req.body;
     const user = await this.usersService.verifyUser(username, password);
