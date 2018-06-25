@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`List subjects that have given consent Update rectification request status Should error no status is provided 1`] = `
+exports[`List subjects that have given consent Update rectification request status Should error if no status is provided 1`] = `
 Object {
   "error": "Bad Request",
   "message": "child \\"status\\" fails because [\\"status\\" is required]",
