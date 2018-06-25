@@ -317,7 +317,20 @@ form {
   margin: var(--spacing) 0;
 }
 
-input[type='text'] {
+input[type='text'],
+input[type='password'],
+input[type='color'],
+input[type='date'],
+input[type='datetime-local'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='range'],
+input[type='search'],
+input[type='tel'],
+input[type='time'],
+input[type='url'],
+input[type='week'] {
   font-size: 1rem;
   width: 100%;
   margin: 0.2rem 0;

@@ -5,7 +5,7 @@ import Users from '../../components/Users/Users';
 import config from '../../config';
 import session from '../../helpers/Session';
 import { PanelConsumer } from '../MainLayout/PanelContext';
-import ChangePassword from '../../components/Users/ChangePassword';
+import ChangePassword from '../../containers/Users/ChangePassword';
 
 export class UsersContainer extends React.Component {
   static propTypes = {
@@ -45,8 +45,8 @@ export class UsersContainer extends React.Component {
       });
   }
 
-  openChangePasswordForm() {
-    this.props.openPanel(ChangePassword, 'Change password');
+  openChangePasswordForm(userId) {
+    this.props.openPanel(ChangePassword, 'Change password', { userId });
   }
 
   render() {

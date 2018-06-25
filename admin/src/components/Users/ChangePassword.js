@@ -35,6 +35,7 @@ export class ChangePassword extends React.Component {
         <TextInput
           label="New password"
           placeholder="*********"
+          type={'password'}
           error={
             this.props.touched &&
             this.props.touched['newPassword'] &&
@@ -47,6 +48,7 @@ export class ChangePassword extends React.Component {
         <TextInput
           label="Repeat new password"
           placeholder="*********"
+          type={'password'}
           error={
             this.props.touched &&
             this.props.touched['newPasswordRepeat'] &&
@@ -76,10 +78,10 @@ const changePasswordForm = props => (
   <Form onSubmit={submittedValues => props.onSubmit && props.onSubmit(submittedValues)}>
     {formApi => (
       <ChangePassword
+        {...props}
         onSubmit={formApi.submitForm}
         errors={formApi.errors}
         touched={formApi.touched}
-        {...props}
       />
     )}
   </Form>
