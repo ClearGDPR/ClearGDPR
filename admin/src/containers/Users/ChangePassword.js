@@ -13,7 +13,8 @@ export class ChangePasswordContainer extends React.Component {
   };
 
   state = {
-    isLoading: false
+    isLoading: false,
+    errors: {}
   };
 
   async changePassword(userId, password) {
@@ -55,11 +56,32 @@ export class ChangePasswordContainer extends React.Component {
     });
   }
 
+  validatePassword(password) {
+    // TODO: todo add proper validation
+    if (!password) {
+      return {
+        error: 'Field required'
+      };
+    }
+    if (password.length < 8) {
+      return {
+        error: 'Password must have min. 8 characters'
+      };
+    }
+    return {
+      success: null
+    };
+  }
+
   onSubmit(data) {
     const { newPassword, newPasswordRepeat } = data;
 
     if (newPassword !== newPasswordRepeat) {
-      console.error('Passwords do not match!');
+      this.setState({
+        errors: {
+          newPasswordRepeat: 'Passwords do not match!'
+        }
+      });
       return;
     }
 
@@ -72,7 +94,14 @@ export class ChangePasswordContainer extends React.Component {
   }
 
   render() {
-    return <ChangePassword onSubmit={this.onSubmit.bind(this)} isLoading={this.state.isLoading} />;
+    return (
+      <ChangePassword
+        errors={this.state.errors}
+        validatePassword={this.validatePassword}
+        onSubmit={this.onSubmit.bind(this)}
+        isLoading={this.state.isLoading}
+      />
+    );
   }
 }
 

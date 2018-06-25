@@ -13,6 +13,7 @@ const TextInput = props => {
         placeholder={props.placeholder}
         validate={props.validate}
         field={props.field}
+        autoComplete="off"
       />
     </div>
   );

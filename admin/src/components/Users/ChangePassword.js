@@ -8,26 +8,10 @@ export class ChangePassword extends React.Component {
   static propTypes = {
     isLoading: PropTypes.bool,
     onSubmit: PropTypes.func,
+    validatePassword: PropTypes.func,
     touched: PropTypes.object,
     errors: PropTypes.object
   };
-
-  validatePassword(password) {
-    // TODO: todo add proper validation
-    if (!password) {
-      return {
-        error: 'Field required'
-      };
-    }
-    if (password.length < 8) {
-      return {
-        error: 'Password must have min. 8 characters'
-      };
-    }
-    return {
-      success: null
-    };
-  }
 
   renderForm() {
     return (
@@ -43,7 +27,7 @@ export class ChangePassword extends React.Component {
             this.props.errors['newPassword']
           }
           field="newPassword"
-          validate={this.validatePassword}
+          validate={this.props.validatePassword}
         />
         <TextInput
           label="Repeat new password"
@@ -56,7 +40,7 @@ export class ChangePassword extends React.Component {
             this.props.errors['newPasswordRepeat']
           }
           field="newPasswordRepeat"
-          validate={this.validatePassword}
+          validate={this.props.validatePassword}
         />
         <div>
           <input type="submit" className="btn" value="Save" />
@@ -80,7 +64,7 @@ const changePasswordForm = props => (
       <ChangePassword
         {...props}
         onSubmit={formApi.submitForm}
-        errors={formApi.errors}
+        errors={{ ...formApi.errors, ...props.errors }}
         touched={formApi.touched}
       />
     )}
@@ -88,7 +72,8 @@ const changePasswordForm = props => (
 );
 
 changePasswordForm.propTypes = {
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  errors: PropTypes.object
 };
 
 export default changePasswordForm;
