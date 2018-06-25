@@ -33,15 +33,34 @@ export class ChangePasswordContainer extends React.Component {
     );
 
     if (!response.ok) {
-      if (response.status === 400) throw new Error(await response.json().message);
-      else throw new Error('Unknown error occurred');
+      if (response.status === 400) {
+        this.setState({
+          errors: {
+            '': await response.json().message
+          }
+        });
+        return;
+      } else {
+        this.setState({
+          errors: {
+            '': 'Unknown error occurred'
+          }
+        });
+        return;
+      }
     }
 
     const result = await response.json();
 
-    if (!result.success) {
-      throw new Error('Unknown error occurred');
+    if (result.success) {
+      return;
     }
+
+    this.setState({
+      errors: {
+        '': 'Unknown error occurred'
+      }
+    });
   }
 
   startLoading() {
@@ -87,7 +106,7 @@ export class ChangePasswordContainer extends React.Component {
 
     this.startLoading();
 
-    this.changePassword(this.props.userId, newPassword)
+    return this.changePassword(this.props.userId, newPassword)
       .then(this.stopLoading.bind(this))
       .then(() => this.props.closePanel && this.props.closePanel())
       .catch(this.stopLoading.bind(this));

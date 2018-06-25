@@ -12,7 +12,7 @@ beforeEach(() => {
   session.getToken.mockReturnValue('token');
 });
 
-describe('(Component) Users', () => {
+describe('(Container) Users', () => {
   let users = [
     {
       id: 1,
