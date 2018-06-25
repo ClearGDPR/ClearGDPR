@@ -13,7 +13,13 @@ class SubjectsService {
 
   async getRequestData(id) {
     const [requestData] = await this.db('rectification_requests')
-      .select('key', 'personal_data', 'status', 'encrypted_rectification_payload', 'subject_id')
+      .select(
+        'key',
+        'personal_data',
+        'status',
+        'encrypted_rectification_payload',
+        'rectification_requests.subject_id'
+      )
       .select(this.db.raw('rectification_requests.id as rectification_request_id'))
       .select(this.db.raw('rectification_requests.created_at as rectification_request_created_at'))
       .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
@@ -103,7 +109,7 @@ class SubjectsService {
   async updateRectificationRequestStatus(requestId, status) {
     const [request] = await this.db('rectification_requests').where({ id: requestId });
 
-    if (!request.id) throw new NotFound('Rectification request not found');
+    if (!request) throw new NotFound('Rectification request not found');
 
     if (status === request.status) {
       throw new BadRequest(`Status is already ${status}`);
@@ -141,7 +147,7 @@ class SubjectsService {
   }
 
   async getRectificationRequest(requestId) {
-    const [requestData] = await this.getRequestData(requestId);
+    const requestData = await this.getRequestData(requestId);
 
     if (!requestData) throw new NotFound('Request not found');
 

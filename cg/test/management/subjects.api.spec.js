@@ -18,7 +18,7 @@ beforeEach(async () => {
 });
 afterAll(closeResources);
 
-async function createSubjectWithRectification(overrides) {
+async function createSubjectWithRectification(overrides = {}) {
   const idHash = hash(
     Math.random()
       .toString(36)
@@ -638,7 +638,7 @@ describe('List subjects that have given consent', () => {
 
       const [subject] = await db('subjects')
         .join('subject_keys', 'subjects.id', 'subject_keys.subject_id')
-        .where({ subject_id: request.subejct_id });
+        .where({ subject_id: request.subject_id });
 
       expect(
         JSON.parse(decryptFromStorage(subject.personal_data, subject.key)).custom_payload
