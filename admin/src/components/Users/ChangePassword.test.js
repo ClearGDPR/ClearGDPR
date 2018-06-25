@@ -71,38 +71,4 @@ describe('(Component) Change Password', () => {
 
     expect(newPasswordInput.props().error).toEqual('Error message');
   });
-
-  describe('Validate password', () => {
-    it('should return error when password is null or empty', async () => {
-      const { component } = setupShallow();
-      let result = component.instance().validatePassword('');
-      expect(result).toEqual(
-        expect.objectContaining({
-          error: 'Field required'
-        })
-      );
-      result = component.instance().validatePassword();
-      expect(result).toEqual(
-        expect.objectContaining({
-          error: 'Field required'
-        })
-      );
-    });
-
-    it('should return error when password is too short', async () => {
-      const { component } = setupShallow();
-      let result = component.instance().validatePassword('asc');
-      expect(result).toEqual(
-        expect.objectContaining({
-          error: 'Password must have min. 8 characters'
-        })
-      );
-      result = component.instance().validatePassword('asffas');
-      expect(result).toEqual(
-        expect.objectContaining({
-          error: 'Password must have min. 8 characters'
-        })
-      );
-    });
-  });
 });
