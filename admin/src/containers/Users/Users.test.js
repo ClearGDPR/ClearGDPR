@@ -4,13 +4,9 @@ import { shallow, mount } from 'enzyme';
 
 import { UsersContainer } from './Users';
 import session from '../../helpers/Session';
+import TestUtils from '../../helpers/TestUtils';
 
 jest.mock('../../helpers/Session');
-
-function flushPromises() {
-  // or: return new Promise(res => process.nextTick(res));
-  return new Promise(resolve => setImmediate(resolve));
-}
 
 beforeEach(() => {
   session.getToken.mockReturnValue('token');
@@ -47,7 +43,7 @@ describe('(Component) Users', () => {
     );
 
     const component = mount(<UsersContainer />);
-    await flushPromises();
+    await TestUtils.flushPromises();
 
     expect(component.state()).toEqual(
       expect.objectContaining({
@@ -68,7 +64,7 @@ describe('(Component) Users', () => {
 
     const component = shallow(<UsersContainer />);
 
-    await flushPromises();
+    await TestUtils.flushPromises();
     expect(component).toMatchSnapshot();
   });
 });
