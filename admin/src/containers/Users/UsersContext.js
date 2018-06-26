@@ -6,6 +6,7 @@ import config from '../../config';
 const UsersContext = createContext({
   users: [],
   fetchUsers: () => {},
+  registerUser: () => {},
   isLoading: false
 });
 
@@ -21,6 +22,7 @@ export class UsersProvider extends Component {
   state = {
     users: [],
     fetchUsers: this.fetchUsers.bind(this),
+    registerUser: this.registerUser.bind(this),
     isLoading: false
   };
 
@@ -48,6 +50,14 @@ export class UsersProvider extends Component {
         password
       })
     });
+
+    if (response.status === 400) {
+      this.setLoading(false);
+      const result = await response.json();
+      throw new Error(result.error);
+    } else if (response.status !== 201) {
+      throw new Error('Unknown error occurred');
+    }
 
     return await response.json();
   }

@@ -6,6 +6,7 @@ import { UsersConsumer } from './UsersContext';
 
 import Users from '../../components/Users/Users';
 import ChangePassword from '../../containers/Users/ChangePassword';
+import Register from './Register';
 
 export class UsersContainer extends React.Component {
   static propTypes = {
@@ -23,12 +24,17 @@ export class UsersContainer extends React.Component {
     this.props.openPanel(ChangePassword, 'Change password', { userId });
   }
 
+  openRegisterUserForm() {
+    this.props.openPanel(Register, 'Register user');
+  }
+
   render() {
     return (
       <Users
         users={this.props.users}
         isLoading={this.props.isLoading}
         onChangePasswordClick={this.openChangePasswordForm.bind(this)}
+        onRegisterUserClick={this.openRegisterUserForm.bind(this)}
       />
     );
   }

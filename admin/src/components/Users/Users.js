@@ -4,11 +4,15 @@ import PropTypes from 'prop-types';
 import Card from '../core/cards/dashboard/Card';
 import Loader from '../core/cards/dashboard/Loader';
 
-const Users = ({ users, onChangePasswordClick, isLoading }) => {
+const Users = ({ users, onChangePasswordClick, onRegisterUserClick, isLoading }) => {
   function onChangePasswordClickHandler(e, userId) {
     e.preventDefault();
-    if (!onChangePasswordClick) return;
-    onChangePasswordClick(userId);
+    onChangePasswordClick && onChangePasswordClick(userId);
+  }
+
+  function onRegisterUserClickHandler(e) {
+    e.preventDefault();
+    onRegisterUserClick && onRegisterUserClick();
   }
 
   function renderUsers() {
@@ -33,6 +37,10 @@ const Users = ({ users, onChangePasswordClick, isLoading }) => {
             <h4>Users</h4>
             <p>Manage users that can access the administrative panel</p>
           </div>
+          <div className="spacer" />
+          <button className="ui-action btn" onClick={onRegisterUserClickHandler}>
+            + Register User
+          </button>
         </div>
         <div className="row">
           <Card cols={8}>
@@ -62,6 +70,7 @@ const Users = ({ users, onChangePasswordClick, isLoading }) => {
 Users.propTypes = {
   users: PropTypes.arrayOf(PropTypes.object),
   onChangePasswordClick: PropTypes.func,
+  onRegisterUserClick: PropTypes.func,
   isLoading: PropTypes.bool
 };
 
