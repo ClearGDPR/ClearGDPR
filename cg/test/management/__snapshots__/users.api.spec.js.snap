@@ -34,7 +34,8 @@ Object {
 
 exports[`Management user Registration Should not allow the registration of an already registered manager 1`] = `
 Object {
-  "success": true,
+  "id": 1,
+  "username": "manager",
 }
 `;
 

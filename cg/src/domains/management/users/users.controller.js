@@ -8,8 +8,8 @@ class UsersController {
 
   async register(req, res) {
     const { username, password } = req.body;
-    await this.usersService.createNewUser(username, password);
-    res.json({ success: true });
+    const result = await this.usersService.createNewUser(username, password);
+    res.status(201).json(result);
   }
 
   async remove(req, res) {

@@ -52,7 +52,7 @@ describe('Management user Registration', () => {
 
     // Then
     expect(res1.ok).toBeTruthy();
-    expect(res1.status).toEqual(200);
+    expect(res1.status).toEqual(201);
     expect(await res1.json()).toMatchSnapshot();
     expect(res2.ok).toBeFalsy();
     expect(res2.status).toEqual(BadRequest.StatusCode);
@@ -72,7 +72,14 @@ describe('Management user Registration', () => {
 
     //Then
     expect(res.ok).toBeTruthy();
-    expect(res.status).toEqual(200);
+    expect(res.status).toEqual(201);
+    const result = await res.json();
+    expect(result).toEqual(
+      expect.objectContaining({
+        id: expect.any(Number),
+        username: 'manager'
+      })
+    );
     const [user] = await db('users').where({ username: 'manager' });
     expect(user).toBeTruthy();
   });

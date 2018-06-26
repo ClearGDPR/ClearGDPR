@@ -15,9 +15,7 @@ class UsersService {
   }
 
   async getUserByUsername(username) {
-    const [user] = await this.db('users')
-      .where({ username })
-      .limit(1);
+    const [user] = await this.db('users').where({ username });
     return user;
   }
 
@@ -32,7 +30,11 @@ class UsersService {
     const passwordHash = await this._hashPassword(password);
     const user = await this.getUserByUsername(username);
     if (user) throw new BadRequest('User already exists');
-    await this.db('users').insert({ username, password_hash: passwordHash });
+    const [insertedUser] = await this.db('users')
+      .insert({ username, password_hash: passwordHash })
+      .returning(['id', 'username']);
+
+    return insertedUser;
   }
 
   async removeUser(userId) {
