@@ -28,7 +28,16 @@ export class LoginContainer extends React.Component {
   }
 
   render() {
-    return <Login auth={this.handleLogin.bind(this)} />;
+    // apparently this is the "official" way to use query parameters with react-router 4...
+    const query = new URLSearchParams(window.location.search);
+    return (
+      <Login
+        auth={this.handleLogin.bind(this)}
+        errors={
+          query.get('expired') ? { SessionExpired: 'Session expired, please login again' } : {}
+        }
+      />
+    );
   }
 }
 

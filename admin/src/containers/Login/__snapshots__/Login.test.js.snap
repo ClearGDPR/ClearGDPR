@@ -3,5 +3,6 @@
 exports[`(Container) Login should render correctly 1`] = `
 <Login
   auth={[Function]}
+  errors={Object {}}
 />
 `;

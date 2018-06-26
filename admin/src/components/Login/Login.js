@@ -51,7 +51,7 @@ class Login extends React.Component {
               <Form onSubmit={values => this.onLoginSubmit(values)}>
                 {({ submitForm, errors }) => (
                   <form onSubmit={submitForm}>
-                    <Errors errors={{ ...this.state.errors, ...errors }} />
+                    <Errors errors={{ ...this.props.errors, ...this.state.errors, ...errors }} />
                     <Text field="username" placeholder="Your username" validateOnSubmit required />
                     <Text
                       field="password"
@@ -75,7 +75,12 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
+  errors: PropTypes.object,
   auth: PropTypes.func.isRequired
+};
+
+Login.defaultValues = {
+  errors: {}
 };
 
 export default Login;

@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 
 import Users from '../../components/Users/Users';
 import config from '../../config';
-import session from '../../helpers/Session';
+// import session from '../../helpers/Session';
 import { PanelConsumer } from '../MainLayout/PanelContext';
 import ChangePassword from '../../containers/Users/ChangePassword';
+import internalFetch from './../../helpers/internal-fetch';
 
 export class UsersContainer extends React.Component {
   static propTypes = {
@@ -18,13 +19,7 @@ export class UsersContainer extends React.Component {
   };
 
   async getUsers() {
-    const response = await fetch(`${config.API_URL}/api/management/users/list`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${session.getToken()}`
-      }
-    });
+    const response = await internalFetch(`${config.API_URL}/api/management/users/list`);
 
     return await response.json();
   }

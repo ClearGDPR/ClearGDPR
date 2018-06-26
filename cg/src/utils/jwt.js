@@ -42,7 +42,7 @@ exports.managementJWT = new JWT(
   'HS256',
   process.env.MANAGEMENT_SECRET,
   process.env.MANAGEMENT_SECRET,
-  { expiresIn: getTokenExpiry() }
+  { expiresIn: 5 }
 );
 
 exports.jwtFactory = function(secret) {
