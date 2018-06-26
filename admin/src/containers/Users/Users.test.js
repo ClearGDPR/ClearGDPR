@@ -1,51 +1,49 @@
 import React from 'react';
 
-import { shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 
 import { UsersContainer } from './Users';
-import session from '../../helpers/Session';
-import * as TestUtils from '../../tests/helpers/TestUtils';
 
 jest.mock('../../helpers/Session');
 
-beforeEach(() => {
-  session.getToken.mockReturnValue('token');
-});
+const users = [
+  {
+    id: 1,
+    username: 'admin'
+  },
+  {
+    id: 2,
+    username: 'joe'
+  },
+  {
+    id: 3,
+    username: 'marc'
+  },
+  {
+    id: 4,
+    username: 'gina'
+  }
+];
+
+const setupShallow = propOverrides => {
+  const props = Object.assign({ users, fetchUsers: () => {}, isLoading: false }, propOverrides);
+  const component = shallow(<UsersContainer {...props} />);
+
+  return { props, component };
+};
+
+const setupMount = propOverrides => {
+  const props = Object.assign({ users, fetchUsers: () => {}, isLoading: false }, propOverrides);
+  const component = mount(<UsersContainer {...props} />);
+
+  return { props, component };
+};
 
 describe('(Container) Users', () => {
-  let users = [
-    {
-      id: 1,
-      username: 'admin'
-    },
-    {
-      id: 2,
-      username: 'joe'
-    },
-    {
-      id: 3,
-      username: 'marc'
-    },
-    {
-      id: 4,
-      username: 'gina'
-    }
-  ];
-
   it('should have correct state after mounting', async () => {
-    global.fetch = jest.fn().mockImplementationOnce(() =>
-      Promise.resolve({
-        status: 200,
-        json: () => {
-          return users;
-        }
-      })
-    );
+    const { component } = setupShallow();
 
-    const component = mount(<UsersContainer />);
-    await TestUtils.flushPromises();
-
-    expect(component.state()).toEqual(
+    expect(component.props()).toEqual(
       expect.objectContaining({
         users: users
       })
@@ -53,18 +51,12 @@ describe('(Container) Users', () => {
   });
 
   it('should render correctly', async () => {
-    global.fetch = jest.fn().mockImplementationOnce(() =>
-      Promise.resolve({
-        status: 200,
-        json: () => {
-          return users;
-        }
-      })
-    );
-
-    const component = shallow(<UsersContainer />);
-
-    await TestUtils.flushPromises();
+    const { component } = setupShallow();
     expect(component).toMatchSnapshot();
+  });
+
+  it('should fetch users after mounting the component', async () => {
+    const { component } = setupMount({ fetchUsers: jest.fn() });
+    expect(component.props().fetchUsers).toHaveBeenCalled();
   });
 });

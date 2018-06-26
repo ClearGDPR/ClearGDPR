@@ -4,7 +4,30 @@ exports[`(Container) Users should render correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <UsersContainer />,
+  Symbol(enzyme.__unrendered__): <UsersContainer
+    fetchUsers={[Function]}
+    isLoading={false}
+    users={
+      Array [
+        Object {
+          "id": 1,
+          "username": "admin",
+        },
+        Object {
+          "id": 2,
+          "username": "joe",
+        },
+        Object {
+          "id": 3,
+          "username": "marc",
+        },
+        Object {
+          "id": 4,
+          "username": "gina",
+        },
+      ]
+    }
+  />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -17,9 +40,26 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
-      "isLoading": true,
+      "isLoading": false,
       "onChangePasswordClick": [Function],
-      "users": Array [],
+      "users": Array [
+        Object {
+          "id": 1,
+          "username": "admin",
+        },
+        Object {
+          "id": 2,
+          "username": "joe",
+        },
+        Object {
+          "id": 3,
+          "username": "marc",
+        },
+        Object {
+          "id": 4,
+          "username": "gina",
+        },
+      ],
     },
     "ref": null,
     "rendered": null,
@@ -31,9 +71,26 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
-        "isLoading": true,
+        "isLoading": false,
         "onChangePasswordClick": [Function],
-        "users": Array [],
+        "users": Array [
+          Object {
+            "id": 1,
+            "username": "admin",
+          },
+          Object {
+            "id": 2,
+            "username": "joe",
+          },
+          Object {
+            "id": 3,
+            "username": "marc",
+          },
+          Object {
+            "id": 4,
+            "username": "gina",
+          },
+        ],
       },
       "ref": null,
       "rendered": null,
