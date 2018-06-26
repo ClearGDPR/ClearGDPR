@@ -36,6 +36,22 @@ export class UsersProvider extends Component {
     return await response.json();
   }
 
+  async _registerUser(username, password) {
+    const response = await fetch(`${config.API_URL}/api/management/users/register`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${session.getToken()}`
+      },
+      body: JSON.stringify({
+        username,
+        password
+      })
+    });
+
+    return await response.json();
+  }
+
   setLoading(loading) {
     this.setState({
       isLoading: loading
@@ -50,6 +66,15 @@ export class UsersProvider extends Component {
       users,
       isLoading: false
     });
+  }
+
+  async registerUser(username, password) {
+    this.setLoading(true);
+
+    const user = await this._registerUser(username, password);
+    await this.fetchUsers();
+
+    return user;
   }
 
   render() {

@@ -62,6 +62,33 @@ describe('UsersProvider', () => {
     );
   });
 
+  it('should have correct state after registering a new user', async () => {
+    let i = 0;
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        status: 200,
+        json: () => {
+          const result =
+            i === 0 ? { id: 5, username: 'bobby' } : [...users, { id: 5, username: 'bobby' }];
+          i++;
+          return result;
+        }
+      })
+    );
+
+    const { component } = setupShallow();
+    const bobby = await component.instance().registerUser('bobby', 'somePassword123');
+
+    await TestUtils.flushPromises();
+
+    expect(component.state()).toEqual(
+      expect.objectContaining({
+        users: expect.arrayContaining([...users, bobby]),
+        isLoading: false
+      })
+    );
+  });
+
   it('should render correctly', async () => {
     global.fetch = jest.fn().mockImplementationOnce(() =>
       Promise.resolve({
