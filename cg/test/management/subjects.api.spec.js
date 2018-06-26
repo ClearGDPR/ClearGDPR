@@ -9,6 +9,7 @@ const {
 const { managementJWT } = require('../../src/utils/jwt');
 const { BadRequest, Unauthorized, ValidationError } = require('../../src/utils/errors');
 const { omit } = require('underscore');
+const { RECTIFICATION_STATUSES } = require('./../../src/utils/constants');
 
 beforeAll(initResources);
 beforeEach(async () => {
@@ -504,8 +505,8 @@ describe('List subjects that have given consent', () => {
       expect(body.error).toEqual('Page number too big, maximum page number is 1');
     });
     it('Should only serve pending rectification requests', async () => {
-      await createSubjectWithRectification({ status: 'APPROVED' });
-      await createSubjectWithRectification({ status: 'DISAPPROVED' });
+      await createSubjectWithRectification({ status: RECTIFICATION_STATUSES.APPROVED });
+      await createSubjectWithRectification({ status: RECTIFICATION_STATUSES.DISAPPROVED });
       const managementToken = await managementJWT.sign({ id: 1 });
 
       const res = await fetch('/api/management/subjects/rectification-requests/list', {
@@ -568,7 +569,7 @@ describe('List subjects that have given consent', () => {
           currentData: expect.any(Object),
           updates: expect.any(Object),
           createdAt: expect.any(String),
-          status: 'PENDING'
+          status: RECTIFICATION_STATUSES.PENDING
         })
       );
     });
@@ -597,7 +598,7 @@ describe('List subjects that have given consent', () => {
         {
           method: 'POST',
           body: {
-            status: 'APPROVED'
+            status: RECTIFICATION_STATUSES.APPROVED
           },
           headers: {
             Authorization: `Bearer ${managementToken}`
@@ -623,7 +624,7 @@ describe('List subjects that have given consent', () => {
         {
           method: 'POST',
           body: {
-            status: 'APPROVED'
+            status: RECTIFICATION_STATUSES.APPROVED
           },
           headers: {
             Authorization: `Bearer ${managementToken}`
@@ -634,7 +635,7 @@ describe('List subjects that have given consent', () => {
       expect(res.status).toEqual(200);
 
       const [request] = await db('rectification_requests').where({ id: rectificationRequestId });
-      expect(request.status).toEqual('APPROVED');
+      expect(request.status).toEqual(RECTIFICATION_STATUSES.APPROVED);
 
       const [subject] = await db('subjects')
         .join('subject_keys', 'subjects.id', 'subject_keys.subject_id')
@@ -655,7 +656,7 @@ describe('List subjects that have given consent', () => {
         {
           method: 'POST',
           body: {
-            status: 'DISAPPROVED'
+            status: RECTIFICATION_STATUSES.DISAPPROVED
           },
           headers: {
             Authorization: `Bearer ${managementToken}`
@@ -701,7 +702,7 @@ describe('List subjects that have given consent', () => {
             Authorization: `Bearer ${managementToken}`
           },
           body: {
-            status: 'APPROVED'
+            status: RECTIFICATION_STATUSES.APPROVED
           }
         }
       );
