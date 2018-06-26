@@ -1,43 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Users from '../../components/Users/Users';
-import config from '../../config';
-// import session from '../../helpers/Session';
 import { PanelConsumer } from '../MainLayout/PanelContext';
+import { UsersConsumer } from './UsersContext';
+
+import Users from '../../components/Users/Users';
 import ChangePassword from '../../containers/Users/ChangePassword';
-import internalFetch from './../../helpers/internal-fetch';
 
 export class UsersContainer extends React.Component {
   static propTypes = {
-    openPanel: PropTypes.func
+    openPanel: PropTypes.func,
+    users: PropTypes.arrayOf(PropTypes.object),
+    isLoading: PropTypes.bool,
+    fetchUsers: PropTypes.func
   };
-
-  state = {
-    users: [],
-    isLoading: true
-  };
-
-  async getUsers() {
-    const response = await internalFetch(`${config.API_URL}/api/management/users/list`);
-
-    return await response.json();
-  }
 
   componentDidMount() {
-    this.getUsers()
-      .then(users =>
-        this.setState({
-          users,
-          isLoading: false
-        })
-      )
-      .catch(e => {
-        console.error(e);
-        this.setState({
-          isLoading: false
-        });
-      });
+    this.props.fetchUsers();
   }
 
   openChangePasswordForm(userId) {
@@ -47,8 +26,8 @@ export class UsersContainer extends React.Component {
   render() {
     return (
       <Users
-        users={this.state.users}
-        isLoading={this.state.isLoading}
+        users={this.props.users}
+        isLoading={this.props.isLoading}
         onChangePasswordClick={this.openChangePasswordForm.bind(this)}
       />
     );
@@ -57,6 +36,18 @@ export class UsersContainer extends React.Component {
 
 export default props => (
   <PanelConsumer>
-    {({ openPanel }) => <UsersContainer {...props} openPanel={openPanel} />}
+    {({ openPanel }) => (
+      <UsersConsumer>
+        {({ users, isLoading, fetchUsers }) => (
+          <UsersContainer
+            {...props}
+            users={users}
+            isLoading={isLoading}
+            fetchUsers={fetchUsers}
+            openPanel={openPanel}
+          />
+        )}
+      </UsersConsumer>
+    )}
   </PanelConsumer>
 );

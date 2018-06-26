@@ -9,6 +9,7 @@ import MainLayout from '../../components/MainLayout/MainLayout';
 
 import UsersContainer from '../Users/Users';
 import ProcessorsContainer from '../Processors/Processors';
+import { UsersProvider } from '../Users/UsersContext';
 
 class MainLayoutContainer extends Component {
   state = {
@@ -37,34 +38,36 @@ class MainLayoutContainer extends Component {
 
   render() {
     return (
-      <PanelProvider>
-        <PanelConsumer>
-          {({ component: Component, title: panelTitle, props, closePanel, isPanelOpen }) => (
-            <MainLayout
-              isSidenavOpen={this.state.isSidenavOpen}
-              isPanelOpen={isPanelOpen}
-              username={session.getUsername()}
-              onMenuClick={this.toggleSidenav.bind(this)}
-              onOverlayClick={closePanel}
-              onClosePanelClick={closePanel}
-              panelContent={Component ? <Component {...props} /> : null}
-              panelTitle={panelTitle}
-              content={
-                <Switch>
-                  <Route exact path="/" render={() => <React.Fragment>Dashboard</React.Fragment>} />
-                  <Route exact path="/processors" render={() => <ProcessorsContainer />} />
-                  <Route exact path="/users" render={() => <UsersContainer />} />
-                  <Route
-                    exact
-                    path="/profile"
-                    render={() => <React.Fragment>Profile</React.Fragment>}
-                  />
-                </Switch>
-              }
-            />
-          )}
-        </PanelConsumer>
-      </PanelProvider>
+      <UsersProvider>
+        <PanelProvider>
+          <PanelConsumer>
+            {({ component: Component, title: panelTitle, props, closePanel, isPanelOpen }) => (
+              <MainLayout
+                isSidenavOpen={this.state.isSidenavOpen}
+                isPanelOpen={isPanelOpen}
+                username={session.getUsername()}
+                onMenuClick={this.toggleSidenav.bind(this)}
+                onOverlayClick={closePanel}
+                onClosePanelClick={closePanel}
+                panelContent={Component ? <Component {...props} /> : null}
+                panelTitle={panelTitle}
+                content={
+                  <Switch>
+                    <Route exact path="/" render={() => <React.Fragment>Dashboard</React.Fragment>} />
+                    <Route exact path="/processors" render={() => <ProcessorsContainer />} />
+                    <Route exact path="/users" render={() => <UsersContainer />} />
+                    <Route
+                      exact
+                      path="/profile"
+                      render={() => <React.Fragment>Profile</React.Fragment>}
+                    />
+                  </Switch>
+                }
+              />
+            )}
+          </PanelConsumer>
+        </PanelProvider>
+      </UsersProvider>
     );
   }
 }
