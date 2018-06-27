@@ -33,7 +33,7 @@ describe('UsersProvider', () => {
   ];
 
   const setupShallow = propOverrides => {
-    const props = Object.assign({ users }, propOverrides);
+    const props = Object.assign({}, propOverrides);
     const component = shallow(<UsersProvider {...props} />);
 
     return { props, component };
@@ -62,11 +62,50 @@ describe('UsersProvider', () => {
     );
   });
 
+  it('should throw error when registering new user returned HTTP 400', async () => {
+    global.fetch = jest.fn().mockImplementationOnce(() =>
+      Promise.resolve({
+        status: 400,
+        json: () => ({ error: 'Error message' })
+      })
+    );
+
+    const { component } = setupShallow();
+
+    await expect(
+      component.instance().registerUser('bobby', 'somePassword123')
+    ).rejects.toMatchSnapshot();
+    expect(component.state()).toEqual(
+      expect.objectContaining({
+        isLoading: false
+      })
+    );
+  });
+
+  it('should throw error when registering new user returned HTTP 500', async () => {
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        status: 500
+      })
+    );
+
+    const { component } = setupShallow();
+
+    await expect(
+      component.instance().registerUser('bobby', 'somePassword123')
+    ).rejects.toMatchSnapshot();
+    expect(component.state()).toEqual(
+      expect.objectContaining({
+        isLoading: false
+      })
+    );
+  });
+
   it('should have correct state after registering a new user', async () => {
     let i = 0;
     global.fetch = jest.fn().mockImplementation(() =>
       Promise.resolve({
-        status: 200,
+        status: 201,
         json: () => {
           const result =
             i === 0 ? { id: 5, username: 'bobby' } : [...users, { id: 5, username: 'bobby' }];

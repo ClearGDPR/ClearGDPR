@@ -56,6 +56,7 @@ export class UsersProvider extends Component {
       const result = await response.json();
       throw new Error(result.error);
     } else if (response.status !== 201) {
+      this.setLoading(false);
       throw new Error('Unknown error occurred');
     }
 

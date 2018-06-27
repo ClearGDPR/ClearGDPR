@@ -4,28 +4,7 @@ exports[`UsersProvider should render correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <UsersProvider
-    users={
-      Array [
-        Object {
-          "id": 1,
-          "username": "admin",
-        },
-        Object {
-          "id": 2,
-          "username": "joe",
-        },
-        Object {
-          "id": 3,
-          "username": "marc",
-        },
-        Object {
-          "id": 4,
-          "username": "gina",
-        },
-      ]
-    }
-  />,
+  Symbol(enzyme.__unrendered__): <UsersProvider />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -138,3 +117,7 @@ ShallowWrapper {
   },
 }
 `;
+
+exports[`UsersProvider should throw error when registering new user returned HTTP 400 1`] = `[Error: Error message]`;
+
+exports[`UsersProvider should throw error when registering new user returned HTTP 500 1`] = `[Error: Unknown error occurred]`;
