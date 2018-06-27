@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import ChangePassword from '../../components/Users/ChangePassword';
 import config from '../../config';
-import session from '../../helpers/Session';
 import { PanelConsumer } from '../MainLayout/PanelContext';
+import internalFetch from '../../helpers/internal-fetch';
 
 export class ChangePasswordContainer extends React.Component {
   static propTypes = {
@@ -18,14 +18,10 @@ export class ChangePasswordContainer extends React.Component {
   };
 
   async changePassword(userId, password) {
-    const response = await fetch(
+    const response = await internalFetch(
       `${config.API_URL}/api/management/users/${userId}/update-password`,
       {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${session.getToken()}`
-        },
         body: JSON.stringify({
           password
         })

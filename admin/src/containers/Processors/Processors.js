@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import Processors from '../../components/Processors/Processors';
 import config from '../../config';
-import session from '../../helpers/Session';
 import { PanelConsumer } from '../MainLayout/PanelContext';
 import Form from '../../components/core/cards/dashboard/Form';
+import internalFetch from '../../helpers/internal-fetch';
 
 export class ProcessorsContainer extends React.Component {
   static propTypes = {
@@ -18,13 +18,7 @@ export class ProcessorsContainer extends React.Component {
   };
 
   async getProcessors() {
-    const response = await fetch(`${config.API_URL}/api/management/processors/list`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${session.getToken()}`
-      }
-    });
+    const response = await internalFetch(`${config.API_URL}/api/management/processors/list`);
 
     return await response.json();
   }
