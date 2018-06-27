@@ -21,7 +21,7 @@ export class LoginContainer extends React.Component {
         'Content-Type': 'application/json'
       }
     }).then(async res => {
-      session.set(await res.json());
+      session.set({ ...(await res.json()), username });
       history.push(from);
       return res;
     });

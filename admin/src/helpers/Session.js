@@ -7,9 +7,16 @@ export class Session {
     localStorage.removeItem('auth');
   }
 
+  get _auth() {
+    return JSON.parse(localStorage.getItem('auth') || 'null');
+  }
+
   getToken() {
-    const auth = JSON.parse(localStorage.getItem('auth') || 'null');
-    return auth ? auth.jwt : null;
+    return this._auth ? this._auth.jwt : null;
+  }
+
+  getUsername() {
+    return this._auth ? this._auth.username : null;
   }
 
   isLoggedIn() {

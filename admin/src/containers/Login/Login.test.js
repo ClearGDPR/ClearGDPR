@@ -5,7 +5,13 @@ import { createMemoryHistory } from 'history';
 import { flushPromises } from '../../tests/helpers/TestUtils';
 import { LoginContainer } from './Login';
 
+import session from '../../helpers/Session';
+
 jest.mock('../../helpers/Session');
+
+beforeEach(() => {
+  jest.resetAllMocks();
+});
 
 const setup = propOverrides => {
   const props = Object.assign({}, propOverrides);
@@ -28,7 +34,9 @@ describe('(Container) Login', () => {
       Promise.resolve({
         ok: true,
         status: 200,
-        json: () => 'token'
+        json: () => ({
+          jwt: 'token'
+        })
       })
     );
 
@@ -39,7 +47,13 @@ describe('(Container) Login', () => {
     await flushPromises();
     expect(global.fetch).toBeCalled();
     expect(response.status).toBe(200);
-    expect(response.json()).toBe('token');
+    expect(response.json()).toEqual({
+      jwt: 'token'
+    });
+    expect(session.set).toHaveBeenLastCalledWith({
+      jwt: 'token',
+      username: 'username'
+    });
   });
 
   it('should send bad username or password and fail', async () => {

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import MainLayout from '../../components/MainLayout/MainLayout';
-
 import { PanelProvider, PanelConsumer } from './PanelContext';
+
+import session from '../../helpers/Session';
+
+import MainLayout from '../../components/MainLayout/MainLayout';
 
 import UsersContainer from '../Users/Users';
 import ProcessorsContainer from '../Processors/Processors';
@@ -41,7 +43,7 @@ class MainLayoutContainer extends Component {
             <MainLayout
               isSidenavOpen={this.state.isSidenavOpen}
               isPanelOpen={isPanelOpen}
-              username="admin"
+              username={session.getUsername()}
               onMenuClick={this.toggleSidenav.bind(this)}
               onOverlayClick={closePanel}
               onClosePanelClick={closePanel}
