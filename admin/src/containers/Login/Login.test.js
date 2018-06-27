@@ -2,12 +2,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { createMemoryHistory } from 'history';
-
+import { flushPromises } from '../../tests/helpers/TestUtils';
 import { LoginContainer } from './Login';
 
 jest.mock('../../helpers/Session');
-
-const flushPromises = () => new Promise(resolve => setImmediate(resolve));
 
 const setup = propOverrides => {
   const props = Object.assign({}, propOverrides);
