@@ -2,6 +2,7 @@ import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
 import session from '../../helpers/Session';
 import config from '../../config';
+import internalFetch from './../../helpers/internal-fetch';
 
 const UsersContext = createContext({
   users: [],
@@ -27,7 +28,7 @@ export class UsersProvider extends Component {
   };
 
   async _getUsers() {
-    const response = await fetch(`${config.API_URL}/api/management/users/list`, {
+    const response = await internalFetch(`${config.API_URL}/api/management/users/list`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +40,7 @@ export class UsersProvider extends Component {
   }
 
   async _registerUser(username, password) {
-    const response = await fetch(`${config.API_URL}/api/management/users/register`, {
+    const response = await internalFetch(`${config.API_URL}/api/management/users/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
