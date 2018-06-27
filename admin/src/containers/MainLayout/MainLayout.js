@@ -6,6 +6,7 @@ import MainLayout from '../../components/MainLayout/MainLayout';
 import { PanelProvider, PanelConsumer } from './PanelContext';
 
 import UsersContainer from '../Users/Users';
+import ProcessorsContainer from '../Processors/Processors';
 
 class MainLayoutContainer extends Component {
   state = {
@@ -49,11 +50,7 @@ class MainLayoutContainer extends Component {
               content={
                 <Switch>
                   <Route exact path="/" render={() => <React.Fragment>Dashboard</React.Fragment>} />
-                  <Route
-                    exact
-                    path="/processors"
-                    render={() => <React.Fragment>Processors</React.Fragment>}
-                  />
+                  <Route exact path="/processors" render={() => <ProcessorsContainer />} />
                   <Route exact path="/users" render={() => <UsersContainer />} />
                   <Route
                     exact
