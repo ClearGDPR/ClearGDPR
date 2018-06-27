@@ -2,12 +2,16 @@ import React from 'react';
 
 import { shallow, mount } from 'enzyme';
 import * as ProcessorsDataFactory from '../../tests/data/processors.factory';
-import * as TestUtils from '../../tests/helpers/TestUtils';
 
 import { ProcessorsContainer } from './Processors';
 import session from '../../helpers/Session';
 
 jest.mock('../../helpers/Session');
+
+function flushPromises() {
+  // or: return new Promise(res => process.nextTick(res));
+  return new Promise(resolve => setImmediate(resolve));
+}
 
 beforeEach(() => {
   session.getToken.mockReturnValue('token');
@@ -25,7 +29,7 @@ describe('(Container) Processors', () => {
     );
 
     const component = mount(<ProcessorsContainer />);
-    await TestUtils.flushPromises();
+    await flushPromises();
 
     expect(component.state()).toEqual(
       expect.objectContaining({
@@ -44,7 +48,7 @@ describe('(Container) Processors', () => {
 
     const component = shallow(<ProcessorsContainer />);
 
-    await TestUtils.flushPromises();
+    await flushPromises();
     expect(component).toMatchSnapshot();
   });
 });
