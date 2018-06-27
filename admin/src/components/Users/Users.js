@@ -4,10 +4,15 @@ import PropTypes from 'prop-types';
 import Card from '../core/cards/dashboard/Card';
 import Loader from '../core/cards/dashboard/Loader';
 
-const Users = ({ users, onChangePasswordClick, onRegisterUserClick, isLoading }) => {
+const Users = ({ users, onChangePasswordClick, onRegisterUserClick, onDeleteClick, isLoading }) => {
   function onChangePasswordClickHandler(e, userId) {
     e.preventDefault();
     onChangePasswordClick && onChangePasswordClick(userId);
+  }
+
+  function onDeleteClickHandler(e, userId) {
+    e.preventDefault();
+    onDeleteClick && onDeleteClick(userId);
   }
 
   function onRegisterUserClickHandler(e) {
@@ -23,6 +28,9 @@ const Users = ({ users, onChangePasswordClick, onRegisterUserClick, isLoading })
         <td data-label="Actions">
           <button className="ui-action btn" onClick={e => onChangePasswordClickHandler(e, user.id)}>
             Change password
+          </button>
+          <button className="ui-action btn" onClick={e => onDeleteClickHandler(e, user.id)}>
+            Delete
           </button>
         </td>
       </tr>
@@ -70,6 +78,7 @@ const Users = ({ users, onChangePasswordClick, onRegisterUserClick, isLoading })
 Users.propTypes = {
   users: PropTypes.arrayOf(PropTypes.object),
   onChangePasswordClick: PropTypes.func,
+  onDeleteClick: PropTypes.func,
   onRegisterUserClick: PropTypes.func,
   isLoading: PropTypes.bool
 };

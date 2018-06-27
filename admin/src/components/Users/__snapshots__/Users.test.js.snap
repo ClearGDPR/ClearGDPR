@@ -661,6 +661,12 @@ ShallowWrapper {
                       >
                         Change password
                       </button>
+                      <button
+                        className="ui-action btn"
+                        onClick={[Function]}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                   <tr>
@@ -682,6 +688,12 @@ ShallowWrapper {
                         onClick={[Function]}
                       >
                         Change password
+                      </button>
+                      <button
+                        className="ui-action btn"
+                        onClick={[Function]}
+                      >
+                        Delete
                       </button>
                     </td>
                   </tr>
@@ -705,6 +717,12 @@ ShallowWrapper {
                       >
                         Change password
                       </button>
+                      <button
+                        className="ui-action btn"
+                        onClick={[Function]}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                   <tr>
@@ -726,6 +744,12 @@ ShallowWrapper {
                         onClick={[Function]}
                       >
                         Change password
+                      </button>
+                      <button
+                        className="ui-action btn"
+                        onClick={[Function]}
+                      >
+                        Delete
                       </button>
                     </td>
                   </tr>
@@ -812,6 +836,12 @@ ShallowWrapper {
                         >
                           Change password
                         </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -833,6 +863,12 @@ ShallowWrapper {
                           onClick={[Function]}
                         >
                           Change password
+                        </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -856,6 +892,12 @@ ShallowWrapper {
                         >
                           Change password
                         </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -877,6 +919,12 @@ ShallowWrapper {
                           onClick={[Function]}
                         >
                           Change password
+                        </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -1037,6 +1085,12 @@ ShallowWrapper {
                         >
                           Change password
                         </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -1058,6 +1112,12 @@ ShallowWrapper {
                           onClick={[Function]}
                         >
                           Change password
+                        </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -1081,6 +1141,12 @@ ShallowWrapper {
                         >
                           Change password
                         </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -1102,6 +1168,12 @@ ShallowWrapper {
                           onClick={[Function]}
                         >
                           Change password
+                        </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -1157,6 +1229,12 @@ ShallowWrapper {
                         >
                           Change password
                         </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -1178,6 +1256,12 @@ ShallowWrapper {
                           onClick={[Function]}
                         >
                           Change password
+                        </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -1201,6 +1285,12 @@ ShallowWrapper {
                         >
                           Change password
                         </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -1222,6 +1312,12 @@ ShallowWrapper {
                           onClick={[Function]}
                         >
                           Change password
+                        </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -1273,6 +1369,12 @@ ShallowWrapper {
                         >
                           Change password
                         </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -1294,6 +1396,12 @@ ShallowWrapper {
                           onClick={[Function]}
                         >
                           Change password
+                        </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -1317,6 +1425,12 @@ ShallowWrapper {
                         >
                           Change password
                         </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -1338,6 +1452,12 @@ ShallowWrapper {
                           onClick={[Function]}
                         >
                           Change password
+                        </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -1386,6 +1506,12 @@ ShallowWrapper {
                           >
                             Change password
                           </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
@@ -1407,6 +1533,12 @@ ShallowWrapper {
                             onClick={[Function]}
                           >
                             Change password
+                          </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
                           </button>
                         </td>
                       </tr>
@@ -1430,6 +1562,12 @@ ShallowWrapper {
                           >
                             Change password
                           </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
@@ -1451,6 +1589,12 @@ ShallowWrapper {
                             onClick={[Function]}
                           >
                             Change password
+                          </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
                           </button>
                         </td>
                       </tr>
@@ -1561,6 +1705,12 @@ ShallowWrapper {
                             >
                               Change password
                             </button>
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Delete
+                            </button>
                           </td>
                         </tr>,
                         <tr>
@@ -1582,6 +1732,12 @@ ShallowWrapper {
                               onClick={[Function]}
                             >
                               Change password
+                            </button>
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Delete
                             </button>
                           </td>
                         </tr>,
@@ -1605,6 +1761,12 @@ ShallowWrapper {
                             >
                               Change password
                             </button>
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Delete
+                            </button>
                           </td>
                         </tr>,
                         <tr>
@@ -1626,6 +1788,12 @@ ShallowWrapper {
                               onClick={[Function]}
                             >
                               Change password
+                            </button>
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Delete
                             </button>
                           </td>
                         </tr>,
@@ -1657,6 +1825,12 @@ ShallowWrapper {
                                 onClick={[Function]}
                               >
                                 Change password
+                              </button>
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Delete
                               </button>
                             </td>,
                           ],
@@ -1692,28 +1866,51 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "host",
                             "props": Object {
-                              "children": <button
-                                className="ui-action btn"
-                                onClick={[Function]}
-                              >
-                                Change password
-                              </button>,
+                              "children": Array [
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>,
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Delete
+                                </button>,
+                              ],
                               "data-label": "Actions",
                             },
                             "ref": null,
-                            "rendered": Object {
-                              "instance": null,
-                              "key": undefined,
-                              "nodeType": "host",
-                              "props": Object {
-                                "children": "Change password",
-                                "className": "ui-action btn",
-                                "onClick": [Function],
+                            "rendered": Array [
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Change password",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Change password",
+                                "type": "button",
                               },
-                              "ref": null,
-                              "rendered": "Change password",
-                              "type": "button",
-                            },
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Delete",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Delete",
+                                "type": "button",
+                              },
+                            ],
                             "type": "td",
                           },
                         ],
@@ -1743,6 +1940,12 @@ ShallowWrapper {
                                 onClick={[Function]}
                               >
                                 Change password
+                              </button>
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Delete
                               </button>
                             </td>,
                           ],
@@ -1778,28 +1981,51 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "host",
                             "props": Object {
-                              "children": <button
-                                className="ui-action btn"
-                                onClick={[Function]}
-                              >
-                                Change password
-                              </button>,
+                              "children": Array [
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>,
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Delete
+                                </button>,
+                              ],
                               "data-label": "Actions",
                             },
                             "ref": null,
-                            "rendered": Object {
-                              "instance": null,
-                              "key": undefined,
-                              "nodeType": "host",
-                              "props": Object {
-                                "children": "Change password",
-                                "className": "ui-action btn",
-                                "onClick": [Function],
+                            "rendered": Array [
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Change password",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Change password",
+                                "type": "button",
                               },
-                              "ref": null,
-                              "rendered": "Change password",
-                              "type": "button",
-                            },
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Delete",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Delete",
+                                "type": "button",
+                              },
+                            ],
                             "type": "td",
                           },
                         ],
@@ -1829,6 +2055,12 @@ ShallowWrapper {
                                 onClick={[Function]}
                               >
                                 Change password
+                              </button>
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Delete
                               </button>
                             </td>,
                           ],
@@ -1864,28 +2096,51 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "host",
                             "props": Object {
-                              "children": <button
-                                className="ui-action btn"
-                                onClick={[Function]}
-                              >
-                                Change password
-                              </button>,
+                              "children": Array [
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>,
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Delete
+                                </button>,
+                              ],
                               "data-label": "Actions",
                             },
                             "ref": null,
-                            "rendered": Object {
-                              "instance": null,
-                              "key": undefined,
-                              "nodeType": "host",
-                              "props": Object {
-                                "children": "Change password",
-                                "className": "ui-action btn",
-                                "onClick": [Function],
+                            "rendered": Array [
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Change password",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Change password",
+                                "type": "button",
                               },
-                              "ref": null,
-                              "rendered": "Change password",
-                              "type": "button",
-                            },
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Delete",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Delete",
+                                "type": "button",
+                              },
+                            ],
                             "type": "td",
                           },
                         ],
@@ -1915,6 +2170,12 @@ ShallowWrapper {
                                 onClick={[Function]}
                               >
                                 Change password
+                              </button>
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Delete
                               </button>
                             </td>,
                           ],
@@ -1950,28 +2211,51 @@ ShallowWrapper {
                             "key": undefined,
                             "nodeType": "host",
                             "props": Object {
-                              "children": <button
-                                className="ui-action btn"
-                                onClick={[Function]}
-                              >
-                                Change password
-                              </button>,
+                              "children": Array [
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Change password
+                                </button>,
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Delete
+                                </button>,
+                              ],
                               "data-label": "Actions",
                             },
                             "ref": null,
-                            "rendered": Object {
-                              "instance": null,
-                              "key": undefined,
-                              "nodeType": "host",
-                              "props": Object {
-                                "children": "Change password",
-                                "className": "ui-action btn",
-                                "onClick": [Function],
+                            "rendered": Array [
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Change password",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Change password",
+                                "type": "button",
                               },
-                              "ref": null,
-                              "rendered": "Change password",
-                              "type": "button",
-                            },
+                              Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "children": "Delete",
+                                  "className": "ui-action btn",
+                                  "onClick": [Function],
+                                },
+                                "ref": null,
+                                "rendered": "Delete",
+                                "type": "button",
+                              },
+                            ],
                             "type": "td",
                           },
                         ],
@@ -2072,6 +2356,12 @@ ShallowWrapper {
                         >
                           Change password
                         </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -2093,6 +2383,12 @@ ShallowWrapper {
                           onClick={[Function]}
                         >
                           Change password
+                        </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -2116,6 +2412,12 @@ ShallowWrapper {
                         >
                           Change password
                         </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                     <tr>
@@ -2137,6 +2439,12 @@ ShallowWrapper {
                           onClick={[Function]}
                         >
                           Change password
+                        </button>
+                        <button
+                          className="ui-action btn"
+                          onClick={[Function]}
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>
@@ -2223,6 +2531,12 @@ ShallowWrapper {
                           >
                             Change password
                           </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
@@ -2244,6 +2558,12 @@ ShallowWrapper {
                             onClick={[Function]}
                           >
                             Change password
+                          </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
                           </button>
                         </td>
                       </tr>
@@ -2267,6 +2587,12 @@ ShallowWrapper {
                           >
                             Change password
                           </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
@@ -2288,6 +2614,12 @@ ShallowWrapper {
                             onClick={[Function]}
                           >
                             Change password
+                          </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
                           </button>
                         </td>
                       </tr>
@@ -2448,6 +2780,12 @@ ShallowWrapper {
                           >
                             Change password
                           </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
@@ -2469,6 +2807,12 @@ ShallowWrapper {
                             onClick={[Function]}
                           >
                             Change password
+                          </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
                           </button>
                         </td>
                       </tr>
@@ -2492,6 +2836,12 @@ ShallowWrapper {
                           >
                             Change password
                           </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
@@ -2513,6 +2863,12 @@ ShallowWrapper {
                             onClick={[Function]}
                           >
                             Change password
+                          </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
                           </button>
                         </td>
                       </tr>
@@ -2568,6 +2924,12 @@ ShallowWrapper {
                           >
                             Change password
                           </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
@@ -2589,6 +2951,12 @@ ShallowWrapper {
                             onClick={[Function]}
                           >
                             Change password
+                          </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
                           </button>
                         </td>
                       </tr>
@@ -2612,6 +2980,12 @@ ShallowWrapper {
                           >
                             Change password
                           </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
@@ -2633,6 +3007,12 @@ ShallowWrapper {
                             onClick={[Function]}
                           >
                             Change password
+                          </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
                           </button>
                         </td>
                       </tr>
@@ -2684,6 +3064,12 @@ ShallowWrapper {
                           >
                             Change password
                           </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
@@ -2705,6 +3091,12 @@ ShallowWrapper {
                             onClick={[Function]}
                           >
                             Change password
+                          </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
                           </button>
                         </td>
                       </tr>
@@ -2728,6 +3120,12 @@ ShallowWrapper {
                           >
                             Change password
                           </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
+                          </button>
                         </td>
                       </tr>
                       <tr>
@@ -2749,6 +3147,12 @@ ShallowWrapper {
                             onClick={[Function]}
                           >
                             Change password
+                          </button>
+                          <button
+                            className="ui-action btn"
+                            onClick={[Function]}
+                          >
+                            Delete
                           </button>
                         </td>
                       </tr>
@@ -2797,6 +3201,12 @@ ShallowWrapper {
                             >
                               Change password
                             </button>
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Delete
+                            </button>
                           </td>
                         </tr>
                         <tr>
@@ -2818,6 +3228,12 @@ ShallowWrapper {
                               onClick={[Function]}
                             >
                               Change password
+                            </button>
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Delete
                             </button>
                           </td>
                         </tr>
@@ -2841,6 +3257,12 @@ ShallowWrapper {
                             >
                               Change password
                             </button>
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Delete
+                            </button>
                           </td>
                         </tr>
                         <tr>
@@ -2862,6 +3284,12 @@ ShallowWrapper {
                               onClick={[Function]}
                             >
                               Change password
+                            </button>
+                            <button
+                              className="ui-action btn"
+                              onClick={[Function]}
+                            >
+                              Delete
                             </button>
                           </td>
                         </tr>
@@ -2972,6 +3400,12 @@ ShallowWrapper {
                               >
                                 Change password
                               </button>
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Delete
+                              </button>
                             </td>
                           </tr>,
                           <tr>
@@ -2993,6 +3427,12 @@ ShallowWrapper {
                                 onClick={[Function]}
                               >
                                 Change password
+                              </button>
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Delete
                               </button>
                             </td>
                           </tr>,
@@ -3016,6 +3456,12 @@ ShallowWrapper {
                               >
                                 Change password
                               </button>
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Delete
+                              </button>
                             </td>
                           </tr>,
                           <tr>
@@ -3037,6 +3483,12 @@ ShallowWrapper {
                                 onClick={[Function]}
                               >
                                 Change password
+                              </button>
+                              <button
+                                className="ui-action btn"
+                                onClick={[Function]}
+                              >
+                                Delete
                               </button>
                             </td>
                           </tr>,
@@ -3068,6 +3520,12 @@ ShallowWrapper {
                                   onClick={[Function]}
                                 >
                                   Change password
+                                </button>
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Delete
                                 </button>
                               </td>,
                             ],
@@ -3103,28 +3561,51 @@ ShallowWrapper {
                               "key": undefined,
                               "nodeType": "host",
                               "props": Object {
-                                "children": <button
-                                  className="ui-action btn"
-                                  onClick={[Function]}
-                                >
-                                  Change password
-                                </button>,
+                                "children": Array [
+                                  <button
+                                    className="ui-action btn"
+                                    onClick={[Function]}
+                                  >
+                                    Change password
+                                  </button>,
+                                  <button
+                                    className="ui-action btn"
+                                    onClick={[Function]}
+                                  >
+                                    Delete
+                                  </button>,
+                                ],
                                 "data-label": "Actions",
                               },
                               "ref": null,
-                              "rendered": Object {
-                                "instance": null,
-                                "key": undefined,
-                                "nodeType": "host",
-                                "props": Object {
-                                  "children": "Change password",
-                                  "className": "ui-action btn",
-                                  "onClick": [Function],
+                              "rendered": Array [
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": "Change password",
+                                    "className": "ui-action btn",
+                                    "onClick": [Function],
+                                  },
+                                  "ref": null,
+                                  "rendered": "Change password",
+                                  "type": "button",
                                 },
-                                "ref": null,
-                                "rendered": "Change password",
-                                "type": "button",
-                              },
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": "Delete",
+                                    "className": "ui-action btn",
+                                    "onClick": [Function],
+                                  },
+                                  "ref": null,
+                                  "rendered": "Delete",
+                                  "type": "button",
+                                },
+                              ],
                               "type": "td",
                             },
                           ],
@@ -3154,6 +3635,12 @@ ShallowWrapper {
                                   onClick={[Function]}
                                 >
                                   Change password
+                                </button>
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Delete
                                 </button>
                               </td>,
                             ],
@@ -3189,28 +3676,51 @@ ShallowWrapper {
                               "key": undefined,
                               "nodeType": "host",
                               "props": Object {
-                                "children": <button
-                                  className="ui-action btn"
-                                  onClick={[Function]}
-                                >
-                                  Change password
-                                </button>,
+                                "children": Array [
+                                  <button
+                                    className="ui-action btn"
+                                    onClick={[Function]}
+                                  >
+                                    Change password
+                                  </button>,
+                                  <button
+                                    className="ui-action btn"
+                                    onClick={[Function]}
+                                  >
+                                    Delete
+                                  </button>,
+                                ],
                                 "data-label": "Actions",
                               },
                               "ref": null,
-                              "rendered": Object {
-                                "instance": null,
-                                "key": undefined,
-                                "nodeType": "host",
-                                "props": Object {
-                                  "children": "Change password",
-                                  "className": "ui-action btn",
-                                  "onClick": [Function],
+                              "rendered": Array [
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": "Change password",
+                                    "className": "ui-action btn",
+                                    "onClick": [Function],
+                                  },
+                                  "ref": null,
+                                  "rendered": "Change password",
+                                  "type": "button",
                                 },
-                                "ref": null,
-                                "rendered": "Change password",
-                                "type": "button",
-                              },
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": "Delete",
+                                    "className": "ui-action btn",
+                                    "onClick": [Function],
+                                  },
+                                  "ref": null,
+                                  "rendered": "Delete",
+                                  "type": "button",
+                                },
+                              ],
                               "type": "td",
                             },
                           ],
@@ -3240,6 +3750,12 @@ ShallowWrapper {
                                   onClick={[Function]}
                                 >
                                   Change password
+                                </button>
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Delete
                                 </button>
                               </td>,
                             ],
@@ -3275,28 +3791,51 @@ ShallowWrapper {
                               "key": undefined,
                               "nodeType": "host",
                               "props": Object {
-                                "children": <button
-                                  className="ui-action btn"
-                                  onClick={[Function]}
-                                >
-                                  Change password
-                                </button>,
+                                "children": Array [
+                                  <button
+                                    className="ui-action btn"
+                                    onClick={[Function]}
+                                  >
+                                    Change password
+                                  </button>,
+                                  <button
+                                    className="ui-action btn"
+                                    onClick={[Function]}
+                                  >
+                                    Delete
+                                  </button>,
+                                ],
                                 "data-label": "Actions",
                               },
                               "ref": null,
-                              "rendered": Object {
-                                "instance": null,
-                                "key": undefined,
-                                "nodeType": "host",
-                                "props": Object {
-                                  "children": "Change password",
-                                  "className": "ui-action btn",
-                                  "onClick": [Function],
+                              "rendered": Array [
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": "Change password",
+                                    "className": "ui-action btn",
+                                    "onClick": [Function],
+                                  },
+                                  "ref": null,
+                                  "rendered": "Change password",
+                                  "type": "button",
                                 },
-                                "ref": null,
-                                "rendered": "Change password",
-                                "type": "button",
-                              },
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": "Delete",
+                                    "className": "ui-action btn",
+                                    "onClick": [Function],
+                                  },
+                                  "ref": null,
+                                  "rendered": "Delete",
+                                  "type": "button",
+                                },
+                              ],
                               "type": "td",
                             },
                           ],
@@ -3326,6 +3865,12 @@ ShallowWrapper {
                                   onClick={[Function]}
                                 >
                                   Change password
+                                </button>
+                                <button
+                                  className="ui-action btn"
+                                  onClick={[Function]}
+                                >
+                                  Delete
                                 </button>
                               </td>,
                             ],
@@ -3361,28 +3906,51 @@ ShallowWrapper {
                               "key": undefined,
                               "nodeType": "host",
                               "props": Object {
-                                "children": <button
-                                  className="ui-action btn"
-                                  onClick={[Function]}
-                                >
-                                  Change password
-                                </button>,
+                                "children": Array [
+                                  <button
+                                    className="ui-action btn"
+                                    onClick={[Function]}
+                                  >
+                                    Change password
+                                  </button>,
+                                  <button
+                                    className="ui-action btn"
+                                    onClick={[Function]}
+                                  >
+                                    Delete
+                                  </button>,
+                                ],
                                 "data-label": "Actions",
                               },
                               "ref": null,
-                              "rendered": Object {
-                                "instance": null,
-                                "key": undefined,
-                                "nodeType": "host",
-                                "props": Object {
-                                  "children": "Change password",
-                                  "className": "ui-action btn",
-                                  "onClick": [Function],
+                              "rendered": Array [
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": "Change password",
+                                    "className": "ui-action btn",
+                                    "onClick": [Function],
+                                  },
+                                  "ref": null,
+                                  "rendered": "Change password",
+                                  "type": "button",
                                 },
-                                "ref": null,
-                                "rendered": "Change password",
-                                "type": "button",
-                              },
+                                Object {
+                                  "instance": null,
+                                  "key": undefined,
+                                  "nodeType": "host",
+                                  "props": Object {
+                                    "children": "Delete",
+                                    "className": "ui-action btn",
+                                    "onClick": [Function],
+                                  },
+                                  "ref": null,
+                                  "rendered": "Delete",
+                                  "type": "button",
+                                },
+                              ],
                               "type": "td",
                             },
                           ],
