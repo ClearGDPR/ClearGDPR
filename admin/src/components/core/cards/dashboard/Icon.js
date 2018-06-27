@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Icon = props => {
   return (
@@ -9,6 +10,12 @@ const Icon = props => {
       className={props.action ? 'ui-action icon' : ''}
     />
   );
+};
+
+Icon.propTypes = {
+  src: PropTypes.string,
+  name: PropTypes.string,
+  action: PropTypes.func
 };
 
 export default Icon;

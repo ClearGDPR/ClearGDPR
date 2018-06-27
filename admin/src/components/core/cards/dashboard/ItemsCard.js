@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Card from './Card';
 import GraphBar from './GraphBar';
 
@@ -18,6 +20,19 @@ const ItemsCard = props => {
       </div>
     </Card>
   );
+};
+
+ItemsCard.propTypes = {
+  size: PropTypes.number,
+  cols: PropTypes.number,
+  title: PropTypes.string,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      consented: PropTypes.number
+    })
+  ),
+  onClick: PropTypes.func
 };
 
 export default ItemsCard;

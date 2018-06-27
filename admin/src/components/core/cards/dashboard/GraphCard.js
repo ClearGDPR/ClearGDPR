@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { VictoryPie, VictoryContainer, VictoryLabel } from 'victory';
+
 import Card from './Card';
 
 const data = [{ x: 10.349, y: 70 }, { x: 1.832, y: 30 }];
@@ -33,6 +35,14 @@ const GraphCard = props => {
       </div>
     </Card>
   );
+};
+
+GraphCard.propTypes = {
+  cols: PropTypes.number,
+  data: PropTypes.shape({
+    title: PropTypes.string
+  }),
+  onClick: PropTypes.func
 };
 
 export default GraphCard;

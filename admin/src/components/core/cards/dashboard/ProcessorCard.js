@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Card from './Card';
 import defaultLogo from './../../../../assets/logo.png';
 
@@ -25,6 +27,16 @@ const ProcessorCard = props => {
       </div>
     </Card>
   );
+};
+
+ProcessorCard.propTypes = {
+  data: PropTypes.shape({
+    logoUrl: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    scopes: PropTypes.arrayOf(PropTypes.string)
+  }),
+  onClick: PropTypes.func
 };
 
 export default ProcessorCard;

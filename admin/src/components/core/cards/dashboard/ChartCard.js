@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Card from './Card';
 import { VictoryChart, VictoryArea, VictoryAxis } from 'victory';
 
@@ -28,6 +30,14 @@ const ChartCard = props => {
       <Chart />
     </Card>
   );
+};
+
+ChartCard.propTypes = {
+  cols: PropTypes.number,
+  data: PropTypes.shape({
+    title: PropTypes.string
+  }),
+  onClick: PropTypes.func
 };
 
 export default ChartCard;
