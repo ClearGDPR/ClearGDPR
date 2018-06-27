@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Card from './Card';
 
 const TableCard = props => {
@@ -48,6 +50,14 @@ const TableCard = props => {
       </div>
     </Card>
   );
+};
+
+TableCard.propTypes = {
+  cols: PropTypes.number,
+  data: PropTypes.shape({
+    title: PropTypes.string
+  }),
+  onClick: PropTypes.func
 };
 
 export default TableCard;

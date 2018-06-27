@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import NumberCard from './NumberCard';
 import ChartCard from './ChartCard';
 import GraphCard from './GraphCard';
@@ -37,6 +39,29 @@ const Overview = props => {
       </section>
     </React.Fragment>
   );
+};
+
+Overview.propTypes = {
+  activeUsers: PropTypes.arrayOf(
+    PropTypes.shape({
+      username: PropTypes.string
+    })
+  ),
+  erasedUsers: PropTypes.arrayOf(
+    PropTypes.shape({
+      username: PropTypes.string
+    })
+  ),
+  processors: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      logoUrl: PropTypes.string,
+      description: PropTypes.string
+    })
+  ),
+  title: PropTypes.string,
+  desc: PropTypes.string,
+  onClick: PropTypes.func
 };
 
 export default Overview;

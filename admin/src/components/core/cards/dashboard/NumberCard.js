@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Card from './Card';
 import Icon from './Icon';
 import IconUp from './../../../../assets/icons/up-arrow.svg';
@@ -31,6 +33,17 @@ const NumberCard = props => {
       </div>
     </Card>
   );
+};
+
+NumberCard.propTypes = {
+  size: PropTypes.number,
+  cols: PropTypes.number,
+  data: PropTypes.shape({
+    title: PropTypes.string,
+    change: PropTypes.number,
+    number: PropTypes.number
+  }),
+  onClick: PropTypes.func
 };
 
 export default NumberCard;

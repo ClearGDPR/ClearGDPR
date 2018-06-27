@@ -39,15 +39,14 @@ const Sidenav = props => {
         <small className="label">Account</small>
       </p>
       <NavLink to="/kitchen-sink/loader">Loader</NavLink>
-      <a href="#" onClick={handleLogoutClick}>
-        Logout
-      </a>
+      <button onClick={handleLogoutClick}>Logout</button>
     </nav>
   );
 };
 
 Sidenav.propTypes = {
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  isSidenavOpen: PropTypes.bool
 };
 
 export default withRouter(Sidenav);
