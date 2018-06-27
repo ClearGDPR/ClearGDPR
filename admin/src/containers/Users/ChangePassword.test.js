@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import session from '../../helpers/Session';
-import TestUtils from '../../helpers/TestUtils';
+import * as TestUtils from '../../tests/helpers/TestUtils';
 
 import { ChangePasswordContainer as ChangePassword } from './ChangePassword';
 
