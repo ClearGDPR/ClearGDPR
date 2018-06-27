@@ -42,6 +42,7 @@ ShallowWrapper {
     "props": Object {
       "isLoading": false,
       "onChangePasswordClick": [Function],
+      "onRegisterUserClick": [Function],
       "users": Array [
         Object {
           "id": 1,
@@ -73,6 +74,7 @@ ShallowWrapper {
       "props": Object {
         "isLoading": false,
         "onChangePasswordClick": [Function],
+        "onRegisterUserClick": [Function],
         "users": Array [
           Object {
             "id": 1,

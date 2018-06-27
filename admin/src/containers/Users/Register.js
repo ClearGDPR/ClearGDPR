@@ -7,9 +7,9 @@ import { UsersConsumer } from './UsersContext';
 
 export class RegisterContainer extends React.Component {
   static propTypes = {
-    registerUser: PropTypes.func,
-    closePanel: PropTypes.func,
-    isLoading: PropTypes.bool
+    registerUser: PropTypes.func.isRequired,
+    closePanel: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired
   };
 
   state = {

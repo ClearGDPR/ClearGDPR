@@ -42,6 +42,7 @@ ShallowWrapper {
       "value": Object {
         "fetchUsers": [Function],
         "isLoading": false,
+        "registerUser": [Function],
         "users": Array [],
       },
     },
@@ -61,16 +62,19 @@ ShallowWrapper {
         "_currentValue": Object {
           "fetchUsers": [Function],
           "isLoading": false,
+          "registerUser": [Function],
           "users": Array [],
         },
         "_currentValue2": Object {
           "fetchUsers": [Function],
           "isLoading": false,
+          "registerUser": [Function],
           "users": Array [],
         },
         "_defaultValue": Object {
           "fetchUsers": [Function],
           "isLoading": false,
+          "registerUser": [Function],
           "users": Array [],
         },
       },
@@ -86,6 +90,7 @@ ShallowWrapper {
         "value": Object {
           "fetchUsers": [Function],
           "isLoading": false,
+          "registerUser": [Function],
           "users": Array [],
         },
       },
@@ -105,16 +110,19 @@ ShallowWrapper {
           "_currentValue": Object {
             "fetchUsers": [Function],
             "isLoading": false,
+            "registerUser": [Function],
             "users": Array [],
           },
           "_currentValue2": Object {
             "fetchUsers": [Function],
             "isLoading": false,
+            "registerUser": [Function],
             "users": Array [],
           },
           "_defaultValue": Object {
             "fetchUsers": [Function],
             "isLoading": false,
+            "registerUser": [Function],
             "users": Array [],
           },
         },

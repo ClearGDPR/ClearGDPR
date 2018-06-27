@@ -55,6 +55,15 @@ ShallowWrapper {
               Manage users that can access the administrative panel
             </p>
           </div>
+          <div
+            className="spacer"
+          />
+          <button
+            className="ui-action btn"
+            onClick={[Function]}
+          >
+            + Register User
+          </button>
         </div>
         <div
           className="row"
@@ -91,6 +100,15 @@ ShallowWrapper {
                 Manage users that can access the administrative panel
               </p>
             </div>
+            <div
+              className="spacer"
+            />
+            <button
+              className="ui-action btn"
+              onClick={[Function]}
+            >
+              + Register User
+            </button>
           </div>,
           <div
             className="row"
@@ -115,61 +133,98 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <div
-              className="text"
-            >
-              <h4>
-                Users
-              </h4>
-              <p>
-                Manage users that can access the administrative panel
-              </p>
-            </div>,
+            "children": Array [
+              <div
+                className="text"
+              >
+                <h4>
+                  Users
+                </h4>
+                <p>
+                  Manage users that can access the administrative panel
+                </p>
+              </div>,
+              <div
+                className="spacer"
+              />,
+              <button
+                className="ui-action btn"
+                onClick={[Function]}
+              >
+                + Register User
+              </button>,
+            ],
             "className": "action-bar",
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <h4>
-                  Users
-                </h4>,
-                <p>
-                  Manage users that can access the administrative panel
-                </p>,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h4>
+                    Users
+                  </h4>,
+                  <p>
+                    Manage users that can access the administrative panel
+                  </p>,
+                ],
+                "className": "text",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Users",
+                  },
+                  "ref": null,
+                  "rendered": "Users",
+                  "type": "h4",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Manage users that can access the administrative panel",
+                  },
+                  "ref": null,
+                  "rendered": "Manage users that can access the administrative panel",
+                  "type": "p",
+                },
               ],
-              "className": "text",
+              "type": "div",
             },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "Users",
-                },
-                "ref": null,
-                "rendered": "Users",
-                "type": "h4",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "spacer",
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "Manage users that can access the administrative panel",
-                },
-                "ref": null,
-                "rendered": "Manage users that can access the administrative panel",
-                "type": "p",
+              "ref": null,
+              "rendered": null,
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "+ Register User",
+                "className": "ui-action btn",
+                "onClick": [Function],
               },
-            ],
-            "type": "div",
-          },
+              "ref": null,
+              "rendered": "+ Register User",
+              "type": "button",
+            },
+          ],
           "type": "div",
         },
         Object {
@@ -253,6 +308,15 @@ ShallowWrapper {
                 Manage users that can access the administrative panel
               </p>
             </div>
+            <div
+              className="spacer"
+            />
+            <button
+              className="ui-action btn"
+              onClick={[Function]}
+            >
+              + Register User
+            </button>
           </div>
           <div
             className="row"
@@ -289,6 +353,15 @@ ShallowWrapper {
                   Manage users that can access the administrative panel
                 </p>
               </div>
+              <div
+                className="spacer"
+              />
+              <button
+                className="ui-action btn"
+                onClick={[Function]}
+              >
+                + Register User
+              </button>
             </div>,
             <div
               className="row"
@@ -313,61 +386,98 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <div
-                className="text"
-              >
-                <h4>
-                  Users
-                </h4>
-                <p>
-                  Manage users that can access the administrative panel
-                </p>
-              </div>,
+              "children": Array [
+                <div
+                  className="text"
+                >
+                  <h4>
+                    Users
+                  </h4>
+                  <p>
+                    Manage users that can access the administrative panel
+                  </p>
+                </div>,
+                <div
+                  className="spacer"
+                />,
+                <button
+                  className="ui-action btn"
+                  onClick={[Function]}
+                >
+                  + Register User
+                </button>,
+              ],
               "className": "action-bar",
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <h4>
-                    Users
-                  </h4>,
-                  <p>
-                    Manage users that can access the administrative panel
-                  </p>,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <h4>
+                      Users
+                    </h4>,
+                    <p>
+                      Manage users that can access the administrative panel
+                    </p>,
+                  ],
+                  "className": "text",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Users",
+                    },
+                    "ref": null,
+                    "rendered": "Users",
+                    "type": "h4",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Manage users that can access the administrative panel",
+                    },
+                    "ref": null,
+                    "rendered": "Manage users that can access the administrative panel",
+                    "type": "p",
+                  },
                 ],
-                "className": "text",
+                "type": "div",
               },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "Users",
-                  },
-                  "ref": null,
-                  "rendered": "Users",
-                  "type": "h4",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "spacer",
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "Manage users that can access the administrative panel",
-                  },
-                  "ref": null,
-                  "rendered": "Manage users that can access the administrative panel",
-                  "type": "p",
+                "ref": null,
+                "rendered": null,
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "+ Register User",
+                  "className": "ui-action btn",
+                  "onClick": [Function],
                 },
-              ],
-              "type": "div",
-            },
+                "ref": null,
+                "rendered": "+ Register User",
+                "type": "button",
+              },
+            ],
             "type": "div",
           },
           Object {
@@ -495,6 +605,15 @@ ShallowWrapper {
               Manage users that can access the administrative panel
             </p>
           </div>
+          <div
+            className="spacer"
+          />
+          <button
+            className="ui-action btn"
+            onClick={[Function]}
+          >
+            + Register User
+          </button>
         </div>
         <div
           className="row"
@@ -637,6 +756,15 @@ ShallowWrapper {
                 Manage users that can access the administrative panel
               </p>
             </div>
+            <div
+              className="spacer"
+            />
+            <button
+              className="ui-action btn"
+              onClick={[Function]}
+            >
+              + Register User
+            </button>
           </div>,
           <div
             className="row"
@@ -767,61 +895,98 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": <div
-              className="text"
-            >
-              <h4>
-                Users
-              </h4>
-              <p>
-                Manage users that can access the administrative panel
-              </p>
-            </div>,
+            "children": Array [
+              <div
+                className="text"
+              >
+                <h4>
+                  Users
+                </h4>
+                <p>
+                  Manage users that can access the administrative panel
+                </p>
+              </div>,
+              <div
+                className="spacer"
+              />,
+              <button
+                className="ui-action btn"
+                onClick={[Function]}
+              >
+                + Register User
+              </button>,
+            ],
             "className": "action-bar",
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <h4>
-                  Users
-                </h4>,
-                <p>
-                  Manage users that can access the administrative panel
-                </p>,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h4>
+                    Users
+                  </h4>,
+                  <p>
+                    Manage users that can access the administrative panel
+                  </p>,
+                ],
+                "className": "text",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Users",
+                  },
+                  "ref": null,
+                  "rendered": "Users",
+                  "type": "h4",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Manage users that can access the administrative panel",
+                  },
+                  "ref": null,
+                  "rendered": "Manage users that can access the administrative panel",
+                  "type": "p",
+                },
               ],
-              "className": "text",
+              "type": "div",
             },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "Users",
-                },
-                "ref": null,
-                "rendered": "Users",
-                "type": "h4",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "spacer",
               },
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "host",
-                "props": Object {
-                  "children": "Manage users that can access the administrative panel",
-                },
-                "ref": null,
-                "rendered": "Manage users that can access the administrative panel",
-                "type": "p",
+              "ref": null,
+              "rendered": null,
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "+ Register User",
+                "className": "ui-action btn",
+                "onClick": [Function],
               },
-            ],
-            "type": "div",
-          },
+              "ref": null,
+              "rendered": "+ Register User",
+              "type": "button",
+            },
+          ],
           "type": "div",
         },
         Object {
@@ -1851,6 +2016,15 @@ ShallowWrapper {
                 Manage users that can access the administrative panel
               </p>
             </div>
+            <div
+              className="spacer"
+            />
+            <button
+              className="ui-action btn"
+              onClick={[Function]}
+            >
+              + Register User
+            </button>
           </div>
           <div
             className="row"
@@ -1993,6 +2167,15 @@ ShallowWrapper {
                   Manage users that can access the administrative panel
                 </p>
               </div>
+              <div
+                className="spacer"
+              />
+              <button
+                className="ui-action btn"
+                onClick={[Function]}
+              >
+                + Register User
+              </button>
             </div>,
             <div
               className="row"
@@ -2123,61 +2306,98 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": <div
-                className="text"
-              >
-                <h4>
-                  Users
-                </h4>
-                <p>
-                  Manage users that can access the administrative panel
-                </p>
-              </div>,
+              "children": Array [
+                <div
+                  className="text"
+                >
+                  <h4>
+                    Users
+                  </h4>
+                  <p>
+                    Manage users that can access the administrative panel
+                  </p>
+                </div>,
+                <div
+                  className="spacer"
+                />,
+                <button
+                  className="ui-action btn"
+                  onClick={[Function]}
+                >
+                  + Register User
+                </button>,
+              ],
               "className": "action-bar",
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "host",
-              "props": Object {
-                "children": Array [
-                  <h4>
-                    Users
-                  </h4>,
-                  <p>
-                    Manage users that can access the administrative panel
-                  </p>,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <h4>
+                      Users
+                    </h4>,
+                    <p>
+                      Manage users that can access the administrative panel
+                    </p>,
+                  ],
+                  "className": "text",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Users",
+                    },
+                    "ref": null,
+                    "rendered": "Users",
+                    "type": "h4",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Manage users that can access the administrative panel",
+                    },
+                    "ref": null,
+                    "rendered": "Manage users that can access the administrative panel",
+                    "type": "p",
+                  },
                 ],
-                "className": "text",
+                "type": "div",
               },
-              "ref": null,
-              "rendered": Array [
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "Users",
-                  },
-                  "ref": null,
-                  "rendered": "Users",
-                  "type": "h4",
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "spacer",
                 },
-                Object {
-                  "instance": null,
-                  "key": undefined,
-                  "nodeType": "host",
-                  "props": Object {
-                    "children": "Manage users that can access the administrative panel",
-                  },
-                  "ref": null,
-                  "rendered": "Manage users that can access the administrative panel",
-                  "type": "p",
+                "ref": null,
+                "rendered": null,
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "+ Register User",
+                  "className": "ui-action btn",
+                  "onClick": [Function],
                 },
-              ],
-              "type": "div",
-            },
+                "ref": null,
+                "rendered": "+ Register User",
+                "type": "button",
+              },
+            ],
             "type": "div",
           },
           Object {
