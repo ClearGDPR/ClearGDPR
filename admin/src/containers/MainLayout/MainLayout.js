@@ -53,7 +53,11 @@ class MainLayoutContainer extends Component {
                 panelTitle={panelTitle}
                 content={
                   <Switch>
-                    <Route exact path="/" render={() => <React.Fragment>Dashboard</React.Fragment>} />
+                    <Route
+                      exact
+                      path="/"
+                      render={() => <React.Fragment>Dashboard</React.Fragment>}
+                    />
                     <Route exact path="/processors" render={() => <ProcessorsContainer />} />
                     <Route exact path="/users" render={() => <UsersContainer />} />
                     <Route
