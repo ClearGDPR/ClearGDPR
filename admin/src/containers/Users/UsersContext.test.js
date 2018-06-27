@@ -128,6 +128,68 @@ describe('UsersProvider', () => {
     );
   });
 
+  it('should throw error when deleting a user returned HTTP 404', async () => {
+    global.fetch = jest.fn().mockImplementationOnce(() =>
+      Promise.resolve({
+        status: 404,
+        json: () => ({ error: 'Error message' })
+      })
+    );
+
+    const { component } = setupShallow();
+
+    await expect(component.instance().deleteUser(4)).rejects.toMatchSnapshot();
+    expect(component.state()).toEqual(
+      expect.objectContaining({
+        isLoading: false
+      })
+    );
+  });
+
+  it('should throw error when deleting a user returned HTTP 500', async () => {
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        status: 500
+      })
+    );
+
+    const { component } = setupShallow();
+
+    await expect(component.instance().deleteUser(4)).rejects.toMatchSnapshot();
+    expect(component.state()).toEqual(
+      expect.objectContaining({
+        isLoading: false
+      })
+    );
+  });
+
+  it('should have correct state after removing user', async () => {
+    const filteredUsers = users.filter(u => u.id !== 4);
+    let i = 0;
+    global.fetch = jest.fn().mockImplementation(() =>
+      Promise.resolve({
+        status: 200,
+        json: () => {
+          const result = i === 0 ? { success: true } : filteredUsers;
+          i++;
+          return result;
+        }
+      })
+    );
+
+    const { component } = setupShallow();
+    await component.instance().deleteUser(4);
+
+    await TestUtils.flushPromises();
+
+    expect(component.state()).toEqual(
+      expect.objectContaining({
+        users: filteredUsers,
+        isLoading: false
+      })
+    );
+  });
+
   it('should render correctly', async () => {
     global.fetch = jest.fn().mockImplementationOnce(() =>
       Promise.resolve({

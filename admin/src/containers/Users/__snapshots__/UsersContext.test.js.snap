@@ -118,6 +118,10 @@ ShallowWrapper {
 }
 `;
 
+exports[`UsersProvider should throw error when deleting a user returned HTTP 404 1`] = `[Error: Error message]`;
+
+exports[`UsersProvider should throw error when deleting a user returned HTTP 500 1`] = `[Error: Unknown error occurred]`;
+
 exports[`UsersProvider should throw error when registering new user returned HTTP 400 1`] = `[Error: Error message]`;
 
 exports[`UsersProvider should throw error when registering new user returned HTTP 500 1`] = `[Error: Unknown error occurred]`;

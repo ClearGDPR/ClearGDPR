@@ -64,6 +64,27 @@ export class UsersProvider extends Component {
     return await response.json();
   }
 
+  async _deleteUser(userId) {
+    const response = await fetch(`${config.API_URL}/api/management/users/${userId}/remove`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${session.getToken()}`
+      }
+    });
+
+    if (response.status === 404) {
+      this.setLoading(false);
+      const result = await response.json();
+      throw new Error(result.error);
+    } else if (response.status !== 200) {
+      this.setLoading(false);
+      throw new Error('Unknown error occurred');
+    }
+
+    return await response.json();
+  }
+
   setLoading(loading) {
     this.setState({
       isLoading: loading
@@ -87,6 +108,12 @@ export class UsersProvider extends Component {
     await this.fetchUsers();
 
     return user;
+  }
+
+  async deleteUser(userId) {
+    this.setLoading(true);
+    await this._deleteUser(userId);
+    await this.fetchUsers();
   }
 
   render() {
