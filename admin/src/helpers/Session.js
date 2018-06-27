@@ -12,11 +12,11 @@ export class Session {
   }
 
   getToken() {
-    return this._auth ? this._auth.jwt : null;
+    return this._auth ? this._auth.jwt || null : null;
   }
 
   getUsername() {
-    return this._auth ? this._auth.username : null;
+    return this._auth ? this._auth.username || null : null;
   }
 
   isLoggedIn() {
