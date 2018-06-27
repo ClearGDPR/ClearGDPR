@@ -65,13 +65,16 @@ export class UsersProvider extends Component {
   }
 
   async _deleteUser(userId) {
-    const response = await fetch(`${config.API_URL}/api/management/users/${userId}/remove`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${session.getToken()}`
+    const response = await internalFetch(
+      `${config.API_URL}/api/management/users/${userId}/remove`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session.getToken()}`
+        }
       }
-    });
+    );
 
     if (response.status === 404) {
       this.setLoading(false);
