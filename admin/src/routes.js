@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import App from './containers/App';
 import Login from './containers/Login/Login';
 
 import MainLayout from './containers/MainLayout/MainLayout';
