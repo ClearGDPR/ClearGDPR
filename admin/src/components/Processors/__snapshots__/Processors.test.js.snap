@@ -1,0 +1,1365 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Component) Processors should render when loading correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Processors
+    isLoading={true}
+    processors={
+      Array [
+        Object {
+          "consented": 72,
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+          "logoUrl": "nielsen.svg",
+          "name": "Nielsen",
+          "scopes": Array [
+            "Full Name",
+            "Email",
+            "Phone Number",
+          ],
+        },
+        Object {
+          "consented": 64,
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+          "logoUrl": "liveramp.svg",
+          "name": "Live Ramp",
+          "scopes": Array [
+            "Email",
+          ],
+        },
+        Object {
+          "consented": 25,
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+          "logoUrl": "experian.svg",
+          "name": "Experian",
+          "scopes": Array [
+            "Full Name",
+            "Phone Number",
+          ],
+        },
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <section
+        className="cards"
+      >
+        <div
+          className="action-bar"
+        >
+          <div
+            className="text"
+          >
+            <h4>
+              Processors
+            </h4>
+            <p>
+              A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+            </p>
+          </div>
+          <div
+            className="spacer"
+          />
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="content"
+          >
+            <Loader />
+          </div>
+        </div>
+      </section>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="action-bar"
+          >
+            <div
+              className="text"
+            >
+              <h4>
+                Processors
+              </h4>
+              <p>
+                A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+              </p>
+            </div>
+            <div
+              className="spacer"
+            />
+          </div>,
+          <div
+            className="row"
+          >
+            <div
+              className="content"
+            >
+              <Loader />
+            </div>
+          </div>,
+        ],
+        "className": "cards",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="text"
+              >
+                <h4>
+                  Processors
+                </h4>
+                <p>
+                  A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+                </p>
+              </div>,
+              <div
+                className="spacer"
+              />,
+            ],
+            "className": "action-bar",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h4>
+                    Processors
+                  </h4>,
+                  <p>
+                    A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+                  </p>,
+                ],
+                "className": "text",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Processors",
+                  },
+                  "ref": null,
+                  "rendered": "Processors",
+                  "type": "h4",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.",
+                  },
+                  "ref": null,
+                  "rendered": "A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.",
+                  "type": "p",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "spacer",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="content"
+            >
+              <Loader />
+            </div>,
+            "className": "row",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <Loader />,
+              "className": "content",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": "div",
+          },
+          "type": "div",
+        },
+      ],
+      "type": "section",
+    },
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <section
+          className="cards"
+        >
+          <div
+            className="action-bar"
+          >
+            <div
+              className="text"
+            >
+              <h4>
+                Processors
+              </h4>
+              <p>
+                A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+              </p>
+            </div>
+            <div
+              className="spacer"
+            />
+          </div>
+          <div
+            className="row"
+          >
+            <div
+              className="content"
+            >
+              <Loader />
+            </div>
+          </div>
+        </section>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="action-bar"
+            >
+              <div
+                className="text"
+              >
+                <h4>
+                  Processors
+                </h4>
+                <p>
+                  A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+                </p>
+              </div>
+              <div
+                className="spacer"
+              />
+            </div>,
+            <div
+              className="row"
+            >
+              <div
+                className="content"
+              >
+                <Loader />
+              </div>
+            </div>,
+          ],
+          "className": "cards",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="text"
+                >
+                  <h4>
+                    Processors
+                  </h4>
+                  <p>
+                    A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+                  </p>
+                </div>,
+                <div
+                  className="spacer"
+                />,
+              ],
+              "className": "action-bar",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <h4>
+                      Processors
+                    </h4>,
+                    <p>
+                      A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+                    </p>,
+                  ],
+                  "className": "text",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Processors",
+                    },
+                    "ref": null,
+                    "rendered": "Processors",
+                    "type": "h4",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.",
+                    },
+                    "ref": null,
+                    "rendered": "A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.",
+                    "type": "p",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "spacer",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="content"
+              >
+                <Loader />
+              </div>,
+              "className": "row",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <Loader />,
+                "className": "content",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "div",
+            },
+            "type": "div",
+          },
+        ],
+        "type": "section",
+      },
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`(Component) Processors should render when not loading correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Processors
+    isLoading={false}
+    processors={
+      Array [
+        Object {
+          "consented": 72,
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+          "logoUrl": "nielsen.svg",
+          "name": "Nielsen",
+          "scopes": Array [
+            "Full Name",
+            "Email",
+            "Phone Number",
+          ],
+        },
+        Object {
+          "consented": 64,
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+          "logoUrl": "liveramp.svg",
+          "name": "Live Ramp",
+          "scopes": Array [
+            "Email",
+          ],
+        },
+        Object {
+          "consented": 25,
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+          "logoUrl": "experian.svg",
+          "name": "Experian",
+          "scopes": Array [
+            "Full Name",
+            "Phone Number",
+          ],
+        },
+      ]
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <section
+        className="cards"
+      >
+        <div
+          className="action-bar"
+        >
+          <div
+            className="text"
+          >
+            <h4>
+              Processors
+            </h4>
+            <p>
+              A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+            </p>
+          </div>
+          <div
+            className="spacer"
+          />
+        </div>
+        <div
+          className="row"
+        >
+          <div
+            className="content"
+          >
+            <ProcessorCard
+              data={
+                Object {
+                  "consented": 72,
+                  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                  "logoUrl": "nielsen.svg",
+                  "name": "Nielsen",
+                  "scopes": Array [
+                    "Full Name",
+                    "Email",
+                    "Phone Number",
+                  ],
+                }
+              }
+              onClick={[Function]}
+            />
+            <ProcessorCard
+              data={
+                Object {
+                  "consented": 64,
+                  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                  "logoUrl": "liveramp.svg",
+                  "name": "Live Ramp",
+                  "scopes": Array [
+                    "Email",
+                  ],
+                }
+              }
+              onClick={[Function]}
+            />
+            <ProcessorCard
+              data={
+                Object {
+                  "consented": 25,
+                  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                  "logoUrl": "experian.svg",
+                  "name": "Experian",
+                  "scopes": Array [
+                    "Full Name",
+                    "Phone Number",
+                  ],
+                }
+              }
+              onClick={[Function]}
+            />
+          </div>
+        </div>
+      </section>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className="action-bar"
+          >
+            <div
+              className="text"
+            >
+              <h4>
+                Processors
+              </h4>
+              <p>
+                A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+              </p>
+            </div>
+            <div
+              className="spacer"
+            />
+          </div>,
+          <div
+            className="row"
+          >
+            <div
+              className="content"
+            >
+              <ProcessorCard
+                data={
+                  Object {
+                    "consented": 72,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "nielsen.svg",
+                    "name": "Nielsen",
+                    "scopes": Array [
+                      "Full Name",
+                      "Email",
+                      "Phone Number",
+                    ],
+                  }
+                }
+                onClick={[Function]}
+              />
+              <ProcessorCard
+                data={
+                  Object {
+                    "consented": 64,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "liveramp.svg",
+                    "name": "Live Ramp",
+                    "scopes": Array [
+                      "Email",
+                    ],
+                  }
+                }
+                onClick={[Function]}
+              />
+              <ProcessorCard
+                data={
+                  Object {
+                    "consented": 25,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "experian.svg",
+                    "name": "Experian",
+                    "scopes": Array [
+                      "Full Name",
+                      "Phone Number",
+                    ],
+                  }
+                }
+                onClick={[Function]}
+              />
+            </div>
+          </div>,
+        ],
+        "className": "cards",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="text"
+              >
+                <h4>
+                  Processors
+                </h4>
+                <p>
+                  A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+                </p>
+              </div>,
+              <div
+                className="spacer"
+              />,
+            ],
+            "className": "action-bar",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h4>
+                    Processors
+                  </h4>,
+                  <p>
+                    A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+                  </p>,
+                ],
+                "className": "text",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "Processors",
+                  },
+                  "ref": null,
+                  "rendered": "Processors",
+                  "type": "h4",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.",
+                  },
+                  "ref": null,
+                  "rendered": "A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.",
+                  "type": "p",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "className": "spacer",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <div
+              className="content"
+            >
+              <ProcessorCard
+                data={
+                  Object {
+                    "consented": 72,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "nielsen.svg",
+                    "name": "Nielsen",
+                    "scopes": Array [
+                      "Full Name",
+                      "Email",
+                      "Phone Number",
+                    ],
+                  }
+                }
+                onClick={[Function]}
+              />
+              <ProcessorCard
+                data={
+                  Object {
+                    "consented": 64,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "liveramp.svg",
+                    "name": "Live Ramp",
+                    "scopes": Array [
+                      "Email",
+                    ],
+                  }
+                }
+                onClick={[Function]}
+              />
+              <ProcessorCard
+                data={
+                  Object {
+                    "consented": 25,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "experian.svg",
+                    "name": "Experian",
+                    "scopes": Array [
+                      "Full Name",
+                      "Phone Number",
+                    ],
+                  }
+                }
+                onClick={[Function]}
+              />
+            </div>,
+            "className": "row",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <ProcessorCard
+                  data={
+                    Object {
+                      "consented": 72,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "nielsen.svg",
+                      "name": "Nielsen",
+                      "scopes": Array [
+                        "Full Name",
+                        "Email",
+                        "Phone Number",
+                      ],
+                    }
+                  }
+                  onClick={[Function]}
+                />,
+                <ProcessorCard
+                  data={
+                    Object {
+                      "consented": 64,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "liveramp.svg",
+                      "name": "Live Ramp",
+                      "scopes": Array [
+                        "Email",
+                      ],
+                    }
+                  }
+                  onClick={[Function]}
+                />,
+                <ProcessorCard
+                  data={
+                    Object {
+                      "consented": 25,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "experian.svg",
+                      "name": "Experian",
+                      "scopes": Array [
+                        "Full Name",
+                        "Phone Number",
+                      ],
+                    }
+                  }
+                  onClick={[Function]}
+                />,
+              ],
+              "className": "content",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": "0",
+                "nodeType": "function",
+                "props": Object {
+                  "data": Object {
+                    "consented": 72,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "nielsen.svg",
+                    "name": "Nielsen",
+                    "scopes": Array [
+                      "Full Name",
+                      "Email",
+                      "Phone Number",
+                    ],
+                  },
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "1",
+                "nodeType": "function",
+                "props": Object {
+                  "data": Object {
+                    "consented": 64,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "liveramp.svg",
+                    "name": "Live Ramp",
+                    "scopes": Array [
+                      "Email",
+                    ],
+                  },
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "2",
+                "nodeType": "function",
+                "props": Object {
+                  "data": Object {
+                    "consented": 25,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "experian.svg",
+                    "name": "Experian",
+                    "scopes": Array [
+                      "Full Name",
+                      "Phone Number",
+                    ],
+                  },
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+            ],
+            "type": "div",
+          },
+          "type": "div",
+        },
+      ],
+      "type": "section",
+    },
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <section
+          className="cards"
+        >
+          <div
+            className="action-bar"
+          >
+            <div
+              className="text"
+            >
+              <h4>
+                Processors
+              </h4>
+              <p>
+                A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+              </p>
+            </div>
+            <div
+              className="spacer"
+            />
+          </div>
+          <div
+            className="row"
+          >
+            <div
+              className="content"
+            >
+              <ProcessorCard
+                data={
+                  Object {
+                    "consented": 72,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "nielsen.svg",
+                    "name": "Nielsen",
+                    "scopes": Array [
+                      "Full Name",
+                      "Email",
+                      "Phone Number",
+                    ],
+                  }
+                }
+                onClick={[Function]}
+              />
+              <ProcessorCard
+                data={
+                  Object {
+                    "consented": 64,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "liveramp.svg",
+                    "name": "Live Ramp",
+                    "scopes": Array [
+                      "Email",
+                    ],
+                  }
+                }
+                onClick={[Function]}
+              />
+              <ProcessorCard
+                data={
+                  Object {
+                    "consented": 25,
+                    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                    "logoUrl": "experian.svg",
+                    "name": "Experian",
+                    "scopes": Array [
+                      "Full Name",
+                      "Phone Number",
+                    ],
+                  }
+                }
+                onClick={[Function]}
+              />
+            </div>
+          </div>
+        </section>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            <div
+              className="action-bar"
+            >
+              <div
+                className="text"
+              >
+                <h4>
+                  Processors
+                </h4>
+                <p>
+                  A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+                </p>
+              </div>
+              <div
+                className="spacer"
+              />
+            </div>,
+            <div
+              className="row"
+            >
+              <div
+                className="content"
+              >
+                <ProcessorCard
+                  data={
+                    Object {
+                      "consented": 72,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "nielsen.svg",
+                      "name": "Nielsen",
+                      "scopes": Array [
+                        "Full Name",
+                        "Email",
+                        "Phone Number",
+                      ],
+                    }
+                  }
+                  onClick={[Function]}
+                />
+                <ProcessorCard
+                  data={
+                    Object {
+                      "consented": 64,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "liveramp.svg",
+                      "name": "Live Ramp",
+                      "scopes": Array [
+                        "Email",
+                      ],
+                    }
+                  }
+                  onClick={[Function]}
+                />
+                <ProcessorCard
+                  data={
+                    Object {
+                      "consented": 25,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "experian.svg",
+                      "name": "Experian",
+                      "scopes": Array [
+                        "Full Name",
+                        "Phone Number",
+                      ],
+                    }
+                  }
+                  onClick={[Function]}
+                />
+              </div>
+            </div>,
+          ],
+          "className": "cards",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="text"
+                >
+                  <h4>
+                    Processors
+                  </h4>
+                  <p>
+                    A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+                  </p>
+                </div>,
+                <div
+                  className="spacer"
+                />,
+              ],
+              "className": "action-bar",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <h4>
+                      Processors
+                    </h4>,
+                    <p>
+                      A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
+                    </p>,
+                  ],
+                  "className": "text",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "Processors",
+                    },
+                    "ref": null,
+                    "rendered": "Processors",
+                    "type": "h4",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.",
+                    },
+                    "ref": null,
+                    "rendered": "A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.",
+                    "type": "p",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "className": "spacer",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": <div
+                className="content"
+              >
+                <ProcessorCard
+                  data={
+                    Object {
+                      "consented": 72,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "nielsen.svg",
+                      "name": "Nielsen",
+                      "scopes": Array [
+                        "Full Name",
+                        "Email",
+                        "Phone Number",
+                      ],
+                    }
+                  }
+                  onClick={[Function]}
+                />
+                <ProcessorCard
+                  data={
+                    Object {
+                      "consented": 64,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "liveramp.svg",
+                      "name": "Live Ramp",
+                      "scopes": Array [
+                        "Email",
+                      ],
+                    }
+                  }
+                  onClick={[Function]}
+                />
+                <ProcessorCard
+                  data={
+                    Object {
+                      "consented": 25,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "experian.svg",
+                      "name": "Experian",
+                      "scopes": Array [
+                        "Full Name",
+                        "Phone Number",
+                      ],
+                    }
+                  }
+                  onClick={[Function]}
+                />
+              </div>,
+              "className": "row",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <ProcessorCard
+                    data={
+                      Object {
+                        "consented": 72,
+                        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                        "logoUrl": "nielsen.svg",
+                        "name": "Nielsen",
+                        "scopes": Array [
+                          "Full Name",
+                          "Email",
+                          "Phone Number",
+                        ],
+                      }
+                    }
+                    onClick={[Function]}
+                  />,
+                  <ProcessorCard
+                    data={
+                      Object {
+                        "consented": 64,
+                        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                        "logoUrl": "liveramp.svg",
+                        "name": "Live Ramp",
+                        "scopes": Array [
+                          "Email",
+                        ],
+                      }
+                    }
+                    onClick={[Function]}
+                  />,
+                  <ProcessorCard
+                    data={
+                      Object {
+                        "consented": 25,
+                        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                        "logoUrl": "experian.svg",
+                        "name": "Experian",
+                        "scopes": Array [
+                          "Full Name",
+                          "Phone Number",
+                        ],
+                      }
+                    }
+                    onClick={[Function]}
+                  />,
+                ],
+                "className": "content",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": "0",
+                  "nodeType": "function",
+                  "props": Object {
+                    "data": Object {
+                      "consented": 72,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "nielsen.svg",
+                      "name": "Nielsen",
+                      "scopes": Array [
+                        "Full Name",
+                        "Email",
+                        "Phone Number",
+                      ],
+                    },
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "1",
+                  "nodeType": "function",
+                  "props": Object {
+                    "data": Object {
+                      "consented": 64,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "liveramp.svg",
+                      "name": "Live Ramp",
+                      "scopes": Array [
+                        "Email",
+                      ],
+                    },
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "2",
+                  "nodeType": "function",
+                  "props": Object {
+                    "data": Object {
+                      "consented": 25,
+                      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+                      "logoUrl": "experian.svg",
+                      "name": "Experian",
+                      "scopes": Array [
+                        "Full Name",
+                        "Phone Number",
+                      ],
+                    },
+                    "onClick": [Function],
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+              ],
+              "type": "div",
+            },
+            "type": "div",
+          },
+        ],
+        "type": "section",
+      },
+      "type": Symbol(react.fragment),
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
