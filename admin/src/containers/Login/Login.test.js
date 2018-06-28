@@ -61,17 +61,20 @@ describe('(Container) Login', () => {
       Promise.resolve({
         ok: false,
         status: 400,
-        json: () => false
+        json: () => {
+          return Promise.resolve({ error: 'Invalid credentials' });
+        }
       })
     );
 
     const { component } = setup();
     const instance = component.instance();
-    const response = await instance.handleLogin(null, null);
+
+    expect(instance.handleLogin(null, null)).rejects.toMatchObject({
+      message: 'Invalid credentials'
+    });
 
     await flushPromises();
     expect(global.fetch).toBeCalled();
-    expect(response.status).toBe(400);
-    expect(response.json()).toBe(false);
   });
 });

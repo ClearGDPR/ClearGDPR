@@ -10,7 +10,6 @@ export class LoginContainer extends React.Component {
   handleLogin(username, password) {
     const { history, location } = this.props;
     const { from } = location.state || { from: { pathname: '/' } };
-
     return fetch(`${config.API_URL}/api/management/users/login`, {
       method: 'POST',
       body: JSON.stringify({
