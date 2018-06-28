@@ -18,44 +18,18 @@ export class ChangePasswordContainer extends React.Component {
   };
 
   async changePassword(userId, password) {
-    const response = await internalFetch(
-      `${config.API_URL}/api/management/users/${userId}/update-password`,
-      {
-        method: 'POST',
-        body: JSON.stringify({
-          password
-        })
-      }
-    );
-
-    if (!response.ok) {
-      if (response.status === 400) {
-        this.setState({
-          errors: {
-            '': await response.json().message
-          }
-        });
-        return;
-      } else {
-        this.setState({
-          errors: {
-            '': 'Unknown error occurred'
-          }
-        });
-        return;
-      }
-    }
-
-    const result = await response.json();
-
-    if (result.success) {
-      return;
-    }
-
-    this.setState({
-      errors: {
-        '': 'Unknown error occurred'
-      }
+    await internalFetch(`${config.API_URL}/api/management/users/${userId}/update-password`, {
+      method: 'POST',
+      body: JSON.stringify({
+        password
+      })
+    }).catch(err => {
+      this.setState({
+        errors: {
+          '': err.message
+        }
+      });
+      return Promise.reject(err);
     });
   }
 

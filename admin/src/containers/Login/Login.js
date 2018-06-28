@@ -5,12 +5,13 @@ import PropTypes from 'prop-types';
 import Login from '../../components/Login/Login';
 import session from '../../helpers/Session';
 import config from '../../config';
+import internalFetch from '../../helpers/internal-fetch';
 
 export class LoginContainer extends React.Component {
   handleLogin(username, password) {
     const { history, location } = this.props;
     const { from } = location.state || { from: { pathname: '/' } };
-    return fetch(`${config.API_URL}/api/management/users/login`, {
+    return internalFetch(`${config.API_URL}/api/management/users/login`, {
       method: 'POST',
       body: JSON.stringify({
         username,
@@ -19,10 +20,10 @@ export class LoginContainer extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(async res => {
-      session.set({ ...(await res.json()), username });
+    }).then(async resData => {
+      session.set({ ...resData, username });
       history.push(from);
-      return res;
+      return resData;
     });
   }
 

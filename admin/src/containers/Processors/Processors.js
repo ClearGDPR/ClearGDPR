@@ -18,9 +18,7 @@ export class ProcessorsContainer extends React.Component {
   };
 
   async getProcessors() {
-    const response = await internalFetch(`${config.API_URL}/api/management/processors/list`);
-
-    return await response.json();
+    return internalFetch(`${config.API_URL}/api/management/processors/list`);
   }
 
   componentDidMount() {

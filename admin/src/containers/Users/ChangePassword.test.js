@@ -74,31 +74,6 @@ describe('(Container) Change Password', () => {
     );
   });
 
-  it('should populate errors on submit when fetch returns result without success', async () => {
-    global.fetch = jest.fn().mockImplementationOnce(() =>
-      Promise.resolve({
-        status: 200,
-        json: () => ({
-          success: false
-        })
-      })
-    );
-
-    const { component } = setupShallow();
-    component
-      .instance()
-      .onSubmit({ newPassword: 'testPassword', newPasswordRepeat: 'testPassword' });
-
-    await TestUtils.flushPromises();
-    expect(component.state()).toEqual(
-      expect.objectContaining({
-        errors: {
-          '': 'Unknown error occurred'
-        }
-      })
-    );
-  });
-
   it('should populate errors on submit when passwords do not match', async () => {
     const { component } = setupShallow();
     component

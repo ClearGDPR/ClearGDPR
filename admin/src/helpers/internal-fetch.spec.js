@@ -15,9 +15,7 @@ describe('internal fetch', () => {
     });
 
     const res = await internalFetch('');
-    expect(res.ok).toEqual(true);
-    expect(res.status).toEqual(200);
-    expect(await res.json()).toEqual({ test: 'test' });
+    expect(res).toEqual({ test: 'test' });
   });
 
   it('Should redirect and destroy the session if JWT is expired', async () => {
