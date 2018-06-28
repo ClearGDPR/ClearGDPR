@@ -19,7 +19,9 @@ class MainLayoutContainer extends Component {
     isPanelOpen: false
   };
 
-  componentWillMount() {
+  constructor() {
+    super();
+
     // set an eventListener on the browser's resize event if you want this to be dynamic
     if (window.innerWidth < 840) {
       this.mobileDashboard();

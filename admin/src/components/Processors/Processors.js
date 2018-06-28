@@ -5,7 +5,7 @@ import ProcessorCard from '../core/cards/dashboard/ProcessorCard';
 import Loader from '../core/cards/dashboard/Loader';
 
 const Processors = ({ processors, onEditProcessorClick, isLoading }) => {
-  function onEditProcessorClick(e, id) {
+  function onEditProcessorClickHandler(e, id) {
     console.log({ e, id });
   }
 
@@ -32,7 +32,7 @@ const Processors = ({ processors, onEditProcessorClick, isLoading }) => {
                 <ProcessorCard
                   key={i}
                   data={processor}
-                  onClick={e => onEditProcessorClick(e, processor.id)}
+                  onClick={e => onEditProcessorClickHandler(e, processor.id)}
                 />
               ))
             ) : (

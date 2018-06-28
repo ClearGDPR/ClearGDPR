@@ -34,7 +34,9 @@ class Dashboard extends Component {
     panelData: { title: 'Details' }
   };
 
-  componentWillMount() {
+  constructor() {
+    super();
+
     // set an eventListener on the browser's resize event if you want this to be dynamic
     if (window.innerWidth < 840) {
       this.mobileDashboard();
