@@ -7,6 +7,7 @@ import { UsersConsumer } from './UsersContext';
 import Users from '../../components/Users/Users';
 import ChangePassword from '../../containers/Users/ChangePassword';
 import Register from './Register';
+import DeleteUser from './DeleteUser';
 
 export class UsersContainer extends React.Component {
   static propTypes = {
@@ -14,6 +15,11 @@ export class UsersContainer extends React.Component {
     users: PropTypes.arrayOf(PropTypes.object),
     isLoading: PropTypes.bool,
     fetchUsers: PropTypes.func
+  };
+
+  state = {
+    isDeleteModalOpen: false,
+    userToDeleteId: 0
   };
 
   componentDidMount() {
@@ -28,6 +34,13 @@ export class UsersContainer extends React.Component {
     this.props.openPanel(Register, 'Register user');
   }
 
+  openDeleteConfirmationModal(userId) {
+    this.setState({
+      isDeleteModalOpen: true,
+      userToDeleteId: userId
+    });
+  }
+
   render() {
     return (
       <Users
@@ -35,7 +48,14 @@ export class UsersContainer extends React.Component {
         isLoading={this.props.isLoading}
         onChangePasswordClick={this.openChangePasswordForm.bind(this)}
         onRegisterUserClick={this.openRegisterUserForm.bind(this)}
-      />
+        onDeleteClick={this.openDeleteConfirmationModal.bind(this)}
+      >
+        <DeleteUser
+          isOpen={this.state.isDeleteModalOpen}
+          onClose={() => this.setState({ isDeleteModalOpen: false })}
+          userId={this.state.userToDeleteId}
+        />
+      </Users>
     );
   }
 }

@@ -4,7 +4,14 @@ import PropTypes from 'prop-types';
 import Card from '../core/cards/dashboard/Card';
 import Loader from '../core/cards/dashboard/Loader';
 
-const Users = ({ users, onChangePasswordClick, onRegisterUserClick, onDeleteClick, isLoading }) => {
+const Users = ({
+  users,
+  onChangePasswordClick,
+  onRegisterUserClick,
+  onDeleteClick,
+  isLoading,
+  children
+}) => {
   function onChangePasswordClickHandler(e, userId) {
     e.preventDefault();
     onChangePasswordClick && onChangePasswordClick(userId);
@@ -71,6 +78,7 @@ const Users = ({ users, onChangePasswordClick, onRegisterUserClick, onDeleteClic
           </Card>
         </div>
       </section>
+      {children}
     </React.Fragment>
   );
 };
@@ -80,7 +88,8 @@ Users.propTypes = {
   onChangePasswordClick: PropTypes.func,
   onDeleteClick: PropTypes.func,
   onRegisterUserClick: PropTypes.func,
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+  children: PropTypes.node
 };
 
 export default Users;

@@ -8,6 +8,7 @@ const UsersContext = createContext({
   users: [],
   fetchUsers: () => {},
   registerUser: () => {},
+  deleteUser: () => {},
   isLoading: false
 });
 
@@ -24,6 +25,7 @@ export class UsersProvider extends Component {
     users: [],
     fetchUsers: this.fetchUsers.bind(this),
     registerUser: this.registerUser.bind(this),
+    deleteUser: this.deleteUser.bind(this),
     isLoading: false
   };
 
