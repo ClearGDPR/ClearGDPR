@@ -1,44 +1,34 @@
 [
   {
-    "constant": true,
+    "anonymous": false,
     "inputs": [
       {
-        "name": "_processor",
+        "indexed": false,
+        "name": "subjectId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "processor",
         "type": "address"
       }
     ],
-    "name": "isProcessor",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "name": "Processor_SubjectDataErased",
+    "type": "event"
   },
   {
     "constant": false,
     "inputs": [
       {
-        "name": "_subjectIdHash",
+        "name": "_subjectId",
         "type": "bytes32"
-      },
-      {
-        "name": "_processorIdHash",
-        "type": "address"
-      },
-      {
-        "name": "_state",
-        "type": "uint8"
       }
     ],
-    "name": "setSubjectDataState",
+    "name": "recordAccessByController",
     "outputs": [
       {
         "name": "",
-        "type": "bool"
+        "type": "uint8[]"
       }
     ],
     "payable": false,
@@ -46,33 +36,14 @@
     "type": "function"
   },
   {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_subjectIdHash",
-        "type": "bytes32"
-      }
-    ],
-    "name": "getRectificationCount",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "constant": false,
     "inputs": [
       {
-        "name": "_subjectIdHash",
+        "name": "_subjectId",
         "type": "bytes32"
       },
       {
-        "name": "_processorsWhiteListedBySubject",
+        "name": "_processorsConsented",
         "type": "address[]"
       }
     ],
@@ -88,33 +59,99 @@
     "type": "function"
   },
   {
-    "constant": true,
+    "anonymous": false,
     "inputs": [
       {
-        "name": "_subjectIdHash",
+        "indexed": false,
+        "name": "subjectId",
         "type": "bytes32"
       },
       {
-        "name": "_processorIdHash",
-        "type": "address"
+        "indexed": false,
+        "name": "rectificationCount",
+        "type": "uint256"
       }
     ],
-    "name": "getSubjectDataState",
-    "outputs": [
+    "name": "Controller_SubjectDataRectified",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
       {
-        "name": "",
-        "type": "uint8"
+        "indexed": false,
+        "name": "newProcessors",
+        "type": "address[]"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "name": "Controller_ProcessorsUpdated",
+    "type": "event"
   },
   {
     "constant": false,
     "inputs": [
       {
-        "name": "_subjectIdHash",
+        "name": "_subjectId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "recordErasureByController",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "subjectId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "processorsConsented",
+        "type": "address[]"
+      }
+    ],
+    "name": "Controller_ConsentGivenTo",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "subjectId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Controller_SubjectDataErased",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "subjectId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Controller_SubjectDataAccessed",
+    "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_subjectId",
         "type": "bytes32"
       },
       {
@@ -156,7 +193,7 @@
     "constant": false,
     "inputs": [
       {
-        "name": "_subjectIdHash",
+        "name": "_subjectId",
         "type": "bytes32"
       }
     ],
@@ -169,43 +206,6 @@
     ],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_subjectIdHash",
-        "type": "bytes32"
-      }
-    ],
-    "name": "recordErasureByController",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "getProcessors",
-    "outputs": [
-      {
-        "name": "",
-        "type": "address[]"
-      },
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -228,6 +228,39 @@
     "type": "function"
   },
   {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_subjectId",
+        "type": "bytes32"
+      },
+      {
+        "name": "_processor",
+        "type": "address"
+      },
+      {
+        "name": "_state",
+        "type": "uint8"
+      }
+    ],
+    "name": "setSubjectDataState",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
     "constant": true,
     "inputs": [
       {
@@ -248,9 +281,23 @@
   },
   {
     "constant": true,
+    "inputs": [],
+    "name": "controller",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
     "inputs": [
       {
-        "name": "_subjectIdHash",
+        "name": "_subjectId",
         "type": "bytes32"
       }
     ],
@@ -266,32 +313,17 @@
     "type": "function"
   },
   {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_subjectIdHash",
-        "type": "bytes32"
-      }
-    ],
-    "name": "recordAccessByController",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint8[]"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "constant": true,
     "inputs": [],
-    "name": "controller",
+    "name": "getProcessors",
     "outputs": [
       {
         "name": "",
-        "type": "address"
+        "type": "address[]"
+      },
+      {
+        "name": "",
+        "type": "uint256"
       }
     ],
     "payable": false,
@@ -299,96 +331,64 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "anonymous": false,
+    "constant": true,
     "inputs": [
       {
-        "indexed": false,
-        "name": "newProcessors",
-        "type": "address[]"
-      }
-    ],
-    "name": "Controller_ProcessorsUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "subjectIdHash",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "name": "newProcessorsWhiteListed",
-        "type": "address[]"
-      }
-    ],
-    "name": "Controller_ConsentGivenTo",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "subjectIdHash",
+        "name": "_subjectId",
         "type": "bytes32"
       }
     ],
-    "name": "Controller_SubjectDataAccessed",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
+    "name": "getRectificationCount",
+    "outputs": [
       {
-        "indexed": false,
-        "name": "subjectIdHash",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "name": "rectificationCount",
+        "name": "",
         "type": "uint256"
       }
     ],
-    "name": "Controller_SubjectDataRectified",
-    "type": "event"
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "anonymous": false,
+    "constant": true,
     "inputs": [
       {
-        "indexed": false,
-        "name": "subjectIdHash",
-        "type": "bytes32"
-      }
-    ],
-    "name": "Controller_SubjectDataErased",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "subjectIdHash",
+        "name": "_subjectId",
         "type": "bytes32"
       },
       {
-        "indexed": false,
-        "name": "processorIdHash",
+        "name": "_processor",
         "type": "address"
       }
     ],
-    "name": "Processor_SubjectDataErased",
-    "type": "event"
+    "name": "getSubjectDataState",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_processor",
+        "type": "address"
+      }
+    ],
+    "name": "isProcessor",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   }
 ]

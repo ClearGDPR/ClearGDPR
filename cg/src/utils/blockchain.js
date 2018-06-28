@@ -49,11 +49,7 @@ async function runContractMethod(methodName, params) {
 
 async function deployContract(abiJson, compiledData) {
   const quorumContract = new QuorumContract(web3, abiJson);
-
   await quorumContract.deploy(compiledData);
-
-  await quorumContract.performMethod('setProcessors', [[controllerAddress]]);
-
   return quorumContract.address;
 }
 
@@ -85,7 +81,7 @@ async function setSubjectDataState(subjectId, processor, state) {
 }
 
 async function setProcessors(newProcessors = []) {
-  return await runContractMethod('setProcessors', [[controllerAddress, ...newProcessors]]);
+  return await runContractMethod('setProcessors', [newProcessors]);
 }
 
 async function isProcessor(processor) {
@@ -105,8 +101,7 @@ async function recordProcessorsUpdate(newProcessors) {
 }
 
 async function recordConsentGivenTo(subjectId, newProcessors = []) {
-  let processors = [controllerAddress, ...newProcessors];
-  return await runContractMethod('recordConsentGivenTo', [subjectId, processors]);
+  return await runContractMethod('recordConsentGivenTo', [subjectId, newProcessors]);
 }
 
 async function recordAccessByController(subjectId) {
@@ -145,7 +140,7 @@ async function listenForErasureRequest(callback) {
       return;
     }
 
-    callback(data.returnValues.subjectIdHash);
+    callback(data.returnValues.subjectId);
   });
 }
 
@@ -157,7 +152,7 @@ async function listenForProcessorErasureRequest(callback) {
       return;
     }
 
-    callback(data.returnValues.subjectIdHash, data.returnValues.processorIdHash);
+    callback(data.returnValues.subjectId, data.returnValues.processor);
   });
 }
 
@@ -174,11 +169,11 @@ async function listenForConsent(callback) {
 
     if (
       // we need to downcase the addresses so they are in a consistent format. One was coming in with capitals and one was not.
-      data.returnValues.newProcessorsWhiteListed
+      data.returnValues.newProcessorsConsented
         .map(address => address.toLowerCase())
         .includes(getMyAddress().toLowerCase())
     ) {
-      callback(data.returnValues.subjectIdHash);
+      callback(data.returnValues.subjectId);
     }
   });
 }
@@ -198,7 +193,6 @@ async function waitForGeth() {
       await timeout(5000);
     }
   }
-
   web3 = newWeb3;
   winston.info('Geth node is up and listening');
 }

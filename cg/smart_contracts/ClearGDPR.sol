@@ -1,135 +1,148 @@
-/*  ClearGDPR smart contract version 6
+/*  ClearGDPR smart contract version 7
 *       A piece of art made by CleverTech
 *       Author contact: sindelio.lima@clevertech.biz
 *       Coffee => Code!
+*
+*   IMPORTANT NOTES !!!!
+*       1. The controller is a processor, but the processors are not controllers
+*       2. All processor addresses and subject IDs are hashed in the back-end before entering the smart contract
+*       3. In production only the record functions should be used and they should provide all functionality needed to the system
+*       4. There's a bug when we use bytes32 instead of address to identificate the processors. The memory seems to not be cleared out
+*       5. This smart contract was compiled without errors or warnings and all functions were tested
 */
 
-//This code is compiled without errors and all functions were tested 
-pragma solidity 0.4.24; 
+pragma solidity ^0.4.24; 
 contract ClearGDPR {
-  address public controller; 
-  address[] private processors;  
-  enum State {notShareable, shareable, erased} 
-  struct subjectData{
-    bool isErased;
-    uint256 rectificationCount;
-    mapping(address => State) statePerProcessor;  
-  }
-  mapping(bytes32 => subjectData) private subjects;
+    address public controller; 
+    address[] private processors; 
+    enum State {notShareable, shareable, erased} 
+    struct subjectData{
+        bool isErased;
+        uint256 rectificationCount;
+        mapping(address => State) statePerProcessor;  
+    }
+    mapping(bytes32 => subjectData) private subjects;
 
-  event Controller_ProcessorsUpdated(address[] newProcessors);
-  event Controller_ConsentGivenTo(bytes32 subjectIdHash, address[] newProcessorsWhiteListed); 
-  event Controller_SubjectDataAccessed(bytes32 subjectIdHash);
-  event Controller_SubjectDataRectified(bytes32 subjectIdHash, uint256 rectificationCount);
-  event Controller_SubjectDataErased(bytes32 subjectIdHash); 
-  event Processor_SubjectDataErased(bytes32 subjectIdHash, address processorIdHash);
+    event Controller_ProcessorsUpdated(address[] newProcessors);
+    event Controller_ConsentGivenTo(bytes32 subjectId, address[] processorsConsented); 
+    event Controller_SubjectDataAccessed(bytes32 subjectId);
+    event Controller_SubjectDataRectified(bytes32 subjectId, uint256 rectificationCount);
+    event Controller_SubjectDataErased(bytes32 subjectId); 
+    event Processor_SubjectDataErased(bytes32 subjectId, address processor);
 
-  modifier onlyController(){
-    require(msg.sender == controller);
-    _;
-  }
+    modifier onlyController(){
+        require(msg.sender == controller);
+        _;
+    }
   
-  modifier onlyProcessor(){
-    require(isProcessor(msg.sender));
-    _;     
-  }
+    modifier onlyProcessor(){
+        require(isProcessor(msg.sender));
+        _;     
+    }
   
-  modifier notErased(bytes32 _subjectIdHash){
-    require(subjects[_subjectIdHash].isErased == false);
-    _;
-  }
+    modifier notErased(bytes32 _subjectId){
+        require(subjects[_subjectId].isErased == false);
+        _;
+    }
 
-  constructor() public {
-    controller = msg.sender; 
-  }
+    constructor() public {
+        controller = msg.sender;
+        processors = new address[](1);
+        processors[0] = controller;
+    }
 
-  function getRectifiedCount(bytes32 _subjectIdHash) public view returns(uint256){
-    return subjects[_subjectIdHash].rectificationCount;
-  }
+    function getRectificationCount(bytes32 _subjectId) public view returns(uint256){
+        return subjects[_subjectId].rectificationCount;
+    }
 
-  function getIsErased(bytes32 _subjectIdHash) public view returns(bool){
-    return subjects[_subjectIdHash].isErased;
-  }
+    function getIsErased(bytes32 _subjectId) public view returns(bool){
+        return subjects[_subjectId].isErased;
+    }
 
-  function getSubjectDataState(bytes32 _subjectIdHash, address _processorIdHash) public view returns(State){
-    return subjects[_subjectIdHash].statePerProcessor[_processorIdHash];
-  }
+    function getSubjectDataState(bytes32 _subjectId, address _processor) public view returns(State){
+        return subjects[_subjectId].statePerProcessor[_processor];
+    }
 
-  function getProcessors() public view returns(address[], uint256){
-    return (processors, processors.length);
-  }
+    function getProcessors() public view returns(address[], uint256){
+        return (processors, processors.length);
+    }
 
-  function setSubjectDataState(bytes32 _subjectIdHash, address _processorIdHash, State _state) public returns(bool){
-    subjects[_subjectIdHash].statePerProcessor[_processorIdHash] = _state;
-    return true;
-  }
-
-  function setProcessors(address[] _newProcessors) public returns(bool){ //BUG IN HERE, CAN'T USE BYTES32
-    processors = new address[](_newProcessors.length);
-    processors = _newProcessors;
-    return true;
-  }
-  
-  function isProcessor(address _processor) public view returns(bool){ //0x1 for remix, since it's the only argument
-    for(uint256 i = 0; i < processors.length; i++){
-      if(processors[i] == _processor){
+    function setSubjectDataState(bytes32 _subjectId, address _processor, State _state) public returns(bool){
+        subjects[_subjectId].statePerProcessor[_processor] = _state;
         return true;
-      }
     }
-    return false;
-  }
-  
-  function areAllValidProcessors(address[] _processors) public view returns(bool){
-    for(uint256 i = 0; i < _processors.length; i++){
-      require(isProcessor(_processors[i]));
-    }
-    return true;
-  }
-  
-  function recordProcessorsUpdate(address[] _newProcessors) public onlyController returns(bool){
-    require(setProcessors(_newProcessors));
-    emit Controller_ProcessorsUpdated(_newProcessors);  
-    return true;
-  }
 
-  function recordConsentGivenTo(bytes32 _subjectIdHash, address[] _processorsWhiteListedBySubject) public onlyController notErased(_subjectIdHash)  returns (bool){
-    require(areAllValidProcessors(_processorsWhiteListedBySubject));
-    for(uint256 i = 0; i < processors.length; i++){
-      subjects[_subjectIdHash].statePerProcessor[processors[i]] = State.notShareable;  
+    function setProcessors(address[] _newProcessors) public returns(bool){
+        processors = new address[](_newProcessors.length + 1);
+        processors[0] = controller;
+        for(uint256 i = 0; i < _newProcessors.length; i++){
+            //requires that none of the processors is equal to the controller
+            processors[i + 1] = _newProcessors[i];
+        }
+        //processors = _newProcessors;
+        return true;
     }
-    for(i = 0; i < _processorsWhiteListedBySubject.length; i++){
-      subjects[_subjectIdHash].statePerProcessor[_processorsWhiteListedBySubject[i]] = State.shareable;  
-    }
-    subjects[_subjectIdHash].isErased = false;
-    emit Controller_ConsentGivenTo(_subjectIdHash, _processorsWhiteListedBySubject);
-    return true;
-  }
   
-  function recordAccessByController(bytes32 _subjectIdHash) public onlyController notErased(_subjectIdHash) returns (State[]){
-    State[] memory states = new State[](processors.length);
-    for(uint256 i = 0; i < processors.length; i++){
-      states[i] = subjects[_subjectIdHash].statePerProcessor[processors[i]];
+    function isProcessor(address _processor) public view returns(bool){
+        for(uint256 i = 0; i < processors.length; i++){
+            if(processors[i] == _processor){
+                return true;
+            }
+        }
+        return false;
     }
-    emit Controller_SubjectDataAccessed(_subjectIdHash);
-    return states;
-  }
   
-  function recordRectificationByController(bytes32 _subjectIdHash) public onlyController notErased(_subjectIdHash) returns (bool){
-    subjects[_subjectIdHash].rectificationCount++;
-    emit Controller_SubjectDataRectified(_subjectIdHash, subjects[_subjectIdHash].rectificationCount);
-    return true;
-  }
+    function areAllValidProcessors(address[] _processors) public view returns(bool){
+        for(uint256 i = 0; i < _processors.length; i++){
+            require(isProcessor(_processors[i]));
+        }
+        return true;
+    }
+  
+    function recordProcessorsUpdate(address[] _newProcessors) public onlyController returns(bool){
+        require(setProcessors(_newProcessors));
+        emit Controller_ProcessorsUpdated(_newProcessors);  
+        return true;
+    }
 
-  function recordErasureByController(bytes32 _subjectIdHash) public onlyController notErased(_subjectIdHash) returns (bool){
-    subjects[_subjectIdHash].isErased = true;
-    emit Controller_SubjectDataErased(_subjectIdHash);
-    return true;
-  }
+    function recordConsentGivenTo(bytes32 _subjectId, address[] _processorsConsented) public onlyController notErased(_subjectId) returns(bool){
+        require(areAllValidProcessors(_processorsConsented));
+        for(uint256 i = 0; i < processors.length; i++){
+            subjects[_subjectId].statePerProcessor[processors[i]] = State.notShareable;  
+        }
+        for(i = 0; i < _processorsConsented.length; i++){
+            subjects[_subjectId].statePerProcessor[_processorsConsented[i]] = State.shareable;  
+        }
+        subjects[_subjectId].isErased = false;
+        emit Controller_ConsentGivenTo(_subjectId, _processorsConsented);
+        return true;
+    }
   
-  function recordErasureByProcessor(bytes32 _subjectIdHash, address _processor) public onlyProcessor returns (bool){
-    emit Processor_SubjectDataErased(_subjectIdHash, _processor);
-    return true;
-  }
+    function recordAccessByController(bytes32 _subjectId) public onlyController notErased(_subjectId) returns(State[]){
+        State[] memory states = new State[](processors.length);
+        for(uint256 i = 0; i < processors.length; i++){
+            states[i] = subjects[_subjectId].statePerProcessor[processors[i]];
+        }
+        emit Controller_SubjectDataAccessed(_subjectId);
+        return states;
+    }
+  
+    function recordRectificationByController(bytes32 _subjectId) public onlyController notErased(_subjectId) returns(bool){
+        subjects[_subjectId].rectificationCount++;
+        emit Controller_SubjectDataRectified(_subjectId, subjects[_subjectId].rectificationCount);
+        return true;
+    }
+
+    function recordErasureByController(bytes32 _subjectId) public onlyController notErased(_subjectId) returns(bool){
+        subjects[_subjectId].isErased = true;
+        emit Controller_SubjectDataErased(_subjectId);
+        return true;
+    }
+  
+    function recordErasureByProcessor(bytes32 _subjectId, address _processor) public onlyProcessor returns(bool){
+        emit Processor_SubjectDataErased(_subjectId, _processor);
+        return true;
+    }
 
 }
 
@@ -139,15 +152,10 @@ contract ClearGDPR {
 *       3. Only controllers can initiate data erasure events.
 *       4. The controller always has consent to use the user data. Else how could the user data be stored in the first place?
 *
-*   NOTES:
-*       1. We should move any processing of data to the back-end if possible. The only processing done in the smart contract is to ascertain that the data stored is valid.
-*       2. Controllers and processors have a different set of possible actions in the system. Hence the events each can fire are also different.
-*      We need a way to enforce this difference in the back-end if we stick with this smart contract.
-*       3. There's a bug when we use bytes32 instead of address to identificate the processors. The memory seems to not be cleared out. 
-*       
 *   TODO: 
 *       1. Change accessibility of setters to private (they are public for testing purposes)
 *       2. Implement the add/remove function of processor nodes in the network, or use a system ID for each processor, which would be simpler
 *       3. Study more about memory allocation/deallocation in Solidity. Will need to dive in inline Assembly
 *       4. Consider that each processor can delete their data of a subject, without the data being deleted from the whole network
+*       5. When a subjects gives consent, does that functions as a rectification of data? If not, his data should not be altered when he gives consent again
 */

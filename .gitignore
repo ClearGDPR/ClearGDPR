@@ -68,10 +68,13 @@ Vagrantfile
 helm-*.yml
 
 
-# ignore .temp.js .temp.json
+# Ignore .temp.js .temp.json
 *.temp.js
 *.temp.json
 
-# ignore kube definitions
+# Ignore kube definitions
 kubeDef.json
 .docs/
+
+# VS Code settings
+.vscode
