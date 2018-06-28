@@ -164,9 +164,9 @@ describe('Event feed websocket', () => {
     socketSubscription.on('message', event => {
       const data = JSON.parse(event);
       expect(data.eventName).toEqual('Controller_ConsentGivenTo');
-      expect(data.params.subjectIdHash).toEqual(sha3('websocket-test'));
-      expect(data.params.newProcessorsWhiteListed).toHaveLength(1);
-      expect(data.params.newProcessorsWhiteListed[0].toLowerCase()).toEqual(
+      expect(data.params.subjectId).toEqual(sha3('websocket-test'));
+      expect(data.params.processorsConsented).toHaveLength(1);
+      expect(data.params.processorsConsented[0].toLowerCase()).toEqual(
         process.env.CONTRACT_OWNER_ADDRESS.toLowerCase()
       );
       expect(data.fromName).toEqual('Master Controller Node');

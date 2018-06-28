@@ -128,7 +128,7 @@ describe('Tests of subject giving consent', () => {
     });
   });
 
-  it('new subject gives consent to process her data', async () => {
+  it.only('new subject gives consent to process her data', async () => {
     // Given (Arrange)
 
     // When (Act)
@@ -161,9 +161,10 @@ describe('Tests of subject giving consent', () => {
     const decryptedPersonalData = JSON.parse(decryptedJson);
 
     expect(decryptedPersonalData).toEqual(expect.objectContaining(personalData));
-
+    console.log(decryptedPersonalData);
+    console.log(personalData);
     const processors = await db('subject_processors').where({ subject_id: subjectIdHashed });
-
+    //console.log(processors);
     // check that mappings have been created for each processor
     payload.processors.forEach(id => expect(processors.map(p => p.processor_id)).toContain(id));
 
