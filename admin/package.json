@@ -98,7 +98,7 @@
   },
   "devDependencies": {
     "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-adapter-react-16": "npm:enzyme-react-adapter-future",
     "enzyme-to-json": "^3.3.4",
     "eslint-plugin-jest": "^21.17.0",
     "sinon": "^6.0.0"
