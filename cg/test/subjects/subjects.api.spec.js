@@ -128,7 +128,7 @@ describe('Tests of subject giving consent', () => {
     });
   });
 
-  it.only('new subject gives consent to process her data', async () => {
+  it('new subject gives consent to process her data', async () => {
     // Given (Arrange)
 
     // When (Act)
@@ -146,12 +146,14 @@ describe('Tests of subject giving consent', () => {
         Authorization: `Bearer ${token}`
       }
     });
-
+    // console.log(await res.text());
     // Then (Assert)
     let subjectIdHashed = hash('1');
+    //console.log(subjectIdHashed);
 
     expect(await res.text()).toEqual('OK');
     const [subject] = await db('subjects').where({ id: subjectIdHashed });
+    //console.log(subject);
     expect(subject).toBeTruthy();
     expect(subject.personal_data).not.toBe(JSON.stringify(personalData));
 
@@ -161,8 +163,8 @@ describe('Tests of subject giving consent', () => {
     const decryptedPersonalData = JSON.parse(decryptedJson);
 
     expect(decryptedPersonalData).toEqual(expect.objectContaining(personalData));
-    console.log(decryptedPersonalData);
-    console.log(personalData);
+    //console.log(decryptedPersonalData);
+    //console.log(personalData);
     const processors = await db('subject_processors').where({ subject_id: subjectIdHashed });
     //console.log(processors);
     // check that mappings have been created for each processor
@@ -180,13 +182,16 @@ describe('Tests of subject giving consent', () => {
 
     // checking for each processor state
     await Promise.all(
-      addresses.map(async a =>
+      addresses.map(async a => {
+        //console.log(await getSubjectDataState(subjectIdHashed, a.address));
+        //console.log(a.address);
         expect(await getSubjectDataState(subjectIdHashed, a.address)).toBe(
           SubjectDataStatus.shareable
-        )
-      )
+        );
+      })
     );
     // checking for controller state
+    // console.log(await getSubjectDataState(subjectIdHashed));
     expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.shareable);
   });
 

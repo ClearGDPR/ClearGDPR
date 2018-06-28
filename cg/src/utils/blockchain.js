@@ -166,10 +166,9 @@ async function listenForConsent(callback) {
       winston.error(`Error handling consent given to ${error.toString()}`);
       return;
     }
-
     if (
       // we need to downcase the addresses so they are in a consistent format. One was coming in with capitals and one was not.
-      data.returnValues.newProcessorsConsented
+      data.returnValues.processorsConsented
         .map(address => address.toLowerCase())
         .includes(getMyAddress().toLowerCase())
     ) {
