@@ -19,6 +19,7 @@ ShallowWrapper {
     "props": Object {
       "children": undefined,
       "value": Object {
+        "deleteUser": [Function],
         "fetchUsers": [Function],
         "isLoading": false,
         "registerUser": [Function],
@@ -39,18 +40,21 @@ ShallowWrapper {
         "_currentRenderer": null,
         "_currentRenderer2": null,
         "_currentValue": Object {
+          "deleteUser": [Function],
           "fetchUsers": [Function],
           "isLoading": false,
           "registerUser": [Function],
           "users": Array [],
         },
         "_currentValue2": Object {
+          "deleteUser": [Function],
           "fetchUsers": [Function],
           "isLoading": false,
           "registerUser": [Function],
           "users": Array [],
         },
         "_defaultValue": Object {
+          "deleteUser": [Function],
           "fetchUsers": [Function],
           "isLoading": false,
           "registerUser": [Function],
@@ -67,6 +71,7 @@ ShallowWrapper {
       "props": Object {
         "children": undefined,
         "value": Object {
+          "deleteUser": [Function],
           "fetchUsers": [Function],
           "isLoading": false,
           "registerUser": [Function],
@@ -87,18 +92,21 @@ ShallowWrapper {
           "_currentRenderer": null,
           "_currentRenderer2": null,
           "_currentValue": Object {
+            "deleteUser": [Function],
             "fetchUsers": [Function],
             "isLoading": false,
             "registerUser": [Function],
             "users": Array [],
           },
           "_currentValue2": Object {
+            "deleteUser": [Function],
             "fetchUsers": [Function],
             "isLoading": false,
             "registerUser": [Function],
             "users": Array [],
           },
           "_defaultValue": Object {
+            "deleteUser": [Function],
             "fetchUsers": [Function],
             "isLoading": false,
             "registerUser": [Function],

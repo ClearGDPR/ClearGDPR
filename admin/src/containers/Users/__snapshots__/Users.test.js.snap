@@ -40,8 +40,14 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "function",
     "props": Object {
+      "children": <Unknown
+        isOpen={false}
+        onClose={[Function]}
+        userId={0}
+      />,
       "isLoading": false,
       "onChangePasswordClick": [Function],
+      "onDeleteClick": [Function],
       "onRegisterUserClick": [Function],
       "users": Array [
         Object {
@@ -63,7 +69,19 @@ ShallowWrapper {
       ],
     },
     "ref": null,
-    "rendered": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "isOpen": false,
+        "onClose": [Function],
+        "userId": 0,
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
     "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
@@ -72,8 +90,14 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "function",
       "props": Object {
+        "children": <Unknown
+          isOpen={false}
+          onClose={[Function]}
+          userId={0}
+        />,
         "isLoading": false,
         "onChangePasswordClick": [Function],
+        "onDeleteClick": [Function],
         "onRegisterUserClick": [Function],
         "users": Array [
           Object {
@@ -95,7 +119,19 @@ ShallowWrapper {
         ],
       },
       "ref": null,
-      "rendered": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "isOpen": false,
+          "onClose": [Function],
+          "userId": 0,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
       "type": [Function],
     },
   ],
