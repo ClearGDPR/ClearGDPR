@@ -8,25 +8,27 @@ const DeleteUser = props => (
   <Modal open={props.isOpen} showCloseIcon={false} onClose={() => {}} center>
     {!props.isLoading ? (
       <React.Fragment>
-        Are you sure you want to delete this user?
-        <button
-          className="btn"
-          onClick={e => {
-            e.preventDefault();
-            props.onCancel();
-          }}
-        >
-          Cancel
-        </button>
-        <button
-          className="btn"
-          onClick={e => {
-            e.preventDefault();
-            props.onConfirm();
-          }}
-        >
-          OK
-        </button>
+        <p>Are you sure you want to delete this user?</p>
+        <p>
+          <button
+            className="ui-action btn"
+            onClick={e => {
+              e.preventDefault();
+              props.onCancel();
+            }}
+          >
+            Cancel
+          </button>
+          <button
+            className="ui-action btn"
+            onClick={e => {
+              e.preventDefault();
+              props.onConfirm();
+            }}
+          >
+            OK
+          </button>
+        </p>
       </React.Fragment>
     ) : (
       <Loader />
