@@ -1,6 +1,5 @@
-const location = window.location;
-
 function buildPrefixedApiUri(prefix) {
+  const location = window.location;
   let parts = location.hostname.split('.');
   if (parts.length > 2) {
     parts.shift();
@@ -18,10 +17,12 @@ function buildPrefixedApiUri(prefix) {
   );
 }
 
-const config = {
-  // TODO: handle some way of configuring the API URL
-  API_URL:
-    location.hostname === 'localhost' ? 'http://localhost:8082' : buildPrefixedApiUri('cg-demo')
-};
+class Config {
+  static get API_URL() {
+    return window.location.hostname === 'localhost'
+      ? 'http://localhost:8082'
+      : buildPrefixedApiUri('cg-demo');
+  }
+}
 
-export default config;
+export default Config;
