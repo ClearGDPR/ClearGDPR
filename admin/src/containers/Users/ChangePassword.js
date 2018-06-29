@@ -5,6 +5,7 @@ import ChangePassword from 'components/Users/ChangePassword';
 import config from 'config';
 import { PanelConsumer } from 'containers/MainLayout/PanelContext';
 import internalFetch from 'helpers/internal-fetch';
+import { toast } from 'react-toastify';
 
 export class ChangePasswordContainer extends React.Component {
   static propTypes = {
@@ -78,6 +79,10 @@ export class ChangePasswordContainer extends React.Component {
 
     return this.changePassword(this.props.userId, newPassword)
       .then(this.stopLoading.bind(this))
+      .then(res => {
+        toast.success('User successfully registered');
+        return res;
+      })
       .then(() => this.props.closePanel && this.props.closePanel())
       .catch(this.stopLoading.bind(this));
   }

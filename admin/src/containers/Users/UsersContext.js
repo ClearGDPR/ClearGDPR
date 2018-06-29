@@ -2,6 +2,7 @@ import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
 import config from 'config';
 import internalFetch from 'helpers/internal-fetch';
+import { toast } from 'react-toastify';
 
 const UsersContext = createContext({
   users: [],
@@ -56,6 +57,7 @@ export class UsersProvider extends Component {
 
   cancelLoadingAndReject(e) {
     this.setLoading(false);
+    toast.error(`An error occurred: ${e.message}`);
     return Promise.reject(e);
   }
 
@@ -75,6 +77,7 @@ export class UsersProvider extends Component {
     const user = await this._registerUser(username, password).catch(
       this.cancelLoadingAndReject.bind(this)
     );
+    toast.success('User successfully registered');
     await this.fetchUsers();
 
     return user;
@@ -83,6 +86,7 @@ export class UsersProvider extends Component {
   async deleteUser(userId) {
     this.setLoading(true);
     await this._deleteUser(userId).catch(this.cancelLoadingAndReject.bind(this));
+    toast.success('User successfully deleted');
     await this.fetchUsers();
   }
 

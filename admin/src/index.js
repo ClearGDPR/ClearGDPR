@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import 'theme/main.css';
 import registerServiceWorker from 'registerServiceWorker';
-import Routes from 'routes';
+import App from 'containers/App';
 
-ReactDOM.render(<Routes />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

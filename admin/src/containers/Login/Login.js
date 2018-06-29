@@ -6,6 +6,7 @@ import Login from 'components/Login/Login';
 import session from 'helpers/Session';
 import config from 'config';
 import internalFetch from 'helpers/internal-fetch';
+import { toast } from 'react-toastify';
 
 export class LoginContainer extends React.Component {
   handleLogin(username, password) {
@@ -21,6 +22,7 @@ export class LoginContainer extends React.Component {
         'Content-Type': 'application/json'
       }
     }).then(async resData => {
+      toast.success('Logged in successfully');
       session.set({ ...resData, username });
       history.push(from);
       return resData;
