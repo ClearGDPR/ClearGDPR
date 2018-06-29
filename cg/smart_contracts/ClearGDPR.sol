@@ -77,14 +77,13 @@ contract ClearGDPR {
         processors[0] = controller;
         for(uint256 i = 0; i < _newProcessors.length; i++){
             require(_newProcessors[i] != controller);
-            for(uint256 j = i + 1; j < _newProcessors.length; j++){ // Check if the processors are unique
+            for(uint256 j = i + 1; j < _newProcessors.length; j++){ // Checks if the processors are unique
                 require(_newProcessors[i] != _newProcessors[j]);
             }
             processors[i + 1] = _newProcessors[i];
         }
         return true;
     } 
-    //processors = _newProcessors; //Interesting line
   
     function isProcessor(address _processor) public view returns(bool){
         for(uint256 i = 0; i < processors.length; i++){

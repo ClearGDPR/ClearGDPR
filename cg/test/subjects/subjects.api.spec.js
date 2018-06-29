@@ -146,27 +146,19 @@ describe('Tests of subject giving consent', () => {
         Authorization: `Bearer ${token}`
       }
     });
-    // console.log(await res.text());
+
     // Then (Assert)
     let subjectIdHashed = hash('1');
-    //console.log(subjectIdHashed);
-
     expect(await res.text()).toEqual('OK');
     const [subject] = await db('subjects').where({ id: subjectIdHashed });
-    //console.log(subject);
     expect(subject).toBeTruthy();
     expect(subject.personal_data).not.toBe(JSON.stringify(personalData));
-
     const [key] = await db('subject_keys').where({ subject_id: subjectIdHashed });
     expect(key).toBeTruthy();
     let decryptedJson = decryptFromStorage(subject.personal_data, key.key);
     const decryptedPersonalData = JSON.parse(decryptedJson);
-
     expect(decryptedPersonalData).toEqual(expect.objectContaining(personalData));
-    //console.log(decryptedPersonalData);
-    //console.log(personalData);
     const processors = await db('subject_processors').where({ subject_id: subjectIdHashed });
-    //console.log(processors);
     // check that mappings have been created for each processor
     payload.processors.forEach(id => expect(processors.map(p => p.processor_id)).toContain(id));
 
@@ -183,15 +175,12 @@ describe('Tests of subject giving consent', () => {
     // checking for each processor state
     await Promise.all(
       addresses.map(async a => {
-        //console.log(await getSubjectDataState(subjectIdHashed, a.address));
-        //console.log(a.address);
         expect(await getSubjectDataState(subjectIdHashed, a.address)).toBe(
           SubjectDataStatus.shareable
         );
       })
     );
     // checking for controller state
-    // console.log(await getSubjectDataState(subjectIdHashed));
     expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.shareable);
   });
 
@@ -721,7 +710,7 @@ describe('Get Data', () => {
 });
 
 describe('Initiate Rectification', () => {
-  it('Should allow a subject to being the rectification process', async () => {
+  it('Should allow a subject to begin the rectification process', async () => {
     const id = '2-4';
     const token = await subjectJWT.sign({ subjectId: id });
     const payload = {
