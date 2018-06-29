@@ -27,8 +27,9 @@ stages:
 jobs:
   include:
     - stage: test
-      script: make -C admin dist
-      script: docker/test
+      script: 
+        - make -C admin dist
+        - docker/test
     - stage: publish
       if: tag =~ ^(\d*\.)+\d*$
       script:
