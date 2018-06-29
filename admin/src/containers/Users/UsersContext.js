@@ -1,6 +1,5 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
-import session from '../../helpers/Session';
 import config from '../../config';
 import internalFetch from './../../helpers/internal-fetch';
 
@@ -29,71 +28,35 @@ export class UsersProvider extends Component {
     isLoading: false
   };
 
-  async _getUsers() {
-    const response = await internalFetch(`${config.API_URL}/api/management/users/list`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${session.getToken()}`
-      }
-    });
-
-    return await response.json();
+  _getUsers() {
+    return internalFetch(`${config.API_URL}/api/management/users/list`);
   }
 
-  async _registerUser(username, password) {
-    const response = await internalFetch(`${config.API_URL}/api/management/users/register`, {
+  _registerUser(username, password) {
+    return internalFetch(`${config.API_URL}/api/management/users/register`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${session.getToken()}`
-      },
       body: JSON.stringify({
         username,
         password
       })
     });
-
-    if (response.status === 400) {
-      this.setLoading(false);
-      const result = await response.json();
-      throw new Error(result.error);
-    } else if (response.status !== 201) {
-      this.setLoading(false);
-      throw new Error('Unknown error occurred');
-    }
-
-    return await response.json();
   }
 
   async _deleteUser(userId) {
-    const response = await internalFetch(
-      `${config.API_URL}/api/management/users/${userId}/remove`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${session.getToken()}`
-        }
-      }
-    );
-
-    if (response.status === 404) {
-      this.setLoading(false);
-      const result = await response.json();
-      throw new Error(result.error);
-    } else if (response.status !== 200) {
-      this.setLoading(false);
-      throw new Error('Unknown error occurred');
-    }
-
-    return await response.json();
+    await internalFetch(`${config.API_URL}/api/management/users/${userId}/remove`, {
+      method: 'POST'
+    });
   }
 
   setLoading(loading) {
     this.setState({
       isLoading: loading
     });
+  }
+
+  cancelLoadingAndReject(e) {
+    this.setLoading(false);
+    return Promise.reject(e);
   }
 
   async fetchUsers() {
@@ -109,7 +72,9 @@ export class UsersProvider extends Component {
   async registerUser(username, password) {
     this.setLoading(true);
 
-    const user = await this._registerUser(username, password);
+    const user = await this._registerUser(username, password).catch(
+      this.cancelLoadingAndReject.bind(this)
+    );
     await this.fetchUsers();
 
     return user;
@@ -117,7 +82,7 @@ export class UsersProvider extends Component {
 
   async deleteUser(userId) {
     this.setLoading(true);
-    await this._deleteUser(userId);
+    await this._deleteUser(userId).catch(this.cancelLoadingAndReject.bind(this));
     await this.fetchUsers();
   }
 
