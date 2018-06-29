@@ -1,17 +1,15 @@
 const winston = require('winston');
 const CONTRACT_CONFIG_KEY = 'CONTRACT_CONFIG';
 const { getConfig } = require('../domains/shared-kernel/config.repository');
-
 const Web3 = require('web3');
 const providerFactory = require('./blockchain/web3-provider-factory');
 const QuorumContract = require('./blockchain/quorum-contract');
 const { getMyAddress, timeout, retryAsync } = require('./helpers');
-
 const { SubjectDataStatus } = require('./blockchain/models');
 
-let web3 = new Web3(providerFactory());
-
 const controllerAddress = process.env.CONTRACT_OWNER_ADDRESS;
+
+let web3 = new Web3(providerFactory());
 
 // BACK-END INTEGRATION FUNCTIONS
 

@@ -3,11 +3,12 @@
 *       Author contact: sindelio.lima@clevertech.biz
 *       Coffee => Code!
 *
-*   IMPORTANT NOTES !!!!       
-*       1. All processor addresses and subject IDs are hashed in the back-end before entering the smart contract.
-*       2. In production only the record functions should be used and they should provide all functionality needed to the system.
-*       3. There's a bug when we use bytes32 instead of address to identificate the processors. The memory seems to not be cleared out.
-*       4. This smart contract was compiled without errors or warnings and all functions were tested.
+*   IMPORTANT NOTES !!!!
+*       1. The controller is a processor, but the processors are not controllers
+*       2. All processor addresses and subject IDs are hashed in the back-end before entering the smart contract
+*       3. In production only the record functions should be used and they should provide all functionality needed to the system
+*       4. There's a bug when we use bytes32 instead of address to identificate the processors. The memory seems to not be cleared out
+*       5. This smart contract was compiled without errors or warnings and all functions were tested
 */
 
 pragma solidity ^0.4.24; 
@@ -75,12 +76,15 @@ contract ClearGDPR {
         processors = new address[](_newProcessors.length + 1);
         processors[0] = controller;
         for(uint256 i = 0; i < _newProcessors.length; i++){
-            //requires that none of the processors is equal to the controller
-            //Processors should all be different
+            require(_newProcessors[i] != controller);
+            for(uint256 j = i + 1; j < _newProcessors.length; j++){ // Check if the processors are unique
+                require(_newProcessors[i] != _newProcessors[j]);
+            }
             processors[i + 1] = _newProcessors[i];
         }
         return true;
-    }
+    } 
+    //processors = _newProcessors; //Interesting line
   
     function isProcessor(address _processor) public view returns(bool){
         for(uint256 i = 0; i < processors.length; i++){
@@ -147,17 +151,15 @@ contract ClearGDPR {
 }
 
 /*  ASSUMPTIONS:
-*       1. The controller is a processor, but processors are not controllers.
 *       1. Only 1 controller per smart contract.
 *       2. Users can only interact directly with the controller. That means data access requests don't need to be informed to the processors.
 *       3. Only controllers can initiate data erasure events.
-*       4. The controller always has consent to use/consume/process the user data. Else how could the user data be stored in the first place?
-*            Although the consent can be restricted or objected by the subject, and those actions affect every participant in the network. A controller without consent when the processors have is a scenario that can't happen in the system. 
+*       4. The controller always has consent to use the user data. Else how could the user data be stored in the first place?
 *
 *   TODO: 
-*       1. Change accessibility of setters to private (they are public for testing purposes).
-*       2. Implement the add/remove function of processor nodes in the network, or use a system ID for each processor, which would be simpler.
-*       3. Study more about memory allocation/deallocation in Solidity. Will need to dive in inline Assembly.
-*       4. Consider that each processor can delete their data of a subject, without the data being deleted from the whole network.
-*       5. When a subjects gives consent, does that work as a rectification of data? If not, his data should not be altered when he gives consent again.
+*       1. Change accessibility of setters to private (they are public for testing purposes)
+*       2. Implement the add/remove function of processor nodes in the network, or use a system ID for each processor, which would be simpler
+*       3. Study more about memory allocation/deallocation in Solidity. Will need to dive in inline Assembly
+*       4. Consider that each processor can delete their data of a subject, without the data being deleted from the whole network
+*       5. When a subjects gives consent, does that functions as a rectification of data? If not, his data should not be altered when he gives consent again
 */
