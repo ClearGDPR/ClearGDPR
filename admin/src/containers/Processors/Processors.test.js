@@ -1,13 +1,13 @@
 import React from 'react';
 
 import { shallow, mount } from 'enzyme';
-import * as ProcessorsDataFactory from '../../tests/data/processors.factory';
-import { flushPromises } from '../../tests/helpers/TestUtils';
+import * as ProcessorsDataFactory from 'tests/data/processors.factory';
+import { flushPromises } from 'tests/helpers/TestUtils';
 
 import { ProcessorsContainer } from './Processors';
-import session from '../../helpers/Session';
+import session from 'helpers/Session';
 
-jest.mock('../../helpers/Session');
+jest.mock('helpers/Session');
 
 beforeEach(() => {
   session.getToken.mockReturnValue('token');

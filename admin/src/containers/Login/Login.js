@@ -2,10 +2,10 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Login from '../../components/Login/Login';
-import session from '../../helpers/Session';
-import config from '../../config';
-import internalFetch from '../../helpers/internal-fetch';
+import Login from 'components/Login/Login';
+import session from 'helpers/Session';
+import config from 'config';
+import internalFetch from 'helpers/internal-fetch';
 
 export class LoginContainer extends React.Component {
   handleLogin(username, password) {

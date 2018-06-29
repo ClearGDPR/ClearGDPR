@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ProcessorCard from '../core/cards/dashboard/ProcessorCard';
-import Loader from '../core/cards/dashboard/Loader';
+import ProcessorCard from 'components/core/cards/dashboard/ProcessorCard';
+import Loader from 'components/core/cards/dashboard/Loader';
 
 const Processors = ({ processors, onEditProcessorClick, isLoading }) => {
   function onEditProcessorClickHandler(e, id) {

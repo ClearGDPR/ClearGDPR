@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'react-form';
-import TextInput from '../core/cards/dashboard/TextInput';
-import Loader from '../core/cards/dashboard/Loader';
+import TextInput from 'components/core/cards/dashboard/TextInput';
+import Loader from 'components/core/cards/dashboard/Loader';
 
 export class Register extends React.Component {
   static propTypes = {

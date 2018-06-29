@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Sidenav from './../cards/dashboard/Sidenav';
-import Header from './../cards/dashboard/Header';
-import Overview from './../cards/dashboard/Overview';
-import Processors from './../cards/dashboard/Processors';
-import Panel from './../cards/dashboard/Panel';
-import Loader from './../cards/dashboard/Loader';
-import Form from './../cards/dashboard/Form';
+import Sidenav from 'components/core/cards/dashboard/Sidenav';
+import Header from 'components/core/cards/dashboard/Header';
+import Overview from 'components/core/cards/dashboard/Overview';
+import Processors from 'components/core/cards/dashboard/Processors';
+import Panel from 'components/core/cards/dashboard/Panel';
+import Loader from 'components/core/cards/dashboard/Loader';
+import Form from 'components/core/cards/dashboard/Form';
 import './dashboard.css';
 
-import * as ProcessorsDataFactory from '../../../tests/data/processors.factory';
+import * as ProcessorsDataFactory from 'tests/data/processors.factory';
 
 export const processors = ProcessorsDataFactory.getAll();
 

@@ -1,8 +1,8 @@
 // TODO: Use https://github.com/marak/Faker.js/
 
-import nielsenIMG from '../../assets/images/processors/nielsen.svg';
-import liverampIMG from '../../assets/images/processors/liveramp.svg';
-import experianIMG from '../../assets/images/processors/experian.svg';
+import nielsenIMG from 'assets/images/processors/nielsen.svg';
+import liverampIMG from 'assets/images/processors/liveramp.svg';
+import experianIMG from 'assets/images/processors/experian.svg';
 
 let lorem =
   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!';

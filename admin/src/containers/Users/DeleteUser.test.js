@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import session from '../../helpers/Session';
-import * as TestUtils from '../../tests/helpers/TestUtils';
+import session from 'helpers/Session';
+import * as TestUtils from 'tests/helpers/TestUtils';
 
 import { DeleteUserContainer as DeleteUser } from './DeleteUser';
 
-jest.mock('../../helpers/Session');
+jest.mock('helpers/Session');
 
 const setupShallow = propOverrides => {
   const props = Object.assign(

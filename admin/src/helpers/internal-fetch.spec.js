@@ -1,5 +1,5 @@
-import internalFetch from './../helpers/internal-fetch';
-import session from './../helpers/Session';
+import internalFetch from 'helpers/internal-fetch';
+import session from 'helpers/Session';
 
 describe('internal fetch', () => {
   it('Respond with the request body if the token is not expired', async () => {

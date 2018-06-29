@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import * as TestUtils from '../../tests/helpers/TestUtils';
+import * as TestUtils from 'tests/helpers/TestUtils';
 
 import { RegisterContainer as Register } from './Register';
 

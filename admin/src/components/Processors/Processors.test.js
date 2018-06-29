@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Processors from './Processors';
-import * as ProcessorsDataFactory from '../../tests/data/processors.factory';
+import * as ProcessorsDataFactory from 'tests/data/processors.factory';
 
 const setup = propOverrides => {
   const props = Object.assign(

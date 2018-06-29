@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Processors from '../../components/Processors/Processors';
-import config from '../../config';
-import { PanelConsumer } from '../MainLayout/PanelContext';
-import Form from '../../components/core/cards/dashboard/Form';
-import internalFetch from '../../helpers/internal-fetch';
+import Processors from 'components/Processors/Processors';
+import config from 'config';
+import { PanelConsumer } from 'containers/MainLayout/PanelContext';
+import Form from 'components/core/cards/dashboard/Form';
+import internalFetch from 'helpers/internal-fetch';
 
 export class ProcessorsContainer extends React.Component {
   static propTypes = {

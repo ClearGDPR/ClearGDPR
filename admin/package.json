@@ -90,13 +90,11 @@
     },
     "moduleFileExtensions": ["web.js", "js", "json", "web.jsx", "jsx", "node", "mjs"]
   },
-  "babel": {
-    "presets": ["react-app"]
-  },
   "eslintConfig": {
     "extends": "react-app"
   },
   "devDependencies": {
+    "babel-plugin-module-resolver": "3.1.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "npm:enzyme-react-adapter-future",
     "enzyme-to-json": "^3.3.4",

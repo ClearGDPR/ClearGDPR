@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Icon from './Icon';
-import iconMenu from './../../../../assets/icons/menu.svg';
-import iconUser from './../../../../assets/icons/user.svg';
+import iconMenu from 'assets/icons/menu.svg';
+import iconUser from 'assets/icons/user.svg';
 
 const Header = props => {
   return (

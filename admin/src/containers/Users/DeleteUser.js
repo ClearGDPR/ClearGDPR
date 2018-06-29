@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { UsersConsumer } from './UsersContext';
-import DeleteUser from '../../components/Users/DeleteUser';
+import DeleteUser from 'components/Users/DeleteUser';
 
 export class DeleteUserContainer extends React.Component {
   static propTypes = {

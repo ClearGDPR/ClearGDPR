@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ChangePassword from '../../components/Users/ChangePassword';
-import config from '../../config';
-import { PanelConsumer } from '../MainLayout/PanelContext';
-import internalFetch from '../../helpers/internal-fetch';
+import ChangePassword from 'components/Users/ChangePassword';
+import config from 'config';
+import { PanelConsumer } from 'containers/MainLayout/PanelContext';
+import internalFetch from 'helpers/internal-fetch';
 
 export class ChangePasswordContainer extends React.Component {
   static propTypes = {

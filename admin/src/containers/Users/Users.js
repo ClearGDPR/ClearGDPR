@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { PanelConsumer } from '../MainLayout/PanelContext';
+import { PanelConsumer } from 'containers/MainLayout/PanelContext';
 import { UsersConsumer } from './UsersContext';
 
-import Users from '../../components/Users/Users';
-import ChangePassword from '../../containers/Users/ChangePassword';
+import Users from 'components/Users/Users';
+import ChangePassword from 'containers/Users/ChangePassword';
 import Register from './Register';
 import DeleteUser from './DeleteUser';
 

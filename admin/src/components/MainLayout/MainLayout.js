@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Sidenav from '../../containers/Sidenav/Sidenav';
-import Header from '../core/cards/dashboard/Header';
-import Panel from '../core/cards/dashboard/Panel';
+import Sidenav from 'containers/Sidenav/Sidenav';
+import Header from 'components/core/cards/dashboard/Header';
+import Panel from 'components/core/cards/dashboard/Panel';
 
 import './styles.css';
 

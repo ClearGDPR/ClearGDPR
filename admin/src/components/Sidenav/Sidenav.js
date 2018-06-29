@@ -2,10 +2,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Icon from '../../components/core/cards/dashboard/Icon';
-import IconOverview from '../../assets/icons/overview.svg';
-import IconProcessors from '../../assets/icons/processors.svg';
-import dashLogo from '../../assets/images/dash-logo.svg';
+import Icon from 'components/core/cards/dashboard/Icon';
+import IconOverview from 'assets/icons/overview.svg';
+import IconProcessors from 'assets/icons/processors.svg';
+import dashLogo from 'assets/images/dash-logo.svg';
 
 const Sidenav = props => {
   function handleLogoutClick(e) {

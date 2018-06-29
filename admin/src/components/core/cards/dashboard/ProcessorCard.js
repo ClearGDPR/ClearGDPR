@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from './Card';
-import defaultLogo from './../../../../assets/logo.png';
+import defaultLogo from 'assets/logo.png';
 
 const ProcessorCard = props => {
   return (

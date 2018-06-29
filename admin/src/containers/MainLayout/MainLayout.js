@@ -5,13 +5,13 @@ import lodash from 'lodash';
 
 import { PanelProvider, PanelConsumer } from './PanelContext';
 
-import session from '../../helpers/Session';
+import session from 'helpers/Session';
 
-import MainLayout from '../../components/MainLayout/MainLayout';
+import MainLayout from 'components/MainLayout/MainLayout';
 
-import UsersContainer from '../Users/Users';
-import ProcessorsContainer from '../Processors/Processors';
-import { UsersProvider } from '../Users/UsersContext';
+import UsersContainer from 'containers/Users/Users';
+import ProcessorsContainer from 'containers/Processors/Processors';
+import { UsersProvider } from 'containers/Users/UsersContext';
 
 class MainLayoutContainer extends Component {
   state = {

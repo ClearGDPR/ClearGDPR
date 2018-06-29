@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Register from '../../components/Users/Register';
-import { PanelConsumer } from '../MainLayout/PanelContext';
+import Register from 'components/Users/Register';
+import { PanelConsumer } from 'containers/MainLayout/PanelContext';
 import { UsersConsumer } from './UsersContext';
 
 export class RegisterContainer extends React.Component {

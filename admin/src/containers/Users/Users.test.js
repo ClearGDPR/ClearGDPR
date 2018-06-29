@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme';
 
 import { UsersContainer } from './Users';
 
-jest.mock('../../helpers/Session');
+jest.mock('helpers/Session');
 
 const users = [
   {

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import Card from './Card';
 import Icon from './Icon';
-import IconUp from './../../../../assets/icons/up-arrow.svg';
-import IconDown from './../../../../assets/icons/down-arrow.svg';
+import IconUp from 'assets/icons/up-arrow.svg';
+import IconDown from 'assets/icons/down-arrow.svg';
 
 const NumberCard = props => {
   return (

@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Text } from 'react-form';
 
-import logo from '../../assets/logo.png';
-import '../../theme/Login.css';
-import '../../theme/Forms.css';
-import Loader from '../core/cards/dashboard/Loader';
+import logo from 'assets/logo.png';
+import 'theme/Login.css';
+import 'theme/Forms.css';
+import Loader from 'components/core/cards/dashboard/Loader';
 
 const Errors = ({ errors }) => {
   if (!Object.keys(errors).length > 0) return null;

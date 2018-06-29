@@ -2,9 +2,9 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Sidenav from '../../components/Sidenav/Sidenav';
+import Sidenav from 'components/Sidenav/Sidenav';
 
-import session from '../../helpers/Session';
+import session from 'helpers/Session';
 
 const SidenavContainer = props => {
   const logout = () => {

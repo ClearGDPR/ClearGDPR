@@ -3,10 +3,10 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { UsersProvider } from './UsersContext';
-import session from '../../helpers/Session';
-import * as TestUtils from '../../tests/helpers/TestUtils';
+import session from 'helpers/Session';
+import * as TestUtils from 'tests/helpers/TestUtils';
 
-jest.mock('../../helpers/Session');
+jest.mock('helpers/Session');
 
 beforeEach(() => {
   session.getToken.mockReturnValue('token');

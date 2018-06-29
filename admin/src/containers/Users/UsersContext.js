@@ -1,7 +1,7 @@
 import React, { Component, createContext } from 'react';
 import PropTypes from 'prop-types';
-import config from '../../config';
-import internalFetch from './../../helpers/internal-fetch';
+import config from 'config';
+import internalFetch from 'helpers/internal-fetch';
 
 const UsersContext = createContext({
   users: [],

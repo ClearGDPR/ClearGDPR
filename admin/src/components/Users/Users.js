@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../core/cards/dashboard/Card';
-import Loader from '../core/cards/dashboard/Loader';
+import Card from 'components/core/cards/dashboard/Card';
+import Loader from 'components/core/cards/dashboard/Loader';
 
 const Users = ({
   users,

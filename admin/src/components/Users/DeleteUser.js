@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 
-import Loader from '../core/cards/dashboard/Loader';
+import Loader from 'components/core/cards/dashboard/Loader';
 
 const DeleteUser = props => (
   <Modal open={props.isOpen} showCloseIcon={false} onClose={() => {}} center>

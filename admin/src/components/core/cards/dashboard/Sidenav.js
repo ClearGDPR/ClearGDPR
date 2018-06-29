@@ -3,11 +3,11 @@ import { NavLink, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Icon from './Icon';
-import IconOverview from './../../../../assets/icons/overview.svg';
-import IconProcessors from './../../../../assets/icons/processors.svg';
-import dashLogo from './../../../../assets/images/dash-logo.svg';
+import IconOverview from 'assets/icons/overview.svg';
+import IconProcessors from 'assets/icons/processors.svg';
+import dashLogo from 'assets/images/dash-logo.svg';
 
-import session from '../../../../helpers/Session';
+import session from 'helpers/Session';
 
 const Sidenav = props => {
   // TODO: move when refactoring dashboard to presentational and container components
