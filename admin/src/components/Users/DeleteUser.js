@@ -37,8 +37,8 @@ const DeleteUser = props => (
 );
 
 DeleteUser.propTypes = {
-  onConfirm: PropTypes.func,
-  onCancel: PropTypes.func,
+  onConfirm: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
   isOpen: PropTypes.bool,
   isLoading: PropTypes.bool
 };

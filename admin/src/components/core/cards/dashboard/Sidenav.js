@@ -7,20 +7,7 @@ import IconOverview from 'assets/icons/overview.svg';
 import IconProcessors from 'assets/icons/processors.svg';
 import dashLogo from 'assets/images/dash-logo.svg';
 
-import session from 'helpers/Session';
-
 const Sidenav = props => {
-  // TODO: move when refactoring dashboard to presentational and container components
-  const logout = () => {
-    session.destroy();
-    props.history.push('/');
-  };
-
-  function handleLogoutClick(e) {
-    e.preventDefault();
-    logout();
-  }
-
   return (
     <nav className={props.isSidenavOpen ? 'sidenav' : 'sidenav closed'}>
       <NavLink to="/kitchen-sink/overview">
@@ -39,13 +26,11 @@ const Sidenav = props => {
         <small className="label">Account</small>
       </p>
       <NavLink to="/kitchen-sink/loader">Loader</NavLink>
-      <button onClick={handleLogoutClick}>Logout</button>
     </nav>
   );
 };
 
 Sidenav.propTypes = {
-  history: PropTypes.object.isRequired,
   isSidenavOpen: PropTypes.bool
 };
 

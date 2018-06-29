@@ -14,17 +14,17 @@ const Users = ({
 }) => {
   function onChangePasswordClickHandler(e, userId) {
     e.preventDefault();
-    onChangePasswordClick && onChangePasswordClick(userId);
+    onChangePasswordClick(userId);
   }
 
   function onDeleteClickHandler(e, userId) {
     e.preventDefault();
-    onDeleteClick && onDeleteClick(userId);
+    onDeleteClick(userId);
   }
 
   function onRegisterUserClickHandler(e) {
     e.preventDefault();
-    onRegisterUserClick && onRegisterUserClick();
+    onRegisterUserClick();
   }
 
   function renderUsers() {
@@ -85,9 +85,9 @@ const Users = ({
 
 Users.propTypes = {
   users: PropTypes.arrayOf(PropTypes.object),
-  onChangePasswordClick: PropTypes.func,
-  onDeleteClick: PropTypes.func,
-  onRegisterUserClick: PropTypes.func,
+  onChangePasswordClick: PropTypes.func.isRequired,
+  onDeleteClick: PropTypes.func.isRequired,
+  onRegisterUserClick: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
   children: PropTypes.node
 };

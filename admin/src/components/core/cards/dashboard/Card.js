@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 const Card = props => {
   function onArticleClick(e) {
     e.preventDefault();
-    if (!props.onClick) return;
-    props.onClick();
+    props.onClick && props.onClick();
   }
 
   return (
