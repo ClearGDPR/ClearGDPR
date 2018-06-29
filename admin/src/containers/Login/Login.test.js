@@ -4,6 +4,7 @@ import toJson from 'enzyme-to-json';
 import { createMemoryHistory } from 'history';
 import { flushPromises } from 'tests/helpers/TestUtils';
 import { LoginContainer } from './Login';
+import { toast } from 'react-toastify';
 
 jest.mock('helpers/Session');
 
@@ -68,5 +69,25 @@ describe('(Container) Login', () => {
 
     await flushPromises();
     expect(global.fetch).toBeCalled();
+  });
+
+  it('Should trigger a toast after logging in', async () => {
+    global.fetch = jest.fn().mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: true,
+        status: 200,
+        json: () =>
+          Promise.resolve({
+            token: 'token'
+          })
+      })
+    );
+
+    toast.success = jest.fn();
+
+    const { component } = setup();
+    const instance = component.instance();
+    await instance.handleLogin('username', 'password');
+    expect(toast.success).toHaveBeenCalled();
   });
 });

@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 import { UsersProvider } from './UsersContext';
 import session from 'helpers/Session';
 import * as TestUtils from 'tests/helpers/TestUtils';
+import { toast } from 'react-toastify';
 
 jest.mock('helpers/Session');
 
@@ -144,6 +145,27 @@ describe('UsersProvider', () => {
         isLoading: false
       })
     );
+  });
+
+  it('Should toast.error when the API gives a bad response', async () => {
+    global.fetch = jest.fn().mockImplementationOnce(() =>
+      Promise.resolve({
+        status: 404,
+        json: () => ({ error: 'Error message' })
+      })
+    );
+
+    toast.error = jest.fn();
+
+    const { component } = setupShallow();
+
+    try {
+      await component.instance().deleteUser(4);
+    } catch (e) {
+      //not-empty
+    }
+
+    expect(toast.error).toHaveBeenCalledWith('An error occurred: Error message');
   });
 
   it('should throw error when deleting a user returned HTTP 500', async () => {
