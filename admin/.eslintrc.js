@@ -19,5 +19,10 @@ module.exports = {
 
     'react/prop-types': ['warn'],
     'react/no-unused-prop-types': ['warn']
+  },
+  settings: {
+    'import/resolver': {
+      'babel-module': {}
+    }
   }
 };
