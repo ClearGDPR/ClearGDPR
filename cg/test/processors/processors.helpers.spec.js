@@ -17,8 +17,8 @@ beforeEach(() => {
 describe('Waiting for contract from controller', () => {
   it('should store contract details when a contract has been fetched', async done => {
     const contractDetails = {
-      abiJson: '{}',
-      compiledData: '0x000001',
+      contractABIJson: '{}',
+      contractByteCode: '0x000001',
       address: '0x00000000000000000000000000000000000000C1'
     };
 
@@ -42,8 +42,8 @@ describe('Waiting for contract from controller', () => {
 
   it('Should block until a contract appears in the db', async done => {
     const contractDetails = {
-      abiJson: '{}',
-      compiledData: '0x000001',
+      contractABIJson: '{}',
+      contractByteCode: '0x000001',
       address: '0x00000000000000000000000000000000000000C1'
     };
     configRepository.getConfig.mockImplementation(() => {

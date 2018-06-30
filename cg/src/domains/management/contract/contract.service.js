@@ -17,23 +17,14 @@ async function addressToName(address) {
 }
 
 class ContractService {
-  /**
-   * Deploys a contract and returns the address
-   * @param abiJson
-   * @param compiledData
-   * @return {Promise<string>}
-   */
-  async deployContract(abiJson, compiledData) {
-    const address = await deployContract(abiJson, compiledData);
-
+  async deployContract(contractABIJson, contractByteCode) {
+    const address = await deployContract(contractABIJson, contractByteCode);
     const value = JSON.stringify({
-      abiJson: JSON.stringify(abiJson),
-      compiledData,
+      contractABIJson: JSON.stringify(contractABIJson),
+      contractByteCode,
       address
     });
-
     await updateConfig(CONTRACT_CONFIG_KEY, value);
-
     return address;
   }
 
