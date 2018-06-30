@@ -1,6 +1,6 @@
 const SubjectDataStatus = {
-  notShareable: 0,
-  shareable: 1,
+  unconsented: 0,
+  consented: 1,
   erased: 2
 };
 
