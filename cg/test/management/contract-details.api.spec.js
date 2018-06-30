@@ -7,7 +7,6 @@ const { managementJWT } = require('../../src/utils/jwt');
 const { NotFound } = require('../../src/utils/errors');
 
 beforeAll(initResources);
-
 afterAll(closeResources);
 
 describe('Getting contract details edge cases', () => {

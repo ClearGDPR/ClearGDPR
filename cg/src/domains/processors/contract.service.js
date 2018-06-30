@@ -2,13 +2,12 @@ const { getConfig, updateConfig } = require('../shared-kernel/config.repository'
 const { CONTRACT_CONFIG_KEY } = require('../../utils/blockchain');
 
 class ContractService {
-  async saveContractDetails(abiJson, compiledData, address) {
+  async saveContractDetails(contractABI, contractByteCode, address) {
     const value = JSON.stringify({
-      abiJson: JSON.stringify(abiJson),
-      compiledData,
+      contractABIJson: JSON.stringify(contractABI),
+      contractByteCode,
       address
     });
-
     await updateConfig(CONTRACT_CONFIG_KEY, value);
   }
 

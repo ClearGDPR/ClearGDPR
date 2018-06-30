@@ -2,15 +2,15 @@ const { listenForErasureRequest, listenForConsent } = require('./../../utils/blo
 const { getDataForSubject } = require('./processors.requests');
 const { blockUntilContractReady } = require('./processors.helpers');
 const { inControllerMode } = require('../../utils/helpers');
-const SubjectService = require('./../subjects/subjects.service');
+const SubjectSService = require('./../subjects/subjects.service');
 const winston = require('winston');
 
-const subjectService = new SubjectService();
+const subjectsService = new SubjectSService();
 
 const startErasureRequestListener = () => {
   return listenForErasureRequest(async subjectId => {
     winston.info(`Erasure request received for ${subjectId}`);
-    await subjectService.eraseDataAndRevokeConsent(subjectId);
+    await subjectsService.eraseDataAndRevokeConsent(subjectId);
   });
 };
 
@@ -21,7 +21,7 @@ const startConsentListener = () => {
     const response = await getDataForSubject(subjectId).catch(err => {
       return Promise.reject(err);
     });
-    await subjectService.initializeUser(subjectId, await response.json());
+    await subjectsService.initializeUser(subjectId, await response.json());
   });
 };
 
