@@ -15,7 +15,7 @@ pragma solidity ^0.4.24;
 contract ClearGDPR {
     address public controller; 
     address[] private processors; 
-    enum State {notShareable, shareable, erased} 
+    enum State {unconsented, consented, erased} 
     struct subjectData{
         bool isErased;
         uint256 rectificationCount;
@@ -115,11 +115,11 @@ contract ClearGDPR {
     function recordConsentGivenTo(bytes32 _subjectId, address[] _processorsConsented) public onlyController notErased(_subjectId) returns(bool){
         require(areAllValidProcessors(_processorsConsented));
         for(uint256 i = 0; i < processors.length; i++){
-            subjects[_subjectId].statePerProcessor[processors[i]] = State.notShareable;  
+            subjects[_subjectId].statePerProcessor[processors[i]] = State.unconsented;  
         }
         address[] memory allProcessorsConsented = prependControllerAsProcessor(_processorsConsented);
         for(i = 0; i < allProcessorsConsented.length; i++){
-            subjects[_subjectId].statePerProcessor[allProcessorsConsented[i]] = State.shareable;  
+            subjects[_subjectId].statePerProcessor[allProcessorsConsented[i]] = State.consented;  
         }
         subjects[_subjectId].isErased = false;
         emit Controller_ConsentGivenTo(_subjectId, allProcessorsConsented);

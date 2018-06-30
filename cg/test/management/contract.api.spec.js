@@ -154,7 +154,7 @@ describe('Event feed websocket', () => {
       const data = JSON.parse(event);
       expect(data.eventName).toEqual('Controller_ConsentGivenTo');
       expect(data.params.subjectId).toEqual(sha3('websocket-test'));
-      expect(data.params.processorsConsented).toHaveLength(0);
+      expect(data.params.processorsConsented).toHaveLength(1);
       expect(data.fromName).toEqual('Master Controller Node');
       done();
     });
