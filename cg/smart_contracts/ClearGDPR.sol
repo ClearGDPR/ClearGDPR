@@ -51,6 +51,19 @@ contract ClearGDPR {
         processors[0] = controller;
     }
 
+    function prependControllerAsProcessor(address[] _processors) private view returns(address[]){
+        address[] memory allProcessors = new address[](_processors.length + 1);
+        allProcessors[0] = controller;
+        for(uint256 i = 0; i < _processors.length; i++){
+            require(_processors[i] != controller);
+            for(uint256 j = i + 1; j < _processors.length; j++){ // Checks if the processors are unique
+                require(_processors[i] != _processors[j]);
+            }
+            allProcessors[i + 1] = _processors[i];
+        }
+        return allProcessors;
+    }
+
     function getRectificationCount(bytes32 _subjectId) public view returns(uint256){
         return subjects[_subjectId].rectificationCount;
     }
@@ -73,15 +86,7 @@ contract ClearGDPR {
     }
 
     function setProcessors(address[] _newProcessors) public returns(bool){
-        processors = new address[](_newProcessors.length + 1);
-        processors[0] = controller;
-        for(uint256 i = 0; i < _newProcessors.length; i++){
-            require(_newProcessors[i] != controller);
-            for(uint256 j = i + 1; j < _newProcessors.length; j++){ // Checks if the processors are unique
-                require(_newProcessors[i] != _newProcessors[j]);
-            }
-            processors[i + 1] = _newProcessors[i];
-        }
+        processors = prependControllerAsProcessor(_newProcessors);
         return true;
     } 
   
@@ -103,7 +108,7 @@ contract ClearGDPR {
   
     function recordProcessorsUpdate(address[] _newProcessors) public onlyController returns(bool){
         require(setProcessors(_newProcessors));
-        emit Controller_ProcessorsUpdated(_newProcessors);  
+        emit Controller_ProcessorsUpdated(processors);  
         return true;
     }
 
@@ -112,12 +117,12 @@ contract ClearGDPR {
         for(uint256 i = 0; i < processors.length; i++){
             subjects[_subjectId].statePerProcessor[processors[i]] = State.notShareable;  
         }
-        for(i = 0; i < _processorsConsented.length; i++){
-            subjects[_subjectId].statePerProcessor[_processorsConsented[i]] = State.shareable;  
+        address[] memory allProcessorsConsented = prependControllerAsProcessor(_processorsConsented);
+        for(i = 0; i < allProcessorsConsented.length; i++){
+            subjects[_subjectId].statePerProcessor[allProcessorsConsented[i]] = State.shareable;  
         }
-        subjects[_subjectId].statePerProcessor[controller] = State.shareable;  
         subjects[_subjectId].isErased = false;
-        emit Controller_ConsentGivenTo(_subjectId, _processorsConsented);
+        emit Controller_ConsentGivenTo(_subjectId, allProcessorsConsented);
         return true;
     }
   
