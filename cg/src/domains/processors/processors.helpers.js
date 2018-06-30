@@ -53,13 +53,13 @@ async function pollForContractUpdate() {
       const savedContractDetails = await contractService.getContractDetails();
       if (
         savedContractDetails &&
-        newContractDetails.compiledData === savedContractDetails.compiledData
+        newContractDetails.contractByteCode === savedContractDetails.contractByteCode
       )
         return;
       winston.info(`New contract detected at ${newContractDetails.address}`);
       await contractService.saveContractDetails(
-        JSON.parse(newContractDetails.abiJson),
-        newContractDetails.compiledData,
+        JSON.parse(newContractDetails.contractABIJson),
+        newContractDetails.contractByteCode,
         newContractDetails.address
       );
     } catch (e) {
