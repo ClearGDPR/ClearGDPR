@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(Component) Edit Processor form should render correctly when no props provided 1`] = `
+exports[`(Component) Edit Processor Form should render correctly when no props provided 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Unknown />,
+  Symbol(enzyme.__unrendered__): <EditProcessor />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -18,14 +18,12 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <React.Fragment>
-        <label
-          htmlFor="name"
-        >
-          Name:
-        </label>
-        <ConnectedField
+        <TextInput
           field="name"
-          id="name"
+          label="Name"
+          placeholder="*********"
+          required={true}
+          type="text"
         />
         <label
           htmlFor="description"
@@ -36,14 +34,12 @@ ShallowWrapper {
           field="description"
           id="description"
         />
-        <label
-          htmlFor="logoUrl"
-        >
-          Logo URL:
-        </label>
-        <ConnectedField
+        <TextInput
           field="logoUrl"
-          id="logoUrl"
+          label="Logo URL"
+          placeholder="*********"
+          required={true}
+          type="text"
         />
         <label>
           Scopes:
@@ -73,14 +69,12 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <label
-            htmlFor="name"
-          >
-            Name:
-          </label>,
-          <ConnectedField
+          <TextInput
             field="name"
-            id="name"
+            label="Name"
+            placeholder="*********"
+            required={true}
+            type="text"
           />,
           <label
             htmlFor="description"
@@ -91,14 +85,12 @@ ShallowWrapper {
             field="description"
             id="description"
           />,
-          <label
-            htmlFor="logoUrl"
-          >
-            Logo URL:
-          </label>,
-          <ConnectedField
+          <TextInput
             field="logoUrl"
-            id="logoUrl"
+            label="Logo URL"
+            placeholder="*********"
+            required={true}
+            type="text"
           />,
           <label>
             Scopes:
@@ -127,22 +119,14 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Name:",
-            "htmlFor": "name",
-          },
-          "ref": null,
-          "rendered": "Name:",
-          "type": "label",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "error": undefined,
             "field": "name",
-            "id": "name",
+            "label": "Name",
+            "placeholder": "*********",
+            "required": true,
+            "type": "text",
           },
           "ref": null,
           "rendered": null,
@@ -175,22 +159,14 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Logo URL:",
-            "htmlFor": "logoUrl",
-          },
-          "ref": null,
-          "rendered": "Logo URL:",
-          "type": "label",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "error": undefined,
             "field": "logoUrl",
-            "id": "logoUrl",
+            "label": "Logo URL",
+            "placeholder": "*********",
+            "required": true,
+            "type": "text",
           },
           "ref": null,
           "rendered": null,
@@ -265,14 +241,12 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <React.Fragment>
-          <label
-            htmlFor="name"
-          >
-            Name:
-          </label>
-          <ConnectedField
+          <TextInput
             field="name"
-            id="name"
+            label="Name"
+            placeholder="*********"
+            required={true}
+            type="text"
           />
           <label
             htmlFor="description"
@@ -283,14 +257,12 @@ ShallowWrapper {
             field="description"
             id="description"
           />
-          <label
-            htmlFor="logoUrl"
-          >
-            Logo URL:
-          </label>
-          <ConnectedField
+          <TextInput
             field="logoUrl"
-            id="logoUrl"
+            label="Logo URL"
+            placeholder="*********"
+            required={true}
+            type="text"
           />
           <label>
             Scopes:
@@ -320,14 +292,12 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <label
-              htmlFor="name"
-            >
-              Name:
-            </label>,
-            <ConnectedField
+            <TextInput
               field="name"
-              id="name"
+              label="Name"
+              placeholder="*********"
+              required={true}
+              type="text"
             />,
             <label
               htmlFor="description"
@@ -338,14 +308,12 @@ ShallowWrapper {
               field="description"
               id="description"
             />,
-            <label
-              htmlFor="logoUrl"
-            >
-              Logo URL:
-            </label>,
-            <ConnectedField
+            <TextInput
               field="logoUrl"
-              id="logoUrl"
+              label="Logo URL"
+              placeholder="*********"
+              required={true}
+              type="text"
             />,
             <label>
               Scopes:
@@ -374,22 +342,14 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Name:",
-              "htmlFor": "name",
-            },
-            "ref": null,
-            "rendered": "Name:",
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "error": undefined,
               "field": "name",
-              "id": "name",
+              "label": "Name",
+              "placeholder": "*********",
+              "required": true,
+              "type": "text",
             },
             "ref": null,
             "rendered": null,
@@ -422,22 +382,14 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Logo URL:",
-              "htmlFor": "logoUrl",
-            },
-            "ref": null,
-            "rendered": "Logo URL:",
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "error": undefined,
               "field": "logoUrl",
-              "id": "logoUrl",
+              "label": "Logo URL",
+              "placeholder": "*********",
+              "required": true,
+              "type": "text",
             },
             "ref": null,
             "rendered": null,
@@ -516,11 +468,11 @@ ShallowWrapper {
 }
 `;
 
-exports[`(Component) Edit Processor form should render correctly when the prop isLoading is set to false 1`] = `
+exports[`(Component) Edit Processor Form should render correctly when the prop isLoading is set to false 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Unknown
+  Symbol(enzyme.__unrendered__): <EditProcessor
     isLoading={false}
   />,
   Symbol(enzyme.__renderer__): Object {
@@ -536,14 +488,12 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <React.Fragment>
-        <label
-          htmlFor="name"
-        >
-          Name:
-        </label>
-        <ConnectedField
+        <TextInput
           field="name"
-          id="name"
+          label="Name"
+          placeholder="*********"
+          required={true}
+          type="text"
         />
         <label
           htmlFor="description"
@@ -554,14 +504,12 @@ ShallowWrapper {
           field="description"
           id="description"
         />
-        <label
-          htmlFor="logoUrl"
-        >
-          Logo URL:
-        </label>
-        <ConnectedField
+        <TextInput
           field="logoUrl"
-          id="logoUrl"
+          label="Logo URL"
+          placeholder="*********"
+          required={true}
+          type="text"
         />
         <label>
           Scopes:
@@ -591,14 +539,12 @@ ShallowWrapper {
       "nodeType": "function",
       "props": Object {
         "children": Array [
-          <label
-            htmlFor="name"
-          >
-            Name:
-          </label>,
-          <ConnectedField
+          <TextInput
             field="name"
-            id="name"
+            label="Name"
+            placeholder="*********"
+            required={true}
+            type="text"
           />,
           <label
             htmlFor="description"
@@ -609,14 +555,12 @@ ShallowWrapper {
             field="description"
             id="description"
           />,
-          <label
-            htmlFor="logoUrl"
-          >
-            Logo URL:
-          </label>,
-          <ConnectedField
+          <TextInput
             field="logoUrl"
-            id="logoUrl"
+            label="Logo URL"
+            placeholder="*********"
+            required={true}
+            type="text"
           />,
           <label>
             Scopes:
@@ -645,22 +589,14 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Name:",
-            "htmlFor": "name",
-          },
-          "ref": null,
-          "rendered": "Name:",
-          "type": "label",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "error": undefined,
             "field": "name",
-            "id": "name",
+            "label": "Name",
+            "placeholder": "*********",
+            "required": true,
+            "type": "text",
           },
           "ref": null,
           "rendered": null,
@@ -693,22 +629,14 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Logo URL:",
-            "htmlFor": "logoUrl",
-          },
-          "ref": null,
-          "rendered": "Logo URL:",
-          "type": "label",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
           "nodeType": "function",
           "props": Object {
+            "error": undefined,
             "field": "logoUrl",
-            "id": "logoUrl",
+            "label": "Logo URL",
+            "placeholder": "*********",
+            "required": true,
+            "type": "text",
           },
           "ref": null,
           "rendered": null,
@@ -783,14 +711,12 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <React.Fragment>
-          <label
-            htmlFor="name"
-          >
-            Name:
-          </label>
-          <ConnectedField
+          <TextInput
             field="name"
-            id="name"
+            label="Name"
+            placeholder="*********"
+            required={true}
+            type="text"
           />
           <label
             htmlFor="description"
@@ -801,14 +727,12 @@ ShallowWrapper {
             field="description"
             id="description"
           />
-          <label
-            htmlFor="logoUrl"
-          >
-            Logo URL:
-          </label>
-          <ConnectedField
+          <TextInput
             field="logoUrl"
-            id="logoUrl"
+            label="Logo URL"
+            placeholder="*********"
+            required={true}
+            type="text"
           />
           <label>
             Scopes:
@@ -838,14 +762,12 @@ ShallowWrapper {
         "nodeType": "function",
         "props": Object {
           "children": Array [
-            <label
-              htmlFor="name"
-            >
-              Name:
-            </label>,
-            <ConnectedField
+            <TextInput
               field="name"
-              id="name"
+              label="Name"
+              placeholder="*********"
+              required={true}
+              type="text"
             />,
             <label
               htmlFor="description"
@@ -856,14 +778,12 @@ ShallowWrapper {
               field="description"
               id="description"
             />,
-            <label
-              htmlFor="logoUrl"
-            >
-              Logo URL:
-            </label>,
-            <ConnectedField
+            <TextInput
               field="logoUrl"
-              id="logoUrl"
+              label="Logo URL"
+              placeholder="*********"
+              required={true}
+              type="text"
             />,
             <label>
               Scopes:
@@ -892,22 +812,14 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Name:",
-              "htmlFor": "name",
-            },
-            "ref": null,
-            "rendered": "Name:",
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "error": undefined,
               "field": "name",
-              "id": "name",
+              "label": "Name",
+              "placeholder": "*********",
+              "required": true,
+              "type": "text",
             },
             "ref": null,
             "rendered": null,
@@ -940,22 +852,14 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Logo URL:",
-              "htmlFor": "logoUrl",
-            },
-            "ref": null,
-            "rendered": "Logo URL:",
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
             "nodeType": "function",
             "props": Object {
+              "error": undefined,
               "field": "logoUrl",
-              "id": "logoUrl",
+              "label": "Logo URL",
+              "placeholder": "*********",
+              "required": true,
+              "type": "text",
             },
             "ref": null,
             "rendered": null,
@@ -1034,11 +938,11 @@ ShallowWrapper {
 }
 `;
 
-exports[`(Component) Edit Processor form should render correctly when the prop isLoading is set to true 1`] = `
+exports[`(Component) Edit Processor Form should render correctly when the prop isLoading is set to true 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Unknown
+  Symbol(enzyme.__unrendered__): <EditProcessor
     isLoading={true}
   />,
   Symbol(enzyme.__renderer__): Object {
