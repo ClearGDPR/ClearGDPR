@@ -5,6 +5,7 @@ import { createMemoryHistory } from 'history';
 import { flushPromises } from 'tests/helpers/TestUtils';
 import { LoginContainer } from './Login';
 
+jest.mock('helpers/Session');
 
 beforeEach(() => {
   jest.resetAllMocks();
