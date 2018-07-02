@@ -1,4 +1,8 @@
-const { listenForErasureRequest, listenForConsent } = require('./../../utils/blockchain');
+const {
+  listenForErasureRequest,
+  listenForConsent,
+  listenerForRectificationEvent
+} = require('./../../utils/blockchain');
 const { getDataForSubject } = require('./processors.requests');
 const { blockUntilContractReady } = require('./processors.helpers');
 const { inControllerMode } = require('../../utils/helpers');
@@ -11,6 +15,14 @@ const startErasureRequestListener = () => {
   return listenForErasureRequest(async subjectId => {
     winston.info(`Erasure request received for ${subjectId}`);
     await subjectsService.eraseDataAndRevokeConsent(subjectId);
+  });
+};
+
+const startRectificationEventListener = () => {
+  return listenerForRectificationEvent(async subjectId => {
+    winston.info(`rectification event received for ${subjectId}`);
+    console.log(`rectification event received for ${subjectId}`);
+    // await subjectsService.eraseDataAndRevokeConsent(subjectId);
   });
 };
 
@@ -35,6 +47,7 @@ const startAll = async () => {
   winston.info(`Starting listeners in processor mode`);
   await startConsentListener();
   await startErasureRequestListener();
+  await startRectificationEventListener();
 };
 
 module.exports = {

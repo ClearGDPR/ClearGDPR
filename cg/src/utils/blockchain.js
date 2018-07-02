@@ -146,6 +146,23 @@ async function listenForErasureRequest(callback) {
   });
 }
 
+async function listenerForRectificationEvent(callback) {
+  const quorumContract = await getContract();
+  quorumContract.contract.events.allEvents([], (_, d) => winston.info(d));
+  return quorumContract.contract.events.Controller_SubjectDataRectified(
+    [{ fromBlock: 0, toBlock: 'latest' }],
+    (error, data) => {
+      console.log('TEST');
+      if (error) {
+        winston.error(`Error handling rectification ${error.toString()}`);
+        return;
+      }
+      winston.info(data);
+      callback(data.returnValues.subjectId);
+    }
+  );
+}
+
 async function listenForProcessorErasureRequest(callback) {
   const quorumContract = await getContract();
   return quorumContract.contract.events.Processor_SubjectDataErased([], (error, data) => {
@@ -245,6 +262,7 @@ module.exports = {
   listenForConsent,
   listenForErasureRequest,
   listenForProcessorErasureRequest,
+  listenerForRectificationEvent,
   getPastEvents,
   waitForGeth,
   CONTRACT_CONFIG_KEY
