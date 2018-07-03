@@ -4,9 +4,15 @@ import PropTypes from 'prop-types';
 import ProcessorCard from 'components/core/cards/dashboard/ProcessorCard';
 import Loader from 'components/core/cards/dashboard/Loader';
 
-const Processors = ({ processors, onEditProcessorClick, isLoading }) => {
-  function onEditProcessorClickHandler(e, id) {
-    console.log({ e, id });
+const Processors = ({ processors, onEditProcessorSubmit, onCreateProcessorSubmit, isLoading }) => {
+  function onEditProcessorHandler(e, processor) {
+    e.preventDefault();
+    onEditProcessorSubmit && onEditProcessorSubmit(processor);
+  }
+
+  function onCreateProcessorHandler(e, userId) {
+    e.preventDefault();
+    onCreateProcessorSubmit && onCreateProcessorSubmit(userId);
   }
 
   return (
@@ -21,9 +27,9 @@ const Processors = ({ processors, onEditProcessorClick, isLoading }) => {
             </p>
           </div>
           <div className="spacer" />
-          {/* <button className="ui-action btn" onClick={props.onClick}>
+          <button className="ui-action btn" onClick={e => onCreateProcessorHandler(e)}>
             + Add Processor
-          </button> */}
+          </button>
         </div>
         <div className="row">
           <div className="content">
@@ -32,7 +38,7 @@ const Processors = ({ processors, onEditProcessorClick, isLoading }) => {
                 <ProcessorCard
                   key={i}
                   data={processor}
-                  onClick={e => onEditProcessorClickHandler(e, processor.id)}
+                  onClick={e => onEditProcessorHandler(e, processor)}
                 />
               ))
             ) : (
@@ -47,7 +53,8 @@ const Processors = ({ processors, onEditProcessorClick, isLoading }) => {
 
 Processors.propTypes = {
   processors: PropTypes.arrayOf(PropTypes.object),
-  onEditProcessorClick: PropTypes.func,
+  onEditProcessorSubmit: PropTypes.func,
+  onCreateProcessorSubmit: PropTypes.func,
   isLoading: PropTypes.bool
 };
 
