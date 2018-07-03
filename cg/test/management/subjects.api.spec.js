@@ -706,11 +706,8 @@ describe('List subjects that have given consent', () => {
         }
       );
 
-      const body = await res.json();
-
       expect(res.status).toEqual(400);
-
-      expect(body).toMatchSnapshot();
+      expect(await res.json()).toMatchSnapshot();
     });
   });
 
@@ -835,6 +832,34 @@ describe('List subjects that have given consent', () => {
       );
 
       expect(res.status).toEqual(404);
+    });
+
+    it("Should error when approving if the user's key does not exist", async () => {
+      const managementToken = await managementJWT.sign({ id: 1 });
+
+      const { rectificationRequestId, subjectId } = await createSubjectWithRectification({
+        rectification_payload: { custom_payload: true }
+      });
+
+      await db('subject_keys')
+        .delete()
+        .where({ subject_id: subjectId });
+
+      const res = await fetch(
+        `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
+        {
+          method: 'POST',
+          body: {
+            status: RECTIFICATION_STATUSES.APPROVED
+          },
+          headers: {
+            Authorization: `Bearer ${managementToken}`
+          }
+        }
+      );
+
+      expect(res.status).toEqual(400);
+      expect(await res.json()).toMatchSnapshot();
     });
   });
 });
