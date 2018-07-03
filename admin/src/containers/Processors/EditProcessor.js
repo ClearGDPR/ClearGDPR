@@ -5,7 +5,7 @@ import config from '../../config';
 import internalFetch from '../../helpers/internal-fetch';
 import { PanelConsumer } from '../MainLayout/PanelContext';
 
-import EditProcessorForm from '../../components/Users/EditProcessorForm';
+import EditProcessorForm from '../../components/Processors/EditProcessor';
 
 export class EditProcessorContainer extends React.Component {
   static propTypes = {
@@ -18,7 +18,7 @@ export class EditProcessorContainer extends React.Component {
     errors: {}
   };
 
-  async saveProcessor(processor, password) {
+  async updateProcessor(processor) {
     await internalFetch(`${config.API_URL}/api/management/processors/update`, {
       method: 'POST',
       body: JSON.stringify(processor)
