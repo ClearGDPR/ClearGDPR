@@ -11,7 +11,7 @@ import MainLayout from 'components/MainLayout/MainLayout';
 
 import UsersContainer from 'containers/Users/Users';
 import ProcessorsContainer from 'containers/Processors/Processors';
-import Rectifications from '../../components/Rectifications/Rectifications';
+import Rectifications from 'containers/Rectifications/Rectifications';
 
 import { UsersProvider } from 'containers/Users/UsersContext';
 import { ProcessorsProvider } from 'containers/Processors/ProcessorsContext';
