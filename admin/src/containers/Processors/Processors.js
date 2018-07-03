@@ -1,52 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Processors from 'components/Processors/Processors';
-import config from 'config';
 import { PanelConsumer } from 'containers/MainLayout/PanelContext';
-import Form from 'components/core/cards/dashboard/Form';
-import internalFetch from 'helpers/internal-fetch';
+import { ProcessorsConsumer } from './ProcessorsContext';
+
+import Processors from 'components/Processors/Processors';
+import EditProcessor from './EditProcessor';
+import AddProcessor from './AddProcessor';
 
 export class ProcessorsContainer extends React.Component {
   static propTypes = {
-    openPanel: PropTypes.func
+    openPanel: PropTypes.func,
+    processors: PropTypes.arrayOf(PropTypes.object),
+    isLoading: PropTypes.bool,
+    fetchProcessors: PropTypes.func
   };
-
-  state = {
-    processors: [],
-    isLoading: true
-  };
-
-  async getProcessors() {
-    return internalFetch(`${config.API_URL}/api/management/processors/list`);
-  }
 
   componentDidMount() {
-    this.getProcessors()
-      .then(processors =>
-        this.setState({
-          processors,
-          isLoading: false
-        })
-      )
-      .catch(e => {
-        console.error(e);
-        this.setState({
-          isLoading: false
-        });
-      });
+    this.props.fetchProcessors();
   }
 
-  onEditProcessorForm() {
-    this.props.openPanel(Form);
+  openEditProcessorForm(processor) {
+    this.props.openPanel(EditProcessor, 'Edit processor', { processor });
+  }
+
+  openCreateProcessorForm() {
+    this.props.openPanel(AddProcessor, 'Create processor');
   }
 
   render() {
     return (
       <Processors
-        processors={this.state.processors}
-        isLoading={this.state.isLoading}
-        onEditProcessorClick={this.onEditProcessorForm.bind(this)}
+        processors={this.props.processors}
+        isLoading={this.props.isLoading}
+        onCreateProcessorClick={this.openCreateProcessorForm.bind(this)}
+        onEditProcessorClick={this.openEditProcessorForm.bind(this)}
       />
     );
   }
@@ -54,6 +42,18 @@ export class ProcessorsContainer extends React.Component {
 
 export default props => (
   <PanelConsumer>
-    {({ openPanel }) => <ProcessorsContainer {...props} openPanel={openPanel} />}
+    {({ openPanel }) => (
+      <ProcessorsConsumer>
+        {({ processors, isLoading, fetchProcessors }) => (
+          <ProcessorsContainer
+            {...props}
+            processors={processors}
+            isLoading={isLoading}
+            fetchProcessors={fetchProcessors}
+            openPanel={openPanel}
+          />
+        )}
+      </ProcessorsConsumer>
+    )}
   </PanelConsumer>
 );
