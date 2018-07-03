@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import 'theme/Tabs.css';
+import 'theme/Pagination.css';
 
 import Loader from 'components/core/cards/dashboard/Loader';
 import Card from 'components/core/cards/dashboard/Card';
@@ -51,21 +52,51 @@ const Rectifications = ({
     );
   }
 
+  function renderPagination() {
+    return (
+      <div className="pagination">
+        <button>First</button>
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>Last</button>
+      </div>
+    );
+  }
+
   function renderPendingRequests() {
     return (
-      <table className="responsive-table">
-        {renderTableHeading()}
-        {renderTableBody()}
-      </table>
+      <React.Fragment>
+        <div className="content">
+          <table className="responsive-table">
+            {renderTableHeading()}
+            {renderTableBody()}
+          </table>
+        </div>
+        <div className="content">{renderPagination()}</div>
+      </React.Fragment>
     );
   }
 
   function renderRequestsArchive() {
     return (
-      <table className="responsive-table">
-        {renderTableHeading(true)}
-        {renderTableBody(true)}
-      </table>
+      <React.Fragment>
+        <div className="content">
+          <table className="responsive-table">
+            {renderTableHeading(true)}
+            {renderTableBody(true)}
+          </table>
+        </div>
+        <div className="content">{renderPagination()}</div>
+      </React.Fragment>
+    );
+  }
+
+  function renderLoader() {
+    return (
+      <div className="content">
+        <Loader />
+      </div>
     );
   }
 
@@ -84,16 +115,12 @@ const Rectifications = ({
         <TabList>{tabs.map((value, index) => <Tab key={index}>{value}</Tab>)}</TabList>
         <TabPanel>
           <div className="row">
-            <Card cols={8}>
-              <div className="content">{!isLoading ? renderPendingRequests() : <Loader />}</div>
-            </Card>
+            <Card cols={8}>{!isLoading ? renderPendingRequests() : renderLoader()}</Card>
           </div>
         </TabPanel>
         <TabPanel>
           <div className="row">
-            <Card cols={8}>
-              <div className="content">{!isLoading ? renderRequestsArchive() : <Loader />}</div>
-            </Card>
+            <Card cols={8}>{!isLoading ? renderRequestsArchive() : renderLoader()}</Card>
           </div>
         </TabPanel>
       </Tabs>
