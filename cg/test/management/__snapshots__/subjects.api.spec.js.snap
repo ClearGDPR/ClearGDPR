@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`List subjects that have given consent Show rectification requests Should error if the rectification request subject has no key 1`] = `
+Object {
+  "error": "Decryption key not found",
+}
+`;
+
 exports[`List subjects that have given consent Update rectification request status Should error if no status is provided 1`] = `
 Object {
   "error": "Bad Request",
@@ -11,6 +17,12 @@ Object {
     ],
     "source": "body",
   },
+}
+`;
+
+exports[`List subjects that have given consent Update rectification request status Should error when approving if the user's key does not exist 1`] = `
+Object {
+  "error": "Decryption key not found",
 }
 `;
 

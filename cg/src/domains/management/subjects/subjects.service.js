@@ -23,7 +23,7 @@ class SubjectsService {
       .select(this.db.raw('rectification_requests.id as rectification_request_id'))
       .select(this.db.raw('rectification_requests.created_at as rectification_request_created_at'))
       .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
-      .join('subject_keys', 'subject_keys.subject_id', 'subjects.id')
+      .leftJoin('subject_keys', 'subject_keys.subject_id', 'subjects.id')
       .where({ 'rectification_requests.id': id });
     return requestData;
   }
@@ -127,6 +127,9 @@ class SubjectsService {
       // if the status is becoming approved -> apply the update to the users data
       if (status === RECTIFICATION_STATUSES.APPROVED) {
         const requestData = await this.getRequestData(request.id);
+
+        if (!requestData.key) throw new BadRequest('Decryption key not found');
+
         const decryptedUpdatePayload = JSON.parse(
           decryptFromStorage(requestData.encrypted_rectification_payload, requestData.key)
         );
