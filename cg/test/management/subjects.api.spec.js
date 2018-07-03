@@ -644,7 +644,7 @@ describe('List subjects that have given consent', () => {
   });
 
   describe('Show rectification requests', () => {
-    it('Should show the rectification request data', async () => {
+    it('Should show the rectification request data when pending', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
 
       const { rectificationRequestId } = await createSubjectWithRectification();
@@ -670,6 +670,70 @@ describe('List subjects that have given consent', () => {
           updates: expect.any(Object),
           createdAt: expect.any(String),
           status: RECTIFICATION_STATUSES.PENDING
+        })
+      );
+    });
+
+    it('Should show the rectification request data when approved', async () => {
+      const managementToken = await managementJWT.sign({ id: 1 });
+
+      const { rectificationRequestId } = await createSubjectWithRectification({
+        status: RECTIFICATION_STATUSES.APPROVED
+      });
+
+      const res = await fetch(
+        `/api/management/subjects/rectification-requests/${rectificationRequestId}`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${managementToken}`
+          }
+        }
+      );
+
+      const body = await res.json();
+
+      expect(res.status).toEqual(200);
+
+      expect(body).toEqual(
+        expect.objectContaining({
+          id: expect.any(Number),
+          currentData: expect.any(Object),
+          updates: expect.any(Object),
+          createdAt: expect.any(String),
+          status: RECTIFICATION_STATUSES.APPROVED
+        })
+      );
+    });
+
+    it('Should show the rectification request data when disapproved', async () => {
+      const managementToken = await managementJWT.sign({ id: 1 });
+
+      const { rectificationRequestId } = await createSubjectWithRectification({
+        status: RECTIFICATION_STATUSES.DISAPPROVED
+      });
+
+      const res = await fetch(
+        `/api/management/subjects/rectification-requests/${rectificationRequestId}`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${managementToken}`
+          }
+        }
+      );
+
+      const body = await res.json();
+
+      expect(res.status).toEqual(200);
+
+      expect(body).toEqual(
+        expect.objectContaining({
+          id: expect.any(Number),
+          currentData: expect.any(Object),
+          updates: expect.any(Object),
+          createdAt: expect.any(String),
+          status: RECTIFICATION_STATUSES.DISAPPROVED
         })
       );
     });
