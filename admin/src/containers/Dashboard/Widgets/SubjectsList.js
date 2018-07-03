@@ -1,7 +1,7 @@
 import React from 'react';
-
-import SubjectsListComponent from 'components/Widgets/SubjectsList';
-import internalFetch from './internal-fetch';
+import config from 'config';
+import SubjectsListComponent from 'components/Dashboard/Widgets/SubjectsList';
+import internalFetch from 'helpers/internal-fetch';
 
 export class SubjectsListContainer extends React.Component {
   state = {
@@ -12,8 +12,8 @@ export class SubjectsListContainer extends React.Component {
 
   fetchSubjects() {
     this.setState({ errorState: false, loading: true });
-    internalFetch('/api/management/subjects/list')
-      .then(({ data: subjects, paging }) => {
+    internalFetch(`${config.API_URL}/api/management/subjects/list`)
+      .then(({ subjects, paging }) => {
         this.setState({ subjects, paging, loading: false });
       })
       .catch(err => {

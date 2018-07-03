@@ -47,6 +47,8 @@ class SubjectsService {
     const encryptedSubjectsData = await this.db('subjects')
       .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
       .select('personal_data')
+      .select('subjects.id')
+      .select('subjects.created_at')
       .whereNotNull('personal_data')
       .select('key')
       .whereNotNull('key')
@@ -58,7 +60,11 @@ class SubjectsService {
       .map(subject => {
         try {
           const decryptedData = decryptFromStorage(subject.personal_data, subject.key);
-          return JSON.parse(decryptedData);
+          return {
+            data: JSON.parse(decryptedData),
+            id: subject.id,
+            createdAt: subject.created_at
+          };
         } catch (e) {
           winston.info(`Error decrypting data ${e.toString()}`);
           return null;
