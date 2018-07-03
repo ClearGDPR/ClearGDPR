@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Sidenav from '../../components/Sidenav/Sidenav';
+import Sidenav from 'components/Sidenav/Sidenav';
 import { toast } from 'react-toastify';
 
 import session from 'helpers/Session';

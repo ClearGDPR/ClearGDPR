@@ -11,6 +11,8 @@ import MainLayout from 'components/MainLayout/MainLayout';
 
 import UsersContainer from 'containers/Users/Users';
 import ProcessorsContainer from 'containers/Processors/Processors';
+import Rectifications from '../../components/Rectifications/Rectifications';
+
 import { UsersProvider } from 'containers/Users/UsersContext';
 import { ProcessorsProvider } from 'containers/Processors/ProcessorsContext';
 import DashboardContainer from 'containers/Dashboard/Dashboard';
@@ -60,6 +62,7 @@ class MainLayoutContainer extends Component {
                 <Route exact path="/" render={() => <DashboardContainer />} />
                 <Route exact path="/processors" render={() => <ProcessorsContainer />} />
                 <Route exact path="/users" render={() => <UsersContainer />} />
+                <Route exact path="/rectifications" render={() => <Rectifications />} />
                 <Route
                   exact
                   path="/profile"

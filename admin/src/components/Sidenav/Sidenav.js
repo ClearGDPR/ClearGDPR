@@ -27,6 +27,7 @@ const Sidenav = props => {
       <NavLink to="/processors" activeClassName="active">
         <Icon name="processors" src={IconProcessors} />Processors
       </NavLink>
+      <NavLink to="/rectifications">Rectifications</NavLink>
       <NavLink to="/users">Users</NavLink>
       <p>
         <small className="label">Account</small>

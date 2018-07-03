@@ -15,6 +15,7 @@ export default () => (
       <PrivateRoute path="/" component={MainLayout} exact />
       <PrivateRoute path="/processors" component={MainLayout} exact />
       <PrivateRoute path="/users" component={MainLayout} exact />
+      <PrivateRoute path="/rectifications" component={MainLayout} exact />
       <PrivateRoute path="/profile" component={MainLayout} exact />
 
       <Route path="/kitchen-sink" component={KitchenSink} exact />
