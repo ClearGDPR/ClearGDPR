@@ -9,7 +9,8 @@ const {
   recordErasureByController,
   recordConsentGivenTo,
   getSubjectDataState,
-  recordErasureByProcessor
+  recordErasureByProcessor,
+  recordRectificationByController
 } = require('../../utils/blockchain');
 const { ValidationError, NotFound } = require('../../utils/errors');
 const winston = require('winston');
@@ -23,6 +24,7 @@ class SubjectsService {
   }
 
   async initializeUser(subjectId, personalData) {
+    console.log('subjectId:' + subjectId);
     await this.db.transaction(async trx => {
       await this._initializeUserInTransaction(trx, subjectId, personalData);
     });
@@ -72,6 +74,8 @@ class SubjectsService {
     } else {
       await this._updateExistingSubject(trx, subjectId, personalData);
     }
+    console.log('3333');
+    console.log(personalData);
   }
 
   async _updateExistingSubject(trx, subjectId, personalData) {
@@ -201,6 +205,7 @@ class SubjectsService {
     const [subjectKeyData] = await this.db('subject_keys')
       .where({ subject_id: subjectId })
       .select('key');
+
     if (!subjectKeyData || !subjectKeyData.key) throw new NotFound('Subject keys not found');
 
     const encryptedRectificationPayload = encryptForStorage(
@@ -213,6 +218,7 @@ class SubjectsService {
       encrypted_rectification_payload: encryptedRectificationPayload,
       status: RECTIFICATION_STATUSES.PENDING
     });
+    await recordRectificationByController(subjectId);
     return { success: true };
   }
 }

@@ -6,7 +6,7 @@ const {
   decryptFromStorage,
   hash
 } = require('../../src/utils/encryption');
-const { managementJWT } = require('../../src/utils/jwt');
+const { managementJWT, subjectJWT, processorJWT } = require('../../src/utils/jwt');
 const { BadRequest, Unauthorized, ValidationError } = require('../../src/utils/errors');
 const { omit } = require('underscore');
 const { RECTIFICATION_STATUSES } = require('./../../src/utils/constants');
@@ -925,5 +925,16 @@ describe('List subjects that have given consent', () => {
       expect(res.status).toEqual(400);
       expect(await res.json()).toMatchSnapshot();
     });
+  });
+
+  it.only('should print my JWT', async () => {
+    const subjectToken = await subjectJWT.sign({ subjectId: 1 });
+    console.log(subjectToken);
+
+    const processorToken = await processorJWT.sign({ id: 1 });
+    console.log(processorToken);
+
+    const managementToken = await managementJWT.sign({ id: 1 });
+    console.log(managementToken);
   });
 });

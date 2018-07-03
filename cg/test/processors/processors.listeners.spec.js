@@ -2,12 +2,13 @@ jest.mock('../../src/utils/blockchain/web3-provider-factory');
 jest.mock('../../src/utils/blockchain/quorum-contract');
 jest.mock('../../src/utils/helpers');
 jest.mock('../../src/domains/processors/processors.helpers');
-const encryption = require('./../../src/utils/encryption');
 
-const { initResources, closeResources } = require('../utils');
+const encryption = require('./../../src/utils/encryption');
+const { initResources, fetch, closeResources } = require('../utils');
 const { deployContract } = require('../blockchain-setup');
 const { startAll } = require('../../src/domains/processors/processors.listeners');
 const { db } = require('../../src/db');
+const { processorJWT, subjectJWT, managementJWT } = require('../../src/utils/jwt');
 const { encryptForStorage, decryptFromStorage } = require('../../src/utils/encryption');
 const {
   recordErasureByController,
@@ -17,7 +18,6 @@ const {
   getSubjectDataState
 } = require('../../src/utils/blockchain');
 const { SubjectDataStatus } = require('../../src/utils/blockchain/models');
-
 const processorHelpers = require('../../src/domains/processors/processors.helpers');
 const helpers = require('./../../src/utils/helpers');
 const realHelpers = require.requireActual('./../../src/utils/helpers');
@@ -69,7 +69,7 @@ describe('Processors listening for blockchain events', () => {
     }, 1000);
   });
 
-  it('should acknowledge consent events for this it self', async done => {
+  it('should acknowledge consent events for itself', async done => {
     helpers.inControllerMode.mockImplementation(() => false);
     helpers.getMyAddress.mockImplementation(() => '0xedbbe1fa6bc80f55c9ac7e351b777874142baaf8');
 
@@ -114,5 +114,15 @@ describe('Processors listening for blockchain events', () => {
       expect(fakeControllerResponse.isDone()).toEqual(false);
       done();
     }, 1500);
+  });
+
+  it('Should react to rectification events', async () => {
+    //GIVEN
+    // const subjectToken = await subjectJWT.sign({ id: 1 });
+    // console.log(subjectToken);
+    // const processorToken = await processorJWT.sign({ id: 1 });
+    // console.log(processorToken);
+    // const managementToken = await managementJWT.sign({ id: 1 });
+    // console.log(managementToken);
   });
 });

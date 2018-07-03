@@ -13,23 +13,27 @@ const subjectsService = new SubjectSService();
 
 const startErasureRequestListener = () => {
   return listenForErasureRequest(async subjectId => {
-    winston.info(`Erasure request received for ${subjectId}`);
+    winston.info(`Erasure event received for subject ${subjectId}`);
     await subjectsService.eraseDataAndRevokeConsent(subjectId);
   });
 };
 
 const startRectificationEventListener = () => {
   return listenerForRectificationEvent(async subjectId => {
-    winston.info(`rectification event received for ${subjectId}`);
-    console.log(`rectification event received for ${subjectId}`);
-    // await subjectsService.eraseDataAndRevokeConsent(subjectId);
+    winston.info(`rectification event received for subject ${subjectId}`);
+    const response = await getDataForSubject(subjectId).catch(err => {
+      return Promise.reject(err);
+    });
+    console.log('1111');
+    await subjectsService.initializeUser(subjectId, await response.json());
+    console.log('FINAL');
   });
 };
 
 const startConsentListener = () => {
   return listenForConsent(async subjectId => {
     // if consent given, get data and store it in our d
-    winston.info(`Consent received for ${subjectId}`);
+    winston.info(`Consent received from subject ${subjectId}`);
     const response = await getDataForSubject(subjectId).catch(err => {
       return Promise.reject(err);
     });
