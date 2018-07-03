@@ -58,7 +58,7 @@ async function pollForContractUpdate() {
         return;
       winston.info(`New contract detected at ${newContractDetails.address}`);
       await contractService.saveContractDetails(
-        JSON.parse(newContractDetails.contractABIJson),
+        JSON.parse(newContractDetails.contractAbiJson),
         newContractDetails.contractByteCode,
         newContractDetails.address
       );

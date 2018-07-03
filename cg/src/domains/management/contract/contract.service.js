@@ -17,10 +17,10 @@ async function addressToName(address) {
 }
 
 class ContractService {
-  async deployContract(contractABIJson, contractByteCode) {
-    const address = await deployContract(contractABIJson, contractByteCode);
+  async deployContract(contractAbiJson, contractByteCode) {
+    const address = await deployContract(contractAbiJson, contractByteCode);
     const value = JSON.stringify({
-      contractABIJson: JSON.stringify(contractABIJson),
+      contractAbiJson: JSON.stringify(contractAbiJson),
       contractByteCode,
       address
     });

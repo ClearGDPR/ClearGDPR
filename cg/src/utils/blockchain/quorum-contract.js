@@ -2,9 +2,9 @@ const Promise = require('bluebird');
 const { getMyAddress } = require('../helpers');
 
 class QuorumContract {
-  constructor(web3, contractABIJson = undefined, contractAddress) {
+  constructor(web3, contractAbiJson = undefined, contractAddress) {
     this.web3 = web3;
-    const contractABIDefinition = contractABIJson || require('./contract-abi.json');
+    const contractABIDefinition = contractAbiJson || require('./contract-abi.json');
     if (contractAddress) {
       this.contract = new web3.eth.Contract(contractABIDefinition, contractAddress);
     } else {

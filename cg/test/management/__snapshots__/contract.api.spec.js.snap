@@ -9,11 +9,11 @@ Object {
 exports[`Deploying contract should reject missing contract data 1`] = `
 Object {
   "error": "Bad Request",
-  "message": "child \\"contractABIJson\\" fails because [\\"contractABIJson\\" is required]",
+  "message": "child \\"contractAbiJson\\" fails because [\\"contractAbiJson\\" is required]",
   "statusCode": 400,
   "validation": Object {
     "keys": Array [
-      "contractABIJson",
+      "contractAbiJson",
     ],
     "source": "body",
   },

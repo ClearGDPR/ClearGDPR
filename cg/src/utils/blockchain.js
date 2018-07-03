@@ -20,7 +20,7 @@ async function getContract() {
   }
   return await new QuorumContract(
     web3,
-    JSON.parse(contractConfig.contractABIJson),
+    JSON.parse(contractConfig.contractAbiJson),
     contractConfig.address
   );
 }
@@ -49,8 +49,8 @@ async function runContractMethod(methodName, params) {
   }
 }
 
-async function deployContract(contractABIJson, contractByteCode) {
-  const quorumContract = new QuorumContract(web3, contractABIJson);
+async function deployContract(contractAbiJson, contractByteCode) {
+  const quorumContract = new QuorumContract(web3, contractAbiJson);
   await quorumContract.deploy(contractByteCode);
   return quorumContract.address;
 }
