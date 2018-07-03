@@ -72,6 +72,12 @@ ShallowWrapper {
           <div
             className="spacer"
           />
+          <button
+            className="ui-action btn"
+            onClick={[Function]}
+          >
+            + Add Processor
+          </button>
         </div>
         <div
           className="row"
@@ -107,6 +113,12 @@ ShallowWrapper {
             <div
               className="spacer"
             />
+            <button
+              className="ui-action btn"
+              onClick={[Function]}
+            >
+              + Add Processor
+            </button>
           </div>,
           <div
             className="row"
@@ -141,6 +153,12 @@ ShallowWrapper {
               <div
                 className="spacer"
               />,
+              <button
+                className="ui-action btn"
+                onClick={[Function]}
+              >
+                + Add Processor
+              </button>,
             ],
             "className": "action-bar",
           },
@@ -198,6 +216,19 @@ ShallowWrapper {
               "ref": null,
               "rendered": null,
               "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "+ Add Processor",
+                "className": "ui-action btn",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "+ Add Processor",
+              "type": "button",
             },
           ],
           "type": "div",
@@ -267,6 +298,12 @@ ShallowWrapper {
             <div
               className="spacer"
             />
+            <button
+              className="ui-action btn"
+              onClick={[Function]}
+            >
+              + Add Processor
+            </button>
           </div>
           <div
             className="row"
@@ -302,6 +339,12 @@ ShallowWrapper {
               <div
                 className="spacer"
               />
+              <button
+                className="ui-action btn"
+                onClick={[Function]}
+              >
+                + Add Processor
+              </button>
             </div>,
             <div
               className="row"
@@ -336,6 +379,12 @@ ShallowWrapper {
                 <div
                   className="spacer"
                 />,
+                <button
+                  className="ui-action btn"
+                  onClick={[Function]}
+                >
+                  + Add Processor
+                </button>,
               ],
               "className": "action-bar",
             },
@@ -393,6 +442,19 @@ ShallowWrapper {
                 "ref": null,
                 "rendered": null,
                 "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "+ Add Processor",
+                  "className": "ui-action btn",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "+ Add Processor",
+                "type": "button",
               },
             ],
             "type": "div",
@@ -520,6 +582,12 @@ ShallowWrapper {
           <div
             className="spacer"
           />
+          <button
+            className="ui-action btn"
+            onClick={[Function]}
+          >
+            + Add Processor
+          </button>
         </div>
         <div
           className="row"
@@ -599,6 +667,12 @@ ShallowWrapper {
             <div
               className="spacer"
             />
+            <button
+              className="ui-action btn"
+              onClick={[Function]}
+            >
+              + Add Processor
+            </button>
           </div>,
           <div
             className="row"
@@ -677,6 +751,12 @@ ShallowWrapper {
               <div
                 className="spacer"
               />,
+              <button
+                className="ui-action btn"
+                onClick={[Function]}
+              >
+                + Add Processor
+              </button>,
             ],
             "className": "action-bar",
           },
@@ -734,6 +814,19 @@ ShallowWrapper {
               "ref": null,
               "rendered": null,
               "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": "+ Add Processor",
+                "className": "ui-action btn",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": "+ Add Processor",
+              "type": "button",
             },
           ],
           "type": "div",
@@ -949,6 +1042,12 @@ ShallowWrapper {
             <div
               className="spacer"
             />
+            <button
+              className="ui-action btn"
+              onClick={[Function]}
+            >
+              + Add Processor
+            </button>
           </div>
           <div
             className="row"
@@ -1028,6 +1127,12 @@ ShallowWrapper {
               <div
                 className="spacer"
               />
+              <button
+                className="ui-action btn"
+                onClick={[Function]}
+              >
+                + Add Processor
+              </button>
             </div>,
             <div
               className="row"
@@ -1106,6 +1211,12 @@ ShallowWrapper {
                 <div
                   className="spacer"
                 />,
+                <button
+                  className="ui-action btn"
+                  onClick={[Function]}
+                >
+                  + Add Processor
+                </button>,
               ],
               "className": "action-bar",
             },
@@ -1163,6 +1274,19 @@ ShallowWrapper {
                 "ref": null,
                 "rendered": null,
                 "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": "+ Add Processor",
+                  "className": "ui-action btn",
+                  "onClick": [Function],
+                },
+                "ref": null,
+                "rendered": "+ Add Processor",
+                "type": "button",
               },
             ],
             "type": "div",
