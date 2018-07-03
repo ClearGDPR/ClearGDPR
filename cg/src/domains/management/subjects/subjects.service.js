@@ -114,6 +114,40 @@ class SubjectsService {
     };
   }
 
+  async listProcessedRectificationRequests(requestedPage) {
+    const page = requestedPage === undefined ? 1 : parseInt(requestedPage, 10);
+
+    const [{ total_items }] = await this.db('rectification_requests')
+      .whereNot('status', RECTIFICATION_STATUSES.PENDING)
+      .leftJoin('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
+      .select(this.db.raw('count(id) as total_items'))
+      .as('total_items');
+
+    const totalPages = Math.ceil(total_items / PAGE_SIZE || 1);
+
+    if (page > totalPages) {
+      throw new ValidationError(`Page number too big, maximum page number is ${totalPages}`);
+    }
+
+    const requests = await this.db('rectification_requests')
+      .select('id')
+      .select('request_reason')
+      .select('rectification_requests.created_at')
+      .select('rectification_requests.status')
+      .whereNot('status', RECTIFICATION_STATUSES.PENDING)
+      .leftJoin('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
+      .limit(PAGE_SIZE)
+      .offset(page - 1);
+
+    return {
+      data: requests,
+      paging: {
+        current: page,
+        total: totalPages
+      }
+    };
+  }
+
   async updateRectificationRequestStatus(requestId, status) {
     const [request] = await this.db('rectification_requests').where({ id: requestId });
 
