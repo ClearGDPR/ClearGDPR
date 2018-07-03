@@ -2,10 +2,10 @@ const { listenForErasureRequest, listenForConsent } = require('./../../utils/blo
 const { getDataForSubject } = require('./processors.requests');
 const { blockUntilContractReady } = require('./processors.helpers');
 const { inControllerMode } = require('../../utils/helpers');
-const SubjectSService = require('./../subjects/subjects.service');
+const SubjectsService = require('./../subjects/subjects.service');
 const winston = require('winston');
 
-const subjectsService = new SubjectSService();
+const subjectsService = new SubjectsService();
 
 const startErasureRequestListener = () => {
   return listenForErasureRequest(async subjectId => {
