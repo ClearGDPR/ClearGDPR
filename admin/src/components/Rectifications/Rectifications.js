@@ -3,23 +3,69 @@ import PropTypes from 'prop-types';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import 'theme/Tabs.css';
 
 import Loader from 'components/core/cards/dashboard/Loader';
 import Card from 'components/core/cards/dashboard/Card';
 
-const Rectifications = ({ isLoading, tabs, selectedTab }) => {
-  function renderContent() {
+const Rectifications = ({
+  isLoading,
+  tabs,
+  selectedTab,
+  onTabSelect,
+  pageCount,
+  currentPage,
+  data
+}) => {
+  function renderTableHeading(showStatus = false) {
     return (
-      <Tabs selectedIndex={selectedTab} onSelect={t => console.log(t)}>
-        <TabList>{tabs.map((value, index) => <Tab key={index}>{value}</Tab>)}</TabList>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Created at</th>
+          <th>Reason</th>
+          {showStatus && <th>Status</th>}
+          <th>Actions</th>
+        </tr>
+      </thead>
+    );
+  }
 
-        <TabPanel>
-          <h2>Any content 1</h2>
-        </TabPanel>
-        <TabPanel>
-          <h2>Any content 2</h2>
-        </TabPanel>
-      </Tabs>
+  function renderTableBody(showStatus = false) {
+    return (
+      <tbody>
+        {data.map((value, index) => (
+          <tr key={index}>
+            <td>{value.id}</td>
+            <td>{value.created_at}</td>
+            <td>{value.request_reason}</td>
+            {showStatus && <td>{value.status}</td>}
+            <td>
+              <button className="ui-action btn" onClick={e => {}}>
+                Details
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    );
+  }
+
+  function renderPendingRequests() {
+    return (
+      <table className="responsive-table">
+        {renderTableHeading()}
+        {renderTableBody()}
+      </table>
+    );
+  }
+
+  function renderRequestsArchive() {
+    return (
+      <table className="responsive-table">
+        {renderTableHeading(true)}
+        {renderTableBody(true)}
+      </table>
     );
   }
 
@@ -34,11 +80,23 @@ const Rectifications = ({ isLoading, tabs, selectedTab }) => {
           </p>
         </div>
       </div>
-      <div className="row">
-        <Card cols={8}>
-          <div className="content">{!isLoading ? renderContent() : <Loader />}</div>
-        </Card>
-      </div>
+      <Tabs selectedIndex={selectedTab} onSelect={onTabSelect}>
+        <TabList>{tabs.map((value, index) => <Tab key={index}>{value}</Tab>)}</TabList>
+        <TabPanel>
+          <div className="row">
+            <Card cols={8}>
+              <div className="content">{!isLoading ? renderPendingRequests() : <Loader />}</div>
+            </Card>
+          </div>
+        </TabPanel>
+        <TabPanel>
+          <div className="row">
+            <Card cols={8}>
+              <div className="content">{!isLoading ? renderRequestsArchive() : <Loader />}</div>
+            </Card>
+          </div>
+        </TabPanel>
+      </Tabs>
     </section>
   );
 };
@@ -46,7 +104,11 @@ const Rectifications = ({ isLoading, tabs, selectedTab }) => {
 Rectifications.propTypes = {
   isLoading: PropTypes.bool,
   tabs: PropTypes.array.isRequired,
-  selectedTab: PropTypes.number.isRequired
+  selectedTab: PropTypes.number.isRequired,
+  onTabSelect: PropTypes.func.isRequired,
+  pageCount: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  data: PropTypes.array.isRequired
 };
 
 export default Rectifications;
