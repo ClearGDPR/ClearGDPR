@@ -54,7 +54,7 @@ describe('(Container) Edit Processor', () => {
     global.fetch = jest.fn().mockImplementationOnce(() =>
       Promise.resolve({
         status: 500
-      })  
+      })
     );
 
     const { component } = setupShallow();

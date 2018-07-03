@@ -12,6 +12,7 @@ import MainLayout from 'components/MainLayout/MainLayout';
 import UsersContainer from 'containers/Users/Users';
 import ProcessorsContainer from 'containers/Processors/Processors';
 import { UsersProvider } from 'containers/Users/UsersContext';
+import { ProcessorsProvider } from 'containers/Processors/ProcessorsContext';
 
 class MainLayoutContainer extends Component {
   state = {
@@ -86,6 +87,7 @@ const withProvider = ContextProvider => Component => {
 
 const withProviders = lodash.flow.apply(null, [
   withProvider(UsersProvider),
+  withProvider(ProcessorsProvider),
   withProvider(PanelProvider)
 ]);
 

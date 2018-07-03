@@ -1,11 +1,9 @@
 import React from 'react';
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Login from 'containers/Login/Login';
 
+import Login from 'containers/Login/Login';
 import MainLayout from 'containers/MainLayout/MainLayout';
 import KitchenSink from 'components/core/pages/Dashboard';
-
 import NoMatch from 'components/NoMatch';
 import PrivateRoute from 'helpers/routing/PrivateRoute';
 

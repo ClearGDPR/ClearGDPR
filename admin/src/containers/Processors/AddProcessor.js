@@ -6,9 +6,9 @@ import internalFetch from '../../helpers/internal-fetch';
 import { PanelConsumer } from '../MainLayout/PanelContext';
 import EditProcessorForm from '../../components/Processors/EditProcessor';
 
-export class EditProcessorContainer extends React.Component {
+export class AddProcessorContainer extends React.Component {
   static propTypes = {
-    processor: PropTypes.object,
+    processor: PropTypes.object.isRequired,
     closePanel: PropTypes.func
   };
 
@@ -18,7 +18,7 @@ export class EditProcessorContainer extends React.Component {
   };
 
   async updateProcessor(processor) {
-    await internalFetch(`${config.API_URL}/api/management/processors/update`, {
+    await internalFetch(`${config.API_URL}/api/management/processors/add`, {
       method: 'POST',
       body: JSON.stringify(processor)
     }).catch(err => {
@@ -43,17 +43,10 @@ export class EditProcessorContainer extends React.Component {
     });
   }
 
-  onSubmit(processor) {
+  onSubmit() {
     this.startLoading();
 
-    // Clone data to avoid updating form until save is done
-    const processorData = Object.assign({}, processor);
-    delete processorData.address;
-    processorData.scopes = Object.keys(processor.scopes).reduce((scopes, s) => {
-      return processor.scopes[s] ? scopes.concat(s) : scopes;
-    }, []);
-
-    return this.updateProcessor(processorData)
+    return this.updateProcessor(this.props.processor)
       .then(this.stopLoading.bind(this))
       .then(() => this.props.closePanel && this.props.closePanel())
       .catch(this.stopLoading.bind(this));
@@ -62,7 +55,6 @@ export class EditProcessorContainer extends React.Component {
   render() {
     return (
       <EditProcessorForm
-        values={this.props.processor}
         errors={this.state.errors}
         onSubmit={this.onSubmit.bind(this)}
         isLoading={this.state.isLoading}
@@ -73,6 +65,6 @@ export class EditProcessorContainer extends React.Component {
 
 export default props => (
   <PanelConsumer>
-    {({ closePanel }) => <EditProcessorContainer {...props} closePanel={closePanel} />}
+    {({ closePanel }) => <AddProcessorContainer {...props} closePanel={closePanel} />}
   </PanelConsumer>
 );

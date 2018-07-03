@@ -4,15 +4,19 @@ import PropTypes from 'prop-types';
 import ProcessorCard from 'components/core/cards/dashboard/ProcessorCard';
 import Loader from 'components/core/cards/dashboard/Loader';
 
-const Processors = ({ processors, onEditProcessorSubmit, onCreateProcessorSubmit, isLoading }) => {
-  function onEditProcessorHandler(e, processor) {
-    e.preventDefault();
-    onEditProcessorSubmit && onEditProcessorSubmit(processor);
+const Processors = ({
+  processors,
+  onCreateProcessorClick,
+  onEditProcessorClick,
+  isLoading,
+  children
+}) => {
+  function onCreateProcessorHandler(e) {
+    onCreateProcessorClick && onCreateProcessorClick();
   }
 
-  function onCreateProcessorHandler(e, userId) {
-    e.preventDefault();
-    onCreateProcessorSubmit && onCreateProcessorSubmit(userId);
+  function onEditProcessorHandler(e, processor) {
+    onEditProcessorClick && onEditProcessorClick(processor);
   }
 
   return (
@@ -47,15 +51,17 @@ const Processors = ({ processors, onEditProcessorSubmit, onCreateProcessorSubmit
           </div>
         </div>
       </section>
+      {children}
     </React.Fragment>
   );
 };
 
 Processors.propTypes = {
   processors: PropTypes.arrayOf(PropTypes.object),
-  onEditProcessorSubmit: PropTypes.func,
-  onCreateProcessorSubmit: PropTypes.func,
-  isLoading: PropTypes.bool
+  onEditProcessorClick: PropTypes.func,
+  onCreateProcessorClick: PropTypes.func,
+  isLoading: PropTypes.bool,
+  children: PropTypes.node
 };
 
 export default Processors;
