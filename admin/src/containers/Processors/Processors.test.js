@@ -1,11 +1,10 @@
 import React from 'react';
-
-import { shallow, mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import * as ProcessorsDataFactory from 'tests/data/processors.factory';
-import { flushPromises } from 'tests/helpers/TestUtils';
 
-import { ProcessorsContainer } from './Processors';
 import session from 'helpers/Session';
+import { ProcessorsContainer } from './Processors';
 
 jest.mock('helpers/Session');
 
@@ -13,21 +12,26 @@ beforeEach(() => {
   session.getToken.mockReturnValue('token');
 });
 
+const setup = propOverrides => {
+  const props = Object.assign({ 
+    processors,
+    fetchProcessors: () => {},
+    isLoading: false 
+  }, propOverrides);
+
+  const component = shallow(<ProcessorsContainer {...props} />);
+  const mounted = mount(<ProcessorsContainer {...props} />);
+
+  return { props, component, mounted };
+};
+
+const processors = ProcessorsDataFactory.getAll();
+
 describe('(Container) Processors', () => {
-  const processors = ProcessorsDataFactory.getAll();
-
   it('should have correct state after mounting', async () => {
-    global.fetch = jest.fn().mockImplementationOnce(() =>
-      Promise.resolve({
-        status: 200,
-        json: () => processors
-      })
-    );
+    const { component } = setup();
 
-    const component = mount(<ProcessorsContainer />);
-    await flushPromises();
-
-    expect(component.state()).toEqual(
+    expect(component.props()).toEqual(
       expect.objectContaining({
         processors: processors
       })
@@ -35,16 +39,12 @@ describe('(Container) Processors', () => {
   });
 
   it('should render correctly', async () => {
-    global.fetch = jest.fn().mockImplementationOnce(() =>
-      Promise.resolve({
-        status: 200,
-        json: () => processors
-      })
-    );
+    const { component } = setup();
+    expect(toJson(component)).toMatchSnapshot();
+  });
 
-    const component = shallow(<ProcessorsContainer />);
-
-    await flushPromises();
-    expect(component).toMatchSnapshot();
+  it('should fetch processors after mounting the component', async () => {
+    const { mounted } = setup({ fetchProcessors: jest.fn() });
+    expect(mounted.props().fetchProcessors).toHaveBeenCalled();
   });
 });

@@ -1,51 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(Container) Processors should render correctly 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ProcessorsContainer />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "function",
-    "props": Object {
-      "isLoading": true,
-      "onEditProcessorClick": [Function],
-      "processors": Array [],
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "isLoading": true,
-        "onEditProcessorClick": [Function],
-        "processors": Array [],
+<Processors
+  isLoading={false}
+  onEditProcessorClick={[Function]}
+  processors={
+    Array [
+      Object {
+        "consented": 72,
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+        "logoUrl": "nielsen.svg",
+        "name": "Nielsen",
+        "scopes": Array [
+          "Full Name",
+          "Email",
+          "Phone Number",
+        ],
       },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
+      Object {
+        "consented": 64,
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+        "logoUrl": "liveramp.svg",
+        "name": "Live Ramp",
+        "scopes": Array [
+          "Email",
+        ],
       },
-    },
-  },
-}
+      Object {
+        "consented": 25,
+        "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+        "logoUrl": "experian.svg",
+        "name": "Experian",
+        "scopes": Array [
+          "Full Name",
+          "Phone Number",
+        ],
+      },
+    ]
+  }
+/>
 `;
