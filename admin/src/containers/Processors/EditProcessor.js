@@ -30,7 +30,7 @@ export class EditProcessorContainer extends React.Component {
       .catch(e =>
         this.setState({
           errors: {
-            username: e.toString()
+            processor: e.toString()
           }
         })
       );
