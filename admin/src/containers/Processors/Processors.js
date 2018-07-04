@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { processorType } from 'types';
 import { PanelConsumer } from 'containers/MainLayout/PanelContext';
 import { ProcessorsConsumer } from './ProcessorsContext';
 
@@ -12,7 +13,7 @@ import DeleteProcessor from './DeleteProcessor';
 export class ProcessorsContainer extends React.Component {
   static propTypes = {
     openPanel: PropTypes.func,
-    processors: PropTypes.arrayOf(PropTypes.object),
+    processors: PropTypes.arrayOf(processorType),
     isLoading: PropTypes.bool,
     fetchProcessors: PropTypes.func
   };
