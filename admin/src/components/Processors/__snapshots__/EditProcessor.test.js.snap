@@ -20,8 +20,8 @@ ShallowWrapper {
       "children": <React.Fragment>
         <TextInput
           field="name"
-          label="Name"
-          placeholder="*********"
+          label="Processor name"
+          placeholder="Processor name"
           required={true}
           type="text"
         />
@@ -37,24 +37,33 @@ ShallowWrapper {
         <TextInput
           field="logoUrl"
           label="Logo URL"
-          placeholder="*********"
+          placeholder="Processor Logo (URL)"
           required={true}
-          type="text"
+          type="url"
         />
         <label>
           Scopes:
         </label>
-        <ConnectedField
-          field="scope[Full Name]"
-        />
-        <ConnectedField
-          field="scope[Email]"
-        />
-        <ConnectedField
-          field="scope[Phone Number]"
-        />
+        <label>
+          <ConnectedField
+            field="scopes[user:fullName]"
+          />
+          user:fullName
+        </label>
+        <label>
+          <ConnectedField
+            field="scopes[user:email]"
+          />
+          user:email
+        </label>
+        <label>
+          <ConnectedField
+            field="scopes[user:phoneNumber]"
+          />
+          user:phoneNumber
+        </label>
         <button
-          className="btn"
+          className="btn ui-action"
           type="submit"
         >
           Submit
@@ -71,8 +80,8 @@ ShallowWrapper {
         "children": Array [
           <TextInput
             field="name"
-            label="Name"
-            placeholder="*********"
+            label="Processor name"
+            placeholder="Processor name"
             required={true}
             type="text"
           />,
@@ -88,26 +97,35 @@ ShallowWrapper {
           <TextInput
             field="logoUrl"
             label="Logo URL"
-            placeholder="*********"
+            placeholder="Processor Logo (URL)"
             required={true}
-            type="text"
+            type="url"
           />,
           <label>
             Scopes:
           </label>,
           Array [
-            <ConnectedField
-              field="scope[Full Name]"
-            />,
-            <ConnectedField
-              field="scope[Email]"
-            />,
-            <ConnectedField
-              field="scope[Phone Number]"
-            />,
+            <label>
+              <ConnectedField
+                field="scopes[user:fullName]"
+              />
+              user:fullName
+            </label>,
+            <label>
+              <ConnectedField
+                field="scopes[user:email]"
+              />
+              user:email
+            </label>,
+            <label>
+              <ConnectedField
+                field="scopes[user:phoneNumber]"
+              />
+              user:phoneNumber
+            </label>,
           ],
           <button
-            className="btn"
+            className="btn ui-action"
             type="submit"
           >
             Submit
@@ -123,8 +141,8 @@ ShallowWrapper {
           "props": Object {
             "error": undefined,
             "field": "name",
-            "label": "Name",
-            "placeholder": "*********",
+            "label": "Processor name",
+            "placeholder": "Processor name",
             "required": true,
             "type": "text",
           },
@@ -164,9 +182,9 @@ ShallowWrapper {
             "error": undefined,
             "field": "logoUrl",
             "label": "Logo URL",
-            "placeholder": "*********",
+            "placeholder": "Processor Logo (URL)",
             "required": true,
-            "type": "text",
+            "type": "url",
           },
           "ref": null,
           "rendered": null,
@@ -186,35 +204,89 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": "0",
-          "nodeType": "function",
+          "nodeType": "host",
           "props": Object {
-            "field": "scope[Full Name]",
+            "children": Array [
+              <ConnectedField
+                field="scopes[user:fullName]"
+              />,
+              "user:fullName",
+            ],
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "field": "scopes[user:fullName]",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "user:fullName",
+          ],
+          "type": "label",
         },
         Object {
           "instance": null,
           "key": "1",
-          "nodeType": "function",
+          "nodeType": "host",
           "props": Object {
-            "field": "scope[Email]",
+            "children": Array [
+              <ConnectedField
+                field="scopes[user:email]"
+              />,
+              "user:email",
+            ],
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "field": "scopes[user:email]",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "user:email",
+          ],
+          "type": "label",
         },
         Object {
           "instance": null,
           "key": "2",
-          "nodeType": "function",
+          "nodeType": "host",
           "props": Object {
-            "field": "scope[Phone Number]",
+            "children": Array [
+              <ConnectedField
+                field="scopes[user:phoneNumber]"
+              />,
+              "user:phoneNumber",
+            ],
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "field": "scopes[user:phoneNumber]",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "user:phoneNumber",
+          ],
+          "type": "label",
         },
         Object {
           "instance": null,
@@ -222,7 +294,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": "Submit",
-            "className": "btn",
+            "className": "btn ui-action",
             "type": "submit",
           },
           "ref": null,
@@ -243,8 +315,8 @@ ShallowWrapper {
         "children": <React.Fragment>
           <TextInput
             field="name"
-            label="Name"
-            placeholder="*********"
+            label="Processor name"
+            placeholder="Processor name"
             required={true}
             type="text"
           />
@@ -260,24 +332,33 @@ ShallowWrapper {
           <TextInput
             field="logoUrl"
             label="Logo URL"
-            placeholder="*********"
+            placeholder="Processor Logo (URL)"
             required={true}
-            type="text"
+            type="url"
           />
           <label>
             Scopes:
           </label>
-          <ConnectedField
-            field="scope[Full Name]"
-          />
-          <ConnectedField
-            field="scope[Email]"
-          />
-          <ConnectedField
-            field="scope[Phone Number]"
-          />
+          <label>
+            <ConnectedField
+              field="scopes[user:fullName]"
+            />
+            user:fullName
+          </label>
+          <label>
+            <ConnectedField
+              field="scopes[user:email]"
+            />
+            user:email
+          </label>
+          <label>
+            <ConnectedField
+              field="scopes[user:phoneNumber]"
+            />
+            user:phoneNumber
+          </label>
           <button
-            className="btn"
+            className="btn ui-action"
             type="submit"
           >
             Submit
@@ -294,8 +375,8 @@ ShallowWrapper {
           "children": Array [
             <TextInput
               field="name"
-              label="Name"
-              placeholder="*********"
+              label="Processor name"
+              placeholder="Processor name"
               required={true}
               type="text"
             />,
@@ -311,26 +392,35 @@ ShallowWrapper {
             <TextInput
               field="logoUrl"
               label="Logo URL"
-              placeholder="*********"
+              placeholder="Processor Logo (URL)"
               required={true}
-              type="text"
+              type="url"
             />,
             <label>
               Scopes:
             </label>,
             Array [
-              <ConnectedField
-                field="scope[Full Name]"
-              />,
-              <ConnectedField
-                field="scope[Email]"
-              />,
-              <ConnectedField
-                field="scope[Phone Number]"
-              />,
+              <label>
+                <ConnectedField
+                  field="scopes[user:fullName]"
+                />
+                user:fullName
+              </label>,
+              <label>
+                <ConnectedField
+                  field="scopes[user:email]"
+                />
+                user:email
+              </label>,
+              <label>
+                <ConnectedField
+                  field="scopes[user:phoneNumber]"
+                />
+                user:phoneNumber
+              </label>,
             ],
             <button
-              className="btn"
+              className="btn ui-action"
               type="submit"
             >
               Submit
@@ -346,8 +436,8 @@ ShallowWrapper {
             "props": Object {
               "error": undefined,
               "field": "name",
-              "label": "Name",
-              "placeholder": "*********",
+              "label": "Processor name",
+              "placeholder": "Processor name",
               "required": true,
               "type": "text",
             },
@@ -387,9 +477,9 @@ ShallowWrapper {
               "error": undefined,
               "field": "logoUrl",
               "label": "Logo URL",
-              "placeholder": "*********",
+              "placeholder": "Processor Logo (URL)",
               "required": true,
-              "type": "text",
+              "type": "url",
             },
             "ref": null,
             "rendered": null,
@@ -409,35 +499,89 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": "0",
-            "nodeType": "function",
+            "nodeType": "host",
             "props": Object {
-              "field": "scope[Full Name]",
+              "children": Array [
+                <ConnectedField
+                  field="scopes[user:fullName]"
+                />,
+                "user:fullName",
+              ],
             },
             "ref": null,
-            "rendered": null,
-            "type": [Function],
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "scopes[user:fullName]",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "user:fullName",
+            ],
+            "type": "label",
           },
           Object {
             "instance": null,
             "key": "1",
-            "nodeType": "function",
+            "nodeType": "host",
             "props": Object {
-              "field": "scope[Email]",
+              "children": Array [
+                <ConnectedField
+                  field="scopes[user:email]"
+                />,
+                "user:email",
+              ],
             },
             "ref": null,
-            "rendered": null,
-            "type": [Function],
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "scopes[user:email]",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "user:email",
+            ],
+            "type": "label",
           },
           Object {
             "instance": null,
             "key": "2",
-            "nodeType": "function",
+            "nodeType": "host",
             "props": Object {
-              "field": "scope[Phone Number]",
+              "children": Array [
+                <ConnectedField
+                  field="scopes[user:phoneNumber]"
+                />,
+                "user:phoneNumber",
+              ],
             },
             "ref": null,
-            "rendered": null,
-            "type": [Function],
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "scopes[user:phoneNumber]",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "user:phoneNumber",
+            ],
+            "type": "label",
           },
           Object {
             "instance": null,
@@ -445,7 +589,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": "Submit",
-              "className": "btn",
+              "className": "btn ui-action",
               "type": "submit",
             },
             "ref": null,
@@ -490,8 +634,8 @@ ShallowWrapper {
       "children": <React.Fragment>
         <TextInput
           field="name"
-          label="Name"
-          placeholder="*********"
+          label="Processor name"
+          placeholder="Processor name"
           required={true}
           type="text"
         />
@@ -507,24 +651,33 @@ ShallowWrapper {
         <TextInput
           field="logoUrl"
           label="Logo URL"
-          placeholder="*********"
+          placeholder="Processor Logo (URL)"
           required={true}
-          type="text"
+          type="url"
         />
         <label>
           Scopes:
         </label>
-        <ConnectedField
-          field="scope[Full Name]"
-        />
-        <ConnectedField
-          field="scope[Email]"
-        />
-        <ConnectedField
-          field="scope[Phone Number]"
-        />
+        <label>
+          <ConnectedField
+            field="scopes[user:fullName]"
+          />
+          user:fullName
+        </label>
+        <label>
+          <ConnectedField
+            field="scopes[user:email]"
+          />
+          user:email
+        </label>
+        <label>
+          <ConnectedField
+            field="scopes[user:phoneNumber]"
+          />
+          user:phoneNumber
+        </label>
         <button
-          className="btn"
+          className="btn ui-action"
           type="submit"
         >
           Submit
@@ -541,8 +694,8 @@ ShallowWrapper {
         "children": Array [
           <TextInput
             field="name"
-            label="Name"
-            placeholder="*********"
+            label="Processor name"
+            placeholder="Processor name"
             required={true}
             type="text"
           />,
@@ -558,26 +711,35 @@ ShallowWrapper {
           <TextInput
             field="logoUrl"
             label="Logo URL"
-            placeholder="*********"
+            placeholder="Processor Logo (URL)"
             required={true}
-            type="text"
+            type="url"
           />,
           <label>
             Scopes:
           </label>,
           Array [
-            <ConnectedField
-              field="scope[Full Name]"
-            />,
-            <ConnectedField
-              field="scope[Email]"
-            />,
-            <ConnectedField
-              field="scope[Phone Number]"
-            />,
+            <label>
+              <ConnectedField
+                field="scopes[user:fullName]"
+              />
+              user:fullName
+            </label>,
+            <label>
+              <ConnectedField
+                field="scopes[user:email]"
+              />
+              user:email
+            </label>,
+            <label>
+              <ConnectedField
+                field="scopes[user:phoneNumber]"
+              />
+              user:phoneNumber
+            </label>,
           ],
           <button
-            className="btn"
+            className="btn ui-action"
             type="submit"
           >
             Submit
@@ -593,8 +755,8 @@ ShallowWrapper {
           "props": Object {
             "error": undefined,
             "field": "name",
-            "label": "Name",
-            "placeholder": "*********",
+            "label": "Processor name",
+            "placeholder": "Processor name",
             "required": true,
             "type": "text",
           },
@@ -634,9 +796,9 @@ ShallowWrapper {
             "error": undefined,
             "field": "logoUrl",
             "label": "Logo URL",
-            "placeholder": "*********",
+            "placeholder": "Processor Logo (URL)",
             "required": true,
-            "type": "text",
+            "type": "url",
           },
           "ref": null,
           "rendered": null,
@@ -656,35 +818,89 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": "0",
-          "nodeType": "function",
+          "nodeType": "host",
           "props": Object {
-            "field": "scope[Full Name]",
+            "children": Array [
+              <ConnectedField
+                field="scopes[user:fullName]"
+              />,
+              "user:fullName",
+            ],
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "field": "scopes[user:fullName]",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "user:fullName",
+          ],
+          "type": "label",
         },
         Object {
           "instance": null,
           "key": "1",
-          "nodeType": "function",
+          "nodeType": "host",
           "props": Object {
-            "field": "scope[Email]",
+            "children": Array [
+              <ConnectedField
+                field="scopes[user:email]"
+              />,
+              "user:email",
+            ],
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "field": "scopes[user:email]",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "user:email",
+          ],
+          "type": "label",
         },
         Object {
           "instance": null,
           "key": "2",
-          "nodeType": "function",
+          "nodeType": "host",
           "props": Object {
-            "field": "scope[Phone Number]",
+            "children": Array [
+              <ConnectedField
+                field="scopes[user:phoneNumber]"
+              />,
+              "user:phoneNumber",
+            ],
           },
           "ref": null,
-          "rendered": null,
-          "type": [Function],
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "field": "scopes[user:phoneNumber]",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "user:phoneNumber",
+          ],
+          "type": "label",
         },
         Object {
           "instance": null,
@@ -692,7 +908,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": "Submit",
-            "className": "btn",
+            "className": "btn ui-action",
             "type": "submit",
           },
           "ref": null,
@@ -713,8 +929,8 @@ ShallowWrapper {
         "children": <React.Fragment>
           <TextInput
             field="name"
-            label="Name"
-            placeholder="*********"
+            label="Processor name"
+            placeholder="Processor name"
             required={true}
             type="text"
           />
@@ -730,24 +946,33 @@ ShallowWrapper {
           <TextInput
             field="logoUrl"
             label="Logo URL"
-            placeholder="*********"
+            placeholder="Processor Logo (URL)"
             required={true}
-            type="text"
+            type="url"
           />
           <label>
             Scopes:
           </label>
-          <ConnectedField
-            field="scope[Full Name]"
-          />
-          <ConnectedField
-            field="scope[Email]"
-          />
-          <ConnectedField
-            field="scope[Phone Number]"
-          />
+          <label>
+            <ConnectedField
+              field="scopes[user:fullName]"
+            />
+            user:fullName
+          </label>
+          <label>
+            <ConnectedField
+              field="scopes[user:email]"
+            />
+            user:email
+          </label>
+          <label>
+            <ConnectedField
+              field="scopes[user:phoneNumber]"
+            />
+            user:phoneNumber
+          </label>
           <button
-            className="btn"
+            className="btn ui-action"
             type="submit"
           >
             Submit
@@ -764,8 +989,8 @@ ShallowWrapper {
           "children": Array [
             <TextInput
               field="name"
-              label="Name"
-              placeholder="*********"
+              label="Processor name"
+              placeholder="Processor name"
               required={true}
               type="text"
             />,
@@ -781,26 +1006,35 @@ ShallowWrapper {
             <TextInput
               field="logoUrl"
               label="Logo URL"
-              placeholder="*********"
+              placeholder="Processor Logo (URL)"
               required={true}
-              type="text"
+              type="url"
             />,
             <label>
               Scopes:
             </label>,
             Array [
-              <ConnectedField
-                field="scope[Full Name]"
-              />,
-              <ConnectedField
-                field="scope[Email]"
-              />,
-              <ConnectedField
-                field="scope[Phone Number]"
-              />,
+              <label>
+                <ConnectedField
+                  field="scopes[user:fullName]"
+                />
+                user:fullName
+              </label>,
+              <label>
+                <ConnectedField
+                  field="scopes[user:email]"
+                />
+                user:email
+              </label>,
+              <label>
+                <ConnectedField
+                  field="scopes[user:phoneNumber]"
+                />
+                user:phoneNumber
+              </label>,
             ],
             <button
-              className="btn"
+              className="btn ui-action"
               type="submit"
             >
               Submit
@@ -816,8 +1050,8 @@ ShallowWrapper {
             "props": Object {
               "error": undefined,
               "field": "name",
-              "label": "Name",
-              "placeholder": "*********",
+              "label": "Processor name",
+              "placeholder": "Processor name",
               "required": true,
               "type": "text",
             },
@@ -857,9 +1091,9 @@ ShallowWrapper {
               "error": undefined,
               "field": "logoUrl",
               "label": "Logo URL",
-              "placeholder": "*********",
+              "placeholder": "Processor Logo (URL)",
               "required": true,
-              "type": "text",
+              "type": "url",
             },
             "ref": null,
             "rendered": null,
@@ -879,35 +1113,89 @@ ShallowWrapper {
           Object {
             "instance": null,
             "key": "0",
-            "nodeType": "function",
+            "nodeType": "host",
             "props": Object {
-              "field": "scope[Full Name]",
+              "children": Array [
+                <ConnectedField
+                  field="scopes[user:fullName]"
+                />,
+                "user:fullName",
+              ],
             },
             "ref": null,
-            "rendered": null,
-            "type": [Function],
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "scopes[user:fullName]",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "user:fullName",
+            ],
+            "type": "label",
           },
           Object {
             "instance": null,
             "key": "1",
-            "nodeType": "function",
+            "nodeType": "host",
             "props": Object {
-              "field": "scope[Email]",
+              "children": Array [
+                <ConnectedField
+                  field="scopes[user:email]"
+                />,
+                "user:email",
+              ],
             },
             "ref": null,
-            "rendered": null,
-            "type": [Function],
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "scopes[user:email]",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "user:email",
+            ],
+            "type": "label",
           },
           Object {
             "instance": null,
             "key": "2",
-            "nodeType": "function",
+            "nodeType": "host",
             "props": Object {
-              "field": "scope[Phone Number]",
+              "children": Array [
+                <ConnectedField
+                  field="scopes[user:phoneNumber]"
+                />,
+                "user:phoneNumber",
+              ],
             },
             "ref": null,
-            "rendered": null,
-            "type": [Function],
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "scopes[user:phoneNumber]",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "user:phoneNumber",
+            ],
+            "type": "label",
           },
           Object {
             "instance": null,
@@ -915,7 +1203,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": "Submit",
-              "className": "btn",
+              "className": "btn ui-action",
               "type": "submit",
             },
             "ref": null,

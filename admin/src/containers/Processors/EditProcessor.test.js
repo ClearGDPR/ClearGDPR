@@ -1,94 +1,59 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 
-import session from '../../helpers/Session';
-import * as TestUtils from '../../tests/helpers/TestUtils';
+import * as TestUtils from 'tests/helpers/TestUtils';
 
 import { EditProcessorContainer } from './EditProcessor';
 
-jest.mock('../../helpers/Session');
-
 const setupShallow = propOverrides => {
-  const props = Object.assign({ userId: 1 }, propOverrides);
+  const props = Object.assign(
+    {
+      updateProcessor: jest.fn().mockReturnValue(Promise.resolve()),
+      closePanel: jest.fn(),
+      isLoading: false
+    },
+    propOverrides
+  );
   const component = shallow(<EditProcessorContainer {...props} />);
 
   return { props, component };
 };
 
-beforeEach(() => {
-  session.getToken.mockReturnValue('token');
-});
-
 describe('(Container) Edit Processor', () => {
-  it('should render correctly when user id provided props provided', async () => {
+  it('should render correctly when default props provided', async () => {
     const { component } = setupShallow();
-    expect(component).toMatchSnapshot();
+    expect(toJson(component)).toMatchSnapshot();
   });
 
-  it('should populate errors on submit when fetch fails with 400 status', async () => {
-    global.fetch = jest.fn().mockImplementationOnce(() =>
-      Promise.resolve({
-        status: 400,
-        json: () => {
-          return {
-            message: 'This is an error message'
-          };
-        }
-      })
-    );
+  it('should populate errors on submit when update rejects with error', async () => {
+    const { props, component } = setupShallow();
+    const stubProcessor = {
+      name: null,
+      logoUrl: null,
+      scopes: []
+    };
 
-    const { component } = setupShallow();
-    component.instance().onSubmit();
+    props.updateProcessor.mockReturnValue(Promise.reject(new Error('Test error')));
+    component.instance().onSubmit(stubProcessor);
 
     await TestUtils.flushPromises();
-    expect(component.state()).toEqual(
-      expect.objectContaining({
-        errors: {
-          '': 'This is an error message'
-        }
-      })
-    );
+    expect(component.state()).toMatchSnapshot();
   });
 
-  it('should populate errors on submit when fetch fails with 500 status', async () => {
-    global.fetch = jest.fn().mockImplementationOnce(() =>
-      Promise.resolve({
-        status: 500
-      })  
-    );
+  it('should close panel when update succeeded', async () => {
+    const { props, component } = setupShallow();
+    const stubProcessor = {
+      name: 'test.processor',
+      logoUrl: 'https://this.is.a.mock.image.com/url.png',
+      scopes: []
+    };
 
-    const { component } = setupShallow();
-    component.instance().onSubmit();
-
-    await TestUtils.flushPromises();
-    expect(component.state()).toEqual(
-      expect.objectContaining({
-        errors: {
-          '': 'Unknown error occurred'
-        }
-      })
-    );
-  });
-
-  it('should close panel when update processor succeeded', async () => {
-    global.fetch = jest.fn().mockImplementationOnce(() =>
-      Promise.resolve({
-        status: 200,
-        json: () => ({
-          success: true
-        })
-      })
-    );
-
-    const { props, component } = setupShallow({ closePanel: jest.fn() });
-    component.instance().onSubmit();
+    component
+      .instance()
+      .onSubmit(stubProcessor);
 
     await TestUtils.flushPromises();
     expect(props.closePanel).toHaveBeenCalled();
-    expect(component.state()).toEqual(
-      expect.objectContaining({
-        isLoading: false
-      })
-    );
   });
 });
