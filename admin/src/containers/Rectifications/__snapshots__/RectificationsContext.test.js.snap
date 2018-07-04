@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RectificationsProvider should render correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RectificationsProvider />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": undefined,
+      "value": Object {
+        "fetchAllRectifications": [Function],
+        "fetchPendingRectifications": [Function],
+        "fetchProcessedRectifications": [Function],
+        "isLoading": false,
+        "pendingRectifications": Object {},
+        "processedRectifications": Object {},
+      },
+    },
+    "ref": null,
+    "rendered": null,
+    "type": Object {
+      "$$typeof": Symbol(react.provider),
+      "_context": Object {
+        "$$typeof": Symbol(react.context),
+        "Consumer": [Circular],
+        "Provider": [Circular],
+        "_calculateChangedBits": null,
+        "_changedBits": 0,
+        "_changedBits2": 0,
+        "_currentRenderer": null,
+        "_currentRenderer2": null,
+        "_currentValue": Object {
+          "fetchAllRectifications": [Function],
+          "fetchPendingRectifications": [Function],
+          "fetchProcessedRectifications": [Function],
+          "isLoading": false,
+          "pendingRectifications": Object {},
+          "processedRectifications": Object {},
+        },
+        "_currentValue2": Object {
+          "fetchAllRectifications": [Function],
+          "fetchPendingRectifications": [Function],
+          "fetchProcessedRectifications": [Function],
+          "isLoading": false,
+          "pendingRectifications": Object {},
+          "processedRectifications": Object {},
+        },
+        "_defaultValue": Object {
+          "fetchAllRectifications": [Function],
+          "fetchPendingRectifications": [Function],
+          "fetchProcessedRectifications": [Function],
+          "isLoading": false,
+          "pendingRectifications": Object {},
+          "processedRectifications": Object {},
+        },
+      },
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": undefined,
+        "value": Object {
+          "fetchAllRectifications": [Function],
+          "fetchPendingRectifications": [Function],
+          "fetchProcessedRectifications": [Function],
+          "isLoading": false,
+          "pendingRectifications": Object {},
+          "processedRectifications": Object {},
+        },
+      },
+      "ref": null,
+      "rendered": null,
+      "type": Object {
+        "$$typeof": Symbol(react.provider),
+        "_context": Object {
+          "$$typeof": Symbol(react.context),
+          "Consumer": [Circular],
+          "Provider": [Circular],
+          "_calculateChangedBits": null,
+          "_changedBits": 0,
+          "_changedBits2": 0,
+          "_currentRenderer": null,
+          "_currentRenderer2": null,
+          "_currentValue": Object {
+            "fetchAllRectifications": [Function],
+            "fetchPendingRectifications": [Function],
+            "fetchProcessedRectifications": [Function],
+            "isLoading": false,
+            "pendingRectifications": Object {},
+            "processedRectifications": Object {},
+          },
+          "_currentValue2": Object {
+            "fetchAllRectifications": [Function],
+            "fetchPendingRectifications": [Function],
+            "fetchProcessedRectifications": [Function],
+            "isLoading": false,
+            "pendingRectifications": Object {},
+            "processedRectifications": Object {},
+          },
+          "_defaultValue": Object {
+            "fetchAllRectifications": [Function],
+            "fetchPendingRectifications": [Function],
+            "fetchProcessedRectifications": [Function],
+            "isLoading": false,
+            "pendingRectifications": Object {},
+            "processedRectifications": Object {},
+          },
+        },
+      },
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
