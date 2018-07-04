@@ -1,8 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Rectifications from 'components/Rectifications/Rectifications';
+import { RectificationsConsumer } from 'containers/Rectifications/RectificationsContext';
 
 export class RectificationsContainer extends React.Component {
-  static propTypes = {};
+  static propTypes = {
+    pendingRectifications: PropTypes.object.isRequired,
+    processedRectifications: PropTypes.object.isRequired,
+    fetchPendingRectifications: PropTypes.func.isRequired,
+    fetchProcessedRectifications: PropTypes.func.isRequired,
+    isLoading: PropTypes.bool.isRequired
+  };
 
   state = {
     selectedTab: 0,
@@ -17,45 +25,15 @@ export class RectificationsContainer extends React.Component {
 
   getData() {
     if (this.state.selectedTab === 0) {
-      return [
-        {
-          id: 1,
-          request_reason: 'The data was incorrect.',
-          created_at: '2018-07-02T21:31:24.999Z'
-        },
-        {
-          id: 2,
-          request_reason: 'The data was incorrect two.',
-          created_at: '2018-07-02T21:31:37.440Z'
-        },
-        {
-          id: 3,
-          request_reason: 'The data was incorrect two three.',
-          created_at: '2018-07-02T21:31:43.530Z'
-        }
-      ];
+      return this.props.pendingRectifications.data || [];
     } else {
-      return [
-        {
-          id: 1,
-          request_reason: 'The data was incorrect.',
-          created_at: '2018-07-02T21:31:24.999Z',
-          status: 'Disapproved'
-        },
-        {
-          id: 2,
-          request_reason: 'The data was incorrect two.',
-          created_at: '2018-07-02T21:31:37.440Z',
-          status: 'Approved'
-        },
-        {
-          id: 3,
-          request_reason: 'The data was incorrect two three.',
-          created_at: '2018-07-02T21:31:43.530Z',
-          status: 'Approved'
-        }
-      ];
+      return this.props.processedRectifications.data || [];
     }
+  }
+
+  componentDidMount() {
+    this.props.fetchPendingRectifications();
+    this.props.fetchProcessedRectifications();
   }
 
   render() {
@@ -64,12 +42,32 @@ export class RectificationsContainer extends React.Component {
         tabs={this.state.tabs}
         selectedTab={this.state.selectedTab}
         onTabSelect={this.onTabSelect.bind(this)}
-        pageCount={1}
+        pageCount={2}
         currentPage={1}
         data={this.getData()}
+        isLoading={this.props.isLoading}
       />
     );
   }
 }
 
-export default RectificationsContainer;
+export default props => (
+  <RectificationsConsumer>
+    {({
+      pendingRectifications,
+      processedRectifications,
+      fetchPendingRectifications,
+      fetchProcessedRectifications,
+      isLoading
+    }) => (
+      <RectificationsContainer
+        {...props}
+        pendingRectifications={pendingRectifications}
+        processedRectifications={processedRectifications}
+        fetchPendingRectifications={fetchPendingRectifications}
+        fetchProcessedRectifications={fetchProcessedRectifications}
+        isLoading={isLoading}
+      />
+    )}
+  </RectificationsConsumer>
+);

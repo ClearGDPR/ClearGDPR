@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import lodash from 'lodash';
 
-import { PanelProvider, PanelConsumer } from './PanelContext';
+import { PanelConsumer } from './PanelContext';
 
 import session from 'helpers/Session';
 
@@ -12,10 +10,9 @@ import MainLayout from 'components/MainLayout/MainLayout';
 import UsersContainer from 'containers/Users/Users';
 import ProcessorsContainer from 'containers/Processors/Processors';
 import Rectifications from 'containers/Rectifications/Rectifications';
-
-import { UsersProvider } from 'containers/Users/UsersContext';
-import { ProcessorsProvider } from 'containers/Processors/ProcessorsContext';
 import DashboardContainer from 'containers/Dashboard/Dashboard';
+
+import { withContextProviders } from 'helpers/wrappers';
 
 class MainLayoutContainer extends Component {
   state = {
@@ -77,22 +74,4 @@ class MainLayoutContainer extends Component {
   }
 }
 
-const withProvider = ContextProvider => Component => {
-  let wrapper = props => (
-    <ContextProvider>
-      <Component {...props}>{props.children}</Component>
-    </ContextProvider>
-  );
-  wrapper.propTypes = {
-    children: PropTypes.node
-  };
-  return wrapper;
-};
-
-const withProviders = lodash.flow.apply(null, [
-  withProvider(UsersProvider),
-  withProvider(ProcessorsProvider),
-  withProvider(PanelProvider)
-]);
-
-export default withProviders(MainLayoutContainer);
+export default withContextProviders(MainLayoutContainer);
