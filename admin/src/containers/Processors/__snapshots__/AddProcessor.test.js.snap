@@ -3,7 +3,7 @@
 exports[`(Container) Add Processor should populate errors on submit when create rejects with error 1`] = `
 Object {
   "errors": Object {
-    "username": "Error: Test error",
+    "processor": "Error: Test error",
   },
 }
 `;
