@@ -24,16 +24,30 @@ export class RectificationsContainer extends React.Component {
     });
   }
 
-  getData() {
+  getRectificationsData() {
     if (this.state.selectedTab === 0) {
-      return this.props.pendingRectifications.data || [];
+      return this.props.pendingRectifications;
     } else {
-      return this.props.processedRectifications.data || [];
+      return this.props.processedRectifications;
     }
+  }
+
+  getData() {
+    return this.getRectificationsData().data || [];
   }
 
   componentDidMount() {
     this.props.fetchAllRectifications();
+  }
+
+  getPageCount() {
+    let paging = this.getRectificationsData().paging;
+    return paging ? paging.total : 1;
+  }
+
+  getCurrentPage() {
+    let paging = this.getRectificationsData().paging;
+    return paging ? paging.current : 1;
   }
 
   render() {
@@ -42,8 +56,8 @@ export class RectificationsContainer extends React.Component {
         tabs={this.state.tabs}
         selectedTab={this.state.selectedTab}
         onTabSelect={this.onTabSelect.bind(this)}
-        pageCount={2}
-        currentPage={1}
+        pageCount={this.getPageCount()}
+        currentPage={this.getCurrentPage()}
         data={this.getData()}
         isLoading={this.props.isLoading}
       />

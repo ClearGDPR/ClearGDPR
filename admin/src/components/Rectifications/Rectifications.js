@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import 'theme/Tabs.css';
+
+import ReactPaginate from 'react-paginate';
 import 'theme/Pagination.css';
 
 import Loader from 'components/core/cards/dashboard/Loader';
@@ -52,15 +54,25 @@ const Rectifications = ({
     );
   }
 
+  function handlePageClick(page) {
+    console.log(page);
+  }
+
   function renderPagination() {
     return (
-      <div className="pagination">
-        <button>First</button>
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <button>Last</button>
-      </div>
+      <ReactPaginate
+        previousLabel={'previous'}
+        nextLabel={'next'}
+        breakLabel={<a href="">...</a>}
+        breakClassName={'break-me'}
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={5}
+        onPageChange={({ selected }) => handlePageClick(++selected)}
+        containerClassName={'pagination'}
+        subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
+      />
     );
   }
 
