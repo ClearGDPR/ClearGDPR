@@ -9,3 +9,104 @@ ul.errors li {
   color: red;
   font-size: 12px;
 }
+
+/* FORMS */
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: var(--spacing) 0;
+}
+
+input,
+input[type='text'],
+input[type='password'],
+input[type='color'],
+input[type='date'],
+input[type='datetime-local'],
+input[type='email'],
+input[type='month'],
+input[type='number'],
+input[type='range'],
+input[type='search'],
+input[type='tel'],
+input[type='time'],
+input[type='url'],
+input[type='week'] {
+  font-size: 1rem;
+  width: 100%;
+  margin: 0.2rem 0;
+  padding: 0.8rem 0.6rem;
+  border: 1px solid rgb(229, 229, 229);
+}
+
+.input-field {
+  margin-bottom: var(--spacing);
+}
+
+.input-field.input-error > label {
+  color: var(--color-error);
+}
+
+.input-field.input-error > input[type='text'] {
+  border-color: var(--color-error);
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  cursor: pointer;
+  appearance: none;
+  background-color: #fafafa;
+  border: 1px solid var(--color-foreground);
+  padding: 8px;
+  display: inline-block;
+  position: relative;
+}
+
+input[type='radio'] {
+  border-radius: 50%;
+}
+
+input[type='checkbox']:checked,
+input[type='radio']:checked {
+  background-color: var(--color-brand-primary);
+}
+
+input[type='submit'] {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: var(--spacing);
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+}
+
+label,
+legend {
+  font-size: 0.8rem;
+}
+
+fieldset {
+  border: 1px solid rgb(229, 229, 229);
+}
+
+fieldset > .input-group {
+  margin: 0.3rem 0;
+}
+
+.input-group {
+  margin: var(--spacing) 0;
+  display: flex;
+  align-items: center;
+}
+
+.error-msg {
+  font-size: 0.7rem;
+  vertical-align: baseline;
+  color: var(--color-error);
+  float: right;
+  position: relative;
+  bottom: -0.3rem;
+}

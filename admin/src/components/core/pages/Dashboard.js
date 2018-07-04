@@ -6,7 +6,7 @@ import Overview from 'components/core/cards/dashboard/Overview';
 import Processors from 'components/core/cards/dashboard/Processors';
 import Panel from 'components/core/cards/dashboard/Panel';
 import Loader from 'components/core/cards/dashboard/Loader';
-import Form from 'components/core/cards/dashboard/Form';
+import Form from 'components/core/Common/Forms/Form';
 import './dashboard.css';
 
 import * as ProcessorsDataFactory from 'tests/data/processors.factory';

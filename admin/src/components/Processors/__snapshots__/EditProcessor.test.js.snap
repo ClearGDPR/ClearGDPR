@@ -30,7 +30,7 @@ ShallowWrapper {
         >
           Description:
         </label>
-        <ConnectedField
+        <TextArea
           field="description"
           id="description"
         />
@@ -45,19 +45,19 @@ ShallowWrapper {
           Scopes:
         </label>
         <label>
-          <ConnectedField
+          <Checkbox
             field="scopes[user:fullName]"
           />
           user:fullName
         </label>
         <label>
-          <ConnectedField
+          <Checkbox
             field="scopes[user:email]"
           />
           user:email
         </label>
         <label>
-          <ConnectedField
+          <Checkbox
             field="scopes[user:phoneNumber]"
           />
           user:phoneNumber
@@ -90,7 +90,7 @@ ShallowWrapper {
           >
             Description:
           </label>,
-          <ConnectedField
+          <TextArea
             field="description"
             id="description"
           />,
@@ -106,19 +106,19 @@ ShallowWrapper {
           </label>,
           Array [
             <label>
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:fullName]"
               />
               user:fullName
             </label>,
             <label>
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:email]"
               />
               user:email
             </label>,
             <label>
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:phoneNumber]"
               />
               user:phoneNumber
@@ -207,7 +207,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:fullName]"
               />,
               "user:fullName",
@@ -236,7 +236,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:email]"
               />,
               "user:email",
@@ -265,7 +265,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:phoneNumber]"
               />,
               "user:phoneNumber",
@@ -325,7 +325,7 @@ ShallowWrapper {
           >
             Description:
           </label>
-          <ConnectedField
+          <TextArea
             field="description"
             id="description"
           />
@@ -340,19 +340,19 @@ ShallowWrapper {
             Scopes:
           </label>
           <label>
-            <ConnectedField
+            <Checkbox
               field="scopes[user:fullName]"
             />
             user:fullName
           </label>
           <label>
-            <ConnectedField
+            <Checkbox
               field="scopes[user:email]"
             />
             user:email
           </label>
           <label>
-            <ConnectedField
+            <Checkbox
               field="scopes[user:phoneNumber]"
             />
             user:phoneNumber
@@ -385,7 +385,7 @@ ShallowWrapper {
             >
               Description:
             </label>,
-            <ConnectedField
+            <TextArea
               field="description"
               id="description"
             />,
@@ -401,19 +401,19 @@ ShallowWrapper {
             </label>,
             Array [
               <label>
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:fullName]"
                 />
                 user:fullName
               </label>,
               <label>
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:email]"
                 />
                 user:email
               </label>,
               <label>
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:phoneNumber]"
                 />
                 user:phoneNumber
@@ -502,7 +502,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:fullName]"
                 />,
                 "user:fullName",
@@ -531,7 +531,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:email]"
                 />,
                 "user:email",
@@ -560,7 +560,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:phoneNumber]"
                 />,
                 "user:phoneNumber",
@@ -644,7 +644,7 @@ ShallowWrapper {
         >
           Description:
         </label>
-        <ConnectedField
+        <TextArea
           field="description"
           id="description"
         />
@@ -659,19 +659,19 @@ ShallowWrapper {
           Scopes:
         </label>
         <label>
-          <ConnectedField
+          <Checkbox
             field="scopes[user:fullName]"
           />
           user:fullName
         </label>
         <label>
-          <ConnectedField
+          <Checkbox
             field="scopes[user:email]"
           />
           user:email
         </label>
         <label>
-          <ConnectedField
+          <Checkbox
             field="scopes[user:phoneNumber]"
           />
           user:phoneNumber
@@ -704,7 +704,7 @@ ShallowWrapper {
           >
             Description:
           </label>,
-          <ConnectedField
+          <TextArea
             field="description"
             id="description"
           />,
@@ -720,19 +720,19 @@ ShallowWrapper {
           </label>,
           Array [
             <label>
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:fullName]"
               />
               user:fullName
             </label>,
             <label>
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:email]"
               />
               user:email
             </label>,
             <label>
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:phoneNumber]"
               />
               user:phoneNumber
@@ -821,7 +821,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:fullName]"
               />,
               "user:fullName",
@@ -850,7 +850,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:email]"
               />,
               "user:email",
@@ -879,7 +879,7 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <ConnectedField
+              <Checkbox
                 field="scopes[user:phoneNumber]"
               />,
               "user:phoneNumber",
@@ -939,7 +939,7 @@ ShallowWrapper {
           >
             Description:
           </label>
-          <ConnectedField
+          <TextArea
             field="description"
             id="description"
           />
@@ -954,19 +954,19 @@ ShallowWrapper {
             Scopes:
           </label>
           <label>
-            <ConnectedField
+            <Checkbox
               field="scopes[user:fullName]"
             />
             user:fullName
           </label>
           <label>
-            <ConnectedField
+            <Checkbox
               field="scopes[user:email]"
             />
             user:email
           </label>
           <label>
-            <ConnectedField
+            <Checkbox
               field="scopes[user:phoneNumber]"
             />
             user:phoneNumber
@@ -999,7 +999,7 @@ ShallowWrapper {
             >
               Description:
             </label>,
-            <ConnectedField
+            <TextArea
               field="description"
               id="description"
             />,
@@ -1015,19 +1015,19 @@ ShallowWrapper {
             </label>,
             Array [
               <label>
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:fullName]"
                 />
                 user:fullName
               </label>,
               <label>
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:email]"
                 />
                 user:email
               </label>,
               <label>
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:phoneNumber]"
                 />
                 user:phoneNumber
@@ -1116,7 +1116,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:fullName]"
                 />,
                 "user:fullName",
@@ -1145,7 +1145,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:email]"
                 />,
                 "user:email",
@@ -1174,7 +1174,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <ConnectedField
+                <Checkbox
                   field="scopes[user:phoneNumber]"
                 />,
                 "user:phoneNumber",

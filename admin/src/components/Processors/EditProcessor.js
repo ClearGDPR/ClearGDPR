@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, TextArea, Checkbox } from 'informed';
 
-import TextInput from '../core/cards/dashboard/TextInput';
-import Loader from '../core/cards/dashboard/Loader';
+import TextInput from 'components/core/Common/Forms/TextInput';
+import Loader from 'components/core/cards/dashboard/Loader';
 
 // TODO: this should be fetch from configuration service
 const DEMO_SCOPES = ['user:fullName', 'user:email', 'user:phoneNumber'];

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'informed';
-import TextInput from 'components/core/cards/dashboard/TextInput';
+import TextInput from 'components/core/Common/Forms/TextInput';
 import Loader from 'components/core/cards/dashboard/Loader';
 
 export class Register extends React.Component {
