@@ -8,7 +8,7 @@ import EditProcessorForm from '../../components/Processors/EditProcessor';
 
 export class AddProcessorContainer extends React.Component {
   static propTypes = {
-    processor: PropTypes.object.isRequired,
+    processor: PropTypes.object,
     closePanel: PropTypes.func
   };
 

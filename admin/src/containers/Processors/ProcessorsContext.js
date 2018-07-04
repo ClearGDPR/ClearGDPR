@@ -8,8 +8,9 @@ import internalFetch from 'helpers/internal-fetch';
 const ProcessorsContext = createContext({
   processors: [],
   fetchProcessors: () => {},
-  registerProcessors: () => {},
+  addProcessor: () => {},
   deleteProcessor: () => {},
+  updateProcessor: () => {},
   isLoading: false
 });
 
@@ -26,6 +27,7 @@ export class ProcessorsProvider extends Component {
     processors: [],
     fetchProcessors: this.fetchProcessors.bind(this),
     addProcessor: this.addProcessor.bind(this),
+    updateProcessor: this.updateProcessor.bind(this),
     isLoading: false
   };
 
@@ -33,14 +35,14 @@ export class ProcessorsProvider extends Component {
     return internalFetch(`${config.API_URL}/api/management/processors/list`);
   }
 
-  _createProcessors(processor) {
+  _addProcessor(processor) {
     return internalFetch(`${config.API_URL}/api/management/processors/add`, {
       method: 'POST',
       body: JSON.stringify(processor)
     });
   }
 
-  _updateProcessors(processor) {
+  _updateProcessor(processor) {
     return internalFetch(`${config.API_URL}/api/management/processors/update`, {
       method: 'POST',
       body: JSON.stringify(processor)
@@ -78,13 +80,25 @@ export class ProcessorsProvider extends Component {
   async addProcessor(processor) {
     this.setLoading(true);
 
-    const newProcessor = await this._createProcessro(processor).catch(
+    const newProcessor = await this._addProcessor(processor).catch(
       this.cancelLoadingAndReject.bind(this)
     );
     toast.success('Processor successfully added.');
     await this.fetchProcessors();
 
     return newProcessor;
+  }
+
+  async updateProcessor(processor) {
+    this.setLoading(true);
+
+    const updatedProcessor = await this._updateProcessor(processor).catch(
+      this.cancelLoadingAndReject.bind(this)
+    );
+    toast.success('Processor successfully updated.');
+    await this.fetchProcessors();
+
+    return updatedProcessor;
   }
 
   render() {

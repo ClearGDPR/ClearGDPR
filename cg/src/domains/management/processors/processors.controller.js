@@ -11,17 +11,17 @@ class ProcessorsController {
 
   async updateProcessor(req, res) {
     await this.processorsService.updateProcessor(req.body);
-    res.send('OK');
+    res.send({ success: true });
   }
 
   async addProcessor(req, res) {
     await this.processorsService.addProcessor(req.body);
-    res.send('OK');
+    res.send({ success: true });
   }
 
   async removeProcessors(req, res) {
     await this.processorsService.removeProcessors(req.body.processorIds);
-    res.send('OK');
+    res.send({ success: true });
   }
 }
 
