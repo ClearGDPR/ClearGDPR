@@ -4,6 +4,7 @@ exports[`(Container) Processors should render correctly 1`] = `
 <Processors
   isLoading={false}
   onCreateProcessorClick={[Function]}
+  onDeleteProcessorClick={[Function]}
   onEditProcessorClick={[Function]}
   processors={
     Array [
@@ -39,5 +40,11 @@ exports[`(Container) Processors should render correctly 1`] = `
       },
     ]
   }
-/>
+>
+  <Component
+    isOpen={false}
+    onClose={[Function]}
+    processorId={0}
+  />
+</Processors>
 `;

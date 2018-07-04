@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Container) Delete processor should render correctly when processor and default provided props provided 1`] = `
+<DeleteProcessor
+  isLoading={false}
+  isOpen={true}
+  onCancel={[MockFunction]}
+  onConfirm={[Function]}
+/>
+`;
