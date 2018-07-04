@@ -64,16 +64,10 @@ const Processors = ({
 };
 
 Processors.propTypes = {
-<<<<<<< HEAD
-  processors: PropTypes.arrayOf(PropTypes.object),
+  processors: PropTypes.arrayOf(processorType),
   onEditProcessorClick: PropTypes.func.isRequired,
   onCreateProcessorClick: PropTypes.func.isRequired,
   onDeleteProcessorClick: PropTypes.func.isRequired,
-=======
-  processors: PropTypes.arrayOf(processorType),
-  onEditProcessorClick: PropTypes.func,
-  onCreateProcessorClick: PropTypes.func,
->>>>>>> Updated processors types
   isLoading: PropTypes.bool,
   children: PropTypes.node
 };
