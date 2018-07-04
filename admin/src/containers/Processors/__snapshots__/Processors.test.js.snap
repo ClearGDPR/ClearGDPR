@@ -3,6 +3,7 @@
 exports[`(Container) Processors should render correctly 1`] = `
 <Processors
   isLoading={false}
+  onCreateProcessorClick={[Function]}
   onEditProcessorClick={[Function]}
   processors={
     Array [

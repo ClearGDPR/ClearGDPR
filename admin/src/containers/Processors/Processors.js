@@ -6,6 +6,7 @@ import { ProcessorsConsumer } from './ProcessorsContext';
 
 import Processors from 'components/Processors/Processors';
 import EditProcessor from './EditProcessor';
+import AddProcessor from './AddProcessor';
 
 export class ProcessorsContainer extends React.Component {
   static propTypes = {
@@ -23,11 +24,16 @@ export class ProcessorsContainer extends React.Component {
     this.props.openPanel(EditProcessor, 'Edit processor', { processor });
   }
 
+  openCreateProcessorForm() {
+    this.props.openPanel(AddProcessor, 'Create processor');
+  }
+
   render() {
     return (
       <Processors
         processors={this.props.processors}
         isLoading={this.props.isLoading}
+        onCreateProcessorClick={this.openCreateProcessorForm.bind(this)}
         onEditProcessorClick={this.openEditProcessorForm.bind(this)}
       />
     );
