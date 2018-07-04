@@ -45,17 +45,20 @@ describe('RectificationsProvider', () => {
       {
         id: 4,
         request_reason: 'The data was incorrect.',
-        created_at: '2018-07-02T21:31:24.999Z'
+        created_at: '2018-07-02T21:31:24.999Z',
+        status: 'APPROVED'
       },
       {
         id: 5,
         request_reason: 'The data was incorrect two.',
-        created_at: '2018-07-02T21:31:37.440Z'
+        created_at: '2018-07-02T21:31:37.440Z',
+        status: 'DISAPPROVED'
       },
       {
         id: 6,
         request_reason: 'The data was incorrect two three.',
-        created_at: '2018-07-02T21:31:43.530Z'
+        created_at: '2018-07-02T21:31:43.530Z',
+        status: 'APPROVED'
       }
     ],
     paging: {
