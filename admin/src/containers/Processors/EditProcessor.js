@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { processorType } from 'types';
 import { ProcessorsConsumer } from './ProcessorsContext';
 import { PanelConsumer } from 'containers/MainLayout/PanelContext';
 import EditProcessorForm from 'components/Processors/EditProcessor';
@@ -8,7 +9,7 @@ import EditProcessorForm from 'components/Processors/EditProcessor';
 export class EditProcessorContainer extends React.Component {
   static propTypes = {
     updateProcessor: PropTypes.func,
-    processor: PropTypes.object,
+    processor: processorType.isRequired,
     closePanel: PropTypes.func
   };
 

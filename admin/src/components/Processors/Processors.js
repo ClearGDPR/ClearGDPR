@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { processorType } from 'types';
 import ProcessorCard from 'components/core/cards/dashboard/ProcessorCard';
 import Loader from 'components/core/cards/dashboard/Loader';
 
@@ -63,10 +64,16 @@ const Processors = ({
 };
 
 Processors.propTypes = {
+<<<<<<< HEAD
   processors: PropTypes.arrayOf(PropTypes.object),
   onEditProcessorClick: PropTypes.func.isRequired,
   onCreateProcessorClick: PropTypes.func.isRequired,
   onDeleteProcessorClick: PropTypes.func.isRequired,
+=======
+  processors: PropTypes.arrayOf(processorType),
+  onEditProcessorClick: PropTypes.func,
+  onCreateProcessorClick: PropTypes.func,
+>>>>>>> Updated processors types
   isLoading: PropTypes.bool,
   children: PropTypes.node
 };
