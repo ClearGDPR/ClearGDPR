@@ -17,19 +17,15 @@ class SubjectsController {
   }
 
   async listSubjects(req, res) {
-    const subjectsInfo = await this.subjectsService.listSubjects(req.query.page);
-    const coveredSubjects = subjectsInfo.subjects.map(subject => {
+    const { paging, data } = await this.subjectsService.listSubjects(req.query.page);
+    const coveredData = data.map(subject => {
       // Covers the subjects data with '*'s
-      const data = _.mapObject(subject.data, value => {
+      const subjectData = _.mapObject(subject.data, value => {
         return coverString(value);
       });
-      return Object.assign({}, subject, { data });
+      return Object.assign({}, subject, { data: subjectData });
     });
-    return res.json({
-      requestedPage: subjectsInfo.requestedPage,
-      numberOfPages: subjectsInfo.numberOfPages,
-      subjects: coveredSubjects
-    });
+    return res.json({ data: coveredData, paging });
   }
 
   async listRectificationRequests(req, res) {

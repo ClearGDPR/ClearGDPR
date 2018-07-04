@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 
 import TableCard from 'components/core/cards/dashboard/TableCard';
 
@@ -11,7 +12,7 @@ const SubjectsList = ({ subjects, isLoading, errorState }) => {
   const rows = subjects.map(subject => {
     return {
       id: subject.id,
-      consented_on: subject.created_at,
+      consented_on: format(new Date(subject.createdAt), 'DD/MM/YYYY'),
       firstname: subject.data.firstname,
       email: subject.data.email
     };

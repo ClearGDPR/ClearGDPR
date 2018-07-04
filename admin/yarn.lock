@@ -2135,6 +2135,10 @@ data-urls@^1.0.0:
     whatwg-mimetype "^2.0.0"
     whatwg-url "^6.4.0"
 
+date-fns@^1.29.0:
+  version "1.29.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.29.0.tgz#12e609cdcb935127311d04d33334e2960a2a54e6"
+
 date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
@@ -6535,6 +6539,12 @@ react-modal@3.4.5:
     prop-types "^15.5.10"
     react-lifecycles-compat "^3.0.0"
     warning "^3.0.0"
+
+react-paginate@^5.2.3:
+  version "5.2.3"
+  resolved "https://registry.yarnpkg.com/react-paginate/-/react-paginate-5.2.3.tgz#1eea032f760a86736ad61fb64dab37a9e99fa351"
+  dependencies:
+    prop-types "^15.6.1"
 
 react-particles-js@^2.2.0:
   version "2.2.0"
