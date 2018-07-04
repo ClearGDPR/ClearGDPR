@@ -8,15 +8,20 @@ const Processors = ({
   processors,
   onCreateProcessorClick,
   onEditProcessorClick,
+  onDeleteProcessorClick,
   isLoading,
   children
 }) => {
-  function onCreateProcessorHandler(e) {
+  function onCreateProcessorHandler() {
     onCreateProcessorClick && onCreateProcessorClick();
   }
 
-  function onEditProcessorHandler(e, processor) {
+  function onEditProcessorHandler(processor) {
     onEditProcessorClick && onEditProcessorClick(processor);
+  }
+
+  function onDeleteProcessorHandler(processor) {
+    onDeleteProcessorClick && onDeleteProcessorClick(processor);
   }
 
   return (
@@ -42,7 +47,8 @@ const Processors = ({
                 <ProcessorCard
                   key={i}
                   data={processor}
-                  onClick={e => onEditProcessorHandler(e, processor)}
+                  onClick={() => onEditProcessorHandler(processor)}
+                  onDelete={() => onDeleteProcessorHandler(processor.id)}
                 />
               ))
             ) : (
@@ -60,6 +66,7 @@ Processors.propTypes = {
   processors: PropTypes.arrayOf(PropTypes.object),
   onEditProcessorClick: PropTypes.func,
   onCreateProcessorClick: PropTypes.func,
+  onDeleteProcessorClick: PropTypes.func,
   isLoading: PropTypes.bool,
   children: PropTypes.node
 };

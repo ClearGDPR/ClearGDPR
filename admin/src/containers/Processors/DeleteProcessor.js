@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { ProcessorsConsumer } from './ProcessorsContext';
-import DeleteProcessor from 'components/Processor/DeleteProcessor';
+import DeleteProcessor from 'components/Processors/DeleteProcessor';
 
 export class DeleteProcessorContainer extends React.Component {
   static propTypes = {
-    processor: PropTypes.object.isRequired,
+    processorId: PropTypes.number.isRequired,
     deleteProcessor: PropTypes.func.isRequired,
     onClose: PropTypes.func,
     isOpen: PropTypes.bool,
@@ -14,7 +14,7 @@ export class DeleteProcessorContainer extends React.Component {
   };
 
   deleteProcessor() {
-    this.props.deleteProcessor(this.props.processor.id).then(this.props.onClose);
+    this.props.deleteProcessor(this.props.processorId).then(this.props.onClose);
   }
 
   render() {
@@ -32,7 +32,11 @@ export class DeleteProcessorContainer extends React.Component {
 export default props => (
   <ProcessorsConsumer>
     {({ deleteProcessor, isLoading }) => (
-      <DeleteProcessorContainer {...props} isLoading={isLoading} deleteProcessor={deleteProcessor} />
+      <DeleteProcessorContainer
+        {...props}
+        isLoading={isLoading}
+        deleteProcessor={deleteProcessor}
+      />
     )}
   </ProcessorsConsumer>
 );

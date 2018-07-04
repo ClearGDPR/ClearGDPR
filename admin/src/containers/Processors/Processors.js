@@ -7,6 +7,7 @@ import { ProcessorsConsumer } from './ProcessorsContext';
 import Processors from 'components/Processors/Processors';
 import EditProcessor from './EditProcessor';
 import AddProcessor from './AddProcessor';
+import DeleteProcessor from './DeleteProcessor';
 
 export class ProcessorsContainer extends React.Component {
   static propTypes = {
@@ -14,6 +15,11 @@ export class ProcessorsContainer extends React.Component {
     processors: PropTypes.arrayOf(PropTypes.object),
     isLoading: PropTypes.bool,
     fetchProcessors: PropTypes.func
+  };
+
+  state = {
+    isDeleteModalOpen: false,
+    processorToDeleteId: 0
   };
 
   componentDidMount() {
@@ -28,6 +34,13 @@ export class ProcessorsContainer extends React.Component {
     this.props.openPanel(AddProcessor, 'Create processor');
   }
 
+  openDeleteConfirmationModal(processorId) {
+    this.setState({
+      isDeleteModalOpen: true,
+      processorToDeleteId: processorId
+    });
+  }
+
   render() {
     return (
       <Processors
@@ -35,7 +48,14 @@ export class ProcessorsContainer extends React.Component {
         isLoading={this.props.isLoading}
         onCreateProcessorClick={this.openCreateProcessorForm.bind(this)}
         onEditProcessorClick={this.openEditProcessorForm.bind(this)}
-      />
+        onDeleteProcessorClick={this.openDeleteConfirmationModal.bind(this)}
+      >
+        <DeleteProcessor
+          isOpen={this.state.isDeleteModalOpen}
+          onClose={() => this.setState({ isDeleteModalOpen: false })}
+          processorId={this.state.processorToDeleteId}
+        />
+      </Processors>
     );
   }
 }

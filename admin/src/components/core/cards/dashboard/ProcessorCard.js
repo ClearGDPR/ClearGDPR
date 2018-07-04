@@ -5,6 +5,11 @@ import Card from './Card';
 import defaultLogo from 'assets/logo.png';
 
 const ProcessorCard = props => {
+  function onDeleteHandler(e, processor) {
+    e.stopPropagation();
+    props.onDelete && props.onDelete(processor);
+  }
+
   return (
     <Card cols={3} onClick={props.onClick}>
       <div className="processor">
@@ -24,6 +29,9 @@ const ProcessorCard = props => {
             return <li key={id}>{data}</li>;
           })}
         </ul>
+        <button className="btn" onClick={e => onDeleteHandler(e, props.data)}>
+          Delete
+        </button>
       </div>
     </Card>
   );
@@ -36,7 +44,8 @@ ProcessorCard.propTypes = {
     description: PropTypes.string,
     scopes: PropTypes.arrayOf(PropTypes.string)
   }),
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  onDelete: PropTypes.func
 };
 
 export default ProcessorCard;

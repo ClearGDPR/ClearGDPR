@@ -9,8 +9,8 @@ const ProcessorsContext = createContext({
   processors: [],
   fetchProcessors: () => {},
   addProcessor: () => {},
-  deleteProcessor: () => {},
   updateProcessor: () => {},
+  deleteProcessor: () => {},
   isLoading: false
 });
 
@@ -28,6 +28,7 @@ export class ProcessorsProvider extends Component {
     fetchProcessors: this.fetchProcessors.bind(this),
     addProcessor: this.addProcessor.bind(this),
     updateProcessor: this.updateProcessor.bind(this),
+    deleteProcessor: this.deleteProcessor.bind(this),
     isLoading: false
   };
 
@@ -99,6 +100,18 @@ export class ProcessorsProvider extends Component {
     await this.fetchProcessors();
 
     return updatedProcessor;
+  }
+
+  async deleteProcessor(processor) {
+    this.setLoading(true);
+
+    const isDeleted = await this._deleteProcessor(processor).catch(
+      this.cancelLoadingAndReject.bind(this)
+    );
+    toast.success('Processor successfully deleted.');
+    await this.fetchProcessors();
+
+    return isDeleted;
   }
 
   render() {
