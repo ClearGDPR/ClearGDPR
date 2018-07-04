@@ -1,6 +1,6 @@
 import React from 'react';
 import TextInput from './TextInput';
-import { Form as FormComponent } from 'react-form';
+import { Form as FormComponent } from 'informed';
 
 const Form = () => {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form } from 'react-form';
+import { Form } from 'informed';
 import TextInput from 'components/core/cards/dashboard/TextInput';
 import Loader from 'components/core/cards/dashboard/Loader';
 

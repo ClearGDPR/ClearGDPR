@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text } from 'react-form';
+import { Text } from 'informed';
 import PropTypes from 'prop-types';
 
 const TextInput = props => {

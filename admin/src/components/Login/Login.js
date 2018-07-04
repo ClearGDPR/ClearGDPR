@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, Text } from 'react-form';
+import { Form, Text } from 'informed';
 
 import logo from 'assets/logo.png';
 import 'theme/Login.css';

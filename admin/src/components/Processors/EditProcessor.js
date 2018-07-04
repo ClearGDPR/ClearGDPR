@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, TextArea, Checkbox } from 'react-form';
+import { Form, TextArea, Checkbox } from 'informed';
 
 import TextInput from '../core/cards/dashboard/TextInput';
 import Loader from '../core/cards/dashboard/Loader';
