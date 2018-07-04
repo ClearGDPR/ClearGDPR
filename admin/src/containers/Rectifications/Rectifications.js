@@ -18,6 +18,10 @@ export class RectificationsContainer extends React.Component {
     tabs: ['Pending requests', 'Requests archive']
   };
 
+  get pendingTabActive() {
+    return this.state.selectedTab === 0;
+  }
+
   onTabSelect(tabIndex) {
     this.setState({
       selectedTab: tabIndex
@@ -25,7 +29,7 @@ export class RectificationsContainer extends React.Component {
   }
 
   getRectificationsData() {
-    if (this.state.selectedTab === 0) {
+    if (this.pendingTabActive) {
       return this.props.pendingRectifications;
     } else {
       return this.props.processedRectifications;
@@ -41,13 +45,21 @@ export class RectificationsContainer extends React.Component {
   }
 
   getPageCount() {
-    let paging = this.getRectificationsData().paging;
+    const paging = this.getRectificationsData().paging;
     return paging ? paging.total : 1;
   }
 
   getCurrentPage() {
-    let paging = this.getRectificationsData().paging;
+    const paging = this.getRectificationsData().paging;
     return paging ? paging.current : 1;
+  }
+
+  onPageSelected(page) {
+    if (this.pendingTabActive) {
+      this.props.fetchPendingRectifications(page);
+    } else {
+      this.props.fetchProcessedRectifications(page);
+    }
   }
 
   render() {
@@ -60,6 +72,7 @@ export class RectificationsContainer extends React.Component {
         currentPage={this.getCurrentPage()}
         data={this.getData()}
         isLoading={this.props.isLoading}
+        onPageSelected={this.onPageSelected.bind(this)}
       />
     );
   }

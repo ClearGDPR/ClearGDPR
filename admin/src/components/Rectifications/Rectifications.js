@@ -8,6 +8,8 @@ import 'theme/Tabs.css';
 import ReactPaginate from 'react-paginate';
 import 'theme/Pagination.css';
 
+import moment from 'moment';
+
 import Loader from 'components/core/cards/dashboard/Loader';
 import Card from 'components/core/cards/dashboard/Card';
 
@@ -18,6 +20,7 @@ const Rectifications = ({
   onTabSelect,
   pageCount,
   currentPage,
+  onPageSelected,
   data
 }) => {
   function renderTableHeading(showStatus = false) {
@@ -40,7 +43,7 @@ const Rectifications = ({
         {data.map((value, index) => (
           <tr key={index}>
             <td>{value.id}</td>
-            <td>{value.created_at}</td>
+            <td>{moment(value.created_at).format('LLL')}</td>
             <td>{value.request_reason}</td>
             {showStatus && <td>{value.status}</td>}
             <td>
@@ -55,7 +58,7 @@ const Rectifications = ({
   }
 
   function handlePageClick(page) {
-    console.log(page);
+    onPageSelected(page);
   }
 
   function renderPagination() {
@@ -66,9 +69,11 @@ const Rectifications = ({
         breakLabel={<a href="">...</a>}
         breakClassName={'break-me'}
         pageCount={pageCount}
+        initialPage={currentPage - 1}
         marginPagesDisplayed={2}
         pageRangeDisplayed={5}
-        onPageChange={({ selected }) => handlePageClick(++selected)}
+        onPageChange={({ selected }) => handlePageClick(selected + 1)}
+        disableInitialCallback={true}
         containerClassName={'pagination'}
         subContainerClassName={'pages pagination'}
         activeClassName={'active'}
@@ -147,6 +152,7 @@ Rectifications.propTypes = {
   onTabSelect: PropTypes.func.isRequired,
   pageCount: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
+  onPageSelected: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired
 };
 

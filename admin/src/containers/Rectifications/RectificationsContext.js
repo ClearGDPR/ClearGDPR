@@ -52,7 +52,6 @@ export class RectificationsProvider extends Component {
   async cancelLoadingAndReject(e) {
     this.setLoading(false);
     toast.error(`An error occurred: ${e.message}`);
-    throw e;
   }
 
   async fetchPendingRectifications(page = 1) {
@@ -76,7 +75,7 @@ export class RectificationsProvider extends Component {
           ? await this._getPendingRectifications(page)
           : this.state.pendingRectifications;
       const processedRectifications =
-        archive === null || !archive
+        archive === null || archive
           ? await this._getProcessedRectifications(page)
           : this.state.processedRectifications;
       this.setState({
