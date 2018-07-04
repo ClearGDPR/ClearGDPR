@@ -9,6 +9,7 @@ export class RectificationsContainer extends React.Component {
     processedRectifications: PropTypes.object.isRequired,
     fetchPendingRectifications: PropTypes.func.isRequired,
     fetchProcessedRectifications: PropTypes.func.isRequired,
+    fetchAllRectifications: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired
   };
 
@@ -32,8 +33,7 @@ export class RectificationsContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPendingRectifications();
-    this.props.fetchProcessedRectifications();
+    this.props.fetchAllRectifications();
   }
 
   render() {
@@ -58,6 +58,7 @@ export default props => (
       processedRectifications,
       fetchPendingRectifications,
       fetchProcessedRectifications,
+      fetchAllRectifications,
       isLoading
     }) => (
       <RectificationsContainer
@@ -66,6 +67,7 @@ export default props => (
         processedRectifications={processedRectifications}
         fetchPendingRectifications={fetchPendingRectifications}
         fetchProcessedRectifications={fetchProcessedRectifications}
+        fetchAllRectifications={fetchAllRectifications}
         isLoading={isLoading}
       />
     )}

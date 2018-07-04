@@ -9,6 +9,7 @@ const RectificationsContext = createContext({
   processedRectifications: {},
   fetchPendingRectifications: () => {},
   fetchProcessedRectifications: () => {},
+  fetchAllRectifications: () => {},
   isLoading: false
 });
 
@@ -26,6 +27,7 @@ export class RectificationsProvider extends Component {
     processedRectifications: {},
     fetchPendingRectifications: this.fetchPendingRectifications.bind(this),
     fetchProcessedRectifications: this.fetchProcessedRectifications.bind(this),
+    fetchAllRectifications: this.fetchAllRectifications.bind(this),
     isLoading: false
   };
 
@@ -61,27 +63,27 @@ export class RectificationsProvider extends Component {
     await this._fetchRectifications(true, page);
   }
 
-  async _fetchRectifications(archive = false, page = 1) {
+  async fetchAllRectifications(page = 1) {
+    await this._fetchRectifications(null, page);
+  }
+
+  async _fetchRectifications(archive = null, page = 1) {
     this.setLoading(true);
 
     try {
-      if (!archive) {
-        const rectifications = !archive
+      const pendingRectifications =
+        archive === null || !archive
           ? await this._getPendingRectifications(page)
-          : await this._getProcessedRectifications(page);
-        this.setState({
-          pendingRectifications: rectifications,
-          isLoading: false
-        });
-      } else {
-        const rectifications = !archive
-          ? await this._getPendingRectifications(page)
-          : await this._getProcessedRectifications(page);
-        this.setState({
-          processedRectifications: rectifications,
-          isLoading: false
-        });
-      }
+          : this.state.pendingRectifications;
+      const processedRectifications =
+        archive === null || !archive
+          ? await this._getProcessedRectifications(page)
+          : this.state.processedRectifications;
+      this.setState({
+        pendingRectifications,
+        processedRectifications,
+        isLoading: false
+      });
     } catch (e) {
       await this.cancelLoadingAndReject(e);
     }
