@@ -13,7 +13,6 @@ class ProcessorsController {
   async getData(req, res) {
     const subjectId = req.params.subjectId;
     const subjectData = await this.subjectsService.getData(subjectId);
-    console.log(subjectData);
     return res.json(subjectData);
   }
 

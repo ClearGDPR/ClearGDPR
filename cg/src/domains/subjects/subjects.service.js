@@ -9,8 +9,7 @@ const {
   recordErasureByController,
   recordConsentGivenTo,
   getSubjectDataState,
-  recordErasureByProcessor,
-  recordRectificationByController
+  recordErasureByProcessor
 } = require('../../utils/blockchain');
 const { ValidationError, NotFound } = require('../../utils/errors');
 const winston = require('winston');
@@ -24,17 +23,17 @@ class SubjectsService {
   }
 
   async initializeUser(subjectId, personalData) {
-    console.log('subjectId:' + subjectId);
     await this.db.transaction(async trx => {
       await this._initializeUserInTransaction(trx, subjectId, personalData);
     });
   }
 
   async registerConsentToProcessData(subjectId, personalData, processorIds = []) {
+    let processorIdsWithAddresses;
     await this.db.transaction(async trx => {
       await this._initializeUserInTransaction(trx, subjectId, personalData);
 
-      const processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(trx, processorIds);
+      processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(trx, processorIds);
 
       if (processorIdsWithAddresses.length !== processorIds.length) {
         throw new ValidationError('Specified processor does not exist.');
@@ -49,7 +48,7 @@ class SubjectsService {
       await Promise.all(
         processorIds.map(processorId => this._setConsentGiven(trx, subjectId, processorId))
       );
-
+      trx.commit();
       await recordConsentGivenTo(subjectId, processorIdsWithAddresses.map(p => p.address));
     });
   }
@@ -74,8 +73,6 @@ class SubjectsService {
     } else {
       await this._updateExistingSubject(trx, subjectId, personalData);
     }
-    console.log('3333');
-    console.log(personalData);
   }
 
   async _updateExistingSubject(trx, subjectId, personalData) {
@@ -218,7 +215,6 @@ class SubjectsService {
       encrypted_rectification_payload: encryptedRectificationPayload,
       status: RECTIFICATION_STATUSES.PENDING
     });
-    await recordRectificationByController(subjectId);
     return { success: true };
   }
 }

@@ -3,6 +3,7 @@ const { decryptFromStorage, encryptForStorage } = require('../../../utils/encryp
 const winston = require('winston');
 const { ValidationError, NotFound, BadRequest } = require('../../../utils/errors');
 const { RECTIFICATION_STATUSES } = require('./../../../utils/constants');
+const { recordRectificationByController } = require('../../../utils/blockchain');
 
 const PAGE_SIZE = 10; // This could go in constants, inside utils
 
@@ -178,6 +179,10 @@ class SubjectsService {
           .transacting(trx)
           .update({ personal_data: encryptForStorage(JSON.stringify(newData), requestData.key) })
           .where({ id: requestData.subject_id });
+
+        console.log(`Rectifying subject ${requestData.subject_id} data`);
+        trx.commit();
+        await recordRectificationByController(requestData.subject_id);
       }
 
       await this.db('rectification_requests')
@@ -187,7 +192,6 @@ class SubjectsService {
 
       await trx.commit();
     });
-
     return { success: true };
   }
 

@@ -1,6 +1,6 @@
 const {
-  listenForErasureRequest,
-  listenForConsent,
+  listenerForErasureEvent,
+  listenerForConsentEvent,
   listenerForRectificationEvent
 } = require('./../../utils/blockchain');
 const { getDataForSubject } = require('./processors.requests');
@@ -11,33 +11,31 @@ const winston = require('winston');
 
 const subjectsService = new SubjectSService();
 
-const startErasureRequestListener = () => {
-  return listenForErasureRequest(async subjectId => {
-    winston.info(`Erasure event received for subject ${subjectId}`);
-    await subjectsService.eraseDataAndRevokeConsent(subjectId);
-  });
-};
-
-const startRectificationEventListener = () => {
-  return listenerForRectificationEvent(async subjectId => {
-    winston.info(`rectification event received for subject ${subjectId}`);
-    const response = await getDataForSubject(subjectId).catch(err => {
-      return Promise.reject(err);
-    });
-    console.log('1111');
-    await subjectsService.initializeUser(subjectId, await response.json());
-    console.log('FINAL');
-  });
-};
-
-const startConsentListener = () => {
-  return listenForConsent(async subjectId => {
-    // if consent given, get data and store it in our d
+const startConsentEventListener = () => {
+  return listenerForConsentEvent(async subjectId => {
+    // if consent given, get data and store it in our db
     winston.info(`Consent received from subject ${subjectId}`);
     const response = await getDataForSubject(subjectId).catch(err => {
       return Promise.reject(err);
     });
     await subjectsService.initializeUser(subjectId, await response.json());
+  });
+};
+
+const startRectificationEventListener = () => {
+  return listenerForRectificationEvent(async subjectId => {
+    winston.info(`Rectification event received for subject ${subjectId}`);
+    const response = await getDataForSubject(subjectId).catch(err => {
+      return Promise.reject(err);
+    });
+    await subjectsService.initializeUser(subjectId, await response.json());
+  });
+};
+
+const startErasureEventListener = () => {
+  return listenerForErasureEvent(async subjectId => {
+    winston.info(`Erasure event received for subject ${subjectId}`);
+    await subjectsService.eraseDataAndRevokeConsent(subjectId);
   });
 };
 
@@ -49,8 +47,8 @@ const startAll = async () => {
   await blockUntilContractReady();
 
   winston.info(`Starting listeners in processor mode`);
-  await startConsentListener();
-  await startErasureRequestListener();
+  await startConsentEventListener();
+  await startErasureEventListener();
   await startRectificationEventListener();
 };
 

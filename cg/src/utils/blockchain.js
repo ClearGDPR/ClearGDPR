@@ -8,7 +8,6 @@ const { getMyAddress, timeout, retryAsync } = require('./helpers');
 const { SubjectDataStatus } = require('./blockchain/models');
 
 const controllerAddress = process.env.CONTRACT_OWNER_ADDRESS;
-
 let web3 = new Web3(providerFactory());
 
 // BACK-END INTEGRATION FUNCTIONS
@@ -134,44 +133,8 @@ async function getPastEvents(event) {
 
 // LISTENER FUNCTIONS
 
-async function listenForErasureRequest(callback) {
+async function listenerForConsentEvent(callback) {
   const quorumContract = await getContract();
-  return quorumContract.contract.events.Controller_SubjectDataErased([], (error, data) => {
-    if (error) {
-      winston.error(`Error handling consent given to ${error.toString()}`);
-      return;
-    }
-
-    callback(data.returnValues.subjectId);
-  });
-}
-
-async function listenerForRectificationEvent(callback) {
-  const quorumContract = await getContract();
-  return await quorumContract.contract.events.Controller_SubjectDataRectified((error, data) => {
-    if (error) {
-      winston.error(`Error handling rectification ${error.toString()}`);
-      return;
-    }
-    callback(data.returnValues.subjectId);
-  });
-}
-
-async function listenForProcessorErasureRequest(callback) {
-  const quorumContract = await getContract();
-  return quorumContract.contract.events.Processor_SubjectDataErased([], (error, data) => {
-    if (error) {
-      winston.error(`Error handling processor erasure request ${error.toString()}`);
-      return;
-    }
-
-    callback(data.returnValues.subjectId, data.returnValues.processor);
-  });
-}
-
-async function listenForConsent(callback) {
-  const quorumContract = await getContract();
-  // await quorumContract.contract.events.allEvents([], (_, d) => winston.info(d));
   return await quorumContract.contract.events.Controller_ConsentGivenTo([], (error, data) => {
     if (error) {
       winston.error(`Error handling consent given to ${error.toString()}`);
@@ -188,6 +151,39 @@ async function listenForConsent(callback) {
   });
 }
 
+async function listenerForRectificationEvent(callback) {
+  const quorumContract = await getContract();
+  return await quorumContract.contract.events.Controller_SubjectDataRectified((error, data) => {
+    if (error) {
+      winston.error(`Error handling rectification ${error.toString()}`);
+      return;
+    }
+    callback(data.returnValues.subjectId);
+  });
+}
+
+async function listenerForErasureEvent(callback) {
+  const quorumContract = await getContract();
+  return await quorumContract.contract.events.Controller_SubjectDataErased([], (error, data) => {
+    if (error) {
+      winston.error(`Error handling consent given to ${error.toString()}`);
+      return;
+    }
+    callback(data.returnValues.subjectId);
+  });
+}
+
+async function listenerForProcessorErasureEvent(callback) {
+  const quorumContract = await getContract();
+  return await quorumContract.contract.events.Processor_SubjectDataErased([], (error, data) => {
+    if (error) {
+      winston.error(`Error handling processor erasure request ${error.toString()}`);
+      return;
+    }
+    callback(data.returnValues.subjectId, data.returnValues.processor);
+  });
+}
+
 async function waitForGeth() {
   let gethIsListening = false;
   let newWeb3;
@@ -198,7 +194,6 @@ async function waitForGeth() {
     } catch (e) {
       winston.info('Geth node is not listening');
     }
-
     if (!gethIsListening) {
       await timeout(5000);
     }
@@ -210,7 +205,6 @@ async function waitForGeth() {
 async function allEvents(callback) {
   winston.info('Arming allEvent subscriber');
   const quorumContract = await getContract();
-
   return await quorumContract.contract.events.allEvents([], async (error, data) => {
     try {
       if (error) {
@@ -218,12 +212,11 @@ async function allEvents(callback) {
         return;
       }
       const tx = await web3.eth.getTransaction(data.transactionHash);
-
       callback({
         params: data.returnValues,
         eventName: data.event,
         from: tx.from,
-        // blockchain events don't really have a time... so we make the time for now?
+        // blockchain events don't really have a time, so we're making the time for now
         time: Date.now()
       });
     } catch (e) {
@@ -251,10 +244,10 @@ module.exports = {
   recordErasureByController,
   recordErasureByProcessor,
   allEvents,
-  listenForConsent,
-  listenForErasureRequest,
-  listenForProcessorErasureRequest,
+  listenerForConsentEvent,
   listenerForRectificationEvent,
+  listenerForErasureEvent,
+  listenerForProcessorErasureEvent,
   getPastEvents,
   waitForGeth,
   CONTRACT_CONFIG_KEY
