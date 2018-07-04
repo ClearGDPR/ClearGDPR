@@ -131,8 +131,10 @@ describe('List subjects that have given consent', () => {
     expect(await res.json()).not.toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          username: 'subject',
-          email: 'subject@clevertech.biz'
+          data: {
+            username: 'subject',
+            email: 'subject@clevertech.biz'
+          }
         })
       ])
     );
@@ -173,8 +175,10 @@ describe('List subjects that have given consent', () => {
     expect(await res.json()).not.toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          username: 'subject',
-          email: 'subject@clevertech.biz'
+          data: {
+            username: 'subject',
+            email: 'subject@clevertech.biz'
+          }
         })
       ])
     );
@@ -232,16 +236,22 @@ describe('List subjects that have given consent', () => {
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual(
       expect.objectContaining({
-        requestedPage: 1,
-        numberOfPages: 1,
-        subjects: expect.arrayContaining([
+        paging: {
+          total: 1,
+          current: 1
+        },
+        data: expect.arrayContaining([
           expect.objectContaining({
-            username: 's******1',
-            email: 's*********************z'
+            data: {
+              username: 's******1',
+              email: 's*********************z'
+            }
           }),
           expect.objectContaining({
-            username: 's******2',
-            email: 's*********************z'
+            data: {
+              username: 's******2',
+              email: 's*********************z'
+            }
           })
         ])
       })
@@ -262,7 +272,7 @@ describe('List subjects that have given consent', () => {
     //THEN
     expect(res.ok).toBeTruthy();
     expect(res.status).toBe(200);
-    expect(await res.json()).toEqual(expect.arrayContaining([]));
+    expect((await res.json()).data).toEqual(expect.arrayContaining([]));
   });
 
   it('should not allow a page query with a negative page number', async () => {
@@ -388,16 +398,22 @@ describe('List subjects that have given consent', () => {
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual(
       expect.objectContaining({
-        requestedPage: 1,
-        numberOfPages: 1,
-        subjects: expect.arrayContaining([
+        paging: {
+          total: 1,
+          current: 1
+        },
+        data: expect.arrayContaining([
           expect.objectContaining({
-            username: 's******1',
-            email: 's*********************z'
+            data: {
+              username: 's******1',
+              email: 's*********************z'
+            }
           }),
           expect.objectContaining({
-            username: 's******2',
-            email: 's*********************z'
+            data: {
+              username: 's******2',
+              email: 's*********************z'
+            }
           })
         ])
       })
@@ -446,12 +462,16 @@ describe('List subjects that have given consent', () => {
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual(
       expect.objectContaining({
-        requestedPage: 2,
-        numberOfPages: 2,
-        subjects: expect.arrayContaining([
+        paging: {
+          current: 2,
+          total: 2
+        },
+        data: expect.arrayContaining([
           expect.objectContaining({
-            username: 's******9',
-            email: 's*********************z'
+            data: {
+              username: 's******9',
+              email: 's*********************z'
+            }
           })
         ])
       })

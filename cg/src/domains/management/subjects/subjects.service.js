@@ -73,9 +73,11 @@ class SubjectsService {
       .filter(subject => subject !== null);
 
     return {
-      requestedPage,
-      numberOfPages: lastPage,
-      subjects: decryptedSubjectsData
+      paging: {
+        current: requestedPage,
+        total: lastPage
+      },
+      data: decryptedSubjectsData
     };
   }
 
