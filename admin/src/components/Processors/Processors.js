@@ -13,15 +13,15 @@ const Processors = ({
   children
 }) => {
   function onCreateProcessorHandler() {
-    onCreateProcessorClick && onCreateProcessorClick();
+    onCreateProcessorClick();
   }
 
   function onEditProcessorHandler(processor) {
-    onEditProcessorClick && onEditProcessorClick(processor);
+    onEditProcessorClick(processor);
   }
 
   function onDeleteProcessorHandler(processor) {
-    onDeleteProcessorClick && onDeleteProcessorClick(processor);
+    onDeleteProcessorClick(processor);
   }
 
   return (
@@ -64,9 +64,9 @@ const Processors = ({
 
 Processors.propTypes = {
   processors: PropTypes.arrayOf(PropTypes.object),
-  onEditProcessorClick: PropTypes.func,
-  onCreateProcessorClick: PropTypes.func,
-  onDeleteProcessorClick: PropTypes.func,
+  onEditProcessorClick: PropTypes.func.isRequired,
+  onCreateProcessorClick: PropTypes.func.isRequired,
+  onDeleteProcessorClick: PropTypes.func.isRequired,
   isLoading: PropTypes.bool,
   children: PropTypes.node
 };
