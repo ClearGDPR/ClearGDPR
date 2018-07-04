@@ -12,7 +12,8 @@
         "containers": "./src/containers",
         "helpers": "./src/helpers",
         "tests": "./src/tests",
-        "theme": "./src/theme"
+        "theme": "./src/theme",
+        "types": "./src/types"
       }
     }]
   ]
