@@ -12,7 +12,7 @@ jest.mock('helpers/Session');
 const setupShallow = propOverrides => {
   const props = Object.assign(
     {
-      processor: { id: 1 },
+      processorId: 1,
       deleteProcessor: jest.fn().mockReturnValue(Promise.resolve()),
       onClose: jest.fn(),
       isOpen: true,
@@ -35,7 +35,7 @@ describe('(Container) Delete processor', () => {
     expect(toJson(component)).toMatchSnapshot();
   });
 
-  it('should call delete processor from props when delete user was called', async () => {
+  it('should call delete processor from props when delete processor was called', async () => {
     const { props, component } = setupShallow();
     component.instance().deleteProcessor();
     expect(props.deleteProcessor).toHaveBeenCalledWith(1);
