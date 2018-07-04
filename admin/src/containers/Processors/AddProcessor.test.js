@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 
 import * as TestUtils from 'tests/helpers/TestUtils';
 
@@ -22,23 +23,35 @@ const setupShallow = propOverrides => {
 describe('(Container) Add Processor', () => {
   it('should render correctly when default props provided', async () => {
     const { component } = setupShallow();
-    expect(component).toMatchSnapshot();
+    expect(toJson(component)).toMatchSnapshot();
   });
 
-  it('should populate errors on submit when create processor rejects with error', async () => {
+  it('should populate errors on submit when create rejects with error', async () => {
     const { props, component } = setupShallow();
+    const stubProcessor = {
+      name: null,
+      logoUrl: null,
+      scopes: []
+    };
+
     props.addProcessor.mockReturnValue(Promise.reject(new Error('Test error')));
-    component.instance().onSubmit({ name: null, logoUrl: null, scopes: [] });
+    component.instance().onSubmit(stubProcessor);
 
     await TestUtils.flushPromises();
     expect(component.state()).toMatchSnapshot();
   });
 
-  it('should close panel when registration succeeded', async () => {
+  it('should close panel when create succeeded', async () => {
     const { props, component } = setupShallow();
+    const stubProcessor = {
+      name: 'Processor Name',
+      logoUrl: 'https://a_valid_url.com/file.png',
+      scopes: []
+    };
+
     component
       .instance()
-      .onSubmit({ name: 'Processor Name', logoUrl: 'https://a_valid_url.com/file.png', scopes: [] });
+      .onSubmit(stubProcessor);
 
     await TestUtils.flushPromises();
     expect(props.closePanel).toHaveBeenCalled();
