@@ -49,8 +49,8 @@ class Login extends React.Component {
             <React.Fragment>
               <img className="logo" src={logo} alt="Clear logo" />
               <Form onSubmit={values => this.onLoginSubmit(values)}>
-                {({ submitForm, errors }) => (
-                  <form onSubmit={submitForm}>
+                {({ errors }) => (
+                  <React.Fragment>
                     <Errors errors={{ ...this.props.errors, ...this.state.errors, ...errors }} />
                     <Text field="username" placeholder="Your username" validateOnSubmit required />
                     <Text
@@ -63,7 +63,7 @@ class Login extends React.Component {
                     <button type="submit" className="btn">
                       Login
                     </button>
-                  </form>
+                  </React.Fragment>
                 )}
               </Form>
             </React.Fragment>

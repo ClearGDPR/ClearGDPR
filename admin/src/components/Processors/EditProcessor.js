@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Form, TextArea, Checkbox } from 'informed';
+import { Form, TextArea, Scope, Checkbox } from 'informed';
 
 import TextInput from 'components/core/Common/Forms/TextInput';
-import Loader from 'components/core/cards/dashboard/Loader';
 
 // TODO: this should be fetch from configuration service
 const DEMO_SCOPES = ['user:fullName', 'user:email', 'user:phoneNumber'];
@@ -29,7 +28,7 @@ export class EditProcessor extends React.Component {
     }
   }
 
-  renderForm() {
+  render() {
     return (
       <React.Fragment>
         <TextInput
@@ -61,45 +60,42 @@ export class EditProcessor extends React.Component {
           required
         />
         <label>Scopes:</label>
-        {DEMO_SCOPES.map((scope, i) => (
-          <label key={i}>
-            <Checkbox field={`scopes[${DEMO_SCOPES[i]}]`} />
-            {scope}
-          </label>
-        ))}
+        <Scope scope="scopes">
+          {DEMO_SCOPES.map((scope, i) => (
+            <div key={i}>
+              <Checkbox field={`${scope}`} id={`scopes-${scope}`} />
+              <label key={i} htmlFor={`scopes-${scope}`}>
+                {scope}
+              </label>
+            </div>
+          ))}
+        </Scope>
         <button type="submit" className="btn ui-action">
           Submit
         </button>
       </React.Fragment>
     );
   }
-
-  render() {
-    return (
-      <form onSubmit={this.props.onSubmit}>
-        {this.props.isLoading ? <Loader /> : this.renderForm()}
-      </form>
-    );
-  }
 }
 
 const EditProcessorForm = props => (
-  <Form onSubmit={submittedValues => props.onSubmit && props.onSubmit(submittedValues)}>
-    {formApi => (
+  <Form
+    onSubmit={submittedValues => props.onSubmit(submittedValues)}
+    render={({ formApi }) => (
       <EditProcessor
         {...props}
-        onSetValues={formApi.setAllValues}
+        onSetValues={formApi.setValues}
         onSubmit={formApi.submitForm}
         errors={{ ...formApi.errors, ...props.errors }}
         touched={formApi.touched}
         values={props.values}
       />
     )}
-  </Form>
+  />
 );
 
 EditProcessorForm.propTypes = {
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
   errors: PropTypes.object,
   values: PropTypes.object
 };
