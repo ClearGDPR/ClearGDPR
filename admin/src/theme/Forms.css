@@ -32,12 +32,17 @@ input[type='search'],
 input[type='tel'],
 input[type='time'],
 input[type='url'],
-input[type='week'] {
+input[type='week'],
+textarea {
   font-size: 1rem;
   width: 100%;
   margin: 0.2rem 0;
   padding: 0.8rem 0.6rem;
   border: 1px solid rgb(229, 229, 229);
+}
+
+textarea {
+  min-height: 5em;
 }
 
 .input-field {
@@ -61,6 +66,9 @@ input[type='radio'] {
   padding: 8px;
   display: inline-block;
   position: relative;
+  width: 18px;
+  vertical-align: middle;
+  margin-right: 0.4rem;
 }
 
 input[type='radio'] {
