@@ -28,11 +28,11 @@ ShallowWrapper {
             className="logo"
             src="logo.png"
           />
-          <ReactForm
+          <Form
             onSubmit={[Function]}
           >
             [Function]
-          </ReactForm>
+          </Form>
         </React.Fragment>
       </div>,
       "className": "login-section",
@@ -49,11 +49,11 @@ ShallowWrapper {
             className="logo"
             src="logo.png"
           />
-          <ReactForm
+          <Form
             onSubmit={[Function]}
           >
             [Function]
-          </ReactForm>
+          </Form>
         </React.Fragment>,
         "className": "login-card",
       },
@@ -69,11 +69,11 @@ ShallowWrapper {
               className="logo"
               src="logo.png"
             />,
-            <ReactForm
+            <Form
               onSubmit={[Function]}
             >
               [Function]
-            </ReactForm>,
+            </Form>,
           ],
         },
         "ref": null,
@@ -125,11 +125,11 @@ ShallowWrapper {
               className="logo"
               src="logo.png"
             />
-            <ReactForm
+            <Form
               onSubmit={[Function]}
             >
               [Function]
-            </ReactForm>
+            </Form>
           </React.Fragment>
         </div>,
         "className": "login-section",
@@ -146,11 +146,11 @@ ShallowWrapper {
               className="logo"
               src="logo.png"
             />
-            <ReactForm
+            <Form
               onSubmit={[Function]}
             >
               [Function]
-            </ReactForm>
+            </Form>
           </React.Fragment>,
           "className": "login-card",
         },
@@ -166,11 +166,11 @@ ShallowWrapper {
                 className="logo"
                 src="logo.png"
               />,
-              <ReactForm
+              <Form
                 onSubmit={[Function]}
               >
                 [Function]
-              </ReactForm>,
+              </Form>,
             ],
           },
           "ref": null,
@@ -246,11 +246,11 @@ ShallowWrapper {
             className="logo"
             src="logo.png"
           />
-          <ReactForm
+          <Form
             onSubmit={[Function]}
           >
             [Function]
-          </ReactForm>
+          </Form>
         </React.Fragment>
       </div>,
       "className": "login-section",
@@ -267,11 +267,11 @@ ShallowWrapper {
             className="logo"
             src="logo.png"
           />
-          <ReactForm
+          <Form
             onSubmit={[Function]}
           >
             [Function]
-          </ReactForm>
+          </Form>
         </React.Fragment>,
         "className": "login-card",
       },
@@ -287,11 +287,11 @@ ShallowWrapper {
               className="logo"
               src="logo.png"
             />,
-            <ReactForm
+            <Form
               onSubmit={[Function]}
             >
               [Function]
-            </ReactForm>,
+            </Form>,
           ],
         },
         "ref": null,
@@ -343,11 +343,11 @@ ShallowWrapper {
               className="logo"
               src="logo.png"
             />
-            <ReactForm
+            <Form
               onSubmit={[Function]}
             >
               [Function]
-            </ReactForm>
+            </Form>
           </React.Fragment>
         </div>,
         "className": "login-section",
@@ -364,11 +364,11 @@ ShallowWrapper {
               className="logo"
               src="logo.png"
             />
-            <ReactForm
+            <Form
               onSubmit={[Function]}
             >
               [Function]
-            </ReactForm>
+            </Form>
           </React.Fragment>,
           "className": "login-card",
         },
@@ -384,11 +384,11 @@ ShallowWrapper {
                 className="logo"
                 src="logo.png"
               />,
-              <ReactForm
+              <Form
                 onSubmit={[Function]}
               >
                 [Function]
-              </ReactForm>,
+              </Form>,
             ],
           },
           "ref": null,

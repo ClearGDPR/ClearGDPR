@@ -119,15 +119,11 @@ describe('(Container) Change Password', () => {
       const { component } = setupShallow();
       let result = component.instance().validatePassword('');
       expect(result).toEqual(
-        expect.objectContaining({
-          error: 'Field required'
-        })
+        expect.stringContaining('Field required')
       );
       result = component.instance().validatePassword();
       expect(result).toEqual(
-        expect.objectContaining({
-          error: 'Field required'
-        })
+        expect.stringContaining('Field required')
       );
     });
 
@@ -135,15 +131,11 @@ describe('(Container) Change Password', () => {
       const { component } = setupShallow();
       let result = component.instance().validatePassword('asc');
       expect(result).toEqual(
-        expect.objectContaining({
-          error: 'Password must have min. 8 characters'
-        })
+        expect.stringContaining('Password must have min. 8 characters')
       );
       result = component.instance().validatePassword('asffas');
       expect(result).toEqual(
-        expect.objectContaining({
-          error: 'Password must have min. 8 characters'
-        })
+        expect.stringContaining('Password must have min. 8 characters')
       );
     });
   });

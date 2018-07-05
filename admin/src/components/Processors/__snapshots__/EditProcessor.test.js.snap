@@ -15,64 +15,355 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
-      "children": <React.Fragment>
+      "children": Array [
         <TextInput
           field="name"
           label="Processor name"
           placeholder="Processor name"
           required={true}
           type="text"
-        />
+        />,
         <label
           htmlFor="description"
         >
           Description:
-        </label>
+        </label>,
         <TextArea
           field="description"
           id="description"
-        />
+        />,
         <TextInput
           field="logoUrl"
           label="Logo URL"
           placeholder="Processor Logo (URL)"
           required={true}
           type="url"
-        />
+        />,
         <label>
           Scopes:
-        </label>
-        <label>
-          <Checkbox
-            field="scopes[user:fullName]"
-          />
-          user:fullName
-        </label>
-        <label>
-          <Checkbox
-            field="scopes[user:email]"
-          />
-          user:email
-        </label>
-        <label>
-          <Checkbox
-            field="scopes[user:phoneNumber]"
-          />
-          user:phoneNumber
-        </label>
+        </label>,
+        <ForwardRef
+          scope="scopes"
+        >
+          <div>
+            <Checkbox
+              field="user:fullName"
+              id="scopes-user:fullName"
+            />
+            <label
+              htmlFor="scopes-user:fullName"
+            >
+              user:fullName
+            </label>
+          </div>
+          <div>
+            <Checkbox
+              field="user:email"
+              id="scopes-user:email"
+            />
+            <label
+              htmlFor="scopes-user:email"
+            >
+              user:email
+            </label>
+          </div>
+          <div>
+            <Checkbox
+              field="user:phoneNumber"
+              id="scopes-user:phoneNumber"
+            />
+            <label
+              htmlFor="scopes-user:phoneNumber"
+            >
+              user:phoneNumber
+            </label>
+          </div>
+        </ForwardRef>,
         <button
           className="btn ui-action"
           type="submit"
         >
           Submit
-        </button>
-      </React.Fragment>,
-      "onSubmit": undefined,
+        </button>,
+      ],
     },
     "ref": null,
-    "rendered": Object {
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "error": undefined,
+          "field": "name",
+          "label": "Processor name",
+          "placeholder": "Processor name",
+          "required": true,
+          "type": "text",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Description:",
+          "htmlFor": "description",
+        },
+        "ref": null,
+        "rendered": "Description:",
+        "type": "label",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "field": "description",
+          "id": "description",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "error": undefined,
+          "field": "logoUrl",
+          "label": "Logo URL",
+          "placeholder": "Processor Logo (URL)",
+          "required": true,
+          "type": "url",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Scopes:",
+        },
+        "ref": null,
+        "rendered": "Scopes:",
+        "type": "label",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <div>
+              <Checkbox
+                field="user:fullName"
+                id="scopes-user:fullName"
+              />
+              <label
+                htmlFor="scopes-user:fullName"
+              >
+                user:fullName
+              </label>
+            </div>,
+            <div>
+              <Checkbox
+                field="user:email"
+                id="scopes-user:email"
+              />
+              <label
+                htmlFor="scopes-user:email"
+              >
+                user:email
+              </label>
+            </div>,
+            <div>
+              <Checkbox
+                field="user:phoneNumber"
+                id="scopes-user:phoneNumber"
+              />
+              <label
+                htmlFor="scopes-user:phoneNumber"
+              >
+                user:phoneNumber
+              </label>
+            </div>,
+          ],
+          "scope": "scopes",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <Checkbox
+                  field="user:fullName"
+                  id="scopes-user:fullName"
+                />,
+                <label
+                  htmlFor="scopes-user:fullName"
+                >
+                  user:fullName
+                </label>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "user:fullName",
+                  "id": "scopes-user:fullName",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "0",
+                "nodeType": "host",
+                "props": Object {
+                  "children": "user:fullName",
+                  "htmlFor": "scopes-user:fullName",
+                },
+                "ref": null,
+                "rendered": "user:fullName",
+                "type": "label",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <Checkbox
+                  field="user:email"
+                  id="scopes-user:email"
+                />,
+                <label
+                  htmlFor="scopes-user:email"
+                >
+                  user:email
+                </label>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "user:email",
+                  "id": "scopes-user:email",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "1",
+                "nodeType": "host",
+                "props": Object {
+                  "children": "user:email",
+                  "htmlFor": "scopes-user:email",
+                },
+                "ref": null,
+                "rendered": "user:email",
+                "type": "label",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <Checkbox
+                  field="user:phoneNumber"
+                  id="scopes-user:phoneNumber"
+                />,
+                <label
+                  htmlFor="scopes-user:phoneNumber"
+                >
+                  user:phoneNumber
+                </label>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "user:phoneNumber",
+                  "id": "scopes-user:phoneNumber",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "2",
+                "nodeType": "host",
+                "props": Object {
+                  "children": "user:phoneNumber",
+                  "htmlFor": "scopes-user:phoneNumber",
+                },
+                "ref": null,
+                "rendered": "user:phoneNumber",
+                "type": "label",
+              },
+            ],
+            "type": "div",
+          },
+        ],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "render": [Function],
+        },
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Submit",
+          "className": "btn ui-action",
+          "type": "submit",
+        },
+        "ref": null,
+        "rendered": "Submit",
+        "type": "button",
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
       "instance": null,
       "key": undefined,
       "nodeType": "function",
@@ -104,26 +395,43 @@ ShallowWrapper {
           <label>
             Scopes:
           </label>,
-          Array [
-            <label>
+          <ForwardRef
+            scope="scopes"
+          >
+            <div>
               <Checkbox
-                field="scopes[user:fullName]"
+                field="user:fullName"
+                id="scopes-user:fullName"
               />
-              user:fullName
-            </label>,
-            <label>
+              <label
+                htmlFor="scopes-user:fullName"
+              >
+                user:fullName
+              </label>
+            </div>
+            <div>
               <Checkbox
-                field="scopes[user:email]"
+                field="user:email"
+                id="scopes-user:email"
               />
-              user:email
-            </label>,
-            <label>
+              <label
+                htmlFor="scopes-user:email"
+              >
+                user:email
+              </label>
+            </div>
+            <div>
               <Checkbox
-                field="scopes[user:phoneNumber]"
+                field="user:phoneNumber"
+                id="scopes-user:phoneNumber"
               />
-              user:phoneNumber
-            </label>,
-          ],
+              <label
+                htmlFor="scopes-user:phoneNumber"
+              >
+                user:phoneNumber
+              </label>
+            </div>
+          </ForwardRef>,
           <button
             className="btn ui-action"
             type="submit"
@@ -203,90 +511,191 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": "0",
-          "nodeType": "host",
+          "key": undefined,
+          "nodeType": "function",
           "props": Object {
             "children": Array [
-              <Checkbox
-                field="scopes[user:fullName]"
-              />,
-              "user:fullName",
+              <div>
+                <Checkbox
+                  field="user:fullName"
+                  id="scopes-user:fullName"
+                />
+                <label
+                  htmlFor="scopes-user:fullName"
+                >
+                  user:fullName
+                </label>
+              </div>,
+              <div>
+                <Checkbox
+                  field="user:email"
+                  id="scopes-user:email"
+                />
+                <label
+                  htmlFor="scopes-user:email"
+                >
+                  user:email
+                </label>
+              </div>,
+              <div>
+                <Checkbox
+                  field="user:phoneNumber"
+                  id="scopes-user:phoneNumber"
+                />
+                <label
+                  htmlFor="scopes-user:phoneNumber"
+                >
+                  user:phoneNumber
+                </label>
+              </div>,
             ],
+            "scope": "scopes",
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
-              "key": undefined,
-              "nodeType": "function",
+              "key": "0",
+              "nodeType": "host",
               "props": Object {
-                "field": "scopes[user:fullName]",
+                "children": Array [
+                  <Checkbox
+                    field="user:fullName"
+                    id="scopes-user:fullName"
+                  />,
+                  <label
+                    htmlFor="scopes-user:fullName"
+                  >
+                    user:fullName
+                  </label>,
+                ],
               },
               "ref": null,
-              "rendered": null,
-              "type": [Function],
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "field": "user:fullName",
+                    "id": "scopes-user:fullName",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "0",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "user:fullName",
+                    "htmlFor": "scopes-user:fullName",
+                  },
+                  "ref": null,
+                  "rendered": "user:fullName",
+                  "type": "label",
+                },
+              ],
+              "type": "div",
             },
-            "user:fullName",
-          ],
-          "type": "label",
-        },
-        Object {
-          "instance": null,
-          "key": "1",
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <Checkbox
-                field="scopes[user:email]"
-              />,
-              "user:email",
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
             Object {
               "instance": null,
-              "key": undefined,
-              "nodeType": "function",
+              "key": "1",
+              "nodeType": "host",
               "props": Object {
-                "field": "scopes[user:email]",
+                "children": Array [
+                  <Checkbox
+                    field="user:email"
+                    id="scopes-user:email"
+                  />,
+                  <label
+                    htmlFor="scopes-user:email"
+                  >
+                    user:email
+                  </label>,
+                ],
               },
               "ref": null,
-              "rendered": null,
-              "type": [Function],
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "field": "user:email",
+                    "id": "scopes-user:email",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "1",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "user:email",
+                    "htmlFor": "scopes-user:email",
+                  },
+                  "ref": null,
+                  "rendered": "user:email",
+                  "type": "label",
+                },
+              ],
+              "type": "div",
             },
-            "user:email",
-          ],
-          "type": "label",
-        },
-        Object {
-          "instance": null,
-          "key": "2",
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <Checkbox
-                field="scopes[user:phoneNumber]"
-              />,
-              "user:phoneNumber",
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
             Object {
               "instance": null,
-              "key": undefined,
-              "nodeType": "function",
+              "key": "2",
+              "nodeType": "host",
               "props": Object {
-                "field": "scopes[user:phoneNumber]",
+                "children": Array [
+                  <Checkbox
+                    field="user:phoneNumber"
+                    id="scopes-user:phoneNumber"
+                  />,
+                  <label
+                    htmlFor="scopes-user:phoneNumber"
+                  >
+                    user:phoneNumber
+                  </label>,
+                ],
               },
               "ref": null,
-              "rendered": null,
-              "type": [Function],
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "field": "user:phoneNumber",
+                    "id": "scopes-user:phoneNumber",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "2",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "user:phoneNumber",
+                    "htmlFor": "scopes-user:phoneNumber",
+                  },
+                  "ref": null,
+                  "rendered": "user:phoneNumber",
+                  "type": "label",
+                },
+              ],
+              "type": "div",
             },
-            "user:phoneNumber",
           ],
-          "type": "label",
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          },
         },
         Object {
           "instance": null,
@@ -303,303 +712,6 @@ ShallowWrapper {
         },
       ],
       "type": Symbol(react.fragment),
-    },
-    "type": "form",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <React.Fragment>
-          <TextInput
-            field="name"
-            label="Processor name"
-            placeholder="Processor name"
-            required={true}
-            type="text"
-          />
-          <label
-            htmlFor="description"
-          >
-            Description:
-          </label>
-          <TextArea
-            field="description"
-            id="description"
-          />
-          <TextInput
-            field="logoUrl"
-            label="Logo URL"
-            placeholder="Processor Logo (URL)"
-            required={true}
-            type="url"
-          />
-          <label>
-            Scopes:
-          </label>
-          <label>
-            <Checkbox
-              field="scopes[user:fullName]"
-            />
-            user:fullName
-          </label>
-          <label>
-            <Checkbox
-              field="scopes[user:email]"
-            />
-            user:email
-          </label>
-          <label>
-            <Checkbox
-              field="scopes[user:phoneNumber]"
-            />
-            user:phoneNumber
-          </label>
-          <button
-            className="btn ui-action"
-            type="submit"
-          >
-            Submit
-          </button>
-        </React.Fragment>,
-        "onSubmit": undefined,
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "children": Array [
-            <TextInput
-              field="name"
-              label="Processor name"
-              placeholder="Processor name"
-              required={true}
-              type="text"
-            />,
-            <label
-              htmlFor="description"
-            >
-              Description:
-            </label>,
-            <TextArea
-              field="description"
-              id="description"
-            />,
-            <TextInput
-              field="logoUrl"
-              label="Logo URL"
-              placeholder="Processor Logo (URL)"
-              required={true}
-              type="url"
-            />,
-            <label>
-              Scopes:
-            </label>,
-            Array [
-              <label>
-                <Checkbox
-                  field="scopes[user:fullName]"
-                />
-                user:fullName
-              </label>,
-              <label>
-                <Checkbox
-                  field="scopes[user:email]"
-                />
-                user:email
-              </label>,
-              <label>
-                <Checkbox
-                  field="scopes[user:phoneNumber]"
-                />
-                user:phoneNumber
-              </label>,
-            ],
-            <button
-              className="btn ui-action"
-              type="submit"
-            >
-              Submit
-            </button>,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "error": undefined,
-              "field": "name",
-              "label": "Processor name",
-              "placeholder": "Processor name",
-              "required": true,
-              "type": "text",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Description:",
-              "htmlFor": "description",
-            },
-            "ref": null,
-            "rendered": "Description:",
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "field": "description",
-              "id": "description",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "error": undefined,
-              "field": "logoUrl",
-              "label": "Logo URL",
-              "placeholder": "Processor Logo (URL)",
-              "required": true,
-              "type": "url",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Scopes:",
-            },
-            "ref": null,
-            "rendered": "Scopes:",
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <Checkbox
-                  field="scopes[user:fullName]"
-                />,
-                "user:fullName",
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "field": "scopes[user:fullName]",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "user:fullName",
-            ],
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <Checkbox
-                  field="scopes[user:email]"
-                />,
-                "user:email",
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "field": "scopes[user:email]",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "user:email",
-            ],
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <Checkbox
-                  field="scopes[user:phoneNumber]"
-                />,
-                "user:phoneNumber",
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "field": "scopes[user:phoneNumber]",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "user:phoneNumber",
-            ],
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Submit",
-              "className": "btn ui-action",
-              "type": "submit",
-            },
-            "ref": null,
-            "rendered": "Submit",
-            "type": "button",
-          },
-        ],
-        "type": Symbol(react.fragment),
-      },
-      "type": "form",
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -629,64 +741,355 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
-      "children": <React.Fragment>
+      "children": Array [
         <TextInput
           field="name"
           label="Processor name"
           placeholder="Processor name"
           required={true}
           type="text"
-        />
+        />,
         <label
           htmlFor="description"
         >
           Description:
-        </label>
+        </label>,
         <TextArea
           field="description"
           id="description"
-        />
+        />,
         <TextInput
           field="logoUrl"
           label="Logo URL"
           placeholder="Processor Logo (URL)"
           required={true}
           type="url"
-        />
+        />,
         <label>
           Scopes:
-        </label>
-        <label>
-          <Checkbox
-            field="scopes[user:fullName]"
-          />
-          user:fullName
-        </label>
-        <label>
-          <Checkbox
-            field="scopes[user:email]"
-          />
-          user:email
-        </label>
-        <label>
-          <Checkbox
-            field="scopes[user:phoneNumber]"
-          />
-          user:phoneNumber
-        </label>
+        </label>,
+        <ForwardRef
+          scope="scopes"
+        >
+          <div>
+            <Checkbox
+              field="user:fullName"
+              id="scopes-user:fullName"
+            />
+            <label
+              htmlFor="scopes-user:fullName"
+            >
+              user:fullName
+            </label>
+          </div>
+          <div>
+            <Checkbox
+              field="user:email"
+              id="scopes-user:email"
+            />
+            <label
+              htmlFor="scopes-user:email"
+            >
+              user:email
+            </label>
+          </div>
+          <div>
+            <Checkbox
+              field="user:phoneNumber"
+              id="scopes-user:phoneNumber"
+            />
+            <label
+              htmlFor="scopes-user:phoneNumber"
+            >
+              user:phoneNumber
+            </label>
+          </div>
+        </ForwardRef>,
         <button
           className="btn ui-action"
           type="submit"
         >
           Submit
-        </button>
-      </React.Fragment>,
-      "onSubmit": undefined,
+        </button>,
+      ],
     },
     "ref": null,
-    "rendered": Object {
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "error": undefined,
+          "field": "name",
+          "label": "Processor name",
+          "placeholder": "Processor name",
+          "required": true,
+          "type": "text",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Description:",
+          "htmlFor": "description",
+        },
+        "ref": null,
+        "rendered": "Description:",
+        "type": "label",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "field": "description",
+          "id": "description",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "error": undefined,
+          "field": "logoUrl",
+          "label": "Logo URL",
+          "placeholder": "Processor Logo (URL)",
+          "required": true,
+          "type": "url",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Scopes:",
+        },
+        "ref": null,
+        "rendered": "Scopes:",
+        "type": "label",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": Array [
+            <div>
+              <Checkbox
+                field="user:fullName"
+                id="scopes-user:fullName"
+              />
+              <label
+                htmlFor="scopes-user:fullName"
+              >
+                user:fullName
+              </label>
+            </div>,
+            <div>
+              <Checkbox
+                field="user:email"
+                id="scopes-user:email"
+              />
+              <label
+                htmlFor="scopes-user:email"
+              >
+                user:email
+              </label>
+            </div>,
+            <div>
+              <Checkbox
+                field="user:phoneNumber"
+                id="scopes-user:phoneNumber"
+              />
+              <label
+                htmlFor="scopes-user:phoneNumber"
+              >
+                user:phoneNumber
+              </label>
+            </div>,
+          ],
+          "scope": "scopes",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "0",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <Checkbox
+                  field="user:fullName"
+                  id="scopes-user:fullName"
+                />,
+                <label
+                  htmlFor="scopes-user:fullName"
+                >
+                  user:fullName
+                </label>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "user:fullName",
+                  "id": "scopes-user:fullName",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "0",
+                "nodeType": "host",
+                "props": Object {
+                  "children": "user:fullName",
+                  "htmlFor": "scopes-user:fullName",
+                },
+                "ref": null,
+                "rendered": "user:fullName",
+                "type": "label",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": "1",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <Checkbox
+                  field="user:email"
+                  id="scopes-user:email"
+                />,
+                <label
+                  htmlFor="scopes-user:email"
+                >
+                  user:email
+                </label>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "user:email",
+                  "id": "scopes-user:email",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "1",
+                "nodeType": "host",
+                "props": Object {
+                  "children": "user:email",
+                  "htmlFor": "scopes-user:email",
+                },
+                "ref": null,
+                "rendered": "user:email",
+                "type": "label",
+              },
+            ],
+            "type": "div",
+          },
+          Object {
+            "instance": null,
+            "key": "2",
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <Checkbox
+                  field="user:phoneNumber"
+                  id="scopes-user:phoneNumber"
+                />,
+                <label
+                  htmlFor="scopes-user:phoneNumber"
+                >
+                  user:phoneNumber
+                </label>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {
+                  "field": "user:phoneNumber",
+                  "id": "scopes-user:phoneNumber",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": "2",
+                "nodeType": "host",
+                "props": Object {
+                  "children": "user:phoneNumber",
+                  "htmlFor": "scopes-user:phoneNumber",
+                },
+                "ref": null,
+                "rendered": "user:phoneNumber",
+                "type": "label",
+              },
+            ],
+            "type": "div",
+          },
+        ],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "render": [Function],
+        },
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": "Submit",
+          "className": "btn ui-action",
+          "type": "submit",
+        },
+        "ref": null,
+        "rendered": "Submit",
+        "type": "button",
+      },
+    ],
+    "type": Symbol(react.fragment),
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
       "instance": null,
       "key": undefined,
       "nodeType": "function",
@@ -718,26 +1121,43 @@ ShallowWrapper {
           <label>
             Scopes:
           </label>,
-          Array [
-            <label>
+          <ForwardRef
+            scope="scopes"
+          >
+            <div>
               <Checkbox
-                field="scopes[user:fullName]"
+                field="user:fullName"
+                id="scopes-user:fullName"
               />
-              user:fullName
-            </label>,
-            <label>
+              <label
+                htmlFor="scopes-user:fullName"
+              >
+                user:fullName
+              </label>
+            </div>
+            <div>
               <Checkbox
-                field="scopes[user:email]"
+                field="user:email"
+                id="scopes-user:email"
               />
-              user:email
-            </label>,
-            <label>
+              <label
+                htmlFor="scopes-user:email"
+              >
+                user:email
+              </label>
+            </div>
+            <div>
               <Checkbox
-                field="scopes[user:phoneNumber]"
+                field="user:phoneNumber"
+                id="scopes-user:phoneNumber"
               />
-              user:phoneNumber
-            </label>,
-          ],
+              <label
+                htmlFor="scopes-user:phoneNumber"
+              >
+                user:phoneNumber
+              </label>
+            </div>
+          </ForwardRef>,
           <button
             className="btn ui-action"
             type="submit"
@@ -817,90 +1237,191 @@ ShallowWrapper {
         },
         Object {
           "instance": null,
-          "key": "0",
-          "nodeType": "host",
+          "key": undefined,
+          "nodeType": "function",
           "props": Object {
             "children": Array [
-              <Checkbox
-                field="scopes[user:fullName]"
-              />,
-              "user:fullName",
+              <div>
+                <Checkbox
+                  field="user:fullName"
+                  id="scopes-user:fullName"
+                />
+                <label
+                  htmlFor="scopes-user:fullName"
+                >
+                  user:fullName
+                </label>
+              </div>,
+              <div>
+                <Checkbox
+                  field="user:email"
+                  id="scopes-user:email"
+                />
+                <label
+                  htmlFor="scopes-user:email"
+                >
+                  user:email
+                </label>
+              </div>,
+              <div>
+                <Checkbox
+                  field="user:phoneNumber"
+                  id="scopes-user:phoneNumber"
+                />
+                <label
+                  htmlFor="scopes-user:phoneNumber"
+                >
+                  user:phoneNumber
+                </label>
+              </div>,
             ],
+            "scope": "scopes",
           },
           "ref": null,
           "rendered": Array [
             Object {
               "instance": null,
-              "key": undefined,
-              "nodeType": "function",
+              "key": "0",
+              "nodeType": "host",
               "props": Object {
-                "field": "scopes[user:fullName]",
+                "children": Array [
+                  <Checkbox
+                    field="user:fullName"
+                    id="scopes-user:fullName"
+                  />,
+                  <label
+                    htmlFor="scopes-user:fullName"
+                  >
+                    user:fullName
+                  </label>,
+                ],
               },
               "ref": null,
-              "rendered": null,
-              "type": [Function],
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "field": "user:fullName",
+                    "id": "scopes-user:fullName",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "0",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "user:fullName",
+                    "htmlFor": "scopes-user:fullName",
+                  },
+                  "ref": null,
+                  "rendered": "user:fullName",
+                  "type": "label",
+                },
+              ],
+              "type": "div",
             },
-            "user:fullName",
-          ],
-          "type": "label",
-        },
-        Object {
-          "instance": null,
-          "key": "1",
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <Checkbox
-                field="scopes[user:email]"
-              />,
-              "user:email",
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
             Object {
               "instance": null,
-              "key": undefined,
-              "nodeType": "function",
+              "key": "1",
+              "nodeType": "host",
               "props": Object {
-                "field": "scopes[user:email]",
+                "children": Array [
+                  <Checkbox
+                    field="user:email"
+                    id="scopes-user:email"
+                  />,
+                  <label
+                    htmlFor="scopes-user:email"
+                  >
+                    user:email
+                  </label>,
+                ],
               },
               "ref": null,
-              "rendered": null,
-              "type": [Function],
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "field": "user:email",
+                    "id": "scopes-user:email",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "1",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "user:email",
+                    "htmlFor": "scopes-user:email",
+                  },
+                  "ref": null,
+                  "rendered": "user:email",
+                  "type": "label",
+                },
+              ],
+              "type": "div",
             },
-            "user:email",
-          ],
-          "type": "label",
-        },
-        Object {
-          "instance": null,
-          "key": "2",
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <Checkbox
-                field="scopes[user:phoneNumber]"
-              />,
-              "user:phoneNumber",
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
             Object {
               "instance": null,
-              "key": undefined,
-              "nodeType": "function",
+              "key": "2",
+              "nodeType": "host",
               "props": Object {
-                "field": "scopes[user:phoneNumber]",
+                "children": Array [
+                  <Checkbox
+                    field="user:phoneNumber"
+                    id="scopes-user:phoneNumber"
+                  />,
+                  <label
+                    htmlFor="scopes-user:phoneNumber"
+                  >
+                    user:phoneNumber
+                  </label>,
+                ],
               },
               "ref": null,
-              "rendered": null,
-              "type": [Function],
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {
+                    "field": "user:phoneNumber",
+                    "id": "scopes-user:phoneNumber",
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": "2",
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": "user:phoneNumber",
+                    "htmlFor": "scopes-user:phoneNumber",
+                  },
+                  "ref": null,
+                  "rendered": "user:phoneNumber",
+                  "type": "label",
+                },
+              ],
+              "type": "div",
             },
-            "user:phoneNumber",
           ],
-          "type": "label",
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "render": [Function],
+          },
         },
         Object {
           "instance": null,
@@ -917,303 +1438,6 @@ ShallowWrapper {
         },
       ],
       "type": Symbol(react.fragment),
-    },
-    "type": "form",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <React.Fragment>
-          <TextInput
-            field="name"
-            label="Processor name"
-            placeholder="Processor name"
-            required={true}
-            type="text"
-          />
-          <label
-            htmlFor="description"
-          >
-            Description:
-          </label>
-          <TextArea
-            field="description"
-            id="description"
-          />
-          <TextInput
-            field="logoUrl"
-            label="Logo URL"
-            placeholder="Processor Logo (URL)"
-            required={true}
-            type="url"
-          />
-          <label>
-            Scopes:
-          </label>
-          <label>
-            <Checkbox
-              field="scopes[user:fullName]"
-            />
-            user:fullName
-          </label>
-          <label>
-            <Checkbox
-              field="scopes[user:email]"
-            />
-            user:email
-          </label>
-          <label>
-            <Checkbox
-              field="scopes[user:phoneNumber]"
-            />
-            user:phoneNumber
-          </label>
-          <button
-            className="btn ui-action"
-            type="submit"
-          >
-            Submit
-          </button>
-        </React.Fragment>,
-        "onSubmit": undefined,
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "children": Array [
-            <TextInput
-              field="name"
-              label="Processor name"
-              placeholder="Processor name"
-              required={true}
-              type="text"
-            />,
-            <label
-              htmlFor="description"
-            >
-              Description:
-            </label>,
-            <TextArea
-              field="description"
-              id="description"
-            />,
-            <TextInput
-              field="logoUrl"
-              label="Logo URL"
-              placeholder="Processor Logo (URL)"
-              required={true}
-              type="url"
-            />,
-            <label>
-              Scopes:
-            </label>,
-            Array [
-              <label>
-                <Checkbox
-                  field="scopes[user:fullName]"
-                />
-                user:fullName
-              </label>,
-              <label>
-                <Checkbox
-                  field="scopes[user:email]"
-                />
-                user:email
-              </label>,
-              <label>
-                <Checkbox
-                  field="scopes[user:phoneNumber]"
-                />
-                user:phoneNumber
-              </label>,
-            ],
-            <button
-              className="btn ui-action"
-              type="submit"
-            >
-              Submit
-            </button>,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "error": undefined,
-              "field": "name",
-              "label": "Processor name",
-              "placeholder": "Processor name",
-              "required": true,
-              "type": "text",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Description:",
-              "htmlFor": "description",
-            },
-            "ref": null,
-            "rendered": "Description:",
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "field": "description",
-              "id": "description",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "error": undefined,
-              "field": "logoUrl",
-              "label": "Logo URL",
-              "placeholder": "Processor Logo (URL)",
-              "required": true,
-              "type": "url",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Scopes:",
-            },
-            "ref": null,
-            "rendered": "Scopes:",
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": "0",
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <Checkbox
-                  field="scopes[user:fullName]"
-                />,
-                "user:fullName",
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "field": "scopes[user:fullName]",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "user:fullName",
-            ],
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": "1",
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <Checkbox
-                  field="scopes[user:email]"
-                />,
-                "user:email",
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "field": "scopes[user:email]",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "user:email",
-            ],
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": "2",
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <Checkbox
-                  field="scopes[user:phoneNumber]"
-                />,
-                "user:phoneNumber",
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "field": "scopes[user:phoneNumber]",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              "user:phoneNumber",
-            ],
-            "type": "label",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Submit",
-              "className": "btn ui-action",
-              "type": "submit",
-            },
-            "ref": null,
-            "rendered": "Submit",
-            "type": "button",
-          },
-        ],
-        "type": Symbol(react.fragment),
-      },
-      "type": "form",
     },
   ],
   Symbol(enzyme.__options__): Object {
@@ -1243,13 +1467,14 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
-    "props": Object {
-      "children": <Loader />,
-      "onSubmit": undefined,
-    },
+    "nodeType": "function",
+    "props": Object {},
     "ref": null,
-    "rendered": Object {
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
       "instance": null,
       "key": undefined,
       "nodeType": "function",
@@ -1257,29 +1482,6 @@ ShallowWrapper {
       "ref": null,
       "rendered": null,
       "type": [Function],
-    },
-    "type": "form",
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "host",
-      "props": Object {
-        "children": <Loader />,
-        "onSubmit": undefined,
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      "type": "form",
     },
   ],
   Symbol(enzyme.__options__): Object {
