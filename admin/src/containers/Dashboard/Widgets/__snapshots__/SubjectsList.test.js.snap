@@ -25,20 +25,9 @@ ShallowWrapper {
           paging={Object {}}
           subjects={Array []}
         />,
-        <PaginationBoxView
-          activeClassName="selected"
-          breakLabel="..."
-          containerClassName="react-paginate"
-          disableInitialCallback={false}
-          disabledClassName="disabled"
-          marginPagesDisplayed={2}
-          nextClassName="next"
-          nextLabel="Next"
+        <Paginate
           onPageChange={[Function]}
           pageCount={1}
-          pageRangeDisplayed={5}
-          previousClassName="previous"
-          previousLabel="Previous"
         />,
       ],
     },
@@ -62,21 +51,10 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "class",
+        "nodeType": "function",
         "props": Object {
-          "activeClassName": "selected",
-          "breakLabel": "...",
-          "containerClassName": "react-paginate",
-          "disableInitialCallback": false,
-          "disabledClassName": "disabled",
-          "marginPagesDisplayed": 2,
-          "nextClassName": "next",
-          "nextLabel": "Next",
           "onPageChange": [Function],
           "pageCount": 1,
-          "pageRangeDisplayed": 5,
-          "previousClassName": "previous",
-          "previousLabel": "Previous",
         },
         "ref": null,
         "rendered": null,
@@ -99,20 +77,9 @@ ShallowWrapper {
             paging={Object {}}
             subjects={Array []}
           />,
-          <PaginationBoxView
-            activeClassName="selected"
-            breakLabel="..."
-            containerClassName="react-paginate"
-            disableInitialCallback={false}
-            disabledClassName="disabled"
-            marginPagesDisplayed={2}
-            nextClassName="next"
-            nextLabel="Next"
+          <Paginate
             onPageChange={[Function]}
             pageCount={1}
-            pageRangeDisplayed={5}
-            previousClassName="previous"
-            previousLabel="Previous"
           />,
         ],
       },
@@ -136,21 +103,10 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "class",
+          "nodeType": "function",
           "props": Object {
-            "activeClassName": "selected",
-            "breakLabel": "...",
-            "containerClassName": "react-paginate",
-            "disableInitialCallback": false,
-            "disabledClassName": "disabled",
-            "marginPagesDisplayed": 2,
-            "nextClassName": "next",
-            "nextLabel": "Next",
             "onPageChange": [Function],
             "pageCount": 1,
-            "pageRangeDisplayed": 5,
-            "previousClassName": "previous",
-            "previousLabel": "Previous",
           },
           "ref": null,
           "rendered": null,
