@@ -1,6 +1,6 @@
 const Web3 = require('web3');
 const QuorumContract = require('./../../src/utils/blockchain/quorum-contract');
-const contractABI = require('../../src/utils/blockchain/contract-abi');
+const contractAbi = require('../../src/utils/blockchain/contract-abi');
 const contractByteCode = require('../../src/utils/blockchain/contract-bytecode');
 const web3ProviderFactory = require('../../src/utils/blockchain/web3-provider-factory');
 const web3 = new Web3(web3ProviderFactory());
@@ -8,7 +8,7 @@ const web3 = new Web3(web3ProviderFactory());
 let quorum;
 
 beforeAll(async () => {
-  quorum = new QuorumContract(web3, contractABI);
+  quorum = new QuorumContract(web3, contractAbi);
   await quorum.deploy(contractByteCode);
 });
 

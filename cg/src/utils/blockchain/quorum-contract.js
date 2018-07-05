@@ -4,11 +4,11 @@ const { getMyAddress } = require('../helpers');
 class QuorumContract {
   constructor(web3, contractAbiJson = undefined, contractAddress) {
     this.web3 = web3;
-    const contractABIDefinition = contractAbiJson || require('./contract-abi.json');
+    const contractAbiDefinition = contractAbiJson || require('./contract-abi.json');
     if (contractAddress) {
-      this.contract = new web3.eth.Contract(contractABIDefinition, contractAddress);
+      this.contract = new web3.eth.Contract(contractAbiDefinition, contractAddress);
     } else {
-      this.contract = new web3.eth.Contract(contractABIDefinition);
+      this.contract = new web3.eth.Contract(contractAbiDefinition);
     }
 
     this.contractOwnerAddress = process.env.CONTRACT_OWNER_ADDRESS;

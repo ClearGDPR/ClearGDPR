@@ -7,9 +7,9 @@ class ContractController {
   }
 
   async deployContract(req, res) {
-    let parsedABI = JSON.parse(req.body.contractAbiJson);
+    let parsedAbi = JSON.parse(req.body.contractAbiJson);
     res.json({
-      address: await this.service.deployContract(parsedABI, req.body.contractByteCode)
+      address: await this.service.deployContract(parsedAbi, req.body.contractByteCode)
     });
   }
 
