@@ -1239,29 +1239,11 @@ ShallowWrapper {
                   <div
                     className="content"
                   >
-                    <PaginationBoxView
-                      activeClassName="active"
-                      breakClassName="break-me"
-                      breakLabel={
-                        <a
-                          href=""
-                        >
-                          ...
-                        </a>
-                      }
-                      containerClassName="react-paginate"
+                    <Paginate
                       disableInitialCallback={true}
-                      disabledClassName="disabled"
                       initialPage={0}
-                      marginPagesDisplayed={2}
-                      nextClassName="next"
-                      nextLabel="next"
                       onPageChange={[Function]}
                       pageCount={2}
-                      pageRangeDisplayed={5}
-                      previousClassName="previous"
-                      previousLabel="previous"
-                      subContainerClassName="pages pagination"
                     />
                   </div>
                 </React.Fragment>
@@ -1378,29 +1360,11 @@ ShallowWrapper {
                   <div
                     className="content"
                   >
-                    <PaginationBoxView
-                      activeClassName="active"
-                      breakClassName="break-me"
-                      breakLabel={
-                        <a
-                          href=""
-                        >
-                          ...
-                        </a>
-                      }
-                      containerClassName="react-paginate"
+                    <Paginate
                       disableInitialCallback={true}
-                      disabledClassName="disabled"
                       initialPage={0}
-                      marginPagesDisplayed={2}
-                      nextClassName="next"
-                      nextLabel="next"
                       onPageChange={[Function]}
                       pageCount={2}
-                      pageRangeDisplayed={5}
-                      previousClassName="previous"
-                      previousLabel="previous"
-                      subContainerClassName="pages pagination"
                     />
                   </div>
                 </React.Fragment>
@@ -1605,29 +1569,11 @@ ShallowWrapper {
                     <div
                       className="content"
                     >
-                      <PaginationBoxView
-                        activeClassName="active"
-                        breakClassName="break-me"
-                        breakLabel={
-                          <a
-                            href=""
-                          >
-                            ...
-                          </a>
-                        }
-                        containerClassName="react-paginate"
+                      <Paginate
                         disableInitialCallback={true}
-                        disabledClassName="disabled"
                         initialPage={0}
-                        marginPagesDisplayed={2}
-                        nextClassName="next"
-                        nextLabel="next"
                         onPageChange={[Function]}
                         pageCount={2}
-                        pageRangeDisplayed={5}
-                        previousClassName="previous"
-                        previousLabel="previous"
-                        subContainerClassName="pages pagination"
                       />
                     </div>
                   </React.Fragment>
@@ -1744,29 +1690,11 @@ ShallowWrapper {
                     <div
                       className="content"
                     >
-                      <PaginationBoxView
-                        activeClassName="active"
-                        breakClassName="break-me"
-                        breakLabel={
-                          <a
-                            href=""
-                          >
-                            ...
-                          </a>
-                        }
-                        containerClassName="react-paginate"
+                      <Paginate
                         disableInitialCallback={true}
-                        disabledClassName="disabled"
                         initialPage={0}
-                        marginPagesDisplayed={2}
-                        nextClassName="next"
-                        nextLabel="next"
                         onPageChange={[Function]}
                         pageCount={2}
-                        pageRangeDisplayed={5}
-                        previousClassName="previous"
-                        previousLabel="previous"
-                        subContainerClassName="pages pagination"
                       />
                     </div>
                   </React.Fragment>
@@ -1952,29 +1880,11 @@ ShallowWrapper {
                     <div
                       className="content"
                     >
-                      <PaginationBoxView
-                        activeClassName="active"
-                        breakClassName="break-me"
-                        breakLabel={
-                          <a
-                            href=""
-                          >
-                            ...
-                          </a>
-                        }
-                        containerClassName="react-paginate"
+                      <Paginate
                         disableInitialCallback={true}
-                        disabledClassName="disabled"
                         initialPage={0}
-                        marginPagesDisplayed={2}
-                        nextClassName="next"
-                        nextLabel="next"
                         onPageChange={[Function]}
                         pageCount={2}
-                        pageRangeDisplayed={5}
-                        previousClassName="previous"
-                        previousLabel="previous"
-                        subContainerClassName="pages pagination"
                       />
                     </div>
                   </React.Fragment>
@@ -2080,29 +1990,11 @@ ShallowWrapper {
                     <div
                       className="content"
                     >
-                      <PaginationBoxView
-                        activeClassName="active"
-                        breakClassName="break-me"
-                        breakLabel={
-                          <a
-                            href=""
-                          >
-                            ...
-                          </a>
-                        }
-                        containerClassName="react-paginate"
+                      <Paginate
                         disableInitialCallback={true}
-                        disabledClassName="disabled"
                         initialPage={0}
-                        marginPagesDisplayed={2}
-                        nextClassName="next"
-                        nextLabel="next"
                         onPageChange={[Function]}
                         pageCount={2}
-                        pageRangeDisplayed={5}
-                        previousClassName="previous"
-                        previousLabel="previous"
-                        subContainerClassName="pages pagination"
                       />
                     </div>
                   </React.Fragment>
@@ -2202,29 +2094,11 @@ ShallowWrapper {
                     <div
                       className="content"
                     >
-                      <PaginationBoxView
-                        activeClassName="active"
-                        breakClassName="break-me"
-                        breakLabel={
-                          <a
-                            href=""
-                          >
-                            ...
-                          </a>
-                        }
-                        containerClassName="react-paginate"
+                      <Paginate
                         disableInitialCallback={true}
-                        disabledClassName="disabled"
                         initialPage={0}
-                        marginPagesDisplayed={2}
-                        nextClassName="next"
-                        nextLabel="next"
                         onPageChange={[Function]}
                         pageCount={2}
-                        pageRangeDisplayed={5}
-                        previousClassName="previous"
-                        previousLabel="previous"
-                        subContainerClassName="pages pagination"
                       />
                     </div>
                   </React.Fragment>,
@@ -2323,29 +2197,11 @@ ShallowWrapper {
                       <div
                         className="content"
                       >
-                        <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />
                       </div>,
                     ],
@@ -2978,29 +2834,11 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        "children": <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />,
                         "className": "content",
                       },
@@ -3008,28 +2846,12 @@ ShallowWrapper {
                       "rendered": Object {
                         "instance": null,
                         "key": undefined,
-                        "nodeType": "class",
+                        "nodeType": "function",
                         "props": Object {
-                          "activeClassName": "active",
-                          "breakClassName": "break-me",
-                          "breakLabel": <a
-                            href=""
-                          >
-                            ...
-                          </a>,
-                          "containerClassName": "react-paginate",
                           "disableInitialCallback": true,
-                          "disabledClassName": "disabled",
                           "initialPage": 0,
-                          "marginPagesDisplayed": 2,
-                          "nextClassName": "next",
-                          "nextLabel": "next",
                           "onPageChange": [Function],
                           "pageCount": 2,
-                          "pageRangeDisplayed": 5,
-                          "previousClassName": "previous",
-                          "previousLabel": "previous",
-                          "subContainerClassName": "pages pagination",
                         },
                         "ref": null,
                         "rendered": null,
@@ -3156,29 +2978,11 @@ ShallowWrapper {
                     <div
                       className="content"
                     >
-                      <PaginationBoxView
-                        activeClassName="active"
-                        breakClassName="break-me"
-                        breakLabel={
-                          <a
-                            href=""
-                          >
-                            ...
-                          </a>
-                        }
-                        containerClassName="react-paginate"
+                      <Paginate
                         disableInitialCallback={true}
-                        disabledClassName="disabled"
                         initialPage={0}
-                        marginPagesDisplayed={2}
-                        nextClassName="next"
-                        nextLabel="next"
                         onPageChange={[Function]}
                         pageCount={2}
-                        pageRangeDisplayed={5}
-                        previousClassName="previous"
-                        previousLabel="previous"
-                        subContainerClassName="pages pagination"
                       />
                     </div>
                   </React.Fragment>
@@ -3296,29 +3100,11 @@ ShallowWrapper {
                     <div
                       className="content"
                     >
-                      <PaginationBoxView
-                        activeClassName="active"
-                        breakClassName="break-me"
-                        breakLabel={
-                          <a
-                            href=""
-                          >
-                            ...
-                          </a>
-                        }
-                        containerClassName="react-paginate"
+                      <Paginate
                         disableInitialCallback={true}
-                        disabledClassName="disabled"
                         initialPage={0}
-                        marginPagesDisplayed={2}
-                        nextClassName="next"
-                        nextLabel="next"
                         onPageChange={[Function]}
                         pageCount={2}
-                        pageRangeDisplayed={5}
-                        previousClassName="previous"
-                        previousLabel="previous"
-                        subContainerClassName="pages pagination"
                       />
                     </div>
                   </React.Fragment>
@@ -3430,29 +3216,11 @@ ShallowWrapper {
                     <div
                       className="content"
                     >
-                      <PaginationBoxView
-                        activeClassName="active"
-                        breakClassName="break-me"
-                        breakLabel={
-                          <a
-                            href=""
-                          >
-                            ...
-                          </a>
-                        }
-                        containerClassName="react-paginate"
+                      <Paginate
                         disableInitialCallback={true}
-                        disabledClassName="disabled"
                         initialPage={0}
-                        marginPagesDisplayed={2}
-                        nextClassName="next"
-                        nextLabel="next"
                         onPageChange={[Function]}
                         pageCount={2}
-                        pageRangeDisplayed={5}
-                        previousClassName="previous"
-                        previousLabel="previous"
-                        subContainerClassName="pages pagination"
                       />
                     </div>
                   </React.Fragment>,
@@ -3563,29 +3331,11 @@ ShallowWrapper {
                       <div
                         className="content"
                       >
-                        <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />
                       </div>,
                     ],
@@ -4302,29 +4052,11 @@ ShallowWrapper {
                       "key": undefined,
                       "nodeType": "host",
                       "props": Object {
-                        "children": <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        "children": <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />,
                         "className": "content",
                       },
@@ -4332,28 +4064,12 @@ ShallowWrapper {
                       "rendered": Object {
                         "instance": null,
                         "key": undefined,
-                        "nodeType": "class",
+                        "nodeType": "function",
                         "props": Object {
-                          "activeClassName": "active",
-                          "breakClassName": "break-me",
-                          "breakLabel": <a
-                            href=""
-                          >
-                            ...
-                          </a>,
-                          "containerClassName": "react-paginate",
                           "disableInitialCallback": true,
-                          "disabledClassName": "disabled",
                           "initialPage": 0,
-                          "marginPagesDisplayed": 2,
-                          "nextClassName": "next",
-                          "nextLabel": "next",
                           "onPageChange": [Function],
                           "pageCount": 2,
-                          "pageRangeDisplayed": 5,
-                          "previousClassName": "previous",
-                          "previousLabel": "previous",
-                          "subContainerClassName": "pages pagination",
                         },
                         "ref": null,
                         "rendered": null,
@@ -4528,29 +4244,11 @@ ShallowWrapper {
                     <div
                       className="content"
                     >
-                      <PaginationBoxView
-                        activeClassName="active"
-                        breakClassName="break-me"
-                        breakLabel={
-                          <a
-                            href=""
-                          >
-                            ...
-                          </a>
-                        }
-                        containerClassName="react-paginate"
+                      <Paginate
                         disableInitialCallback={true}
-                        disabledClassName="disabled"
                         initialPage={0}
-                        marginPagesDisplayed={2}
-                        nextClassName="next"
-                        nextLabel="next"
                         onPageChange={[Function]}
                         pageCount={2}
-                        pageRangeDisplayed={5}
-                        previousClassName="previous"
-                        previousLabel="previous"
-                        subContainerClassName="pages pagination"
                       />
                     </div>
                   </React.Fragment>
@@ -4667,29 +4365,11 @@ ShallowWrapper {
                     <div
                       className="content"
                     >
-                      <PaginationBoxView
-                        activeClassName="active"
-                        breakClassName="break-me"
-                        breakLabel={
-                          <a
-                            href=""
-                          >
-                            ...
-                          </a>
-                        }
-                        containerClassName="react-paginate"
+                      <Paginate
                         disableInitialCallback={true}
-                        disabledClassName="disabled"
                         initialPage={0}
-                        marginPagesDisplayed={2}
-                        nextClassName="next"
-                        nextLabel="next"
                         onPageChange={[Function]}
                         pageCount={2}
-                        pageRangeDisplayed={5}
-                        previousClassName="previous"
-                        previousLabel="previous"
-                        subContainerClassName="pages pagination"
                       />
                     </div>
                   </React.Fragment>
@@ -4894,29 +4574,11 @@ ShallowWrapper {
                       <div
                         className="content"
                       >
-                        <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />
                       </div>
                     </React.Fragment>
@@ -5033,29 +4695,11 @@ ShallowWrapper {
                       <div
                         className="content"
                       >
-                        <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />
                       </div>
                     </React.Fragment>
@@ -5241,29 +4885,11 @@ ShallowWrapper {
                       <div
                         className="content"
                       >
-                        <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />
                       </div>
                     </React.Fragment>
@@ -5369,29 +4995,11 @@ ShallowWrapper {
                       <div
                         className="content"
                       >
-                        <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />
                       </div>
                     </React.Fragment>
@@ -5491,29 +5099,11 @@ ShallowWrapper {
                       <div
                         className="content"
                       >
-                        <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />
                       </div>
                     </React.Fragment>,
@@ -5612,29 +5202,11 @@ ShallowWrapper {
                         <div
                           className="content"
                         >
-                          <PaginationBoxView
-                            activeClassName="active"
-                            breakClassName="break-me"
-                            breakLabel={
-                              <a
-                                href=""
-                              >
-                                ...
-                              </a>
-                            }
-                            containerClassName="react-paginate"
+                          <Paginate
                             disableInitialCallback={true}
-                            disabledClassName="disabled"
                             initialPage={0}
-                            marginPagesDisplayed={2}
-                            nextClassName="next"
-                            nextLabel="next"
                             onPageChange={[Function]}
                             pageCount={2}
-                            pageRangeDisplayed={5}
-                            previousClassName="previous"
-                            previousLabel="previous"
-                            subContainerClassName="pages pagination"
                           />
                         </div>,
                       ],
@@ -6267,29 +5839,11 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "host",
                         "props": Object {
-                          "children": <PaginationBoxView
-                            activeClassName="active"
-                            breakClassName="break-me"
-                            breakLabel={
-                              <a
-                                href=""
-                              >
-                                ...
-                              </a>
-                            }
-                            containerClassName="react-paginate"
+                          "children": <Paginate
                             disableInitialCallback={true}
-                            disabledClassName="disabled"
                             initialPage={0}
-                            marginPagesDisplayed={2}
-                            nextClassName="next"
-                            nextLabel="next"
                             onPageChange={[Function]}
                             pageCount={2}
-                            pageRangeDisplayed={5}
-                            previousClassName="previous"
-                            previousLabel="previous"
-                            subContainerClassName="pages pagination"
                           />,
                           "className": "content",
                         },
@@ -6297,28 +5851,12 @@ ShallowWrapper {
                         "rendered": Object {
                           "instance": null,
                           "key": undefined,
-                          "nodeType": "class",
+                          "nodeType": "function",
                           "props": Object {
-                            "activeClassName": "active",
-                            "breakClassName": "break-me",
-                            "breakLabel": <a
-                              href=""
-                            >
-                              ...
-                            </a>,
-                            "containerClassName": "react-paginate",
                             "disableInitialCallback": true,
-                            "disabledClassName": "disabled",
                             "initialPage": 0,
-                            "marginPagesDisplayed": 2,
-                            "nextClassName": "next",
-                            "nextLabel": "next",
                             "onPageChange": [Function],
                             "pageCount": 2,
-                            "pageRangeDisplayed": 5,
-                            "previousClassName": "previous",
-                            "previousLabel": "previous",
-                            "subContainerClassName": "pages pagination",
                           },
                           "ref": null,
                           "rendered": null,
@@ -6445,29 +5983,11 @@ ShallowWrapper {
                       <div
                         className="content"
                       >
-                        <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />
                       </div>
                     </React.Fragment>
@@ -6585,29 +6105,11 @@ ShallowWrapper {
                       <div
                         className="content"
                       >
-                        <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />
                       </div>
                     </React.Fragment>
@@ -6719,29 +6221,11 @@ ShallowWrapper {
                       <div
                         className="content"
                       >
-                        <PaginationBoxView
-                          activeClassName="active"
-                          breakClassName="break-me"
-                          breakLabel={
-                            <a
-                              href=""
-                            >
-                              ...
-                            </a>
-                          }
-                          containerClassName="react-paginate"
+                        <Paginate
                           disableInitialCallback={true}
-                          disabledClassName="disabled"
                           initialPage={0}
-                          marginPagesDisplayed={2}
-                          nextClassName="next"
-                          nextLabel="next"
                           onPageChange={[Function]}
                           pageCount={2}
-                          pageRangeDisplayed={5}
-                          previousClassName="previous"
-                          previousLabel="previous"
-                          subContainerClassName="pages pagination"
                         />
                       </div>
                     </React.Fragment>,
@@ -6852,29 +6336,11 @@ ShallowWrapper {
                         <div
                           className="content"
                         >
-                          <PaginationBoxView
-                            activeClassName="active"
-                            breakClassName="break-me"
-                            breakLabel={
-                              <a
-                                href=""
-                              >
-                                ...
-                              </a>
-                            }
-                            containerClassName="react-paginate"
+                          <Paginate
                             disableInitialCallback={true}
-                            disabledClassName="disabled"
                             initialPage={0}
-                            marginPagesDisplayed={2}
-                            nextClassName="next"
-                            nextLabel="next"
                             onPageChange={[Function]}
                             pageCount={2}
-                            pageRangeDisplayed={5}
-                            previousClassName="previous"
-                            previousLabel="previous"
-                            subContainerClassName="pages pagination"
                           />
                         </div>,
                       ],
@@ -7591,29 +7057,11 @@ ShallowWrapper {
                         "key": undefined,
                         "nodeType": "host",
                         "props": Object {
-                          "children": <PaginationBoxView
-                            activeClassName="active"
-                            breakClassName="break-me"
-                            breakLabel={
-                              <a
-                                href=""
-                              >
-                                ...
-                              </a>
-                            }
-                            containerClassName="react-paginate"
+                          "children": <Paginate
                             disableInitialCallback={true}
-                            disabledClassName="disabled"
                             initialPage={0}
-                            marginPagesDisplayed={2}
-                            nextClassName="next"
-                            nextLabel="next"
                             onPageChange={[Function]}
                             pageCount={2}
-                            pageRangeDisplayed={5}
-                            previousClassName="previous"
-                            previousLabel="previous"
-                            subContainerClassName="pages pagination"
                           />,
                           "className": "content",
                         },
@@ -7621,28 +7069,12 @@ ShallowWrapper {
                         "rendered": Object {
                           "instance": null,
                           "key": undefined,
-                          "nodeType": "class",
+                          "nodeType": "function",
                           "props": Object {
-                            "activeClassName": "active",
-                            "breakClassName": "break-me",
-                            "breakLabel": <a
-                              href=""
-                            >
-                              ...
-                            </a>,
-                            "containerClassName": "react-paginate",
                             "disableInitialCallback": true,
-                            "disabledClassName": "disabled",
                             "initialPage": 0,
-                            "marginPagesDisplayed": 2,
-                            "nextClassName": "next",
-                            "nextLabel": "next",
                             "onPageChange": [Function],
                             "pageCount": 2,
-                            "pageRangeDisplayed": 5,
-                            "previousClassName": "previous",
-                            "previousLabel": "previous",
-                            "subContainerClassName": "pages pagination",
                           },
                           "ref": null,
                           "rendered": null,
