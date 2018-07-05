@@ -3,19 +3,20 @@ import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import 'theme/Paginate.css';
 
-const Paginate = ({ pageCount, onPageChange }) => (
+const Paginate = props => (
   <ReactPaginate
+    {...props}
     containerClassName="react-paginate"
-    pageCount={pageCount}
     marginPagesDisplayed={2}
     pageRangeDisplayed={5}
-    onPageChange={onPageChange}
   />
 );
 
 Paginate.propTypes = {
   pageCount: PropTypes.number.isRequired,
-  onPageChange: PropTypes.func.isRequired
+  onPageChange: PropTypes.func.isRequired,
+  initialPage: PropTypes.number,
+  disableInitialCallback: PropTypes.bool
 };
 
 export default Paginate;

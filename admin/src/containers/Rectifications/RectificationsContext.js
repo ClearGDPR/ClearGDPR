@@ -49,14 +49,14 @@ export class RectificationsProvider extends Component {
   }
 
   _mapRectificationResults(result) {
-    let mappedData = result.data.map(v => {
+    const mappedData = result.data.map(v => {
       let mapped = {
         id: v.id,
         created_at: format(new Date(v.created_at), 'DD/MM/YYYY h:mma'),
         request_reason: v.request_reason
       };
 
-      v.status && (mapped.status = v.status);
+      if (v.status) mapped.status = v.status;
       return mapped;
     });
     return {

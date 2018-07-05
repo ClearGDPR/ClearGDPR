@@ -5,11 +5,9 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import 'theme/Tabs.css';
 
-import ReactPaginate from 'react-paginate';
-import 'theme/Paginate.css';
-
 import Loader from 'components/core/cards/dashboard/Loader';
 import Card from 'components/core/cards/dashboard/Card';
+import Paginate from 'components/core/Paginate';
 
 const Rectifications = ({
   isLoading,
@@ -61,20 +59,11 @@ const Rectifications = ({
 
   function renderPagination() {
     return (
-      <ReactPaginate
-        previousLabel={'previous'}
-        nextLabel={'next'}
-        breakLabel={<a href="">...</a>}
-        breakClassName={'break-me'}
+      <Paginate
         pageCount={pageCount}
         initialPage={currentPage - 1}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={5}
         onPageChange={({ selected }) => handlePageClick(selected + 1)}
         disableInitialCallback={true}
-        containerClassName={'react-paginate'}
-        subContainerClassName={'pages pagination'}
-        activeClassName={'active'}
       />
     );
   }
