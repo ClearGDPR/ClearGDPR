@@ -5,7 +5,7 @@ const ws = require('ws');
 const { managementJWT } = require('../../src/utils/jwt');
 const { db } = require('../../src/db');
 const { Unauthorized, BadRequest } = require('../../src/utils/errors');
-const contractABIJson = JSON.stringify(require('../../src/utils/blockchain/contract-abi.json'));
+const contractAbiJson = JSON.stringify(require('../../src/utils/blockchain/contract-abi.json'));
 const contractByteCode = require('../../src/utils/blockchain/contract-bytecode.js');
 const { CONTRACT_CONFIG_KEY, recordConsentGivenTo, sha3 } = require('../../src/utils/blockchain');
 
@@ -41,7 +41,7 @@ describe('Deploying contract', () => {
   it('should reject bad contract JSON ABI or bytecode', async () => {
     const token = await managementJWT.sign({ id: 1 });
     const contract = {
-      contractABIJson: 'bla bla bla',
+      contractAbiJson: 'bla bla bla',
       contractByteCode: 'bla bla bla'
     };
 
@@ -67,7 +67,7 @@ describe('Deploying contract', () => {
       },
       body: {
         contractByteCode,
-        contractABIJson
+        contractAbiJson
       }
     });
 
@@ -81,7 +81,7 @@ describe('Deploying contract', () => {
     const [config] = await db('config').where({ key: CONTRACT_CONFIG_KEY });
     expect(config.value).toEqual(
       expect.objectContaining({
-        contractABIJson: expect.anything(),
+        contractAbiJson: expect.anything(),
         contractByteCode,
         address: expect.anything()
       })
@@ -103,7 +103,7 @@ describe('Getting contract details', () => {
     const token = await managementJWT.sign({ id: 1 });
     let address = '0x41412B44EC2Be0Dd147046320Dc2b0Bd09E83CB8';
     let contract = {
-      contractABIJson,
+      contractAbiJson,
       contractByteCode,
       address: address
     };
@@ -122,7 +122,7 @@ describe('Getting contract details', () => {
             value: JSON.stringify(contract)
           });
       } else {
-        contract.contractABIJson = config.value.contractABIJson;
+        contract.contractAbiJson = config.value.contractAbiJson;
         contract.contractByteCode = config.value.contractByteCode;
         contract.address = config.value.address;
       }

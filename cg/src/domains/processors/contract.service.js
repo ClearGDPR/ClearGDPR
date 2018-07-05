@@ -4,7 +4,7 @@ const { CONTRACT_CONFIG_KEY } = require('../../utils/blockchain');
 class ContractService {
   async saveContractDetails(contractABI, contractByteCode, address) {
     const value = JSON.stringify({
-      contractABIJson: JSON.stringify(contractABI),
+      contractAbiJson: JSON.stringify(contractABI),
       contractByteCode,
       address
     });
