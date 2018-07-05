@@ -9,9 +9,7 @@ const DEMO_SCOPES = ['user:fullName', 'user:email', 'user:phoneNumber'];
 
 export class EditProcessor extends React.Component {
   static propTypes = {
-    isLoading: PropTypes.bool,
     onSetValues: PropTypes.func,
-    onSubmit: PropTypes.func,
     values: PropTypes.object,
     touched: PropTypes.object,
     errors: PropTypes.object

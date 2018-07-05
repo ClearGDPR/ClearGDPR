@@ -1,19 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'informed';
+
 import TextInput from 'components/core/Common/Forms/TextInput';
-import Loader from 'components/core/cards/dashboard/Loader';
 
 export class Register extends React.Component {
   static propTypes = {
-    isLoading: PropTypes.bool,
-    onSubmit: PropTypes.func,
     validatePassword: PropTypes.func,
     touched: PropTypes.object,
     errors: PropTypes.object
   };
 
-  renderForm() {
+  render() {
     return (
       <React.Fragment>
         <TextInput
@@ -46,31 +44,22 @@ export class Register extends React.Component {
       </React.Fragment>
     );
   }
-
-  render() {
-    return (
-      <form onSubmit={this.props.onSubmit}>
-        {this.props.isLoading ? <Loader /> : this.renderForm()}
-      </form>
-    );
-  }
 }
 
 const registerForm = props => (
-  <Form onSubmit={submittedValues => props.onSubmit && props.onSubmit(submittedValues)}>
-    {formApi => (
+  <Form onSubmit={submittedValues => props.onSubmit(submittedValues)}>
+    {({ formState }) => (
       <Register
         {...props}
-        onSubmit={formApi.submitForm}
-        errors={{ ...formApi.errors, ...props.errors }}
-        touched={formApi.touched}
+        errors={{ ...formState.errors, ...props.errors }}
+        touched={formState.touched}
       />
     )}
   </Form>
 );
 
 registerForm.propTypes = {
-  onSubmit: PropTypes.func,
+  onSubmit: PropTypes.func.isRequired,
   errors: PropTypes.object
 };
 
