@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactPaginate from 'react-paginate';
 import 'theme/Paginate.css';
 
-export default ({ pageCount, onPageChange }) => (
+const Paginate = ({ pageCount, onPageChange }) => (
   <ReactPaginate
     containerClassName="react-paginate"
     pageCount={pageCount}
@@ -11,3 +12,8 @@ export default ({ pageCount, onPageChange }) => (
     onPageChange={onPageChange}
   />
 );
+
+Paginate.propTypes = {
+  pageCount: PropTypes.number.isRequired,
+  onPageChange: PropTypes.func.isRequired
+};
