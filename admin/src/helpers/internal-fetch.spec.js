@@ -1,4 +1,5 @@
 import internalFetch from 'helpers/internal-fetch';
+import { toast } from 'react-toastify';
 import session from 'helpers/Session';
 
 describe('internal fetch', () => {
@@ -51,7 +52,14 @@ describe('internal fetch', () => {
         }
       });
     });
+  });
 
-    await internalFetch('');
+  it('Handles network errors gracefully and toasts', async done => {
+    session.getToken = jest.fn().mockImplementationOnce(() => 'token');
+    global.fetch = jest.fn().mockImplementation(() => Promise.reject(new Error('none')));
+    toast.error = jest.fn().mockImplementationOnce();
+
+    expect(internalFetch()).rejects.toMatchObject({ message: 'none' });
+    expect(toast.error).toHaveBeenCalledWith('A network error occurred');
   });
 });
