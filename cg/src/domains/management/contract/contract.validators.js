@@ -2,8 +2,8 @@ const { celebrate, Joi } = require('celebrate');
 
 const contractDeployValidator = celebrate({
   body: Joi.object().keys({
-    abiJson: Joi.string().required(),
-    compiledData: Joi.string().required()
+    contractAbiJson: Joi.string().required(),
+    contractByteCode: Joi.string().required()
   })
 });
 
