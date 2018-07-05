@@ -3,16 +3,20 @@ import PropTypes from 'prop-types';
 import { Form } from 'informed';
 
 import TextInput from 'components/core/Common/Forms/TextInput';
+import Loader from 'components/core/cards/dashboard/Loader';
 
 export class ChangePassword extends React.Component {
   static propTypes = {
+    isLoading: PropTypes.bool,
     validatePassword: PropTypes.func,
     touched: PropTypes.object,
     errors: PropTypes.object
   };
 
   render() {
-    return (
+    return this.props.isLoading ? (
+      <Loader />
+    ) : (
       <React.Fragment>
         <TextInput
           label="New password"
@@ -53,7 +57,7 @@ const changePasswordForm = props => (
     {({ formState }) => (
       <ChangePassword
         {...props}
-        errors={{ ...formState.errors, ...props.errors }}
+        errors={{ ...props.errors, ...formState.errors }}
         touched={formState.touched}
       />
     )}
@@ -62,7 +66,9 @@ const changePasswordForm = props => (
 
 changePasswordForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  errors: PropTypes.object
+  errors: PropTypes.object,
+  validatePassword: PropTypes.func,
+  isLoading: PropTypes.bool
 };
 
 export default changePasswordForm;

@@ -6,7 +6,7 @@ const TextInput = props => {
   return (
     <div className={props.error ? 'input-field input-error' : 'input-field'}>
       <label htmlFor={props.field}>{props.label}</label>
-      {props.error ? <span className="error-msg">{props.error}</span> : ''}
+      {props.error ? <span className="error-msg">{props.error}</span> : null}
       <Text
         type={props.type || 'text'}
         id={props.field}

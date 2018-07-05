@@ -52,14 +52,8 @@ class Login extends React.Component {
                 {({ errors }) => (
                   <React.Fragment>
                     <Errors errors={{ ...this.props.errors, ...this.state.errors, ...errors }} />
-                    <Text field="username" placeholder="Your username" validateOnSubmit required />
-                    <Text
-                      field="password"
-                      type="password"
-                      placeholder="*********"
-                      validateOnSubmit
-                      required
-                    />
+                    <Text field="username" placeholder="Your username" required />
+                    <Text field="password" type="password" placeholder="*********" required />
                     <button type="submit" className="btn">
                       Login
                     </button>

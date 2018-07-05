@@ -49,18 +49,12 @@ export class ChangePasswordContainer extends React.Component {
   validatePassword(password) {
     // TODO: todo add proper validation
     if (!password) {
-      return {
-        error: 'Field required'
-      };
+      return 'Field required';
     }
     if (password.length < 8) {
-      return {
-        error: 'Password must have min. 8 characters'
-      };
+      return 'Password must have min. 8 characters';
     }
-    return {
-      success: null
-    };
+    return null;
   }
 
   onSubmit(data) {

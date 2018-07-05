@@ -3,16 +3,20 @@ import PropTypes from 'prop-types';
 import { Form } from 'informed';
 
 import TextInput from 'components/core/Common/Forms/TextInput';
+import Loader from 'components/core/cards/dashboard/Loader';
 
 export class Register extends React.Component {
   static propTypes = {
+    isLoading: PropTypes.bool,
     validatePassword: PropTypes.func,
     touched: PropTypes.object,
     errors: PropTypes.object
   };
 
   render() {
-    return (
+    return this.props.isLoading ? (
+      <Loader />
+    ) : (
       <React.Fragment>
         <TextInput
           label="Username"
@@ -60,7 +64,9 @@ const registerForm = props => (
 
 registerForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  errors: PropTypes.object
+  errors: PropTypes.object,
+  validatePassword: PropTypes.func,
+  isLoading: PropTypes.bool
 };
 
 export default registerForm;

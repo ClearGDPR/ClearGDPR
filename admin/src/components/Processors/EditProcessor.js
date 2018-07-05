@@ -3,12 +3,14 @@ import PropTypes from 'prop-types';
 import { Form, TextArea, Scope, Checkbox } from 'informed';
 
 import TextInput from 'components/core/Common/Forms/TextInput';
+import Loader from 'components/core/cards/dashboard/Loader';
 
 // TODO: this should be fetch from configuration service
 const DEMO_SCOPES = ['user:fullName', 'user:email', 'user:phoneNumber'];
 
 export class EditProcessor extends React.Component {
   static propTypes = {
+    isLoading: PropTypes.bool,
     onSetValues: PropTypes.func,
     values: PropTypes.object,
     touched: PropTypes.object,
@@ -27,7 +29,9 @@ export class EditProcessor extends React.Component {
   }
 
   render() {
-    return (
+    return this.props.isLoading ? (
+      <Loader />
+    ) : (
       <React.Fragment>
         <TextInput
           label="Processor name"
@@ -79,13 +83,12 @@ export class EditProcessor extends React.Component {
 const EditProcessorForm = props => (
   <Form
     onSubmit={submittedValues => props.onSubmit(submittedValues)}
-    render={({ formApi }) => (
+    render={({ formApi, formState }) => (
       <EditProcessor
         {...props}
         onSetValues={formApi.setValues}
-        onSubmit={formApi.submitForm}
-        errors={{ ...formApi.errors, ...props.errors }}
-        touched={formApi.touched}
+        errors={{ ...formState.errors, ...props.errors }}
+        touched={formState.touched}
         values={props.values}
       />
     )}
@@ -95,7 +98,8 @@ const EditProcessorForm = props => (
 EditProcessorForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   errors: PropTypes.object,
-  values: PropTypes.object
+  values: PropTypes.object,
+  isLoading: PropTypes.bool
 };
 
 export default EditProcessorForm;
