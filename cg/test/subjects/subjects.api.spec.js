@@ -176,12 +176,12 @@ describe('Tests of subject giving consent', () => {
     await Promise.all(
       addresses.map(async a => {
         expect(await getSubjectDataState(subjectIdHashed, a.address)).toBe(
-          SubjectDataStatus.shareable
+          SubjectDataStatus.consented
         );
       })
     );
     // checking for controller state
-    expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.shareable);
+    expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.consented);
   });
 
   it('new subject gives consent to process her data with no processors provided', async () => {
@@ -207,9 +207,9 @@ describe('Tests of subject giving consent', () => {
 
     expect(await res.text()).toEqual('OK');
 
-    expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.shareable);
+    expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.consented);
     expect(await getSubjectDataState(subjectIdHashed, processor1Address)).toBe(
-      SubjectDataStatus.notShareable
+      SubjectDataStatus.unconsented
     );
   });
 
@@ -237,9 +237,9 @@ describe('Tests of subject giving consent', () => {
 
     expect(await res.text()).toEqual('OK');
 
-    expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.shareable);
+    expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.consented);
     expect(await getSubjectDataState(subjectIdHashed, processor1Address)).toBe(
-      SubjectDataStatus.notShareable
+      SubjectDataStatus.unconsented
     );
   });
 
@@ -276,12 +276,12 @@ describe('Tests of subject giving consent', () => {
 
     expect(await res.text()).toEqual('OK');
 
-    expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.shareable);
+    expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.consented);
     expect(await getSubjectDataState(subjectIdHashed, processor1Address)).toBe(
-      SubjectDataStatus.shareable
+      SubjectDataStatus.consented
     );
     expect(await getSubjectDataState(subjectIdHashed, processor3Address)).toBe(
-      SubjectDataStatus.shareable
+      SubjectDataStatus.consented
     );
   });
 
@@ -387,9 +387,9 @@ describe('Tests of subject giving consent', () => {
     const decryptedPersonalData = JSON.parse(decryptedJson);
 
     expect(decryptedPersonalData).toEqual(expect.objectContaining(personalData));
-    expect(await getSubjectDataState(subjectIdHash)).toBe(SubjectDataStatus.shareable);
+    expect(await getSubjectDataState(subjectIdHash)).toBe(SubjectDataStatus.consented);
     expect(await getSubjectDataState(subjectIdHash, processor1Address)).toBe(
-      SubjectDataStatus.shareable
+      SubjectDataStatus.consented
     );
   });
 
@@ -449,9 +449,9 @@ describe('Tests of subject giving consent', () => {
       })
     );
 
-    expect(await getSubjectDataState(subjectIdHash)).toBe(SubjectDataStatus.shareable);
+    expect(await getSubjectDataState(subjectIdHash)).toBe(SubjectDataStatus.consented);
     expect(await getSubjectDataState(subjectIdHash, processor1Address)).toBe(
-      SubjectDataStatus.shareable
+      SubjectDataStatus.consented
     );
   });
 
@@ -491,9 +491,9 @@ describe('Tests of subject giving consent', () => {
 
     expect(decryptedPersonalData).toEqual(expect.objectContaining(personalData));
 
-    expect(await getSubjectDataState(subjectIdHash)).toBe(SubjectDataStatus.shareable);
+    expect(await getSubjectDataState(subjectIdHash)).toBe(SubjectDataStatus.consented);
     expect(await getSubjectDataState(subjectIdHash, processor1Address)).toBe(
-      SubjectDataStatus.shareable
+      SubjectDataStatus.consented
     );
   });
 });
@@ -515,7 +515,7 @@ describe('Tests of subject erasing data and revoking consent', () => {
     });
 
     await recordConsentGivenTo(subjectId);
-    expect(await getSubjectDataState(subjectId)).toBe(SubjectDataStatus.shareable);
+    expect(await getSubjectDataState(subjectId)).toBe(SubjectDataStatus.consented);
 
     const token = await subjectJWT.sign({ subjectId: '87abc' });
 
@@ -601,8 +601,8 @@ describe('Get data status', () => {
     });
 
     await recordConsentGivenTo(idHash, [processor1Address]);
-    expect(await getSubjectDataState(idHash)).toBe(SubjectDataStatus.shareable);
-    expect(await getSubjectDataState(idHash, processor1Address)).toBe(SubjectDataStatus.shareable);
+    expect(await getSubjectDataState(idHash)).toBe(SubjectDataStatus.consented);
+    expect(await getSubjectDataState(idHash, processor1Address)).toBe(SubjectDataStatus.consented);
 
     const token = await subjectJWT.sign({ subjectId });
 
@@ -616,11 +616,11 @@ describe('Get data status', () => {
     expect(res.ok).toBeTruthy();
     expect(await res.json()).toEqual(
       expect.objectContaining({
-        controller: SubjectDataStatus.shareable,
+        controller: SubjectDataStatus.consented,
         processors: expect.arrayContaining([
           {
             id: 201,
-            status: SubjectDataStatus.shareable
+            status: SubjectDataStatus.consented
           }
         ])
       })
@@ -717,7 +717,6 @@ describe('Initiate Rectification', () => {
       personalData: {},
       processors: []
     };
-
     await fetch('/api/subject/give-consent', {
       method: 'POST',
       body: payload,
@@ -725,7 +724,6 @@ describe('Initiate Rectification', () => {
         Authorization: `Bearer ${token}`
       }
     });
-
     const res = await fetch('/api/subject/initiate-rectification', {
       method: 'POST',
       body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
@@ -733,15 +731,14 @@ describe('Initiate Rectification', () => {
         Authorization: `Bearer ${token}`
       }
     });
-
     expect(res.status).toEqual(200);
-
     const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
     await db('subject_keys').where({ subject_id: hash(id) });
 
     expect(requestData.request_reason).toEqual('my name is dave');
     expect(requestData.status).toEqual('PENDING');
   });
+
   it('Store the update payload in an encrypted format', async () => {
     const id = '2-1';
     const token = await subjectJWT.sign({ subjectId: id });
@@ -767,16 +764,15 @@ describe('Initiate Rectification', () => {
     });
 
     expect(res.status).toEqual(200);
-
     const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
     const [subjectKey] = await db('subject_keys').where({ subject_id: hash(id) });
-
     expect(
       JSON.parse(decryptFromStorage(requestData.encrypted_rectification_payload, subjectKey.key))
     ).toEqual({
       name: 'dave'
     });
   });
+  
   it('Error if error reason and payload are not provided', async () => {
     const id = '2-5';
     const token = await subjectJWT.sign({ subjectId: id });

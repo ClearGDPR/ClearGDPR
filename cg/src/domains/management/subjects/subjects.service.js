@@ -1,6 +1,7 @@
-const { db } = require('../../../db');
-const { decryptFromStorage, encryptForStorage } = require('../../../utils/encryption');
 const winston = require('winston');
+const { db } = require('../../../db');
+const { recordRectificationByController } = require('../../../utils/blockchain');
+const { decryptFromStorage, encryptForStorage } = require('../../../utils/encryption');
 const { ValidationError, NotFound, BadRequest } = require('../../../utils/errors');
 const { RECTIFICATION_STATUSES } = require('./../../../utils/constants');
 
@@ -150,36 +151,28 @@ class SubjectsService {
 
   async updateRectificationRequestStatus(requestId, status) {
     const [request] = await this.db('rectification_requests').where({ id: requestId });
-
     if (!request) throw new NotFound('Rectification request not found');
-
     if (status === request.status) {
       throw new BadRequest(`Status is already ${status}`);
     }
-
+    let requestData;
     await this.db.transaction(async trx => {
       // if the status is becoming approved -> apply the update to the users data
       if (status === RECTIFICATION_STATUSES.APPROVED) {
-        const requestData = await this.getRequestData(request.id);
-
+        requestData = await this.getRequestData(request.id);
         if (!requestData.key) throw new BadRequest('Decryption key not found');
-
         const decryptedUpdatePayload = JSON.parse(
           decryptFromStorage(requestData.encrypted_rectification_payload, requestData.key)
         );
-
         const decryptedCurrentData = JSON.parse(
           decryptFromStorage(requestData.personal_data, requestData.key)
         );
-
         const newData = Object.assign({}, decryptedCurrentData, decryptedUpdatePayload);
-
         await this.db('subjects')
           .transacting(trx)
           .update({ personal_data: encryptForStorage(JSON.stringify(newData), requestData.key) })
           .where({ id: requestData.subject_id });
       }
-
       await this.db('rectification_requests')
         .transacting(trx)
         .where({ id: requestId })
@@ -187,21 +180,19 @@ class SubjectsService {
 
       await trx.commit();
     });
-
+    if (status === RECTIFICATION_STATUSES.APPROVED) {
+      await recordRectificationByController(requestData.subject_id);
+    }
     return { success: true };
   }
 
   async getRectificationRequest(requestId) {
     const requestData = await this.getRequestData(requestId);
-
     if (!requestData) throw new NotFound('Request not found');
-
     if (!requestData.key) throw new BadRequest('Decryption key not found');
-
     const decryptedUpdatePayload = JSON.parse(
       decryptFromStorage(requestData.encrypted_rectification_payload, requestData.key)
     );
-
     const decryptedCurrentData = JSON.parse(
       decryptFromStorage(requestData.personal_data, requestData.key)
     );

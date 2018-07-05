@@ -4,8 +4,8 @@ const { controllerOnly } = require('./../../utils/middleware');
 const asyncHandler = require('express-async-handler');
 const router = express.Router();
 
-const processorController = require('./processors.controller');
-const controller = new processorController();
+const ProcessorsController = require('./processors.controller');
+const processorsController = new ProcessorsController();
 
 module.exports = app => {
   app.use('/processors', router);
@@ -16,11 +16,11 @@ module.exports = app => {
     '/subject/:subjectId/data',
     controllerOnly,
     asyncHandler(ensureProcessorAccessToSubject),
-    asyncHandler(async (req, res) => controller.getData(req, res))
+    asyncHandler(async (req, res) => processorsController.getData(req, res))
   );
 
   router.get(
     '/contract/details',
-    asyncHandler(async (req, res) => controller.getContractDetails(req, res))
+    asyncHandler(async (req, res) => processorsController.getContractDetails(req, res))
   );
 };

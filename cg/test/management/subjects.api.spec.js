@@ -1,5 +1,9 @@
+jest.mock('../../src/utils/blockchain/web3-provider-factory');
+
+const winston = require('winston');
 const { initResources, fetch, closeResources } = require('../utils');
 const { db } = require('../../src/db');
+const { deployContract } = require('../blockchain-setup');
 const {
   generateClientKey,
   encryptForStorage,
@@ -11,7 +15,14 @@ const { BadRequest, Unauthorized, ValidationError } = require('../../src/utils/e
 const { omit } = require('underscore');
 const { RECTIFICATION_STATUSES } = require('./../../src/utils/constants');
 
-beforeAll(initResources);
+beforeAll(async () => {
+  try {
+    await deployContract();
+  } catch (e) {
+    winston.error(`Failed deploying contract ${e.toString()}`);
+  }
+  await initResources();
+});
 beforeEach(async () => {
   await db('subject_keys').del();
   await db('rectification_requests').del();
@@ -542,10 +553,7 @@ describe('List subjects that have given consent', () => {
     });
     it('Should not list rectification requests for users without encryption keys', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const { subjectId } = await createSubjectWithRectification();
-      await createSubjectWithRectification();
-
       await db('subject_keys')
         .delete()
         .where({ subject_id: subjectId });
@@ -556,9 +564,7 @@ describe('List subjects that have given consent', () => {
           Authorization: `Bearer ${managementToken}`
         }
       });
-
       const body = await res.json();
-
       expect(res.status).toEqual(200);
       expect(body.data).toHaveLength(1);
     });
@@ -646,9 +652,7 @@ describe('List subjects that have given consent', () => {
   describe('Show rectification requests', () => {
     it('Should show the rectification request data when pending', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const { rectificationRequestId } = await createSubjectWithRectification();
-
       const res = await fetch(
         `/api/management/subjects/rectification-requests/${rectificationRequestId}`,
         {
@@ -658,11 +662,8 @@ describe('List subjects that have given consent', () => {
           }
         }
       );
-
       const body = await res.json();
-
       expect(res.status).toEqual(200);
-
       expect(body).toEqual(
         expect.objectContaining({
           id: expect.any(Number),
@@ -740,7 +741,6 @@ describe('List subjects that have given consent', () => {
 
     it('Should error if the request does not exist', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const res = await fetch(`/api/management/subjects/rectification-requests/1111111`, {
         method: 'GET',
         headers: {
@@ -793,9 +793,7 @@ describe('List subjects that have given consent', () => {
           }
         }
       );
-
       expect(res.status).toEqual(200);
-
       const [request] = await db('rectification_requests').where({ id: rectificationRequestId });
       expect(request.status).toEqual('APPROVED');
     });
