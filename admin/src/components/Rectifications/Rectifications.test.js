@@ -7,19 +7,19 @@ const rectifications = {
     {
       id: 4,
       request_reason: 'The data was incorrect.',
-      created_at: '2018-07-02T21:31:24.999Z',
+      created_at: '02/07/2018 9:31pm',
       status: 'APPROVED'
     },
     {
       id: 5,
       request_reason: 'The data was incorrect two.',
-      created_at: '2018-07-02T21:31:37.440Z',
+      created_at: '02/07/2018 9:35pm',
       status: 'DISAPPROVED'
     },
     {
       id: 6,
       request_reason: 'The data was incorrect two three.',
-      created_at: '2018-07-02T21:31:43.530Z',
+      created_at: '02/07/2018 9:31pm',
       status: 'APPROVED'
     }
   ],

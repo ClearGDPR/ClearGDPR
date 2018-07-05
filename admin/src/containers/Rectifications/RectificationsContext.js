@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import config from 'config';
 import internalFetch from 'helpers/internal-fetch';
 import { toast } from 'react-toastify';
+import { format } from 'date-fns';
 
 const RectificationsContext = createContext({
   pendingRectifications: {},
@@ -32,15 +33,36 @@ export class RectificationsProvider extends Component {
   };
 
   async _getPendingRectifications(page = 1) {
-    return await internalFetch(
-      `${config.API_URL}/api/management/subjects/rectification-requests/list?page=${page}`
+    return this._mapRectificationResults(
+      await internalFetch(
+        `${config.API_URL}/api/management/subjects/rectification-requests/list?page=${page}`
+      )
     );
   }
 
   async _getProcessedRectifications(page = 1) {
-    return await internalFetch(
-      `${config.API_URL}/api/management/subjects/rectification-requests/archive?page=${page}`
+    return this._mapRectificationResults(
+      await internalFetch(
+        `${config.API_URL}/api/management/subjects/rectification-requests/archive?page=${page}`
+      )
     );
+  }
+
+  _mapRectificationResults(result) {
+    let mappedData = result.data.map(v => {
+      let mapped = {
+        id: v.id,
+        created_at: format(new Date(v.created_at), 'DD/MM/YYYY h:mma'),
+        request_reason: v.request_reason
+      };
+
+      v.status && (mapped.status = v.status);
+      return mapped;
+    });
+    return {
+      ...result,
+      data: mappedData
+    };
   }
 
   setLoading(loading) {

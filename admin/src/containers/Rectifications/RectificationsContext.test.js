@@ -6,9 +6,17 @@ import { RectificationsProvider } from '../Rectifications/RectificationsContext'
 import session from 'helpers/Session';
 import * as TestUtils from 'tests/helpers/TestUtils';
 import { toast } from 'react-toastify';
+import { format } from 'date-fns';
 
+jest.mock('date-fns');
 jest.mock('react-toastify');
 jest.mock('helpers/Session');
+
+beforeAll(() =>
+  format.mockImplementation(date => {
+    return date.toUTCString();
+  })
+);
 
 beforeEach(() => {
   session.getToken.mockReturnValue('token');
@@ -90,13 +98,14 @@ describe('RectificationsProvider', () => {
 
     await TestUtils.flushPromises();
 
-    expect(component.state()).toEqual(
+    let state = component.state();
+    expect(state).toEqual(
       expect.objectContaining({
-        pendingRectifications,
-        processedRectifications,
         isLoading: false
       })
     );
+    expect(state.pendingRectifications).toMatchSnapshot();
+    expect(state.processedRectifications).toMatchSnapshot();
   });
 
   it('should have correct state after fetching pending rectifications', async () => {
@@ -114,13 +123,14 @@ describe('RectificationsProvider', () => {
 
     await TestUtils.flushPromises();
 
-    expect(component.state()).toEqual(
+    let state = component.state();
+    expect(state).toEqual(
       expect.objectContaining({
-        pendingRectifications,
         processedRectifications: {},
         isLoading: false
       })
     );
+    expect(state.pendingRectifications).toMatchSnapshot();
   });
 
   it('should have correct state after fetching processed rectifications', async () => {
@@ -138,13 +148,14 @@ describe('RectificationsProvider', () => {
 
     await TestUtils.flushPromises();
 
-    expect(component.state()).toEqual(
+    let state = component.state();
+    expect(state).toEqual(
       expect.objectContaining({
         pendingRectifications: {},
-        processedRectifications,
         isLoading: false
       })
     );
+    expect(state.processedRectifications).toMatchSnapshot();
   });
 
   it('Should toast.error when the API gives a bad response', async () => {

@@ -8,8 +8,6 @@ import 'theme/Tabs.css';
 import ReactPaginate from 'react-paginate';
 import 'theme/Paginate.css';
 
-import moment from 'moment';
-
 import Loader from 'components/core/cards/dashboard/Loader';
 import Card from 'components/core/cards/dashboard/Card';
 
@@ -43,7 +41,7 @@ const Rectifications = ({
         {data.map((value, index) => (
           <tr key={index}>
             <td>{value.id}</td>
-            <td>{moment(value.created_at).format('LLL')}</td>
+            <td>{value.created_at}</td>
             <td>{value.request_reason}</td>
             {showStatus && <td>{value.status}</td>}
             <td>

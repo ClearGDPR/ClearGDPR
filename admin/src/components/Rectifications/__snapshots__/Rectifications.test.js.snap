@@ -10,19 +10,19 @@ Object {
       data={
         Array [
           Object {
-            "created_at": "2018-07-02T21:31:24.999Z",
+            "created_at": "02/07/2018 9:31pm",
             "id": 4,
             "request_reason": "The data was incorrect.",
             "status": "APPROVED",
           },
           Object {
-            "created_at": "2018-07-02T21:31:37.440Z",
+            "created_at": "02/07/2018 9:35pm",
             "id": 5,
             "request_reason": "The data was incorrect two.",
             "status": "DISAPPROVED",
           },
           Object {
-            "created_at": "2018-07-02T21:31:43.530Z",
+            "created_at": "02/07/2018 9:31pm",
             "id": 6,
             "request_reason": "The data was incorrect two three.",
             "status": "APPROVED",
@@ -1010,19 +1010,19 @@ Object {
     "currentPage": 1,
     "data": Array [
       Object {
-        "created_at": "2018-07-02T21:31:24.999Z",
+        "created_at": "02/07/2018 9:31pm",
         "id": 4,
         "request_reason": "The data was incorrect.",
         "status": "APPROVED",
       },
       Object {
-        "created_at": "2018-07-02T21:31:37.440Z",
+        "created_at": "02/07/2018 9:35pm",
         "id": 5,
         "request_reason": "The data was incorrect two.",
         "status": "DISAPPROVED",
       },
       Object {
-        "created_at": "2018-07-02T21:31:43.530Z",
+        "created_at": "02/07/2018 9:31pm",
         "id": 6,
         "request_reason": "The data was incorrect two three.",
         "status": "APPROVED",
@@ -1050,19 +1050,19 @@ ShallowWrapper {
     data={
       Array [
         Object {
-          "created_at": "2018-07-02T21:31:24.999Z",
+          "created_at": "02/07/2018 9:31pm",
           "id": 4,
           "request_reason": "The data was incorrect.",
           "status": "APPROVED",
         },
         Object {
-          "created_at": "2018-07-02T21:31:37.440Z",
+          "created_at": "02/07/2018 9:35pm",
           "id": 5,
           "request_reason": "The data was incorrect two.",
           "status": "DISAPPROVED",
         },
         Object {
-          "created_at": "2018-07-02T21:31:43.530Z",
+          "created_at": "02/07/2018 9:31pm",
           "id": 6,
           "request_reason": "The data was incorrect two three.",
           "status": "APPROVED",
@@ -1181,7 +1181,7 @@ ShallowWrapper {
                             4
                           </td>
                           <td>
-                            July 2, 2018 11:31 PM
+                            02/07/2018 9:31pm
                           </td>
                           <td>
                             The data was incorrect.
@@ -1200,7 +1200,7 @@ ShallowWrapper {
                             5
                           </td>
                           <td>
-                            July 2, 2018 11:31 PM
+                            02/07/2018 9:35pm
                           </td>
                           <td>
                             The data was incorrect two.
@@ -1219,7 +1219,7 @@ ShallowWrapper {
                             6
                           </td>
                           <td>
-                            July 2, 2018 11:31 PM
+                            02/07/2018 9:31pm
                           </td>
                           <td>
                             The data was incorrect two three.
@@ -1311,7 +1311,7 @@ ShallowWrapper {
                             4
                           </td>
                           <td>
-                            July 2, 2018 11:31 PM
+                            02/07/2018 9:31pm
                           </td>
                           <td>
                             The data was incorrect.
@@ -1333,7 +1333,7 @@ ShallowWrapper {
                             5
                           </td>
                           <td>
-                            July 2, 2018 11:31 PM
+                            02/07/2018 9:35pm
                           </td>
                           <td>
                             The data was incorrect two.
@@ -1355,7 +1355,7 @@ ShallowWrapper {
                             6
                           </td>
                           <td>
-                            July 2, 2018 11:31 PM
+                            02/07/2018 9:31pm
                           </td>
                           <td>
                             The data was incorrect two three.
@@ -1547,7 +1547,7 @@ ShallowWrapper {
                               4
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect.
@@ -1566,7 +1566,7 @@ ShallowWrapper {
                               5
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:35pm
                             </td>
                             <td>
                               The data was incorrect two.
@@ -1585,7 +1585,7 @@ ShallowWrapper {
                               6
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect two three.
@@ -1677,7 +1677,7 @@ ShallowWrapper {
                               4
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect.
@@ -1699,7 +1699,7 @@ ShallowWrapper {
                               5
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:35pm
                             </td>
                             <td>
                               The data was incorrect two.
@@ -1721,7 +1721,7 @@ ShallowWrapper {
                               6
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect two three.
@@ -1894,7 +1894,7 @@ ShallowWrapper {
                               4
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect.
@@ -1913,7 +1913,7 @@ ShallowWrapper {
                               5
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:35pm
                             </td>
                             <td>
                               The data was incorrect two.
@@ -1932,7 +1932,7 @@ ShallowWrapper {
                               6
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect two three.
@@ -2022,7 +2022,7 @@ ShallowWrapper {
                               4
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect.
@@ -2041,7 +2041,7 @@ ShallowWrapper {
                               5
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:35pm
                             </td>
                             <td>
                               The data was incorrect two.
@@ -2060,7 +2060,7 @@ ShallowWrapper {
                               6
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect two three.
@@ -2144,7 +2144,7 @@ ShallowWrapper {
                               4
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect.
@@ -2163,7 +2163,7 @@ ShallowWrapper {
                               5
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:35pm
                             </td>
                             <td>
                               The data was incorrect two.
@@ -2182,7 +2182,7 @@ ShallowWrapper {
                               6
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect two three.
@@ -2265,7 +2265,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -2284,7 +2284,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -2303,7 +2303,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -2382,7 +2382,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -2401,7 +2401,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -2420,7 +2420,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -2467,7 +2467,7 @@ ShallowWrapper {
                                   4
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect.
@@ -2486,7 +2486,7 @@ ShallowWrapper {
                                   5
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:35pm
                                 </td>
                                 <td>
                                   The data was incorrect two.
@@ -2505,7 +2505,7 @@ ShallowWrapper {
                                   6
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect two three.
@@ -2630,7 +2630,7 @@ ShallowWrapper {
                                     4
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:31pm
                                   </td>
                                   <td>
                                     The data was incorrect.
@@ -2649,7 +2649,7 @@ ShallowWrapper {
                                     5
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:35pm
                                   </td>
                                   <td>
                                     The data was incorrect two.
@@ -2668,7 +2668,7 @@ ShallowWrapper {
                                     6
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:31pm
                                   </td>
                                   <td>
                                     The data was incorrect two three.
@@ -2696,7 +2696,7 @@ ShallowWrapper {
                                       4
                                     </td>,
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:31pm
                                     </td>,
                                     <td>
                                       The data was incorrect.
@@ -2730,10 +2730,10 @@ ShallowWrapper {
                                     "key": undefined,
                                     "nodeType": "host",
                                     "props": Object {
-                                      "children": "July 2, 2018 11:31 PM",
+                                      "children": "02/07/2018 9:31pm",
                                     },
                                     "ref": null,
-                                    "rendered": "July 2, 2018 11:31 PM",
+                                    "rendered": "02/07/2018 9:31pm",
                                     "type": "td",
                                   },
                                   Object {
@@ -2789,7 +2789,7 @@ ShallowWrapper {
                                       5
                                     </td>,
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:35pm
                                     </td>,
                                     <td>
                                       The data was incorrect two.
@@ -2823,10 +2823,10 @@ ShallowWrapper {
                                     "key": undefined,
                                     "nodeType": "host",
                                     "props": Object {
-                                      "children": "July 2, 2018 11:31 PM",
+                                      "children": "02/07/2018 9:35pm",
                                     },
                                     "ref": null,
-                                    "rendered": "July 2, 2018 11:31 PM",
+                                    "rendered": "02/07/2018 9:35pm",
                                     "type": "td",
                                   },
                                   Object {
@@ -2882,7 +2882,7 @@ ShallowWrapper {
                                       6
                                     </td>,
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:31pm
                                     </td>,
                                     <td>
                                       The data was incorrect two three.
@@ -2916,10 +2916,10 @@ ShallowWrapper {
                                     "key": undefined,
                                     "nodeType": "host",
                                     "props": Object {
-                                      "children": "July 2, 2018 11:31 PM",
+                                      "children": "02/07/2018 9:31pm",
                                     },
                                     "ref": null,
-                                    "rendered": "July 2, 2018 11:31 PM",
+                                    "rendered": "02/07/2018 9:31pm",
                                     "type": "td",
                                   },
                                   Object {
@@ -3089,7 +3089,7 @@ ShallowWrapper {
                               4
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect.
@@ -3111,7 +3111,7 @@ ShallowWrapper {
                               5
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:35pm
                             </td>
                             <td>
                               The data was incorrect two.
@@ -3133,7 +3133,7 @@ ShallowWrapper {
                               6
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect two three.
@@ -3229,7 +3229,7 @@ ShallowWrapper {
                               4
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect.
@@ -3251,7 +3251,7 @@ ShallowWrapper {
                               5
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:35pm
                             </td>
                             <td>
                               The data was incorrect two.
@@ -3273,7 +3273,7 @@ ShallowWrapper {
                               6
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect two three.
@@ -3363,7 +3363,7 @@ ShallowWrapper {
                               4
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect.
@@ -3385,7 +3385,7 @@ ShallowWrapper {
                               5
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:35pm
                             </td>
                             <td>
                               The data was incorrect two.
@@ -3407,7 +3407,7 @@ ShallowWrapper {
                               6
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect two three.
@@ -3496,7 +3496,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -3518,7 +3518,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -3540,7 +3540,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -3625,7 +3625,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -3647,7 +3647,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -3669,7 +3669,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -3722,7 +3722,7 @@ ShallowWrapper {
                                   4
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect.
@@ -3744,7 +3744,7 @@ ShallowWrapper {
                                   5
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:35pm
                                 </td>
                                 <td>
                                   The data was incorrect two.
@@ -3766,7 +3766,7 @@ ShallowWrapper {
                                   6
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect two three.
@@ -3909,7 +3909,7 @@ ShallowWrapper {
                                     4
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:31pm
                                   </td>
                                   <td>
                                     The data was incorrect.
@@ -3931,7 +3931,7 @@ ShallowWrapper {
                                     5
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:35pm
                                   </td>
                                   <td>
                                     The data was incorrect two.
@@ -3953,7 +3953,7 @@ ShallowWrapper {
                                     6
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:31pm
                                   </td>
                                   <td>
                                     The data was incorrect two three.
@@ -3984,7 +3984,7 @@ ShallowWrapper {
                                       4
                                     </td>,
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:31pm
                                     </td>,
                                     <td>
                                       The data was incorrect.
@@ -4020,10 +4020,10 @@ ShallowWrapper {
                                     "key": undefined,
                                     "nodeType": "host",
                                     "props": Object {
-                                      "children": "July 2, 2018 11:31 PM",
+                                      "children": "02/07/2018 9:31pm",
                                     },
                                     "ref": null,
-                                    "rendered": "July 2, 2018 11:31 PM",
+                                    "rendered": "02/07/2018 9:31pm",
                                     "type": "td",
                                   },
                                   Object {
@@ -4089,7 +4089,7 @@ ShallowWrapper {
                                       5
                                     </td>,
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:35pm
                                     </td>,
                                     <td>
                                       The data was incorrect two.
@@ -4125,10 +4125,10 @@ ShallowWrapper {
                                     "key": undefined,
                                     "nodeType": "host",
                                     "props": Object {
-                                      "children": "July 2, 2018 11:31 PM",
+                                      "children": "02/07/2018 9:35pm",
                                     },
                                     "ref": null,
-                                    "rendered": "July 2, 2018 11:31 PM",
+                                    "rendered": "02/07/2018 9:35pm",
                                     "type": "td",
                                   },
                                   Object {
@@ -4194,7 +4194,7 @@ ShallowWrapper {
                                       6
                                     </td>,
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:31pm
                                     </td>,
                                     <td>
                                       The data was incorrect two three.
@@ -4230,10 +4230,10 @@ ShallowWrapper {
                                     "key": undefined,
                                     "nodeType": "host",
                                     "props": Object {
-                                      "children": "July 2, 2018 11:31 PM",
+                                      "children": "02/07/2018 9:31pm",
                                     },
                                     "ref": null,
-                                    "rendered": "July 2, 2018 11:31 PM",
+                                    "rendered": "02/07/2018 9:31pm",
                                     "type": "td",
                                   },
                                   Object {
@@ -4470,7 +4470,7 @@ ShallowWrapper {
                               4
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect.
@@ -4489,7 +4489,7 @@ ShallowWrapper {
                               5
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:35pm
                             </td>
                             <td>
                               The data was incorrect two.
@@ -4508,7 +4508,7 @@ ShallowWrapper {
                               6
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect two three.
@@ -4600,7 +4600,7 @@ ShallowWrapper {
                               4
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect.
@@ -4622,7 +4622,7 @@ ShallowWrapper {
                               5
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:35pm
                             </td>
                             <td>
                               The data was incorrect two.
@@ -4644,7 +4644,7 @@ ShallowWrapper {
                               6
                             </td>
                             <td>
-                              July 2, 2018 11:31 PM
+                              02/07/2018 9:31pm
                             </td>
                             <td>
                               The data was incorrect two three.
@@ -4836,7 +4836,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -4855,7 +4855,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -4874,7 +4874,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -4966,7 +4966,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -4988,7 +4988,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -5010,7 +5010,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -5183,7 +5183,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -5202,7 +5202,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -5221,7 +5221,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -5311,7 +5311,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -5330,7 +5330,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -5349,7 +5349,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -5433,7 +5433,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -5452,7 +5452,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -5471,7 +5471,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -5554,7 +5554,7 @@ ShallowWrapper {
                                   4
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect.
@@ -5573,7 +5573,7 @@ ShallowWrapper {
                                   5
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:35pm
                                 </td>
                                 <td>
                                   The data was incorrect two.
@@ -5592,7 +5592,7 @@ ShallowWrapper {
                                   6
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect two three.
@@ -5671,7 +5671,7 @@ ShallowWrapper {
                                   4
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect.
@@ -5690,7 +5690,7 @@ ShallowWrapper {
                                   5
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:35pm
                                 </td>
                                 <td>
                                   The data was incorrect two.
@@ -5709,7 +5709,7 @@ ShallowWrapper {
                                   6
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect two three.
@@ -5756,7 +5756,7 @@ ShallowWrapper {
                                     4
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:31pm
                                   </td>
                                   <td>
                                     The data was incorrect.
@@ -5775,7 +5775,7 @@ ShallowWrapper {
                                     5
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:35pm
                                   </td>
                                   <td>
                                     The data was incorrect two.
@@ -5794,7 +5794,7 @@ ShallowWrapper {
                                     6
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:31pm
                                   </td>
                                   <td>
                                     The data was incorrect two three.
@@ -5919,7 +5919,7 @@ ShallowWrapper {
                                       4
                                     </td>
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:31pm
                                     </td>
                                     <td>
                                       The data was incorrect.
@@ -5938,7 +5938,7 @@ ShallowWrapper {
                                       5
                                     </td>
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:35pm
                                     </td>
                                     <td>
                                       The data was incorrect two.
@@ -5957,7 +5957,7 @@ ShallowWrapper {
                                       6
                                     </td>
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:31pm
                                     </td>
                                     <td>
                                       The data was incorrect two three.
@@ -5985,7 +5985,7 @@ ShallowWrapper {
                                         4
                                       </td>,
                                       <td>
-                                        July 2, 2018 11:31 PM
+                                        02/07/2018 9:31pm
                                       </td>,
                                       <td>
                                         The data was incorrect.
@@ -6019,10 +6019,10 @@ ShallowWrapper {
                                       "key": undefined,
                                       "nodeType": "host",
                                       "props": Object {
-                                        "children": "July 2, 2018 11:31 PM",
+                                        "children": "02/07/2018 9:31pm",
                                       },
                                       "ref": null,
-                                      "rendered": "July 2, 2018 11:31 PM",
+                                      "rendered": "02/07/2018 9:31pm",
                                       "type": "td",
                                     },
                                     Object {
@@ -6078,7 +6078,7 @@ ShallowWrapper {
                                         5
                                       </td>,
                                       <td>
-                                        July 2, 2018 11:31 PM
+                                        02/07/2018 9:35pm
                                       </td>,
                                       <td>
                                         The data was incorrect two.
@@ -6112,10 +6112,10 @@ ShallowWrapper {
                                       "key": undefined,
                                       "nodeType": "host",
                                       "props": Object {
-                                        "children": "July 2, 2018 11:31 PM",
+                                        "children": "02/07/2018 9:35pm",
                                       },
                                       "ref": null,
-                                      "rendered": "July 2, 2018 11:31 PM",
+                                      "rendered": "02/07/2018 9:35pm",
                                       "type": "td",
                                     },
                                     Object {
@@ -6171,7 +6171,7 @@ ShallowWrapper {
                                         6
                                       </td>,
                                       <td>
-                                        July 2, 2018 11:31 PM
+                                        02/07/2018 9:31pm
                                       </td>,
                                       <td>
                                         The data was incorrect two three.
@@ -6205,10 +6205,10 @@ ShallowWrapper {
                                       "key": undefined,
                                       "nodeType": "host",
                                       "props": Object {
-                                        "children": "July 2, 2018 11:31 PM",
+                                        "children": "02/07/2018 9:31pm",
                                       },
                                       "ref": null,
-                                      "rendered": "July 2, 2018 11:31 PM",
+                                      "rendered": "02/07/2018 9:31pm",
                                       "type": "td",
                                     },
                                     Object {
@@ -6378,7 +6378,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -6400,7 +6400,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -6422,7 +6422,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -6518,7 +6518,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -6540,7 +6540,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -6562,7 +6562,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -6652,7 +6652,7 @@ ShallowWrapper {
                                 4
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect.
@@ -6674,7 +6674,7 @@ ShallowWrapper {
                                 5
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:35pm
                               </td>
                               <td>
                                 The data was incorrect two.
@@ -6696,7 +6696,7 @@ ShallowWrapper {
                                 6
                               </td>
                               <td>
-                                July 2, 2018 11:31 PM
+                                02/07/2018 9:31pm
                               </td>
                               <td>
                                 The data was incorrect two three.
@@ -6785,7 +6785,7 @@ ShallowWrapper {
                                   4
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect.
@@ -6807,7 +6807,7 @@ ShallowWrapper {
                                   5
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:35pm
                                 </td>
                                 <td>
                                   The data was incorrect two.
@@ -6829,7 +6829,7 @@ ShallowWrapper {
                                   6
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect two three.
@@ -6914,7 +6914,7 @@ ShallowWrapper {
                                   4
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect.
@@ -6936,7 +6936,7 @@ ShallowWrapper {
                                   5
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:35pm
                                 </td>
                                 <td>
                                   The data was incorrect two.
@@ -6958,7 +6958,7 @@ ShallowWrapper {
                                   6
                                 </td>
                                 <td>
-                                  July 2, 2018 11:31 PM
+                                  02/07/2018 9:31pm
                                 </td>
                                 <td>
                                   The data was incorrect two three.
@@ -7011,7 +7011,7 @@ ShallowWrapper {
                                     4
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:31pm
                                   </td>
                                   <td>
                                     The data was incorrect.
@@ -7033,7 +7033,7 @@ ShallowWrapper {
                                     5
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:35pm
                                   </td>
                                   <td>
                                     The data was incorrect two.
@@ -7055,7 +7055,7 @@ ShallowWrapper {
                                     6
                                   </td>
                                   <td>
-                                    July 2, 2018 11:31 PM
+                                    02/07/2018 9:31pm
                                   </td>
                                   <td>
                                     The data was incorrect two three.
@@ -7198,7 +7198,7 @@ ShallowWrapper {
                                       4
                                     </td>
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:31pm
                                     </td>
                                     <td>
                                       The data was incorrect.
@@ -7220,7 +7220,7 @@ ShallowWrapper {
                                       5
                                     </td>
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:35pm
                                     </td>
                                     <td>
                                       The data was incorrect two.
@@ -7242,7 +7242,7 @@ ShallowWrapper {
                                       6
                                     </td>
                                     <td>
-                                      July 2, 2018 11:31 PM
+                                      02/07/2018 9:31pm
                                     </td>
                                     <td>
                                       The data was incorrect two three.
@@ -7273,7 +7273,7 @@ ShallowWrapper {
                                         4
                                       </td>,
                                       <td>
-                                        July 2, 2018 11:31 PM
+                                        02/07/2018 9:31pm
                                       </td>,
                                       <td>
                                         The data was incorrect.
@@ -7309,10 +7309,10 @@ ShallowWrapper {
                                       "key": undefined,
                                       "nodeType": "host",
                                       "props": Object {
-                                        "children": "July 2, 2018 11:31 PM",
+                                        "children": "02/07/2018 9:31pm",
                                       },
                                       "ref": null,
-                                      "rendered": "July 2, 2018 11:31 PM",
+                                      "rendered": "02/07/2018 9:31pm",
                                       "type": "td",
                                     },
                                     Object {
@@ -7378,7 +7378,7 @@ ShallowWrapper {
                                         5
                                       </td>,
                                       <td>
-                                        July 2, 2018 11:31 PM
+                                        02/07/2018 9:35pm
                                       </td>,
                                       <td>
                                         The data was incorrect two.
@@ -7414,10 +7414,10 @@ ShallowWrapper {
                                       "key": undefined,
                                       "nodeType": "host",
                                       "props": Object {
-                                        "children": "July 2, 2018 11:31 PM",
+                                        "children": "02/07/2018 9:35pm",
                                       },
                                       "ref": null,
-                                      "rendered": "July 2, 2018 11:31 PM",
+                                      "rendered": "02/07/2018 9:35pm",
                                       "type": "td",
                                     },
                                     Object {
@@ -7483,7 +7483,7 @@ ShallowWrapper {
                                         6
                                       </td>,
                                       <td>
-                                        July 2, 2018 11:31 PM
+                                        02/07/2018 9:31pm
                                       </td>,
                                       <td>
                                         The data was incorrect two three.
@@ -7519,10 +7519,10 @@ ShallowWrapper {
                                       "key": undefined,
                                       "nodeType": "host",
                                       "props": Object {
-                                        "children": "July 2, 2018 11:31 PM",
+                                        "children": "02/07/2018 9:31pm",
                                       },
                                       "ref": null,
-                                      "rendered": "July 2, 2018 11:31 PM",
+                                      "rendered": "02/07/2018 9:31pm",
                                       "type": "td",
                                     },
                                     Object {
