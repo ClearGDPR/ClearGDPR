@@ -6,7 +6,7 @@ import 'react-tabs/style/react-tabs.css';
 import 'theme/Tabs.css';
 
 import ReactPaginate from 'react-paginate';
-import 'theme/Pagination.css';
+import 'theme/Paginate.css';
 
 import moment from 'moment';
 

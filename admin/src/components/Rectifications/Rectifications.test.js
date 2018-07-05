@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Rectifications from './Rectifications';
 
-const pendingRectifications = {
+const rectifications = {
   data: [
     {
       id: 4,
@@ -32,12 +32,12 @@ const pendingRectifications = {
 const setup = propOverrides => {
   const props = Object.assign(
     {
-      data: pendingRectifications.data,
+      data: rectifications.data,
       tabs: ['tab 1', 'tab 2'],
       selectedTab: 0,
       onTabSelect: jest.fn(),
-      pageCount: pendingRectifications.paging.total,
-      currentPage: pendingRectifications.paging.current,
+      pageCount: rectifications.paging.total,
+      currentPage: rectifications.paging.current,
       onPageSelected: jest.fn(),
       isLoading: false
     },
