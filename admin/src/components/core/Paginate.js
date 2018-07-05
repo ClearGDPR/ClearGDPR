@@ -17,3 +17,5 @@ Paginate.propTypes = {
   pageCount: PropTypes.number.isRequired,
   onPageChange: PropTypes.func.isRequired
 };
+
+export default Paginate;
