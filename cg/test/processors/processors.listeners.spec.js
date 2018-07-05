@@ -8,7 +8,6 @@ const { initResources, closeResources } = require('../utils');
 const { deployContract } = require('../blockchain-setup');
 const { startAll } = require('../../src/domains/processors/processors.listeners');
 const { db } = require('../../src/db');
-// const { processorJWT, subjectJWT, managementJWT } = require('../../src/utils/jwt');
 const { encryptForStorage, decryptFromStorage } = require('../../src/utils/encryption');
 const {
   recordErasureByController,
@@ -144,7 +143,7 @@ describe('Processors listening for blockchain events', () => {
     await recordRectificationByController(subjectId);
 
     setTimeout(async () => {
-      // check that a request was made in response to the blockchain consent event
+      // check that a request was made in response to the blockchain rectification event
       expect(fakeControllerResponse.isDone()).toEqual(true);
       const [subject] = await db('subjects').where({ id: subjectId });
       const [key] = await db('subject_keys').where({ subject_id: subjectId });

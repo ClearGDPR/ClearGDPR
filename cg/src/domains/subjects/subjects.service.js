@@ -13,7 +13,6 @@ const {
 } = require('../../utils/blockchain');
 const { ValidationError, NotFound } = require('../../utils/errors');
 const winston = require('winston');
-
 const { RECTIFICATION_STATUSES } = require('./../../utils/constants');
 const { inControllerMode } = require('./../../utils/helpers');
 
@@ -32,25 +31,20 @@ class SubjectsService {
     let processorIdsWithAddresses;
     await this.db.transaction(async trx => {
       await this._initializeUserInTransaction(trx, subjectId, personalData);
-
       processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(trx, processorIds);
-
       if (processorIdsWithAddresses.length !== processorIds.length) {
         throw new ValidationError('Specified processor does not exist.');
       }
-
       if (processorIdsWithAddresses.some(p => !p.address)) {
         throw new ValidationError(
           `At least one of the processors doesn't have an address assigned`
         );
       }
-
       await Promise.all(
         processorIds.map(processorId => this._setConsentGiven(trx, subjectId, processorId))
       );
-      trx.commit();
-      await recordConsentGivenTo(subjectId, processorIdsWithAddresses.map(p => p.address));
     });
+    await recordConsentGivenTo(subjectId, processorIdsWithAddresses.map(p => p.address));
   }
 
   async _getProcessorIdsWithAddresses(trx, processorIds) {
@@ -82,16 +76,13 @@ class SubjectsService {
       .select();
 
     let encryptionKey;
-
     if (subjectKey) {
       encryptionKey = subjectKey.key;
     } else {
       encryptionKey = generateClientKey();
       await this._saveSubjectEncryptionKey(trx, subjectId, encryptionKey);
     }
-
     const encryptedPersonalData = encryptForStorage(JSON.stringify(personalData), encryptionKey);
-
     await this.db('subjects')
       .transacting(trx)
       .where('id', subjectId)
@@ -104,7 +95,6 @@ class SubjectsService {
   async _createNewSubject(personalData, trx, subjectId) {
     const encryptionKey = generateClientKey();
     const encryptedPersonalData = encryptForStorage(JSON.stringify(personalData), encryptionKey);
-
     await this.db('subjects')
       .transacting(trx)
       .insert({
@@ -121,7 +111,6 @@ class SubjectsService {
       .where({ subject_id: subjectId, processor_id: processorId });
 
     if (subjectProcessor) return;
-
     await this.db('subject_processors')
       .transacting(trx)
       .insert({
@@ -171,7 +160,6 @@ class SubjectsService {
       })
     );
     const controllerStatus = await getSubjectDataState(subjectId);
-
     return {
       controller: controllerStatus,
       processors: processorIdsWithDataStatus
@@ -204,7 +192,6 @@ class SubjectsService {
       .select('key');
 
     if (!subjectKeyData || !subjectKeyData.key) throw new NotFound('Subject keys not found');
-
     const encryptedRectificationPayload = encryptForStorage(
       JSON.stringify(rectificationPayload),
       subjectKeyData.key

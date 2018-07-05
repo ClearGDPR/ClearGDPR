@@ -717,7 +717,6 @@ describe('Initiate Rectification', () => {
       personalData: {},
       processors: []
     };
-
     await fetch('/api/subject/give-consent', {
       method: 'POST',
       body: payload,
@@ -725,7 +724,6 @@ describe('Initiate Rectification', () => {
         Authorization: `Bearer ${token}`
       }
     });
-
     const res = await fetch('/api/subject/initiate-rectification', {
       method: 'POST',
       body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
@@ -733,15 +731,14 @@ describe('Initiate Rectification', () => {
         Authorization: `Bearer ${token}`
       }
     });
-
     expect(res.status).toEqual(200);
-
     const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
     await db('subject_keys').where({ subject_id: hash(id) });
 
     expect(requestData.request_reason).toEqual('my name is dave');
     expect(requestData.status).toEqual('PENDING');
   });
+
   it('Store the update payload in an encrypted format', async () => {
     const id = '2-1';
     const token = await subjectJWT.sign({ subjectId: id });
@@ -767,16 +764,15 @@ describe('Initiate Rectification', () => {
     });
 
     expect(res.status).toEqual(200);
-
     const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
     const [subjectKey] = await db('subject_keys').where({ subject_id: hash(id) });
-
     expect(
       JSON.parse(decryptFromStorage(requestData.encrypted_rectification_payload, subjectKey.key))
     ).toEqual({
       name: 'dave'
     });
   });
+  
   it('Error if error reason and payload are not provided', async () => {
     const id = '2-5';
     const token = await subjectJWT.sign({ subjectId: id });

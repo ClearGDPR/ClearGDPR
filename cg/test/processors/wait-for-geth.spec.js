@@ -36,7 +36,7 @@ describe('Waiting for geth', () => {
     expect(mockIsListening).toHaveBeenCalled();
   });
 
-  it('Should wait 5s and resolve after is is listening thrown and then returned true', async () => {
+  it('Should wait 5s and resolve after isListening thrown and then returned true', async () => {
     let count = 0;
     mockIsListening.mockImplementation(() => {
       if (0 === count++) {
@@ -51,7 +51,7 @@ describe('Waiting for geth', () => {
     expect(mockIsListening).toHaveBeenCalledTimes(2);
   });
 
-  it('Should wait 5s and resolve after is listening return false and then true', async () => {
+  it('Should wait 5s and resolve after isListening return false and then true', async () => {
     let count = 0;
     mockIsListening.mockImplementation(() => {
       return 0 !== count++;
