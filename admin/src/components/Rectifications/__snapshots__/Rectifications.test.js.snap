@@ -1249,7 +1249,7 @@ ShallowWrapper {
                           ...
                         </a>
                       }
-                      containerClassName="pagination"
+                      containerClassName="react-paginate"
                       disableInitialCallback={true}
                       disabledClassName="disabled"
                       initialPage={0}
@@ -1388,7 +1388,7 @@ ShallowWrapper {
                           ...
                         </a>
                       }
-                      containerClassName="pagination"
+                      containerClassName="react-paginate"
                       disableInitialCallback={true}
                       disabledClassName="disabled"
                       initialPage={0}
@@ -1615,7 +1615,7 @@ ShallowWrapper {
                             ...
                           </a>
                         }
-                        containerClassName="pagination"
+                        containerClassName="react-paginate"
                         disableInitialCallback={true}
                         disabledClassName="disabled"
                         initialPage={0}
@@ -1754,7 +1754,7 @@ ShallowWrapper {
                             ...
                           </a>
                         }
-                        containerClassName="pagination"
+                        containerClassName="react-paginate"
                         disableInitialCallback={true}
                         disabledClassName="disabled"
                         initialPage={0}
@@ -1962,7 +1962,7 @@ ShallowWrapper {
                             ...
                           </a>
                         }
-                        containerClassName="pagination"
+                        containerClassName="react-paginate"
                         disableInitialCallback={true}
                         disabledClassName="disabled"
                         initialPage={0}
@@ -2090,7 +2090,7 @@ ShallowWrapper {
                             ...
                           </a>
                         }
-                        containerClassName="pagination"
+                        containerClassName="react-paginate"
                         disableInitialCallback={true}
                         disabledClassName="disabled"
                         initialPage={0}
@@ -2212,7 +2212,7 @@ ShallowWrapper {
                             ...
                           </a>
                         }
-                        containerClassName="pagination"
+                        containerClassName="react-paginate"
                         disableInitialCallback={true}
                         disabledClassName="disabled"
                         initialPage={0}
@@ -2333,7 +2333,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -2988,7 +2988,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -3017,7 +3017,7 @@ ShallowWrapper {
                           >
                             ...
                           </a>,
-                          "containerClassName": "pagination",
+                          "containerClassName": "react-paginate",
                           "disableInitialCallback": true,
                           "disabledClassName": "disabled",
                           "initialPage": 0,
@@ -3166,7 +3166,7 @@ ShallowWrapper {
                             ...
                           </a>
                         }
-                        containerClassName="pagination"
+                        containerClassName="react-paginate"
                         disableInitialCallback={true}
                         disabledClassName="disabled"
                         initialPage={0}
@@ -3306,7 +3306,7 @@ ShallowWrapper {
                             ...
                           </a>
                         }
-                        containerClassName="pagination"
+                        containerClassName="react-paginate"
                         disableInitialCallback={true}
                         disabledClassName="disabled"
                         initialPage={0}
@@ -3440,7 +3440,7 @@ ShallowWrapper {
                             ...
                           </a>
                         }
-                        containerClassName="pagination"
+                        containerClassName="react-paginate"
                         disableInitialCallback={true}
                         disabledClassName="disabled"
                         initialPage={0}
@@ -3573,7 +3573,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -4312,7 +4312,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -4341,7 +4341,7 @@ ShallowWrapper {
                           >
                             ...
                           </a>,
-                          "containerClassName": "pagination",
+                          "containerClassName": "react-paginate",
                           "disableInitialCallback": true,
                           "disabledClassName": "disabled",
                           "initialPage": 0,
@@ -4538,7 +4538,7 @@ ShallowWrapper {
                             ...
                           </a>
                         }
-                        containerClassName="pagination"
+                        containerClassName="react-paginate"
                         disableInitialCallback={true}
                         disabledClassName="disabled"
                         initialPage={0}
@@ -4677,7 +4677,7 @@ ShallowWrapper {
                             ...
                           </a>
                         }
-                        containerClassName="pagination"
+                        containerClassName="react-paginate"
                         disableInitialCallback={true}
                         disabledClassName="disabled"
                         initialPage={0}
@@ -4904,7 +4904,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -5043,7 +5043,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -5251,7 +5251,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -5379,7 +5379,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -5501,7 +5501,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -5622,7 +5622,7 @@ ShallowWrapper {
                                 ...
                               </a>
                             }
-                            containerClassName="pagination"
+                            containerClassName="react-paginate"
                             disableInitialCallback={true}
                             disabledClassName="disabled"
                             initialPage={0}
@@ -6277,7 +6277,7 @@ ShallowWrapper {
                                 ...
                               </a>
                             }
-                            containerClassName="pagination"
+                            containerClassName="react-paginate"
                             disableInitialCallback={true}
                             disabledClassName="disabled"
                             initialPage={0}
@@ -6306,7 +6306,7 @@ ShallowWrapper {
                             >
                               ...
                             </a>,
-                            "containerClassName": "pagination",
+                            "containerClassName": "react-paginate",
                             "disableInitialCallback": true,
                             "disabledClassName": "disabled",
                             "initialPage": 0,
@@ -6455,7 +6455,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -6595,7 +6595,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -6729,7 +6729,7 @@ ShallowWrapper {
                               ...
                             </a>
                           }
-                          containerClassName="pagination"
+                          containerClassName="react-paginate"
                           disableInitialCallback={true}
                           disabledClassName="disabled"
                           initialPage={0}
@@ -6862,7 +6862,7 @@ ShallowWrapper {
                                 ...
                               </a>
                             }
-                            containerClassName="pagination"
+                            containerClassName="react-paginate"
                             disableInitialCallback={true}
                             disabledClassName="disabled"
                             initialPage={0}
@@ -7601,7 +7601,7 @@ ShallowWrapper {
                                 ...
                               </a>
                             }
-                            containerClassName="pagination"
+                            containerClassName="react-paginate"
                             disableInitialCallback={true}
                             disabledClassName="disabled"
                             initialPage={0}
@@ -7630,7 +7630,7 @@ ShallowWrapper {
                             >
                               ...
                             </a>,
-                            "containerClassName": "pagination",
+                            "containerClassName": "react-paginate",
                             "disableInitialCallback": true,
                             "disabledClassName": "disabled",
                             "initialPage": 0,
