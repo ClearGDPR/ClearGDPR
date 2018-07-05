@@ -74,7 +74,7 @@ const Rectifications = ({
         pageRangeDisplayed={5}
         onPageChange={({ selected }) => handlePageClick(selected + 1)}
         disableInitialCallback={true}
-        containerClassName={'pagination'}
+        containerClassName={'react-paginate'}
         subContainerClassName={'pages pagination'}
         activeClassName={'active'}
       />
