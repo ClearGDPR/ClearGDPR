@@ -39,7 +39,6 @@ describe('internal fetch', () => {
 
   it('Default to including authorization header', async done => {
     expect.assertions(1);
-
     session.getToken = jest.fn().mockImplementationOnce(() => 'token');
     global.fetch = jest.fn().mockImplementationOnce((_, options) => {
       expect(options.headers.Authorization).toEqual('Bearer token');
@@ -52,14 +51,21 @@ describe('internal fetch', () => {
         }
       });
     });
+
+    internalFetch();
   });
 
-  it('Handles network errors gracefully and toasts', async done => {
+  it('Handles network errors gracefully and toasts', async () => {
+    expect.assertions(2);
     session.getToken = jest.fn().mockImplementationOnce(() => 'token');
     global.fetch = jest.fn().mockImplementation(() => Promise.reject(new Error('none')));
-    toast.error = jest.fn().mockImplementationOnce();
+    toast.error = jest.fn();
+    try {
+      await internalFetch();
+    } catch (e) {
+      expect(e).toBeTruthy();
+    }
 
-    expect(internalFetch()).rejects.toMatchObject({ message: 'none' });
-    expect(toast.error).toHaveBeenCalledWith('A network error occurred');
+    expect(toast.error).toHaveBeenCalledWith('none');
   });
 });
