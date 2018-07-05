@@ -18,7 +18,11 @@ async function getContract() {
   if (!contractConfig) {
     throw new Error(`No contract deployed`);
   }
-  return await new QuorumContract(web3, JSON.parse(contractConfig.abiJson), contractConfig.address);
+  return await new QuorumContract(
+    web3,
+    JSON.parse(contractConfig.contractAbiJson),
+    contractConfig.address
+  );
 }
 
 async function runContractMethod(methodName, params) {
@@ -45,9 +49,9 @@ async function runContractMethod(methodName, params) {
   }
 }
 
-async function deployContract(abiJson, compiledData) {
-  const quorumContract = new QuorumContract(web3, abiJson);
-  await quorumContract.deploy(compiledData);
+async function deployContract(contractAbiJson, contractByteCode) {
+  const quorumContract = new QuorumContract(web3, contractAbiJson);
+  await quorumContract.deploy(contractByteCode);
   return quorumContract.address;
 }
 
