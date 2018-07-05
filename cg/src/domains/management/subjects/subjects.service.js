@@ -160,6 +160,7 @@ class SubjectsService {
       // if the status is becoming approved -> apply the update to the users data
       if (status === RECTIFICATION_STATUSES.APPROVED) {
         requestData = await this.getRequestData(request.id);
+        if (!requestData.key) throw new BadRequest('Decryption key not found');
         const decryptedUpdatePayload = JSON.parse(
           decryptFromStorage(requestData.encrypted_rectification_payload, requestData.key)
         );
@@ -179,9 +180,9 @@ class SubjectsService {
 
       await trx.commit();
     });
-    if (status === RECTIFICATION_STATUSES.APPROVED){
+    if (status === RECTIFICATION_STATUSES.APPROVED) {
       await recordRectificationByController(requestData.subject_id);
-    } 
+    }
     return { success: true };
   }
 
