@@ -9,8 +9,8 @@ const processorHelpers = require('../../src/domains/processors/processors.helper
 const { startAll } = require('../../src/domains/processors/processors.listeners');
 
 beforeEach(() => {
-  blockchain.listenForConsent.mockClear();
-  blockchain.listenForErasureRequest.mockClear();
+  blockchain.listenerForConsentEvent.mockClear();
+  blockchain.listenerForErasureEvent.mockClear();
   helpers.inControllerMode.mockClear();
   processorHelpers.blockUntilContractReady.mockClear();
 });
@@ -25,8 +25,8 @@ describe('Starting listeners', () => {
   it('should start listeners when in processor mode', async () => {
     helpers.inControllerMode.mockImplementationOnce(() => false);
     await startAll();
-    expect(blockchain.listenForConsent).toHaveBeenCalled();
-    expect(blockchain.listenForErasureRequest).toHaveBeenCalled();
+    expect(blockchain.listenerForConsentEvent).toHaveBeenCalled();
+    expect(blockchain.listenerForErasureEvent).toHaveBeenCalled();
   });
 
   it('should not wait for contract when in controller mode', async () => {
@@ -38,7 +38,7 @@ describe('Starting listeners', () => {
   it('should not start listeners when in controller mode', async () => {
     helpers.inControllerMode.mockImplementationOnce(() => true);
     await startAll();
-    expect(blockchain.listenForConsent).not.toHaveBeenCalled();
-    expect(blockchain.listenForErasureRequest).not.toHaveBeenCalled();
+    expect(blockchain.listenerForConsentEvent).not.toHaveBeenCalled();
+    expect(blockchain.listenerForErasureEvent).not.toHaveBeenCalled();
   });
 });

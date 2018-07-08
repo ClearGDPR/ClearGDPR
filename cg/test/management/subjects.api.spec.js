@@ -1,5 +1,9 @@
+jest.mock('../../src/utils/blockchain/web3-provider-factory');
+
+const winston = require('winston');
 const { initResources, fetch, closeResources } = require('../utils');
 const { db } = require('../../src/db');
+const { deployContract } = require('../blockchain-setup');
 const {
   generateClientKey,
   encryptForStorage,
@@ -11,7 +15,14 @@ const { BadRequest, Unauthorized, ValidationError } = require('../../src/utils/e
 const { omit } = require('underscore');
 const { RECTIFICATION_STATUSES } = require('./../../src/utils/constants');
 
-beforeAll(initResources);
+beforeAll(async () => {
+  try {
+    await deployContract();
+  } catch (e) {
+    winston.error(`Failed deploying contract ${e.toString()}`);
+  }
+  await initResources();
+});
 beforeEach(async () => {
   await db('subject_keys').del();
   await db('rectification_requests').del();
@@ -117,7 +128,6 @@ describe('List subjects that have given consent', () => {
 
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-
     const res = await fetch('/api/management/subjects/list', {
       method: 'GET',
       headers: {
@@ -480,9 +490,12 @@ describe('List subjects that have given consent', () => {
 
   describe('List rectification requests', () => {
     it('Should list the requests sucessfully', async () => {
+      //GIVEN
       const managementToken = await managementJWT.sign({ id: 1 });
       await createSubjectWithRectification();
       await createSubjectWithRectification();
+      
+      //WHEN
       const res = await fetch('/api/management/subjects/rectification-requests/list', {
         method: 'GET',
         headers: {
@@ -490,13 +503,17 @@ describe('List subjects that have given consent', () => {
         }
       });
 
+      //THEN
       const body = await res.json();
       expect(res.status).toEqual(200);
       expect(body.data).toHaveLength(2);
     });
-    it('Should list the requests sucessfully when there is 0', async () => {
-      const managementToken = await managementJWT.sign({ id: 1 });
 
+    it('Should list the requests sucessfully when there is 0', async () => {
+      //GIVEN
+      const managementToken = await managementJWT.sign({ id: 1 });
+     
+      //WHEN
       const res = await fetch('/api/management/subjects/rectification-requests/list', {
         method: 'GET',
         headers: {
@@ -504,14 +521,18 @@ describe('List subjects that have given consent', () => {
         }
       });
 
+      //THEN
       const body = await res.json();
       expect(res.status).toEqual(200);
       expect(body.data).toHaveLength(0);
       expect(body.paging).toEqual({ current: 1, total: 1 });
     });
-    it('Should fail if page number is too big', async () => {
-      const managementToken = await managementJWT.sign({ id: 1 });
 
+    it('Should fail if page number is too big', async () => {
+      //GIVEN      
+      const managementToken = await managementJWT.sign({ id: 1 });
+      
+      //WHEN
       const res = await fetch('/api/management/subjects/rectification-requests/list?page=6', {
         method: 'GET',
         headers: {
@@ -519,16 +540,19 @@ describe('List subjects that have given consent', () => {
         }
       });
 
+      //THEN
       const body = await res.json();
-
       expect(res.status).toEqual(400);
       expect(body.error).toEqual('Page number too big, maximum page number is 1');
     });
+
     it('Should only serve pending rectification requests', async () => {
+      //GIVEN
       await createSubjectWithRectification({ status: RECTIFICATION_STATUSES.APPROVED });
       await createSubjectWithRectification({ status: RECTIFICATION_STATUSES.DISAPPROVED });
       const managementToken = await managementJWT.sign({ id: 1 });
 
+      //WHEN
       const res = await fetch('/api/management/subjects/rectification-requests/list', {
         method: 'GET',
         headers: {
@@ -536,31 +560,32 @@ describe('List subjects that have given consent', () => {
         }
       });
 
+      //THEN
       const body = await res.json();
       expect(res.status).toEqual(200);
       expect(body.data).toHaveLength(0);
     });
-    it('Should not list rectification requests for users without encryption keys', async () => {
+
+    it.only('Should not list rectification requests for users without encryption keys', async () => {
+      //GIVEN
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const { subjectId } = await createSubjectWithRectification();
-      await createSubjectWithRectification();
-
       await db('subject_keys')
-        .delete()
-        .where({ subject_id: subjectId });
-
+        .where({ subject_id: subjectId })
+        .delete();
+        
+      //WHEN  
       const res = await fetch('/api/management/subjects/rectification-requests/list', {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${managementToken}`
         }
       });
-
-      const body = await res.json();
-
+      
+      //THEN
       expect(res.status).toEqual(200);
-      expect(body.data).toHaveLength(1);
+      const body = await res.json();
+      expect(body.data).toHaveLength(0);
     });
   });
 
@@ -584,7 +609,6 @@ describe('List subjects that have given consent', () => {
 
     it('Should list the requests successfully when there is 0', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const res = await fetch('/api/management/subjects/rectification-requests/archive', {
         method: 'GET',
         headers: {
@@ -646,9 +670,7 @@ describe('List subjects that have given consent', () => {
   describe('Show rectification requests', () => {
     it('Should show the rectification request data when pending', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const { rectificationRequestId } = await createSubjectWithRectification();
-
       const res = await fetch(
         `/api/management/subjects/rectification-requests/${rectificationRequestId}`,
         {
@@ -658,11 +680,8 @@ describe('List subjects that have given consent', () => {
           }
         }
       );
-
       const body = await res.json();
-
       expect(res.status).toEqual(200);
-
       expect(body).toEqual(
         expect.objectContaining({
           id: expect.any(Number),
@@ -740,7 +759,6 @@ describe('List subjects that have given consent', () => {
 
     it('Should error if the request does not exist', async () => {
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const res = await fetch(`/api/management/subjects/rectification-requests/1111111`, {
         method: 'GET',
         headers: {
@@ -776,11 +794,12 @@ describe('List subjects that have given consent', () => {
   });
 
   describe('Update rectification request status', () => {
-    it('Should be able to approve the rectification request', async () => {
+    it('Should be able to approve rectification requests', async () => {
+      //GIVEN
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const { rectificationRequestId } = await createSubjectWithRectification();
-
+      
+      //WHEN
       const res = await fetch(
         `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
         {
@@ -794,19 +813,20 @@ describe('List subjects that have given consent', () => {
         }
       );
 
+      //THEN
       expect(res.status).toEqual(200);
-
       const [request] = await db('rectification_requests').where({ id: rectificationRequestId });
       expect(request.status).toEqual('APPROVED');
     });
 
     it('Should apply the rectification if the request is approved', async () => {
+      //GIVEN
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const { rectificationRequestId } = await createSubjectWithRectification({
         rectification_payload: { custom_payload: true }
       });
 
+      //WHEN
       const res = await fetch(
         `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
         {
@@ -820,11 +840,10 @@ describe('List subjects that have given consent', () => {
         }
       );
 
+      //THEN
       expect(res.status).toEqual(200);
-
       const [request] = await db('rectification_requests').where({ id: rectificationRequestId });
       expect(request.status).toEqual(RECTIFICATION_STATUSES.APPROVED);
-
       const [subject] = await db('subjects')
         .join('subject_keys', 'subjects.id', 'subject_keys.subject_id')
         .where({ subject_id: request.subject_id });
@@ -835,10 +854,11 @@ describe('List subjects that have given consent', () => {
     });
 
     it('Should be able to disapprove the rectification request', async () => {
+      //GIVEN
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const { rectificationRequestId } = await createSubjectWithRectification();
-
+      
+      //WHEN
       const res = await fetch(
         `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
         {
@@ -852,18 +872,18 @@ describe('List subjects that have given consent', () => {
         }
       );
 
+      //THEN
       expect(res.status).toEqual(200);
-
       const [request] = await db('rectification_requests').where({ id: rectificationRequestId });
-
       expect(request.status).toEqual('DISAPPROVED');
     });
 
     it('Should error if no status is provided', async () => {
+      //GIVEN
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const { rectificationRequestId } = await createSubjectWithRectification();
 
+      //WHEN
       const res = await fetch(
         `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
         {
@@ -875,13 +895,16 @@ describe('List subjects that have given consent', () => {
         }
       );
 
+      //THEN
       expect(res.status).toEqual(400);
       expect(await res.json()).toMatchSnapshot();
     });
 
     it('Should error if the request does not exist', async () => {
+      //GIVEN
       const managementToken = await managementJWT.sign({ id: 1 });
-
+      
+      //WHEN
       const res = await fetch(
         `/api/management/subjects/rectification-requests/1212121/update-status`,
         {
@@ -895,12 +918,13 @@ describe('List subjects that have given consent', () => {
         }
       );
 
+      //THEN
       expect(res.status).toEqual(404);
     });
 
     it("Should error when approving if the user's key does not exist", async () => {
+      //GIVEN
       const managementToken = await managementJWT.sign({ id: 1 });
-
       const { rectificationRequestId, subjectId } = await createSubjectWithRectification({
         rectification_payload: { custom_payload: true }
       });
@@ -909,6 +933,7 @@ describe('List subjects that have given consent', () => {
         .delete()
         .where({ subject_id: subjectId });
 
+      //WHEN
       const res = await fetch(
         `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
         {
@@ -922,6 +947,7 @@ describe('List subjects that have given consent', () => {
         }
       );
 
+      //THEN
       expect(res.status).toEqual(400);
       expect(await res.json()).toMatchSnapshot();
     });

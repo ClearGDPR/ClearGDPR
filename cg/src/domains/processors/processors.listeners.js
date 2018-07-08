@@ -1,4 +1,8 @@
-const { listenForErasureRequest, listenForConsent } = require('./../../utils/blockchain');
+const {
+  listenerForErasureEvent,
+  listenerForConsentEvent,
+  listenerForRectificationEvent
+} = require('./../../utils/blockchain');
 const { getDataForSubject } = require('./processors.requests');
 const { blockUntilContractReady } = require('./processors.helpers');
 const { inControllerMode } = require('../../utils/helpers');
@@ -7,21 +11,30 @@ const winston = require('winston');
 
 const subjectsService = new SubjectsService();
 
-const startErasureRequestListener = () => {
-  return listenForErasureRequest(async subjectId => {
-    winston.info(`Erasure request received for ${subjectId}`);
-    await subjectsService.eraseDataAndRevokeConsent(subjectId);
-  });
-};
-
-const startConsentListener = () => {
-  return listenForConsent(async subjectId => {
-    // if consent given, get data and store it in our d
-    winston.info(`Consent received for ${subjectId}`);
+const startConsentEventListener = () => {
+  return listenerForConsentEvent(async subjectId => {
+    winston.info(`Consent event received from subject ${subjectId}`);
     const response = await getDataForSubject(subjectId).catch(err => {
       return Promise.reject(err);
     });
     await subjectsService.initializeUser(subjectId, await response.json());
+  });
+};
+
+const startRectificationEventListener = () => {
+  return listenerForRectificationEvent(async subjectId => {
+    winston.info(`Rectification event received for subject ${subjectId}`);
+    const response = await getDataForSubject(subjectId).catch(err => {
+      return Promise.reject(err);
+    });
+    await subjectsService.initializeUser(subjectId, await response.json());
+  });
+};
+
+const startErasureEventListener = () => {
+  return listenerForErasureEvent(async subjectId => {
+    winston.info(`Erasure event received for subject ${subjectId}`);
+    await subjectsService.eraseDataAndRevokeConsent(subjectId);
   });
 };
 
@@ -32,9 +45,10 @@ const startAll = async () => {
 
   await blockUntilContractReady();
 
-  winston.info(`Starting listeners in processor mode`);
-  await startConsentListener();
-  await startErasureRequestListener();
+  winston.info(`Starting listeners in PROCESSOR mode`);
+  await startConsentEventListener();
+  await startErasureEventListener();
+  await startRectificationEventListener();
 };
 
 module.exports = {

@@ -711,6 +711,7 @@ describe('Get Data', () => {
 
 describe('Initiate Rectification', () => {
   it('Should allow a subject to begin the rectification process', async () => {
+    //GIVEN
     const id = '2-4';
     const token = await subjectJWT.sign({ subjectId: id });
     const payload = {
@@ -726,6 +727,7 @@ describe('Initiate Rectification', () => {
       }
     });
 
+    //WHEN
     const res = await fetch('/api/subject/initiate-rectification', {
       method: 'POST',
       body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
@@ -734,15 +736,16 @@ describe('Initiate Rectification', () => {
       }
     });
 
+    //THEN
     expect(res.status).toEqual(200);
-
     const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
     await db('subject_keys').where({ subject_id: hash(id) });
-
     expect(requestData.request_reason).toEqual('my name is dave');
     expect(requestData.status).toEqual('PENDING');
   });
+
   it('Store the update payload in an encrypted format', async () => {
+    //GIVEN
     const id = '2-1';
     const token = await subjectJWT.sign({ subjectId: id });
     const payload = {
@@ -758,6 +761,7 @@ describe('Initiate Rectification', () => {
       }
     });
 
+    //WHEN
     const res = await fetch('/api/subject/initiate-rectification', {
       method: 'POST',
       body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
@@ -766,18 +770,19 @@ describe('Initiate Rectification', () => {
       }
     });
 
+    //THEN
     expect(res.status).toEqual(200);
-
     const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
     const [subjectKey] = await db('subject_keys').where({ subject_id: hash(id) });
-
     expect(
       JSON.parse(decryptFromStorage(requestData.encrypted_rectification_payload, subjectKey.key))
     ).toEqual({
       name: 'dave'
     });
   });
+
   it('Error if error reason and payload are not provided', async () => {
+    //GIVEN
     const id = '2-5';
     const token = await subjectJWT.sign({ subjectId: id });
     const payload = {
@@ -793,6 +798,7 @@ describe('Initiate Rectification', () => {
       }
     });
 
+    //WHEN
     const res = await fetch('/api/subject/initiate-rectification', {
       method: 'POST',
       body: {},
@@ -801,11 +807,14 @@ describe('Initiate Rectification', () => {
       }
     });
 
+    //THEN
     const body = await res.json();
     expect(res.status).toEqual(400);
     expect(body).toMatchSnapshot();
   });
+
   it('Should error if the subject has no key', async () => {
+    //GIVEN
     const id = '2-3';
     const token = await subjectJWT.sign({ subjectId: id });
     const payload = {
@@ -825,6 +834,7 @@ describe('Initiate Rectification', () => {
       .where({ subject_id: hash(id) })
       .delete();
 
+    //WHEN
     const res = await fetch('/api/subject/initiate-rectification', {
       method: 'POST',
       body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
@@ -833,10 +843,10 @@ describe('Initiate Rectification', () => {
       }
     });
 
+    //THEN
     const body = await res.json();
     expect(res.ok).toBeFalsy();
     expect(res.status).toEqual(404);
-
     expect(body.error).toEqual('Subject keys not found');
   });
 });
