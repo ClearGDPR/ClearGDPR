@@ -6,7 +6,7 @@ import styles from '../theme/SubjectData.scss';
 // Check if OG is initialized
 Elements();
 
-const SUBJECT_DATA_STATUS = ['Not shareable', 'Shareable', 'Erased'];
+const SUBJECT_DATA_STATUS = ['Unconsented', 'Consented', 'Erased'];
 
 class UserData extends React.PureComponent {
   state = {
