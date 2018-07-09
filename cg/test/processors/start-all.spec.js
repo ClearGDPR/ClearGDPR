@@ -9,10 +9,7 @@ const processorHelpers = require('../../src/domains/processors/processors.helper
 const { startAll } = require('../../src/domains/processors/processors.listeners');
 
 beforeEach(() => {
-  blockchain.listenerForConsentEvent.mockClear();
-  blockchain.listenerForErasureEvent.mockClear();
-  helpers.inControllerMode.mockClear();
-  processorHelpers.blockUntilContractReady.mockClear();
+  jest.clearAllMocks();
 });
 
 describe('Starting listeners', () => {

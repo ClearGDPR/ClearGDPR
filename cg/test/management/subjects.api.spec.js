@@ -566,7 +566,7 @@ describe('List subjects that have given consent', () => {
       expect(body.data).toHaveLength(0);
     });
 
-    it.only('Should not list rectification requests for users without encryption keys', async () => {
+    it('Should not list rectification requests for users without encryption keys', async () => {
       //GIVEN
       const managementToken = await managementJWT.sign({ id: 1 });
       const { subjectId } = await createSubjectWithRectification();
