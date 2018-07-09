@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Rectifications from 'components/Rectifications/Rectifications';
 import { RectificationsConsumer } from 'containers/Rectifications/RectificationsContext';
+import { PanelConsumer } from 'containers/MainLayout/PanelContext';
+
+import Rectifications from 'components/Rectifications/Rectifications';
+import Details from 'components/Rectifications/Details';
 
 export class RectificationsContainer extends React.Component {
   static propTypes = {
@@ -11,7 +14,8 @@ export class RectificationsContainer extends React.Component {
     fetchPendingRectifications: PropTypes.func.isRequired,
     fetchProcessedRectifications: PropTypes.func.isRequired,
     fetchAllRectifications: PropTypes.func.isRequired,
-    isLoading: PropTypes.bool.isRequired
+    isLoading: PropTypes.bool.isRequired,
+    openPanel: PropTypes.func.isRequired
   };
 
   state = {
@@ -63,6 +67,10 @@ export class RectificationsContainer extends React.Component {
     }
   }
 
+  onDetailsClick(id) {
+    this.props.openPanel(Details, 'Rectification details', { rectificationId: id });
+  }
+
   render() {
     return (
       <Rectifications
@@ -74,30 +82,35 @@ export class RectificationsContainer extends React.Component {
         data={this.getData()}
         isLoading={this.props.isLoading}
         onPageSelected={this.onPageSelected.bind(this)}
+        onDetailsClick={this.onDetailsClick.bind(this)}
       />
     );
   }
 }
 
 export default props => (
-  <RectificationsConsumer>
-    {({
-      pendingRectifications,
-      processedRectifications,
-      fetchPendingRectifications,
-      fetchProcessedRectifications,
-      fetchAllRectifications,
-      isLoading
-    }) => (
-      <RectificationsContainer
-        {...props}
-        pendingRectifications={pendingRectifications}
-        processedRectifications={processedRectifications}
-        fetchPendingRectifications={fetchPendingRectifications}
-        fetchProcessedRectifications={fetchProcessedRectifications}
-        fetchAllRectifications={fetchAllRectifications}
-        isLoading={isLoading}
-      />
+  <PanelConsumer>
+    {({ openPanel }) => (
+      <RectificationsConsumer>
+        {({
+          pendingRectifications,
+          processedRectifications,
+          fetchPendingRectifications,
+          fetchProcessedRectifications,
+          fetchAllRectifications,
+          isLoading
+        }) => (
+          <RectificationsContainer
+            {...props}
+            pendingRectifications={pendingRectifications}
+            processedRectifications={processedRectifications}
+            fetchPendingRectifications={fetchPendingRectifications}
+            fetchProcessedRectifications={fetchProcessedRectifications}
+            fetchAllRectifications={fetchAllRectifications}
+            isLoading={isLoading}
+          />
+        )}
+      </RectificationsConsumer>
     )}
-  </RectificationsConsumer>
+  </PanelConsumer>
 );

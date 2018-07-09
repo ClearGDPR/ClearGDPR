@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { rectificationDetailsType } from 'types';
+import config from 'config';
+import internalFetch from 'helpers/internal-fetch';
+
 import { RectificationsConsumer } from './RectificationsContext';
 import { PanelConsumer } from 'containers/MainLayout/PanelContext';
 import Details from 'components/Rectifications/Details';
@@ -9,24 +11,32 @@ import Details from 'components/Rectifications/Details';
 export class DetailsContainer extends React.Component {
   static propTypes = {
     approveRectification: PropTypes.func,
-    rectification: rectificationDetailsType.isRequired,
+    rectificationId: PropTypes.number,
     closePanel: PropTypes.func
   };
 
   state = {
-    errors: {}
+    rectification: {}
   };
+
+  componentDidMount() {
+    internalFetch(
+      `${config.API_URL}/api/management/subjects/rectification-requests/${
+        this.props.rectificationId
+      }`
+    ).then(rectification => this.setState({ rectification }));
+  }
 
   onApprove() {
     return this.props
-      .approveRectification(this.props.rectification.id)
+      .approveRectification(this.state.rectification.id)
       .then(() => this.props.closePanel());
   }
 
   render() {
     return (
       <Details
-        rectification={this.props.rectification}
+        rectification={this.state.rectification}
         onApprove={this.onApprove.bind(this)}
         isLoading={this.state.isLoading}
       />

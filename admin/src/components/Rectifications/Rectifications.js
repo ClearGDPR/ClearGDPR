@@ -17,6 +17,7 @@ const Rectifications = ({
   pageCount,
   currentPage,
   onPageSelected,
+  onDetailsClick,
   data
 }) => {
   function renderTableHeading(showStatus = false) {
@@ -43,7 +44,13 @@ const Rectifications = ({
             <td>{value.request_reason}</td>
             {showStatus && <td>{value.status}</td>}
             <td>
-              <button className="ui-action btn" onClick={e => {}}>
+              <button
+                className="ui-action btn"
+                onClick={e => {
+                  e.preventDefault();
+                  onDetailsClick(value.id);
+                }}
+              >
                 Details
               </button>
             </td>
@@ -140,6 +147,7 @@ Rectifications.propTypes = {
   pageCount: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   onPageSelected: PropTypes.func.isRequired,
+  onDetailsClick: PropTypes.func.isRequired,
   data: PropTypes.array.isRequired
 };
 
