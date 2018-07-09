@@ -1,4 +1,4 @@
-import { shape, number, string, arrayOf } from 'prop-types';
+import { shape, number, string, arrayOf, object } from 'prop-types';
 
 export const processorType = shape({
   id: number,
@@ -11,4 +11,12 @@ export const processorType = shape({
 export const userType = shape({
   id: number,
   username: string
+});
+
+export const rectificationDetailsType = shape({
+  id: number,
+  currentData: object,
+  updates: object,
+  createdAt: string,
+  status: string
 });
