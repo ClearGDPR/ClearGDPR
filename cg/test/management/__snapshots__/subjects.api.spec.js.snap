@@ -1,31 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`List subjects that have given consent Show rectification requests Should error if the rectification request subject has no key 1`] = `
-Object {
-  "error": "Decryption key not found",
-}
-`;
-
-exports[`List subjects that have given consent Update rectification request status Should error if no status is provided 1`] = `
-Object {
-  "error": "Bad Request",
-  "message": "child \\"status\\" fails because [\\"status\\" is required]",
-  "statusCode": 400,
-  "validation": Object {
-    "keys": Array [
-      "status",
-    ],
-    "source": "body",
-  },
-}
-`;
-
-exports[`List subjects that have given consent Update rectification request status Should error when approving if the user's key does not exist 1`] = `
-Object {
-  "error": "Decryption key not found",
-}
-`;
-
 exports[`List subjects that have given consent should not allow a page query with a negative page number 1`] = `
 Object {
   "error": "Bad Request",
@@ -65,5 +39,31 @@ Object {
     ],
     "source": "query",
   },
+}
+`;
+
+exports[`Show rectification requests Should error if the rectification request subject has no key 1`] = `
+Object {
+  "error": "Decryption key not found",
+}
+`;
+
+exports[`Update rectification request status Should error if no status is provided 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"status\\" fails because [\\"status\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "status",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Update rectification request status Should error when approving if the user's key does not exist 1`] = `
+Object {
+  "error": "Decryption key not found",
 }
 `;

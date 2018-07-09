@@ -109,8 +109,8 @@ describe('Processors listening for blockchain events', () => {
     const fakeControllerResponse = nock(process.env.CONTROLLER_URL)
       .get(() => true)
       .reply(200, fakeUserData);
-    await recordConsentGivenTo(subjectId, []);
 
+    await recordConsentGivenTo(subjectId, []);
     setTimeout(async () => {
       // check that a request was made in response to the blockchain consent event
       expect(fakeControllerResponse.isDone()).toEqual(false);
@@ -122,14 +122,12 @@ describe('Processors listening for blockchain events', () => {
     //GIVEN
     helpers.inControllerMode.mockImplementation(() => false);
     helpers.getMyAddress.mockImplementation(() => '0xedbbe1fa6bc80f55c9ac7e351b777874142baaf8');
-
     let subjectId = sha3('589');
     const encryptionKey = encryption.generateClientKey();
     await db('subjects').insert({
       id: subjectId,
       personal_data: encryptForStorage(JSON.stringify({ data: 'some data' }), encryptionKey)
     });
-
     await db('subject_keys').insert({
       subject_id: subjectId,
       key: encryptionKey
@@ -151,10 +149,8 @@ describe('Processors listening for blockchain events', () => {
       expect(fakeControllerResponse.isDone()).toEqual(true);
       const [subject] = await db('subjects').where({ id: subjectId });
       const [key] = await db('subject_keys').where({ subject_id: subjectId });
-
       let decryptedJson = decryptFromStorage(subject.personal_data, key.key);
       const decryptedPersonalData = JSON.parse(decryptedJson);
-
       // expect that the personal data was stored appropriately
       expect(decryptedPersonalData).toEqual(expect.objectContaining(fakeUserData));
       done();
