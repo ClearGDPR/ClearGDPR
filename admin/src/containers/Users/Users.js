@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { userType } from 'types';
 import { PanelConsumer } from 'containers/MainLayout/PanelContext';
 import { UsersConsumer } from './UsersContext';
 
@@ -12,7 +13,7 @@ import DeleteUser from './DeleteUser';
 export class UsersContainer extends React.Component {
   static propTypes = {
     openPanel: PropTypes.func,
-    users: PropTypes.arrayOf(PropTypes.object),
+    users: PropTypes.arrayOf(userType),
     isLoading: PropTypes.bool,
     fetchUsers: PropTypes.func
   };

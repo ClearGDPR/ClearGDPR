@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { userType } from 'types';
 import Card from 'components/core/cards/dashboard/Card';
 import Loader from 'components/core/cards/dashboard/Loader';
 
@@ -84,7 +85,7 @@ const Users = ({
 };
 
 Users.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.object),
+  users: PropTypes.arrayOf(userType),
   onChangePasswordClick: PropTypes.func.isRequired,
   onDeleteClick: PropTypes.func.isRequired,
   onRegisterUserClick: PropTypes.func.isRequired,
