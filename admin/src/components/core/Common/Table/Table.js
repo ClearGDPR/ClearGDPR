@@ -17,22 +17,27 @@ const Table = ({ rows, columns, actions }) => {
       <thead>
         <tr>
           {Object.keys(tableColums).map(key => <th key={key}>{columns[key].title}</th>)}
-          {actions.length && <th>Actions</th>}
+          {actions && actions.length && <th>Actions</th>}
         </tr>
       </thead>
       <tbody>
         {rows.map((item, i) => (
           <tr key={i}>
             {Object.keys(tableColums).map(key => <td key={key}>{item[key]}</td>)}
-            {actions.length && (
-              <td>
-                {actions.map((action, i) => (
-                  <button key={i} className="ui-action btn" onClick={e => action.onClick(e, item)}>
-                    {action.label}
-                  </button>
-                ))}
-              </td>
-            )}
+            {actions &&
+              actions.length && (
+                <td>
+                  {actions.map((action, i) => (
+                    <button
+                      key={i}
+                      className="ui-action btn"
+                      onClick={e => action.onClick(e, item)}
+                    >
+                      {action.label}
+                    </button>
+                  ))}
+                </td>
+              )}
           </tr>
         ))}
       </tbody>
