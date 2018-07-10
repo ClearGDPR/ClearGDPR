@@ -5,7 +5,7 @@ import { RectificationsConsumer } from 'containers/Rectifications/Rectifications
 import { PanelConsumer } from 'containers/MainLayout/PanelContext';
 
 import Rectifications from 'components/Rectifications/Rectifications';
-import Details from 'components/Rectifications/Details';
+import Details from 'containers/Rectifications/Details';
 
 export class RectificationsContainer extends React.Component {
   static propTypes = {
@@ -107,6 +107,7 @@ export default props => (
             fetchPendingRectifications={fetchPendingRectifications}
             fetchProcessedRectifications={fetchProcessedRectifications}
             fetchAllRectifications={fetchAllRectifications}
+            openPanel={openPanel}
             isLoading={isLoading}
           />
         )}

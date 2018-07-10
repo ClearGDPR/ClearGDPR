@@ -9,18 +9,11 @@ const Details = ({ rectification, onApprove, isLoading }) => {
   function renderDetails() {
     return (
       <React.Fragment>
-        <p>Created at:</p>
-        <p>
-          <pre>{rectification.created_at}</pre>
-        </p>
+        <p>Created at: {rectification.created_at}</p>
         <p>Current data:</p>
-        <p>
-          <pre>{rectification.currentData}</pre>
-        </p>
+        <pre>{rectification.currentData}</pre>
         <p>Updates:</p>
-        <p>
-          <pre>{rectification.updates}</pre>
-        </p>
+        <pre>{rectification.updates}</pre>
         <p>Status: {rectification.status}</p>
         <button
           type="button"

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { format } from 'date-fns';
 
 import config from 'config';
 import internalFetch from 'helpers/internal-fetch';
@@ -12,7 +13,8 @@ export class DetailsContainer extends React.Component {
   static propTypes = {
     approveRectification: PropTypes.func,
     rectificationId: PropTypes.number,
-    closePanel: PropTypes.func
+    closePanel: PropTypes.func,
+    isLoading: PropTypes.bool
   };
 
   state = {
@@ -20,11 +22,31 @@ export class DetailsContainer extends React.Component {
   };
 
   componentDidMount() {
+    this.setState({
+      isLoading: true
+    });
+
     internalFetch(
       `${config.API_URL}/api/management/subjects/rectification-requests/${
         this.props.rectificationId
       }`
-    ).then(rectification => this.setState({ rectification }));
+    )
+      .then(r =>
+        this.setState({
+          rectification: {
+            created_at: format(new Date(r.createdAt), 'DD/MM/YYYY h:mma'),
+            currentData: JSON.stringify(r.currentData, null, 2),
+            updates: JSON.stringify(r.updates, null, 2),
+            status: r.status
+          },
+          isLoading: false
+        })
+      )
+      .catch(() => this.setState({ isLoading: false }));
+  }
+
+  get isLoading() {
+    return this.state.isLoading || this.props.isLoading;
   }
 
   onApprove() {
@@ -38,7 +60,7 @@ export class DetailsContainer extends React.Component {
       <Details
         rectification={this.state.rectification}
         onApprove={this.onApprove.bind(this)}
-        isLoading={this.state.isLoading}
+        isLoading={this.isLoading}
       />
     );
   }
