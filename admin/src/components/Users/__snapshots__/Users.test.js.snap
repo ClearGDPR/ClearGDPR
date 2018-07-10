@@ -82,145 +82,50 @@ exports[`(Component) Users should render when not loading correctly 1`] = `
         <div
           className="content"
         >
-          <table
-            className="responsive-table"
-          >
-            <thead>
-              <tr>
-                <th>
-                  ID
-                </th>
-                <th>
-                  Username
-                </th>
-                <th>
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                key="0"
-              >
-                <td
-                  data-label="ID"
-                >
-                  1
-                </td>
-                <td
-                  data-label="Username"
-                >
-                  admin
-                </td>
-                <td
-                  data-label="Actions"
-                >
-                  <button
-                    className="ui-action btn"
-                    onClick={[Function]}
-                  >
-                    Change password
-                  </button>
-                  <button
-                    className="ui-action btn"
-                    onClick={[Function]}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr
-                key="1"
-              >
-                <td
-                  data-label="ID"
-                >
-                  2
-                </td>
-                <td
-                  data-label="Username"
-                >
-                  joe
-                </td>
-                <td
-                  data-label="Actions"
-                >
-                  <button
-                    className="ui-action btn"
-                    onClick={[Function]}
-                  >
-                    Change password
-                  </button>
-                  <button
-                    className="ui-action btn"
-                    onClick={[Function]}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr
-                key="2"
-              >
-                <td
-                  data-label="ID"
-                >
-                  3
-                </td>
-                <td
-                  data-label="Username"
-                >
-                  marc
-                </td>
-                <td
-                  data-label="Actions"
-                >
-                  <button
-                    className="ui-action btn"
-                    onClick={[Function]}
-                  >
-                    Change password
-                  </button>
-                  <button
-                    className="ui-action btn"
-                    onClick={[Function]}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr
-                key="3"
-              >
-                <td
-                  data-label="ID"
-                >
-                  4
-                </td>
-                <td
-                  data-label="Username"
-                >
-                  gina
-                </td>
-                <td
-                  data-label="Actions"
-                >
-                  <button
-                    className="ui-action btn"
-                    onClick={[Function]}
-                  >
-                    Change password
-                  </button>
-                  <button
-                    className="ui-action btn"
-                    onClick={[Function]}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <Table
+            actions={
+              Array [
+                Object {
+                  "label": "Change password",
+                  "onClick": [Function],
+                },
+                Object {
+                  "label": "Delete",
+                  "onClick": [Function],
+                },
+              ]
+            }
+            columns={
+              Object {
+                "id": Object {
+                  "title": "ID",
+                },
+                "username": Object {
+                  "title": "Username",
+                },
+              }
+            }
+            rows={
+              Array [
+                Object {
+                  "id": 1,
+                  "username": "admin",
+                },
+                Object {
+                  "id": 2,
+                  "username": "joe",
+                },
+                Object {
+                  "id": 3,
+                  "username": "marc",
+                },
+                Object {
+                  "id": 4,
+                  "username": "gina",
+                },
+              ]
+            }
+          />
         </div>
       </Card>
     </div>
