@@ -5,10 +5,16 @@ import { format } from 'date-fns';
 import TableCard from 'components/core/cards/dashboard/TableCard';
 
 const SubjectsList = ({ subjects, isLoading, errorState }) => {
-  const header = ['id', 'firstname', 'email', 'consented_on'];
+  const columns = {
+    id: { title: 'ID' },
+    firstname: { title: 'First Name' },
+    email: { title: 'Email' },
+    consented_on: { title: 'Consented' }
+  };
+
   // TODO: loading?1
 
-  // once we start reaching into data here, this code becomes janky since data is not ours
+  // Once we start reaching into data here, this code becomes janky since data is not ours
   const rows = subjects.map(subject => {
     return {
       id: subject.id,
@@ -17,9 +23,10 @@ const SubjectsList = ({ subjects, isLoading, errorState }) => {
       email: subject.data.email
     };
   });
+
   return (
     <React.Fragment>
-      <TableCard header={header} rows={rows} title="Subjects" />
+      <TableCard columns={columns} rows={rows} title="Subjects" />
     </React.Fragment>
   );
 };
