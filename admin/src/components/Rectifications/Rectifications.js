@@ -5,9 +5,36 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import 'theme/Tabs.css';
 
+import Table from 'components/core/Common/Table/Table';
 import Loader from 'components/core/cards/dashboard/Loader';
 import Card from 'components/core/cards/dashboard/Card';
 import Paginate from 'components/core/Paginate';
+
+const actions = ({ onDetailsClick }) => [
+  {
+    label: 'Details',
+    onClick: (e, item) => {
+      e.preventDefault();
+      onDetailsClick(item.id);
+    }
+  }
+];
+
+const columns = ({ showStatus } = { showStatus: false }) => ({
+  id: {
+    title: 'ID'
+  },
+  created_at: {
+    title: 'Created at'
+  },
+  request_reason: {
+    title: 'Reason'
+  },
+  status: {
+    title: 'Status',
+    filter: () => showStatus
+  }
+});
 
 const Rectifications = ({
   isLoading,
@@ -20,46 +47,6 @@ const Rectifications = ({
   onDetailsClick,
   data
 }) => {
-  function renderTableHeading(showStatus = false) {
-    return (
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Created at</th>
-          <th>Reason</th>
-          {showStatus && <th>Status</th>}
-          <th>Actions</th>
-        </tr>
-      </thead>
-    );
-  }
-
-  function renderTableBody(showStatus = false) {
-    return (
-      <tbody>
-        {data.map((value, index) => (
-          <tr key={index}>
-            <td>{value.id}</td>
-            <td>{value.created_at}</td>
-            <td>{value.request_reason}</td>
-            {showStatus && <td>{value.status}</td>}
-            <td>
-              <button
-                className="ui-action btn"
-                onClick={e => {
-                  e.preventDefault();
-                  onDetailsClick(value.id);
-                }}
-              >
-                Details
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    );
-  }
-
   function handlePageClick(page) {
     onPageSelected(page);
   }
@@ -79,10 +66,7 @@ const Rectifications = ({
     return (
       <React.Fragment>
         <div className="content">
-          <table className="responsive-table">
-            {renderTableHeading()}
-            {renderTableBody()}
-          </table>
+          <Table rows={data} columns={columns()} actions={actions({ onDetailsClick })} />
         </div>
         <div className="content">{renderPagination()}</div>
       </React.Fragment>
@@ -93,10 +77,11 @@ const Rectifications = ({
     return (
       <React.Fragment>
         <div className="content">
-          <table className="responsive-table">
-            {renderTableHeading(true)}
-            {renderTableBody(true)}
-          </table>
+          <Table
+            rows={data}
+            columns={columns({ showStatus: true })}
+            actions={actions({ onDetailsClick })}
+          />
         </div>
         <div className="content">{renderPagination()}</div>
       </React.Fragment>
