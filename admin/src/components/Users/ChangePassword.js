@@ -7,16 +7,13 @@ import Loader from 'components/core/cards/dashboard/Loader';
 
 export class ChangePassword extends React.Component {
   static propTypes = {
-    isLoading: PropTypes.bool,
     validatePassword: PropTypes.func,
     touched: PropTypes.object,
     errors: PropTypes.object
   };
 
   render() {
-    return this.props.isLoading ? (
-      <Loader />
-    ) : (
+    return (
       <React.Fragment>
         <TextInput
           label="New password"
@@ -53,15 +50,19 @@ export class ChangePassword extends React.Component {
 }
 
 const changePasswordForm = props => (
-  <Form onSubmit={submittedValues => props.onSubmit(submittedValues)}>
-    {({ formState }) => (
-      <ChangePassword
-        {...props}
-        errors={{ ...props.errors, ...formState.errors }}
-        touched={formState.touched}
-      />
-    )}
-  </Form>
+  props.isLoading ? (
+    <Loader />
+  ) : (
+    <Form onSubmit={submittedValues => props.onSubmit(submittedValues)}>
+      {({ formState }) => (
+        <ChangePassword
+          {...props}
+          errors={{ ...props.errors, ...formState.errors }}
+          touched={formState.touched}
+        />
+      )}
+    </Form>
+  )
 );
 
 changePasswordForm.propTypes = {

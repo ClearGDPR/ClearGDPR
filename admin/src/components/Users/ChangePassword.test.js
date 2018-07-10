@@ -39,7 +39,7 @@ describe('(Component) Change Password', () => {
     const { component } = setupShallow({ onSubmit, validatePassword });
 
 
-    console.log(component.debug());
+    // console.log(component.debug());
 
     // const form = component.find('form');
     // form.simulate('submit');
@@ -88,7 +88,6 @@ describe('(Component) Change Password', () => {
     });
 
     const newPasswordInput = component.find('TextInput[field="newPassword"]').at(0);
-
     expect(newPasswordInput.props().error).toBeFalsy();
   });
 

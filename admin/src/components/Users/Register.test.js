@@ -13,7 +13,9 @@ const setupShallow = propOverrides => {
 };
 
 const setupMount = propOverrides => {
-  const props = Object.assign({}, propOverrides);
+  const props = Object.assign({
+    isLoading: false
+  }, propOverrides);
   const component = mount(<RegisterForm {...props} />);
 
   return { props, component };

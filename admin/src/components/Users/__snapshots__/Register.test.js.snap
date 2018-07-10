@@ -424,20 +424,178 @@ ShallowWrapper {
     "instance": null,
     "key": undefined,
     "nodeType": "function",
-    "props": Object {},
+    "props": Object {
+      "children": Array [
+        <TextInput
+          field="username"
+          label="Username"
+          placeholder="mick.bern"
+        />,
+        <TextInput
+          field="password"
+          label="New password"
+          placeholder="*********"
+          type="password"
+        />,
+        <div>
+          <input
+            className="btn"
+            type="submit"
+            value="Register"
+          />
+        </div>,
+      ],
+    },
     "ref": null,
-    "rendered": null,
-    "type": [Function],
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "error": undefined,
+          "field": "username",
+          "label": "Username",
+          "placeholder": "mick.bern",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "error": undefined,
+          "field": "password",
+          "label": "New password",
+          "placeholder": "*********",
+          "type": "password",
+          "validate": undefined,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <input
+            className="btn"
+            type="submit"
+            value="Register"
+          />,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "className": "btn",
+            "type": "submit",
+            "value": "Register",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": "input",
+        },
+        "type": "div",
+      },
+    ],
+    "type": Symbol(react.fragment),
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
       "nodeType": "function",
-      "props": Object {},
+      "props": Object {
+        "children": Array [
+          <TextInput
+            field="username"
+            label="Username"
+            placeholder="mick.bern"
+          />,
+          <TextInput
+            field="password"
+            label="New password"
+            placeholder="*********"
+            type="password"
+          />,
+          <div>
+            <input
+              className="btn"
+              type="submit"
+              value="Register"
+            />
+          </div>,
+        ],
+      },
       "ref": null,
-      "rendered": null,
-      "type": [Function],
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "error": undefined,
+            "field": "username",
+            "label": "Username",
+            "placeholder": "mick.bern",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "error": undefined,
+            "field": "password",
+            "label": "New password",
+            "placeholder": "*********",
+            "type": "password",
+            "validate": undefined,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <input
+              className="btn"
+              type="submit"
+              value="Register"
+            />,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "className": "btn",
+              "type": "submit",
+              "value": "Register",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": "input",
+          },
+          "type": "div",
+        },
+      ],
+      "type": Symbol(react.fragment),
     },
   ],
   Symbol(enzyme.__options__): Object {

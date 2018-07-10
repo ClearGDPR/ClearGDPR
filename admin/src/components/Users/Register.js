@@ -7,16 +7,13 @@ import Loader from 'components/core/cards/dashboard/Loader';
 
 export class Register extends React.Component {
   static propTypes = {
-    isLoading: PropTypes.bool,
     validatePassword: PropTypes.func,
     touched: PropTypes.object,
     errors: PropTypes.object
   };
 
   render() {
-    return this.props.isLoading ? (
-      <Loader />
-    ) : (
+    return (
       <React.Fragment>
         <TextInput
           label="Username"
@@ -51,15 +48,19 @@ export class Register extends React.Component {
 }
 
 const registerForm = props => (
-  <Form onSubmit={submittedValues => props.onSubmit(submittedValues)}>
-    {({ formState }) => (
-      <Register
-        {...props}
-        errors={{ ...formState.errors, ...props.errors }}
-        touched={formState.touched}
-      />
-    )}
-  </Form>
+  props.isLoading ? (
+    <Loader />
+  ) : (
+    <Form onSubmit={submittedValues => props.onSubmit(submittedValues)}>
+      {({ formState }) => (
+        <Register
+          {...props}
+          errors={{ ...formState.errors, ...props.errors }}
+          touched={formState.touched}
+        />
+      )}
+    </Form>
+  )
 );
 
 registerForm.propTypes = {
