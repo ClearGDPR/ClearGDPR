@@ -10,7 +10,6 @@ const DEMO_SCOPES = ['user:fullName', 'user:email', 'user:phoneNumber'];
 
 export class EditProcessor extends React.Component {
   static propTypes = {
-    isLoading: PropTypes.bool,
     onSetValues: PropTypes.func,
     values: PropTypes.object,
     touched: PropTypes.object,
@@ -18,6 +17,7 @@ export class EditProcessor extends React.Component {
   };
 
   componentDidMount() {
+    // TODO: This should be probably a helper function, and define a domain entity
     if (this.props.values && this.props.onSetValues) {
       const values = Object.assign({}, this.props.values);
       values.scopes = values.scopes.reduce((scopes, s) => {
@@ -29,9 +29,7 @@ export class EditProcessor extends React.Component {
   }
 
   render() {
-    return this.props.isLoading ? (
-      <Loader />
-    ) : (
+    return (
       <React.Fragment>
         <TextInput
           label="Processor name"
@@ -81,18 +79,21 @@ export class EditProcessor extends React.Component {
 }
 
 const EditProcessorForm = props => (
-  <Form
-    onSubmit={submittedValues => props.onSubmit(submittedValues)}
-    render={({ formApi, formState }) => (
-      <EditProcessor
-        {...props}
-        onSetValues={formApi.setValues}
-        errors={{ ...formState.errors, ...props.errors }}
-        touched={formState.touched}
-        values={props.values}
-      />
-    )}
-  />
+  props.isLoading ? (
+    <Loader />
+  ) : (
+    <Form onSubmit={submittedValues => props.onSubmit(submittedValues)}>
+      {({ formApi, formState }) => (
+        <EditProcessor
+          {...props}
+          onSetValues={formApi.setValues}
+          errors={{ ...formState.errors, ...props.errors }}
+          touched={formState.touched}
+          values={props.values}
+        />
+      )}
+    </Form>
+  )
 );
 
 EditProcessorForm.propTypes = {

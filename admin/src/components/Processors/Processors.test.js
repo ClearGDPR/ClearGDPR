@@ -1,16 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import Processors from './Processors';
 import * as ProcessorsDataFactory from 'tests/data/processors.factory';
 
 const setup = propOverrides => {
-  const props = Object.assign(
-    {
-      processors: ProcessorsDataFactory.getAll(),
-      isLoading: false
-    },
-    propOverrides
-  );
+  const props = Object.assign({
+    processors: ProcessorsDataFactory.getAll(),
+    isLoading: false,
+    onEditProcessorClick: jest.fn(),
+    onCreateProcessorClick: jest.fn(),
+    onDeleteProcessorClick: jest.fn(),
+  }, propOverrides);
 
   const component = shallow(<Processors {...props} />);
 
@@ -20,11 +21,11 @@ const setup = propOverrides => {
 describe('(Component) Processors', () => {
   it('should render when not loading correctly', () => {
     const { component } = setup();
-    expect(component).toMatchSnapshot();
+    expect(toJson(component)).toMatchSnapshot();
   });
 
   it('should render when loading correctly', () => {
     const { component } = setup({ isLoading: true });
-    expect(component).toMatchSnapshot();
+    expect(toJson(component)).toMatchSnapshot();
   });
 });
