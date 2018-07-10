@@ -4,7 +4,7 @@ import './Table.css';
 
 const Table = ({ rows, columns, actions }) => {
   const tableColums = Object.keys(columns)
-    .filter(col => columns[col].filter())
+    .filter(col => (columns[col].filter ? columns[col].filter() : true))
     .reduce((cols, key) => {
       return {
         ...cols,
