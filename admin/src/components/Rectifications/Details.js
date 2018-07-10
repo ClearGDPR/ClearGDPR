@@ -10,10 +10,12 @@ const Details = ({ rectification, onApprove, isLoading }) => {
   function renderObject(obj, level = 0) {
     if (!obj) return;
 
-    return Object.keys(obj).map(k => (
-      <React.Fragment>
+    return Object.keys(obj).map((k, index) => (
+      <React.Fragment key={index}>
         {level ? <br /> : ''}
-        {[...Array(level)].map(() => <React.Fragment>&nbsp;&nbsp;</React.Fragment>)}
+        {[...Array(level)].map((value, arrayIndex) => (
+          <React.Fragment key={arrayIndex}>&nbsp;&nbsp;</React.Fragment>
+        ))}
         {k}:&nbsp;
         {lodash.isObject(obj[k]) ? renderObject(obj[k], level + 1) : obj[k]}
         {!level ? <br /> : ''}
