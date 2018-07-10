@@ -22,4 +22,8 @@ TableCard.propTypes = {
   actions: PropTypes.array
 };
 
+TableCard.defaultProps = {
+  cols: 12
+};
+
 export default TableCard;
