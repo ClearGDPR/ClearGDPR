@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(Component) Processors should render 1`] = `
+exports[`(Component) SubjectList should render 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
@@ -149,7 +149,7 @@ ShallowWrapper {
 }
 `;
 
-exports[`(Component) Processors should render if loading 1`] = `
+exports[`(Component) SubjectList should render if loading 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],

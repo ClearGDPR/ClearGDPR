@@ -4,9 +4,7 @@ import { VictoryPie, VictoryContainer, VictoryLabel } from 'victory';
 
 import Card from './Card';
 
-const data = [{ x: 10.349, y: 70 }, { x: 1.832, y: 30 }];
-
-const Chart = () => {
+const Chart = ({ data }) => {
   return (
     <VictoryPie
       colorScale={['#82efa6', '#191c27']}
@@ -26,12 +24,12 @@ const Chart = () => {
 
 const GraphCard = props => {
   return (
-    <Card cols={props.cols} title={props.data.title} onClick={props.onClick}>
+    <Card cols={props.cols} title={props.title} onClick={props.onClick}>
       <div className="graph-card">
         <div className="graph">
-          <Chart />
+          <Chart data={props.data} />
         </div>
-        <p className="number">89%</p>
+        <p className="number">{props.text}</p>
       </div>
     </Card>
   );

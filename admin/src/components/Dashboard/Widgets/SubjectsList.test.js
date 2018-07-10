@@ -17,7 +17,7 @@ const props = {
   errorState: false
 };
 
-describe('(Component) Processors', () => {
+describe('(Component) SubjectList', () => {
   it('should render', () => {
     const component = shallow(<SubjectsList {...props} />);
     expect(component).toMatchSnapshot();

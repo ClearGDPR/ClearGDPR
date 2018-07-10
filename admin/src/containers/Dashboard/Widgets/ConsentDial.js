@@ -11,16 +11,22 @@ export class ConsentDialContainer extends React.Component {
   };
   componentDidMount() {
     internalFetch(`${config.API_URL}/api/management/stats`)
-      .then(({ data }) => {
-        this.setState({ data, loading: false });
+      .then(({ data: { controller } }) => {
+        this.setState({ loading: false, data: controller });
       })
       .catch(err => {
         toast.error(err.message);
         this.setState({ loading: false });
       });
   }
+
   render() {
-    return <ConsentDial data={this.state.data.consented || 1} />;
+    return (
+      <ConsentDial
+        consented={this.state.data.consented}
+        unconsented={this.state.data.unconsented}
+      />
+    );
   }
 }
 
