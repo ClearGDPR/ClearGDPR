@@ -35,8 +35,8 @@ export class DetailsContainer extends React.Component {
         this.setState({
           rectification: {
             created_at: format(new Date(r.createdAt), 'DD/MM/YYYY h:mma'),
-            currentData: JSON.stringify(r.currentData, null, 2),
-            updates: JSON.stringify(r.updates, null, 2),
+            currentData: r.currentData,
+            updates: r.updates,
             status: r.status
           },
           isLoading: false

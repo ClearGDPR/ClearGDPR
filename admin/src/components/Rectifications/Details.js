@@ -1,19 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import lodash from 'lodash';
 
 import { rectificationDetailsType } from 'types';
 
 import Loader from 'components/core/cards/dashboard/Loader';
 
 const Details = ({ rectification, onApprove, isLoading }) => {
+  function renderObject(obj, level = 0) {
+    if (!obj) return;
+
+    return Object.keys(obj).map(k => (
+      <React.Fragment>
+        {level ? <br /> : ''}
+        {[...Array(level)].map(() => <React.Fragment>&nbsp;&nbsp;</React.Fragment>)}
+        {k}:&nbsp;
+        {lodash.isObject(obj[k]) ? renderObject(obj[k], level + 1) : obj[k]}
+        {!level ? <br /> : ''}
+      </React.Fragment>
+    ));
+  }
+
   function renderDetails() {
     return (
       <React.Fragment>
-        <p>Created at: {rectification.created_at}</p>
-        <p>Current data:</p>
-        <pre>{rectification.currentData}</pre>
-        <p>Updates:</p>
-        <pre>{rectification.updates}</pre>
+        <p>
+          <strong>Created at:</strong> {rectification.created_at}
+        </p>
+        <p>
+          <strong>Current data:</strong>
+        </p>
+        <p>{renderObject(rectification.currentData)}</p>
+        <p>
+          <strong>Updates:</strong>
+        </p>
+        <p>{renderObject(rectification.updates)}</p>
         <p>Status: {rectification.status}</p>
         <button
           type="button"
