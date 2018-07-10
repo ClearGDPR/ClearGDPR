@@ -2,19 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from './Card';
+import Table from 'components/core/Common/Table';
 
 const TableCard = props => {
   return (
     <Card cols={12} title={props.title}>
       <div className="content">
-        <table className="responsive-table">
-          <thead>
-            <tr>{props.header.map(h => <th key={h}>{h}</th>)}</tr>
-          </thead>
-          <tbody>
-            {props.rows.map(row => <tr>{props.header.map(header => <td>{row[header]}</td>)}</tr>)}
-          </tbody>
-        </table>
+        <Table rows={props.rows} columns={props.header} actions={props.actions} />
       </div>
     </Card>
   );
@@ -23,7 +17,8 @@ const TableCard = props => {
 TableCard.propTypes = {
   header: PropTypes.array,
   title: PropTypes.string,
-  rows: PropTypes.array
+  rows: PropTypes.array,
+  actions: PropTypes.array
 };
 
 export default TableCard;
