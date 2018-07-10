@@ -34,7 +34,16 @@ const Overview = props => {
           <ChartCard cols="5" data={{ title: 'Requests - Last 7 days' }} />
         </div>
         <div className="row">
-          <TableCard cols="8" data={{ title: 'Some Table' }} onClick={props.onClick} />
+          <TableCard
+            cols={8}
+            title="Some Table"
+            rows={[{ test1: 'value 1', test2: 'value 2', test3: 'value 3' }]}
+            columns={{
+              test1: { title: 'title 1' },
+              test2: { title: 'title 2' },
+              test3: { title: 'title 3' }
+            }}
+          />
         </div>
       </section>
     </React.Fragment>
