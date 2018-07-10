@@ -3,6 +3,7 @@
 exports[`(Component) SubjectList should render 1`] = `
 <React.Fragment>
   <TableCard
+    cols={12}
     columns={
       Object {
         "consented_on": Object {
@@ -37,6 +38,7 @@ exports[`(Component) SubjectList should render 1`] = `
 exports[`(Component) SubjectList should render if loading 1`] = `
 <React.Fragment>
   <TableCard
+    cols={12}
     columns={
       Object {
         "consented_on": Object {

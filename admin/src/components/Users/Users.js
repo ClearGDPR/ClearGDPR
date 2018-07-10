@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { userType } from 'types';
+import Table from 'components/core/Common/Table/Table';
 import Card from 'components/core/cards/dashboard/Card';
 import Loader from 'components/core/cards/dashboard/Loader';
 
@@ -28,22 +29,29 @@ const Users = ({
     onRegisterUserClick();
   }
 
-  function renderUsers() {
-    return users.map((user, idx) => (
-      <tr key={idx}>
-        <td data-label="ID">{user.id}</td>
-        <td data-label="Username">{user.username}</td>
-        <td data-label="Actions">
-          <button className="ui-action btn" onClick={e => onChangePasswordClickHandler(e, user.id)}>
-            Change password
-          </button>
-          <button className="ui-action btn" onClick={e => onDeleteClickHandler(e, user.id)}>
-            Delete
-          </button>
-        </td>
-      </tr>
-    ));
-  }
+  const actions = [
+    {
+      label: 'Change password',
+      onClick: (e, user) => {
+        onChangePasswordClickHandler(e, user.id);
+      }
+    },
+    {
+      label: 'Delete',
+      onClick: (e, user) => {
+        onDeleteClickHandler(e, user.id);
+      }
+    }
+  ];
+
+  const columns = {
+    id: {
+      title: 'ID'
+    },
+    username: {
+      title: 'Username'
+    }
+  };
 
   return (
     <React.Fragment>
@@ -61,20 +69,7 @@ const Users = ({
         <div className="row">
           <Card cols={8}>
             <div className="content">
-              {!isLoading ? (
-                <table className="responsive-table">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Username</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>{renderUsers()}</tbody>
-                </table>
-              ) : (
-                <Loader />
-              )}
+              {!isLoading ? <Table rows={users} columns={columns} actions={actions} /> : <Loader />}
             </div>
           </Card>
         </div>
