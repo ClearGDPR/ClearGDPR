@@ -37,6 +37,7 @@ class SubjectsService {
     
     let processorIdsWithAddresses;  
     if(subjectExists) throw new Unauthorized('Subject already gave consent, please use the update-consent endpoint');   
+    let processorIdsWithAddresses;
     await this.db.transaction(async trx => {
       await this._initializeUserInTransaction(trx, subjectId, personalData);
       processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(trx, processorsConsented);
@@ -61,6 +62,7 @@ class SubjectsService {
   
     let processorIdsWithAddresses;    
     if(!subjectExists) throw new NotFound('Subject not found, please use the give-consent endpoint');
+    let processorIdsWithAddresses;
     await this.db.transaction(async trx => {
       processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(trx, processorsConsented);
       if (processorIdsWithAddresses.length !== processorsConsented.length) {
