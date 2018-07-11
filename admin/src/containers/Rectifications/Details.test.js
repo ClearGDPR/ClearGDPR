@@ -1,9 +1,11 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import { format } from 'date-fns';
 import { toast } from 'react-toastify';
-import { flushPromises } from 'tests/helpers/TestUtils';
+
 import internalFetch from 'helpers/internal-fetch';
+import { flushPromises } from 'tests/helpers/TestUtils';
 
 import { DetailsContainer } from './Details';
 
@@ -38,30 +40,28 @@ beforeEach(() => {
 });
 
 const setup = propOverrides => {
-  const props = Object.assign(
-    {
-      approveRectification: jest.fn(),
-      rectificationId: 1,
-      closePanel: jest.fn(),
-      isLoading: false
-    },
-    propOverrides
-  );
+  const props = {
+    approveRectification: jest.fn(),
+    rectificationId: 1,
+    closePanel: jest.fn(),
+    isLoading: false,
+    ...propOverrides
+  };
   const component = shallow(<DetailsContainer {...props} />);
   const mounted = mount(<DetailsContainer {...props} />);
 
   return { props, component, mounted };
 };
 
-describe('(Component) Rectification details', () => {
+describe('(Container) Rectification details', () => {
   it('should render when not loading correctly', () => {
     const { component } = setup();
-    expect(component).toMatchSnapshot();
+    expect(toJson(component)).toMatchSnapshot();
   });
 
   it('should render when loading correctly', () => {
-    const component = setup({ isLoading: true });
-    expect(component).toMatchSnapshot();
+    const { component } = setup({ isLoading: true });
+    expect(toJson(component)).toMatchSnapshot();
   });
 
   it('should have correct state after mounting', async () => {
