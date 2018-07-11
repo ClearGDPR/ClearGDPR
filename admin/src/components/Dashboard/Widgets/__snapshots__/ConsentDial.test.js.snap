@@ -1,159 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(Component) ConsentDial should render 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ConsentDial
-    data={
+<GraphCard
+  cols={2}
+  data={
+    Array [
       Object {
-        "consented": 1,
-        "unconsented": 10,
-      }
-    }
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "function",
-    "props": Object {
-      "cols": 2,
-      "data": Array [
-        Object {
-          "x": "Consented",
-          "y": undefined,
-        },
-        Object {
-          "x": "Not Consented",
-          "y": undefined,
-        },
-      ],
-      "size": 2,
-      "text": "100% of subjects have consented",
-      "title": "Consented Vs Not Consented Subjects",
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "cols": 2,
-        "data": Array [
-          Object {
-            "x": "Consented",
-            "y": undefined,
-          },
-          Object {
-            "x": "Not Consented",
-            "y": undefined,
-          },
-        ],
-        "size": 2,
-        "text": "100% of subjects have consented",
-        "title": "Consented Vs Not Consented Subjects",
+        "x": "Consented",
+        "y": undefined,
       },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
+      Object {
+        "x": "Not Consented",
+        "y": undefined,
       },
-    },
-  },
-}
+    ]
+  }
+  text="100% of subjects have consented"
+  title="Consented Vs Not Consented Subjects"
+/>
 `;
 
 exports[`(Component) ConsentDial should render if numbers are 0 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ConsentDial
-    data={
+<GraphCard
+  cols={2}
+  data={
+    Array [
       Object {
-        "consented": 0,
-        "unconsented": 0,
-      }
-    }
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "function",
-    "props": Object {
-      "cols": 2,
-      "data": Array [
-        Object {
-          "x": "Consented",
-          "y": undefined,
-        },
-        Object {
-          "x": "Not Consented",
-          "y": undefined,
-        },
-      ],
-      "size": 2,
-      "text": "100% of subjects have consented",
-      "title": "Consented Vs Not Consented Subjects",
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "cols": 2,
-        "data": Array [
-          Object {
-            "x": "Consented",
-            "y": undefined,
-          },
-          Object {
-            "x": "Not Consented",
-            "y": undefined,
-          },
-        ],
-        "size": 2,
-        "text": "100% of subjects have consented",
-        "title": "Consented Vs Not Consented Subjects",
+        "x": "Consented",
+        "y": undefined,
       },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
+      Object {
+        "x": "Not Consented",
+        "y": undefined,
       },
-    },
-  },
-}
+    ]
+  }
+  text="100% of subjects have consented"
+  title="Consented Vs Not Consented Subjects"
+/>
 `;

@@ -3,6 +3,7 @@ import ConsentDialContainer from './ConsentDial';
 import { shallow, mount } from 'enzyme';
 import { flushPromises } from 'tests/helpers/TestUtils';
 import session from 'helpers/Session';
+import toJson from 'enzyme-to-json';
 
 jest.mock('helpers/Session');
 
@@ -50,6 +51,6 @@ describe('(Container) SubjectsList', () => {
     const component = shallow(<ConsentDialContainer />);
 
     await flushPromises();
-    expect(component).toMatchSnapshot();
+    expect(toJson(component)).toMatchSnapshot();
   });
 });
