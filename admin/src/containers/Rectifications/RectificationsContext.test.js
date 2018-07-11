@@ -85,12 +85,7 @@ describe('RectificationsProvider', () => {
   it('should have correct state after fetching all rectifications', async () => {
     let i = 0;
     internalFetch.mockImplementation(() =>
-      Promise.resolve({
-        status: 200,
-        json: () => {
-          return 0 === i++ ? pendingRectifications : processedRectifications;
-        }
-      })
+      Promise.resolve(0 === i++ ? pendingRectifications : processedRectifications)
     );
 
     const { component } = setup();
@@ -109,12 +104,7 @@ describe('RectificationsProvider', () => {
   });
 
   it('should have correct state after fetching pending rectifications', async () => {
-    internalFetch.mockReturnValue(
-      Promise.resolve({
-        status: 200,
-        json: () => pendingRectifications
-      })
-    );
+    internalFetch.mockReturnValue(Promise.resolve(pendingRectifications));
 
     const { component } = setup();
     await component.instance().fetchPendingRectifications();
@@ -132,12 +122,7 @@ describe('RectificationsProvider', () => {
   });
 
   it('should have correct state after fetching processed rectifications', async () => {
-    internalFetch.mockReturnValue(
-      Promise.resolve({
-        status: 200,
-        json: () => processedRectifications
-      })
-    );
+    internalFetch.mockReturnValue(Promise.resolve(processedRectifications));
 
     const { component } = setup();
     await component.instance().fetchProcessedRectifications();
@@ -154,13 +139,8 @@ describe('RectificationsProvider', () => {
     expect(state.processedRectifications).toMatchSnapshot();
   });
 
-  it('Should toast.error when the API gives a bad response', async () => {
-    internalFetch.mockReturnValue(
-      Promise.resolve({
-        status: 404,
-        json: () => ({ error: 'Error message' })
-      })
-    );
+  it('Should show toast.error and have correct state when calling API returns error', async () => {
+    internalFetch.mockReturnValue(Promise.reject(new Error('Error message')));
 
     const { component } = setup();
 
@@ -170,38 +150,18 @@ describe('RectificationsProvider', () => {
       //not-empty
     }
 
-    expect(toast.error).toHaveBeenCalledWith('An error occurred: Error message');
-  });
-
-  it('should throw error when fetching all rectifications returned HTTP 500', async () => {
-    internalFetch.mockReturnValue(
-      Promise.resolve({
-        status: 500
-      })
-    );
-
-    const { component } = setup();
-
-    await component.instance().fetchAllRectifications();
-
     expect(component.state()).toEqual(
       expect.objectContaining({
         isLoading: false
       })
     );
+    expect(toast.error).toHaveBeenCalledWith('An error occurred: Error message');
   });
 
   it('should refresh rectifications after approval', async () => {});
 
   it('should render correctly', async () => {
-    global.fetch = jest.fn().mockImplementationOnce(() =>
-      Promise.resolve({
-        status: 200,
-        json: () => {
-          return pendingRectifications;
-        }
-      })
-    );
+    internalFetch.mockReturnValue(Promise.resolve(pendingRectifications));
 
     const { component } = setup();
 

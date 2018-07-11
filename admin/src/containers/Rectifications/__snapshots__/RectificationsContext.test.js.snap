@@ -129,6 +129,7 @@ ShallowWrapper {
     "props": Object {
       "children": undefined,
       "value": Object {
+        "approveRectification": [Function],
         "fetchAllRectifications": [Function],
         "fetchPendingRectifications": [Function],
         "fetchProcessedRectifications": [Function],
@@ -151,6 +152,7 @@ ShallowWrapper {
         "_currentRenderer": null,
         "_currentRenderer2": null,
         "_currentValue": Object {
+          "approveRectification": [Function],
           "fetchAllRectifications": [Function],
           "fetchPendingRectifications": [Function],
           "fetchProcessedRectifications": [Function],
@@ -159,6 +161,7 @@ ShallowWrapper {
           "processedRectifications": Object {},
         },
         "_currentValue2": Object {
+          "approveRectification": [Function],
           "fetchAllRectifications": [Function],
           "fetchPendingRectifications": [Function],
           "fetchProcessedRectifications": [Function],
@@ -167,6 +170,7 @@ ShallowWrapper {
           "processedRectifications": Object {},
         },
         "_defaultValue": Object {
+          "approveRectification": [Function],
           "fetchAllRectifications": [Function],
           "fetchPendingRectifications": [Function],
           "fetchProcessedRectifications": [Function],
@@ -185,6 +189,7 @@ ShallowWrapper {
       "props": Object {
         "children": undefined,
         "value": Object {
+          "approveRectification": [Function],
           "fetchAllRectifications": [Function],
           "fetchPendingRectifications": [Function],
           "fetchProcessedRectifications": [Function],
@@ -207,6 +212,7 @@ ShallowWrapper {
           "_currentRenderer": null,
           "_currentRenderer2": null,
           "_currentValue": Object {
+            "approveRectification": [Function],
             "fetchAllRectifications": [Function],
             "fetchPendingRectifications": [Function],
             "fetchProcessedRectifications": [Function],
@@ -215,6 +221,7 @@ ShallowWrapper {
             "processedRectifications": Object {},
           },
           "_currentValue2": Object {
+            "approveRectification": [Function],
             "fetchAllRectifications": [Function],
             "fetchPendingRectifications": [Function],
             "fetchProcessedRectifications": [Function],
@@ -223,6 +230,7 @@ ShallowWrapper {
             "processedRectifications": Object {},
           },
           "_defaultValue": Object {
+            "approveRectification": [Function],
             "fetchAllRectifications": [Function],
             "fetchPendingRectifications": [Function],
             "fetchProcessedRectifications": [Function],
