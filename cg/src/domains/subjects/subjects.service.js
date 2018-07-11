@@ -11,7 +11,11 @@ const {
   getSubjectDataState,
   recordErasureByProcessor
 } = require('../../utils/blockchain');
-const { ValidationError, NotFound, Unauthorized } = require('../../utils/errors');
+const { 
+  ValidationError, 
+  NotFound, 
+  Unauthorized 
+} = require('../../utils/errors');
 const winston = require('winston');
 const { RECTIFICATION_STATUSES } = require('./../../utils/constants');
 const { inControllerMode } = require('./../../utils/helpers');
@@ -110,6 +114,29 @@ class SubjectsService {
     await this._saveSubjectEncryptionKey(trx, subjectId, encryptionKey);
   }
 
+  async _updateExistingSubject(trx, subjectId, personalData) {
+    const [subjectKey] = await this.db('subject_keys')
+      .transacting(trx)
+      .where('subject_id', subjectId)
+      .select();
+
+    let encryptionKey;
+    if (subjectKey) {
+      encryptionKey = subjectKey.key;
+    } else {
+      encryptionKey = generateClientKey();
+      await this._saveSubjectEncryptionKey(trx, subjectId, encryptionKey);
+    }
+    const encryptedPersonalData = encryptForStorage(JSON.stringify(personalData), encryptionKey);
+    await this.db('subjects')
+      .transacting(trx)
+      .where('id', subjectId)
+      .update({
+        personal_data: encryptedPersonalData,
+        updated_at: this.db.raw('CURRENT_TIMESTAMP')
+      });
+  }
+
   async _setConsentGiven(trx, subjectId, processorId) {
     const [ subjectProcessor ] = await this.db('subject_processors')
       .transacting(trx)
@@ -195,7 +222,7 @@ class SubjectsService {
     const [subjectKeyData] = await this.db('subject_keys')
       .where({ subject_id: subjectId })
       .select('key');
-      
+
     if (!subjectKeyData || !subjectKeyData.key) throw new NotFound('Subject keys not found');
     const encryptedRectificationPayload = encryptForStorage(
       JSON.stringify(rectificationPayload),
