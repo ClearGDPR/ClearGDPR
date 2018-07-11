@@ -25,15 +25,15 @@ export class RectificationsProvider extends Component {
   };
 
   fetchPendingRectifications = async (page = 1) => {
-    await this._fetchRectifications(false, page);
+    await this._fetchRectifications(true, false, page);
   };
 
   fetchProcessedRectifications = async (page = 1) => {
-    await this._fetchRectifications(true, page);
+    await this._fetchRectifications(false, true, page);
   };
 
-  fetchAllRectifications = async (page = 1) => {
-    await this._fetchRectifications(null, page);
+  fetchAllRectifications = async () => {
+    await this._fetchRectifications();
   };
 
   approveRectification = async id => {
@@ -41,8 +41,8 @@ export class RectificationsProvider extends Component {
   };
 
   state = {
-    pendingRectifications: {},
-    processedRectifications: {},
+    pendingRectifications: { paging: { current: 1 } },
+    processedRectifications: { paging: { current: 1 } },
     fetchPendingRectifications: this.fetchPendingRectifications,
     fetchProcessedRectifications: this.fetchProcessedRectifications,
     fetchAllRectifications: this.fetchAllRectifications,
@@ -94,18 +94,19 @@ export class RectificationsProvider extends Component {
     toast.error(`An error occurred: ${e.message}`);
   }
 
-  async _fetchRectifications(archive = null, page = 1) {
+  async _fetchRectifications(pending = true, processed = true, page) {
     this.setLoading(true);
 
     try {
-      const pendingRectifications =
-        archive === null || !archive
-          ? await this._getPendingRectifications(page)
-          : this.state.pendingRectifications;
-      const processedRectifications =
-        archive === null || archive
-          ? await this._getProcessedRectifications(page)
-          : this.state.processedRectifications;
+      const pendingPage = page || this.state.pendingRectifications.paging.current;
+      const pendingRectifications = pending
+        ? await this._getPendingRectifications(pendingPage)
+        : this.state.pendingRectifications;
+      const processedRectifications = processed
+        ? await this._getProcessedRectifications(
+            page || this.state.processedRectifications.paging.current
+          )
+        : this.state.processedRectifications;
       this.setState({
         pendingRectifications,
         processedRectifications,

@@ -8,6 +8,7 @@ import internalFetch from 'helpers/internal-fetch';
 import * as TestUtils from 'tests/helpers/TestUtils';
 
 import { RectificationsProvider } from '../Rectifications/RectificationsContext';
+import * as lodash from 'lodash';
 
 jest.mock('date-fns');
 jest.mock('react-toastify');
@@ -114,7 +115,7 @@ describe('RectificationsProvider', () => {
     let state = component.state();
     expect(state).toEqual(
       expect.objectContaining({
-        processedRectifications: {},
+        processedRectifications: { paging: { current: 1 } },
         isLoading: false
       })
     );
@@ -132,7 +133,7 @@ describe('RectificationsProvider', () => {
     let state = component.state();
     expect(state).toEqual(
       expect.objectContaining({
-        pendingRectifications: {},
+        pendingRectifications: { paging: { current: 1 } },
         isLoading: false
       })
     );
@@ -158,7 +159,46 @@ describe('RectificationsProvider', () => {
     expect(toast.error).toHaveBeenCalledWith('An error occurred: Error message');
   });
 
-  it('should refresh rectifications after approval', async () => {});
+  it('should refresh rectifications after approval', async () => {
+    const newPending = {
+      ...pendingRectifications,
+      data: pendingRectifications.data.filter(r => r.id !== 1)
+    };
+    const newProcessed = {
+      ...processedRectifications,
+      data: [
+        ...processedRectifications.data,
+        {
+          id: 1,
+          request_reason: 'The data was incorrect.',
+          created_at: '2018-07-02T21:31:24.999Z'
+        }
+      ]
+    };
+
+    internalFetch.mockImplementation(url => {
+      if (lodash.includes(url, 'rectification-requests/archive')) {
+        return Promise.resolve(newProcessed);
+      } else if (lodash.includes(url, 'rectification-requests/list')) {
+        return Promise.resolve(newPending);
+      } else {
+        return Promise.resolve({ success: true });
+      }
+    });
+
+    const { component } = setup();
+
+    await component.instance().approveRectification(973);
+
+    expect(component.state()).toEqual(
+      expect.objectContaining({
+        isLoading: false,
+        pendingRectifications: newPending,
+        processedRectifications: newProcessed
+      })
+    );
+    expect(toast.success).toHaveBeenCalledWith('Rectification request approved');
+  });
 
   it('should render correctly', async () => {
     internalFetch.mockReturnValue(Promise.resolve(pendingRectifications));

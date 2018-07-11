@@ -134,8 +134,16 @@ ShallowWrapper {
         "fetchPendingRectifications": [Function],
         "fetchProcessedRectifications": [Function],
         "isLoading": false,
-        "pendingRectifications": Object {},
-        "processedRectifications": Object {},
+        "pendingRectifications": Object {
+          "paging": Object {
+            "current": 1,
+          },
+        },
+        "processedRectifications": Object {
+          "paging": Object {
+            "current": 1,
+          },
+        },
       },
     },
     "ref": null,
@@ -194,8 +202,16 @@ ShallowWrapper {
           "fetchPendingRectifications": [Function],
           "fetchProcessedRectifications": [Function],
           "isLoading": false,
-          "pendingRectifications": Object {},
-          "processedRectifications": Object {},
+          "pendingRectifications": Object {
+            "paging": Object {
+              "current": 1,
+            },
+          },
+          "processedRectifications": Object {
+            "paging": Object {
+              "current": 1,
+            },
+          },
         },
       },
       "ref": null,
