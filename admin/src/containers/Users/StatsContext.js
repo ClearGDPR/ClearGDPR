@@ -3,7 +3,7 @@ import config from 'config';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import internalFetch from 'helpers/internal-fetch';
-import { PropTypes } from 'victory';
+import PropTypes from 'prop-types';
 
 const StatsContext = createContext({
   isLoading: false,
