@@ -6,20 +6,6 @@ const { deployContract } = require('../blockchain-setup');
 const { hash } = require('../../src/utils/encryption');
 const { NotFound, BadRequest } = require('../../src/utils/errors');
 
-afterAll(closeResources);
-
-async function createUser(id, data = { name: 'test' }) {
-  const token = await subjectJWT.sign({ subjectId: id });
-  await fetch('/api/subject/give-consent', {
-    method: 'POST',
-    body: { personalData: data },
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
-  return token;
-}
-
 beforeAll(async () => {
   try {
     await deployContract();
@@ -28,22 +14,38 @@ beforeAll(async () => {
   }
   await initResources();
 });
+afterAll(closeResources);
+
+async function createUser(id, data = { name: 'test' }) {
+  const token = await subjectJWT.sign({ subjectId: id });
+  await fetch('/api/subject/give-consent', {
+    method: 'POST',
+    body: { 
+      personalData: data,
+      processors: [] 
+    },
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  return token;
+}
 
 describe('Listing data-shares', () => {
-  it('should return the data-shares', async () => {
+  it('Should return the data-shares', async () => {
+    //GIVEN
     const subjectId = '673211';
     const idHash = hash(subjectId);
     const token = await createUser(subjectId);
-
     await db('data_shares').insert({ subject_id: idHash, name: 'test1', token: 'token1' });
     await db('data_shares').insert({ subject_id: idHash, name: 'test2', token: 'token2' });
-
+    
+    //WHEN
     const res = await fetchWithAuthorization('/api/subject/data-shares/list', token);
 
+    //THEN
     expect(res.status).toEqual(200);
-
     const jsonBody = await res.json();
-
     expect(jsonBody).toHaveLength(2);
     expect(jsonBody[0]).toEqual(
       expect.objectContaining({
@@ -58,6 +60,7 @@ describe('Listing data-shares', () => {
       })
     );
   });
+
   it('Should not error if there are no data-shares', async () => {
     const subjectId = '84291212';
     const token = await createUser(subjectId);

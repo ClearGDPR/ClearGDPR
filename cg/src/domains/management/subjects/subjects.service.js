@@ -12,23 +12,6 @@ class SubjectsService {
     this.db = database;
   }
 
-  async getRequestData(id) {
-    const [requestData] = await this.db('rectification_requests')
-      .select(
-        'key',
-        'personal_data',
-        'status',
-        'encrypted_rectification_payload',
-        'rectification_requests.subject_id'
-      )
-      .select(this.db.raw('rectification_requests.id as rectification_request_id'))
-      .select(this.db.raw('rectification_requests.created_at as rectification_request_created_at'))
-      .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
-      .leftJoin('subject_keys', 'subject_keys.subject_id', 'subjects.id')
-      .where({ 'rectification_requests.id': id });
-    return requestData;
-  }
-
   async listSubjects(requestedPage = 1) {
     const [numberOfsubjectsObject] = await this.db('subjects')
       .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
@@ -80,6 +63,23 @@ class SubjectsService {
       },
       data: decryptedSubjectsData
     };
+  }
+
+  async getRequestData(id) {
+    const [requestData] = await this.db('rectification_requests')
+      .select(
+        'key',
+        'personal_data',
+        'status',
+        'encrypted_rectification_payload',
+        'rectification_requests.subject_id'
+      )
+      .select(this.db.raw('rectification_requests.id as rectification_request_id'))
+      .select(this.db.raw('rectification_requests.created_at as rectification_request_created_at'))
+      .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
+      .leftJoin('subject_keys', 'subject_keys.subject_id', 'subjects.id')
+      .where({ 'rectification_requests.id': id });
+    return requestData;
   }
 
   async listRectificationRequests(requestedPage) {
