@@ -37,7 +37,19 @@ export class RectificationsProvider extends Component {
   };
 
   approveRectification = async id => {
-    await Promise.resolve();
+    try {
+      await internalFetch(
+        `${config.API_URL}/api/management/subjects/rectification-requests/${id}/update-status`,
+        {
+          method: 'POST',
+          body: JSON.stringify({
+            status: 'APPROVED'
+          })
+        }
+      );
+    } catch (e) {
+      toast.error(`An error occurred: ${e.message}`);
+    }
   };
 
   state = {
