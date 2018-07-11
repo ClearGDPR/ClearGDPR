@@ -41,29 +41,31 @@ export class ChangePassword extends React.Component {
           field="newPasswordRepeat"
           validate={this.props.validatePassword}
         />
-        <div>
-          <input type="submit" className="btn" value="Save" />
-        </div>
+        <button type="submit" className="btn">
+          Save
+        </button>
       </React.Fragment>
     );
   }
 }
 
-const changePasswordForm = props => (
-  props.isLoading ? (
+const changePasswordForm = props => {
+  const { errors, validatePassword, ...formProps } = props;
+
+  return props.isLoading ? (
     <Loader />
   ) : (
-    <Form onSubmit={submittedValues => props.onSubmit(submittedValues)}>
+    <Form onSubmit={submittedValues => props.onSubmit(submittedValues)} {...formProps}>
       {({ formState }) => (
         <ChangePassword
-          {...props}
-          errors={{ ...props.errors, ...formState.errors }}
+          errors={{ ...errors, ...formState.errors }}
           touched={formState.touched}
+          validatePassword={validatePassword}
         />
       )}
     </Form>
-  )
-);
+  );
+};
 
 changePasswordForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
