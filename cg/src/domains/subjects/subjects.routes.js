@@ -10,7 +10,11 @@ const {
   shareDataShareValidator
 } = require('./data-shares.validators');
 
-const { rectificationRequestValidator } = require('./subjects.validators');
+const { 
+  giveConsentValidator,
+  updateConsentValidator,
+  rectificationRequestValidator 
+} = require('./subjects.validators');
 
 const router = express.Router();
 
@@ -24,7 +28,7 @@ const ProcessorsController = require('./processors.controller');
 const processorsController = new ProcessorsController();
 
 module.exports = app => {
-  // not using router, because this is a publicly open endpoint (no need to verify JWT)
+  // Not using router, because this is a publicly open endpoint (no need to verify JWT)
   // also needs to be registered before other routes under /subject, so don't reorder
 
   app.use('/subject', router);
@@ -43,14 +47,22 @@ module.exports = app => {
     asyncHandler(async (req, res) => dataShareController.share(req, res))
   );
 
-  // JWT SECURED ENDPOINTS.
+  // JWT SECURED ENDPOINTS
 
   router.use(verifyJWT, requireSubjectId, transformSubjectId);
 
   router.post(
     '/give-consent',
     controllerOnly,
+    giveConsentValidator,
     asyncHandler(async (req, res) => subjectsController.giveConsent(req, res))
+  );
+
+  router.post(
+    '/update-consent',
+    controllerOnly,
+    updateConsentValidator,
+    asyncHandler(async (req, res) => subjectsController.updateConsent(req, res))
   );
 
   router.post(

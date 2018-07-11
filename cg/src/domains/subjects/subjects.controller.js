@@ -12,8 +12,15 @@ class SubjectsController {
       req.body.personalData,
       req.body.processors || []
     );
+    res.send( { success: true } );
+  }
 
-    res.send('OK');
+  async updateConsent(req, res) {
+    await this.subjectsService.updateConsent(
+      req.subject.id,
+      req.body.processors || []
+    );
+    res.send( { success: true } );
   }
 
   async requestDataAccess(req, res) {
