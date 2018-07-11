@@ -24,13 +24,29 @@ export class RectificationsProvider extends Component {
     ])
   };
 
+  fetchPendingRectifications = async (page = 1) => {
+    await this._fetchRectifications(false, page);
+  };
+
+  fetchProcessedRectifications = async (page = 1) => {
+    await this._fetchRectifications(true, page);
+  };
+
+  fetchAllRectifications = async (page = 1) => {
+    await this._fetchRectifications(null, page);
+  };
+
+  approveRectification = async id => {
+    await Promise.resolve();
+  };
+
   state = {
     pendingRectifications: {},
     processedRectifications: {},
-    fetchPendingRectifications: this.fetchPendingRectifications.bind(this),
-    fetchProcessedRectifications: this.fetchProcessedRectifications.bind(this),
-    fetchAllRectifications: this.fetchAllRectifications.bind(this),
-    approveRectification: this.approveRectification.bind(this),
+    fetchPendingRectifications: this.fetchPendingRectifications,
+    fetchProcessedRectifications: this.fetchProcessedRectifications,
+    fetchAllRectifications: this.fetchAllRectifications,
+    approveRectification: this.approveRectification,
     isLoading: false
   };
 
@@ -78,18 +94,6 @@ export class RectificationsProvider extends Component {
     toast.error(`An error occurred: ${e.message}`);
   }
 
-  async fetchPendingRectifications(page = 1) {
-    await this._fetchRectifications(false, page);
-  }
-
-  async fetchProcessedRectifications(page = 1) {
-    await this._fetchRectifications(true, page);
-  }
-
-  async fetchAllRectifications(page = 1) {
-    await this._fetchRectifications(null, page);
-  }
-
   async _fetchRectifications(archive = null, page = 1) {
     this.setLoading(true);
 
@@ -110,10 +114,6 @@ export class RectificationsProvider extends Component {
     } catch (e) {
       await this.cancelLoadingAndReject(e);
     }
-  }
-
-  async approveRectification(id) {
-    await Promise.resolve();
   }
 
   render() {
