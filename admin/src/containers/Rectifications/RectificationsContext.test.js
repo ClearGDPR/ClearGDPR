@@ -83,123 +83,6 @@ describe('RectificationsProvider', () => {
     return { props, component };
   };
 
-  it('should have correct state after fetching all rectifications', async () => {
-    let i = 0;
-    internalFetch.mockImplementation(() =>
-      Promise.resolve(0 === i++ ? pendingRectifications : processedRectifications)
-    );
-
-    const { component } = setup();
-    await component.instance().fetchAllRectifications();
-
-    await TestUtils.flushPromises();
-
-    let state = component.state();
-    expect(state).toEqual(
-      expect.objectContaining({
-        isLoading: false
-      })
-    );
-    expect(state.pendingRectifications).toMatchSnapshot();
-    expect(state.processedRectifications).toMatchSnapshot();
-  });
-
-  it('should have correct state after fetching pending rectifications', async () => {
-    internalFetch.mockReturnValue(Promise.resolve(pendingRectifications));
-
-    const { component } = setup();
-    await component.instance().fetchPendingRectifications();
-
-    await TestUtils.flushPromises();
-
-    let state = component.state();
-    expect(state).toEqual(
-      expect.objectContaining({
-        processedRectifications: { paging: { current: 1 } },
-        isLoading: false
-      })
-    );
-    expect(state.pendingRectifications).toMatchSnapshot();
-  });
-
-  it('should have correct state after fetching processed rectifications', async () => {
-    internalFetch.mockReturnValue(Promise.resolve(processedRectifications));
-
-    const { component } = setup();
-    await component.instance().fetchProcessedRectifications();
-
-    await TestUtils.flushPromises();
-
-    let state = component.state();
-    expect(state).toEqual(
-      expect.objectContaining({
-        pendingRectifications: { paging: { current: 1 } },
-        isLoading: false
-      })
-    );
-    expect(state.processedRectifications).toMatchSnapshot();
-  });
-
-  it('Should show toast.error and have correct state when calling API returns error', async () => {
-    internalFetch.mockReturnValue(Promise.reject(new Error('Error message')));
-
-    const { component } = setup();
-
-    try {
-      await component.instance().fetchAllRectifications();
-    } catch (e) {
-      //not-empty
-    }
-
-    expect(component.state()).toEqual(
-      expect.objectContaining({
-        isLoading: false
-      })
-    );
-    expect(toast.error).toHaveBeenCalledWith('An error occurred: Error message');
-  });
-
-  it('should refresh rectifications after approval', async () => {
-    const newPending = {
-      ...pendingRectifications,
-      data: pendingRectifications.data.filter(r => r.id !== 1)
-    };
-    const newProcessed = {
-      ...processedRectifications,
-      data: [
-        ...processedRectifications.data,
-        {
-          id: 1,
-          request_reason: 'The data was incorrect.',
-          created_at: '2018-07-02T21:31:24.999Z'
-        }
-      ]
-    };
-
-    internalFetch.mockImplementation(url => {
-      if (lodash.includes(url, 'rectification-requests/archive')) {
-        return Promise.resolve(newProcessed);
-      } else if (lodash.includes(url, 'rectification-requests/list')) {
-        return Promise.resolve(newPending);
-      } else {
-        return Promise.resolve({ success: true });
-      }
-    });
-
-    const { component } = setup();
-
-    await component.instance().approveRectification(973);
-
-    expect(component.state()).toEqual(
-      expect.objectContaining({
-        isLoading: false,
-        pendingRectifications: newPending,
-        processedRectifications: newProcessed
-      })
-    );
-    expect(toast.success).toHaveBeenCalledWith('Rectification request approved');
-  });
-
   it('should render correctly', async () => {
     internalFetch.mockReturnValue(Promise.resolve(pendingRectifications));
 
@@ -207,5 +90,145 @@ describe('RectificationsProvider', () => {
 
     await TestUtils.flushPromises();
     expect(component).toMatchSnapshot();
+  });
+
+  describe('fetching rectifications', () => {
+    it('should have correct state after fetching all', async () => {
+      let i = 0;
+      internalFetch.mockImplementation(() =>
+        Promise.resolve(0 === i++ ? pendingRectifications : processedRectifications)
+      );
+
+      const { component } = setup();
+      await component.instance().fetchAllRectifications();
+
+      await TestUtils.flushPromises();
+
+      let state = component.state();
+      expect(state).toEqual(
+        expect.objectContaining({
+          isLoading: false
+        })
+      );
+      expect(state.pendingRectifications).toMatchSnapshot();
+      expect(state.processedRectifications).toMatchSnapshot();
+    });
+
+    it('should have correct state after fetching pending', async () => {
+      internalFetch.mockReturnValue(Promise.resolve(pendingRectifications));
+
+      const { component } = setup();
+      await component.instance().fetchPendingRectifications();
+
+      await TestUtils.flushPromises();
+
+      let state = component.state();
+      expect(state).toEqual(
+        expect.objectContaining({
+          processedRectifications: { paging: { current: 1 } },
+          isLoading: false
+        })
+      );
+      expect(state.pendingRectifications).toMatchSnapshot();
+    });
+
+    it('should have correct state after fetching processed', async () => {
+      internalFetch.mockReturnValue(Promise.resolve(processedRectifications));
+
+      const { component } = setup();
+      await component.instance().fetchProcessedRectifications();
+
+      await TestUtils.flushPromises();
+
+      let state = component.state();
+      expect(state).toEqual(
+        expect.objectContaining({
+          pendingRectifications: { paging: { current: 1 } },
+          isLoading: false
+        })
+      );
+      expect(state.processedRectifications).toMatchSnapshot();
+    });
+
+    it('Should show toast.error and have correct state when calling API returns error', async () => {
+      internalFetch.mockReturnValue(Promise.reject(new Error('Error message')));
+
+      const { component } = setup();
+
+      try {
+        await component.instance().fetchAllRectifications();
+      } catch (e) {
+        //not-empty
+      }
+
+      expect(component.state()).toEqual(
+        expect.objectContaining({
+          isLoading: false
+        })
+      );
+      expect(toast.error).toHaveBeenCalledWith('An error occurred: Error message');
+    });
+  });
+
+  describe('approve rectification', () => {
+    it('should refresh rectifications', async () => {
+      const newPending = {
+        ...pendingRectifications,
+        data: pendingRectifications.data.filter(r => r.id !== 1)
+      };
+      const newProcessed = {
+        ...processedRectifications,
+        data: [
+          ...processedRectifications.data,
+          {
+            id: 1,
+            request_reason: 'The data was incorrect.',
+            created_at: '2018-07-02T21:31:24.999Z'
+          }
+        ]
+      };
+
+      internalFetch.mockImplementation(url => {
+        if (lodash.includes(url, 'rectification-requests/archive')) {
+          return Promise.resolve(newProcessed);
+        } else if (lodash.includes(url, 'rectification-requests/list')) {
+          return Promise.resolve(newPending);
+        } else {
+          return Promise.resolve({ success: true });
+        }
+      });
+
+      const { component } = setup();
+
+      await component.instance().approveRectification(973);
+
+      expect(component.state()).toEqual(
+        expect.objectContaining({
+          isLoading: false,
+          pendingRectifications: newPending,
+          processedRectifications: newProcessed
+        })
+      );
+      expect(toast.success).toHaveBeenCalledWith('Rectification request approved');
+    });
+
+    it('should show toast.error when approval fails', async () => {
+      internalFetch.mockReturnValue(Promise.reject(new Error('Error message')));
+
+      const { component } = setup();
+
+      try {
+        await component.instance().approveRectification(2);
+      } catch (e) {
+        //not-empty
+      }
+
+      expect(component.state()).toEqual(
+        expect.objectContaining({
+          isLoading: false
+        })
+      );
+      expect(toast.error).toHaveBeenCalledWith('An error occurred: Error message');
+    });
   });
 });
