@@ -11,6 +11,7 @@ const RectificationsContext = createContext({
   fetchPendingRectifications: () => {},
   fetchProcessedRectifications: () => {},
   fetchAllRectifications: () => {},
+  approveRectification: () => {},
   isLoading: false
 });
 
@@ -29,6 +30,7 @@ export class RectificationsProvider extends Component {
     fetchPendingRectifications: this.fetchPendingRectifications.bind(this),
     fetchProcessedRectifications: this.fetchProcessedRectifications.bind(this),
     fetchAllRectifications: this.fetchAllRectifications.bind(this),
+    approveRectification: this.approveRectification.bind(this),
     isLoading: false
   };
 
@@ -108,6 +110,10 @@ export class RectificationsProvider extends Component {
     } catch (e) {
       await this.cancelLoadingAndReject(e);
     }
+  }
+
+  async approveRectification(id) {
+    await Promise.resolve();
   }
 
   render() {

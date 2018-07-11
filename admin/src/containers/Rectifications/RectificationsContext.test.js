@@ -1,16 +1,17 @@
 import React from 'react';
 
 import { shallow } from 'enzyme';
-
-import { RectificationsProvider } from '../Rectifications/RectificationsContext';
-import session from 'helpers/Session';
-import * as TestUtils from 'tests/helpers/TestUtils';
 import { toast } from 'react-toastify';
 import { format } from 'date-fns';
 
+import internalFetch from 'helpers/internal-fetch';
+import * as TestUtils from 'tests/helpers/TestUtils';
+
+import { RectificationsProvider } from '../Rectifications/RectificationsContext';
+
 jest.mock('date-fns');
 jest.mock('react-toastify');
-jest.mock('helpers/Session');
+jest.mock('helpers/internal-fetch');
 
 beforeAll(() =>
   format.mockImplementation(date => {
@@ -19,7 +20,6 @@ beforeAll(() =>
 );
 
 beforeEach(() => {
-  session.getToken.mockReturnValue('token');
   jest.clearAllMocks();
 });
 
@@ -75,7 +75,7 @@ describe('RectificationsProvider', () => {
     }
   };
 
-  const setupShallow = propOverrides => {
+  const setup = propOverrides => {
     const props = Object.assign({}, propOverrides);
     const component = shallow(<RectificationsProvider {...props} />);
 
@@ -84,7 +84,7 @@ describe('RectificationsProvider', () => {
 
   it('should have correct state after fetching all rectifications', async () => {
     let i = 0;
-    global.fetch = jest.fn().mockImplementation(() =>
+    internalFetch.mockImplementation(() =>
       Promise.resolve({
         status: 200,
         json: () => {
@@ -93,7 +93,7 @@ describe('RectificationsProvider', () => {
       })
     );
 
-    const { component } = setupShallow();
+    const { component } = setup();
     await component.instance().fetchAllRectifications();
 
     await TestUtils.flushPromises();
@@ -109,16 +109,14 @@ describe('RectificationsProvider', () => {
   });
 
   it('should have correct state after fetching pending rectifications', async () => {
-    global.fetch = jest.fn().mockImplementation(() =>
+    internalFetch.mockReturnValue(
       Promise.resolve({
         status: 200,
-        json: () => {
-          return pendingRectifications;
-        }
+        json: () => pendingRectifications
       })
     );
 
-    const { component } = setupShallow();
+    const { component } = setup();
     await component.instance().fetchPendingRectifications();
 
     await TestUtils.flushPromises();
@@ -134,16 +132,14 @@ describe('RectificationsProvider', () => {
   });
 
   it('should have correct state after fetching processed rectifications', async () => {
-    global.fetch = jest.fn().mockImplementation(() =>
+    internalFetch.mockReturnValue(
       Promise.resolve({
         status: 200,
-        json: () => {
-          return processedRectifications;
-        }
+        json: () => processedRectifications
       })
     );
 
-    const { component } = setupShallow();
+    const { component } = setup();
     await component.instance().fetchProcessedRectifications();
 
     await TestUtils.flushPromises();
@@ -159,14 +155,14 @@ describe('RectificationsProvider', () => {
   });
 
   it('Should toast.error when the API gives a bad response', async () => {
-    global.fetch = jest.fn().mockImplementationOnce(() =>
+    internalFetch.mockReturnValue(
       Promise.resolve({
         status: 404,
         json: () => ({ error: 'Error message' })
       })
     );
 
-    const { component } = setupShallow();
+    const { component } = setup();
 
     try {
       await component.instance().fetchAllRectifications();
@@ -178,13 +174,13 @@ describe('RectificationsProvider', () => {
   });
 
   it('should throw error when fetching all rectifications returned HTTP 500', async () => {
-    global.fetch = jest.fn().mockImplementation(() =>
+    internalFetch.mockReturnValue(
       Promise.resolve({
         status: 500
       })
     );
 
-    const { component } = setupShallow();
+    const { component } = setup();
 
     await component.instance().fetchAllRectifications();
 
@@ -194,6 +190,8 @@ describe('RectificationsProvider', () => {
       })
     );
   });
+
+  it('should refresh rectifications after approval', async () => {});
 
   it('should render correctly', async () => {
     global.fetch = jest.fn().mockImplementationOnce(() =>
@@ -205,7 +203,7 @@ describe('RectificationsProvider', () => {
       })
     );
 
-    const { component } = setupShallow();
+    const { component } = setup();
 
     await TestUtils.flushPromises();
     expect(component).toMatchSnapshot();
