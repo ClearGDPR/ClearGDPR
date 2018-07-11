@@ -73,7 +73,7 @@ Login.propTypes = {
   auth: PropTypes.func.isRequired
 };
 
-Login.defaultValues = {
+Login.defaultProps = {
   errors: {}
 };
 
