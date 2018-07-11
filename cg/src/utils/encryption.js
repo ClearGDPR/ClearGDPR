@@ -11,7 +11,7 @@ function mergeTypedArray(a, b) {
 }
 
 function encryptWithNonce(message, key) {
-  const nonce = sodium.randombytes_buf(sodium.crypto_secretbox_NONCEBYTES);
+  const nonce = sodium.randombytes_buf(sodium.crypto_secretbox_NONCEBYTES); // findsecrets-ignore-line
   const nonceWithCipher = mergeTypedArray(nonce, sodium.crypto_secretbox_easy(message, nonce, key));
   return sodium.to_hex(nonceWithCipher);
 }
@@ -20,12 +20,12 @@ function decryptWithNonce(nonceWithCipherHex, key) {
   const nonceWithCipher = sodium.from_hex(nonceWithCipherHex);
   if (
     nonceWithCipher.length <
-    sodium.crypto_secretbox_NONCEBYTES + sodium.crypto_secretbox_MACBYTES
+    sodium.crypto_secretbox_NONCEBYTES + sodium.crypto_secretbox_MACBYTES // findsecrets-ignore-line
   ) {
     throw new Error('Message too short to be decrypted');
   }
-  const nonce = nonceWithCipher.slice(0, sodium.crypto_secretbox_NONCEBYTES),
-    ciphertext = nonceWithCipher.slice(sodium.crypto_secretbox_NONCEBYTES);
+  const nonce = nonceWithCipher.slice(0, sodium.crypto_secretbox_NONCEBYTES), // findsecrets-ignore-line
+    ciphertext = nonceWithCipher.slice(sodium.crypto_secretbox_NONCEBYTES); // findsecrets-ignore-line
   return sodium.crypto_secretbox_open_easy(ciphertext, nonce, key);
 }
 
@@ -39,7 +39,7 @@ function decryptClientKey(encryptedKey) {
 }
 
 function generateClientKey() {
-  const key = sodium.crypto_secretstream_xchacha20poly1305_keygen();
+  const key = sodium.crypto_secretstream_xchacha20poly1305_keygen(); // findsecrets-ignore-line
   return encryptClientKey(key);
 }
 
