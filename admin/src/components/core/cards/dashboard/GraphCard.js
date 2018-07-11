@@ -37,8 +37,10 @@ const GraphCard = props => {
 
 GraphCard.propTypes = {
   cols: PropTypes.number,
-  data: PropTypes.shape({
-    title: PropTypes.string
+  title: PropTypes.string,
+  data: PropTypes.arrayOf({
+    x: PropTypes.string,
+    y: PropTypes.number
   }),
   onClick: PropTypes.func
 };

@@ -9,7 +9,6 @@ const ConsentDial = ({ consented, unconsented }) => {
     <GraphCard
       title={'Consented Vs Not Consented Subjects'}
       text={`${consentedPercent}% of subjects have consented`}
-      size={2}
       cols={2}
       data={[{ y: consented, x: 'Consented' }, { y: unconsented, x: 'Not Consented' }]}
     />
