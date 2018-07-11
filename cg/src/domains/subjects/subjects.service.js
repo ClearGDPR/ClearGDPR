@@ -34,8 +34,7 @@ class SubjectsService {
   async registerConsentToProcessData(subjectId, personalData, processorsConsented = []) {
     const [ subjectExists ] = await this.db('subjects')
       .where('id', subjectId);
-    
-    let processorIdsWithAddresses;  
+     
     if(subjectExists) throw new Unauthorized('Subject already gave consent, please use the update-consent endpoint');   
     let processorIdsWithAddresses;
     await this.db.transaction(async trx => {
@@ -59,8 +58,7 @@ class SubjectsService {
   async updateConsent(subjectId, processorsConsented = []){
     const [ subjectExists ] = await this.db('subjects')
       .where('id', subjectId);
-  
-    let processorIdsWithAddresses;    
+    
     if(!subjectExists) throw new NotFound('Subject not found, please use the give-consent endpoint');
     let processorIdsWithAddresses;
     await this.db.transaction(async trx => {
@@ -99,7 +97,7 @@ class SubjectsService {
       await this._createNewSubject(personalData, trx, subjectId);
     } 
     else {
-      throw new Unauthorized('Subject already there!!!!!!');
+      await this._updateExistingSubject(trx, subjectId, personalData); // This is being used by the listeners in the processors domain
     }
   }
 
@@ -114,6 +112,30 @@ class SubjectsService {
       });
 
     await this._saveSubjectEncryptionKey(trx, subjectId, encryptionKey);
+  }
+
+  // This code is being used by the listeners in the processors domain. We should refactor this later to not have inter domain interaction
+  async _updateExistingSubject(trx, subjectId, personalData) { 
+    const [subjectKey] = await this.db('subject_keys')
+      .transacting(trx)
+      .where('subject_id', subjectId)
+      .select();
+
+    let encryptionKey;
+    if (subjectKey) {
+      encryptionKey = subjectKey.key;
+    } else {
+      encryptionKey = generateClientKey();
+      await this._saveSubjectEncryptionKey(trx, subjectId, encryptionKey);
+    }
+    const encryptedPersonalData = encryptForStorage(JSON.stringify(personalData), encryptionKey);
+    await this.db('subjects')
+      .transacting(trx)
+      .where('id', subjectId)
+      .update({
+        personal_data: encryptedPersonalData,
+        updated_at: this.db.raw('CURRENT_TIMESTAMP')
+      });
   }
 
   async _setConsentGiven(trx, subjectId, processorId) {
