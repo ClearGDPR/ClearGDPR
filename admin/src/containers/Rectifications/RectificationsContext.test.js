@@ -202,11 +202,12 @@ describe('RectificationsProvider', () => {
 
       await component.instance().approveRectification(973);
 
-      expect(component.state()).toEqual(
+      const state = component.state();
+      expect(state).toEqual(
         expect.objectContaining({
           isLoading: false,
-          pendingRectifications: newPending,
-          processedRectifications: newProcessed
+          pendingRectifications: component.instance()._mapRectificationResults(newPending),
+          processedRectifications: component.instance()._mapRectificationResults(newProcessed)
         })
       );
       expect(toast.success).toHaveBeenCalledWith('Rectification request approved');

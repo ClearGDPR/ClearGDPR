@@ -38,6 +38,7 @@ export class RectificationsProvider extends Component {
 
   approveRectification = async id => {
     try {
+      this.setLoading(true);
       await internalFetch(
         `${config.API_URL}/api/management/subjects/rectification-requests/${id}/update-status`,
         {
@@ -47,9 +48,14 @@ export class RectificationsProvider extends Component {
           })
         }
       );
+      toast.success('Rectification request approved');
     } catch (e) {
+      this.setLoading(false);
       toast.error(`An error occurred: ${e.message}`);
+      return;
     }
+
+    await this.fetchAllRectifications();
   };
 
   state = {
