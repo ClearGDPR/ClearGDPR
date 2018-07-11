@@ -65,23 +65,6 @@ class SubjectsService {
     };
   }
 
-  async getRequestData(id) {
-    const [requestData] = await this.db('rectification_requests')
-      .select(
-        'key',
-        'personal_data',
-        'status',
-        'encrypted_rectification_payload',
-        'rectification_requests.subject_id'
-      )
-      .select(this.db.raw('rectification_requests.id as rectification_request_id'))
-      .select(this.db.raw('rectification_requests.created_at as rectification_request_created_at'))
-      .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
-      .leftJoin('subject_keys', 'subject_keys.subject_id', 'subjects.id')
-      .where({ 'rectification_requests.id': id });
-    return requestData;
-  }
-
   async listRectificationRequests(requestedPage) {
     const page = requestedPage === undefined ? 1 : parseInt(requestedPage, 10);
 
@@ -147,6 +130,23 @@ class SubjectsService {
         total: totalPages
       }
     };
+  }
+
+  async getRequestData(id) {
+    const [requestData] = await this.db('rectification_requests')
+      .select(
+        'key',
+        'personal_data',
+        'status',
+        'encrypted_rectification_payload',
+        'rectification_requests.subject_id'
+      )
+      .select(this.db.raw('rectification_requests.id as rectification_request_id'))
+      .select(this.db.raw('rectification_requests.created_at as rectification_request_created_at'))
+      .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
+      .leftJoin('subject_keys', 'subject_keys.subject_id', 'subjects.id')
+      .where({ 'rectification_requests.id': id });
+    return requestData;
   }
 
   async updateRectificationRequestStatus(requestId, status) {
