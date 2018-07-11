@@ -33,52 +33,12 @@ describe('(Component) Change Password', () => {
     expect(component).toMatchSnapshot();
   });
 
-  it('should call onSubmit when submit button clicked', async () => {
-    const onSubmit = jest.fn();
-    const validatePassword = jest.fn();
-    const { component } = setupShallow({ onSubmit, validatePassword });
-
-
-    // console.log(component.debug());
-
-    // const form = component.find('form');
-    // form.simulate('submit');
-    // expect(onSubmit).toHaveBeenCalled();
-  });
-
   it('should validate password when inputs values change', async () => {
-    // const validatePassword = jest.fn();
-    // const { component } = setupMount({ validatePassword });
-
-    // const passwordField = component.find('input[type="password"]').at(0);
-    // passwordField.simulate('change', { target: { value: 'testPassword' } });
-
-    // const repeatPasswordField = component.find('input[type="password"]').at(1);
-    // repeatPasswordField.simulate('change', { target: { value: 'testPassword' } });
-
-    // expect(validatePassword).toHaveBeenCalledTimes(2);
+    // TODO: refactor 
   });
 
   it('should submit when validation is ok', async () => {
-    // const onSubmit = jest.fn();
-    // const validatePassword = jest.fn().mockReturnValue({ success: null });
-
-    // const { component } = setupMount({ onSubmit, validatePassword });
-
-    // const passwordField = component.find('input[type="password"]').at(0);
-    // passwordField.simulate('change', { target: { value: 'testPassword' } });
-
-    // const repeatPasswordField = component.find('input[type="password"]').at(1);
-    // repeatPasswordField.simulate('change', { target: { value: 'testPassword' } });
-
-    // const form = component.find('form').at(0);
-    // form.simulate('submit');
-
-    // expect(validatePassword).toHaveBeenCalledTimes(2);
-
-    // TODO: try to make it work
-    // expect(onSubmit).toHaveBeenCalled();
-    // check if state is valid
+    // TODO: refactor
   });
 
   it('should render correct props when touched', async () => {

@@ -1,29 +1,12 @@
 import React from 'react';
 
 import { mount, shallow } from 'enzyme';
-
 import { UsersContainer } from './Users';
+import * as UsersDataFactory from 'tests/data/users.factory';
 
 jest.mock('helpers/Session');
 
-const users = [
-  {
-    id: 1,
-    username: 'admin'
-  },
-  {
-    id: 2,
-    username: 'joe'
-  },
-  {
-    id: 3,
-    username: 'marc'
-  },
-  {
-    id: 4,
-    username: 'gina'
-  }
-];
+const users = UsersDataFactory.getAll();
 
 const setupShallow = propOverrides => {
   const props = Object.assign({ users, fetchUsers: () => {}, isLoading: false }, propOverrides);

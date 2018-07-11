@@ -20,6 +20,10 @@ beforeEach(() => {
 });
 
 describe('(Container) Change Password', () => {
+  // To prevent showing to console on tests, should be expected by methods using
+  // internal-fetch and having error 500.
+  global.console = { error: jest.fn()};
+
   it('should render correctly when user id provided props provided', async () => {
     const { component } = setupShallow();
     expect(component).toMatchSnapshot();
@@ -72,6 +76,7 @@ describe('(Container) Change Password', () => {
         }
       })
     );
+    expect(console.error).toBeCalled();
   });
 
   it('should populate errors on submit when passwords do not match', async () => {

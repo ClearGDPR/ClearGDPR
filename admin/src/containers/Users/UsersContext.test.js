@@ -1,11 +1,11 @@
 import React from 'react';
-
 import { shallow } from 'enzyme';
-
-import { UsersProvider } from './UsersContext';
-import session from 'helpers/Session';
-import * as TestUtils from 'tests/helpers/TestUtils';
 import { toast } from 'react-toastify';
+
+import * as TestUtils from 'tests/helpers/TestUtils';
+import * as UsersDataFactory from 'tests/data/users.factory';
+import session from 'helpers/Session';
+import { UsersProvider } from './UsersContext';
 
 jest.mock('helpers/Session');
 
@@ -14,24 +14,11 @@ beforeEach(() => {
 });
 
 describe('UsersProvider', () => {
-  let users = [
-    {
-      id: 1,
-      username: 'admin'
-    },
-    {
-      id: 2,
-      username: 'joe'
-    },
-    {
-      id: 3,
-      username: 'marc'
-    },
-    {
-      id: 4,
-      username: 'gina'
-    }
-  ];
+  // To prevent showing to console on tests, should be expected by methods using
+  // internal-fetch and having error 500.
+  global.console = { error: jest.fn()};
+
+  const users = UsersDataFactory.getAll();
 
   const setupShallow = propOverrides => {
     const props = Object.assign({}, propOverrides);
@@ -100,6 +87,7 @@ describe('UsersProvider', () => {
         isLoading: false
       })
     );
+    expect(console.error).toBeCalled();
   });
 
   it('should have correct state after registering a new user', async () => {
@@ -183,6 +171,7 @@ describe('UsersProvider', () => {
         isLoading: false
       })
     );
+    expect(console.error).toBeCalled();
   });
 
   it('should have correct state after removing user', async () => {

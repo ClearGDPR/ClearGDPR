@@ -47,7 +47,7 @@ export class Register extends React.Component {
   }
 }
 
-const registerForm = props => (
+const registerForm = props =>
   props.isLoading ? (
     <Loader />
   ) : (
@@ -60,8 +60,7 @@ const registerForm = props => (
         />
       )}
     </Form>
-  )
-);
+  );
 
 registerForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
