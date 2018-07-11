@@ -8,6 +8,7 @@ const TextInput = props => {
       <label htmlFor={props.field}>{props.label}</label>
       {props.error ? <span className="error-msg">{props.error}</span> : null}
       <Text
+        {...props}
         type={props.type || 'text'}
         id={props.field}
         placeholder={props.placeholder}
@@ -15,7 +16,6 @@ const TextInput = props => {
         field={props.field}
         autoComplete="off"
         required={props.required}
-        defaultValue={props.defaultValue}
       />
     </div>
   );
@@ -44,7 +44,6 @@ TextInput.propTypes = {
   placeholder: PropTypes.string,
   validate: PropTypes.func,
   required: PropTypes.bool,
-  defaultValue: PropTypes.any
 };
 
 export default TextInput;
