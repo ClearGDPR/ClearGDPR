@@ -22,6 +22,13 @@ const Chart = ({ data }) => {
   );
 };
 
+Chart.propTypes = {
+  data: PropTypes.arrayOf({
+    x: PropTypes.string,
+    y: PropTypes.number
+  })
+};
+
 const GraphCard = props => {
   return (
     <Card cols={props.cols} title={props.title} onClick={props.onClick}>
@@ -42,7 +49,8 @@ GraphCard.propTypes = {
     x: PropTypes.string,
     y: PropTypes.number
   }),
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  text: PropTypes.string
 };
 
 export default GraphCard;
