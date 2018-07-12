@@ -78,23 +78,24 @@ export class EditProcessor extends React.Component {
   }
 }
 
-const EditProcessorForm = props => (
-  props.isLoading ? (
+const EditProcessorForm = props => {
+  const { errors, values, ...formProps } = props;
+
+  return props.isLoading ? (
     <Loader />
   ) : (
-    <Form onSubmit={submittedValues => props.onSubmit(submittedValues)}>
+    <Form onSubmit={submittedValues => props.onSubmit(submittedValues)} {...formProps}>
       {({ formApi, formState }) => (
         <EditProcessor
-          {...props}
           onSetValues={formApi.setValues}
-          errors={{ ...formState.errors, ...props.errors }}
+          errors={{ ...errors, ...formState.errors }}
+          values={values}
           touched={formState.touched}
-          values={props.values}
         />
       )}
     </Form>
-  )
-);
+  );
+};
 
 EditProcessorForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,

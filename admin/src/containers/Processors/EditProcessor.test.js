@@ -11,7 +11,8 @@ const setupShallow = propOverrides => {
     {
       updateProcessor: jest.fn().mockReturnValue(Promise.resolve()),
       closePanel: jest.fn(),
-      isLoading: false
+      isLoading: false,
+      processor: {}
     },
     propOverrides
   );

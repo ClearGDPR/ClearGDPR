@@ -13,6 +13,10 @@ export class EditProcessorContainer extends React.Component {
     closePanel: PropTypes.func
   };
 
+  static defaultProps = {
+    processor: {}
+  };
+
   state = {
     errors: {}
   };

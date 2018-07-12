@@ -1,30 +1,44 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-
-import { Form } from 'informed';
+import toJson from 'enzyme-to-json';
 import EditProcessorForm, { EditProcessor } from './EditProcessor';
 
-const setupShallow = propOverrides => {
+const setup = propOverrides => {
   const props = Object.assign({}, propOverrides);
   const component = shallow(<EditProcessor {...props} />);
-  const mount = shallow(<EditProcessor {...props} />);
 
   return { props, component, mount };
 };
 
+const setupForm = propOverrides => {
+  let formApi;
+  const props = Object.assign({}, propOverrides);
+  const component = mount(
+    <EditProcessorForm
+      {...props}
+      getApi={api => {
+        formApi = api;
+      }}
+    />
+  );
+
+  return { formApi, props, component };
+};
+
+
 describe('(Component) Edit Processor Form', () => {
   it('should render correctly when no props provided', async () => {
-    const { component } = setupShallow();
-    expect(component).toMatchSnapshot();
+    const { component } = setup();
+    expect(toJson(component)).toMatchSnapshot();
   });
 
   it('should render correctly when the prop isLoading is set to false', async () => {
-    const { component } = setupShallow({ isLoading: false });
-    expect(component).toMatchSnapshot();
+    const { component } = setup({ isLoading: false });
+    expect(toJson(component)).toMatchSnapshot();
   });
 
   it('should render correctly when the prop isLoading is set to true', async () => {
-    const { component } = setupShallow({ isLoading: true });
-    expect(component).toMatchSnapshot();
+    const { component } = setup({ isLoading: true });
+    expect(toJson(component)).toMatchSnapshot();
   });
 });

@@ -12,5 +12,6 @@ exports[`(Container) Edit Processor should render correctly when default props p
 <EditProcessorForm
   errors={Object {}}
   onSubmit={[Function]}
+  values={Object {}}
 />
 `;
