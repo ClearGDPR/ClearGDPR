@@ -35,7 +35,7 @@ class SubjectsService {
     const [ subjectExists ] = await this.db('subjects')
       .where('id', subjectId);
      
-    if(subjectExists) throw new Unauthorized('Subject already gave consent, please use the update-consent endpoint');   
+    if(subjectExists) throw new Unauthorized('Subject already gave consent');   
     let processorIdsWithAddresses;
     await this.db.transaction(async trx => {
       await this._initializeUserInTransaction(trx, subjectId, personalData);
@@ -59,7 +59,7 @@ class SubjectsService {
     const [ subjectExists ] = await this.db('subjects')
       .where('id', subjectId);
     
-    if(!subjectExists) throw new NotFound('Subject not found, please use the give-consent endpoint');
+    if(!subjectExists) throw new NotFound('Subject not found');
     let processorIdsWithAddresses;
     await this.db.transaction(async trx => {
       processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(trx, processorsConsented);
