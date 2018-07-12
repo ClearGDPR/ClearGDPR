@@ -17,7 +17,7 @@ const Chart = ({ data }) => {
       innerRadius={25}
       padAngle={3}
       containerComponent={<VictoryContainer width={100} height={50} />}
-      labelComponent={<VictoryLabel style={{ fill: '#191c27', fontSize: 5 }} />}
+      labelComponent={<VictoryLabel style={{ fill: '#191c27', fontSize: labelFontSize || 5 }} />}
     />
   );
 };
@@ -27,7 +27,8 @@ Chart.propTypes = {
     PropTypes.shape({
       x: PropTypes.string,
       y: PropTypes.number
-    })
+    }),
+    labelFontSize: PropTypes.number
   )
 };
 
@@ -36,7 +37,7 @@ const GraphCard = props => {
     <Card cols={props.cols} title={props.title} onClick={props.onClick}>
       <div className="graph-card">
         <div className="graph">
-          <Chart data={props.data} />
+          <Chart data={props.data} labelFontSize={props.labelFontSize} />
         </div>
         <p className="number">{props.text}</p>
       </div>
@@ -54,7 +55,8 @@ GraphCard.propTypes = {
     })
   ),
   onClick: PropTypes.func,
-  text: PropTypes.string
+  text: PropTypes.string,
+  labelFontSize: PropTypes.number
 };
 
 export default GraphCard;

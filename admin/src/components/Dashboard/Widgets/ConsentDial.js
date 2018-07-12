@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import GraphCard from 'components/core/cards/dashboard/GraphCard';
 
 const ConsentDial = ({ consented, unconsented }) => {
-  const consentedPercent = consented + unconsented ? (consented + unconsented) * 100 : 100;
+  const total = consented + unconsented;
+  const consentedPercent = total ? Math.round(consented / total * 100) : 100;
   return (
     <GraphCard
-      title={'Consented Vs Not Consented Subjects'}
+      title={'Consented vs Not Consented Subjects'}
       text={`${consentedPercent}% of subjects have consented`}
       cols={2}
       data={[{ y: consented, x: 'Consented' }, { y: unconsented, x: 'Not Consented' }]}
+      labelFontSize={3}
     />
   );
 };

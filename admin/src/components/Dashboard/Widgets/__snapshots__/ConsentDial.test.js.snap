@@ -15,8 +15,9 @@ exports[`(Component) ConsentDial should render 1`] = `
       },
     ]
   }
-  text="1100% of subjects have consented"
-  title="Consented Vs Not Consented Subjects"
+  labelFontSize={3}
+  text="100% of subjects have consented"
+  title="Consented vs Not Consented Subjects"
 />
 `;
 
@@ -35,7 +36,8 @@ exports[`(Component) ConsentDial should render if numbers are 0 1`] = `
       },
     ]
   }
+  labelFontSize={3}
   text="100% of subjects have consented"
-  title="Consented Vs Not Consented Subjects"
+  title="Consented vs Not Consented Subjects"
 />
 `;
