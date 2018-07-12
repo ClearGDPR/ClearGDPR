@@ -80,6 +80,7 @@ input[type='radio']:checked {
   background-color: var(--color-brand-primary);
 }
 
+form .btn,
 input[type='submit'] {
   width: 100%;
   text-align: center;

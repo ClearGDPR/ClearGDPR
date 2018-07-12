@@ -216,7 +216,7 @@ exports[`(Component) Rectification details should render array values in propert
     APPROVED
   </p>
   <button
-    className="btn ui-action"
+    className="btn"
     onClick={[Function]}
     type="button"
   >
@@ -347,7 +347,7 @@ exports[`(Component) Rectification details should render nested properties corre
     APPROVED
   </p>
   <button
-    className="btn ui-action"
+    className="btn"
     onClick={[Function]}
     type="button"
   >
@@ -417,7 +417,7 @@ exports[`(Component) Rectification details should render when not loading correc
     PENDING
   </p>
   <button
-    className="btn ui-action"
+    className="btn"
     onClick={[Function]}
     type="button"
   >

@@ -51,12 +51,12 @@ export class RectificationsContainer extends React.Component {
 
   getPageCount() {
     const paging = this.getRectificationsData().paging;
-    return paging ? paging.total : 1;
+    return paging ? paging.total || 1 : 1;
   }
 
   getCurrentPage() {
     const paging = this.getRectificationsData().paging;
-    return paging ? paging.current : 1;
+    return paging ? paging.current || 1 : 1;
   }
 
   onPageSelected(page) {

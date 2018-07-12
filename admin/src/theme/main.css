@@ -42,3 +42,13 @@ body {
   background: -webkit-linear-gradient(to right, #24243e, var(--color-foreground));
   background: linear-gradient(to right, #24243e, var(--color-foreground));
 }
+
+.btn:not(.ui-action) {
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  padding: var(--spacing);
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+}

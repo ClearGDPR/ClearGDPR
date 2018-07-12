@@ -40,7 +40,7 @@ const Details = ({ rectification, onApprove, isLoading }) => {
         <p>Status: {rectification.status}</p>
         <button
           type="button"
-          className="btn ui-action"
+          className="btn"
           onClick={e => {
             e.preventDefault();
             onApprove();
