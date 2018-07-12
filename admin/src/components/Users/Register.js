@@ -49,9 +49,9 @@ export class Register extends React.Component {
 }
 
 const registerForm = props => {
-  const { errors, validatePassword, ...formProps } = props;
+  const { errors, validatePassword, isLoading, ...formProps } = props;
 
-  return props.isLoading ? (
+  return isLoading ? (
     <Loader />
   ) : (
     <Form onSubmit={submittedValues => props.onSubmit(submittedValues)} {...formProps}>

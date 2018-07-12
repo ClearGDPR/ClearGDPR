@@ -52,9 +52,9 @@ export class ChangePassword extends React.Component {
 }
 
 const changePasswordForm = props => {
-  const { errors, validatePassword, ...formProps } = props;
+  const { errors, validatePassword, isLoading, ...formProps } = props;
 
-  return props.isLoading ? (
+  return isLoading ? (
     <Loader />
   ) : (
     <Form onSubmit={submittedValues => props.onSubmit(submittedValues)} {...formProps}>

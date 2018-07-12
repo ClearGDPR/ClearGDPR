@@ -79,9 +79,9 @@ export class EditProcessor extends React.Component {
 }
 
 const EditProcessorForm = props => {
-  const { errors, values, ...formProps } = props;
+  const { errors, values, isLoading, ...formProps } = props;
 
-  return props.isLoading ? (
+  return isLoading ? (
     <Loader />
   ) : (
     <Form onSubmit={submittedValues => props.onSubmit(submittedValues)} {...formProps}>
