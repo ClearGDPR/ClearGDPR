@@ -2,21 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ProcessorCard from './ProcessorCard';
+import ActionBar from './../../Common/Bars/ActionBar';
+import { DefaultButton } from './../../Common/Buttons/Buttons';
 
 const Processors = props => {
   return (
     <React.Fragment>
       <section className="cards">
-        <div className="action-bar row">
-          <div className="text">
-            <h4>{props.title}</h4>
-            <p>{props.desc}</p>
-          </div>
-          <div className="spacer" />
-          <button className="ui-action btn" onClick={props.onClick}>
-            + Add Processor
-          </button>
-        </div>
+        <ActionBar title={props.title} desc={props.desc} handleClick={props.onClick} dialog>
+          <DefaultButton text="+ Add Processor" onClick={props.onClick} />
+        </ActionBar>
         <div className="row">
           {props.processors.map((processor, id) => {
             return <ProcessorCard key={id} data={processor} onClick={props.onClick} />;

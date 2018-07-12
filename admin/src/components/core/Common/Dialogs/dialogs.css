@@ -1,0 +1,10 @@
+.action-dialog {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  background-color: #FCFFE5;
+  box-shadow: 0 0 10px rgba(3, 3, 3, 0.1);
+}

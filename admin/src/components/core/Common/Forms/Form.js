@@ -35,9 +35,7 @@ const Form = () => {
         <label htmlFor="checkbox-example">I'm a checkbox!</label>
       </div>
 
-      <button type="submit" className="btn">
-        Submit Example
-      </button>
+      <input type="submit" className="btn" value="Submit Form" />
     </FormComponent>
   );
 };
