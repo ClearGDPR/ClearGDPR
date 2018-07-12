@@ -591,7 +591,7 @@ describe('List rectification requests', () => {
   });
 });
 
-describe('Rectification requests archive', () => {
+describe('Tests of listing archived rectification requests', () => {
   it('Should only list the requests with disapproved and approved statuses', async () => {
     const managementToken = await managementJWT.sign({ id: 1 });
     await createSubjectWithRectification();
@@ -603,7 +603,6 @@ describe('Rectification requests archive', () => {
         Authorization: `Bearer ${managementToken}`
       }
     });
-
     const body = await res.json();
     expect(res.status).toEqual(200);
     expect(body.data).toHaveLength(2);
@@ -617,40 +616,43 @@ describe('Rectification requests archive', () => {
         Authorization: `Bearer ${managementToken}`
       }
     });
-
     const body = await res.json();
     expect(res.status).toEqual(200);
     expect(body.data).toHaveLength(0);
     expect(body.paging).toEqual({ current: 1, total: 1 });
   });
 
+  it('Should list archived requests in pages bigger than 1 correctly', async () => {
+    // const managementToken = await managementJWT.sign({ id: 1 });
+    // const res = await fetch('/api/management/subjects/rectification-requests/archive?page=6', {
+    //   method: 'GET',
+    //   headers: {
+    //     Authorization: `Bearer ${managementToken}`
+    //   }
+    // }); 
+  });
+
   it('Should fail if page number is too big', async () => {
     const managementToken = await managementJWT.sign({ id: 1 });
-
     const res = await fetch('/api/management/subjects/rectification-requests/archive?page=6', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
       }
     });
-
     const body = await res.json();
-
     expect(res.status).toEqual(400);
     expect(body.error).toEqual('Page number too big, maximum page number is 1');
   });
 
   it('Should still list rectification requests for users without encryption keys', async () => {
     const managementToken = await managementJWT.sign({ id: 1 });
-
     const { subjectId } = await createSubjectWithRectification({
       status: RECTIFICATION_STATUSES.APPROVED
     });
-
     await createSubjectWithRectification({
       status: RECTIFICATION_STATUSES.DISAPPROVED
     });
-
     await db('subject_keys')
       .delete()
       .where({ subject_id: subjectId });
@@ -661,9 +663,7 @@ describe('Rectification requests archive', () => {
         Authorization: `Bearer ${managementToken}`
       }
     });
-
     const body = await res.json();
-
     expect(res.status).toEqual(200);
     expect(body.data).toHaveLength(2);
   });

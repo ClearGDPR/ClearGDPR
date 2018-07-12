@@ -230,7 +230,7 @@ describe('Tests of subjects giving consent', () => {
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(Unauthorized.StatusCode);
     expect(await res.json()).toEqual({
-      error: 'Subject already gave consent, please use the update-consent endpoint'
+      error: 'Subject already gave consent'
     })
   });
 
@@ -439,7 +439,7 @@ describe('Tests of subjects updating their consented processors', () => {
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(NotFound.StatusCode);
     expect(await res.json()).toEqual({
-      error: 'Subject not found, please use the give-consent endpoint'
+      error: 'Subject not found'
     });
   });
 
