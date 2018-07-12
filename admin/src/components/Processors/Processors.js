@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { processorType } from 'types';
 import ProcessorCard from 'components/core/cards/dashboard/ProcessorCard';
 import Loader from 'components/core/cards/dashboard/Loader';
+import * as lodash from 'lodash';
 
 const Processors = ({
   processors,
@@ -25,6 +26,23 @@ const Processors = ({
     onDeleteProcessorClick(processor);
   }
 
+  let renderProcessors = function() {
+    return lodash
+      .chunk(processors, 3)
+      .map(row => (
+        <div className="row">
+          {row.map((processor, i) => (
+            <ProcessorCard
+              key={i}
+              data={processor}
+              onClick={() => onEditProcessorHandler(processor)}
+              onDelete={() => onDeleteProcessorHandler(processor.id)}
+            />
+          ))}
+        </div>
+      ));
+  };
+
   return (
     <React.Fragment>
       <section className="cards">
@@ -41,22 +59,13 @@ const Processors = ({
             + Add Processor
           </button>
         </div>
-        <div className="row">
+        {isLoading ? (
           <div className="content">
-            {!isLoading ? (
-              processors.map((processor, i) => (
-                <ProcessorCard
-                  key={i}
-                  data={processor}
-                  onClick={() => onEditProcessorHandler(processor)}
-                  onDelete={() => onDeleteProcessorHandler(processor.id)}
-                />
-              ))
-            ) : (
-              <Loader />
-            )}
+            <Loader />
           </div>
-        </div>
+        ) : (
+          renderProcessors()
+        )}
       </section>
       {children}
     </React.Fragment>

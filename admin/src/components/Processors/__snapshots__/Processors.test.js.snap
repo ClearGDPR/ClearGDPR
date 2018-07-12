@@ -29,13 +29,9 @@ exports[`(Component) Processors should render when loading correctly 1`] = `
       </button>
     </div>
     <div
-      className="row"
+      className="content"
     >
-      <div
-        className="content"
-      >
-        <Loader />
-      </div>
+      <Loader />
     </div>
   </section>
 </React.Fragment>
@@ -72,61 +68,57 @@ exports[`(Component) Processors should render when not loading correctly 1`] = `
     <div
       className="row"
     >
-      <div
-        className="content"
-      >
-        <ProcessorCard
-          data={
-            Object {
-              "consented": 72,
-              "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
-              "logoUrl": "nielsen.svg",
-              "name": "Nielsen",
-              "scopes": Array [
-                "Full Name",
-                "Email",
-                "Phone Number",
-              ],
-            }
+      <ProcessorCard
+        data={
+          Object {
+            "consented": 72,
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+            "logoUrl": "nielsen.svg",
+            "name": "Nielsen",
+            "scopes": Array [
+              "Full Name",
+              "Email",
+              "Phone Number",
+            ],
           }
-          key="0"
-          onClick={[Function]}
-          onDelete={[Function]}
-        />
-        <ProcessorCard
-          data={
-            Object {
-              "consented": 64,
-              "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
-              "logoUrl": "liveramp.svg",
-              "name": "Live Ramp",
-              "scopes": Array [
-                "Email",
-              ],
-            }
+        }
+        key="0"
+        onClick={[Function]}
+        onDelete={[Function]}
+      />
+      <ProcessorCard
+        data={
+          Object {
+            "consented": 64,
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+            "logoUrl": "liveramp.svg",
+            "name": "Live Ramp",
+            "scopes": Array [
+              "Email",
+            ],
           }
-          key="1"
-          onClick={[Function]}
-          onDelete={[Function]}
-        />
-        <ProcessorCard
-          data={
-            Object {
-              "consented": 25,
-              "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
-              "logoUrl": "experian.svg",
-              "name": "Experian",
-              "scopes": Array [
-                "Full Name",
-                "Phone Number",
-              ],
-            }
+        }
+        key="1"
+        onClick={[Function]}
+        onDelete={[Function]}
+      />
+      <ProcessorCard
+        data={
+          Object {
+            "consented": 25,
+            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum placeat neque, pariatur ipsa qui facere nobis error iste consectetur quo exercitationem!",
+            "logoUrl": "experian.svg",
+            "name": "Experian",
+            "scopes": Array [
+              "Full Name",
+              "Phone Number",
+            ],
           }
-          key="2"
-          onClick={[Function]}
-          onDelete={[Function]}
-        />
-      </div>
+        }
+        key="2"
+        onClick={[Function]}
+        onDelete={[Function]}
+      />
     </div>
   </section>
 </React.Fragment>
