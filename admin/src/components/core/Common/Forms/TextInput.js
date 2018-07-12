@@ -22,6 +22,7 @@ const TextInput = props => {
 };
 
 TextInput.propTypes = {
+  autoComplete: PropTypes.string,
   error: PropTypes.string,
   label: PropTypes.string,
   field: PropTypes.string,
