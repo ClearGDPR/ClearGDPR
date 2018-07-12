@@ -30,6 +30,7 @@ Object {
         ]
       }
       isLoading={true}
+      onDetailsClick={[MockFunction]}
       onPageSelected={[MockFunction]}
       onTabSelect={[MockFunction]}
       pageCount={2}
@@ -1029,6 +1030,7 @@ Object {
       },
     ],
     "isLoading": true,
+    "onDetailsClick": [MockFunction],
     "onPageSelected": [MockFunction],
     "onTabSelect": [MockFunction],
     "pageCount": 2,
@@ -1070,6 +1072,7 @@ ShallowWrapper {
       ]
     }
     isLoading={false}
+    onDetailsClick={[MockFunction]}
     onPageSelected={[MockFunction]}
     onTabSelect={[MockFunction]}
     pageCount={2}
