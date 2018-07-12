@@ -1,7 +1,6 @@
 import React from 'react';
-
-import GraphCard from 'components/core/cards/dashboard/GraphCard';
 import PropTypes from 'prop-types';
+import GraphCard from 'components/core/cards/dashboard/GraphCard';
 
 const ConsentDial = ({ consented, unconsented }) => {
   const consentedPercent = consented + unconsented ? (consented + unconsented) * 100 : 100;

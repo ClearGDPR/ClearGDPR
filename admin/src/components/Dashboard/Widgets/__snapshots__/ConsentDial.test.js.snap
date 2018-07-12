@@ -7,15 +7,15 @@ exports[`(Component) ConsentDial should render 1`] = `
     Array [
       Object {
         "x": "Consented",
-        "y": undefined,
+        "y": 1,
       },
       Object {
         "x": "Not Consented",
-        "y": undefined,
+        "y": 10,
       },
     ]
   }
-  text="100% of subjects have consented"
+  text="1100% of subjects have consented"
   title="Consented Vs Not Consented Subjects"
 />
 `;
@@ -27,11 +27,11 @@ exports[`(Component) ConsentDial should render if numbers are 0 1`] = `
     Array [
       Object {
         "x": "Consented",
-        "y": undefined,
+        "y": 0,
       },
       Object {
         "x": "Not Consented",
-        "y": undefined,
+        "y": 0,
       },
     ]
   }
