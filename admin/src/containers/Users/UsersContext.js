@@ -57,7 +57,6 @@ export class UsersProvider extends Component {
 
   cancelLoadingAndReject(e) {
     this.setLoading(false);
-    toast.error(`An error occurred: ${e.message}`);
     return Promise.reject(e);
   }
 
