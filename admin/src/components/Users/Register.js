@@ -25,6 +25,7 @@ export class Register extends React.Component {
             this.props.errors['username']
           }
           field="username"
+          required
         />
         <TextInput
           label="New password"
@@ -39,28 +40,31 @@ export class Register extends React.Component {
           field="password"
           validate={this.props.validatePassword}
         />
-        <div>
-          <input type="submit" className="btn" value="Register" />
-        </div>
+        <button type="submit" className="btn">
+          Register
+        </button>
       </React.Fragment>
     );
   }
 }
 
-const registerForm = props =>
-  props.isLoading ? (
+const registerForm = props => {
+  const { errors, validatePassword, ...formProps } = props;
+
+  return props.isLoading ? (
     <Loader />
   ) : (
-    <Form onSubmit={submittedValues => props.onSubmit(submittedValues)}>
+    <Form onSubmit={submittedValues => props.onSubmit(submittedValues)} {...formProps}>
       {({ formState }) => (
         <Register
-          {...props}
-          errors={{ ...formState.errors, ...props.errors }}
+          errors={{ ...errors, ...formState.errors }}
           touched={formState.touched}
+          validatePassword={validatePassword}
         />
       )}
     </Form>
   );
+};
 
 registerForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
