@@ -4,7 +4,7 @@ import GraphCard from 'components/core/cards/dashboard/GraphCard';
 
 const ConsentDial = ({ consented, unconsented }) => {
   const total = consented + unconsented;
-  const consentedPercent = total ? Math.round(consented / total * 100) : 100;
+  const consentedPercent = total ? Math.round((consented / total) * 100) : 100;
   return (
     <GraphCard
       title={'Consented vs Not Consented Subjects'}
