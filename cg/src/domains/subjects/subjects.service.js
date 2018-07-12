@@ -40,14 +40,7 @@ class SubjectsService {
     await this.db.transaction(async trx => {
       await this._initializeUserInTransaction(trx, subjectId, personalData);
       processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(trx, processorsConsented);
-      if (processorIdsWithAddresses.length !== processorsConsented.length) {
-        throw new ValidationError('At least one of the processors specified is not valid');
-      }
-      if(processorIdsWithAddresses.some(p => !p.address)) {
-        throw new ValidationError(
-          `At least one of the processors doesn't have an address assigned`
-        );
-      }
+      await this._verifyProcessors(processorIdsWithAddresses, processorsConsented);
       await Promise.all(
         processorsConsented.map(processor => this._setConsentGiven(trx, subjectId, processor))
       );
@@ -63,14 +56,7 @@ class SubjectsService {
     let processorIdsWithAddresses;
     await this.db.transaction(async trx => {
       processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(trx, processorsConsented);
-      if (processorIdsWithAddresses.length !== processorsConsented.length) {
-        throw new ValidationError('At least one of the processors specified is not valid');
-      }
-      if(processorIdsWithAddresses.some(p => !p.address)) {
-        throw new ValidationError(
-          `At least one of the processors doesn't have an address assigned`
-        );
-      }
+      await this._verifyProcessors(processorIdsWithAddresses, processorsConsented);
       await Promise.all(
         processorsConsented.map(processor => this._setConsentGiven(trx, subjectId, processor))
       );
@@ -150,6 +136,17 @@ class SubjectsService {
         subject_id: subjectId,
         processor_id: processorId
       });
+  }
+
+  async _verifyProcessors(processorIdsWithAddresses, processorsConsented){
+    if (processorIdsWithAddresses.length !== processorsConsented.length) {
+      throw new ValidationError('At least one of the processors specified is not valid');
+    }
+    if(processorIdsWithAddresses.some(p => !p.address)) {
+      throw new ValidationError(
+        `At least one of the processors doesn't have an address assigned`
+      );
+    }
   }
 
   async eraseDataAndRevokeConsent(subjectId) {

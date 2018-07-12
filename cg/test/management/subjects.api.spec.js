@@ -575,10 +575,10 @@ describe('Tests of listing rectification requests', () => {
     expect(await res.json()).toEqual(
       expect.objectContaining({
         data: 
-          [ { id: 11,
+          [ { id: expect.any(Number),
               request_reason: 'Data incomplete',
               created_at: expect.any(String) },
-          {  id: 12,
+          {  id: expect.any(Number),
               request_reason: 'Data incomplete',
               created_at: expect.any(String) } 
           ],
@@ -679,10 +679,10 @@ describe('Tests of listing archived rectification requests', () => {
     expect(body.paging).toEqual({ current: 1, total: 1 });
   });
 
-  it.only('Should list requests in pages bigger than 1 correctly', async () => {
+  it('Should list archived requests in pages bigger than 1 correctly', async () => {
     //GIVEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    const subjectToken = await subjectJWT.sign({ subjectId: '124-98654698723'});
+    const subjectToken = await subjectJWT.sign({ subjectId: '65498736186+968'});
     await fetch('/api/subject/give-consent', {
       method: 'POST',
       headers: {
@@ -695,7 +695,7 @@ describe('Tests of listing archived rectification requests', () => {
         processors: []
       }
     });  
-    for(let i = 1; i < 13; i++){
+    for(let i = 0; i < 12; i++){
       await fetch('/api/subject/initiate-rectification', {
         method: 'POST',
         headers: {
@@ -705,10 +705,20 @@ describe('Tests of listing archived rectification requests', () => {
           rectificationPayload: {
             sensitiveData: 'some sensitive data here'
           },
-          requestReason: 'Data incomplete'
+          requestReason: 'Data changed'
         }
       });
+    }
 
+    let res1 = await fetch(`/api/management/subjects/rectification-requests/list`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+    const requestsData = await res1.json();
+    const firstRequestId = requestsData.data[0].id;
+    for(let i = firstRequestId; i < firstRequestId + 12; i++){
       await fetch(`/api/management/subjects/rectification-requests/${i}/update-status`, {
         method: 'POST',
         headers: {
@@ -720,29 +730,28 @@ describe('Tests of listing archived rectification requests', () => {
       });
     }
 
-    //WHEN
-    const res = await fetch('/api/management/subjects/rectification-requests/archive?page=2', {
+    // WHEN
+    const res2 = await fetch('/api/management/subjects/rectification-requests/archive?page=2', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
       }
     });
 
-    //THEN
-    expect(res.ok).toBeTruthy();
-    expect(res.status).toBe(200);
-    expect(await res.json()).toEqual(
+    // THEN
+    expect(res2.ok).toBeTruthy();
+    expect(res2.status).toBe(200);
+    expect(await res2.json()).toEqual(
       expect.objectContaining({
         data: 
-          [ { id: 11,
-              request_reason: 'Data incomplete',
+          [ { id: expect.any(Number),
+              request_reason: 'Data changed',
               created_at: expect.any(String),
               status: 'APPROVED' },
-            { id: 12,
-              request_reason: 'Data incomplete',
+            { id: expect.any(Number),
+              request_reason: 'Data changed',
               created_at: expect.any(String),
-              status: 'APPROVED' } 
-          ],
+              status: 'APPROVED' } ],
         paging: { current: 2, total: 2 }
       })
     );
