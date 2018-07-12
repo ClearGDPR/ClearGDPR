@@ -20,18 +20,18 @@ const Overview = props => {
           </div>
         </div>
         <div className="row">
-          <NumberCard cols="2" data={activeUsers} onClick={props.onClick} />
-          <NumberCard cols="2" data={erasedUsers} onClick={props.onClick} />
+          <NumberCard cols={2} data={activeUsers} onClick={props.onClick} />
+          <NumberCard cols={2} data={erasedUsers} onClick={props.onClick} />
           <ItemsCard
-            cols="4"
+            cols={4}
             title="Consented by Processor"
             data={processors}
             onClick={props.onClick}
           />
         </div>
         <div className="row">
-          <GraphCard cols="3" data={{ title: 'Consented Users' }} />
-          <ChartCard cols="5" data={{ title: 'Requests - Last 7 days' }} />
+          <GraphCard cols={3} data={[{ y: 10, x: 'Consented' }, { y: 21, x: 'Not Consented' }]} />
+          <ChartCard cols={5} data={{ title: 'Requests - Last 7 days' }} />
         </div>
         <div className="row">
           <TableCard
@@ -51,16 +51,16 @@ const Overview = props => {
 };
 
 Overview.propTypes = {
-  activeUsers: PropTypes.arrayOf(
-    PropTypes.shape({
-      username: PropTypes.string
-    })
-  ),
-  erasedUsers: PropTypes.arrayOf(
-    PropTypes.shape({
-      username: PropTypes.string
-    })
-  ),
+  activeUsers: PropTypes.shape({
+    title: PropTypes.string,
+    change: PropTypes.number,
+    number: PropTypes.number
+  }),
+  erasedUsers: PropTypes.shape({
+    title: PropTypes.string,
+    change: PropTypes.number,
+    number: PropTypes.number
+  }),
   processors: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,

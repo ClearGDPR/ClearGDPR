@@ -23,10 +23,12 @@ const Chart = ({ data }) => {
 };
 
 Chart.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({
-    x: PropTypes.string,
-    y: PropTypes.number
-  }))
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.string,
+      y: PropTypes.number
+    })
+  )
 };
 
 const GraphCard = props => {
@@ -45,10 +47,12 @@ const GraphCard = props => {
 GraphCard.propTypes = {
   cols: PropTypes.number,
   title: PropTypes.string,
-  data: PropTypes.arrayOf(PropTypes.shape({
-    x: PropTypes.string,
-    y: PropTypes.number
-  })),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      x: PropTypes.string,
+      y: PropTypes.number
+    })
+  ),
   onClick: PropTypes.func,
   text: PropTypes.string
 };
