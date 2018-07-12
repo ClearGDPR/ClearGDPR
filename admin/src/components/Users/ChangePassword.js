@@ -26,6 +26,7 @@ export class ChangePassword extends React.Component {
             this.props.errors['newPassword']
           }
           field="newPassword"
+          validateOnBlur
           validate={this.props.validatePassword}
         />
         <TextInput
@@ -39,6 +40,7 @@ export class ChangePassword extends React.Component {
             this.props.errors['newPasswordRepeat']
           }
           field="newPasswordRepeat"
+          validateOnBlur
           validate={this.props.validatePassword}
         />
         <button type="submit" className="btn">

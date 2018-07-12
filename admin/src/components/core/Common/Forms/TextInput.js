@@ -14,8 +14,8 @@ const TextInput = props => {
         placeholder={props.placeholder}
         validate={props.validate}
         field={props.field}
-        autoComplete="off"
-        required={props.required}
+        autoComplete={props.autoComplete || 'off'}
+        required={props.required || false}
       />
     </div>
   );
@@ -43,7 +43,7 @@ TextInput.propTypes = {
   ]),
   placeholder: PropTypes.string,
   validate: PropTypes.func,
-  required: PropTypes.bool,
+  required: PropTypes.bool
 };
 
 export default TextInput;

@@ -13,7 +13,6 @@ const setupShallow = propOverrides => {
 const setupForm = propOverrides => {
   let formApi;
   const props = Object.assign({}, propOverrides);
-  // const component = shallow(<ChangePasswordForm {...props} />);
   const component = mount(
     <ChangePasswordForm
       {...props}
@@ -24,18 +23,6 @@ const setupForm = propOverrides => {
   );
 
   return { formApi, props, component };
-};
-
-const checkFormState = state => {
-  const formState = {
-    values: {},
-    touched: {},
-    errors: {},
-    pristine: true,
-    dirty: false,
-    invalid: false
-  };
-  expect(JSON.stringify(state)).to.deep.equal(JSON.stringify(formState));
 };
 
 describe('(Component) Change Password', () => {
@@ -54,35 +41,49 @@ describe('(Component) Change Password', () => {
     expect(component).toMatchSnapshot();
   });
 
-  it('should validate password when inputs values change', async () => {
+  it('should validate password when bluring outside the input', async () => {
     const onSubmit = jest.fn();
     const validatePassword = jest.fn();
     const { formApi, component } = setupForm({ onSubmit, validatePassword });
 
-    // const newPasswordInput = mounted.find('input#newPassword');
-    // newPasswordInput.simulate('change', { target: { value: 'testPassword' } });
-    // const newPasswordRepeatInput = mounted.find('input#newPasswordRepeat');
-    // newPasswordRepeatInput.simulate('change', { target: { value: 'testPassword' } });
-    // const submitButton = mounted.find('button[type="submit"]');
-    // submitButton.simulate('click');
+    formApi.setValues({
+      newPassword: 'testPassword',
+      newPasswordRepeat: 'testPassword'
+    });
 
+    const newPasswordInput = component.find('input#newPassword');
+    newPasswordInput.simulate('blur');
 
-    // const button = component.find('button[type="submit"]');
-    // console.log(button.debug());
-    // const form = component.find('form');
-    // console.log(form.debug());
-    // console.log(formApi.getState());
+    const newPasswordRepeatInput = component.find('input#newPasswordRepeat');
+    newPasswordRepeatInput.simulate('blur');
 
-    const newPasswordInput = component.find('TextInput[field="newPassword"]').at(0);
-    console.log(newPasswordInput.props());
-
-    // console.log(component.debug());
-    // console.log(formApi.getState());
-    expect(validatePassword).toHaveBeenCalled();
+    expect(validatePassword).toHaveBeenCalledTimes(2);
   });
 
-  it('should submit when validation is ok', async () => {
-    // TODO: refactor
+  it('should submit form when validation is ok', async () => {
+    const onSubmit = jest.fn();
+    const validatePassword = jest.fn().mockReturnValue(null);
+    const { component } = setupForm({ onSubmit, validatePassword });
+
+    component.find('form').simulate('submit');
+
+    expect(validatePassword).toHaveBeenCalledTimes(2);
+    expect(onSubmit).toHaveBeenCalled();
+  });
+
+  it('should prevent submit form when validation is bad', async () => {
+    const onSubmit = jest.fn();
+    const validatePassword = jest.fn().mockReturnValue('error');
+    const { formApi, component } = setupForm({ onSubmit, validatePassword });
+
+    component.find('form').simulate('submit');
+
+    expect(formApi.getState().errors).toEqual({
+      newPassword: 'error',
+      newPasswordRepeat: 'error'
+    });
+    expect(validatePassword).toHaveBeenCalledTimes(2);
+    expect(onSubmit).not.toHaveBeenCalled();
   });
 
   it('should render correct props when touched', async () => {
