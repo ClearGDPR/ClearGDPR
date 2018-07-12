@@ -26,6 +26,7 @@ ShallowWrapper {
     fetchPendingRectifications={[MockFunction]}
     fetchProcessedRectifications={[MockFunction]}
     isLoading={false}
+    openPanel={[MockFunction]}
     pendingRectifications={
       Object {
         "data": Array [

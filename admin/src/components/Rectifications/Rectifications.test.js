@@ -30,19 +30,19 @@ const rectifications = {
 };
 
 const setup = propOverrides => {
-  const props = Object.assign(
-    {
-      data: rectifications.data,
-      tabs: ['tab 1', 'tab 2'],
-      selectedTab: 0,
-      onTabSelect: jest.fn(),
-      pageCount: rectifications.paging.total,
-      currentPage: rectifications.paging.current,
-      onPageSelected: jest.fn(),
-      isLoading: false
-    },
-    propOverrides
-  );
+  const props = {
+    data: rectifications.data,
+    tabs: ['tab 1', 'tab 2'],
+    selectedTab: 0,
+    onTabSelect: jest.fn(),
+    pageCount: rectifications.paging.total,
+    currentPage: rectifications.paging.current,
+    onPageSelected: jest.fn(),
+    isLoading: false,
+    onDetailsClick: jest.fn(),
+    ...propOverrides
+  };
+
   const component = shallow(<Rectifications {...props} />);
 
   return { props, component };

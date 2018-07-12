@@ -31,17 +31,16 @@ const rectifications = {
 };
 
 const setup = propOverrides => {
-  const props = Object.assign(
-    {
-      pendingRectifications: { ...rectifications },
-      processedRectifications: { ...rectifications },
-      fetchAllRectifications: jest.fn(),
-      fetchPendingRectifications: jest.fn(),
-      fetchProcessedRectifications: jest.fn(),
-      isLoading: false
-    },
-    propOverrides
-  );
+  const props = {
+    pendingRectifications: { ...rectifications },
+    processedRectifications: { ...rectifications },
+    fetchAllRectifications: jest.fn(),
+    fetchPendingRectifications: jest.fn(),
+    fetchProcessedRectifications: jest.fn(),
+    isLoading: false,
+    openPanel: jest.fn(),
+    ...propOverrides
+  };
   const component = shallow(<RectificationsContainer {...props} />);
   const mounted = mount(<RectificationsContainer {...props} />);
 
