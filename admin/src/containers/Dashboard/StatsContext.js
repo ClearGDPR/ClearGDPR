@@ -3,7 +3,6 @@ import config from 'config';
 import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import internalFetch from 'helpers/internal-fetch';
-import PropTypes from 'prop-types';
 
 const StatsContext = createContext({
   isLoading: false,
@@ -22,8 +21,11 @@ export class StatsProvider extends Component {
 
   state = {
     isLoading: false,
-    stats: {},
-    fetchStats: this.fetchStats
+    stats: {
+      controller: {},
+      processors: []
+    },
+    fetchStats: this.fetchStats.bind(this)
   };
 
   request = null;
@@ -32,21 +34,24 @@ export class StatsProvider extends Component {
     this.setState({ loading: true });
   };
 
-  fetchStats = () => {
+  fetchStats() {
     // prevents doubling up on requests that are in flight
     if (this.state.isLoading) return this.request;
     this.request = internalFetch(`${config.API_URL}/api/management/stats`)
-      .then(({ data: { controller } }) => {
-        this.setState({ loading: false, data: controller });
+      .then(({ data }) => {
+        console.log(data);
+        this.setState({ loading: false, stats: data });
       })
       .catch(err => {
         toast.error(err.message);
         this.setState({ loading: false });
       });
     return this.request;
-  };
+  }
 
   render() {
     return <StatsContext.Provider value={this.state}>{this.props.children}</StatsContext.Provider>;
   }
 }
+
+export const StatsConsumer = StatsContext.Consumer;

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Component) ConsentByProcessor should do the math correctly 1`] = `
+<ItemsCard
+  data={
+    Array [
+      Object {
+        "fillPercent": 32,
+        "name": "p1",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`(Component) ConsentByProcessor should render 1`] = `
+<ItemsCard
+  data={
+    Array [
+      Object {
+        "fillPercent": 1,
+        "name": "p1",
+      },
+    ]
+  }
+/>
+`;
+
+exports[`(Component) ConsentByProcessor should render if numbers are 0 1`] = `
+<ItemsCard
+  data={
+    Array [
+      Object {
+        "fillPercent": 1,
+        "name": "p1",
+      },
+    ]
+  }
+/>
+`;

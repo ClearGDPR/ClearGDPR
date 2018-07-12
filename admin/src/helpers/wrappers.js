@@ -5,7 +5,7 @@ import { UsersProvider } from 'containers/Users/UsersContext';
 import { ProcessorsProvider } from 'containers/Processors/ProcessorsContext';
 import { PanelProvider } from 'containers/MainLayout/PanelContext';
 import { RectificationsProvider } from 'containers/Rectifications/RectificationsContext';
-import { StatsProvider } from 'containers/Users/StatsContext';
+import { StatsProvider } from 'containers/Dashboard/StatsContext';
 
 export const withWrapper = Wrapper => Component => {
   let wrapper = props => (

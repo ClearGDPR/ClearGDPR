@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ConsentDial from './ConsentDial';
+import ConsentDial from './ControllerConsentDial';
 import toJson from 'enzyme-to-json';
 
 const setup = propOverrides => {

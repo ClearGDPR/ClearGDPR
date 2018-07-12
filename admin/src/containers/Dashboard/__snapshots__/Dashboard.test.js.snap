@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Container) Dashboard Should render without an error 1`] = `
+<section
+  className="cards"
+>
+  <div
+    className="row"
+  >
+    <SubjectsListContainer />
+  </div>
+  <div
+    className="row"
+  >
+    <[object Object] />
+  </div>
+</section>
+`;

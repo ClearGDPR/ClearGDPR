@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from './Card';
-import GraphBar from './GraphBar';
+import Card from 'components/core/cards/dashboard/Card';
+import GraphBar from 'components/core/cards/dashboard/GraphBar';
 
 const ItemsCard = props => {
+  console.log(props);
   return (
     <Card size={props.size} cols={props.cols} title={props.title} onClick={props.onClick}>
       <div className="row items-container">
-        {props.data.map((processor, id) => {
+        {props.data.map(({ name, fillPercent }, id) => {
           return (
             <div className="item" key={id}>
-              <p className="number">{processor.consented}%</p>
-              <GraphBar width={processor.consented} />
-              <p className="name">{processor.name}</p>
+              <p className="number">{fillPercent}%</p>
+              <GraphBar width={fillPercent} />
+              <p className="name">{name}</p>
             </div>
           );
         })}
@@ -25,13 +26,8 @@ const ItemsCard = props => {
 ItemsCard.propTypes = {
   size: PropTypes.number,
   cols: PropTypes.number,
-  title: PropTypes.string,
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      consented: PropTypes.number
-    })
-  ),
+  fillPercent: PropTypes.number,
+  name: PropTypes.string,
   onClick: PropTypes.func
 };
 
