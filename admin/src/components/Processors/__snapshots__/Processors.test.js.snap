@@ -67,6 +67,7 @@ exports[`(Component) Processors should render when not loading correctly 1`] = `
     </div>
     <div
       className="row"
+      key="0"
     >
       <ProcessorCard
         data={

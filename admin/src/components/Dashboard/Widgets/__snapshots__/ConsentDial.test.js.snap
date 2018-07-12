@@ -16,7 +16,7 @@ exports[`(Component) ConsentDial should render 1`] = `
     ]
   }
   labelFontSize={3}
-  text="100% of subjects have consented"
+  text="9% of subjects have consented"
   title="Consented vs Not Consented Subjects"
 />
 `;

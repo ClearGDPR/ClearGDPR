@@ -27,20 +27,18 @@ const Processors = ({
   }
 
   let renderProcessors = function() {
-    return lodash
-      .chunk(processors, 3)
-      .map(row => (
-        <div className="row">
-          {row.map((processor, i) => (
-            <ProcessorCard
-              key={i}
-              data={processor}
-              onClick={() => onEditProcessorHandler(processor)}
-              onDelete={() => onDeleteProcessorHandler(processor.id)}
-            />
-          ))}
-        </div>
-      ));
+    return lodash.chunk(processors, 3).map((row, rowIndex) => (
+      <div className="row" key={rowIndex}>
+        {row.map((processor, i) => (
+          <ProcessorCard
+            key={i}
+            data={processor}
+            onClick={() => onEditProcessorHandler(processor)}
+            onDelete={() => onDeleteProcessorHandler(processor.id)}
+          />
+        ))}
+      </div>
+    ));
   };
 
   return (
