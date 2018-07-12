@@ -65,17 +65,17 @@ module.exports = app => {
     asyncHandler(async (req, res) => subjectsController.updateConsent(req, res))
   );
 
-  router.post(
-    '/erase-data',
-    controllerOnly,
-    asyncHandler(async (req, res) => subjectsController.eraseData(req, res))
-  );
-
   router.get(
     '/access-data',
     asyncHandler(async (req, res) => subjectsController.requestDataAccess(req, res))
   );
 
+  router.post(
+    '/erase-data',
+    controllerOnly,
+    asyncHandler(async (req, res) => subjectsController.eraseData(req, res))
+  );
+  
   router.get(
     '/data-status',
     asyncHandler(async (req, res) => subjectsController.getPersonalDataStatus(req, res))
