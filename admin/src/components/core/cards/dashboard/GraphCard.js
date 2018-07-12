@@ -4,7 +4,7 @@ import { VictoryPie, VictoryContainer, VictoryLabel } from 'victory';
 
 import Card from './Card';
 
-const Chart = ({ data }) => {
+const Chart = ({ data, labelFontSize }) => {
   return (
     <VictoryPie
       colorScale={['#82efa6', '#191c27']}
@@ -27,9 +27,9 @@ Chart.propTypes = {
     PropTypes.shape({
       x: PropTypes.string,
       y: PropTypes.number
-    }),
-    labelFontSize: PropTypes.number
-  )
+    })
+  ),
+  labelFontSize: PropTypes.number
 };
 
 const GraphCard = props => {
