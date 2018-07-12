@@ -11,7 +11,7 @@ const {
   decryptFromStorage,
   hash
 } = require('../../src/utils/encryption');
-const { managementJWT } = require('../../src/utils/jwt');
+const { managementJWT, subjectJWT } = require('../../src/utils/jwt');
 const { BadRequest, Unauthorized, ValidationError } = require('../../src/utils/errors');
 const { omit } = require('underscore');
 const { RECTIFICATION_STATUSES } = require('./../../src/utils/constants');
@@ -490,7 +490,7 @@ describe('List subjects that have given consent', () => {
   });
 });
 
-describe('List rectification requests', () => {
+describe('Tests of listing rectification requests', () => {
   it('Should list the requests sucessfully', async () => {
     //GIVEN
     const managementToken = await managementJWT.sign({ id: 1 });
@@ -528,6 +528,63 @@ describe('List rectification requests', () => {
     expect(res.status).toEqual(200);
     expect(body.data).toHaveLength(0);
     expect(body.paging).toEqual({ current: 1, total: 1 });
+  });
+
+  it('Should list requests in pages bigger than 1 correctly', async () => {
+    //GIVEN
+    const managementToken = await managementJWT.sign({ id: 1 });
+    const subjectToken = await subjectJWT.sign({ subjectId: '646416818971'});
+    await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      },
+      body: {
+        personalData: {
+          sensitiveData: 'some sensitive data here'
+        },
+        processors: []
+      }
+    });  
+    for(let i = 0; i < 12; i++){
+      await fetch('/api/subject/initiate-rectification', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${subjectToken}`
+        },
+        body: {
+          rectificationPayload: {
+            sensitiveData: 'some sensitive data here'
+          },
+          requestReason: 'Data incomplete'
+        }
+      });
+    }
+
+    //WHEN
+    const res = await fetch('/api/management/subjects/rectification-requests/list?page=2', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual(
+      expect.objectContaining({
+        data: 
+          [ { id: 11,
+              request_reason: 'Data incomplete',
+              created_at: expect.any(String) },
+          {  id: 12,
+              request_reason: 'Data incomplete',
+              created_at: expect.any(String) } 
+          ],
+        paging: { current: 2, total: 2 }
+      })
+    );
   });
 
   it('Should fail if page number is too big', async () => {
@@ -622,14 +679,73 @@ describe('Tests of listing archived rectification requests', () => {
     expect(body.paging).toEqual({ current: 1, total: 1 });
   });
 
-  it('Should list archived requests in pages bigger than 1 correctly', async () => {
-    // const managementToken = await managementJWT.sign({ id: 1 });
-    // const res = await fetch('/api/management/subjects/rectification-requests/archive?page=6', {
-    //   method: 'GET',
-    //   headers: {
-    //     Authorization: `Bearer ${managementToken}`
-    //   }
-    // }); 
+  it.only('Should list requests in pages bigger than 1 correctly', async () => {
+    //GIVEN
+    const managementToken = await managementJWT.sign({ id: 1 });
+    const subjectToken = await subjectJWT.sign({ subjectId: '124-98654698723'});
+    await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      },
+      body: {
+        personalData: {
+          sensitiveData: 'some sensitive data here'
+        },
+        processors: []
+      }
+    });  
+    for(let i = 1; i < 13; i++){
+      await fetch('/api/subject/initiate-rectification', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${subjectToken}`
+        },
+        body: {
+          rectificationPayload: {
+            sensitiveData: 'some sensitive data here'
+          },
+          requestReason: 'Data incomplete'
+        }
+      });
+
+      await fetch(`/api/management/subjects/rectification-requests/${i}/update-status`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${managementToken}`
+        },
+        body: {
+          status: RECTIFICATION_STATUSES.APPROVED
+        }
+      });
+    }
+
+    //WHEN
+    const res = await fetch('/api/management/subjects/rectification-requests/archive?page=2', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual(
+      expect.objectContaining({
+        data: 
+          [ { id: 11,
+              request_reason: 'Data incomplete',
+              created_at: expect.any(String),
+              status: 'APPROVED' },
+            { id: 12,
+              request_reason: 'Data incomplete',
+              created_at: expect.any(String),
+              status: 'APPROVED' } 
+          ],
+        paging: { current: 2, total: 2 }
+      })
+    );
   });
 
   it('Should fail if page number is too big', async () => {
