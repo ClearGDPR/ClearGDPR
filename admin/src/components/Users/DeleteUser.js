@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
 
 import Loader from 'components/core/cards/dashboard/Loader';
+import { PrimaryButton } from 'components/core/Common/Buttons/Buttons';
 
 const DeleteUser = props => (
   <Modal open={props.isOpen} showCloseIcon={false} onClose={() => {}} center>
@@ -10,24 +11,21 @@ const DeleteUser = props => (
       <React.Fragment>
         <p>Are you sure you want to delete this user?</p>
         <p>
-          <button
-            className="ui-action btn"
+          <PrimaryButton
+            text="Cancel"
             onClick={e => {
               e.preventDefault();
               props.onCancel();
             }}
-          >
-            Cancel
-          </button>
-          <button
-            className="ui-action btn"
+          />
+          &nbsp;
+          <PrimaryButton
+            text="OK"
             onClick={e => {
               e.preventDefault();
               props.onConfirm();
             }}
-          >
-            OK
-          </button>
+          />
         </p>
       </React.Fragment>
     ) : (

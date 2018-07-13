@@ -21,9 +21,9 @@ const ActionBar = props => {
 
 ActionBar.propTypes = {
   title: PropTypes.string,
-  desc: PropTypes.string,
+  desc: PropTypes.node,
   dialog: PropTypes.bool,
-  children: PropTypes.element
+  children: PropTypes.node
 };
 
 export default ActionBar;

@@ -9,6 +9,7 @@ import Table from 'components/core/Common/Table/Table';
 import Loader from 'components/core/cards/dashboard/Loader';
 import Card from 'components/core/cards/dashboard/Card';
 import Paginate from 'components/core/Paginate';
+import ActionBar from 'components/core/Common/Bars/ActionBar';
 
 const actions = ({ onDetailsClick }) => [
   {
@@ -98,15 +99,11 @@ const Rectifications = ({
 
   return (
     <section className="cards">
-      <div className="action-bar">
-        <div className="text">
-          <h4>Rectification requests</h4>
-          <p>
-            Here you can manage requests from users who want to execute their right to rectify the
-            data stored about them.
-          </p>
-        </div>
-      </div>
+      <ActionBar
+        title="Rectification requests"
+        desc="Here you can manage requests from users who want to execute their right to rectify the
+            data stored about them."
+      />
       <Tabs selectedIndex={selectedTab} onSelect={onTabSelect}>
         <TabList>{tabs.map((value, index) => <Tab key={index}>{value}</Tab>)}</TabList>
         <TabPanel>

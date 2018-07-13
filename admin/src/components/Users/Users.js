@@ -5,6 +5,8 @@ import { userType } from 'types';
 import Table from 'components/core/Common/Table/Table';
 import Card from 'components/core/cards/dashboard/Card';
 import Loader from 'components/core/cards/dashboard/Loader';
+import ActionBar from 'components/core/Common/Bars/ActionBar';
+import { DefaultButton } from 'components/core/Common/Buttons/Buttons';
 
 const Users = ({
   users,
@@ -56,16 +58,9 @@ const Users = ({
   return (
     <React.Fragment>
       <section className="cards">
-        <div className="action-bar">
-          <div className="text">
-            <h4>Users</h4>
-            <p>Manage users that can access the administrative panel</p>
-          </div>
-          <div className="spacer" />
-          <button className="ui-action btn" onClick={onRegisterUserClickHandler}>
-            + Register User
-          </button>
-        </div>
+        <ActionBar title="Users" desc="Manage users that can access the administrative panel">
+          <DefaultButton onClick={onRegisterUserClickHandler} text="+ Register user" />
+        </ActionBar>
         <div className="row">
           <Card cols={8}>
             <div className="content">

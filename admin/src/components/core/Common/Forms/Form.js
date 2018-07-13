@@ -5,14 +5,8 @@ import { Form as FormComponent } from 'informed';
 const Form = () => {
   return (
     <FormComponent>
+      <TextInput label="Example" placeholder="This is an input example" field="test1" />
       <TextInput
-        for="example"
-        label="Example"
-        placeholder="This is an input example"
-        field="test1"
-      />
-      <TextInput
-        for="example-error"
         label="Example w/ error"
         placeholder="This is an input example with error"
         error="This is a medium length error message"

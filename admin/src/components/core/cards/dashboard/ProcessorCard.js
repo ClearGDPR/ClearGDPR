@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Card from './Card';
 import defaultLogo from 'assets/logo.png';
+import { PrimaryButton } from 'components/core/Common/Buttons/Buttons';
 
 const ProcessorCard = props => {
   function onDeleteHandler(e, processor) {
@@ -29,9 +30,7 @@ const ProcessorCard = props => {
             return <li key={id}>{data}</li>;
           })}
         </ul>
-        <button className="btn" onClick={e => onDeleteHandler(e, props.data)}>
-          Delete
-        </button>
+        <PrimaryButton onClick={e => onDeleteHandler(e, props.data)} text="Delete" />
       </div>
     </Card>
   );
