@@ -12,23 +12,6 @@ class SubjectsService {
     this.db = database;
   }
 
-  async getRequestData(id) {
-    const [requestData] = await this.db('rectification_requests')
-      .select(
-        'key',
-        'personal_data',
-        'status',
-        'encrypted_rectification_payload',
-        'rectification_requests.subject_id'
-      )
-      .select(this.db.raw('rectification_requests.id as rectification_request_id'))
-      .select(this.db.raw('rectification_requests.created_at as rectification_request_created_at'))
-      .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
-      .leftJoin('subject_keys', 'subject_keys.subject_id', 'subjects.id')
-      .where({ 'rectification_requests.id': id });
-    return requestData;
-  }
-
   async listSubjects(requestedPage = 1) {
     const [numberOfsubjectsObject] = await this.db('subjects')
       .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
@@ -37,13 +20,13 @@ class SubjectsService {
       .count('personal_data');
 
     const numberOfsubjects = numberOfsubjectsObject.count;
-    let lastPage = Math.ceil(numberOfsubjects / PAGE_SIZE);
-    if (lastPage === 0) {
+    let totalPages = Math.ceil(numberOfsubjects / PAGE_SIZE);
+    if (totalPages === 0) {
       // Handles the case in which there are no valid subjects, with valid encryption keys and all, in the db
-      lastPage = 1;
+      totalPages = 1;
     }
-    if (requestedPage > lastPage) {
-      throw new ValidationError(`page number too big, maximum page number is ${lastPage}`);
+    if (requestedPage > totalPages) {
+      throw new ValidationError(`page number too big, maximum page number is ${totalPages}`);
     }
     const encryptedSubjectsData = await this.db('subjects')
       .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
@@ -74,17 +57,15 @@ class SubjectsService {
       .filter(subject => subject !== null);
 
     return {
+      data: decryptedSubjectsData,
       paging: {
         current: requestedPage,
-        total: lastPage
-      },
-      data: decryptedSubjectsData
+        total: totalPages
+      }
     };
   }
 
-  async listRectificationRequests(requestedPage) {
-    const page = requestedPage === undefined ? 1 : parseInt(requestedPage, 10);
-
+  async listRectificationRequests(requestedPage = 1) { 
     const [{ total_items }] = await this.db('rectification_requests')
       .where('status', RECTIFICATION_STATUSES.PENDING)
       .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
@@ -92,11 +73,9 @@ class SubjectsService {
       .as('total_items');
 
     const totalPages = Math.ceil(total_items / PAGE_SIZE || 1);
-
-    if (page > totalPages) {
+    if (requestedPage > totalPages) {
       throw new ValidationError(`Page number too big, maximum page number is ${totalPages}`);
     }
-
     const requests = await this.db('rectification_requests')
       .select('id')
       .select('request_reason')
@@ -104,20 +83,18 @@ class SubjectsService {
       .where('status', RECTIFICATION_STATUSES.PENDING)
       .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
       .limit(PAGE_SIZE)
-      .offset(page - 1);
+      .offset((requestedPage - 1 ) * PAGE_SIZE);
 
     return {
       data: requests,
       paging: {
-        current: page,
+        current: requestedPage,
         total: totalPages
       }
     };
   }
 
-  async listProcessedRectificationRequests(requestedPage) {
-    const page = requestedPage === undefined ? 1 : parseInt(requestedPage, 10);
-
+  async listProcessedRectificationRequests(requestedPage = 1) {
     const [{ total_items }] = await this.db('rectification_requests')
       .whereNot('status', RECTIFICATION_STATUSES.PENDING)
       .leftJoin('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
@@ -125,11 +102,9 @@ class SubjectsService {
       .as('total_items');
 
     const totalPages = Math.ceil(total_items / PAGE_SIZE || 1);
-
-    if (page > totalPages) {
+    if (requestedPage > totalPages) {
       throw new ValidationError(`Page number too big, maximum page number is ${totalPages}`);
     }
-
     const requests = await this.db('rectification_requests')
       .select('id')
       .select('request_reason')
@@ -138,15 +113,32 @@ class SubjectsService {
       .whereNot('status', RECTIFICATION_STATUSES.PENDING)
       .leftJoin('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
       .limit(PAGE_SIZE)
-      .offset(page - 1);
+      .offset((requestedPage - 1) * PAGE_SIZE);
 
     return {
       data: requests,
       paging: {
-        current: page,
+        current: requestedPage,
         total: totalPages
       }
     };
+  }
+
+  async getRequestData(id) {
+    const [requestData] = await this.db('rectification_requests')
+      .select(
+        'key',
+        'personal_data',
+        'status',
+        'encrypted_rectification_payload',
+        'rectification_requests.subject_id'
+      )
+      .select(this.db.raw('rectification_requests.id as rectification_request_id'))
+      .select(this.db.raw('rectification_requests.created_at as rectification_request_created_at'))
+      .join('subjects', 'rectification_requests.subject_id', 'subjects.id')
+      .leftJoin('subject_keys', 'subject_keys.subject_id', 'subjects.id')
+      .where({ 'rectification_requests.id': id });
+    return requestData;
   }
 
   async updateRectificationRequestStatus(requestId, status) {

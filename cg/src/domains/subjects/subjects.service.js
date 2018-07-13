@@ -11,7 +11,11 @@ const {
   getSubjectDataState,
   recordErasureByProcessor
 } = require('../../utils/blockchain');
-const { ValidationError, NotFound } = require('../../utils/errors');
+const { 
+  ValidationError, 
+  NotFound, 
+  Unauthorized 
+} = require('../../utils/errors');
 const winston = require('winston');
 const { RECTIFICATION_STATUSES } = require('./../../utils/constants');
 const { inControllerMode } = require('./../../utils/helpers');
@@ -27,21 +31,34 @@ class SubjectsService {
     });
   }
 
-  async registerConsentToProcessData(subjectId, personalData, processorIds = []) {
+  async registerConsentToProcessData(subjectId, personalData, processorsConsented = []) {
+    const [ subjectExists ] = await this.db('subjects')
+      .where('id', subjectId);
+     
+    if(subjectExists) throw new Unauthorized('Subject already gave consent');   
     let processorIdsWithAddresses;
     await this.db.transaction(async trx => {
       await this._initializeUserInTransaction(trx, subjectId, personalData);
-      processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(trx, processorIds);
-      if (processorIdsWithAddresses.length !== processorIds.length) {
-        throw new ValidationError('Specified processor does not exist.');
-      }
-      if (processorIdsWithAddresses.some(p => !p.address)) {
-        throw new ValidationError(
-          `At least one of the processors doesn't have an address assigned`
-        );
-      }
+      processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(trx, processorsConsented);
+      await this._verifyProcessors(processorIdsWithAddresses, processorsConsented);
       await Promise.all(
-        processorIds.map(processorId => this._setConsentGiven(trx, subjectId, processorId))
+        processorsConsented.map(processor => this._setConsentGiven(trx, subjectId, processor))
+      );
+    });
+    await recordConsentGivenTo(subjectId, processorIdsWithAddresses.map(p => p.address));
+  }
+
+  async updateConsent(subjectId, processorsConsented = []){
+    const [ subjectExists ] = await this.db('subjects')
+      .where('id', subjectId);
+    
+    if(!subjectExists) throw new NotFound('Subject not found');
+    let processorIdsWithAddresses;
+    await this.db.transaction(async trx => {
+      processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(trx, processorsConsented);
+      await this._verifyProcessors(processorIdsWithAddresses, processorsConsented);
+      await Promise.all(
+        processorsConsented.map(processor => this._setConsentGiven(trx, subjectId, processor))
       );
     });
     await recordConsentGivenTo(subjectId, processorIdsWithAddresses.map(p => p.address));
@@ -64,12 +81,27 @@ class SubjectsService {
 
     if (!subject) {
       await this._createNewSubject(personalData, trx, subjectId);
-    } else {
-      await this._updateExistingSubject(trx, subjectId, personalData);
+    } 
+    else {
+      await this._updateExistingSubject(trx, subjectId, personalData); // This is being used by the listeners in the processors domain
     }
   }
 
-  async _updateExistingSubject(trx, subjectId, personalData) {
+  async _createNewSubject(personalData, trx, subjectId) {
+    const encryptionKey = generateClientKey();
+    const encryptedPersonalData = encryptForStorage(JSON.stringify(personalData), encryptionKey);
+    await this.db('subjects')
+      .transacting(trx)
+      .insert({
+        id: subjectId,
+        personal_data: encryptedPersonalData
+      });
+
+    await this._saveSubjectEncryptionKey(trx, subjectId, encryptionKey);
+  }
+
+  // This code is being used by the listeners in the processors domain. We should refactor this later to not have inter domain interaction
+  async _updateExistingSubject(trx, subjectId, personalData) { 
     const [subjectKey] = await this.db('subject_keys')
       .transacting(trx)
       .where('subject_id', subjectId)
@@ -92,21 +124,8 @@ class SubjectsService {
       });
   }
 
-  async _createNewSubject(personalData, trx, subjectId) {
-    const encryptionKey = generateClientKey();
-    const encryptedPersonalData = encryptForStorage(JSON.stringify(personalData), encryptionKey);
-    await this.db('subjects')
-      .transacting(trx)
-      .insert({
-        id: subjectId,
-        personal_data: encryptedPersonalData
-      });
-
-    await this._saveSubjectEncryptionKey(trx, subjectId, encryptionKey);
-  }
-
   async _setConsentGiven(trx, subjectId, processorId) {
-    const [subjectProcessor] = await this.db('subject_processors')
+    const [ subjectProcessor ] = await this.db('subject_processors')
       .transacting(trx)
       .where({ subject_id: subjectId, processor_id: processorId });
 
@@ -117,6 +136,17 @@ class SubjectsService {
         subject_id: subjectId,
         processor_id: processorId
       });
+  }
+
+  async _verifyProcessors(processorIdsWithAddresses, processorsConsented){
+    if (processorIdsWithAddresses.length !== processorsConsented.length) {
+      throw new ValidationError('At least one of the processors specified is not valid');
+    }
+    if(processorIdsWithAddresses.some(p => !p.address)) {
+      throw new ValidationError(
+        `At least one of the processors doesn't have an address assigned`
+      );
+    }
   }
 
   async eraseDataAndRevokeConsent(subjectId) {

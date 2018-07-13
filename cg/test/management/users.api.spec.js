@@ -1,8 +1,7 @@
 const { initResources, fetch, closeResources } = require('../utils');
 const { managementJWT } = require('../../src/utils/jwt');
 const { db } = require('../../src/db');
-const { Unauthorized, BadRequest, NotFound } = require('../../src/utils/errors');
-// const blockchain = require('../../src/utils/blockchain');
+const { Unauthorized, BadRequest, NotFound, Forbidden } = require('../../src/utils/errors');
 
 let managementToken;
 beforeAll(async () => {
@@ -116,6 +115,49 @@ describe('Management user removal', () => {
     expect(res.ok).toBeFalsy();
     expect(res.status).toEqual(BadRequest.StatusCode);
     expect(await res.json()).toMatchSnapshot();
+  });
+
+  it('Should not allow the removal of the current user himself', async () => {
+    //Given
+    const res1 = await fetch('/api/management/users/register', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      },
+      body: {
+        username: 'admin',
+        password: 'password'
+      }
+    });
+    const registeredUser = await res1.json();
+    const registeredUserId = registeredUser.id;
+    const res2 = await fetch('/api/management/users/login', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      },
+      body: {
+        username: 'admin',
+        password: 'password'
+      }
+    });
+    const loggedUser = await res2.json();
+    const loggedUserToken = loggedUser.jwt; 
+
+    //When
+    const res3 = await fetch(`/api/management/users/${registeredUserId}/remove`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${loggedUserToken}`
+      }
+    });
+
+    //Then
+    expect(res3.ok).toBeFalsy();
+    expect(res3.status).toEqual(Forbidden.StatusCode);
+    expect(await res3.json()).toEqual({
+      error: `User can't remove itself`
+    });
   });
 
   it('Should allow the removal of a registered manager', async () => {

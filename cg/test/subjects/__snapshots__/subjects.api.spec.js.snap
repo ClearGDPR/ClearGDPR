@@ -1,6 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Initiate Rectification Error if error reason and payload are not provided 1`] = `
+exports[`Tests of subjects giving consent Should not allow a new subject to give consent without specifying the consented processors 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"processors\\" fails because [\\"processors\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "processors",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Tests of subjects initiating rectifications Error if error reason and payload are not provided 1`] = `
 Object {
   "error": "Bad Request",
   "message": "child \\"requestReason\\" fails because [\\"requestReason\\" is required]",
@@ -8,6 +22,20 @@ Object {
   "validation": Object {
     "keys": Array [
       "requestReason",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`Tests of subjects updating their consented processors Should not allow a subject to update consent without specifying the processors consented 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"processors\\" fails because [\\"processors\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "processors",
     ],
     "source": "body",
   },
