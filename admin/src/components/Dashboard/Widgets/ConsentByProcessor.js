@@ -8,7 +8,7 @@ const ConsentByProcessor = ({ processors, totalSubjects }) => {
       cols={4}
       data={processors.map(p => ({
         name: p.name,
-        fillPercent: totalSubjects ? Math.floor(p.consented / totalSubjects * 100) : 100
+        fillPercent: totalSubjects ? Math.floor((p.consented / totalSubjects) * 100) : 100
       }))}
     />
   );
