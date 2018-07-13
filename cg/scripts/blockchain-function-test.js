@@ -1,3 +1,4 @@
+// Command to execute this script:
 // docker-compose exec cg node scripts/blockchain-function-test.js
 
 // const {

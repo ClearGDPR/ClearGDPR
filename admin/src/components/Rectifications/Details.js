@@ -5,6 +5,7 @@ import lodash from 'lodash';
 import { rectificationDetailsType } from 'types';
 
 import Loader from 'components/core/cards/dashboard/Loader';
+import { PrimaryButton } from 'components/core/Common/Buttons/Buttons';
 
 const Details = ({ rectification, onApprove, isLoading }) => {
   function renderObject(obj, level = 0) {
@@ -38,16 +39,14 @@ const Details = ({ rectification, onApprove, isLoading }) => {
         </p>
         <p>{renderObject(rectification.updates)}</p>
         <p>Status: {rectification.status}</p>
-        <button
+        <PrimaryButton
           type="button"
-          className="btn ui-action"
           onClick={e => {
             e.preventDefault();
             onApprove();
           }}
-        >
-          Approve
-        </button>
+          text="Approve"
+        />
       </React.Fragment>
     );
   }

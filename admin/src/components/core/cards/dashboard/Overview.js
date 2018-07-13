@@ -6,6 +6,7 @@ import ChartCard from './ChartCard';
 import GraphCard from './GraphCard';
 import ItemsCard from './ItemsCard';
 import TableCard from './TableCard';
+import ActionBar from './../../Common/Bars/ActionBar';
 
 const Overview = props => {
   const { activeUsers, erasedUsers, processors } = props;
@@ -13,12 +14,7 @@ const Overview = props => {
   return (
     <React.Fragment>
       <section className="cards">
-        <div className="action-bar">
-          <div className="text">
-            <h4>{props.title}</h4>
-            <p>{props.desc}</p>
-          </div>
-        </div>
+        <ActionBar title={props.title} desc={props.desc} handleClick={props.onClick} />
         <div className="row">
           <NumberCard cols={2} data={activeUsers} onClick={props.onClick} />
           <NumberCard cols={2} data={erasedUsers} onClick={props.onClick} />

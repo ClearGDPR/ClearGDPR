@@ -2,7 +2,6 @@ import React from 'react';
 import config from 'config';
 import SubjectsListComponent from 'components/Dashboard/Widgets/SubjectsList';
 import internalFetch from 'helpers/internal-fetch';
-import { toast } from 'react-toastify';
 import Paginate from 'components/core/Paginate';
 
 export class SubjectsListContainer extends React.Component {
@@ -19,8 +18,7 @@ export class SubjectsListContainer extends React.Component {
       .then(({ data, paging }) => {
         this.setState({ subjects: data, paging, loading: false });
       })
-      .catch(err => {
-        toast.error(err.message);
+      .catch(() => {
         this.setState({ errorState: true, loading: false });
       });
   }

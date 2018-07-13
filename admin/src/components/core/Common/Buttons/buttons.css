@@ -1,0 +1,32 @@
+
+.ui-action {
+  cursor: pointer;
+  transition: scale 0.4s ease-in-out, opacity 0.3s ease;
+}
+
+.ui-action:hover {
+  opacity: 0.9;
+  transform: scale(0.98);
+}
+
+.ui-action:active {
+  transform: scale(0.94);
+}
+
+.ui-action.btn {
+  height: 30px;
+  font-weight: 800;
+  transition: all 0.4s ease-in-out;
+  border-color: transparent;
+  box-shadow: 0 0 2px rgba(3, 3, 3, 0.1);
+}
+
+.action-bar .ui-action.btn {
+  margin-left: 1rem;
+}
+
+.btn.primary {
+  color: var(--text-inverted);
+  background-color: var(--color-foreground);
+  border-color: var(--color-foreground);
+}

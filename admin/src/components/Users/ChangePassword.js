@@ -4,6 +4,7 @@ import { Form } from 'informed';
 
 import TextInput from 'components/core/Common/Forms/TextInput';
 import Loader from 'components/core/cards/dashboard/Loader';
+import { PrimaryButton } from 'components/core/Common/Buttons/Buttons';
 
 export class ChangePassword extends React.Component {
   static propTypes = {
@@ -43,18 +44,16 @@ export class ChangePassword extends React.Component {
           validateOnBlur
           validate={this.props.validatePassword}
         />
-        <button type="submit" className="btn">
-          Save
-        </button>
+        <PrimaryButton type="submit" className="btn" text="Save" />
       </React.Fragment>
     );
   }
 }
 
 const changePasswordForm = props => {
-  const { errors, validatePassword, ...formProps } = props;
+  const { errors, validatePassword, isLoading, ...formProps } = props;
 
-  return props.isLoading ? (
+  return isLoading ? (
     <Loader />
   ) : (
     <Form onSubmit={submittedValues => props.onSubmit(submittedValues)} {...formProps}>

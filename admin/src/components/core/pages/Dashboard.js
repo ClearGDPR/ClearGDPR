@@ -7,7 +7,6 @@ import Processors from 'components/core/cards/dashboard/Processors';
 import Panel from 'components/core/cards/dashboard/Panel';
 import Loader from 'components/core/cards/dashboard/Loader';
 import Form from 'components/core/Common/Forms/Form';
-import './dashboard.css';
 
 import * as ProcessorsDataFactory from 'tests/data/processors.factory';
 
@@ -29,7 +28,7 @@ export const users = [
 class Dashboard extends Component {
   state = {
     isSidenavOpen: true,
-    isPanelOpen: true,
+    isPanelOpen: false,
     error: false,
     panelData: { title: 'Details' }
   };

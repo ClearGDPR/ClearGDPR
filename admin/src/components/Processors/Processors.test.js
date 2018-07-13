@@ -5,13 +5,16 @@ import Processors from './Processors';
 import * as ProcessorsDataFactory from 'tests/data/processors.factory';
 
 const setup = propOverrides => {
-  const props = Object.assign({
-    processors: ProcessorsDataFactory.getAll(),
-    isLoading: false,
-    onEditProcessorClick: jest.fn(),
-    onCreateProcessorClick: jest.fn(),
-    onDeleteProcessorClick: jest.fn(),
-  }, propOverrides);
+  const props = Object.assign(
+    {
+      processors: ProcessorsDataFactory.getAll(),
+      isLoading: false,
+      onEditProcessorClick: jest.fn(),
+      onCreateProcessorClick: jest.fn(),
+      onDeleteProcessorClick: jest.fn()
+    },
+    propOverrides
+  );
 
   const component = shallow(<Processors {...props} />);
 

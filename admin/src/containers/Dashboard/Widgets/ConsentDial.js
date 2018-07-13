@@ -2,7 +2,6 @@ import React from 'react';
 import ConsentDial from 'components/Dashboard/Widgets/ConsentDial';
 import internalFetch from 'helpers/internal-fetch';
 import config from 'config';
-import { toast } from 'react-toastify';
 
 export class ConsentDialContainer extends React.Component {
   state = {
@@ -14,8 +13,7 @@ export class ConsentDialContainer extends React.Component {
       .then(({ data: { controller } }) => {
         this.setState({ loading: false, data: controller });
       })
-      .catch(err => {
-        toast.error(err.message);
+      .catch(() => {
         this.setState({ loading: false });
       });
   }

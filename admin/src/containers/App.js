@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div className="App">
         <Routes />
-        <ToastContainer />
+        <ToastContainer position="top-center" draggable />
       </div>
     );
   }

@@ -17,8 +17,7 @@ jest.mock('helpers/internal-fetch');
 beforeAll(() =>
   format.mockImplementation(date => {
     return date.toUTCString();
-  })
-);
+  }));
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -150,7 +149,7 @@ describe('RectificationsProvider', () => {
       expect(state.processedRectifications).toMatchSnapshot();
     });
 
-    it('Should show toast.error and have correct state when calling API returns error', async () => {
+    it('should have correct state when calling API returns error', async () => {
       internalFetch.mockReturnValue(Promise.reject(new Error('Error message')));
 
       const { component } = setup();
@@ -166,7 +165,6 @@ describe('RectificationsProvider', () => {
           isLoading: false
         })
       );
-      expect(toast.error).toHaveBeenCalledWith('An error occurred: Error message');
     });
   });
 
@@ -213,7 +211,7 @@ describe('RectificationsProvider', () => {
       expect(toast.success).toHaveBeenCalledWith('Rectification request approved');
     });
 
-    it('should show toast.error when approval fails', async () => {
+    it('should stop loading when approval fails', async () => {
       internalFetch.mockReturnValue(Promise.reject(new Error('Error message')));
 
       const { component } = setup();
@@ -229,7 +227,6 @@ describe('RectificationsProvider', () => {
           isLoading: false
         })
       );
-      expect(toast.error).toHaveBeenCalledWith('An error occurred: Error message');
     });
   });
 });

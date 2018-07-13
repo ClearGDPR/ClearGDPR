@@ -5,14 +5,8 @@ import { Form as FormComponent } from 'informed';
 const Form = () => {
   return (
     <FormComponent>
+      <TextInput label="Example" placeholder="This is an input example" field="test1" />
       <TextInput
-        for="example"
-        label="Example"
-        placeholder="This is an input example"
-        field="test1"
-      />
-      <TextInput
-        for="example-error"
         label="Example w/ error"
         placeholder="This is an input example with error"
         error="This is a medium length error message"
@@ -35,9 +29,7 @@ const Form = () => {
         <label htmlFor="checkbox-example">I'm a checkbox!</label>
       </div>
 
-      <button type="submit" className="btn">
-        Submit Example
-      </button>
+      <input type="submit" className="btn" value="Submit Form" />
     </FormComponent>
   );
 };

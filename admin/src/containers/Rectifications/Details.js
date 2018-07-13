@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
-import { toast } from 'react-toastify';
 
 import config from 'config';
 import internalFetch from 'helpers/internal-fetch';
@@ -51,10 +50,18 @@ export class DetailsContainer extends React.Component {
   }
 
   onApprove() {
+    this.setState({
+      isLoading: true
+    });
+
     this.props
       .approveRectification(this.props.rectificationId)
       .then(() => this.props.closePanel())
-      .catch(e => toast.error(e.message));
+      .catch(() => {
+        this.setState({
+          isLoading: false
+        });
+      });
   }
 
   render() {

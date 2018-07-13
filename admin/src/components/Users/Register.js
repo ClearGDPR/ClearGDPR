@@ -4,6 +4,7 @@ import { Form } from 'informed';
 
 import TextInput from 'components/core/Common/Forms/TextInput';
 import Loader from 'components/core/cards/dashboard/Loader';
+import { PrimaryButton } from 'components/core/Common/Buttons/Buttons';
 
 export class Register extends React.Component {
   static propTypes = {
@@ -40,18 +41,16 @@ export class Register extends React.Component {
           field="password"
           validate={this.props.validatePassword}
         />
-        <button type="submit" className="btn">
-          Register
-        </button>
+        <PrimaryButton type="submit" className="btn" text="Register" />
       </React.Fragment>
     );
   }
 }
 
 const registerForm = props => {
-  const { errors, validatePassword, ...formProps } = props;
+  const { errors, validatePassword, isLoading, ...formProps } = props;
 
-  return props.isLoading ? (
+  return isLoading ? (
     <Loader />
   ) : (
     <Form onSubmit={submittedValues => props.onSubmit(submittedValues)} {...formProps}>

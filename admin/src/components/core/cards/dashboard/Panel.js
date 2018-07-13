@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DefaultButton } from 'components/core/Common/Buttons/Buttons';
 
 const Panel = props => {
   return (
     <React.Fragment>
       <aside className={props.isPanelOpen ? 'details-panel' : 'details-panel closed'}>
-        <button className="ui-action btn" onClick={props.onCloseClick}>
-          Close
-        </button>
+        <DefaultButton onClick={props.onCloseClick} text="Close" />
         <h3>{props.title}</h3>
         {props.content}
       </aside>

@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import { format } from 'date-fns';
-import { toast } from 'react-toastify';
 
 import internalFetch from 'helpers/internal-fetch';
 import { flushPromises } from 'tests/helpers/TestUtils';
@@ -30,8 +29,7 @@ const rectification = {
 beforeAll(() =>
   format.mockImplementation(date => {
     return date.toUTCString();
-  })
-);
+  }));
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -101,8 +99,12 @@ describe('(Container) Rectification details', () => {
     expect(props.approveRectification).toHaveBeenCalledWith(456);
 
     await flushPromises().catch(() => {});
-    expect(toast.error).toHaveBeenCalled();
     expect(props.closePanel).not.toHaveBeenCalled();
+    expect(component.state()).toEqual(
+      expect.objectContaining({
+        isLoading: false
+      })
+    );
   });
 
   it('should be in loading state when props isLoading is true', () => {

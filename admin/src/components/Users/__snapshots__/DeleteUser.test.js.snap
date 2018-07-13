@@ -28,18 +28,15 @@ ShallowWrapper {
           Are you sure you want to delete this user?
         </p>
         <p>
-          <button
-            className="ui-action btn"
+          <Unknown
             onClick={[Function]}
-          >
-            Cancel
-          </button>
-          <button
-            className="ui-action btn"
+            text="Cancel"
+          />
+           
+          <Unknown
             onClick={[Function]}
-          >
-            OK
-          </button>
+            text="OK"
+          />
         </p>
       </React.Fragment>,
       "classNames": Object {},
@@ -80,18 +77,15 @@ ShallowWrapper {
             Are you sure you want to delete this user?
           </p>,
           <p>
-            <button
-              className="ui-action btn"
+            <Unknown
               onClick={[Function]}
-            >
-              Cancel
-            </button>
-            <button
-              className="ui-action btn"
+              text="Cancel"
+            />
+             
+            <Unknown
               onClick={[Function]}
-            >
-              OK
-            </button>
+              text="OK"
+            />
           </p>,
         ],
       },
@@ -114,18 +108,15 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <button
-                className="ui-action btn"
+              <Unknown
                 onClick={[Function]}
-              >
-                Cancel
-              </button>,
-              <button
-                className="ui-action btn"
+                text="Cancel"
+              />,
+              " ",
+              <Unknown
                 onClick={[Function]}
-              >
-                OK
-              </button>,
+                text="OK"
+              />,
             ],
           },
           "ref": null,
@@ -133,28 +124,27 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
-                "children": "Cancel",
-                "className": "ui-action btn",
                 "onClick": [Function],
+                "text": "Cancel",
               },
               "ref": null,
-              "rendered": "Cancel",
-              "type": "button",
+              "rendered": null,
+              "type": [Function],
             },
+            " ",
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
-                "children": "OK",
-                "className": "ui-action btn",
                 "onClick": [Function],
+                "text": "OK",
               },
               "ref": null,
-              "rendered": "OK",
-              "type": "button",
+              "rendered": null,
+              "type": [Function],
             },
           ],
           "type": "p",
@@ -177,18 +167,15 @@ ShallowWrapper {
             Are you sure you want to delete this user?
           </p>
           <p>
-            <button
-              className="ui-action btn"
+            <Unknown
               onClick={[Function]}
-            >
-              Cancel
-            </button>
-            <button
-              className="ui-action btn"
+              text="Cancel"
+            />
+             
+            <Unknown
               onClick={[Function]}
-            >
-              OK
-            </button>
+              text="OK"
+            />
           </p>
         </React.Fragment>,
         "classNames": Object {},
@@ -229,18 +216,15 @@ ShallowWrapper {
               Are you sure you want to delete this user?
             </p>,
             <p>
-              <button
-                className="ui-action btn"
+              <Unknown
                 onClick={[Function]}
-              >
-                Cancel
-              </button>
-              <button
-                className="ui-action btn"
+                text="Cancel"
+              />
+               
+              <Unknown
                 onClick={[Function]}
-              >
-                OK
-              </button>
+                text="OK"
+              />
             </p>,
           ],
         },
@@ -263,18 +247,15 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <button
-                  className="ui-action btn"
+                <Unknown
                   onClick={[Function]}
-                >
-                  Cancel
-                </button>,
-                <button
-                  className="ui-action btn"
+                  text="Cancel"
+                />,
+                " ",
+                <Unknown
                   onClick={[Function]}
-                >
-                  OK
-                </button>,
+                  text="OK"
+                />,
               ],
             },
             "ref": null,
@@ -282,28 +263,27 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "host",
+                "nodeType": "function",
                 "props": Object {
-                  "children": "Cancel",
-                  "className": "ui-action btn",
                   "onClick": [Function],
+                  "text": "Cancel",
                 },
                 "ref": null,
-                "rendered": "Cancel",
-                "type": "button",
+                "rendered": null,
+                "type": [Function],
               },
+              " ",
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "host",
+                "nodeType": "function",
                 "props": Object {
-                  "children": "OK",
-                  "className": "ui-action btn",
                   "onClick": [Function],
+                  "text": "OK",
                 },
                 "ref": null,
-                "rendered": "OK",
-                "type": "button",
+                "rendered": null,
+                "type": [Function],
               },
             ],
             "type": "p",
@@ -352,18 +332,15 @@ ShallowWrapper {
           Are you sure you want to delete this user?
         </p>
         <p>
-          <button
-            className="ui-action btn"
+          <Unknown
             onClick={[Function]}
-          >
-            Cancel
-          </button>
-          <button
-            className="ui-action btn"
+            text="Cancel"
+          />
+           
+          <Unknown
             onClick={[Function]}
-          >
-            OK
-          </button>
+            text="OK"
+          />
         </p>
       </React.Fragment>,
       "classNames": Object {},
@@ -404,18 +381,15 @@ ShallowWrapper {
             Are you sure you want to delete this user?
           </p>,
           <p>
-            <button
-              className="ui-action btn"
+            <Unknown
               onClick={[Function]}
-            >
-              Cancel
-            </button>
-            <button
-              className="ui-action btn"
+              text="Cancel"
+            />
+             
+            <Unknown
               onClick={[Function]}
-            >
-              OK
-            </button>
+              text="OK"
+            />
           </p>,
         ],
       },
@@ -438,18 +412,15 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <button
-                className="ui-action btn"
+              <Unknown
                 onClick={[Function]}
-              >
-                Cancel
-              </button>,
-              <button
-                className="ui-action btn"
+                text="Cancel"
+              />,
+              " ",
+              <Unknown
                 onClick={[Function]}
-              >
-                OK
-              </button>,
+                text="OK"
+              />,
             ],
           },
           "ref": null,
@@ -457,28 +428,27 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
-                "children": "Cancel",
-                "className": "ui-action btn",
                 "onClick": [Function],
+                "text": "Cancel",
               },
               "ref": null,
-              "rendered": "Cancel",
-              "type": "button",
+              "rendered": null,
+              "type": [Function],
             },
+            " ",
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
-                "children": "OK",
-                "className": "ui-action btn",
                 "onClick": [Function],
+                "text": "OK",
               },
               "ref": null,
-              "rendered": "OK",
-              "type": "button",
+              "rendered": null,
+              "type": [Function],
             },
           ],
           "type": "p",
@@ -501,18 +471,15 @@ ShallowWrapper {
             Are you sure you want to delete this user?
           </p>
           <p>
-            <button
-              className="ui-action btn"
+            <Unknown
               onClick={[Function]}
-            >
-              Cancel
-            </button>
-            <button
-              className="ui-action btn"
+              text="Cancel"
+            />
+             
+            <Unknown
               onClick={[Function]}
-            >
-              OK
-            </button>
+              text="OK"
+            />
           </p>
         </React.Fragment>,
         "classNames": Object {},
@@ -553,18 +520,15 @@ ShallowWrapper {
               Are you sure you want to delete this user?
             </p>,
             <p>
-              <button
-                className="ui-action btn"
+              <Unknown
                 onClick={[Function]}
-              >
-                Cancel
-              </button>
-              <button
-                className="ui-action btn"
+                text="Cancel"
+              />
+               
+              <Unknown
                 onClick={[Function]}
-              >
-                OK
-              </button>
+                text="OK"
+              />
             </p>,
           ],
         },
@@ -587,18 +551,15 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <button
-                  className="ui-action btn"
+                <Unknown
                   onClick={[Function]}
-                >
-                  Cancel
-                </button>,
-                <button
-                  className="ui-action btn"
+                  text="Cancel"
+                />,
+                " ",
+                <Unknown
                   onClick={[Function]}
-                >
-                  OK
-                </button>,
+                  text="OK"
+                />,
               ],
             },
             "ref": null,
@@ -606,28 +567,27 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "host",
+                "nodeType": "function",
                 "props": Object {
-                  "children": "Cancel",
-                  "className": "ui-action btn",
                   "onClick": [Function],
+                  "text": "Cancel",
                 },
                 "ref": null,
-                "rendered": "Cancel",
-                "type": "button",
+                "rendered": null,
+                "type": [Function],
               },
+              " ",
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "host",
+                "nodeType": "function",
                 "props": Object {
-                  "children": "OK",
-                  "className": "ui-action btn",
                   "onClick": [Function],
+                  "text": "OK",
                 },
                 "ref": null,
-                "rendered": "OK",
-                "type": "button",
+                "rendered": null,
+                "type": [Function],
               },
             ],
             "type": "p",
@@ -677,18 +637,15 @@ ShallowWrapper {
           Are you sure you want to delete this user?
         </p>
         <p>
-          <button
-            className="ui-action btn"
+          <Unknown
             onClick={[Function]}
-          >
-            Cancel
-          </button>
-          <button
-            className="ui-action btn"
+            text="Cancel"
+          />
+           
+          <Unknown
             onClick={[Function]}
-          >
-            OK
-          </button>
+            text="OK"
+          />
         </p>
       </React.Fragment>,
       "classNames": Object {},
@@ -729,18 +686,15 @@ ShallowWrapper {
             Are you sure you want to delete this user?
           </p>,
           <p>
-            <button
-              className="ui-action btn"
+            <Unknown
               onClick={[Function]}
-            >
-              Cancel
-            </button>
-            <button
-              className="ui-action btn"
+              text="Cancel"
+            />
+             
+            <Unknown
               onClick={[Function]}
-            >
-              OK
-            </button>
+              text="OK"
+            />
           </p>,
         ],
       },
@@ -763,18 +717,15 @@ ShallowWrapper {
           "nodeType": "host",
           "props": Object {
             "children": Array [
-              <button
-                className="ui-action btn"
+              <Unknown
                 onClick={[Function]}
-              >
-                Cancel
-              </button>,
-              <button
-                className="ui-action btn"
+                text="Cancel"
+              />,
+              " ",
+              <Unknown
                 onClick={[Function]}
-              >
-                OK
-              </button>,
+                text="OK"
+              />,
             ],
           },
           "ref": null,
@@ -782,28 +733,27 @@ ShallowWrapper {
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
-                "children": "Cancel",
-                "className": "ui-action btn",
                 "onClick": [Function],
+                "text": "Cancel",
               },
               "ref": null,
-              "rendered": "Cancel",
-              "type": "button",
+              "rendered": null,
+              "type": [Function],
             },
+            " ",
             Object {
               "instance": null,
               "key": undefined,
-              "nodeType": "host",
+              "nodeType": "function",
               "props": Object {
-                "children": "OK",
-                "className": "ui-action btn",
                 "onClick": [Function],
+                "text": "OK",
               },
               "ref": null,
-              "rendered": "OK",
-              "type": "button",
+              "rendered": null,
+              "type": [Function],
             },
           ],
           "type": "p",
@@ -826,18 +776,15 @@ ShallowWrapper {
             Are you sure you want to delete this user?
           </p>
           <p>
-            <button
-              className="ui-action btn"
+            <Unknown
               onClick={[Function]}
-            >
-              Cancel
-            </button>
-            <button
-              className="ui-action btn"
+              text="Cancel"
+            />
+             
+            <Unknown
               onClick={[Function]}
-            >
-              OK
-            </button>
+              text="OK"
+            />
           </p>
         </React.Fragment>,
         "classNames": Object {},
@@ -878,18 +825,15 @@ ShallowWrapper {
               Are you sure you want to delete this user?
             </p>,
             <p>
-              <button
-                className="ui-action btn"
+              <Unknown
                 onClick={[Function]}
-              >
-                Cancel
-              </button>
-              <button
-                className="ui-action btn"
+                text="Cancel"
+              />
+               
+              <Unknown
                 onClick={[Function]}
-              >
-                OK
-              </button>
+                text="OK"
+              />
             </p>,
           ],
         },
@@ -912,18 +856,15 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": Array [
-                <button
-                  className="ui-action btn"
+                <Unknown
                   onClick={[Function]}
-                >
-                  Cancel
-                </button>,
-                <button
-                  className="ui-action btn"
+                  text="Cancel"
+                />,
+                " ",
+                <Unknown
                   onClick={[Function]}
-                >
-                  OK
-                </button>,
+                  text="OK"
+                />,
               ],
             },
             "ref": null,
@@ -931,28 +872,27 @@ ShallowWrapper {
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "host",
+                "nodeType": "function",
                 "props": Object {
-                  "children": "Cancel",
-                  "className": "ui-action btn",
                   "onClick": [Function],
+                  "text": "Cancel",
                 },
                 "ref": null,
-                "rendered": "Cancel",
-                "type": "button",
+                "rendered": null,
+                "type": [Function],
               },
+              " ",
               Object {
                 "instance": null,
                 "key": undefined,
-                "nodeType": "host",
+                "nodeType": "function",
                 "props": Object {
-                  "children": "OK",
-                  "className": "ui-action btn",
                   "onClick": [Function],
+                  "text": "OK",
                 },
                 "ref": null,
-                "rendered": "OK",
-                "type": "button",
+                "rendered": null,
+                "type": [Function],
               },
             ],
             "type": "p",

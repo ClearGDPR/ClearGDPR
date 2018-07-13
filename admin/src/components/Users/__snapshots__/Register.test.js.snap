@@ -32,12 +32,11 @@ ShallowWrapper {
           placeholder="*********"
           type="password"
         />,
-        <button
+        <Unknown
           className="btn"
+          text="Register"
           type="submit"
-        >
-          Register
-        </button>,
+        />,
       ],
     },
     "ref": null,
@@ -76,15 +75,15 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": "Register",
           "className": "btn",
+          "text": "Register",
           "type": "submit",
         },
         "ref": null,
-        "rendered": "Register",
-        "type": "button",
+        "rendered": null,
+        "type": [Function],
       },
     ],
     "type": Symbol(react.fragment),
@@ -108,12 +107,11 @@ ShallowWrapper {
             placeholder="*********"
             type="password"
           />,
-          <button
+          <Unknown
             className="btn"
+            text="Register"
             type="submit"
-          >
-            Register
-          </button>,
+          />,
         ],
       },
       "ref": null,
@@ -152,15 +150,15 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": "Register",
             "className": "btn",
+            "text": "Register",
             "type": "submit",
           },
           "ref": null,
-          "rendered": "Register",
-          "type": "button",
+          "rendered": null,
+          "type": [Function],
         },
       ],
       "type": Symbol(react.fragment),
@@ -209,12 +207,11 @@ ShallowWrapper {
           placeholder="*********"
           type="password"
         />,
-        <button
+        <Unknown
           className="btn"
+          text="Register"
           type="submit"
-        >
-          Register
-        </button>,
+        />,
       ],
     },
     "ref": null,
@@ -253,15 +250,15 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": "Register",
           "className": "btn",
+          "text": "Register",
           "type": "submit",
         },
         "ref": null,
-        "rendered": "Register",
-        "type": "button",
+        "rendered": null,
+        "type": [Function],
       },
     ],
     "type": Symbol(react.fragment),
@@ -285,12 +282,11 @@ ShallowWrapper {
             placeholder="*********"
             type="password"
           />,
-          <button
+          <Unknown
             className="btn"
+            text="Register"
             type="submit"
-          >
-            Register
-          </button>,
+          />,
         ],
       },
       "ref": null,
@@ -329,15 +325,15 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": "Register",
             "className": "btn",
+            "text": "Register",
             "type": "submit",
           },
           "ref": null,
-          "rendered": "Register",
-          "type": "button",
+          "rendered": null,
+          "type": [Function],
         },
       ],
       "type": Symbol(react.fragment),
@@ -386,12 +382,11 @@ ShallowWrapper {
           placeholder="*********"
           type="password"
         />,
-        <button
+        <Unknown
           className="btn"
+          text="Register"
           type="submit"
-        >
-          Register
-        </button>,
+        />,
       ],
     },
     "ref": null,
@@ -430,15 +425,15 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "host",
+        "nodeType": "function",
         "props": Object {
-          "children": "Register",
           "className": "btn",
+          "text": "Register",
           "type": "submit",
         },
         "ref": null,
-        "rendered": "Register",
-        "type": "button",
+        "rendered": null,
+        "type": [Function],
       },
     ],
     "type": Symbol(react.fragment),
@@ -462,12 +457,11 @@ ShallowWrapper {
             placeholder="*********"
             type="password"
           />,
-          <button
+          <Unknown
             className="btn"
+            text="Register"
             type="submit"
-          >
-            Register
-          </button>,
+          />,
         ],
       },
       "ref": null,
@@ -506,15 +500,15 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "host",
+          "nodeType": "function",
           "props": Object {
-            "children": "Register",
             "className": "btn",
+            "text": "Register",
             "type": "submit",
           },
           "ref": null,
-          "rendered": "Register",
-          "type": "button",
+          "rendered": null,
+          "type": [Function],
         },
       ],
       "type": Symbol(react.fragment),

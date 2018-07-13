@@ -16,7 +16,7 @@ beforeEach(() => {
 describe('UsersProvider', () => {
   // To prevent showing to console on tests, should be expected by methods using
   // internal-fetch and having error 500.
-  global.console = { error: jest.fn()};
+  global.console = { error: jest.fn() };
 
   const users = UsersDataFactory.getAll();
 
@@ -153,7 +153,7 @@ describe('UsersProvider', () => {
       //not-empty
     }
 
-    expect(toast.error).toHaveBeenCalledWith('An error occurred: Error message');
+    expect(toast.error).toHaveBeenCalledWith('Error message');
   });
 
   it('should throw error when deleting a user returned HTTP 500', async () => {
