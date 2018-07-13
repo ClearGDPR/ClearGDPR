@@ -5,6 +5,7 @@ import ItemsCard from 'components/core/cards/dashboard/ItemsCard';
 const ConsentByProcessor = ({ processors, totalSubjects }) => {
   return (
     <ItemsCard
+      cols={4}
       data={processors.map(p => ({
         name: p.name,
         fillPercent: totalSubjects ? Math.floor(p.consented / totalSubjects * 100) : 100
