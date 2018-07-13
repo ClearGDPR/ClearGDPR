@@ -27,29 +27,29 @@ export class UsersContainer extends React.Component {
     this.props.fetchUsers();
   }
 
-  openChangePasswordForm(userId) {
+  openChangePasswordForm = userId => {
     this.props.openPanel(ChangePassword, 'Change password', { userId });
-  }
+  };
 
-  openRegisterUserForm() {
+  openRegisterUserForm = () => {
     this.props.openPanel(Register, 'Register user');
-  }
+  };
 
-  openDeleteConfirmationModal(userId) {
+  openDeleteConfirmationModal = userId => {
     this.setState({
       isDeleteModalOpen: true,
       userToDeleteId: userId
     });
-  }
+  };
 
   render() {
     return (
       <Users
         users={this.props.users}
         isLoading={this.props.isLoading}
-        onChangePasswordClick={this.openChangePasswordForm.bind(this)}
-        onRegisterUserClick={this.openRegisterUserForm.bind(this)}
-        onDeleteClick={this.openDeleteConfirmationModal.bind(this)}
+        onChangePasswordClick={this.openChangePasswordForm}
+        onRegisterUserClick={this.openRegisterUserForm}
+        onDeleteClick={this.openDeleteConfirmationModal}
       >
         <DeleteUser
           isOpen={this.state.isDeleteModalOpen}

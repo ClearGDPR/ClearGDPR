@@ -27,12 +27,6 @@ export class RectificationsContainer extends React.Component {
     return this.state.selectedTab === 0;
   }
 
-  onTabSelect(tabIndex) {
-    this.setState({
-      selectedTab: tabIndex
-    });
-  }
-
   getRectificationsData() {
     if (this.pendingTabActive) {
       return this.props.pendingRectifications;
@@ -59,30 +53,36 @@ export class RectificationsContainer extends React.Component {
     return paging ? paging.current || 1 : 1;
   }
 
-  onPageSelected(page) {
+  onTabSelect = tabIndex => {
+    this.setState({
+      selectedTab: tabIndex
+    });
+  };
+
+  onPageSelected = page => {
     if (this.pendingTabActive) {
       this.props.fetchPendingRectifications(page);
     } else {
       this.props.fetchProcessedRectifications(page);
     }
-  }
+  };
 
-  onDetailsClick(id) {
+  onDetailsClick = id => {
     this.props.openPanel(Details, 'Rectification details', { rectificationId: id });
-  }
+  };
 
   render() {
     return (
       <Rectifications
         tabs={this.state.tabs}
         selectedTab={this.state.selectedTab}
-        onTabSelect={this.onTabSelect.bind(this)}
+        onTabSelect={this.onTabSelect}
         pageCount={this.getPageCount()}
         currentPage={this.getCurrentPage()}
         data={this.getData()}
         isLoading={this.props.isLoading}
-        onPageSelected={this.onPageSelected.bind(this)}
-        onDetailsClick={this.onDetailsClick.bind(this)}
+        onPageSelected={this.onPageSelected}
+        onDetailsClick={this.onDetailsClick}
       />
     );
   }

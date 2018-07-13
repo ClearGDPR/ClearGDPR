@@ -23,12 +23,58 @@ export class ProcessorsProvider extends Component {
     ])
   };
 
+  fetchProcessors = async () => {
+    this.setLoading(true);
+
+    const processors = await this._getProcessors();
+    this.setState({
+      processors,
+      isLoading: false
+    });
+  };
+
+  addProcessor = async processor => {
+    this.setLoading(true);
+
+    const newProcessor = await this._addProcessor(processor).catch(
+      this.cancelLoadingAndReject.bind(this)
+    );
+    toast.success('Processor successfully added.');
+    await this.fetchProcessors();
+
+    return newProcessor;
+  };
+
+  updateProcessor = async processor => {
+    this.setLoading(true);
+
+    const updatedProcessor = await this._updateProcessor(processor).catch(
+      this.cancelLoadingAndReject.bind(this)
+    );
+    toast.success('Processor successfully updated.');
+    await this.fetchProcessors();
+
+    return updatedProcessor;
+  };
+
+  deleteProcessor = async processor => {
+    this.setLoading(true);
+
+    const isDeleted = await this._deleteProcessor(processor).catch(
+      this.cancelLoadingAndReject.bind(this)
+    );
+    toast.success('Processor successfully deleted.');
+    await this.fetchProcessors();
+
+    return isDeleted;
+  };
+
   state = {
     processors: [],
-    fetchProcessors: this.fetchProcessors.bind(this),
-    addProcessor: this.addProcessor.bind(this),
-    updateProcessor: this.updateProcessor.bind(this),
-    deleteProcessor: this.deleteProcessor.bind(this),
+    fetchProcessors: this.fetchProcessors,
+    addProcessor: this.addProcessor,
+    updateProcessor: this.updateProcessor,
+    deleteProcessor: this.deleteProcessor,
     isLoading: false
   };
 
@@ -65,52 +111,6 @@ export class ProcessorsProvider extends Component {
   cancelLoadingAndReject(e) {
     this.setLoading(false);
     return Promise.reject(e);
-  }
-
-  async fetchProcessors() {
-    this.setLoading(true);
-
-    const processors = await this._getProcessors();
-    this.setState({
-      processors,
-      isLoading: false
-    });
-  }
-
-  async addProcessor(processor) {
-    this.setLoading(true);
-
-    const newProcessor = await this._addProcessor(processor).catch(
-      this.cancelLoadingAndReject.bind(this)
-    );
-    toast.success('Processor successfully added.');
-    await this.fetchProcessors();
-
-    return newProcessor;
-  }
-
-  async updateProcessor(processor) {
-    this.setLoading(true);
-
-    const updatedProcessor = await this._updateProcessor(processor).catch(
-      this.cancelLoadingAndReject.bind(this)
-    );
-    toast.success('Processor successfully updated.');
-    await this.fetchProcessors();
-
-    return updatedProcessor;
-  }
-
-  async deleteProcessor(processor) {
-    this.setLoading(true);
-
-    const isDeleted = await this._deleteProcessor(processor).catch(
-      this.cancelLoadingAndReject.bind(this)
-    );
-    toast.success('Processor successfully deleted.');
-    await this.fetchProcessors();
-
-    return isDeleted;
   }
 
   render() {

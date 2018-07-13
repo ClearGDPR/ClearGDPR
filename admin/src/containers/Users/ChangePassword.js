@@ -40,12 +40,6 @@ export class ChangePasswordContainer extends React.Component {
     });
   }
 
-  stopLoading() {
-    this.setState({
-      isLoading: false
-    });
-  }
-
   validatePassword(password) {
     // TODO: todo add proper validation
     if (!password) {
@@ -57,7 +51,13 @@ export class ChangePasswordContainer extends React.Component {
     return null;
   }
 
-  onSubmit(data) {
+  stopLoading = () => {
+    this.setState({
+      isLoading: false
+    });
+  };
+
+  onSubmit = data => {
     const { newPassword, newPasswordRepeat } = data;
 
     if (newPassword !== newPasswordRepeat) {
@@ -72,21 +72,21 @@ export class ChangePasswordContainer extends React.Component {
     this.startLoading();
 
     return this.changePassword(this.props.userId, newPassword)
-      .then(this.stopLoading.bind(this))
+      .then(this.stopLoading)
       .then(res => {
         toast.success('User successfully registered');
         return res;
       })
       .then(() => this.props.closePanel && this.props.closePanel())
-      .catch(this.stopLoading.bind(this));
-  }
+      .catch(this.stopLoading);
+  };
 
   render() {
     return (
       <ChangePassword
         errors={this.state.errors}
         validatePassword={this.validatePassword}
-        onSubmit={this.onSubmit.bind(this)}
+        onSubmit={this.onSubmit}
         isLoading={this.state.isLoading}
       />
     );

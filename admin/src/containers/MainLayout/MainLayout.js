@@ -49,7 +49,7 @@ class MainLayoutContainer extends Component {
             isSidenavOpen={this.state.isSidenavOpen}
             isPanelOpen={isPanelOpen}
             username={session.getUsername()}
-            onMenuClick={this.toggleSidenav.bind(this)}
+            onMenuClick={this.toggleSidenav}
             onOverlayClick={closePanel}
             onClosePanelClick={closePanel}
             panelContent={Component ? <Component {...props} /> : null}

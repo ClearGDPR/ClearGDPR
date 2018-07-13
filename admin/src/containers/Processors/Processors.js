@@ -27,29 +27,29 @@ export class ProcessorsContainer extends React.Component {
     this.props.fetchProcessors();
   }
 
-  openEditProcessorForm(processor) {
+  openEditProcessorForm = processor => {
     this.props.openPanel(EditProcessor, 'Edit processor', { processor });
-  }
+  };
 
-  openCreateProcessorForm() {
+  openCreateProcessorForm = () => {
     this.props.openPanel(AddProcessor, 'Create processor');
-  }
+  };
 
-  openDeleteConfirmationModal(processorId) {
+  openDeleteConfirmationModal = processorId => {
     this.setState({
       isDeleteModalOpen: true,
       processorToDeleteId: processorId
     });
-  }
+  };
 
   render() {
     return (
       <Processors
         processors={this.props.processors}
         isLoading={this.props.isLoading}
-        onCreateProcessorClick={this.openCreateProcessorForm.bind(this)}
-        onEditProcessorClick={this.openEditProcessorForm.bind(this)}
-        onDeleteProcessorClick={this.openDeleteConfirmationModal.bind(this)}
+        onCreateProcessorClick={this.openCreateProcessorForm}
+        onEditProcessorClick={this.openEditProcessorForm}
+        onDeleteProcessorClick={this.openDeleteConfirmationModal}
       >
         <DeleteProcessor
           isOpen={this.state.isDeleteModalOpen}

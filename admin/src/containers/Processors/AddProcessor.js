@@ -15,7 +15,7 @@ export class AddProcessorContainer extends React.Component {
     errors: {}
   };
 
-  onSubmit(processor) {
+  onSubmit = processor => {
     processor.scopes = Object.keys(processor.scopes).reduce((scopes, s) => {
       return processor.scopes[s] ? scopes.concat(s) : scopes;
     }, []);
@@ -30,13 +30,13 @@ export class AddProcessorContainer extends React.Component {
           }
         })
       );
-  }
+  };
 
   render() {
     return (
       <EditProcessorForm
         errors={this.state.errors}
-        onSubmit={this.onSubmit.bind(this)}
+        onSubmit={this.onSubmit}
         isLoading={this.state.isLoading}
       />
     );

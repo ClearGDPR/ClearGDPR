@@ -9,7 +9,7 @@ import internalFetch from 'helpers/internal-fetch';
 import { toast } from 'react-toastify';
 
 export class LoginContainer extends React.Component {
-  handleLogin(username, password) {
+  handleLogin = (username, password) => {
     const { history, location } = this.props;
     const { from } = location.state || { from: { pathname: '/' } };
     return internalFetch(`${config.API_URL}/api/management/users/login`, {
@@ -27,14 +27,14 @@ export class LoginContainer extends React.Component {
       history.push(from);
       return resData;
     });
-  }
+  };
 
   render() {
     // apparently this is the "official" way to use query parameters with react-router 4...
     const query = new URLSearchParams(window.location.search);
     return (
       <Login
-        auth={this.handleLogin.bind(this)}
+        auth={this.handleLogin}
         errors={
           query.get('expired') ? { SessionExpired: 'Session expired, please login again' } : {}
         }

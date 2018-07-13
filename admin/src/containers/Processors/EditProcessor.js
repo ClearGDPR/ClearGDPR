@@ -21,7 +21,7 @@ export class EditProcessorContainer extends React.Component {
     errors: {}
   };
 
-  onSubmit(processor) {
+  onSubmit = processor => {
     // Clone data to avoid updating form until save is done
     const processorData = Object.assign({}, processor);
     delete processorData.address;
@@ -39,14 +39,14 @@ export class EditProcessorContainer extends React.Component {
           }
         })
       );
-  }
+  };
 
   render() {
     return (
       <EditProcessorForm
         values={this.props.processor}
         errors={this.state.errors}
-        onSubmit={this.onSubmit.bind(this)}
+        onSubmit={this.onSubmit}
         isLoading={this.state.isLoading}
       />
     );

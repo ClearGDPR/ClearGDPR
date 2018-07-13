@@ -49,7 +49,7 @@ export class DetailsContainer extends React.Component {
     return this.state.isLoading || this.props.isLoading;
   }
 
-  onApprove() {
+  onApprove = () => {
     this.setState({
       isLoading: true
     });
@@ -62,13 +62,13 @@ export class DetailsContainer extends React.Component {
           isLoading: false
         });
       });
-  }
+  };
 
   render() {
     return (
       <Details
         rectification={this.state.rectification}
-        onApprove={this.onApprove.bind(this)}
+        onApprove={this.onApprove}
         isLoading={this.isLoading}
       />
     );

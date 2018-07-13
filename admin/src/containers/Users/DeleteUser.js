@@ -13,14 +13,14 @@ export class DeleteUserContainer extends React.Component {
     isLoading: PropTypes.bool
   };
 
-  deleteUser() {
+  deleteUser = () => {
     this.props.deleteUser(this.props.userId).then(this.props.onClose);
-  }
+  };
 
   render() {
     return (
       <DeleteUser
-        onConfirm={this.deleteUser.bind(this)}
+        onConfirm={this.deleteUser}
         onCancel={this.props.onClose}
         isOpen={this.props.isOpen}
         isLoading={this.props.isLoading}

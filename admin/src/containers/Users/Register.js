@@ -27,7 +27,7 @@ export class RegisterContainer extends React.Component {
     return null;
   }
 
-  onSubmit(data) {
+  onSubmit = data => {
     const { username, password } = data;
 
     this.props
@@ -40,14 +40,14 @@ export class RegisterContainer extends React.Component {
           }
         })
       );
-  }
+  };
 
   render() {
     return (
       <Register
         errors={this.state.errors}
         validatePassword={this.validatePassword}
-        onSubmit={this.onSubmit.bind(this)}
+        onSubmit={this.onSubmit}
         isLoading={this.props.isLoading}
       />
     );

@@ -23,9 +23,9 @@ export class UsersProvider extends Component {
 
   state = {
     users: [],
-    fetchUsers: this.fetchUsers.bind(this),
-    registerUser: this.registerUser.bind(this),
-    deleteUser: this.deleteUser.bind(this),
+    fetchUsers: this.fetchUsers,
+    registerUser: this.registerUser,
+    deleteUser: this.deleteUser,
     isLoading: false
   };
 
@@ -55,12 +55,12 @@ export class UsersProvider extends Component {
     });
   }
 
-  cancelLoadingAndReject(e) {
+  cancelLoadingAndReject = e => {
     this.setLoading(false);
     return Promise.reject(e);
-  }
+  };
 
-  async fetchUsers() {
+  fetchUsers = async () => {
     this.setLoading(true);
 
     let users = await this._getUsers();
@@ -68,26 +68,24 @@ export class UsersProvider extends Component {
       users,
       isLoading: false
     });
-  }
+  };
 
-  async registerUser(username, password) {
+  registerUser = async (username, password) => {
     this.setLoading(true);
 
-    const user = await this._registerUser(username, password).catch(
-      this.cancelLoadingAndReject.bind(this)
-    );
+    const user = await this._registerUser(username, password).catch(this.cancelLoadingAndReject);
     toast.success('User successfully registered');
     await this.fetchUsers();
 
     return user;
-  }
+  };
 
-  async deleteUser(userId) {
+  deleteUser = async userId => {
     this.setLoading(true);
-    await this._deleteUser(userId).catch(this.cancelLoadingAndReject.bind(this));
+    await this._deleteUser(userId).catch(this.cancelLoadingAndReject);
     toast.success('User successfully deleted');
     await this.fetchUsers();
-  }
+  };
 
   render() {
     return <UsersContext.Provider value={this.state}>{this.props.children}</UsersContext.Provider>;

@@ -13,14 +13,14 @@ export class DeleteProcessorContainer extends React.Component {
     isLoading: PropTypes.bool
   };
 
-  deleteProcessor() {
+  deleteProcessor = () => {
     this.props.deleteProcessor(this.props.processorId).then(this.props.onClose);
-  }
+  };
 
   render() {
     return (
       <DeleteProcessor
-        onConfirm={this.deleteProcessor.bind(this)}
+        onConfirm={this.deleteProcessor}
         onCancel={this.props.onClose}
         isOpen={this.props.isOpen}
         isLoading={this.props.isLoading}
