@@ -1,5 +1,6 @@
 const { managementJWT } = require('./../../../utils/jwt');
 const UsersService = require('./users.service');
+const { Forbidden } = require('../../../utils/errors');
 
 class UsersController {
   constructor() {
@@ -14,6 +15,7 @@ class UsersController {
 
   async remove(req, res) {
     const { userId } = req.params;
+    if(req.user.id === userId) throw new Forbidden(`User can't remove itself`);
     await this.usersService.removeUser(userId);
     res.json({ success: true });
   }
