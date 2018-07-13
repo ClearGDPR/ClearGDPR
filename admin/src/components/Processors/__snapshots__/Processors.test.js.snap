@@ -5,29 +5,21 @@ exports[`(Component) Processors should render when loading correctly 1`] = `
   <section
     className="cards"
   >
-    <div
-      className="action-bar"
+    <ActionBar
+      desc={
+        <React.Fragment>
+          A processor is a third-party with access to your users data.
+          <br />
+          You can manage from here which are enabled or not, and which actions are allowed to access.
+        </React.Fragment>
+      }
+      title="Processors"
     >
-      <div
-        className="text"
-      >
-        <h4>
-          Processors
-        </h4>
-        <p>
-          A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
-        </p>
-      </div>
-      <div
-        className="spacer"
-      />
-      <button
-        className="ui-action btn"
+      <Component
         onClick={[Function]}
-      >
-        + Add Processor
-      </button>
-    </div>
+        text="+ Add Processor"
+      />
+    </ActionBar>
     <div
       className="content"
     >
@@ -42,29 +34,21 @@ exports[`(Component) Processors should render when not loading correctly 1`] = `
   <section
     className="cards"
   >
-    <div
-      className="action-bar"
+    <ActionBar
+      desc={
+        <React.Fragment>
+          A processor is a third-party with access to your users data.
+          <br />
+          You can manage from here which are enabled or not, and which actions are allowed to access.
+        </React.Fragment>
+      }
+      title="Processors"
     >
-      <div
-        className="text"
-      >
-        <h4>
-          Processors
-        </h4>
-        <p>
-          A processor is a third-party with access to your users data. You can manage from here which are enabled or not, and which actions are allowed to access.
-        </p>
-      </div>
-      <div
-        className="spacer"
-      />
-      <button
-        className="ui-action btn"
+      <Component
         onClick={[Function]}
-      >
-        + Add Processor
-      </button>
-    </div>
+        text="+ Add Processor"
+      />
+    </ActionBar>
     <div
       className="row"
       key="0"

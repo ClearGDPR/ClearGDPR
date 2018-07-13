@@ -215,13 +215,11 @@ exports[`(Component) Rectification details should render array values in propert
     Status: 
     APPROVED
   </p>
-  <button
-    className="btn"
+  <Component
     onClick={[Function]}
+    text="Approve"
     type="button"
-  >
-    Approve
-  </button>
+  />
 </React.Fragment>
 `;
 
@@ -346,13 +344,11 @@ exports[`(Component) Rectification details should render nested properties corre
     Status: 
     APPROVED
   </p>
-  <button
-    className="btn"
+  <Component
     onClick={[Function]}
+    text="Approve"
     type="button"
-  >
-    Approve
-  </button>
+  />
 </React.Fragment>
 `;
 
@@ -416,12 +412,10 @@ exports[`(Component) Rectification details should render when not loading correc
     Status: 
     PENDING
   </p>
-  <button
-    className="btn"
+  <Component
     onClick={[Function]}
+    text="Approve"
     type="button"
-  >
-    Approve
-  </button>
+  />
 </React.Fragment>
 `;

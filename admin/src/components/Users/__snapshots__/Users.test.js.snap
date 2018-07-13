@@ -5,29 +5,15 @@ exports[`(Component) Users should render when loading correctly 1`] = `
   <section
     className="cards"
   >
-    <div
-      className="action-bar"
+    <ActionBar
+      desc="Manage users that can access the administrative panel"
+      title="Users"
     >
-      <div
-        className="text"
-      >
-        <h4>
-          Users
-        </h4>
-        <p>
-          Manage users that can access the administrative panel
-        </p>
-      </div>
-      <div
-        className="spacer"
-      />
-      <button
-        className="ui-action btn"
+      <Component
         onClick={[Function]}
-      >
-        + Register User
-      </button>
-    </div>
+        text="+ Register user"
+      />
+    </ActionBar>
     <div
       className="row"
     >
@@ -50,29 +36,15 @@ exports[`(Component) Users should render when not loading correctly 1`] = `
   <section
     className="cards"
   >
-    <div
-      className="action-bar"
+    <ActionBar
+      desc="Manage users that can access the administrative panel"
+      title="Users"
     >
-      <div
-        className="text"
-      >
-        <h4>
-          Users
-        </h4>
-        <p>
-          Manage users that can access the administrative panel
-        </p>
-      </div>
-      <div
-        className="spacer"
-      />
-      <button
-        className="ui-action btn"
+      <Component
         onClick={[Function]}
-      >
-        + Register User
-      </button>
-    </div>
+        text="+ Register user"
+      />
+    </ActionBar>
     <div
       className="row"
     >
