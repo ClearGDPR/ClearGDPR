@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ConsentByProcessor from './ConsentByProcessor';
-import toJson from 'enzyme-to-json';
 import ItemsCard from 'components/core/cards/dashboard/ItemsCard';
 
 describe('(Component) ConsentByProcessor', () => {
@@ -16,7 +15,7 @@ describe('(Component) ConsentByProcessor', () => {
       ]
     };
     const component = shallow(<ConsentByProcessor {...props} />);
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should render if numbers are 0', () => {
@@ -31,7 +30,7 @@ describe('(Component) ConsentByProcessor', () => {
     };
     const component = shallow(<ConsentByProcessor {...props} />);
     expect(component.find(ItemsCard).props().data[0].fillPercent).toEqual(100);
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should do the math correctly', () => {
@@ -46,6 +45,6 @@ describe('(Component) ConsentByProcessor', () => {
     };
     const component = shallow(<ConsentByProcessor {...props} />);
     expect(component.find(ItemsCard).props().data[0].fillPercent).toEqual(32);
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

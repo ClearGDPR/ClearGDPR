@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import Processors from './Processors';
 import * as ProcessorsDataFactory from 'tests/data/processors.factory';
 
@@ -24,11 +23,11 @@ const setup = propOverrides => {
 describe('(Component) Processors', () => {
   it('should render when not loading correctly', () => {
     const { component } = setup();
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should render when loading correctly', () => {
     const { component } = setup({ isLoading: true });
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

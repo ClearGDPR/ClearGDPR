@@ -1,6 +1,5 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import * as ProcessorsDataFactory from 'tests/data/processors.factory';
 
 import session from 'helpers/Session';
@@ -13,11 +12,14 @@ beforeEach(() => {
 });
 
 const setup = propOverrides => {
-  const props = Object.assign({ 
-    processors,
-    fetchProcessors: () => {},
-    isLoading: false 
-  }, propOverrides);
+  const props = Object.assign(
+    {
+      processors,
+      fetchProcessors: () => {},
+      isLoading: false
+    },
+    propOverrides
+  );
 
   const component = shallow(<ProcessorsContainer {...props} />);
   const mounted = mount(<ProcessorsContainer {...props} />);
@@ -40,7 +42,7 @@ describe('(Container) Processors', () => {
 
   it('should render correctly', async () => {
     const { component } = setup();
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should fetch processors after mounting the component', async () => {

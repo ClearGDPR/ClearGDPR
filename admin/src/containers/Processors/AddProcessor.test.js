@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 
 import * as TestUtils from 'tests/helpers/TestUtils';
 
@@ -23,7 +22,7 @@ const setupShallow = propOverrides => {
 describe('(Container) Add Processor', () => {
   it('should render correctly when default props provided', async () => {
     const { component } = setupShallow();
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should populate errors on submit when create rejects with error', async () => {
@@ -49,9 +48,7 @@ describe('(Container) Add Processor', () => {
       scopes: []
     };
 
-    component
-      .instance()
-      .onSubmit(stubProcessor);
+    component.instance().onSubmit(stubProcessor);
 
     await TestUtils.flushPromises();
     expect(props.closePanel).toHaveBeenCalled();

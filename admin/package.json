@@ -71,6 +71,9 @@
     "precommit": "pretty-quick --staged"
   },
   "jest": {
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],

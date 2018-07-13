@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import ConsentDial from './ControllerConsentDial';
-import toJson from 'enzyme-to-json';
 
 const setup = propOverrides => {
   const props = {
@@ -18,7 +17,7 @@ describe('(Component) ConsentDial', () => {
       consented: 1,
       unconsented: 10
     });
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should render if numbers are 0', () => {
@@ -26,6 +25,6 @@ describe('(Component) ConsentDial', () => {
       consented: 0,
       unconsented: 0
     });
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });

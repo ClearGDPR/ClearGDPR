@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import toJson from 'enzyme-to-json';
 
 import Details from './Details';
 
@@ -84,22 +83,22 @@ beforeEach(() => {
 describe('(Component) Rectification details', () => {
   it('should render when not loading correctly', () => {
     const { component } = setup();
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should render when loading correctly', () => {
     const component = setup({ isLoading: true });
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should render nested properties correctly', () => {
     const { component } = setup({ rectification: nestedRectification });
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should render array values in properties correctly', () => {
     const { component } = setup({ rectification: nestedRectificationWithArray });
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should call onApproved on click of Approve button', () => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import { createMemoryHistory } from 'history';
 import { flushPromises } from 'tests/helpers/TestUtils';
 import { LoginContainer } from './Login';
@@ -25,7 +24,7 @@ const setup = propOverrides => {
 describe('(Container) Login', () => {
   it('should render correctly', () => {
     const { component } = setup();
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should send username and password and receive a token', async () => {

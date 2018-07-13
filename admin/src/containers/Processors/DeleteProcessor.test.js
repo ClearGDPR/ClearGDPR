@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
 
 import session from 'helpers/Session';
 import * as TestUtils from 'tests/helpers/TestUtils';
@@ -32,7 +31,7 @@ beforeEach(() => {
 describe('(Container) Delete processor', () => {
   it('should render correctly when processor and default provided props provided', async () => {
     const { component } = setupShallow();
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should call delete processor from props when delete processor was called', async () => {

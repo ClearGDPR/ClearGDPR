@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import toJson from 'enzyme-to-json';
 import { format } from 'date-fns';
 
 import internalFetch from 'helpers/internal-fetch';
@@ -54,12 +53,12 @@ const setup = propOverrides => {
 describe('(Container) Rectification details', () => {
   it('should render when not loading correctly', () => {
     const { component } = setup();
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should render when loading correctly', () => {
     const { component } = setup({ isLoading: true });
-    expect(toJson(component)).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('should have correct state after mounting', async () => {
