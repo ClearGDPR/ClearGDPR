@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format } from 'date-fns';
+import format from 'helpers/date-formatter';
 
 import config from 'config';
 import internalFetch from 'helpers/internal-fetch';
@@ -34,7 +34,7 @@ export class DetailsContainer extends React.Component {
       .then(r =>
         this.setState({
           rectification: {
-            created_at: format(new Date(r.createdAt), 'DD/MM/YYYY h:mma'),
+            created_at: format(r.createdAt),
             currentData: r.currentData,
             updates: r.updates,
             status: r.status

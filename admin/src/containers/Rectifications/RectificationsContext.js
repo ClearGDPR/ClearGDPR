@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import config from 'config';
 import internalFetch from 'helpers/internal-fetch';
 import { toast } from 'react-toastify';
-import { format } from 'date-fns';
+import format from 'helpers/date-formatter';
 
 const RectificationsContext = createContext({
   pendingRectifications: {},
@@ -85,7 +85,7 @@ export class RectificationsProvider extends Component {
     const mappedData = result.data.map(v => {
       let mapped = {
         id: v.id,
-        created_at: format(new Date(v.created_at), 'DD/MM/YYYY h:mma'),
+        created_at: format(v.created_at),
         request_reason: v.request_reason
       };
 
