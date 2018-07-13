@@ -352,7 +352,61 @@ exports[`(Component) Rectification details should render nested properties corre
 </React.Fragment>
 `;
 
-exports[`(Component) Rectification details should render when loading correctly 1`] = `undefined`;
+exports[`(Component) Rectification details should render when loading correctly 1`] = `
+Object {
+  "component": <Loader />,
+  "mounted": <Details
+    isLoading={true}
+    onApprove={[MockFunction]}
+    rectification={
+      Object {
+        "createdAt": "2018-07-10T16:14:20.742Z",
+        "currentData": Object {
+          "email": "jb@coolcartoons.io",
+          "firstName": "Johnny",
+          "someKey": "Some data goes here",
+        },
+        "id": 1,
+        "status": "PENDING",
+        "updates": Object {
+          "lastName": "Bravo",
+        },
+      }
+    }
+  >
+    <Loader>
+      <div
+        className="loader"
+      >
+        <div
+          className="box"
+        >
+          <div
+            className="inner-box"
+          />
+        </div>
+      </div>
+    </Loader>
+  </Details>,
+  "props": Object {
+    "isLoading": true,
+    "onApprove": [MockFunction],
+    "rectification": Object {
+      "createdAt": "2018-07-10T16:14:20.742Z",
+      "currentData": Object {
+        "email": "jb@coolcartoons.io",
+        "firstName": "Johnny",
+        "someKey": "Some data goes here",
+      },
+      "id": 1,
+      "status": "PENDING",
+      "updates": Object {
+        "lastName": "Bravo",
+      },
+    },
+  },
+}
+`;
 
 exports[`(Component) Rectification details should render when not loading correctly 1`] = `
 <React.Fragment>

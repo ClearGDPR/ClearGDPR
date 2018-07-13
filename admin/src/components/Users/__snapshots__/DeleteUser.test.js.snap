@@ -1,1037 +1,202 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(Component) Delete User should render correctly when closed 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <DeleteUser
-    isOpen={false}
-    onCancel={[MockFunction]}
-    onConfirm={[MockFunction]}
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "animationDuration": 500,
-      "center": true,
-      "children": <React.Fragment>
-        <p>
-          Are you sure you want to delete this user?
-        </p>
-        <p>
-          <Unknown
-            onClick={[Function]}
-            text="Cancel"
-          />
-           
-          <Unknown
-            onClick={[Function]}
-            text="OK"
-          />
-        </p>
-      </React.Fragment>,
-      "classNames": Object {},
-      "classes": Object {
-        "closeButton": "styles_closeButton__20ID4",
-        "closeIcon": "styles_closeIcon__1QwbI",
-        "modal": "styles_modal__gNwvD",
-        "overlay": "styles_overlay__CLSq-",
-        "overlayCenter": "styles_overlayCenter__YHoO7",
-        "transitionEnter": "styles_transitionEnter__3j_-a",
-        "transitionEnterActive": "styles_transitionEnterActive___eQs7",
-        "transitionExit": "styles_transitionExit__1KmEf",
-        "transitionExitActive": "styles_transitionExitActive__1nQXw",
-      },
-      "closeIconSize": 28,
-      "closeIconSvgPath": <path
-        d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
-      />,
-      "closeOnEsc": true,
-      "closeOnOverlayClick": true,
-      "onClose": [Function],
-      "onEntered": null,
-      "onEscKeyDown": null,
-      "onExited": null,
-      "onOverlayClick": null,
-      "open": false,
-      "showCloseIcon": false,
-      "styles": Object {},
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
-          <p>
-            Are you sure you want to delete this user?
-          </p>,
-          <p>
-            <Unknown
-              onClick={[Function]}
-              text="Cancel"
-            />
-             
-            <Unknown
-              onClick={[Function]}
-              text="OK"
-            />
-          </p>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Are you sure you want to delete this user?",
-          },
-          "ref": null,
-          "rendered": "Are you sure you want to delete this user?",
-          "type": "p",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <Unknown
-                onClick={[Function]}
-                text="Cancel"
-              />,
-              " ",
-              <Unknown
-                onClick={[Function]}
-                text="OK"
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "onClick": [Function],
-                "text": "Cancel",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            " ",
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "onClick": [Function],
-                "text": "OK",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": "p",
-        },
-      ],
-      "type": Symbol(react.fragment),
-    },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
+<Modal
+  animationDuration={500}
+  center={true}
+  classNames={Object {}}
+  classes={
     Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "animationDuration": 500,
-        "center": true,
-        "children": <React.Fragment>
-          <p>
-            Are you sure you want to delete this user?
-          </p>
-          <p>
-            <Unknown
-              onClick={[Function]}
-              text="Cancel"
-            />
-             
-            <Unknown
-              onClick={[Function]}
-              text="OK"
-            />
-          </p>
-        </React.Fragment>,
-        "classNames": Object {},
-        "classes": Object {
-          "closeButton": "styles_closeButton__20ID4",
-          "closeIcon": "styles_closeIcon__1QwbI",
-          "modal": "styles_modal__gNwvD",
-          "overlay": "styles_overlay__CLSq-",
-          "overlayCenter": "styles_overlayCenter__YHoO7",
-          "transitionEnter": "styles_transitionEnter__3j_-a",
-          "transitionEnterActive": "styles_transitionEnterActive___eQs7",
-          "transitionExit": "styles_transitionExit__1KmEf",
-          "transitionExitActive": "styles_transitionExitActive__1nQXw",
-        },
-        "closeIconSize": 28,
-        "closeIconSvgPath": <path
-          d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
-        />,
-        "closeOnEsc": true,
-        "closeOnOverlayClick": true,
-        "onClose": [Function],
-        "onEntered": null,
-        "onEscKeyDown": null,
-        "onExited": null,
-        "onOverlayClick": null,
-        "open": false,
-        "showCloseIcon": false,
-        "styles": Object {},
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "children": Array [
-            <p>
-              Are you sure you want to delete this user?
-            </p>,
-            <p>
-              <Unknown
-                onClick={[Function]}
-                text="Cancel"
-              />
-               
-              <Unknown
-                onClick={[Function]}
-                text="OK"
-              />
-            </p>,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Are you sure you want to delete this user?",
-            },
-            "ref": null,
-            "rendered": "Are you sure you want to delete this user?",
-            "type": "p",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <Unknown
-                  onClick={[Function]}
-                  text="Cancel"
-                />,
-                " ",
-                <Unknown
-                  onClick={[Function]}
-                  text="OK"
-                />,
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "onClick": [Function],
-                  "text": "Cancel",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              " ",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "onClick": [Function],
-                  "text": "OK",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-            ],
-            "type": "p",
-          },
-        ],
-        "type": Symbol(react.fragment),
-      },
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
+      "closeButton": "styles_closeButton__20ID4",
+      "closeIcon": "styles_closeIcon__1QwbI",
+      "modal": "styles_modal__gNwvD",
+      "overlay": "styles_overlay__CLSq-",
+      "overlayCenter": "styles_overlayCenter__YHoO7",
+      "transitionEnter": "styles_transitionEnter__3j_-a",
+      "transitionEnterActive": "styles_transitionEnterActive___eQs7",
+      "transitionExit": "styles_transitionExit__1KmEf",
+      "transitionExitActive": "styles_transitionExitActive__1nQXw",
+    }
+  }
+  closeIconSize={28}
+  closeIconSvgPath={
+    <path
+      d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
+    />
+  }
+  closeOnEsc={true}
+  closeOnOverlayClick={true}
+  onClose={[Function]}
+  onEntered={null}
+  onEscKeyDown={null}
+  onExited={null}
+  onOverlayClick={null}
+  open={false}
+  showCloseIcon={false}
+  styles={Object {}}
+>
+  <React.Fragment>
+    <p>
+      Are you sure you want to delete this user?
+    </p>
+    <p>
+      <Component
+        onClick={[Function]}
+        text="Cancel"
+      />
+       
+      <Component
+        onClick={[Function]}
+        text="OK"
+      />
+    </p>
+  </React.Fragment>
+</Modal>
 `;
 
 exports[`(Component) Delete User should render correctly when open 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <DeleteUser
-    isOpen={true}
-    onCancel={[MockFunction]}
-    onConfirm={[MockFunction]}
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "animationDuration": 500,
-      "center": true,
-      "children": <React.Fragment>
-        <p>
-          Are you sure you want to delete this user?
-        </p>
-        <p>
-          <Unknown
-            onClick={[Function]}
-            text="Cancel"
-          />
-           
-          <Unknown
-            onClick={[Function]}
-            text="OK"
-          />
-        </p>
-      </React.Fragment>,
-      "classNames": Object {},
-      "classes": Object {
-        "closeButton": "styles_closeButton__20ID4",
-        "closeIcon": "styles_closeIcon__1QwbI",
-        "modal": "styles_modal__gNwvD",
-        "overlay": "styles_overlay__CLSq-",
-        "overlayCenter": "styles_overlayCenter__YHoO7",
-        "transitionEnter": "styles_transitionEnter__3j_-a",
-        "transitionEnterActive": "styles_transitionEnterActive___eQs7",
-        "transitionExit": "styles_transitionExit__1KmEf",
-        "transitionExitActive": "styles_transitionExitActive__1nQXw",
-      },
-      "closeIconSize": 28,
-      "closeIconSvgPath": <path
-        d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
-      />,
-      "closeOnEsc": true,
-      "closeOnOverlayClick": true,
-      "onClose": [Function],
-      "onEntered": null,
-      "onEscKeyDown": null,
-      "onExited": null,
-      "onOverlayClick": null,
-      "open": true,
-      "showCloseIcon": false,
-      "styles": Object {},
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
-          <p>
-            Are you sure you want to delete this user?
-          </p>,
-          <p>
-            <Unknown
-              onClick={[Function]}
-              text="Cancel"
-            />
-             
-            <Unknown
-              onClick={[Function]}
-              text="OK"
-            />
-          </p>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Are you sure you want to delete this user?",
-          },
-          "ref": null,
-          "rendered": "Are you sure you want to delete this user?",
-          "type": "p",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <Unknown
-                onClick={[Function]}
-                text="Cancel"
-              />,
-              " ",
-              <Unknown
-                onClick={[Function]}
-                text="OK"
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "onClick": [Function],
-                "text": "Cancel",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            " ",
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "onClick": [Function],
-                "text": "OK",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": "p",
-        },
-      ],
-      "type": Symbol(react.fragment),
-    },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
+<Modal
+  animationDuration={500}
+  center={true}
+  classNames={Object {}}
+  classes={
     Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "animationDuration": 500,
-        "center": true,
-        "children": <React.Fragment>
-          <p>
-            Are you sure you want to delete this user?
-          </p>
-          <p>
-            <Unknown
-              onClick={[Function]}
-              text="Cancel"
-            />
-             
-            <Unknown
-              onClick={[Function]}
-              text="OK"
-            />
-          </p>
-        </React.Fragment>,
-        "classNames": Object {},
-        "classes": Object {
-          "closeButton": "styles_closeButton__20ID4",
-          "closeIcon": "styles_closeIcon__1QwbI",
-          "modal": "styles_modal__gNwvD",
-          "overlay": "styles_overlay__CLSq-",
-          "overlayCenter": "styles_overlayCenter__YHoO7",
-          "transitionEnter": "styles_transitionEnter__3j_-a",
-          "transitionEnterActive": "styles_transitionEnterActive___eQs7",
-          "transitionExit": "styles_transitionExit__1KmEf",
-          "transitionExitActive": "styles_transitionExitActive__1nQXw",
-        },
-        "closeIconSize": 28,
-        "closeIconSvgPath": <path
-          d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
-        />,
-        "closeOnEsc": true,
-        "closeOnOverlayClick": true,
-        "onClose": [Function],
-        "onEntered": null,
-        "onEscKeyDown": null,
-        "onExited": null,
-        "onOverlayClick": null,
-        "open": true,
-        "showCloseIcon": false,
-        "styles": Object {},
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "children": Array [
-            <p>
-              Are you sure you want to delete this user?
-            </p>,
-            <p>
-              <Unknown
-                onClick={[Function]}
-                text="Cancel"
-              />
-               
-              <Unknown
-                onClick={[Function]}
-                text="OK"
-              />
-            </p>,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Are you sure you want to delete this user?",
-            },
-            "ref": null,
-            "rendered": "Are you sure you want to delete this user?",
-            "type": "p",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <Unknown
-                  onClick={[Function]}
-                  text="Cancel"
-                />,
-                " ",
-                <Unknown
-                  onClick={[Function]}
-                  text="OK"
-                />,
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "onClick": [Function],
-                  "text": "Cancel",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              " ",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "onClick": [Function],
-                  "text": "OK",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-            ],
-            "type": "p",
-          },
-        ],
-        "type": Symbol(react.fragment),
-      },
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
+      "closeButton": "styles_closeButton__20ID4",
+      "closeIcon": "styles_closeIcon__1QwbI",
+      "modal": "styles_modal__gNwvD",
+      "overlay": "styles_overlay__CLSq-",
+      "overlayCenter": "styles_overlayCenter__YHoO7",
+      "transitionEnter": "styles_transitionEnter__3j_-a",
+      "transitionEnterActive": "styles_transitionEnterActive___eQs7",
+      "transitionExit": "styles_transitionExit__1KmEf",
+      "transitionExitActive": "styles_transitionExitActive__1nQXw",
+    }
+  }
+  closeIconSize={28}
+  closeIconSvgPath={
+    <path
+      d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
+    />
+  }
+  closeOnEsc={true}
+  closeOnOverlayClick={true}
+  onClose={[Function]}
+  onEntered={null}
+  onEscKeyDown={null}
+  onExited={null}
+  onOverlayClick={null}
+  open={true}
+  showCloseIcon={false}
+  styles={Object {}}
+>
+  <React.Fragment>
+    <p>
+      Are you sure you want to delete this user?
+    </p>
+    <p>
+      <Component
+        onClick={[Function]}
+        text="Cancel"
+      />
+       
+      <Component
+        onClick={[Function]}
+        text="OK"
+      />
+    </p>
+  </React.Fragment>
+</Modal>
 `;
 
 exports[`(Component) Delete User should render correctly when the prop isLoading is set to false 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <DeleteUser
-    isLoading={false}
-    isOpen={true}
-    onCancel={[MockFunction]}
-    onConfirm={[MockFunction]}
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "animationDuration": 500,
-      "center": true,
-      "children": <React.Fragment>
-        <p>
-          Are you sure you want to delete this user?
-        </p>
-        <p>
-          <Unknown
-            onClick={[Function]}
-            text="Cancel"
-          />
-           
-          <Unknown
-            onClick={[Function]}
-            text="OK"
-          />
-        </p>
-      </React.Fragment>,
-      "classNames": Object {},
-      "classes": Object {
-        "closeButton": "styles_closeButton__20ID4",
-        "closeIcon": "styles_closeIcon__1QwbI",
-        "modal": "styles_modal__gNwvD",
-        "overlay": "styles_overlay__CLSq-",
-        "overlayCenter": "styles_overlayCenter__YHoO7",
-        "transitionEnter": "styles_transitionEnter__3j_-a",
-        "transitionEnterActive": "styles_transitionEnterActive___eQs7",
-        "transitionExit": "styles_transitionExit__1KmEf",
-        "transitionExitActive": "styles_transitionExitActive__1nQXw",
-      },
-      "closeIconSize": 28,
-      "closeIconSvgPath": <path
-        d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
-      />,
-      "closeOnEsc": true,
-      "closeOnOverlayClick": true,
-      "onClose": [Function],
-      "onEntered": null,
-      "onEscKeyDown": null,
-      "onExited": null,
-      "onOverlayClick": null,
-      "open": true,
-      "showCloseIcon": false,
-      "styles": Object {},
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "children": Array [
-          <p>
-            Are you sure you want to delete this user?
-          </p>,
-          <p>
-            <Unknown
-              onClick={[Function]}
-              text="Cancel"
-            />
-             
-            <Unknown
-              onClick={[Function]}
-              text="OK"
-            />
-          </p>,
-        ],
-      },
-      "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": "Are you sure you want to delete this user?",
-          },
-          "ref": null,
-          "rendered": "Are you sure you want to delete this user?",
-          "type": "p",
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "host",
-          "props": Object {
-            "children": Array [
-              <Unknown
-                onClick={[Function]}
-                text="Cancel"
-              />,
-              " ",
-              <Unknown
-                onClick={[Function]}
-                text="OK"
-              />,
-            ],
-          },
-          "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "onClick": [Function],
-                "text": "Cancel",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            " ",
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "onClick": [Function],
-                "text": "OK",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-          ],
-          "type": "p",
-        },
-      ],
-      "type": Symbol(react.fragment),
-    },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
+<Modal
+  animationDuration={500}
+  center={true}
+  classNames={Object {}}
+  classes={
     Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "animationDuration": 500,
-        "center": true,
-        "children": <React.Fragment>
-          <p>
-            Are you sure you want to delete this user?
-          </p>
-          <p>
-            <Unknown
-              onClick={[Function]}
-              text="Cancel"
-            />
-             
-            <Unknown
-              onClick={[Function]}
-              text="OK"
-            />
-          </p>
-        </React.Fragment>,
-        "classNames": Object {},
-        "classes": Object {
-          "closeButton": "styles_closeButton__20ID4",
-          "closeIcon": "styles_closeIcon__1QwbI",
-          "modal": "styles_modal__gNwvD",
-          "overlay": "styles_overlay__CLSq-",
-          "overlayCenter": "styles_overlayCenter__YHoO7",
-          "transitionEnter": "styles_transitionEnter__3j_-a",
-          "transitionEnterActive": "styles_transitionEnterActive___eQs7",
-          "transitionExit": "styles_transitionExit__1KmEf",
-          "transitionExitActive": "styles_transitionExitActive__1nQXw",
-        },
-        "closeIconSize": 28,
-        "closeIconSvgPath": <path
-          d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
-        />,
-        "closeOnEsc": true,
-        "closeOnOverlayClick": true,
-        "onClose": [Function],
-        "onEntered": null,
-        "onEscKeyDown": null,
-        "onExited": null,
-        "onOverlayClick": null,
-        "open": true,
-        "showCloseIcon": false,
-        "styles": Object {},
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {
-          "children": Array [
-            <p>
-              Are you sure you want to delete this user?
-            </p>,
-            <p>
-              <Unknown
-                onClick={[Function]}
-                text="Cancel"
-              />
-               
-              <Unknown
-                onClick={[Function]}
-                text="OK"
-              />
-            </p>,
-          ],
-        },
-        "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Are you sure you want to delete this user?",
-            },
-            "ref": null,
-            "rendered": "Are you sure you want to delete this user?",
-            "type": "p",
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "host",
-            "props": Object {
-              "children": Array [
-                <Unknown
-                  onClick={[Function]}
-                  text="Cancel"
-                />,
-                " ",
-                <Unknown
-                  onClick={[Function]}
-                  text="OK"
-                />,
-              ],
-            },
-            "ref": null,
-            "rendered": Array [
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "onClick": [Function],
-                  "text": "Cancel",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-              " ",
-              Object {
-                "instance": null,
-                "key": undefined,
-                "nodeType": "function",
-                "props": Object {
-                  "onClick": [Function],
-                  "text": "OK",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": [Function],
-              },
-            ],
-            "type": "p",
-          },
-        ],
-        "type": Symbol(react.fragment),
-      },
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
+      "closeButton": "styles_closeButton__20ID4",
+      "closeIcon": "styles_closeIcon__1QwbI",
+      "modal": "styles_modal__gNwvD",
+      "overlay": "styles_overlay__CLSq-",
+      "overlayCenter": "styles_overlayCenter__YHoO7",
+      "transitionEnter": "styles_transitionEnter__3j_-a",
+      "transitionEnterActive": "styles_transitionEnterActive___eQs7",
+      "transitionExit": "styles_transitionExit__1KmEf",
+      "transitionExitActive": "styles_transitionExitActive__1nQXw",
+    }
+  }
+  closeIconSize={28}
+  closeIconSvgPath={
+    <path
+      d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
+    />
+  }
+  closeOnEsc={true}
+  closeOnOverlayClick={true}
+  onClose={[Function]}
+  onEntered={null}
+  onEscKeyDown={null}
+  onExited={null}
+  onOverlayClick={null}
+  open={true}
+  showCloseIcon={false}
+  styles={Object {}}
+>
+  <React.Fragment>
+    <p>
+      Are you sure you want to delete this user?
+    </p>
+    <p>
+      <Component
+        onClick={[Function]}
+        text="Cancel"
+      />
+       
+      <Component
+        onClick={[Function]}
+        text="OK"
+      />
+    </p>
+  </React.Fragment>
+</Modal>
 `;
 
 exports[`(Component) Delete User should render correctly when the prop isLoading is set to true 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <DeleteUser
-    isLoading={true}
-    isOpen={true}
-    onCancel={[MockFunction]}
-    onConfirm={[MockFunction]}
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "class",
-    "props": Object {
-      "animationDuration": 500,
-      "center": true,
-      "children": <Loader />,
-      "classNames": Object {},
-      "classes": Object {
-        "closeButton": "styles_closeButton__20ID4",
-        "closeIcon": "styles_closeIcon__1QwbI",
-        "modal": "styles_modal__gNwvD",
-        "overlay": "styles_overlay__CLSq-",
-        "overlayCenter": "styles_overlayCenter__YHoO7",
-        "transitionEnter": "styles_transitionEnter__3j_-a",
-        "transitionEnterActive": "styles_transitionEnterActive___eQs7",
-        "transitionExit": "styles_transitionExit__1KmEf",
-        "transitionExitActive": "styles_transitionExitActive__1nQXw",
-      },
-      "closeIconSize": 28,
-      "closeIconSvgPath": <path
-        d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
-      />,
-      "closeOnEsc": true,
-      "closeOnOverlayClick": true,
-      "onClose": [Function],
-      "onEntered": null,
-      "onEscKeyDown": null,
-      "onExited": null,
-      "onOverlayClick": null,
-      "open": true,
-      "showCloseIcon": false,
-      "styles": Object {},
-    },
-    "ref": null,
-    "rendered": Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {},
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
+<Modal
+  animationDuration={500}
+  center={true}
+  classNames={Object {}}
+  classes={
     Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "class",
-      "props": Object {
-        "animationDuration": 500,
-        "center": true,
-        "children": <Loader />,
-        "classNames": Object {},
-        "classes": Object {
-          "closeButton": "styles_closeButton__20ID4",
-          "closeIcon": "styles_closeIcon__1QwbI",
-          "modal": "styles_modal__gNwvD",
-          "overlay": "styles_overlay__CLSq-",
-          "overlayCenter": "styles_overlayCenter__YHoO7",
-          "transitionEnter": "styles_transitionEnter__3j_-a",
-          "transitionEnterActive": "styles_transitionEnterActive___eQs7",
-          "transitionExit": "styles_transitionExit__1KmEf",
-          "transitionExitActive": "styles_transitionExitActive__1nQXw",
-        },
-        "closeIconSize": 28,
-        "closeIconSvgPath": <path
-          d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
-        />,
-        "closeOnEsc": true,
-        "closeOnOverlayClick": true,
-        "onClose": [Function],
-        "onEntered": null,
-        "onEscKeyDown": null,
-        "onExited": null,
-        "onOverlayClick": null,
-        "open": true,
-        "showCloseIcon": false,
-        "styles": Object {},
-      },
-      "ref": null,
-      "rendered": Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "function",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
+      "closeButton": "styles_closeButton__20ID4",
+      "closeIcon": "styles_closeIcon__1QwbI",
+      "modal": "styles_modal__gNwvD",
+      "overlay": "styles_overlay__CLSq-",
+      "overlayCenter": "styles_overlayCenter__YHoO7",
+      "transitionEnter": "styles_transitionEnter__3j_-a",
+      "transitionEnterActive": "styles_transitionEnterActive___eQs7",
+      "transitionExit": "styles_transitionExit__1KmEf",
+      "transitionExitActive": "styles_transitionExitActive__1nQXw",
+    }
+  }
+  closeIconSize={28}
+  closeIconSvgPath={
+    <path
+      d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
+    />
+  }
+  closeOnEsc={true}
+  closeOnOverlayClick={true}
+  onClose={[Function]}
+  onEntered={null}
+  onEscKeyDown={null}
+  onExited={null}
+  onOverlayClick={null}
+  open={true}
+  showCloseIcon={false}
+  styles={Object {}}
+>
+  <Loader />
+</Modal>
 `;

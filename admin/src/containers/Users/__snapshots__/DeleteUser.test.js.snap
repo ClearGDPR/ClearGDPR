@@ -1,59 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`(Container) Delete user should render correctly when user id and default provided props provided 1`] = `
-ShallowWrapper {
-  "length": 1,
-  Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <DeleteUserContainer
-    deleteUser={[MockFunction]}
-    isLoading={false}
-    isOpen={true}
-    onClose={[MockFunction]}
-    userId={1}
-  />,
-  Symbol(enzyme.__renderer__): Object {
-    "batchedUpdates": [Function],
-    "getNode": [Function],
-    "render": [Function],
-    "simulateEvent": [Function],
-    "unmount": [Function],
-  },
-  Symbol(enzyme.__node__): Object {
-    "instance": null,
-    "key": undefined,
-    "nodeType": "function",
-    "props": Object {
-      "isLoading": false,
-      "isOpen": true,
-      "onCancel": [MockFunction],
-      "onConfirm": [Function],
-    },
-    "ref": null,
-    "rendered": null,
-    "type": [Function],
-  },
-  Symbol(enzyme.__nodes__): Array [
-    Object {
-      "instance": null,
-      "key": undefined,
-      "nodeType": "function",
-      "props": Object {
-        "isLoading": false,
-        "isOpen": true,
-        "onCancel": [MockFunction],
-        "onConfirm": [Function],
-      },
-      "ref": null,
-      "rendered": null,
-      "type": [Function],
-    },
-  ],
-  Symbol(enzyme.__options__): Object {
-    "adapter": ReactSixteenAdapter {
-      "options": Object {
-        "enableComponentDidUpdateOnSetState": true,
-      },
-    },
-  },
-}
+<DeleteUser
+  isLoading={false}
+  isOpen={true}
+  onCancel={[MockFunction]}
+  onConfirm={[Function]}
+/>
 `;
