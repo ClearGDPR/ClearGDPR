@@ -64,6 +64,7 @@ describe('Stats endpoint', () => {
           },
           processors: {
             '201': {
+              name: 'Processor 1',
               // I was expecting this to be 1 originally, but it appears the be 2 because requesting erasure does not cascade, should it?
               consented: 0
             }
@@ -126,7 +127,8 @@ describe('Stats endpoint', () => {
           },
           processors: {
             '201': {
-              consented: 1
+              consented: 1,
+              name: 'Processor 1'
             }
           }
         }
