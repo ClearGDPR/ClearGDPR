@@ -26,7 +26,7 @@ const Processors = ({
     onDeleteProcessorClick(processor);
   }
 
-  let renderProcessors = function() {
+  function renderProcessors() {
     return lodash.chunk(processors, 3).map((row, rowIndex) => (
       <div className="row" key={rowIndex}>
         {row.map((processor, i) => (
@@ -39,7 +39,7 @@ const Processors = ({
         ))}
       </div>
     ));
-  };
+  }
 
   return (
     <React.Fragment>
