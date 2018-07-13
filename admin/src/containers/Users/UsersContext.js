@@ -21,6 +21,38 @@ export class UsersProvider extends Component {
     ])
   };
 
+  cancelLoadingAndReject = e => {
+    this.setLoading(false);
+    return Promise.reject(e);
+  };
+
+  fetchUsers = async () => {
+    this.setLoading(true);
+
+    let users = await this._getUsers();
+    this.setState({
+      users,
+      isLoading: false
+    });
+  };
+
+  registerUser = async (username, password) => {
+    this.setLoading(true);
+
+    const user = await this._registerUser(username, password).catch(this.cancelLoadingAndReject);
+    toast.success('User successfully registered');
+    await this.fetchUsers();
+
+    return user;
+  };
+
+  deleteUser = async userId => {
+    this.setLoading(true);
+    await this._deleteUser(userId).catch(this.cancelLoadingAndReject);
+    toast.success('User successfully deleted');
+    await this.fetchUsers();
+  };
+
   state = {
     users: [],
     fetchUsers: this.fetchUsers,
@@ -54,38 +86,6 @@ export class UsersProvider extends Component {
       isLoading: loading
     });
   }
-
-  cancelLoadingAndReject = e => {
-    this.setLoading(false);
-    return Promise.reject(e);
-  };
-
-  fetchUsers = async () => {
-    this.setLoading(true);
-
-    let users = await this._getUsers();
-    this.setState({
-      users,
-      isLoading: false
-    });
-  };
-
-  registerUser = async (username, password) => {
-    this.setLoading(true);
-
-    const user = await this._registerUser(username, password).catch(this.cancelLoadingAndReject);
-    toast.success('User successfully registered');
-    await this.fetchUsers();
-
-    return user;
-  };
-
-  deleteUser = async userId => {
-    this.setLoading(true);
-    await this._deleteUser(userId).catch(this.cancelLoadingAndReject);
-    toast.success('User successfully deleted');
-    await this.fetchUsers();
-  };
 
   render() {
     return <UsersContext.Provider value={this.state}>{this.props.children}</UsersContext.Provider>;
