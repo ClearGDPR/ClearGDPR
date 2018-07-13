@@ -21,15 +21,16 @@ describe('(Component) ConsentByProcessor', () => {
 
   it('should render if numbers are 0', () => {
     const props = {
-      totalSubjects: 100,
+      totalSubjects: 0,
       processors: [
         {
           name: 'p1',
-          consented: 1
+          consented: 0
         }
       ]
     };
     const component = shallow(<ConsentByProcessor {...props} />);
+    expect(component.find(ItemsCard).props().data[0].fillPercent).toEqual(100);
     expect(toJson(component)).toMatchSnapshot();
   });
 

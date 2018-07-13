@@ -5,7 +5,6 @@ import Card from 'components/core/cards/dashboard/Card';
 import GraphBar from 'components/core/cards/dashboard/GraphBar';
 
 const ItemsCard = props => {
-  console.log(props);
   return (
     <Card size={props.size} cols={props.cols} title={props.title} onClick={props.onClick}>
       <div className="row items-container">
@@ -26,8 +25,12 @@ const ItemsCard = props => {
 ItemsCard.propTypes = {
   size: PropTypes.number,
   cols: PropTypes.number,
-  fillPercent: PropTypes.number,
-  name: PropTypes.string,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      fillPercent: PropTypes.number,
+      name: PropTypes.string
+    })
+  ),
   onClick: PropTypes.func
 };
 

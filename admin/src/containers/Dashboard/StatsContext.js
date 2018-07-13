@@ -39,7 +39,6 @@ export class StatsProvider extends Component {
     if (this.state.isLoading) return this.request;
     this.request = internalFetch(`${config.API_URL}/api/management/stats`)
       .then(({ data }) => {
-        console.log(data);
         this.setState({ loading: false, stats: data });
       })
       .catch(err => {

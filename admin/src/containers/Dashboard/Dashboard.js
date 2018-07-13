@@ -8,7 +8,6 @@ import { StatsConsumer } from './StatsContext';
 // so we can invoke the fetching from here rather than the individual component
 class Stats extends Component {
   componentDidMount() {
-    console.log(this.props);
     this.props.fetchStats();
   }
   render() {

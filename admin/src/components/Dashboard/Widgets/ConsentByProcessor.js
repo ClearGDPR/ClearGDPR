@@ -7,7 +7,7 @@ const ConsentByProcessor = ({ processors, totalSubjects }) => {
     <ItemsCard
       data={processors.map(p => ({
         name: p.name,
-        fillPercent: Math.floor(p.consented / totalSubjects * 100)
+        fillPercent: totalSubjects ? Math.floor(p.consented / totalSubjects * 100) : 100
       }))}
     />
   );
