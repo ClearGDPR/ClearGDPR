@@ -69,13 +69,13 @@ async function getIsErased(subjectId) {
 async function getSubjectDataState(subjectId, processor = controllerAddress) {
   const quorumContract = await getContract();
   let result = await quorumContract.methods.getSubjectDataState(subjectId, processor).call();
-  return +result;
+  return result;
 }
 
 async function getSubjectRestrictions(subjectId) {
   const quorumContract = await getContract();
   let result = await quorumContract.methods.getSubjectRestrictions(subjectId).call();
-  return +result;
+  return result;
 }
 
 async function getProcessors() {
@@ -246,8 +246,10 @@ module.exports = {
   getRectificationCount,
   getIsErased,
   getSubjectDataState,
+  getSubjectRestrictions,
   getProcessors,
   setSubjectDataState,
+  setSubjectRestrictions,
   setProcessors,
   isProcessor,
   areAllValidProcessors,
