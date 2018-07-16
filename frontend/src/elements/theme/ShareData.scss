@@ -1,10 +1,12 @@
+$green: #86eea8;
+
 .shareName {
-  color: #4A4A4A;
+  color: #4a4a4a;
   line-height: 40px;
   font-size: 20px;
 }
 .shareUrl {
-  color: #9B9B9B;
+  color: #9b9b9b;
   font-size: 12px;
   line-height: 28px;
 }
@@ -12,14 +14,14 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  background: #86EEA8;
+  background: $green;
   padding: 6px 0 0;
   display: inline-block;
   text-align: center;
 }
 .scopes {
   margin-top: 15px;
-  color: #4A4A4A;
+  color: #4a4a4a;
   text-align: center;
 
   li {
@@ -62,7 +64,7 @@
 .newCard {
   padding: 4px 10px;
   box-shadow: none;
-  color: #4A4A4A;
+  color: #4a4a4a;
   border: 2px dashed #c2f6d3;
   display: flex;
   align-items: center;
@@ -70,7 +72,7 @@
 }
 .newCardContent {
   text-align: center;
-  color:#4A4A4A;
+  color: #4a4a4a;
   font-size: 18px;
   font-style: italic;
   font-weight: 200;
@@ -82,5 +84,86 @@ a.deleteIcon {
 
   &:hover {
     opacity: 1;
+  }
+}
+.form {
+  label {
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 10px;
+    color: #000000;
+  }
+  input {
+    border: 1px solid #979797;
+    box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    padding: 0 8px;
+    border-radius: 2px;
+
+    &:focus {
+      outline-color: #86eea8;
+    }
+  }
+  .formName {
+    label {
+      display: block;
+      margin-bottom: 4px;
+    }
+    input {
+      width: 100%;
+      height: 30px;
+    }
+  }
+  .formUrl {
+    color: #000000;
+    font-size: 12px;
+    line-height: 35px;
+  }
+  .formScopes {
+    input[type='checkbox'] {
+      cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      outline: 0;
+      height: 16px;
+      width: 16px;
+      padding: 2px;
+      background: white;
+      position: relative;
+      border: 1px solid #E1E1E1;
+      border-radius: 3px;
+      box-shadow: none;
+      vertical-align: middle;
+    
+      &:checked {
+        border-color: $green;
+        background: $green;
+    
+        &::after {
+          content: '\2714';
+          font-size: 11px;
+          color: white;
+          position: absolute;
+          top: 0px;
+          left: 2.5px;
+        }
+      }
+    }
+    label {
+      cursor: pointer;
+      font-weight: normal;
+      margin-left: 5px;
+    }
+  }
+}
+button.buttonGreen {
+  background-color: $green;
+  border-color: transparent;
+  color: #fff;
+
+  &:hover {
+    background-color: $green;
+    border-color: transparent;
+    color: #111;
   }
 }
