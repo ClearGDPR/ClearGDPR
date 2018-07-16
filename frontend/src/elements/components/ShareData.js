@@ -9,7 +9,7 @@ import clipboardSvg from '../../assets/graph_clipboard.svg';
 // Get Elements singleton
 Elements();
 
-class ShareData extends React.PureComponent {
+class ShareData extends React.Component {
   state = {
     shares: [],
     isEdit: false
@@ -30,7 +30,7 @@ class ShareData extends React.PureComponent {
     this.setState({ isEdit: true });
   };
 
-  handleOnSave = e => {
+  handleOnUpdate = e => {
     e.preventDefault();
     this.setState({ isEdit: false });
   };
@@ -44,6 +44,12 @@ class ShareData extends React.PureComponent {
     e.preventDefault();
     Copy('test of clipboard');
     // TODO: show flash of added to clipboard
+  };
+
+  handleFormSubmission = e => {
+    e.preventDefault();
+    console.log('Updated');
+    this.setState({ isEdit: false });
   };
 
   componentDidMount() {
@@ -84,24 +90,30 @@ class ShareData extends React.PureComponent {
             <div className={`${styles.card} ${(isEdit || isDelete) && styles.cardHover}`}>
               {isEdit ? (
                 <div className={styles.cardBack}>
-                  <form>
-                    <label>Name</label>
-                    <input type="text" value={share.name} />
-                    <span>{share.url}</span>
-                    {share.scopes.map(scope => (
-                      <React.Fragment>
-                        <input type="checkbox" value={true} />
-                        <label>{scope}</label>
-                      </React.Fragment>
-                    ))}
+                  <form className={styles.form} onSubmit={this.handleFormSubmission}>
+                    <div className={styles.formName}>
+                      <label htmlFor="name">Name</label>
+                      <input type="text" name="name" id="name" autoComplete="off" />
+                    </div>
+                    <div className={styles.formUrl}>{share.url}</div>
+                    <ul className={styles.formScopes}>
+                      {share.scopes.map((scope, i) => (
+                        <li key={i}>
+                          <input type="checkbox" name={`${scope}`} id={`scopes-${scope}`} />
+                          <label key={i} htmlFor={`scopes-${scope}`}>
+                            {scope}
+                          </label>
+                        </li>
+                      ))}
+                    </ul>
+                    <button
+                      type="submit"
+                      className={`button is-small ${styles.buttonGreen}`}
+                      style={{ position: 'absolute', bottom: 0, right: 0 }}
+                    >
+                      Save
+                    </button>
                   </form>
-                  <button
-                    className="button is-small is-success"
-                    onClick={this.handleOnSave}
-                    style={{ position: 'absolute', bottom: 0, right: 0 }}
-                  >
-                    Save
-                  </button>
                 </div>
               ) : isDelete ? (
                 <div className={` ${styles.cardBack} ${styles.cardDelete}`}>
