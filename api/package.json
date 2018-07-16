@@ -10,7 +10,6 @@
     "start-dev": "bnr start-dev",
     "knex": "bnr knex",
     "test": "bnr test",
-    "test:integration": "bnr test:integration",
     "pretest": "false | cp -i .env.example .env || true"
   },
   "betterScripts": {
@@ -23,13 +22,6 @@
         "DB_POOL_MIN": "0",
         "PORT": "0",
         "DB_DATABASE": "clear_gdpr_api_test"
-      }
-    },
-    "test:integration": {
-      "command": "jest --forceExit",
-      "env": {
-        "DB_POOL_MIN": "0",
-        "TEST_INTEGRATION": "true"
       }
     }
   },

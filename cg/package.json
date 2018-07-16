@@ -11,7 +11,6 @@
     "knex": "bnr knex",
     "test": "bnr test",
     "test:debug": "bnr test:debug",
-    "test:integration": "bnr test:integration",
     "pretest": "false | cp -i .env.example .env || true",
     "deploy-contract": "bnr deploy-contract",
     "add-processor": "bnr add-processor"
@@ -33,14 +32,6 @@
       "env": {
         "DB_POOL_MIN": "0",
         "PORT": "0",
-        "DB_DATABASE": "clear_gdpr_test"
-      }
-    },
-    "test:integration": {
-      "command": "jest --forceExit",
-      "env": {
-        "DB_POOL_MIN": "0",
-        "TEST_INTEGRATION": "true",
         "DB_DATABASE": "clear_gdpr_test"
       }
     },

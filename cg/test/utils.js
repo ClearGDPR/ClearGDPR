@@ -5,16 +5,10 @@ const http = require('http');
 const db = require('../src/db');
 const Promise = require('bluebird');
 
-const integrationTests = !!process.env.TEST_INTEGRATION;
-
 let server = null;
 
-exports.integration = integrationTests ? global.it : global.it.skip;
-
-exports.appUnit = integrationTests ? global.it.skip : global.it;
-
 exports.serverHost = () => {
-  const port = integrationTests ? +process.env.PORT : server.address().port;
+  const port = server.address().port;
   return `127.0.0.1:${port}`;
 };
 
@@ -46,7 +40,6 @@ exports.fetchWithAuthorization = (path, token, overrides) => {
 };
 
 exports.initResources = async () => {
-  if (integrationTests) return;
   return new Promise((resolve, reject) => {
     server = http.createServer(app);
     require('express-ws')(app, server);

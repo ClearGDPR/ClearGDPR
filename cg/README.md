@@ -1,6 +1,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
 
 - [CG – the ClearGDPR framework implementation](#cg--the-cleargdpr-framework-implementation)
   - [Directory structure](#directory-structure)
@@ -209,28 +209,10 @@ describe('App', () => {
 
 This is useful in just a few scenarios:
 
-* Testing HTTP headers
-* Testing different responses based on env variables (e.g. the `/robots.txt`
+- Testing HTTP headers
+- Testing different responses based on env variables (e.g. the `/robots.txt`
   endpoint)
 
 The only special thing about these tests is that they need to have the server
 running, but not as an external process because you want to change the behavior
 in each test.
-
-**Integration tests**
-
-Integration tests can access the database and the API server.
-
-```javascript
-const { integration } = require('./utils');
-
-describe('App', () => {
-  integration('do something with the server or the db or both', async () => {
-    // Your test here
-  });
-});
-```
-
-The `integration` function is just either jest's `it` or `it.skip`. With this
-utility when running only unit tests, integration tests will be skipped
-transparently for you.
