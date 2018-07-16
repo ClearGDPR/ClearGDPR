@@ -8,6 +8,7 @@
 *       2. All processor addresses and subject IDs are hashed in the back-end before entering the smart contract
 *       3. In production only the record functions should be used and they should provide all functionality needed to the system
 *       4. There's a bug when we use bytes32 instead of address to identificate the processors. The memory seems to not be cleared out
+*       5. A subject restrictions apply to all the processors, globally
 *       5. This smart contract was compiled without errors or warnings and all functions were tested
 */
 
@@ -15,21 +16,26 @@ pragma solidity ^0.4.24;
 contract ClearGDPR {
     address public controller; 
     address[] private processors; 
-    enum State {unconsented, consented, erased} 
-    struct subjectData{
+    enum State {unconsented, consented, erased}
+    struct subjectStatus{
         bool isErased;
         uint256 rectificationCount;
-        mapping(address => State) statePerProcessor;  
+        //Bellow are the actions that can be restricted
+        bool directMarketing;
+        bool emailCommunication;
+        bool research;
+        mapping(address => State) processorState;  
     }
-    mapping(bytes32 => subjectData) private subjects;
+    mapping(bytes32 => subjectStatus) private subjects;
 
     event Controller_ProcessorsUpdated(address[] newProcessors);
     event Controller_ConsentGivenTo(bytes32 subjectId, address[] processorsConsented); 
     event Controller_SubjectDataAccessed(bytes32 subjectId);
     event Controller_SubjectDataRectified(bytes32 subjectId, uint256 rectificationCount);
+    event Controller_SubjectDataRestricted(bytes32 subjectId, bool directMarketing, bool emailCommunication, bool research);
     event Controller_SubjectDataErased(bytes32 subjectId); 
     event Processor_SubjectDataErased(bytes32 subjectId, address processor);
-
+    
     modifier onlyController(){
         require(msg.sender == controller);
         _;
@@ -73,7 +79,11 @@ contract ClearGDPR {
     }
 
     function getSubjectDataState(bytes32 _subjectId, address _processor) public view returns(State){
-        return subjects[_subjectId].statePerProcessor[_processor];
+        return subjects[_subjectId].processorState[_processor];
+    }
+    
+    function getSubjectRestrictions(bytes32 _subjectId) public view returns(bool, bool, bool){
+        return (subjects[_subjectId].directMarketing, subjects[_subjectId].emailCommunication, subjects[_subjectId].research);
     }
 
     function getProcessors() public view returns(address[], uint256){
@@ -81,7 +91,14 @@ contract ClearGDPR {
     }
 
     function setSubjectDataState(bytes32 _subjectId, address _processor, State _state) public returns(bool){
-        subjects[_subjectId].statePerProcessor[_processor] = _state;
+        subjects[_subjectId].processorState[_processor] = _state;
+        return true;
+    }
+    
+    function setSubjectRestrictions(bytes32 _subjectId, bool _directMarketing, bool _emailCommunication, bool _research) public returns(bool){
+        subjects[_subjectId].directMarketing = _directMarketing;
+        subjects[_subjectId].emailCommunication = _emailCommunication;
+        subjects[_subjectId].research = _research;
         return true;
     }
 
@@ -115,12 +132,18 @@ contract ClearGDPR {
     function recordConsentGivenTo(bytes32 _subjectId, address[] _processorsConsented) public onlyController notErased(_subjectId) returns(bool){
         require(areAllValidProcessors(_processorsConsented));
         for(uint256 i = 0; i < processors.length; i++){
-            subjects[_subjectId].statePerProcessor[processors[i]] = State.unconsented;  
+            subjects[_subjectId].processorState[processors[i]] = State.unconsented;
         }
+        subjects[_subjectId].directMarketing = false;
+        subjects[_subjectId].emailCommunication = false;
+        subjects[_subjectId].research = false;
         address[] memory allProcessorsConsented = prependControllerAsProcessor(_processorsConsented);
         for(i = 0; i < allProcessorsConsented.length; i++){
-            subjects[_subjectId].statePerProcessor[allProcessorsConsented[i]] = State.consented;  
+            subjects[_subjectId].processorState[allProcessorsConsented[i]] = State.consented;
         }
+        subjects[_subjectId].directMarketing = true;
+        subjects[_subjectId].emailCommunication = true;
+        subjects[_subjectId].research = true;
         subjects[_subjectId].isErased = false;
         emit Controller_ConsentGivenTo(_subjectId, allProcessorsConsented);
         return true;
@@ -129,7 +152,8 @@ contract ClearGDPR {
     function recordAccessByController(bytes32 _subjectId) public onlyController notErased(_subjectId) returns(State[]){
         State[] memory states = new State[](processors.length);
         for(uint256 i = 0; i < processors.length; i++){
-            states[i] = subjects[_subjectId].statePerProcessor[processors[i]];
+            states[i] = subjects[_subjectId].processorState[processors[i]];
+            
         }
         emit Controller_SubjectDataAccessed(_subjectId);
         return states;
@@ -138,6 +162,12 @@ contract ClearGDPR {
     function recordRectificationByController(bytes32 _subjectId) public onlyController notErased(_subjectId) returns(bool){
         subjects[_subjectId].rectificationCount++;
         emit Controller_SubjectDataRectified(_subjectId, subjects[_subjectId].rectificationCount);
+        return true;
+    }
+    
+    function recordRestrictionByController(bytes32 _subjectId, bool _directMarketing, bool _emailCommunication, bool _research) public onlyController notErased(_subjectId) returns(bool){
+        require(setSubjectRestrictions(_subjectId, _directMarketing, _emailCommunication, _research));
+        emit Controller_SubjectDataRestricted(_subjectId, _directMarketing, _emailCommunication, _research);
         return true;
     }
 
