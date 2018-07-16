@@ -72,6 +72,12 @@ async function getSubjectDataState(subjectId, processor = controllerAddress) {
   return +result;
 }
 
+async function getSubjectRestrictions(subjectId) {
+  const quorumContract = await getContract();
+  let result = await quorumContract.methods.getSubjectRestrictions(subjectId).call();
+  return +result;
+}
+
 async function getProcessors() {
   const quorumContract = await getContract();
   return await quorumContract.methods.getProcessors().call();
@@ -79,6 +85,10 @@ async function getProcessors() {
 
 async function setSubjectDataState(subjectId, processor, state) {
   return await runContractMethod('setSubjectDataState', [subjectId, processor, state]);
+}
+
+async function setSubjectRestrictions(subjectId, directMarketing = false, emailCommunication = false, research = false) {
+  return await runContractMethod('setSubjectRestrictions', [subjectId, directMarketing, emailCommunication, research]);
 }
 
 async function setProcessors(newProcessors = []) {
@@ -111,6 +121,10 @@ async function recordAccessByController(subjectId) {
 
 async function recordRectificationByController(subjectId) {
   return await runContractMethod('recordRectificationByController', [subjectId]);
+}
+
+async function recordRestrictionByController(subjectId, directMarketing = false, emailCommunication = false, research = false) {
+  return await runContractMethod('recordRestrictionByController', [subjectId, directMarketing, emailCommunication, research]);
 }
 
 async function recordErasureByController(subjectId) {
@@ -241,6 +255,7 @@ module.exports = {
   recordConsentGivenTo,
   recordAccessByController,
   recordRectificationByController,
+  recordRestrictionByController,
   recordErasureByController,
   recordErasureByProcessor,
   allEvents,

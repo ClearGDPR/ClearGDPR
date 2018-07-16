@@ -194,6 +194,7 @@ class SubjectsService {
       controller: controllerStatus,
       processors: processorIdsWithDataStatus
     };
+    //Would be cool to refactor this to show the string of the status, not just the number
   }
 
   async _saveSubjectEncryptionKey(trx, subjectId, encryptionKey) {
@@ -213,6 +214,7 @@ class SubjectsService {
       .where({ subject_id: subjectId });
     if (!data) throw new NotFound('Subject not found');
     const decryptedData = decryptFromStorage(data.personal_data, data.key);
+    //There should be a smart contract call here!
     return JSON.parse(decryptedData);
   }
 
