@@ -1,6 +1,5 @@
 import React, { Component, createContext } from 'react';
 import config from 'config';
-import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import internalFetch from 'helpers/internal-fetch';
 
@@ -41,8 +40,7 @@ export class StatsProvider extends Component {
       .then(({ data }) => {
         this.setState({ loading: false, stats: data });
       })
-      .catch(err => {
-        toast.error(err.message);
+      .catch(() => {
         this.setState({ loading: false });
       });
     return this.request;

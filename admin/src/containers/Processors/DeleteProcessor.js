@@ -14,7 +14,10 @@ export class DeleteProcessorContainer extends React.Component {
   };
 
   deleteProcessor = () => {
-    this.props.deleteProcessor(this.props.processorId).then(this.props.onClose);
+    this.props
+      .deleteProcessor(this.props.processorId)
+      .then(this.props.onClose)
+      .catch(this.props.onClose);
   };
 
   render() {
