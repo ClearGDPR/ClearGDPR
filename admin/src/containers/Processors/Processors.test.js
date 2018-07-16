@@ -1,21 +1,16 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
+
+import { flushPromises } from 'tests/helpers/TestUtils';
 import * as ProcessorsDataFactory from 'tests/data/processors.factory';
 
-import session from 'helpers/Session';
 import { ProcessorsContainer } from './Processors';
-
-jest.mock('helpers/Session');
-
-beforeEach(() => {
-  session.getToken.mockReturnValue('token');
-});
 
 const setup = propOverrides => {
   const props = Object.assign(
     {
       processors,
-      fetchProcessors: () => {},
+      fetchProcessors: jest.fn().mockReturnValue(Promise.resolve()),
       isLoading: false
     },
     propOverrides
@@ -46,7 +41,14 @@ describe('(Container) Processors', () => {
   });
 
   it('should fetch processors after mounting the component', async () => {
-    const { mounted } = setup({ fetchProcessors: jest.fn() });
+    const { mounted } = setup();
     expect(mounted.props().fetchProcessors).toHaveBeenCalled();
+  });
+
+  it('should not break when fetchProcessors rejects', async () => {
+    setup({
+      fetchProcessors: jest.fn().mockReturnValue(Promise.reject('Serious error message'))
+    });
+    await flushPromises();
   });
 });

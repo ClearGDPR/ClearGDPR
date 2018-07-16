@@ -24,7 +24,7 @@ export class ProcessorsContainer extends React.Component {
   };
 
   componentDidMount() {
-    this.props.fetchProcessors();
+    this.props.fetchProcessors().catch(() => {});
   }
 
   openEditProcessorForm = processor => {
