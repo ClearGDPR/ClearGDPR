@@ -1,4 +1,4 @@
-/*  ClearGDPR smart contract version 7
+/*  ClearGDPR smart contract version 9
 *       A piece of art made by CleverTech
 *       Author contact: sindelio.lima@clevertech.biz
 *       Coffee => Code!
