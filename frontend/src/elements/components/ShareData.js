@@ -12,7 +12,9 @@ Elements();
 class ShareData extends React.Component {
   state = {
     shares: [],
-    isEdit: false
+    isEdit: false,
+    isDelete: false,
+    errors: null
   };
 
   handleOnDelete = e => {
@@ -20,9 +22,17 @@ class ShareData extends React.Component {
     this.setState({ isDelete: true });
   };
 
-  handleOnDeleteAction = e => {
+  handleOnDeleteAction = (e, share) => {
     e.preventDefault();
-    this.setState({ isDelete: false });
+
+    window.cg.Subject.removeDataShare(share.id)
+      .then(() => {
+        // reload shares
+        this.setState({ isDelete: false });
+      })
+      .catch(err => {
+        this.setState({ errors: err.message });
+      });
   };
 
   handleOnEdit = e => {
@@ -48,35 +58,38 @@ class ShareData extends React.Component {
 
   handleFormSubmission = e => {
     e.preventDefault();
-    console.log('Updated');
-    this.setState({ isEdit: false });
+    window.cg.Subject.addDataShare({})
+      .then(() => {
+        // reload shares
+        this.setState({ isEdit: false });
+      })
+      .catch(err => {
+        this.setState({ errors: err.message });
+      });
+  };
+
+  loadDataShares = () => {
+    window.cg.Subject.getDataShares()
+      .then(shares => {
+        this.setState({ shares });
+      })
+      .catch(err => {
+        console.log('failure', err);
+      });
   };
 
   componentDidMount() {
     setTimeout(() => {
-      // const cgToken = localStorage.getItem('cgToken');
-      // window.cg.setAccessToken(cgToken);
-
-      const shares = [
-        {
-          name: 'www.bigdata.com',
-          url: 'https://cg-demo.cleargdpr.com/shares/K451ABD23AU8',
-          scopes: ['test1', 'test2', 'test3']
-        }
-      ];
-
-      this.setState({ shares });
-      // window.cg.Subject.getProcessors()
-      //   .then(processors => {
-      //     processors.map(p => {
-      //       p.enabled = true;
-      //       return p;
-      //     });
-      //     this.setState({ processors });
-      //   })
-      //   .catch(err => {
-      //     console.log('failure', err);
-      //   });
+      const cgToken = localStorage.getItem('cgToken');
+      window.cg.setAccessToken(cgToken);
+      window.cg.Subject.shareData()
+        .then(shares => {
+          console.log('shareData', shares);
+        })
+        .catch(err => {
+          console.log('failure', err);
+        });
+      this.loadDataShares();
     }, 1000);
   }
 
