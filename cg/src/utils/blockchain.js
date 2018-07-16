@@ -69,7 +69,7 @@ async function getIsErased(subjectId) {
 async function getSubjectDataState(subjectId, processor = controllerAddress) {
   const quorumContract = await getContract();
   let result = await quorumContract.methods.getSubjectDataState(subjectId, processor).call();
-  return result;
+  return +result; //'+' coerces the returned value to a string
 }
 
 async function getSubjectRestrictions(subjectId) {
