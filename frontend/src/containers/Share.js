@@ -1,0 +1,40 @@
+import React from 'react';
+
+// CG Dependencies
+import Element from '../elements/components/Element';
+import Elements from '../elements/components/Elements';
+Elements();
+
+class Share extends React.Component {
+  render() {
+    const ShareData = Element.create({
+      source: 'share-data'
+    });
+
+    return (
+      <React.Fragment>
+        <section className="section" id="erase-data">
+          <div className="container">
+            <div className="columns">
+              <div className="column is-one-third">
+                <h1 className="title">Share your data →</h1>
+                <p>Article 20 GDPR Right to data portability</p>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://gdpr-info.eu/art-20-gdpr/"
+                >
+                  Go to GDPR article →
+                </a>
+              </div>
+              <div className="column is-two-third">{ShareData}</div>
+            </div>
+          </div>
+        </section>
+      </React.Fragment>
+    );
+  }
+}
+
+Share.propTypes = {};
+export default Share;

@@ -5,6 +5,7 @@ import App from './containers/App';
 import Login from './containers/Login';
 import SignUp from './containers/SignUp';
 import Profile from './containers/Profile';
+import Share from './containers/Share';
 import ConsentSuccess from './elements/components/ConsentSuccess';
 
 import NoMatch from './components/NoMatch';
@@ -22,6 +23,7 @@ export default () => (
             <Route path="/sign-up" component={SignUp} exact />
             <Route path="/login" component={Login} exact />
             <Route path="/profile" component={Profile} exact />
+            <Route path="/shares" component={Share} exact />
             <Route component={NoMatch} />
           </Switch>
         </App>
