@@ -24,7 +24,7 @@ export class UsersContainer extends React.Component {
   };
 
   componentDidMount() {
-    this.props.fetchUsers();
+    this.props.fetchUsers().catch(() => {});
   }
 
   openChangePasswordForm = userId => {
