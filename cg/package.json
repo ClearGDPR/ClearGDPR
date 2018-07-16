@@ -1,6 +1,6 @@
 {
   "name": "clear-gdpr-cg",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "private": true,
   "description": "CG - the ClearGDPR framework implementation",
   "author": "Clevertech <support@clevertech.biz>",
@@ -49,9 +49,14 @@
   },
   "jest": {
     "testEnvironment": "./test/random-test-db-environment.js",
-    "setupFiles": ["dotenv/config"],
+    "setupFiles": [
+      "dotenv/config"
+    ],
     "collectCoverage": true,
-    "collectCoverageFrom": ["src/**/*.js", "!**/node_modules/**"]
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!**/node_modules/**"
+    ]
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -1,6 +1,6 @@
 {
   "name": "@cleargdpr/admin",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "autoprefixer": "7.1.6",
