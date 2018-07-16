@@ -48,7 +48,7 @@ describe('(Container) Login', () => {
     expect(response.token).toEqual('token');
   });
 
-  it('should send bad username or password and fail', async () => {
+  it('should send bad username or password and have errors in state', async () => {
     global.fetch = jest.fn().mockImplementationOnce(() =>
       Promise.resolve({
         ok: false,
@@ -62,12 +62,11 @@ describe('(Container) Login', () => {
     const { component } = setup();
     const instance = component.instance();
 
-    expect(instance.handleLogin(null, null)).rejects.toMatchObject({
-      message: 'Invalid credentials'
-    });
-
+    await instance.handleLogin('some_user', 'fake_passWord');
     await flushPromises();
     expect(global.fetch).toBeCalled();
+    expect(component.state()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 
   it('Should trigger a toast after logging in', async () => {

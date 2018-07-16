@@ -1,6 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(Component) Login should render correctly 1`] = `
+exports[`(Component) Login should render correctly when contains errors 1`] = `
+<section
+  className="login-section"
+>
+  <div
+    className="login-card"
+  >
+    <React.Fragment>
+      <img
+        alt="Clear logo"
+        className="logo"
+        src="logo.png"
+      />
+      <Form
+        onSubmit={[Function]}
+      />
+    </React.Fragment>
+  </div>
+</section>
+`;
+
+exports[`(Component) Login should render correctly when loading 1`] = `
+<section
+  className="login-section"
+>
+  <div
+    className="login-card"
+  >
+    <Loader />
+  </div>
+</section>
+`;
+
+exports[`(Component) Login should render correctly when not loading 1`] = `
 <section
   className="login-section"
 >

@@ -68,4 +68,26 @@ describe('internal fetch', () => {
 
     expect(toast.error).toHaveBeenCalledWith('none');
   });
+
+  it('Handles all errors gracefully and toasts', async () => {
+    expect.assertions(2);
+    session.getToken = jest.fn().mockImplementationOnce(() => 'token');
+    global.fetch = jest.fn().mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: true,
+        status: 400,
+        json: async () => {
+          return { error: 'Some other error than JWT' };
+        }
+      })
+    );
+
+    toast.error = jest.fn();
+    await expect(internalFetch()).rejects.toEqual(
+      expect.objectContaining({
+        message: 'Some other error than JWT'
+      })
+    );
+    expect(toast.error).toHaveBeenCalledWith('Some other error than JWT');
+  });
 });

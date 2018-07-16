@@ -9,7 +9,16 @@ import internalFetch from 'helpers/internal-fetch';
 import { toast } from 'react-toastify';
 
 export class LoginContainer extends React.Component {
+  state = {
+    isLoading: false,
+    errors: {}
+  };
+
   handleLogin = (username, password) => {
+    this.setState({
+      isLoading: true
+    });
+
     const { history, location } = this.props;
     const { from } = location.state || { from: { pathname: '/' } };
     return internalFetch(`${config.API_URL}/api/management/users/login`, {
@@ -21,12 +30,21 @@ export class LoginContainer extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(async resData => {
-      toast.success('Logged in successfully');
-      session.set({ ...resData, username });
-      history.push(from);
-      return resData;
-    });
+    })
+      .then(async resData => {
+        toast.success('Logged in successfully');
+        const authResult = { ...resData, username };
+        session.set(authResult);
+        history.push(from);
+        this.setState({ isLoading: false });
+        return resData;
+      })
+      .catch(err => {
+        this.setState({
+          isLoading: false,
+          errors: { server: `There was a problem: ${err.message}` }
+        });
+      });
   };
 
   render() {
@@ -35,8 +53,11 @@ export class LoginContainer extends React.Component {
     return (
       <Login
         auth={this.handleLogin}
+        isLoading={this.state.isLoading}
         errors={
-          query.get('expired') ? { SessionExpired: 'Session expired, please login again' } : {}
+          query.get('expired')
+            ? { SessionExpired: 'Session expired, please login again', ...this.state.errors }
+            : this.state.errors
         }
       />
     );

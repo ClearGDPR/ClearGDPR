@@ -24,26 +24,15 @@ Errors.propTypes = {
 };
 
 class Login extends React.Component {
-  state = {
-    isLoading: false,
-    errors: null
-  };
-
   onLoginSubmit({ username, password }) {
-    this.setState({ isLoading: true });
-    this.props.auth(username, password).catch(err => {
-      this.setState({
-        isLoading: false,
-        errors: { server: `There was a problem: ${err.message}` }
-      });
-    });
+    this.props.auth(username, password);
   }
 
   render() {
     return (
       <section className="login-section">
         <div className="login-card">
-          {this.state.isLoading ? (
+          {this.props.isLoading ? (
             <Loader />
           ) : (
             <React.Fragment>
@@ -51,7 +40,7 @@ class Login extends React.Component {
               <Form onSubmit={values => this.onLoginSubmit(values)}>
                 {({ errors }) => (
                   <React.Fragment>
-                    <Errors errors={{ ...this.props.errors, ...this.state.errors, ...errors }} />
+                    <Errors errors={{ ...this.props.errors, ...errors }} />
                     <Text field="username" placeholder="Your username" required />
                     <Text field="password" type="password" placeholder="*********" required />
                     <button type="submit" className="btn">
@@ -70,7 +59,8 @@ class Login extends React.Component {
 
 Login.propTypes = {
   errors: PropTypes.object,
-  auth: PropTypes.func.isRequired
+  auth: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool
 };
 
 Login.defaultProps = {

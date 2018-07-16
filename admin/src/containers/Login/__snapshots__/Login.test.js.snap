@@ -4,5 +4,23 @@ exports[`(Container) Login should render correctly 1`] = `
 <Login
   auth={[Function]}
   errors={Object {}}
+  isLoading={false}
+/>
+`;
+
+exports[`(Container) Login should send bad username or password and have errors in state 1`] = `
+Object {
+  "errors": Object {
+    "server": "There was a problem: Invalid credentials",
+  },
+  "isLoading": false,
+}
+`;
+
+exports[`(Container) Login should send bad username or password and have errors in state 2`] = `
+<Login
+  auth={[Function]}
+  errors={Object {}}
+  isLoading={false}
 />
 `;
