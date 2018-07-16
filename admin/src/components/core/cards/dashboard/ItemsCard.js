@@ -31,7 +31,8 @@ ItemsCard.propTypes = {
       name: PropTypes.string
     })
   ),
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  title: PropTypes.string
 };
 
 export default ItemsCard;
