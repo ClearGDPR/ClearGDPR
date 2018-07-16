@@ -8,6 +8,11 @@ export default class Subject extends ResourceBase {
     return this.request(`${SUBJECT}/give-consent`, { method, payload });
   }
 
+  updateConsent(payload) {
+    const method = 'POST';
+    return this.request(`${SUBJECT}/update-consent`, { method, payload });
+  }
+
   accessData() {
     return this.request(`${SUBJECT}/access-data`);
   }
@@ -23,5 +28,23 @@ export default class Subject extends ResourceBase {
 
   getProcessors() {
     return this.request(`${SUBJECT}/processors`);
+  }
+
+  shareData() {
+    return this.request(`${SUBJECT}/data-shares/share`);
+  }
+
+  getDataShares() {
+    return this.request(`${SUBJECT}/data-shares/list`);
+  }
+
+  addDataShare(payload) {
+    const method = 'POST';
+    return this.request(`${SUBJECT}/data-shares/create`, { method, payload });
+  }
+
+  removeDataShare(dataShareId) {
+    const method = 'POST';
+    return this.request(`${SUBJECT}/data-shares/${dataShareId}/remove`, method);
   }
 }
