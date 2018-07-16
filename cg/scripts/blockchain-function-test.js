@@ -1,23 +1,26 @@
 // Command to execute this script:
 // docker-compose exec cg node scripts/blockchain-function-test.js
 
-// const {
-//   getRectificationCount,
-//   getIsErased,
-//   getSubjectDataState,
-//   getProcessors,
-//   setSubjectDataState,
-//   setProcessors,
-//   isProcessor,
-//   areAllValidProcessors,
-//   recordProcessorsUpdate,
-//   recordConsentGivenTo,
-//   recordAccessByController,
-//   recordRectificationByController,
-//   recordErasureByController,
-//   recordErasureByProcessor,
-//   getPastEvents
-// } = require('../src/utils/blockchain');
+const {
+  getRectificationCount,
+  getIsErased,
+  getSubjectDataState,
+  getSubjectRestrictions,
+  getProcessors,
+  setSubjectDataState,
+  setSubjectRestrictions,
+  setProcessors,
+  isProcessor,
+  areAllValidProcessors,
+  recordProcessorsUpdate,
+  recordConsentGivenTo,
+  recordAccessByController,
+  recordRectificationByController,
+  recordRestrictionByController,
+  recordErasureByController,
+  recordErasureByProcessor,
+  getPastEvents
+} = require('../src/utils/blockchain');
 
 // getRectificationCount("0x1111111111111111111111111111111111111111111111111111111111111111")
 //   .then(console.log)
@@ -34,7 +37,17 @@
 //   .catch(console.error)
 //   .then(() => process.exit(0));
 
+// getSubjectRestrictions("0x1111111111111111111111111111111111111111111111111111111111111111")
+//   .then(console.log)
+//   .catch(console.error)
+//   .then(() => process.exit(0));
+
 // setSubjectDataState("0x1111111111111111111111111111111111111111111111111111111111111111", "0x0000000000000000000000000000000000000001", 1)
+//   .then(console.log)
+//   .catch(console.error)
+//   .then(() => process.exit(0));
+
+// setSubjectRestrictions("0x1111111111111111111111111111111111111111111111111111111111111111", true, false, true)
 //   .then(console.log)
 //   .catch(console.error)
 //   .then(() => process.exit(0));
@@ -75,6 +88,11 @@
 //   .then(() => process.exit(0));
 
 // recordRectificationByController("0x1111111111111111111111111111111111111111111111111111111111111111")
+//   .then(console.log)
+//   .catch(console.error)
+//   .then(() => process.exit(0));
+
+// recordRestrictionByController("0x1111111111111111111111111111111111111111111111111111111111111111", false, true, false)
 //   .then(console.log)
 //   .catch(console.error)
 //   .then(() => process.exit(0));
