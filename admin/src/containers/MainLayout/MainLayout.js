@@ -11,6 +11,7 @@ import UsersContainer from 'containers/Users/Users';
 import ProcessorsContainer from 'containers/Processors/Processors';
 import Rectifications from 'containers/Rectifications/Rectifications';
 import DashboardContainer from 'containers/Dashboard/Dashboard';
+import BlockchainEvents from 'containers/BlockchainEvents/BlockchainEvents';
 
 import { withContextProviders } from 'helpers/wrappers';
 
@@ -59,6 +60,7 @@ class MainLayoutContainer extends Component {
                 <Route exact path="/" render={() => <DashboardContainer />} />
                 <Route exact path="/processors" render={() => <ProcessorsContainer />} />
                 <Route exact path="/users" render={() => <UsersContainer />} />
+                <Route exact path="/blockchain-events" render={() => <BlockchainEvents />} />
                 <Route exact path="/rectifications" render={() => <Rectifications />} />
                 <Route
                   exact

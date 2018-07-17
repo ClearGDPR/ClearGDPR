@@ -29,6 +29,7 @@ const Sidenav = props => {
       </NavLink>
       <NavLink to="/rectifications">Rectifications</NavLink>
       <NavLink to="/users">Users</NavLink>
+      <NavLink to="/blockchain-events">Blockchain Events</NavLink>
       <p>
         <small className="label">Account</small>
       </p>
