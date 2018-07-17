@@ -16,7 +16,7 @@ class Share extends React.Component {
         <section className="section" id="erase-data">
           <div className="container">
             <div className="columns">
-              <div className="column is-one-third">
+              <div className="column is-one-fifth">
                 <h1 className="title">Share your data →</h1>
                 <p>Article 20 GDPR Right to data portability</p>
                 <a
@@ -27,7 +27,7 @@ class Share extends React.Component {
                   Go to GDPR article →
                 </a>
               </div>
-              <div className="column is-two-third">{ShareData}</div>
+              <div className="column is-four-fifth">{ShareData}</div>
             </div>
           </div>
         </section>
