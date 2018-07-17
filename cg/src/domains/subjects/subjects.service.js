@@ -8,6 +8,7 @@ const {
 const {
   getSubjectDataState,
   recordConsentGivenTo,
+  recordAccessByController,
   recordRestrictionByController,
   recordErasureByController,
   recordErasureByProcessor,
@@ -211,14 +212,15 @@ class SubjectsService {
   }
 
   async getData(subjectId) {
-    const [data] = await this.db('subjects')
+    const [ data ] = await this.db('subjects')
       .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
       .select('personal_data')
       .select('key')
       .where({ subject_id: subjectId });
+      
     if (!data) throw new NotFound('Subject not found');
     const decryptedData = decryptFromStorage(data.personal_data, data.key);
-    //There should be a smart contract call here!
+    await recordAccessByController(subjectId);
     return JSON.parse(decryptedData);
   }
 
