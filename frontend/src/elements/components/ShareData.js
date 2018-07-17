@@ -59,7 +59,7 @@ const Delete = ({ onDelete, onCancel }) => (
       </button>
       &nbsp;
       <button onClick={onDelete} className="button is-danger">
-        I'm sure
+        {"I'm sure"}
       </button>
     </div>
   </React.Fragment>
