@@ -192,7 +192,7 @@ class ShareData extends React.Component {
         this.setState({ isNew: false });
       })
       .catch(err => {
-        this.setState({ errors: err.message });
+        console.log('failure', err);
       });
   };
 
@@ -202,7 +202,7 @@ class ShareData extends React.Component {
     this.setState({ isEdit: false });
   };
 
-  handleOnDelete(e, shareId) {
+  handleOnDelete = (e, shareId) => {
     e.preventDefault();
 
     window.cg.Subject.removeDataShare(shareId)
@@ -211,9 +211,9 @@ class ShareData extends React.Component {
         this.setState({ isDelete: false });
       })
       .catch(err => {
-        this.setState({ errors: err.message });
+        console.log('failure', err);
       });
-  }
+  };
 
   handleOnCopyURL = (e, toClipboard) => {
     e.preventDefault();
