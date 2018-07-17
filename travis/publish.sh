@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e 
+
 make -C cg build && make -C cg push
 make -C admin dist && make -C admin build && make -C admin push
 make -C api build && make -C api push
