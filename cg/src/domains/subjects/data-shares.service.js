@@ -8,8 +8,10 @@ class DataShareService {
     return db('data_shares')
       .where({ subject_id: subjectId })
       .map(dataShare => ({
+        id: dataShare.id,
         name: dataShare.name,
-        url: `${process.env.url}/api/subjects/data-shares/share?token=${dataShare.token}`
+        token: dataShare.token,
+        url: `${process.env.ROOT_URL}/api/subjects/data-shares/share?token=${dataShare.token}`
       }));
   }
 
