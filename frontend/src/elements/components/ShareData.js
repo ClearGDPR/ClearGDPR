@@ -174,9 +174,9 @@ class ShareData extends React.Component {
     const { isNew, isEdit, isDelete, shares } = this.state;
 
     return (
-      <div className="columns">
+      <div className="columns is-mobile is-multiline">
         {shares.map((share, i) => (
-          <div key={i} className="column is-half">
+          <div key={i} className="column">
             <div className={`${styles.card} ${(isEdit || isDelete) && styles.cardHover}`}>
               {isEdit ? (
                 <div className={styles.cardBack}>
@@ -233,7 +233,7 @@ class ShareData extends React.Component {
             </div>
           </div>
         ))}
-        <div className="column is-half">
+        <div className="column">
           <div className={`${styles.card} ${styles.newCard}`}>
             {!isNew ? (
               <div className={styles.newCardContent} onClick={this.showOnNew}>
