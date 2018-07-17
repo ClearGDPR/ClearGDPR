@@ -134,9 +134,6 @@ contract ClearGDPR {
         for(uint256 i = 0; i < processors.length; i++){
             subjects[_subjectId].processorState[processors[i]] = State.unconsented;
         }
-        subjects[_subjectId].directMarketing = false;
-        subjects[_subjectId].emailCommunication = false;
-        subjects[_subjectId].research = false;
         address[] memory allProcessorsConsented = prependControllerAsProcessor(_processorsConsented);
         for(i = 0; i < allProcessorsConsented.length; i++){
             subjects[_subjectId].processorState[allProcessorsConsented[i]] = State.consented;
@@ -152,8 +149,7 @@ contract ClearGDPR {
     function recordAccessByController(bytes32 _subjectId) public onlyController notErased(_subjectId) returns(State[]){
         State[] memory states = new State[](processors.length);
         for(uint256 i = 0; i < processors.length; i++){
-            states[i] = subjects[_subjectId].processorState[processors[i]];
-            
+            states[i] = subjects[_subjectId].processorState[processors[i]];   
         }
         emit Controller_SubjectDataAccessed(_subjectId);
         return states;
