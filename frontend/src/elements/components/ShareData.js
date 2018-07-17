@@ -93,10 +93,8 @@ class SharedData extends React.Component {
   }
 }
 
-class ShareData extends React.Component {
+class ShareDataItem extends React.Component {
   state = {
-    shares: [],
-    isNew: false,
     isEdit: false,
     isDelete: false
   };
@@ -109,6 +107,75 @@ class ShareData extends React.Component {
   showOnEdit = e => {
     e.preventDefault();
     this.setState({ isEdit: true });
+  };
+
+  render() {
+    const { share, onUpdate, onDelete, onCopy } = this.props;
+    const { isEdit, isDelete } = this.state;
+
+    return (
+      <div className={`${styles.card} ${(isEdit || isDelete) && styles.cardHover}`}>
+        {isEdit ? (
+          <div className={styles.cardBack}>
+            <EditForm
+              initialValues={share}
+              onSubmit={onUpdate}
+              onCancel={e => {
+                e.preventDefault();
+                this.setState({ isEdit: false });
+              }}
+            />
+          </div>
+        ) : isDelete ? (
+          <div className={`${styles.cardBack} ${styles.cardDelete}`}>
+            <Delete
+              onDelete={e => onDelete(e, share.id)}
+              onCancel={e => {
+                e.preventDefault();
+                this.setState({ isDelete: false });
+              }}
+            />
+          </div>
+        ) : (
+          <React.Fragment>
+            <a className={`is-pulled-right ${styles.deleteIcon}`} onClick={this.showOnDelete}>
+              <span className="icon">
+                <i className="far fa-trash-alt" />
+              </span>
+            </a>
+            <div>
+              <span className={styles.shareImg}>
+                <img src={clipboardSvg} alt={share.name} style={{ height: 35 }} />
+              </span>
+              <div className={styles.shareName}>{share.name}</div>
+              <div className={styles.shareUrl}>{share.url}</div>
+              <SharedData sharedDataToken={share.token} />
+              {/* <button
+                  className="button is-small is-outlined"
+                  onClick={this.showOnEdit}
+                  style={{ position: 'absolute', bottom: 15, left: 15 }}
+                >
+                  Options
+                </button> */}
+              <button
+                className="button is-small is-outlined"
+                style={{ position: 'absolute', bottom: 15, right: 15 }}
+                onClick={e => onCopy(e, share.url)}
+              >
+                Copy URL
+              </button>
+            </div>
+          </React.Fragment>
+        )}
+      </div>
+    );
+  }
+}
+
+class ShareData extends React.Component {
+  state = {
+    shares: [],
+    isNew: false
   };
 
   showOnNew = e => {
@@ -171,66 +238,18 @@ class ShareData extends React.Component {
   }
 
   render() {
-    const { isNew, isEdit, isDelete, shares } = this.state;
+    const { isNew, shares } = this.state;
 
     return (
       <div className="columns is-mobile is-multiline">
         {shares.map((share, i) => (
           <div key={i} className="column">
-            <div className={`${styles.card} ${(isEdit || isDelete) && styles.cardHover}`}>
-              {isEdit ? (
-                <div className={styles.cardBack}>
-                  <EditForm
-                    initialValues={share}
-                    onSubmit={this.handleOnUpdate}
-                    onCancel={e => {
-                      e.preventDefault();
-                      this.setState({ isEdit: false });
-                    }}
-                  />
-                </div>
-              ) : isDelete ? (
-                <div className={`${styles.cardBack} ${styles.cardDelete}`}>
-                  <Delete
-                    onDelete={e => this.handleOnDelete(e, share.id)}
-                    onCancel={e => {
-                      e.preventDefault();
-                      this.setState({ isDelete: false });
-                    }}
-                  />
-                </div>
-              ) : (
-                <React.Fragment>
-                  <a className={`is-pulled-right ${styles.deleteIcon}`} onClick={this.showOnDelete}>
-                    <span className="icon">
-                      <i className="far fa-trash-alt" />
-                    </span>
-                  </a>
-                  <div>
-                    <span className={styles.shareImg}>
-                      <img src={clipboardSvg} alt={share.name} style={{ height: 35 }} />
-                    </span>
-                    <div className={styles.shareName}>{share.name}</div>
-                    <div className={styles.shareUrl}>{share.url}</div>
-                    <SharedData sharedDataToken={share.token} />
-                    {/* <button
-                      className="button is-small is-outlined"
-                      onClick={this.showOnEdit}
-                      style={{ position: 'absolute', bottom: 15, left: 15 }}
-                    >
-                      Options
-                    </button> */}
-                    <button
-                      className="button is-small is-outlined"
-                      style={{ position: 'absolute', bottom: 15, right: 15 }}
-                      onClick={e => this.handleOnCopyURL(e, share.url)}
-                    >
-                      Copy URL
-                    </button>
-                  </div>
-                </React.Fragment>
-              )}
-            </div>
+            <ShareDataItem
+              share={share}
+              onDelete={this.handleOnDelete}
+              onUpdate={this.handleOnUpdate}
+              onCopy={this.handleOnCopyURL}
+            />
           </div>
         ))}
         <div className="column">

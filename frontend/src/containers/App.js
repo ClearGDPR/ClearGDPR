@@ -26,6 +26,11 @@ class App extends Component {
                   Sign up
                 </Link>
               </div>
+              <div className="navbar-item">
+                <Link to="/shares" className="navbar-item">
+                  Shares
+                </Link>
+              </div>
             </div>
             <div className="navbar-end">
               <div className="navbar-item">
