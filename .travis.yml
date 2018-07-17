@@ -36,7 +36,7 @@ jobs:
         - touch cg/.yarn-cache.tgz admin/.yarn-cache.tgz api/.yarn-cache.tgz frontend/.yarn-cache.tgz
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - echo "Building and pushing docker images v$VERSION"
-        - travis/deply.sh || travis_terminate 1
+        - travis/publish.sh || travis_terminate 1
     - stage: deploy
       if: tag =~ ^(\d*\.)+\d*$
       script:
