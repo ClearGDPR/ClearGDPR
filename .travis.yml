@@ -28,7 +28,7 @@ jobs:
   include:
     - stage: test
       script: 
-        - make -C admin dist
+        - make -C admin dist || travis_terminate 1
         - docker/test
     - stage: publish
       if: tag =~ ^(\d*\.)+\d*$
@@ -36,18 +36,7 @@ jobs:
         - touch cg/.yarn-cache.tgz admin/.yarn-cache.tgz api/.yarn-cache.tgz frontend/.yarn-cache.tgz
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - echo "Building and pushing docker images v$VERSION"
-        - make -C cg build && make -C cg push
-        - make -C admin dist && make -C admin build && make -C admin push
-        - make -C api build && make -C api push
-        - make -C frontend dist && make -C frontend build && make -C frontend push
-        - make -C cg tag-latest
-        - make -C admin tag-latest
-        - make -C api tag-latest
-        - make -C frontend tag-latest
-        - VERSION=latest make -C cg push
-        - VERSION=latest make -C admin push
-        - VERSION=latest make -C api push
-        - VERSION=latest make -C frontend push
+        - travis/deply.sh || travis_terminate 1
     - stage: deploy
       if: tag =~ ^(\d*\.)+\d*$
       script:
