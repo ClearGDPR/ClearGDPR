@@ -9,63 +9,149 @@ import clipboardSvg from '../../assets/graph_clipboard.svg';
 // Get Elements singleton
 Elements();
 
+class EditForm extends React.Component {
+  handleOnSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit(this.refs);
+  };
+
+  render() {
+    const { onCancel, initialValues = {} } = this.props;
+
+    return (
+      <form className={styles.form} onSubmit={this.handleOnSubmit}>
+        <div className={styles.formName}>
+          <label htmlFor="name">Name</label>
+          <input
+            ref="name"
+            type="text"
+            name="name"
+            id="name"
+            defaultValue={initialValues.name}
+            autoComplete="off"
+          />
+        </div>
+        <button
+          className="button is-small"
+          style={{ position: 'absolute', bottom: 15, left: 15 }}
+          onClick={onCancel}
+        >
+          Go Back
+        </button>
+        <button
+          type="submit"
+          className={`button is-small ${styles.buttonGreen}`}
+          style={{ position: 'absolute', bottom: 15, right: 15 }}
+        >
+          Save
+        </button>
+      </form>
+    );
+  }
+}
+
+const Delete = ({ onDelete, onCancel }) => (
+  <React.Fragment>
+    <p>Are you sure you want to delete this item? This action cannot be rolled back.</p>
+    <div style={{ marginTop: 20 }}>
+      <button onClick={onCancel} className="button">
+        Go back
+      </button>
+      &nbsp;
+      <button onClick={onDelete} className="button is-danger">
+        I'm sure
+      </button>
+    </div>
+  </React.Fragment>
+);
+
+class SharedData extends React.Component {
+  state = {
+    shared: {}
+  };
+
+  componentDidMount() {
+    window.cg.Subject.getSharedData(this.props.sharedDataToken)
+      .then(shared => {
+        this.setState({ shared });
+      })
+      .catch(err => {
+        console.log('failure', err);
+      });
+  }
+
+  render() {
+    return (
+      <ul style={{ fontSize: 14 }}>
+        {Object.keys(this.state.shared).map((k, i) => (
+          <li key={i}>
+            {k}: {this.state.shared[k]}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+}
+
 class ShareData extends React.Component {
   state = {
     shares: [],
+    isNew: false,
     isEdit: false,
-    isDelete: false,
-    errors: null
+    isDelete: false
   };
 
-  handleOnDelete = e => {
+  showOnDelete = e => {
     e.preventDefault();
     this.setState({ isDelete: true });
   };
 
-  handleOnDeleteAction = (e, share) => {
+  showOnEdit = e => {
+    e.preventDefault();
+    this.setState({ isEdit: true });
+  };
+
+  showOnNew = e => {
+    e.preventDefault();
+    this.setState({ isNew: true });
+  };
+
+  handleOnCreate = ({ name }) => {
+    window.cg.Subject.addDataShare({
+      name: name.value
+    })
+      .then(() => {
+        this.loadDataShares();
+        this.setState({ isNew: false });
+      })
+      .catch(err => {
+        this.setState({ errors: err.message });
+      });
+  };
+
+  handleOnUpdate = e => {
+    e.preventDefault();
+    console.log('Not yet implemented');
+    this.setState({ isEdit: false });
+  };
+
+  handleOnDelete(e, shareId) {
     e.preventDefault();
 
-    window.cg.Subject.removeDataShare(share.id)
+    window.cg.Subject.removeDataShare(shareId)
       .then(() => {
-        // reload shares
+        this.loadDataShares();
         this.setState({ isDelete: false });
       })
       .catch(err => {
         this.setState({ errors: err.message });
       });
-  };
+  }
 
-  handleOnEdit = e => {
+  handleOnCopyURL = (e, toClipboard) => {
     e.preventDefault();
-    this.setState({ isEdit: true });
-  };
-
-  handleOnUpdate = e => {
-    e.preventDefault();
-    this.setState({ isEdit: false });
-  };
-
-  handleAddNew = e => {
-    e.preventDefault();
-    console.log('Addnew');
-  };
-
-  handleOnCopyURL = e => {
-    e.preventDefault();
-    Copy('test of clipboard');
+    Copy(toClipboard);
     // TODO: show flash of added to clipboard
-  };
-
-  handleFormSubmission = e => {
-    e.preventDefault();
-    window.cg.Subject.addDataShare({})
-      .then(() => {
-        // reload shares
-        this.setState({ isEdit: false });
-      })
-      .catch(err => {
-        this.setState({ errors: err.message });
-      });
   };
 
   loadDataShares = () => {
@@ -79,22 +165,13 @@ class ShareData extends React.Component {
   };
 
   componentDidMount() {
-    setTimeout(() => {
-      const cgToken = localStorage.getItem('cgToken');
-      window.cg.setAccessToken(cgToken);
-      window.cg.Subject.shareData()
-        .then(shares => {
-          console.log('shareData', shares);
-        })
-        .catch(err => {
-          console.log('failure', err);
-        });
-      this.loadDataShares();
-    }, 1000);
+    const cgToken = localStorage.getItem('cgToken');
+    window.cg.setAccessToken(cgToken);
+    this.loadDataShares();
   }
 
   render() {
-    const { isEdit, isDelete, shares } = this.state;
+    const { isNew, isEdit, isDelete, shares } = this.state;
 
     return (
       <div className="columns">
@@ -103,52 +180,28 @@ class ShareData extends React.Component {
             <div className={`${styles.card} ${(isEdit || isDelete) && styles.cardHover}`}>
               {isEdit ? (
                 <div className={styles.cardBack}>
-                  <form className={styles.form} onSubmit={this.handleFormSubmission}>
-                    <div className={styles.formName}>
-                      <label htmlFor="name">Name</label>
-                      <input type="text" name="name" id="name" autoComplete="off" />
-                    </div>
-                    <div className={styles.formUrl}>{share.url}</div>
-                    <ul className={styles.formScopes}>
-                      {share.scopes.map((scope, i) => (
-                        <li key={i}>
-                          <input type="checkbox" name={`${scope}`} id={`scopes-${scope}`} />
-                          <label key={i} htmlFor={`scopes-${scope}`}>
-                            {scope}
-                          </label>
-                        </li>
-                      ))}
-                    </ul>
-                    <button
-                      type="submit"
-                      className={`button is-small ${styles.buttonGreen}`}
-                      style={{ position: 'absolute', bottom: 0, right: 0 }}
-                    >
-                      Save
-                    </button>
-                  </form>
+                  <EditForm
+                    initialValues={share}
+                    onSubmit={this.handleOnUpdate}
+                    onCancel={e => {
+                      e.preventDefault();
+                      this.setState({ isEdit: false });
+                    }}
+                  />
                 </div>
               ) : isDelete ? (
-                <div className={` ${styles.cardBack} ${styles.cardDelete}`}>
-                  <p>
-                    Are you sure you want to delete this item? This action cannot be rolled back.
-                  </p>
-                  <div style={{ marginTop: 20 }}>
-                    <button onClick={this.handleOnDeleteAction} className="button">
-                      Go back
-                    </button>
-                    &nbsp;
-                    <button onClick={this.handleOnDeleteAction} className="button is-danger">
-                      I'm sure
-                    </button>
-                  </div>
+                <div className={`${styles.cardBack} ${styles.cardDelete}`}>
+                  <Delete
+                    onDelete={e => this.handleOnDelete(e, share.id)}
+                    onCancel={e => {
+                      e.preventDefault();
+                      this.setState({ isDelete: false });
+                    }}
+                  />
                 </div>
               ) : (
                 <React.Fragment>
-                  <a
-                    className={`is-pulled-right ${styles.deleteIcon}`}
-                    onClick={this.handleOnDelete}
-                  >
+                  <a className={`is-pulled-right ${styles.deleteIcon}`} onClick={this.showOnDelete}>
                     <span className="icon">
                       <i className="far fa-trash-alt" />
                     </span>
@@ -159,20 +212,18 @@ class ShareData extends React.Component {
                     </span>
                     <div className={styles.shareName}>{share.name}</div>
                     <div className={styles.shareUrl}>{share.url}</div>
-                    <ul className={styles.scopes}>
-                      {share.scopes.map((scope, index) => <li key={index}>{scope}</li>)}
-                    </ul>
-                    <button
+                    <SharedData sharedDataToken={share.token} />
+                    {/* <button
                       className="button is-small is-outlined"
-                      onClick={this.handleOnEdit}
+                      onClick={this.showOnEdit}
                       style={{ position: 'absolute', bottom: 15, left: 15 }}
                     >
-                      Edit
-                    </button>
+                      Options
+                    </button> */}
                     <button
                       className="button is-small is-outlined"
                       style={{ position: 'absolute', bottom: 15, right: 15 }}
-                      onClick={this.handleOnCopyURL}
+                      onClick={e => this.handleOnCopyURL(e, share.url)}
                     >
                       Copy URL
                     </button>
@@ -183,11 +234,21 @@ class ShareData extends React.Component {
           </div>
         ))}
         <div className="column is-half">
-          <div className={`${styles.card} ${styles.newCard}`} onClick={this.handleAddNew}>
-            <div className={styles.newCardContent}>
-              <img src={clipboardSvg} alt="Add new" style={{ width: 62 }} />
-              <p>New Share URL</p>
-            </div>
+          <div className={`${styles.card} ${styles.newCard}`}>
+            {!isNew ? (
+              <div className={styles.newCardContent} onClick={this.showOnNew}>
+                <img src={clipboardSvg} alt="Add new" style={{ width: 62 }} />
+                <p>New Share URL</p>
+              </div>
+            ) : (
+              <EditForm
+                onSubmit={this.handleOnCreate}
+                onCancel={e => {
+                  e.preventDefault();
+                  this.setState({ isNew: false });
+                }}
+              />
+            )}
           </div>
         </div>
       </div>
