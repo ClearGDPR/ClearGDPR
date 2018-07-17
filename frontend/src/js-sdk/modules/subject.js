@@ -34,7 +34,7 @@ export default class Subject extends ResourceBase {
     return this.request(`${SUBJECT}/data-shares/share?token=${token}`);
   }
 
-  getDataShares(token) {
+  getDataShares() {
     return this.request(`${SUBJECT}/data-shares/list`);
   }
 
