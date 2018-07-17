@@ -30,11 +30,11 @@ export default class Subject extends ResourceBase {
     return this.request(`${SUBJECT}/processors`);
   }
 
-  shareData() {
-    return this.request(`${SUBJECT}/data-shares/share`);
+  getSharedData(token) {
+    return this.request(`${SUBJECT}/data-shares/share?token=${token}`);
   }
 
-  getDataShares() {
+  getDataShares(token) {
     return this.request(`${SUBJECT}/data-shares/list`);
   }
 
@@ -45,6 +45,6 @@ export default class Subject extends ResourceBase {
 
   removeDataShare(dataShareId) {
     const method = 'POST';
-    return this.request(`${SUBJECT}/data-shares/${dataShareId}/remove`, method);
+    return this.request(`${SUBJECT}/data-shares/${dataShareId}/remove`, { method });
   }
 }
