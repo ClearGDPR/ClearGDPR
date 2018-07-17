@@ -1,11 +1,11 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
 
 - [API](#api)
   - [Directory structure](#directory-structure)
   - [Database migrations and seed files](#database-migrations-and-seed-files)
-    - [Running the integration tests](#running-the-integration-tests)
+    - [Running tests](#running-tests)
   - [Debugging](#debugging)
   - [Writing new tests](#writing-new-tests)
 
@@ -82,47 +82,6 @@ The project is prepared to be debugged thanks to the V8 debugging protocol. For 
 ```
 
 ## Writing new tests
-
-**App unit tests**
-
-In the very particular case of wanting to unit test the express application
-configuration (inside `app.js`) you can use an structure like this:
-
-```javascript
-const { initResources, fetch, appUnit, closeResources } = require('./utils');
-
-describe('App', () => {
-  beforeAll(initResources);
-
-  appUnit('testing some app.js configuration', async () => {
-    process.env.SOME_ENV_VARIABLE = 'some-value';
-    const res = await fetch('/some-url');
-    expect(res.status).toEqual(200);
-    // check headers or body here
-  });
-
-  appUnit('testing some app.js configuration', async () => {
-    process.env.SOME_ENV_VARIABLE = 'some-different-value';
-    const res = await fetch('/some-url');
-    expect(res.status).toEqual(200);
-    // check headers or body here
-  });
-
-  afterAll(closeResources);
-});
-```
-
-This is useful in just a few scenarios:
-
-* Testing HTTP headers
-* Testing different responses based on env variables (e.g. the `/robots.txt`
-  endpoint)
-
-The only special thing about these tests is that they need to have the server
-running, but not as an external process because you want to change the behavior
-in each test.
-
-**Integration tests**
 
 Integration tests can access the database and the API server.
 

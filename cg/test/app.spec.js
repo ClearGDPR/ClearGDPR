@@ -1,4 +1,4 @@
-const { initResources, fetch, appUnit, closeResources } = require('./utils');
+const { initResources, fetch, closeResources } = require('./utils');
 
 describe('App', () => {
   beforeAll(initResources);
@@ -19,20 +19,6 @@ describe('App', () => {
     const res = await fetch(`/healthz/long/${process.env.HEALTH_CHECK_SECRET}`);
     expect(res.status).toEqual(200);
     expect(await res.json()).toEqual({ db: 'OK' });
-  });
-
-  appUnit('robots.txt should allow indexing', async () => {
-    process.env.ROBOTS_INDEX = 'true';
-    const res = await fetch('/robots.txt');
-    expect(res.status).toEqual(200);
-    expect(await res.text()).toEqual('User-agent: *\nDisallow:\n');
-  });
-
-  appUnit('robots.txt should prevent indexing', async () => {
-    process.env.ROBOTS_INDEX = 'false';
-    const res = await fetch('/robots.txt');
-    expect(res.status).toEqual(200);
-    expect(await res.text()).toEqual('User-agent: *\nDisallow: /\n');
   });
 
   it('OPTIONS should return proper allowed origins', async () => {

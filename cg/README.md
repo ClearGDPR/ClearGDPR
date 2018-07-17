@@ -184,24 +184,10 @@ In the very particular case of wanting to unit test the express application
 configuration (inside `app.js`) you can use an structure like this:
 
 ```javascript
-const { initResources, fetch, appUnit, closeResources } = require('./utils');
+const { initResources, fetch, closeResources } = require('./utils');
 
 describe('App', () => {
   beforeAll(initResources);
-
-  appUnit('testing some app.js configuration', async () => {
-    process.env.SOME_ENV_VARIABLE = 'some-value';
-    const res = await fetch('/some-url');
-    expect(res.status).toEqual(200);
-    // check headers or body here
-  });
-
-  appUnit('testing some app.js configuration', async () => {
-    process.env.SOME_ENV_VARIABLE = 'some-different-value';
-    const res = await fetch('/some-url');
-    expect(res.status).toEqual(200);
-    // check headers or body here
-  });
 
   afterAll(closeResources);
 });
