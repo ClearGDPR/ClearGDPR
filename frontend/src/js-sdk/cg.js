@@ -20,7 +20,11 @@ export class CG {
   constructor({ apiKey, apiUrl }) {
     // Enforce accessToken option to be sent.
     if (!apiKey) {
-      throw new SDKError('API Key is mandatory.');
+      throw new SDKError('API Key is required.');
+    }
+
+    if (!apiUrl) {
+      throw new SDKError('API URL is required.');
     }
 
     this._config = mergeOptions(Config, { apiUrl });

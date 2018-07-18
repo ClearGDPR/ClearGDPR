@@ -7,16 +7,13 @@ class Elements {
    * Set up the CG SDK.
    * Inject CG to `window` if is not declared to be accessed by components.
    */
-  constructor(config) {
+  constructor({ apiKey, apiUrl }) {
     // TODO: Should be managed by an inject provider
     // TODO: If pure HTML implementation is used configuratio should be extracted from `data-` attributes.
     //   <div class="cg-consent" data-sitekey="your_site_key"></div>
     // TODO: `apiKey` is a way to whitelist client usage. A warning should be triggered if not defined.
     if (!window.cg) {
-      const cg = new CG({
-        apiKey: config.apiKey,
-        apiUrl: config.apiURL
-      });
+      const cg = new CG({ apiKey, apiUrl });
       window.cg = cg;
     }
   }
