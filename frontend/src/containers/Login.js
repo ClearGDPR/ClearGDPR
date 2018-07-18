@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React, { Component } from 'react';
 import config from '../config';
 
@@ -71,5 +72,4 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {};
 export default Login;

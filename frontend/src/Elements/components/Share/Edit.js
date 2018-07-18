@@ -45,7 +45,9 @@ class EditForm extends React.Component {
 }
 
 EditForm.propTypes = {
-  styles: PropTypes.object
+  onSubmit: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  initialValues: PropTypes.object
 };
 
 export default EditForm;

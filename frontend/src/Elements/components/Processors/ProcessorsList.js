@@ -24,7 +24,17 @@ class ProcessorsList extends React.PureComponent {
 }
 
 ProcessorsList.propTypes = {
-  styles: PropTypes.object // TODO: not necessarily useful here
+  processors: PropTypes.arrayOf(
+    PropTypes.shape({
+      enabled: PropTypes.bool,
+      name: PropTypes.string,
+      logoUrl: PropTypes.string,
+      description: PropTypes.string,
+      scopes: PropTypes.arrayOf(PropTypes.string),
+      purposes: PropTypes.arrayOf(PropTypes.string)
+    })
+  ),
+  onProcessorChange: PropTypes.func.isRequired
 };
 
 export default ProcessorsList;

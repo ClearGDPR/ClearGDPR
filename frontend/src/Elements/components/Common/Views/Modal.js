@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Modal from 'react-responsive-modal';
+
 import styles from '../../../theme/Views/Modal.scss';
 
 class ModalView extends React.PureComponent {
@@ -23,5 +25,9 @@ class ModalView extends React.PureComponent {
     );
   }
 }
+
+ModalView.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 export default ModalView;

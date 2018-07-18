@@ -79,7 +79,10 @@ class ShareDataItem extends React.Component {
 }
 
 ShareDataItem.propTypes = {
-  styles: PropTypes.object
+  share: PropTypes.object,
+  onUpdate: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onCopy: PropTypes.func.isRequired
 };
 
 export default ShareDataItem;

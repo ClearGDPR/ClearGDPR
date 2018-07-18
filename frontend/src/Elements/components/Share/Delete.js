@@ -17,7 +17,8 @@ const Delete = ({ onDelete, onCancel }) => (
 );
 
 Delete.propTypes = {
-  styles: PropTypes.object
+  onDelete: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired
 };
 
 export default Delete;

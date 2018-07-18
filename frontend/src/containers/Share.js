@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
 
 import Elements from '../Elements';
@@ -33,5 +34,4 @@ class Share extends React.Component {
   }
 }
 
-Share.propTypes = {};
 export default Share;
