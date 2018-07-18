@@ -65,34 +65,6 @@ const Delete = ({ onDelete, onCancel }) => (
   </React.Fragment>
 );
 
-class SharedData extends React.Component {
-  state = {
-    shared: {}
-  };
-
-  componentDidMount() {
-    window.cg.Subject.getSharedData(this.props.sharedDataToken)
-      .then(shared => {
-        this.setState({ shared });
-      })
-      .catch(err => {
-        console.log('failure', err);
-      });
-  }
-
-  render() {
-    return (
-      <ul style={{ fontSize: 14 }}>
-        {Object.keys(this.state.shared).map((k, i) => (
-          <li key={i}>
-            {k}: {this.state.shared[k]}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-}
-
 class ShareDataItem extends React.Component {
   state = {
     isEdit: false,
