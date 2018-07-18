@@ -58,6 +58,7 @@ class ShareData extends React.Component {
   };
 
   loadDataShares = () => {
+    console.log(window.cg);
     window.cg.Subject.getDataShares()
       .then(shares => {
         this.setState({ shares });
