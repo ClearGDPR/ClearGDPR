@@ -220,7 +220,7 @@ class SubjectsService {
       
     if (!data) throw new NotFound('Subject not found');
     const decryptedData = decryptFromStorage(data.personal_data, data.key);
-    await recordAccessByController(subjectId);
+    //await recordAccessByController(subjectId); //Fixing this won't be so simple
     return JSON.parse(decryptedData);
   }
 

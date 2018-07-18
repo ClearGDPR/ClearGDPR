@@ -90,7 +90,6 @@ module.exports = app => {
 
   //Probably more endpoints should be controllerOnly
   //Also, it would be good to run a check on the interaction between the rights, such as erasing a subject and trying stuff when his data has been erased
-  //Probably a manager should also be able to look into a subject's restrictions
 
   router.post(
     '/restrict',
