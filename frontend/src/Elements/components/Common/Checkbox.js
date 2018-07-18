@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import styles from '../../theme/Checkbox.scss';
 
 class Checkbox extends React.PureComponent {
@@ -28,8 +29,12 @@ class Checkbox extends React.PureComponent {
 }
 
 Checkbox.propTypes = {
+  id: PropTypes.any,
+  name: PropTypes.string,
+  label: PropTypes.string,
+  required: PropTypes.bool,
   styles: PropTypes.object,
-  label: PropTypes.string
+  onChange: PropTypes.function
 };
 
 export default Checkbox;

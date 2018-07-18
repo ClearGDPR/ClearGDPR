@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import styles from '../../../theme/Views/Popover.scss';
 
 class PopoverView extends React.PureComponent {
@@ -24,5 +26,11 @@ class PopoverView extends React.PureComponent {
     );
   }
 }
+
+PopoverView.propTypes = {
+  children: PropTypes.node.isRequired,
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool
+};
 
 export default PopoverView;

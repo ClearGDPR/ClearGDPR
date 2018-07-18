@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import Checkbox from '../Common/Checkbox';
@@ -165,5 +166,9 @@ class Consent extends React.PureComponent {
     );
   }
 }
+
+Consent.propTypes = {
+  options: PropTypes.object
+};
 
 export default Consent;

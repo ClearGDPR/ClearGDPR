@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import FileSaver from 'file-saver';
 
 class ExportRequest extends React.PureComponent {
@@ -47,5 +48,9 @@ class ExportRequest extends React.PureComponent {
     );
   }
 }
+
+ExportRequest.propTypes = {
+  options: PropTypes.object
+};
 
 export default ExportRequest;

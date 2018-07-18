@@ -35,7 +35,7 @@ class Processor extends React.PureComponent {
 }
 
 Processor.propTypes = {
-  styles: PropTypes.object,
+  onProcessorChange: PropTypes.func.isRequired,
   processor: PropTypes.shape({
     enabled: PropTypes.bool,
     name: PropTypes.string,

@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
 
 import Elements from '../Elements';
@@ -81,5 +82,4 @@ class Profile extends React.Component {
   }
 }
 
-Profile.propTypes = {};
 export default Profile;

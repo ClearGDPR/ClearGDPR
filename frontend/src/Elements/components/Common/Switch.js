@@ -33,7 +33,7 @@ class Switch extends React.PureComponent {
 }
 
 Switch.propTypes = {
-  styles: PropTypes.object, // TODO: not necessarily useful here
+  onChange: PropTypes.func.isRequired,
   value: PropTypes.bool
 };
 

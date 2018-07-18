@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ModalView from '../Common/Views/Modal';
 import Checkbox from '../Common/Checkbox';
@@ -112,5 +113,9 @@ class ForgottenRequest extends React.PureComponent {
     );
   }
 }
+
+ForgottenRequest.propTypes = {
+  options: PropTypes.object
+};
 
 export default ForgottenRequest;
