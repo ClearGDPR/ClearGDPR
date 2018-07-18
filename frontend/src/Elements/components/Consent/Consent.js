@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ProcessorsList from './ProcessorsList';
-import Checkbox from './Checkbox';
-import PopoverView from './Views/Popover';
 import _ from 'lodash';
-import config from '../../config';
 
-const { API_BASE } = config;
+import Checkbox from '../Common/Checkbox';
+import PopoverView from '../Common/Views/Popover';
+import ProcessorsList from '../Processors/ProcessorsList';
 
 class Consent extends React.PureComponent {
   state = {
@@ -104,32 +102,11 @@ class Consent extends React.PureComponent {
   }
 
   async giveConsent(data = {}, processors) {
+    const token = 'asdasd';
     // TODO: Temporary fix to store user sign up credentials
     // TODO: Should require that Elements framework store this locally with Redux
     // TODO: Should recover existent users if sign up is repeated
     if (data.email && !this.state.registered) {
-      const url = API_BASE + '/api/users/register';
-      const token = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          username: data.email,
-          password: 'some password' //tempfix
-        })
-      })
-        .then(res => res.json())
-        .then(res => {
-          if (res.error) {
-            throw new Error(res.error);
-          }
-
-          return res;
-        });
-
-      localStorage.setItem('cgToken', token.cgToken);
-
       this.setState({
         registered: token
       });

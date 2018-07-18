@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-responsive-modal';
-import styles from '../../theme/Views/Modal.scss';
+import styles from '../../../theme/Views/Modal.scss';
 
 class ModalView extends React.PureComponent {
   render() {

@@ -1,5 +1,5 @@
 import { CG } from '../src/js-sdk';
-import { Elements } from '../src/elements';
+import { Elements } from '../src/Elements';
 
 // Define instance of the SDK
 // This will come from the window component

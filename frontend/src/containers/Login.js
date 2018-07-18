@@ -8,12 +8,14 @@ class Login extends Component {
     isLoading: false
   };
 
-  async onSubmit(e) {
+  onLoginHandler = e => {
     e.preventDefault();
     this.setState({ isLoading: true });
+
     const { email, password } = this.refs;
     const url = API_BASE + '/api/users/login';
-    const token = await fetch(url, {
+
+    fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -22,13 +24,15 @@ class Login extends Component {
         username: email.value,
         password: password.value
       })
-    }).then(res => res.json());
-    this.setState({ isLoading: false });
-
-    localStorage.setItem('cgToken', token.cgToken);
-
-    this.props.history.push('/profile');
-  }
+    })
+      .then(res => res.json())
+      .then(token => {
+        this.setState({ isLoading: false });
+        localStorage.setItem('cgToken', token.cgToken);
+        this.props.history.push('/profile');
+      })
+      .catch(console.log);
+  };
 
   render() {
     return (
@@ -38,7 +42,7 @@ class Login extends Component {
             <div className="column is-one-third">
               <h3 className="title"> Sign in to your account </h3>
               <hr />
-              <form onSubmit={this.onSubmit.bind(this)}>
+              <form onSubmit={this.onLoginHandler}>
                 <div className="field">
                   <label className="label">Email</label>
                   <div className="control">

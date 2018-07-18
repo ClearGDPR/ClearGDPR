@@ -1,7 +1,8 @@
 import React from 'react';
-import ModalView from './Views/Modal';
-import Checkbox from './Checkbox';
-import styles from '../theme/ForgottenRequest.scss';
+
+import ModalView from '../Common/Views/Modal';
+import Checkbox from '../Common/Checkbox';
+import styles from '../../theme/ForgottenRequest.scss';
 
 const about = `The data subject shall have the right to request from the controller the erasure of
 personal data concerning him or her without undue delay and the controller shall have

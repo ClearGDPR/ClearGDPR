@@ -1,23 +1,42 @@
 import React, { Component } from 'react';
 
-// CG Dependencies
-import Element from '../elements/components/Element';
-import Elements from '../elements/components/Elements';
-Elements();
+import config from '../config';
+import Elements from '../Elements';
 
 class SignUp extends Component {
   state = {
     isLoading: false
   };
 
-  onSubmit(e) {
+  onSignUpHandler = e => {
     e.preventDefault();
     this.setState({ isLoading: true });
     return false;
-  }
+
+    const { email } = this.refs;
+    const url = config.API_BASE + '/api/users/register';
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: email,
+        password: 'password' // temp fix
+      })
+    })
+      .then(res => res.json())
+      .then(token => {
+        this.setState({ isLoading: false });
+        localStorage.setItem('cgToken', token.cgToken);
+        this.props.history.push('/profile');
+      })
+      .catch(console.log);
+  };
 
   render() {
-    const ConsentFormController = Element.create({
+    const ConsentFormController = Elements.element({
       source: 'consent',
       label: `The Sport Times would like to 
       keep you informed about other offers, promotions and

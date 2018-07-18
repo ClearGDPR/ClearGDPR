@@ -1,13 +1,10 @@
 import React from 'react';
 
-// CG Dependencies
-import Element from '../elements/components/Element';
-import Elements from '../elements/components/Elements';
-Elements();
+import Elements from '../Elements';
 
 class Share extends React.Component {
   render() {
-    const ShareData = Element.create({
+    const ShareData = Elements.element({
       source: 'share-data'
     });
 
