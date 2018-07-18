@@ -57,10 +57,20 @@
     "webpack-manifest-plugin": "1.2.1",
     "whatwg-fetch": "2.0.3"
   },
+  "devDependencies": {
+    "babel-plugin-module-resolver": "3.1.1",
+    "enzyme": "^3.3.0",
+    "enzyme-to-json": "^3.3.4",
+    "enzyme-adapter-react-16": "npm:@monastic.panic/enzyme-adapter-react-16",
+    "eslint-import-resolver-babel-module": "4.0.0",
+    "eslint-plugin-jest": "^21.17.0",
+    "sinon": "^6.0.0"
+  },
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "test:watch": "node scripts/test.js --env=jsdom --watch"
   },
   "jest": {
     "snapshotSerializers": [
@@ -109,9 +119,6 @@
     "presets": [
       "react-app"
     ]
-  },
-  "devDependencies": {
-    "eslint-plugin-jest": "^21.5.0"
   },
   "description": "ClearGDPR Frontend"
 }
