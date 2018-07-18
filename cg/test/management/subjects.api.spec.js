@@ -41,7 +41,10 @@ async function createSubjectWithRectification(overrides = {}) {
   await db('subjects')
     .insert({
       id: idHash,
-      personal_data: encryptForStorage(JSON.stringify({ test: false }), key)
+      personal_data: encryptForStorage(JSON.stringify({ test: false }), key),
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     })
     .returning('id');
 
@@ -119,7 +122,10 @@ describe('List subjects that have given consent', () => {
 
     await db('subjects').insert({
       id: subjectIdHash,
-      personal_data: encryptedSubjectData
+      personal_data: encryptedSubjectData,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
 
     await db('subject_keys').insert({
@@ -163,7 +169,10 @@ describe('List subjects that have given consent', () => {
 
     await db('subjects').insert({
       id: subjectIdHash,
-      personal_data: encryptedSubjectData
+      personal_data: encryptedSubjectData,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
 
     await db('subject_keys').insert({
@@ -207,7 +216,10 @@ describe('List subjects that have given consent', () => {
 
     await db('subjects').insert({
       id: subjectIdHash1,
-      personal_data: encryptedSubjectData1
+      personal_data: encryptedSubjectData1,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
 
     await db('subject_keys').insert({
@@ -225,7 +237,10 @@ describe('List subjects that have given consent', () => {
 
     await db('subjects').insert({
       id: subjectIdHash2,
-      personal_data: encryptedSubjectData2
+      personal_data: encryptedSubjectData2,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
 
     await db('subject_keys').insert({
@@ -369,7 +384,10 @@ describe('List subjects that have given consent', () => {
 
     await db('subjects').insert({
       id: subjectIdHash1,
-      personal_data: encryptedSubjectData1
+      personal_data: encryptedSubjectData1,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
 
     await db('subject_keys').insert({
@@ -387,7 +405,10 @@ describe('List subjects that have given consent', () => {
 
     await db('subjects').insert({
       id: subjectIdHash2,
-      personal_data: encryptedSubjectData2
+      personal_data: encryptedSubjectData2,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
 
     await db('subject_keys').insert({
@@ -451,7 +472,10 @@ describe('List subjects that have given consent', () => {
 
       await db('subjects').insert({
         id: subjectId,
-        personal_data: encryptedSubjectData
+        personal_data: encryptedSubjectData,
+        direct_marketing: true,
+        email_communication: true,
+        research: true
       });
 
       await db('subject_keys').insert({
