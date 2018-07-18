@@ -97,8 +97,11 @@ export class ProcessorsProvider extends Component {
   }
 
   async _deleteProcessor(processorId) {
-    await internalFetch(`${config.API_URL}/api/management/processors/${processorId}/remove`, {
-      method: 'POST'
+    await internalFetch(`${config.API_URL}/api/management/processors/remove`, {
+      method: 'POST',
+      body: JSON.stringify({
+        processorIds: [processorId]
+      })
     });
   }
 
