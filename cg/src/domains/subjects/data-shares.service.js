@@ -11,7 +11,7 @@ class DataShareService {
         id: dataShare.id,
         name: dataShare.name,
         token: dataShare.token,
-        url: `${process.env.ROOT_URL}/api/subjects/data-shares/share?token=${dataShare.token}`
+        url: `${process.env.CONTROLLER_URL}/api/subjects/data-shares/share?token=${dataShare.token}`
       }));
   }
 
