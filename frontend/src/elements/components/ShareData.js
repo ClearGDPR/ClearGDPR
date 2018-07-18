@@ -149,14 +149,6 @@ class ShareDataItem extends React.Component {
               </span>
               <div className={styles.shareName}>{share.name}</div>
               <div className={styles.shareUrl}>{share.url}</div>
-              <SharedData sharedDataToken={share.token} />
-              {/* <button
-                  className="button is-small is-outlined"
-                  onClick={this.showOnEdit}
-                  style={{ position: 'absolute', bottom: 15, left: 15 }}
-                >
-                  Options
-                </button> */}
               <button
                 className="button is-small is-outlined"
                 style={{ position: 'absolute', bottom: 15, right: 15 }}
