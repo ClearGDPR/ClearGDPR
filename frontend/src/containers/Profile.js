@@ -1,24 +1,22 @@
 import React from 'react';
-// CG Dependencies
-import Element from '../elements/components/Element';
-import Elements from '../elements/components/Elements';
-Elements();
+
+import Elements from '../Elements';
 
 class Profile extends React.Component {
   render() {
-    const ForgottenRequestButton = Element.create({
+    const ForgottenRequestButton = Elements.element({
       source: 'forgotten',
       className: 'button is-primary',
       label: 'Request to be forgotten'
     });
 
-    const ExportDataButton = Element.create({
+    const ExportDataButton = Elements.element({
       source: 'export',
       className: 'button is-primary',
       label: 'Export data'
     });
 
-    const UserDataStatus = Element.create({
+    const UserDataStatus = Elements.element({
       source: 'data'
     });
 

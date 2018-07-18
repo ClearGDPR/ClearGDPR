@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Processor from './Processor';
 
 class ProcessorsList extends React.PureComponent {

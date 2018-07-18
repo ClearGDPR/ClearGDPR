@@ -1,10 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
-import Elements from '../components/Elements';
-import styles from '../theme/SubjectData.scss';
 
-// Check if OG is initialized
-Elements();
+import styles from '../../theme/SubjectData.scss';
 
 const SUBJECT_DATA_STATUS = ['Unconsented', 'Consented', 'Erased'];
 
