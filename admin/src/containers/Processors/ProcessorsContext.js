@@ -33,12 +33,16 @@ export class ProcessorsProvider extends Component {
     });
   };
 
+  refreshProcessors = () => {
+    this.fetchProcessors();
+  };
+
   addProcessor = async processor => {
     const newProcessor = await this._addProcessor(processor).catch(
       this.cancelLoadingAndReject.bind(this)
     );
     toast.success('Processor successfully added.');
-    await this.fetchProcessors();
+    this.refreshProcessors();
 
     return newProcessor;
   };
@@ -48,7 +52,7 @@ export class ProcessorsProvider extends Component {
       this.cancelLoadingAndReject.bind(this)
     );
     toast.success('Processor successfully updated.');
-    await this.fetchProcessors();
+    this.refreshProcessors();
 
     return updatedProcessor;
   };
@@ -60,7 +64,7 @@ export class ProcessorsProvider extends Component {
       this.cancelLoadingAndReject.bind(this)
     );
     toast.success('Processor successfully deleted.');
-    await this.fetchProcessors();
+    this.refreshProcessors();
 
     return isDeleted;
   };
