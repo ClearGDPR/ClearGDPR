@@ -22,6 +22,7 @@ export default () => (
       <Route path="/kitchen-sink/overview" component={KitchenSink} exact />
       <Route path="/kitchen-sink/processors" component={KitchenSink} exact />
       <Route path="/kitchen-sink/loader" component={KitchenSink} exact />
+      <Route path="/kitchen-sink/elements" component={KitchenSink} exact />
 
       <Route component={NoMatch} />
     </Switch>

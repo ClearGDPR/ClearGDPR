@@ -25,6 +25,9 @@ const Sidenav = props => {
       <p>
         <small className="label">Account</small>
       </p>
+      <NavLink to="/kitchen-sink/elements" activeClassName="active">
+        Elements
+      </NavLink>
       <NavLink to="/kitchen-sink/loader">Loader</NavLink>
     </nav>
   );

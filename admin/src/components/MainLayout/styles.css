@@ -627,3 +627,17 @@ a.active > img {
     font-size: 12px;
   }
 }
+
+/* Kitchen Sink Utils */
+.kitchen-examples {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.kitchen-examples > .row > * {
+  margin: 1rem;
+}
+
+.kitchen-examples > * {
+  margin: 1rem;
+}
