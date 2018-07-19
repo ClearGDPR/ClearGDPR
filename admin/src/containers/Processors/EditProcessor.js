@@ -18,13 +18,21 @@ export class EditProcessorContainer extends React.Component {
   };
 
   state = {
+    isLoading: false,
     errors: {}
   };
 
   onSubmit = processor => {
+    this.setState({
+      isLoading: true
+    });
+
     // Clone data to avoid updating form until save is done
     const processorData = Object.assign({}, processor);
-    delete processorData.address;
+    if (!processorData.address) {
+      delete processorData.address;
+    }
+
     processorData.scopes = Object.keys(processor.scopes).reduce((scopes, s) => {
       return processor.scopes[s] ? scopes.concat(s) : scopes;
     }, []);
@@ -34,6 +42,7 @@ export class EditProcessorContainer extends React.Component {
       .then(() => this.props.closePanel())
       .catch(e =>
         this.setState({
+          isLoading: false,
           errors: {
             processor: e.toString()
           }
@@ -60,7 +69,6 @@ export default props => (
         {({ updateProcessor, isLoading }) => (
           <EditProcessorContainer
             {...props}
-            isLoading={isLoading}
             updateProcessor={updateProcessor}
             closePanel={closePanel}
           />

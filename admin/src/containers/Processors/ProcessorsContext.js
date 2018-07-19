@@ -34,8 +34,6 @@ export class ProcessorsProvider extends Component {
   };
 
   addProcessor = async processor => {
-    this.setLoading(true);
-
     const newProcessor = await this._addProcessor(processor).catch(
       this.cancelLoadingAndReject.bind(this)
     );
@@ -46,8 +44,6 @@ export class ProcessorsProvider extends Component {
   };
 
   updateProcessor = async processor => {
-    this.setLoading(true);
-
     const updatedProcessor = await this._updateProcessor(processor).catch(
       this.cancelLoadingAndReject.bind(this)
     );

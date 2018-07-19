@@ -71,6 +71,18 @@ export class EditProcessor extends React.Component {
             </div>
           ))}
         </Scope>
+        <TextInput
+          label="Block-chain address"
+          placeholder="0x0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+          type={'text'}
+          error={
+            this.props.touched &&
+            this.props.touched['address'] &&
+            this.props.errors &&
+            this.props.errors['address']
+          }
+          field="address"
+        />
         <PrimaryButton type="submit" text="Save" />
       </React.Fragment>
     );
