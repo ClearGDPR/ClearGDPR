@@ -5,12 +5,14 @@ Object {
   "errors": Object {
     "processor": "Error: Test error",
   },
+  "isLoading": false,
 }
 `;
 
 exports[`(Container) Add Processor should render correctly when default props provided 1`] = `
 <EditProcessorForm
   errors={Object {}}
+  isLoading={false}
   onSubmit={[Function]}
 />
 `;

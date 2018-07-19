@@ -74,6 +74,12 @@ exports[`(Component) Edit Processor Form should render correctly when no props p
       </label>
     </div>
   </[object Object]>
+  <TextInput
+    field="address"
+    label="Block-chain address"
+    placeholder="0x0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+    type="text"
+  />
   <PrimaryButton
     text="Save"
     type="submit"
@@ -155,6 +161,12 @@ exports[`(Component) Edit Processor Form should render correctly when the prop i
       </label>
     </div>
   </[object Object]>
+  <TextInput
+    field="address"
+    label="Block-chain address"
+    placeholder="0x0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+    type="text"
+  />
   <PrimaryButton
     text="Save"
     type="submit"
@@ -236,6 +248,12 @@ exports[`(Component) Edit Processor Form should render correctly when the prop i
       </label>
     </div>
   </[object Object]>
+  <TextInput
+    field="address"
+    label="Block-chain address"
+    placeholder="0x0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f0f"
+    type="text"
+  />
   <PrimaryButton
     text="Save"
     type="submit"
