@@ -15,7 +15,7 @@ exports[`(Component) Processors should render when loading correctly 1`] = `
       }
       title="Processors"
     >
-      <Component
+      <DefaultButton
         onClick={[Function]}
         text="+ Add Processor"
       />
@@ -44,7 +44,7 @@ exports[`(Component) Processors should render when not loading correctly 1`] = `
       }
       title="Processors"
     >
-      <Component
+      <DefaultButton
         onClick={[Function]}
         text="+ Add Processor"
       />

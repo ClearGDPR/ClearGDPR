@@ -74,12 +74,10 @@ exports[`(Component) Edit Processor Form should render correctly when no props p
       </label>
     </div>
   </[object Object]>
-  <button
-    className="btn ui-action"
+  <PrimaryButton
+    text="Save"
     type="submit"
-  >
-    Submit
-  </button>
+  />
 </React.Fragment>
 `;
 
@@ -157,12 +155,10 @@ exports[`(Component) Edit Processor Form should render correctly when the prop i
       </label>
     </div>
   </[object Object]>
-  <button
-    className="btn ui-action"
+  <PrimaryButton
+    text="Save"
     type="submit"
-  >
-    Submit
-  </button>
+  />
 </React.Fragment>
 `;
 
@@ -240,11 +236,9 @@ exports[`(Component) Edit Processor Form should render correctly when the prop i
       </label>
     </div>
   </[object Object]>
-  <button
-    className="btn ui-action"
+  <PrimaryButton
+    text="Save"
     type="submit"
-  >
-    Submit
-  </button>
+  />
 </React.Fragment>
 `;
