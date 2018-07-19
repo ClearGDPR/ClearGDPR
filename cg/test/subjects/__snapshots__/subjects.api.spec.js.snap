@@ -28,6 +28,20 @@ Object {
 }
 `;
 
+exports[`Tests of subjects restricting the processing of their data Should not allow a subject that has given consent to restrict without specifying the actions to restrict 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"directMarketing\\" fails because [\\"directMarketing\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "directMarketing",
+    ],
+    "source": "body",
+  },
+}
+`;
+
 exports[`Tests of subjects updating their consented processors Should not allow a subject to update consent without specifying the processors consented 1`] = `
 Object {
   "error": "Bad Request",

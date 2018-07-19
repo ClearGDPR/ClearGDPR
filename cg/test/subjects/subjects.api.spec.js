@@ -929,7 +929,7 @@ describe('Tests of subjects restricting the processing of their data', () => {
 });
 
 describe('Tests of subjects getting their restrictons', () => {
-  it.only('Should not allow a subject that has not given consent to get restrictions', async () => {
+  it('Should not allow a subject that has not given consent to get restrictions', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({subjectId: '989874937987987'});
 
