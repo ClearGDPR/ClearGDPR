@@ -34,7 +34,9 @@ export class ProcessorsProvider extends Component {
   };
 
   refreshProcessors = () => {
-    this.fetchProcessors();
+    this.fetchProcessors()
+      .then(() => {})
+      .catch(() => {});
   };
 
   addProcessor = async processor => {
@@ -58,8 +60,6 @@ export class ProcessorsProvider extends Component {
   };
 
   deleteProcessor = async processor => {
-    this.setLoading(true);
-
     const isDeleted = await this._deleteProcessor(processor).catch(
       this.cancelLoadingAndReject.bind(this)
     );
