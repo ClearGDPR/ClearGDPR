@@ -8,7 +8,7 @@ const {
 const {
   getSubjectDataState,
   recordConsentGivenTo,
-  recordAccessByController,
+  // recordAccessByController,
   recordRestrictionByController,
   recordErasureByController,
   recordErasureByProcessor,
@@ -274,7 +274,6 @@ class SubjectsService {
     
     return subjectRestrictions;
   }
-
 }
 
 module.exports = SubjectsService;
