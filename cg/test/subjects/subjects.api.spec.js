@@ -837,7 +837,7 @@ describe('Tests of subjects restricting the processing of their data', () => {
   it('Should not allow a subject that has given consent to restrict without specifying the actions to restrict', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({subjectId: '6947987194298749879'});
-    const res1 = await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/give-consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -849,41 +849,51 @@ describe('Tests of subjects restricting the processing of their data', () => {
         processors: []
       }
     });
-    console.log(await res1.json());
 
     // When
-    const res2 = await fetch('/api/subject/restrict', {
+    const res = await fetch('/api/subject/restrict', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
       },
-      body: { }
+      body: { } // Empty 
     });
-    console.log(await res2.json());
+    
+    // Then 
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toEqual(BadRequest.StatusCode);
+    expect(await res.json()).toMatchSnapshot();
   });
 
   it('Should not allow a subject that has not given consent to restrict', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({subjectId: '98489719179871'});
-    const res1 = await fetch('/api/subject/give-consent', {
+    
+    // When
+    const res = await fetch('/api/subject/restrict', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
       },
-      body: {
-        personalData: {
-          sensitiveData: 'some sensitive data'
-        },
-        processors: []
-      }
+      body: { 
+        directMarketing: true,
+        emailCommunication: false,
+        research: false
+      } 
     });
-    console.log(await res1.json());
+
+    // Then 
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toEqual(NotFound.StatusCode);
+    expect(await res.json()).toEqual({
+      error: 'Subject not found'
+    });
   });
 
   it('Should allow a subject that has given consent to restrict the processing of his data', async () => {
     // Given
-    const subjectToken = await subjectJWT.sign({subjectId: '989874937987987'});
-    const res1 = await fetch('/api/subject/give-consent', {
+    const subjectToken = await subjectJWT.sign({subjectId: '124589635745498'});
+    await fetch('/api/subject/give-consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -895,10 +905,9 @@ describe('Tests of subjects restricting the processing of their data', () => {
         processors: []
       }
     });
-    console.log(await res1.json());
 
     // When
-    const res2 = await fetch('/api/subject/restrict', {
+    const res = await fetch('/api/subject/restrict', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -909,16 +918,41 @@ describe('Tests of subjects restricting the processing of their data', () => {
         research: true
       }
     });
-    console.log(await res2.json());
+    
+    // Then 
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toEqual(200);
+    expect(await res.json()).toEqual({
+      success: true
+    });
   });
-
 });
 
 describe('Tests of subjects getting their restrictons', () => {
+  it.only('Should not allow a subject that has not given consent to get restrictions', async () => {
+    // Given
+    const subjectToken = await subjectJWT.sign({subjectId: '989874937987987'});
+
+    // When
+    const res = await fetch('/api/subject/get-restrictions', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      }
+    });
+    
+    // Then 
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toEqual(NotFound.StatusCode);
+    expect(await res.json()).toEqual({
+      error: 'Subject not found'
+    });
+  });
+  
   it('Should allow a subject that has given consent to get his restrictions', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({subjectId: '989874937987987'});
-    const res1 = await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/give-consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -930,15 +964,22 @@ describe('Tests of subjects getting their restrictons', () => {
         processors: []
       }
     });
-    console.log(await res1.json());
 
     // When
-    const res2 = await fetch('/api/subject/get-restrictions', {
+    const res = await fetch('/api/subject/get-restrictions', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${subjectToken}`
       }
     });
-    console.log(await res2.json());
+    
+    // Then 
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toEqual(200);
+    expect(await res.json()).toEqual({
+      direct_marketing: true,
+      email_communication: true,
+      research: true
+    });
   });
 });
