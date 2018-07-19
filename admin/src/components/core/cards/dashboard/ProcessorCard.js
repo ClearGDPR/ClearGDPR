@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { processorType } from 'types';
+
 import Card from './Card';
 import defaultLogo from 'assets/logo.png';
 import { PrimaryButton } from 'components/core/Common/Buttons/Buttons';
@@ -30,6 +32,7 @@ const ProcessorCard = props => {
             return <li key={id}>{data}</li>;
           })}
         </ul>
+        <p>Block-chain address: {props.data.address || 'None'}</p>
         <PrimaryButton onClick={e => onDeleteHandler(e, props.data)} text="Delete" />
       </div>
     </Card>
@@ -37,12 +40,7 @@ const ProcessorCard = props => {
 };
 
 ProcessorCard.propTypes = {
-  data: PropTypes.shape({
-    logoUrl: PropTypes.string,
-    name: PropTypes.string,
-    description: PropTypes.string,
-    scopes: PropTypes.arrayOf(PropTypes.string)
-  }),
+  data: processorType,
   onClick: PropTypes.func,
   onDelete: PropTypes.func
 };

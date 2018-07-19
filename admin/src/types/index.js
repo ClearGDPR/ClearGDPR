@@ -5,7 +5,8 @@ export const processorType = shape({
   name: string,
   description: string,
   logoUrl: string,
-  scopes: arrayOf(string)
+  scopes: arrayOf(string),
+  address: string
 });
 
 export const userType = shape({

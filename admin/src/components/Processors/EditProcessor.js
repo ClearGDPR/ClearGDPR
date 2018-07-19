@@ -4,6 +4,7 @@ import { Form, TextArea, Scope, Checkbox } from 'informed';
 
 import TextInput from 'components/core/Common/Forms/TextInput';
 import Loader from 'components/core/cards/dashboard/Loader';
+import { PrimaryButton } from 'components/core/Common/Buttons/Buttons';
 
 // TODO: this should be fetch from configuration service
 const DEMO_SCOPES = ['user:fullName', 'user:email', 'user:phoneNumber'];
@@ -70,9 +71,7 @@ export class EditProcessor extends React.Component {
             </div>
           ))}
         </Scope>
-        <button type="submit" className="btn ui-action">
-          Submit
-        </button>
+        <PrimaryButton type="submit" text="Save" />
       </React.Fragment>
     );
   }
