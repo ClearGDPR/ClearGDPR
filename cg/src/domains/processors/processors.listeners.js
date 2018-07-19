@@ -6,10 +6,10 @@ const {
 const { getDataForSubject } = require('./processors.requests');
 const { blockUntilContractReady } = require('./processors.helpers');
 const { inControllerMode } = require('../../utils/helpers');
-const SubjectsService = require('./../subjects/subjects.service');
+const ProcessorsService = require('./processors.service');
 const winston = require('winston');
 
-const subjectsService = new SubjectsService();
+const processorsService = new ProcessorsService();
 
 const startConsentEventListener = () => {
   return listenerForConsentEvent(async subjectId => {
@@ -17,7 +17,7 @@ const startConsentEventListener = () => {
     const response = await getDataForSubject(subjectId).catch(err => {
       return Promise.reject(err);
     });
-    await subjectsService.initializeUser(subjectId, await response.json());
+    await processorsService.initializeUser(subjectId, await response.json());
   });
 };
 
@@ -27,14 +27,14 @@ const startRectificationEventListener = () => {
     const response = await getDataForSubject(subjectId).catch(err => {
       return Promise.reject(err);
     });
-    await subjectsService.initializeUser(subjectId, await response.json());
+    await processorsService.initializeUser(subjectId, await response.json());
   });
 };
 
 const startErasureEventListener = () => {
   return listenerForErasureEvent(async subjectId => {
     winston.info(`Erasure event received for subject ${subjectId}`);
-    await subjectsService.eraseDataAndRevokeConsent(subjectId);
+    await processorsService.eraseDataAndRevokeConsent(subjectId);
   });
 };
 

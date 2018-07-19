@@ -8,15 +8,13 @@ const {
 const {
   getSubjectDataState,
   recordConsentGivenTo,
-  // recordAccessByController,
+  recordAccessByController,
   recordRestrictionByController,
-  recordErasureByController,
-  recordErasureByProcessor
+  recordErasureByController
 } = require('../../utils/blockchain');
 const { ValidationError, NotFound, Unauthorized, Forbidden } = require('../../utils/errors');
 const winston = require('winston');
 const { RECTIFICATION_STATUSES } = require('./../../utils/constants');
-const { inControllerMode } = require('./../../utils/helpers');
 
 class SubjectsService {
   constructor(database = db) {
@@ -83,8 +81,6 @@ class SubjectsService {
 
     if (!subject) {
       await this._createNewSubject(personalData, trx, subjectId);
-    } else {
-      await this._updateExistingSubject(trx, subjectId, personalData); // This is being used by the listeners in the processors domain
     }
   }
 
@@ -102,30 +98,6 @@ class SubjectsService {
       });
 
     await this._saveSubjectEncryptionKey(trx, subjectId, encryptionKey);
-  }
-
-  // This code is being used by the listeners in the processors domain. We should refactor this later to not have inter domain interaction
-  async _updateExistingSubject(trx, subjectId, personalData) {
-    const [subjectKey] = await this.db('subject_keys')
-      .transacting(trx)
-      .where('subject_id', subjectId)
-      .select();
-
-    let encryptionKey;
-    if (subjectKey) {
-      encryptionKey = subjectKey.key;
-    } else {
-      encryptionKey = generateClientKey();
-      await this._saveSubjectEncryptionKey(trx, subjectId, encryptionKey);
-    }
-    const encryptedPersonalData = encryptForStorage(JSON.stringify(personalData), encryptionKey);
-    await this.db('subjects')
-      .transacting(trx)
-      .where('id', subjectId)
-      .update({
-        personal_data: encryptedPersonalData,
-        updated_at: this.db.raw('CURRENT_TIMESTAMP')
-      });
   }
 
   async _setConsentGiven(trx, subjectId, processorId) {
@@ -165,12 +137,8 @@ class SubjectsService {
         })
         .del();
 
-      if (inControllerMode()) {
-        winston.info('Emitting erasure event to blockchain');
-        await recordErasureByController(subjectId);
-      } else {
-        await recordErasureByProcessor(subjectId);
-      }
+      winston.info('Controller emitting erasure event to blockchain');
+      await recordErasureByController(subjectId);
     });
   }
 
@@ -217,7 +185,7 @@ class SubjectsService {
 
     if (!data) throw new NotFound('Subject not found');
     const decryptedData = decryptFromStorage(data.personal_data, data.key);
-    //await recordAccessByController(subjectId); //Fixing this won't be so simple
+    await recordAccessByController(subjectId);
     return JSON.parse(decryptedData);
   }
 

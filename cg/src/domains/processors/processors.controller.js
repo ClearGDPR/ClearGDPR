@@ -10,7 +10,7 @@ class ProcessorsController {
 
   async getSubjectData(req, res) {
     const subjectId = req.params.subjectId;
-    const subjectData = await this.processorsService.getData(subjectId);
+    const subjectData = await this.processorsService.getSubjectData(subjectId);
     return res.json(subjectData);
   }
 
