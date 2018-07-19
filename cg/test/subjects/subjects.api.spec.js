@@ -114,14 +114,14 @@ describe('Tests of subjects giving consent', () => {
   });
 
   it('Should not allow a new subject to give consent without specifying the consented processors', async () => {
-    //GIVEN
+    // Given
     const token = await subjectJWT.sign({ subjectId: '146897' });
     const personalData = { sensitiveData: 'some sensitive data' };
     const payload = {
       personalData
     };
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/give-consent', {
       method: 'POST',
       body: payload,
@@ -130,13 +130,13 @@ describe('Tests of subjects giving consent', () => {
       }
     });
 
-    //THEN
+    // Then
     let subjectIdHashed = hash('1');
     expect(await res.json()).toMatchSnapshot();
   });
 
   it('Should not allow a new subject to give consent to a non-existent processor', async () => {
-    //GIVEN
+    // Given
     let subjectId = '1a2b1';
     const subjectIdHashed = hash(subjectId);
     const token = await subjectJWT.sign({ subjectId });
@@ -146,7 +146,7 @@ describe('Tests of subjects giving consent', () => {
       processors: [291]
     };
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/give-consent', {
       method: 'POST',
       body: payload,
@@ -155,7 +155,7 @@ describe('Tests of subjects giving consent', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(await res.ok).toBeFalsy();
     expect(await res.status).toBe(BadRequest.StatusCode);
     const [subject] = await db('subjects').where({ id: subjectIdHashed });
@@ -166,7 +166,7 @@ describe('Tests of subjects giving consent', () => {
   });
 
   it('Should not allow a new subject to give consent to a processor with no address', async () => {
-    //GIVEN
+    // Given
     let subjectId = '1a2b2';
     const subjectIdHashed = hash(subjectId);
     await db('processors').insert({
@@ -180,7 +180,7 @@ describe('Tests of subjects giving consent', () => {
       processors: [299]
     };
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/give-consent', {
       method: 'POST',
       body: payload,
@@ -189,7 +189,7 @@ describe('Tests of subjects giving consent', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(await res.ok).toBeFalsy();
     expect(await res.status).toBe(BadRequest.StatusCode);
     const [subject] = await db('subjects').where({ id: subjectIdHashed });
@@ -200,7 +200,7 @@ describe('Tests of subjects giving consent', () => {
   });
 
   it('Should not allow a subject to give consent more than once', async () => {
-    //GIVEN
+    // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '546857156'});
     const personalData = { sensitiveData: 'some sensitive data'};
     await fetch('/api/subject/give-consent', {
@@ -214,7 +214,7 @@ describe('Tests of subjects giving consent', () => {
       }
     });
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/give-consent', {
       method: 'POST',
       headers: {
@@ -226,7 +226,7 @@ describe('Tests of subjects giving consent', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(Unauthorized.StatusCode);
     expect(await res.json()).toEqual({
@@ -235,7 +235,7 @@ describe('Tests of subjects giving consent', () => {
   });
 
   it('Should allow a new subject to give consent to controller and specified processors', async () => {
-    //GIVEN
+    // Given
     const token = await subjectJWT.sign({ subjectId: '1' });
     const personalData = { sensitiveData: 'some sensitive data' };
     const payload = {
@@ -243,7 +243,7 @@ describe('Tests of subjects giving consent', () => {
       processors: [201, 203]
     };
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/give-consent', {
       method: 'POST',
       body: payload,
@@ -252,7 +252,7 @@ describe('Tests of subjects giving consent', () => {
       }
     });
 
-    //THEN
+    // Then
     let subjectIdHashed = hash('1');
     expect(await res.json()).toEqual({ success: true });
     const [subject] = await db('subjects').where({ id: subjectIdHashed });
@@ -289,7 +289,7 @@ describe('Tests of subjects giving consent', () => {
   });
 
   it('Should allow a new subject to give consent only to controller and no other processor', async () => {
-    //GIVEN 
+    // Given 
     const subjectToken = await subjectJWT.sign({ subjectId: '9876547' });
     const personalData = { sensitiveData: 'some sensitive data' };
     const payload = {
@@ -297,7 +297,7 @@ describe('Tests of subjects giving consent', () => {
       processors: []
     };
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/give-consent', {
       method: 'POST',
       body: payload,
@@ -306,7 +306,7 @@ describe('Tests of subjects giving consent', () => {
       }
     });
 
-    //THEN
+    // Then
     let subjectIdHashed = hash('9876547');
     expect(await res.json()).toEqual({ success: true });
     expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.consented);
@@ -318,7 +318,7 @@ describe('Tests of subjects giving consent', () => {
 
 describe('Tests of subjects updating their consented processors', () => {
   it('Should not allow a subject to update consent without specifying the processors consented', async () => {
-    //GIVEN
+    // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '6496968798796713565'});
     await fetch('/api/subject/give-consent', {
       method: 'POST',
@@ -331,7 +331,7 @@ describe('Tests of subjects updating their consented processors', () => {
       }
     });
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/update-consent', {
       method: 'POST',
       headers: {
@@ -340,14 +340,14 @@ describe('Tests of subjects updating their consented processors', () => {
       body: { }
     });
 
-    //THEN
+    // Then
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
     expect(await res.json()).toMatchSnapshot();
   });
 
   it('Should not allow an existing subject to update consent to a non-existent processor', async () => {
-    //GIVEN 
+    // Given 
     const subjectToken = await subjectJWT.sign({ subjectId: '54687316598649874' });
     await fetch('/api/subject/give-consent', {
       method: 'POST',
@@ -362,7 +362,7 @@ describe('Tests of subjects updating their consented processors', () => {
       }
     });
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/update-consent', {
       method: 'POST',
       headers: {
@@ -373,7 +373,7 @@ describe('Tests of subjects updating their consented processors', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
     expect(await res.json()).toEqual({
@@ -382,7 +382,7 @@ describe('Tests of subjects updating their consented processors', () => {
   });
 
   it('Should not allow an existing subject to update consent to a processor with no address', async () => {
-    //GIVEN 
+    // Given 
     const subjectToken = await subjectJWT.sign({ subjectId: '6754852145987' });
     await db('processors').insert({
       id: 89673521,
@@ -401,7 +401,7 @@ describe('Tests of subjects updating their consented processors', () => {
       }
     });
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/update-consent', {
       method: 'POST',
       headers: {
@@ -412,7 +412,7 @@ describe('Tests of subjects updating their consented processors', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(BadRequest.StatusCode);
     expect(await res.json()).toEqual({
@@ -421,10 +421,10 @@ describe('Tests of subjects updating their consented processors', () => {
   });
 
   it('Should not allow a non-existing subject to update consent', async () => {
-    //GIVEN 
+    // Given 
     const subjectToken = await subjectJWT.sign({ subjectId: '1457636849461464612' });
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/update-consent', {
       method: 'POST',
       headers: {
@@ -435,7 +435,7 @@ describe('Tests of subjects updating their consented processors', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(NotFound.StatusCode);
     expect(await res.json()).toEqual({
@@ -444,7 +444,7 @@ describe('Tests of subjects updating their consented processors', () => {
   });
 
   it('Should allow an existing subject to update consent to the specified processors', async () => {
-    //GIVEN 
+    // Given 
     const subjectToken = await subjectJWT.sign({ subjectId: '168798764848474' });
     await fetch('/api/subject/give-consent', {
       method: 'POST',
@@ -459,7 +459,7 @@ describe('Tests of subjects updating their consented processors', () => {
       }
     });
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/update-consent', {
       method: 'POST',
       headers: {
@@ -470,7 +470,7 @@ describe('Tests of subjects updating their consented processors', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(res.ok).toBeTruthy();
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({
@@ -481,12 +481,14 @@ describe('Tests of subjects updating their consented processors', () => {
 
 describe('Tests of subjects erasing data and revoking consent', () => {
   it('When a subject erases his data and revokes consent, then his private key should be removed and the transaction confirmed on blockchain', async () => {
-    //GIVEN
+    // Given
     let subjectId = hash('8547567523');
     await db('subjects').insert({
       id: subjectId,
-      personal_data:
-        '7504344bd6413e6537503287529620dfce1fe9fc2b4af562c4961253b78f644187fcbc40dcf589c08c1d57baffa0bf08a9c79e39a9fb0e3eaa2bdfbcc53f07c1c55c4777dee23b31eeee78b966fc5c'
+      personal_data: '7504344bd6413e6537503287529620dfce1fe9fc2b4af562c4961253b78f644187fcbc40dcf589c08c1d57baffa0bf08a9c79e39a9fb0e3eaa2bdfbcc53f07c1c55c4777dee23b31eeee78b966fc5c',
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
 
     await db('subject_keys').insert({
@@ -499,7 +501,7 @@ describe('Tests of subjects erasing data and revoking consent', () => {
     expect(await getSubjectDataState(subjectId)).toBe(SubjectDataStatus.consented);
     const subjectToken = await subjectJWT.sign({ subjectId: '8547567523' });
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/erase-data', {
       method: 'POST',
       headers: {
@@ -507,7 +509,7 @@ describe('Tests of subjects erasing data and revoking consent', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(await res.json()).toEqual({ success: true });
     const [key] = await db('subject_keys').where({ subject_id: subjectId });
     expect(key).not.toBeDefined();
@@ -516,7 +518,7 @@ describe('Tests of subjects erasing data and revoking consent', () => {
   });
 
   it('Should remove the consent from the processors when a subject data is erased', async () => {
-    //GIVEN
+    // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '57257' });
     const personalData = {
       name: 'subject',
@@ -533,7 +535,7 @@ describe('Tests of subjects erasing data and revoking consent', () => {
       }
     });
 
-    //WHEN
+    // When
     const res2 = await fetch('/api/subject/erase-data', {
       method: 'POST',
       headers: {
@@ -547,7 +549,7 @@ describe('Tests of subjects erasing data and revoking consent', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(res1.ok).toBeTruthy();
     expect(res1.status).toBe(200);
     expect(await res1.json()).toEqual({ success: true });
@@ -567,13 +569,15 @@ describe('Tests of subjects erasing data and revoking consent', () => {
 
 describe('Tests of subjects getting their data status per processor', () => {
   it('Should return status of consent for each of the processors', async () => {
-    //GIVEN
+    // Given
     const subjectId = 'user12309';
     const idHash = hash(subjectId);
     await db('subjects').insert({
       id: idHash,
-      personal_data:
-        '7504344bd6413e6537503287529620dfce1fe9fc2b4af562c4961253b78f644187fcbc40dcf589c08c1d57baffa0bf08a9c79e39a9fb0e3eaa2bdfbcc53f07c1c55c4777dee23b31eeee78b966fc5c'
+      personal_data: '7504344bd6413e6537503287529620dfce1fe9fc2b4af562c4961253b78f644187fcbc40dcf589c08c1d57baffa0bf08a9c79e39a9fb0e3eaa2bdfbcc53f07c1c55c4777dee23b31eeee78b966fc5c',
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
     await db('subject_processors').insert({
       subject_id: idHash,
@@ -582,7 +586,7 @@ describe('Tests of subjects getting their data status per processor', () => {
     await recordConsentGivenTo(idHash, [processor1Address]);
     const subjectToken = await subjectJWT.sign({ subjectId });
     
-    //WHEN
+    // When
     const res = await fetch('/api/subject/data-status', {
       method: 'GET',
       headers: {
@@ -590,7 +594,7 @@ describe('Tests of subjects getting their data status per processor', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(await getSubjectDataState(idHash)).toBe(SubjectDataStatus.consented);
     expect(await getSubjectDataState(idHash, processor1Address)).toBe(SubjectDataStatus.consented);
     expect(res.ok).toBeTruthy();
@@ -610,7 +614,7 @@ describe('Tests of subjects getting their data status per processor', () => {
 
 describe('Tests of subjects accessing their data', () => {
   it('Should allow a subject to get his data', async () => {
-    //GIVEN
+    // Given
     const subjectId = 'user8kdfkkdsks';
     const subjectToken = await subjectJWT.sign({ subjectId: subjectId });
     const personalData = {
@@ -629,7 +633,7 @@ describe('Tests of subjects accessing their data', () => {
       }
     });
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/access-data', {
       method: 'GET',
       headers: {
@@ -637,13 +641,13 @@ describe('Tests of subjects accessing their data', () => {
       }
     });
 
-    //THEN
+    // Then
     const data = await res.json();
     expect(data).toEqual(expect.objectContaining(payload.personalData));
   });
 
   it('Should give a useful error if the user has erased their data', async () => {
-    //GIVEN
+    // Given
     const subjectId = 'user8dsdsaqqw';
     const token = await subjectJWT.sign({ subjectId: subjectId });
     const personalData = {
@@ -675,7 +679,7 @@ describe('Tests of subjects accessing their data', () => {
       }
     });
 
-    //WHEN
+    // When
     const res3 = await fetch('/api/subject/access-data', {
       method: 'GET',
       headers: {
@@ -683,7 +687,7 @@ describe('Tests of subjects accessing their data', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(data).toEqual(expect.objectContaining(payload.personalData));
     expect(res2.status).toEqual(200);
     expect(res3.status !== 500).toEqual(true);
@@ -693,7 +697,7 @@ describe('Tests of subjects accessing their data', () => {
 
 describe('Tests of subjects initiating rectifications', () => {
   it('Should allow a subject to begin the rectification process', async () => {
-    //GIVEN
+    // Given
     const id = '2-4';
     const token = await subjectJWT.sign({ subjectId: id });
     const payload = {
@@ -708,7 +712,7 @@ describe('Tests of subjects initiating rectifications', () => {
       }
     });
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/initiate-rectification', {
       method: 'POST',
       body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
@@ -717,7 +721,7 @@ describe('Tests of subjects initiating rectifications', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(res.status).toEqual(200);
     const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
     await db('subject_keys').where({ subject_id: hash(id) });
@@ -726,7 +730,7 @@ describe('Tests of subjects initiating rectifications', () => {
   });
 
   it('Store the update payload in an encrypted format', async () => {
-    //GIVEN
+    // Given
     const id = '2-1';
     const token = await subjectJWT.sign({ subjectId: id });
     const payload = {
@@ -741,7 +745,7 @@ describe('Tests of subjects initiating rectifications', () => {
       }
     });
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/initiate-rectification', {
       method: 'POST',
       body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
@@ -750,7 +754,7 @@ describe('Tests of subjects initiating rectifications', () => {
       }
     });
 
-    //THEN
+    // Then
     expect(res.status).toEqual(200);
     const [requestData] = await db('rectification_requests').where({ subject_id: hash(id) });
     const [subjectKey] = await db('subject_keys').where({ subject_id: hash(id) });
@@ -762,7 +766,7 @@ describe('Tests of subjects initiating rectifications', () => {
   });
 
   it('Error if error reason and payload are not provided', async () => {
-    //GIVEN
+    // Given
     const id = '2-5';
     const token = await subjectJWT.sign({ subjectId: id });
     const payload = {
@@ -777,7 +781,7 @@ describe('Tests of subjects initiating rectifications', () => {
       }
     });
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/initiate-rectification', {
       method: 'POST',
       body: {},
@@ -786,7 +790,7 @@ describe('Tests of subjects initiating rectifications', () => {
       }
     });
 
-    //THEN
+    // Then
     const body = await res.json();
     expect(res.status).toEqual(400);
     expect(body).toMatchSnapshot();
@@ -794,7 +798,7 @@ describe('Tests of subjects initiating rectifications', () => {
 
 
   it('Should error if the subject has no key', async () => {
-    //GIVEN
+    // Given
     const id = '2-3';
     const token = await subjectJWT.sign({ subjectId: id });
     const payload = {
@@ -812,7 +816,7 @@ describe('Tests of subjects initiating rectifications', () => {
       .where({ subject_id: hash(id) })
       .delete();
 
-    //WHEN
+    // When
     const res = await fetch('/api/subject/initiate-rectification', {
       method: 'POST',
       body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
@@ -821,10 +825,161 @@ describe('Tests of subjects initiating rectifications', () => {
       }
     });
 
-    //THEN
+    // Then
     const body = await res.json();
     expect(res.ok).toBeFalsy();
     expect(res.status).toEqual(404);
     expect(body.error).toEqual('Subject keys not found');
+  });
+});
+
+describe('Tests of subjects restricting the processing of their data', () => {
+  it('Should not allow a subject that has given consent to restrict without specifying the actions to restrict', async () => {
+    // Given
+    const subjectToken = await subjectJWT.sign({subjectId: '6947987194298749879'});
+    await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      },
+      body: {
+        personalData: {
+          sensitiveData: 'some sensitive data'
+        },
+        processors: []
+      }
+    });
+
+    // When
+    const res = await fetch('/api/subject/restrict', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      },
+      body: { } // Empty 
+    });
+    
+    // Then 
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toEqual(BadRequest.StatusCode);
+    expect(await res.json()).toMatchSnapshot();
+  });
+
+  it('Should not allow a subject that has not given consent to restrict', async () => {
+    // Given
+    const subjectToken = await subjectJWT.sign({subjectId: '98489719179871'});
+    
+    // When
+    const res = await fetch('/api/subject/restrict', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      },
+      body: { 
+        directMarketing: true,
+        emailCommunication: false,
+        research: false
+      } 
+    });
+
+    // Then 
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toEqual(NotFound.StatusCode);
+    expect(await res.json()).toEqual({
+      error: 'Subject not found'
+    });
+  });
+
+  it('Should allow a subject that has given consent to restrict the processing of his data', async () => {
+    // Given
+    const subjectToken = await subjectJWT.sign({subjectId: '124589635745498'});
+    await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      },
+      body: {
+        personalData: {
+          sensitiveData: 'some sensitive data'
+        },
+        processors: []
+      }
+    });
+
+    // When
+    const res = await fetch('/api/subject/restrict', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      },
+      body: { 
+        directMarketing: true,
+        emailCommunication: false,
+        research: true
+      }
+    });
+    
+    // Then 
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toEqual(200);
+    expect(await res.json()).toEqual({
+      success: true
+    });
+  });
+});
+
+describe('Tests of subjects getting their restrictons', () => {
+  it('Should not allow a subject that has not given consent to get restrictions', async () => {
+    // Given
+    const subjectToken = await subjectJWT.sign({subjectId: '989874937987987'});
+
+    // When
+    const res = await fetch('/api/subject/get-restrictions', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      }
+    });
+    
+    // Then 
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toEqual(NotFound.StatusCode);
+    expect(await res.json()).toEqual({
+      error: 'Subject not found'
+    });
+  });
+  
+  it('Should allow a subject that has given consent to get his restrictions', async () => {
+    // Given
+    const subjectToken = await subjectJWT.sign({subjectId: '989874937987987'});
+    await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      },
+      body: {
+        personalData: {
+          sensitiveData: 'some sensitive data'
+        },
+        processors: []
+      }
+    });
+
+    // When
+    const res = await fetch('/api/subject/get-restrictions', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      }
+    });
+    
+    // Then 
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toEqual(200);
+    expect(await res.json()).toEqual({
+      direct_marketing: true,
+      email_communication: true,
+      research: true
+    });
   });
 });

@@ -13,7 +13,8 @@ const {
 const { 
   giveConsentValidator,
   updateConsentValidator,
-  rectificationRequestValidator 
+  rectificationValidator,
+  restrictionValidator 
 } = require('./subjects.validators');
 
 const router = express.Router();
@@ -83,8 +84,21 @@ module.exports = app => {
 
   router.post(
     '/initiate-rectification',
-    rectificationRequestValidator,
+    rectificationValidator,
     asyncHandler(async (req, res) => subjectsController.initiateRectification(req, res))
+  );
+
+  router.post(
+    '/restrict',
+    controllerOnly, 
+    restrictionValidator,
+    asyncHandler(async (req, res) => subjectsController.restrict(req, res))
+  );
+
+  router.get(
+    '/get-restrictions',
+    controllerOnly,
+    asyncHandler(async (req, res) => subjectsController.getRestrictions(req, res))
   );
 
   router.post(

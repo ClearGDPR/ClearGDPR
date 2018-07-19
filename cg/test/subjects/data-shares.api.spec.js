@@ -20,9 +20,9 @@ async function createUser(id, data = { name: 'test' }) {
   const token = await subjectJWT.sign({ subjectId: id });
   await fetch('/api/subject/give-consent', {
     method: 'POST',
-    body: { 
+    body: {
       personalData: data,
-      processors: [] 
+      processors: []
     },
     headers: {
       Authorization: `Bearer ${token}`
@@ -39,7 +39,7 @@ describe('Listing data-shares', () => {
     const token = await createUser(subjectId);
     await db('data_shares').insert({ subject_id: idHash, name: 'test1', token: 'token1' });
     await db('data_shares').insert({ subject_id: idHash, name: 'test2', token: 'token2' });
-    
+
     //WHEN
     const res = await fetchWithAuthorization('/api/subject/data-shares/list', token);
 
@@ -50,13 +50,13 @@ describe('Listing data-shares', () => {
     expect(jsonBody[0]).toEqual(
       expect.objectContaining({
         name: 'test1',
-        url: `${process.env.PUBLIC_URL}/api/subjects/data-shares/share?token=token1`
+        url: `${process.env.CONTROLLER_URL}/api/subjects/data-shares/share?token=token1`
       })
     );
     expect(jsonBody[1]).toEqual(
       expect.objectContaining({
         name: 'test2',
-        url: `${process.env.PUBLIC_URL}/api/subjects/data-shares/share?token=token2`
+        url: `${process.env.CONTROLLER_URL}/api/subjects/data-shares/share?token=token2`
       })
     );
   });

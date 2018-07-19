@@ -58,14 +58,17 @@ describe('Processor requesting data', () => {
   });
 
   it('should respond with the decrypted data for the subject requested', async () => {
+    // Given
     const key = encryption.generateClientKey();
     const testData = { test: 'true' };
     const subjectId = hash('p1');
     await db('subjects').insert({
       id: subjectId,
-      personal_data: encryptForStorage(JSON.stringify(testData), key)
+      personal_data: encryptForStorage(JSON.stringify(testData), key),
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
-
     await db('subject_keys').insert({
       subject_id: subjectId,
       key
@@ -76,10 +79,10 @@ describe('Processor requesting data', () => {
       processor_id: 1201,
       address: processorAddress
     });
-
     await db('subject_processors').insert({ subject_id: subjectId, processor_id: 1201 });
-
     const token = await processorJWT.sign({ id: 1201 });
+
+    // When
     const res = await fetch(`/api/processors/subject/${subjectId}/data`, {
       method: 'GET',
       headers: {
@@ -96,7 +99,10 @@ describe('Processor requesting data', () => {
     const testData = { test: 'true' };
     await db('subjects').insert({
       id: hash('p2'),
-      personal_data: encryptForStorage(JSON.stringify(testData), key)
+      personal_data: encryptForStorage(JSON.stringify(testData), key),
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
 
     await db('subject_keys').insert({

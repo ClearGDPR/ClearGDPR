@@ -6,10 +6,12 @@ const {
   decryptFromStorage
 } = require('../../utils/encryption');
 const {
-  recordErasureByController,
-  recordConsentGivenTo,
   getSubjectDataState,
-  recordErasureByProcessor
+  recordConsentGivenTo,
+  // recordAccessByController,
+  recordRestrictionByController,
+  recordErasureByController,
+  recordErasureByProcessor,
 } = require('../../utils/blockchain');
 const { 
   ValidationError, 
@@ -94,7 +96,10 @@ class SubjectsService {
       .transacting(trx)
       .insert({
         id: subjectId,
-        personal_data: encryptedPersonalData
+        personal_data: encryptedPersonalData,
+        direct_marketing: true,
+        email_communication: true,
+        research: true,
       });
 
     await this._saveSubjectEncryptionKey(trx, subjectId, encryptionKey);
@@ -207,14 +212,15 @@ class SubjectsService {
   }
 
   async getData(subjectId) {
-    const [data] = await this.db('subjects')
+    const [ data ] = await this.db('subjects')
       .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
       .select('personal_data')
       .select('key')
       .where({ subject_id: subjectId });
+      
     if (!data) throw new NotFound('Subject not found');
     const decryptedData = decryptFromStorage(data.personal_data, data.key);
-    //There should be a smart contract call here!
+    //await recordAccessByController(subjectId); //Fixing this won't be so simple
     return JSON.parse(decryptedData);
   }
 
@@ -235,6 +241,38 @@ class SubjectsService {
       status: RECTIFICATION_STATUSES.PENDING
     });
     return { success: true };
+  }
+
+  async restrict(subjectId, directMarketing, emailCommunication, research){
+    const [ subjectExists ] = await this.db('subjects')
+      .where('id', subjectId);
+    
+    if(!subjectExists) throw new NotFound('Subject not found');
+    await this.db('subjects')
+      .where('id', subjectId)
+      .update({
+        direct_marketing: directMarketing,
+        email_communication: emailCommunication,
+        research: research,
+      })
+
+    await recordRestrictionByController(subjectId, directMarketing, emailCommunication, research);    
+  }
+
+  async getRestrictions(subjectId){
+    const [ subjectExists ] = await this.db('subjects')
+      .where('id', subjectId);
+    
+    if(!subjectExists) throw new NotFound('Subject not found');
+    const [ subjectRestrictions ] = await this.db('subjects')
+      .where('id', subjectId)
+      .select(
+        'direct_marketing',
+        'email_communication',
+        'research'
+      );
+    
+    return subjectRestrictions;
   }
 }
 
