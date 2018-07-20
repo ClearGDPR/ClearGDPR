@@ -11,11 +11,15 @@ class SignUp extends Component {
 
   onSignUpHandler = e => {
     e.preventDefault();
-    this.setState({ isLoading: true });
-    return false;
 
-    const { email } = this.refs;
+    const { email, password } = this.refs;
     const url = config.API_BASE + '/api/users/register';
+
+    this.setState({ isLoading: true });
+
+    setTimeout(() => {
+      window.cg.setAccessToken('ASDASD');
+    }, 5000);
 
     fetch(url, {
       method: 'POST',
@@ -23,15 +27,15 @@ class SignUp extends Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        username: email,
-        password: 'password' // temp fix
+        username: email.value,
+        password: password.value
       })
     })
       .then(res => res.json())
       .then(token => {
         this.setState({ isLoading: false });
+        window.cg.setAccessToken('ASDASD');
         localStorage.setItem('cgToken', token.cgToken);
-        this.props.history.push('/profile');
       })
       .catch(console.log);
   };
@@ -48,7 +52,10 @@ class SignUp extends Component {
           fontSize: '12px'
         }
       },
-      callbackUrl: '/success',
+      // onSuccessCallbackUrl: '/success',
+      // onSuccessCallback: () => {
+      //   this.props.history.push('/profile');
+      // },
       required: true
     });
 
@@ -67,7 +74,7 @@ class SignUp extends Component {
               <h3 className="title"> Create your account </h3>
               <p>{`To create your Account simply fill the short form below`}</p>
               <hr />
-              <form onSubmit={e => this.onSubmit(e)}>
+              <form onSubmit={e => this.onSignUpHandler(e)}>
                 <div className="field">
                   <label className="label">First Name</label>
                   <div className="control">
@@ -111,6 +118,7 @@ class SignUp extends Component {
                       className="input"
                       name="email"
                       type="email"
+                      ref="email"
                       data-cleargdpr="true"
                       required
                     />
@@ -119,7 +127,7 @@ class SignUp extends Component {
                 <div className="field">
                   <label className="label">Your Password</label>
                   <div className="control">
-                    <input className="input" name="password" type="password" />
+                    <input className="input" ref="password" name="password" type="password" />
                     <small>
                       {`It's important to use a secure password. You can create this with
                       any combination of 8 or more mixed letterS, numbers or special

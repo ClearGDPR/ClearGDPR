@@ -34,7 +34,7 @@ Checkbox.propTypes = {
   label: PropTypes.string,
   required: PropTypes.bool,
   styles: PropTypes.object,
-  onChange: PropTypes.function
+  onChange: PropTypes.func
 };
 
 export default Checkbox;
