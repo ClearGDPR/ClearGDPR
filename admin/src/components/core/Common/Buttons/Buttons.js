@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 import './buttons.css';
 
-export const DefaultButton = props => {
-  const { onClick, text, buttonState, ...otherProps } = props;
+export const DefaultButton = ({ onClick, text, buttonState, ...otherProps }) => {
   return (
     <button className={`ui-action btn ${buttonState}`} onClick={onClick} {...otherProps}>
       {text}
@@ -18,8 +17,7 @@ DefaultButton.propTypes = {
   onClick: PropTypes.func
 };
 
-export const PrimaryButton = props => {
-  const { onClick, text, buttonState, ...otherProps } = props;
+export const PrimaryButton = ({ onClick, text, buttonState, ...otherProps }) => {
   return (
     <button className={`ui-action btn primary ${buttonState}`} onClick={onClick} {...otherProps}>
       {text}
@@ -33,8 +31,7 @@ PrimaryButton.propTypes = {
   onClick: PropTypes.func
 };
 
-export const SecondaryButton = props => {
-  const { onClick, text, buttonState, ...otherProps } = props;
+export const SecondaryButton = ({ onClick, text, buttonState, ...otherProps }) => {
   return (
     <button className={`ui-action btn secondary ${buttonState}`} onClick={onClick} {...otherProps}>
       {text}
