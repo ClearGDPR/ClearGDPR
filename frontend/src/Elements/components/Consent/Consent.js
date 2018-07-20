@@ -9,13 +9,11 @@ import ProcessorsList from '../Processors/ProcessorsList';
 
 class Consent extends React.PureComponent {
   state = {
-    registered: false,
     processors: [],
     showProcessors: false
   };
 
   componentDidMount() {
-    // TODO: Improve cache, save to elements store, add localStorage
     if (!this.state.processors.lenght) {
       window.cg.Subject.getProcessors()
         .then(processors => {
@@ -39,33 +37,33 @@ class Consent extends React.PureComponent {
     form.removeEventListener('submit', () => {});
   }
 
-  toggleProcessors(e) {
+  toggleProcessors = e => {
     e.preventDefault();
 
     this.setState(prevState => ({
       showProcessors: !prevState.showProcessors
     }));
-  }
+  };
 
-  onSubmit(e) {
+  onSubmit = e => {
     if (this.props.options.onSubmit) {
       this.props.options.onSubmit();
     }
-  }
+  };
 
-  onChange(e) {
+  onChange = e => {
     if (this.props.options.onChange) {
       this.props.options.onChange();
     }
-  }
+  };
 
-  callback(e) {
+  callback = e => {
     if (this.props.options.callbackFn) {
       this.props.options.callbackFn();
     }
-  }
+  };
 
-  handleGiveConsent(e) {
+  handleGiveConsent = e => {
     e.preventDefault();
 
     let data = {};
@@ -91,37 +89,23 @@ class Consent extends React.PureComponent {
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
-  onProcessorChange(processor) {
+  onProcessorChange = processor => {
     let processors = this.state.processors.slice();
     let index = _.findIndex(processors, { id: processor.id });
     if (index !== -1) {
       processors.splice(index, 1, processor);
       this.setState({ processors });
     }
-  }
+  };
 
-  async giveConsent(data = {}, processors) {
-    const token = 'asdasd';
-    // TODO: Temporary fix to store user sign up credentials
-    // TODO: Should require that Elements framework store this locally with Redux
-    // TODO: Should recover existent users if sign up is repeated
-    if (data.email && !this.state.registered) {
-      this.setState({
-        registered: token
-      });
-    }
-
-    const { cgToken } = this.state.registered;
-
-    // TODO: Get payload from store
+  giveConsent = async (data = {}, processors) => {
     const payload = {
       personalData: { ...data },
       processors: [...processors]
     };
 
-    window.cg.setAccessToken(cgToken);
     await window.cg.Subject.giveConsent(payload)
       .then(res => {
         console.log(res);
@@ -129,7 +113,7 @@ class Consent extends React.PureComponent {
       .catch(err => {
         console.log('failure', err);
       });
-  }
+  };
 
   render() {
     return (
@@ -137,27 +121,24 @@ class Consent extends React.PureComponent {
         <Checkbox
           styles={this.props.options.styles}
           label={this.props.options.label}
-          onChange={this.onChange.bind(this)}
+          onChange={this.onChange}
           required={this.props.options.required}
           name="cleargdpr-give-consent"
         />
         <div style={{ position: 'relative', padding: '10px 0 0 40px' }}>
           <button
             className="button is-primary is-outlined is-small"
-            onClick={this.toggleProcessors.bind(this)}
+            onClick={this.toggleProcessors}
           >
             <span role="img" aria-labelledby="lock">
               🔒
             </span>Config Processors
           </button>
           {this.state.showProcessors ? (
-            <PopoverView
-              open={this.state.showProcessors}
-              onClose={this.toggleProcessors.bind(this)}
-            >
+            <PopoverView open={this.state.showProcessors} onClose={this.toggleProcessors}>
               <ProcessorsList
                 processors={this.state.processors}
-                onProcessorChange={this.onProcessorChange.bind(this)}
+                onProcessorChange={this.onProcessorChange}
               />
             </PopoverView>
           ) : null}
