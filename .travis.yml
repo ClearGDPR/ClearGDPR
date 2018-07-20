@@ -29,6 +29,7 @@ jobs:
     - stage: test
       script: 
         - make -C admin dist || travis_terminate 1
+        - make -C frontend dist || travis_terminate 1
         - docker/test
     - stage: publish
       if: tag =~ ^(\d*\.)+\d*$
