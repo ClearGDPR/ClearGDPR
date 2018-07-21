@@ -13,7 +13,7 @@ const {
   recordErasureByController,
   recordErasureByProcessor
 } = require('../../utils/blockchain');
-const { ValidationError, NotFound, Unauthorized } = require('../../utils/errors');
+const { ValidationError, NotFound, Unauthorized, Forbidden } = require('../../utils/errors');
 const winston = require('winston');
 const { RECTIFICATION_STATUSES } = require('./../../utils/constants');
 const { inControllerMode } = require('./../../utils/helpers');
@@ -250,7 +250,7 @@ class SubjectsService {
       });
 
     if (subjectRestrictionsUpdates === 0) throw new NotFound('Subject not found');
-    if (subjectRestrictionsUpdates > 1) throw new Error('Duplicated subject in the database');
+    if (subjectRestrictionsUpdates > 1) throw new Forbidden('Duplicated subject in the database');
     await recordRestrictionByController(subjectId, directMarketing, emailCommunication, research);
   }
 
