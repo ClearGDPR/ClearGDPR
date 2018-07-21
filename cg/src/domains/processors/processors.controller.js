@@ -1,8 +1,6 @@
-const SubjectsService = require('./../subjects/subjects.service');
-const ContractService = require('./../management/contract/contract.service');
+const SubjectsService = require('./subjects.service');
+const ContractService = require('./contract.service');
 const { NotFound } = require('../../utils/errors');
-
-// TODO: maybe we don't want to reach into the subjects / management domain?
 
 class ProcessorsController {
   constructor(subjectsService = null, contractService = null) {
@@ -10,9 +8,9 @@ class ProcessorsController {
     this.contractService = contractService || new ContractService();
   }
 
-  async getData(req, res) {
+  async getSubjectData(req, res) {
     const subjectId = req.params.subjectId;
-    const subjectData = await this.subjectsService.getData(subjectId);
+    const subjectData = await this.subjectsService.getSubjectData(subjectId);
     return res.json(subjectData);
   }
 

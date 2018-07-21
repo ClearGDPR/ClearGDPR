@@ -6,7 +6,7 @@ const {
 const { getDataForSubject } = require('./processors.requests');
 const { blockUntilContractReady } = require('./processors.helpers');
 const { inControllerMode } = require('../../utils/helpers');
-const SubjectsService = require('./../subjects/subjects.service');
+const SubjectsService = require('./subjects.service');
 const winston = require('winston');
 
 const subjectsService = new SubjectsService();
