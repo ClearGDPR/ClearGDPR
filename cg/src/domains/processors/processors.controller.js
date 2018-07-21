@@ -1,4 +1,4 @@
-const SubjectsService = require('./processors.service');
+const SubjectsService = require('./subjects.service');
 const ContractService = require('./contract.service');
 const { NotFound } = require('../../utils/errors');
 
