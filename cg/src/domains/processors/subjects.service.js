@@ -8,7 +8,7 @@ const {
 const { recordErasureByProcessor } = require('../../utils/blockchain');
 const { NotFound } = require('../../utils/errors');
 
-class ProcessorsService {
+class SubjectsService {
   constructor(database = db) {
     this.db = database;
   }
@@ -112,4 +112,4 @@ class ProcessorsService {
   }
 }
 
-module.exports = ProcessorsService;
+module.exports = SubjectsService;
