@@ -58,6 +58,13 @@ class SubjectsController {
       )
     );
   }
+
+  async getSubjectRestrictions(req, res) {
+    const subjectRestrictions = await this.subjectsService.getSubjectRestrictions(
+      req.params.subjectId
+    );
+    res.json(subjectRestrictions);
+  }
 }
 
 module.exports = SubjectsController;

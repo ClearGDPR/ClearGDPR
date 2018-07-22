@@ -42,9 +42,19 @@ const getRectificiationValidator = celebrate({
   }
 });
 
+const getSubjectRestrictionsValidator = celebrate({
+  params: {
+    subjectId: Joi.string()
+      .alphanum()
+      .length(66) // length of a sha3 hash with the prepended '0x'
+      .required()
+  }
+});
+
 module.exports = {
   listSubjectsValidator,
   listRectificationRequestsValidator,
   updateRectificationStatusValidator,
-  getRectificiationValidator
+  getRectificiationValidator,
+  getSubjectRestrictionsValidator
 };
