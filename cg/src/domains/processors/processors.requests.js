@@ -14,6 +14,15 @@ async function getDataForSubject(subjectId) {
   });
 }
 
+async function getRestrictionsForSubject(subjectId) {
+  return await fetch(`${CONTROLLER_URL}/api/processors/subject/${subjectId}/get-restrictions`, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${PROCESSOR_JWT}`
+    }
+  });
+}
+
 async function getContractDetails() {
   try {
     const res = await fetch(`${CONTROLLER_URL}/api/processors/contract/details`, {
@@ -42,5 +51,6 @@ async function getContractDetails() {
 
 module.exports = {
   getDataForSubject,
+  getRestrictionsForSubject,
   getContractDetails
 };

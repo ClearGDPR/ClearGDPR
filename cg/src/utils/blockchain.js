@@ -87,8 +87,18 @@ async function setSubjectDataState(subjectId, processor, state) {
   return await runContractMethod('setSubjectDataState', [subjectId, processor, state]);
 }
 
-async function setSubjectRestrictions(subjectId, directMarketing = false, emailCommunication = false, research = false) {
-  return await runContractMethod('setSubjectRestrictions', [subjectId, directMarketing, emailCommunication, research]);
+async function setSubjectRestrictions(
+  subjectId,
+  directMarketing = false,
+  emailCommunication = false,
+  research = false
+) {
+  return await runContractMethod('setSubjectRestrictions', [
+    subjectId,
+    directMarketing,
+    emailCommunication,
+    research
+  ]);
 }
 
 async function setProcessors(newProcessors = []) {
@@ -123,8 +133,18 @@ async function recordRectificationByController(subjectId) {
   return await runContractMethod('recordRectificationByController', [subjectId]);
 }
 
-async function recordRestrictionByController(subjectId, directMarketing = false, emailCommunication = false, research = false) {
-  return await runContractMethod('recordRestrictionByController', [subjectId, directMarketing, emailCommunication, research]);
+async function recordRestrictionByController(
+  subjectId,
+  directMarketing = false,
+  emailCommunication = false,
+  research = false
+) {
+  return await runContractMethod('recordRestrictionByController', [
+    subjectId,
+    directMarketing,
+    emailCommunication,
+    research
+  ]);
 }
 
 async function recordErasureByController(subjectId) {
@@ -170,6 +190,17 @@ async function listenerForRectificationEvent(callback) {
   return await quorumContract.contract.events.Controller_SubjectDataRectified((error, data) => {
     if (error) {
       winston.error(`Error handling rectification ${error.toString()}`);
+      return;
+    }
+    callback(data.returnValues.subjectId);
+  });
+}
+
+async function listenerForRestrictionEvent(callback) {
+  const quorumContract = await getContract();
+  return await quorumContract.contract.events.Controller_SubjectDataRestricted((error, data) => {
+    if (error) {
+      winston.error(`Error handling restriction ${error.toString()}`);
       return;
     }
     callback(data.returnValues.subjectId);
@@ -263,6 +294,7 @@ module.exports = {
   allEvents,
   listenerForConsentEvent,
   listenerForRectificationEvent,
+  listenerForRestrictionEvent,
   listenerForErasureEvent,
   listenerForProcessorErasureEvent,
   getPastEvents,

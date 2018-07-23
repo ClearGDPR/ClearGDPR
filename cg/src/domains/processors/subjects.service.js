@@ -6,7 +6,7 @@ const {
   generateClientKey
 } = require('../../utils/encryption');
 const { recordErasureByProcessor } = require('../../utils/blockchain');
-const { NotFound } = require('../../utils/errors');
+const { NotFound, Forbidden } = require('../../utils/errors');
 
 class SubjectsService {
   constructor(database = db) {
@@ -109,6 +109,28 @@ class SubjectsService {
       winston.info('Emitting erasure event to blockchain');
       await recordErasureByProcessor(subjectId);
     });
+  }
+
+  async restrict(subjectId, directMarketing, emailCommunication, research) {
+    const subjectRestrictionsUpdates = await this.db('subjects')
+      .where('id', subjectId)
+      .update({
+        direct_marketing: directMarketing,
+        email_communication: emailCommunication,
+        research: research
+      });
+
+    if (subjectRestrictionsUpdates === 0) throw new NotFound('Subject not found');
+    if (subjectRestrictionsUpdates > 1) throw new Forbidden('Duplicated subject in the database');
+  }
+
+  async getSubjectRestrictions(subjectId) {
+    const [subjectRestrictions] = await this.db('subjects')
+      .where('id', subjectId)
+      .select('direct_marketing', 'email_communication', 'research');
+
+    if (!subjectRestrictions) throw new NotFound('Subject not found');
+    return subjectRestrictions;
   }
 }
 

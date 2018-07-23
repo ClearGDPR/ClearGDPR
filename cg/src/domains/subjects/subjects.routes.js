@@ -10,11 +10,11 @@ const {
   shareDataShareValidator
 } = require('./data-shares.validators');
 
-const { 
+const {
   giveConsentValidator,
   updateConsentValidator,
   rectificationValidator,
-  restrictionValidator 
+  restrictionValidator
 } = require('./subjects.validators');
 
 const router = express.Router();
@@ -76,7 +76,7 @@ module.exports = app => {
     controllerOnly,
     asyncHandler(async (req, res) => subjectsController.eraseData(req, res))
   );
-  
+
   router.get(
     '/data-status',
     asyncHandler(async (req, res) => subjectsController.getPersonalDataStatus(req, res))
@@ -90,14 +90,13 @@ module.exports = app => {
 
   router.post(
     '/restrict',
-    controllerOnly, 
+    controllerOnly,
     restrictionValidator,
     asyncHandler(async (req, res) => subjectsController.restrict(req, res))
   );
 
   router.get(
     '/get-restrictions',
-    controllerOnly,
     asyncHandler(async (req, res) => subjectsController.getRestrictions(req, res))
   );
 

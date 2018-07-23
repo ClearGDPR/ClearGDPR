@@ -13,6 +13,11 @@ module.exports = app => {
   router.use(verifyJWT);
 
   router.get(
+    '/contract/details',
+    asyncHandler(async (req, res) => processorsController.getContractDetails(req, res))
+  );
+
+  router.get(
     '/subject/:subjectId/data',
     controllerOnly,
     asyncHandler(ensureProcessorAccessToSubject),
@@ -20,7 +25,9 @@ module.exports = app => {
   );
 
   router.get(
-    '/contract/details',
-    asyncHandler(async (req, res) => processorsController.getContractDetails(req, res))
+    '/subject/:subjectId/get-restrictions',
+    controllerOnly,
+    asyncHandler(ensureProcessorAccessToSubject),
+    asyncHandler(async (req, res) => processorsController.getSubjectRestrictions(req, res))
   );
 };
