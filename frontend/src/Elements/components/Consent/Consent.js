@@ -29,12 +29,13 @@ class Consent extends React.PureComponent {
     }
 
     const form = ReactDOM.findDOMNode(this).parentNode;
-    form.addEventListener('submit', this.handleGiveConsent.bind(this));
+    form.addEventListener('submit', this.waitForToken, false);
   }
 
   componentWillUnmount() {
     const form = ReactDOM.findDOMNode(this).parentNode;
     form.removeEventListener('submit', () => {});
+    window.cg.Events.clear('auth.setAccessToken');
   }
 
   toggleProcessors = e => {
@@ -63,6 +64,13 @@ class Consent extends React.PureComponent {
     }
   };
 
+  waitForToken = e => {
+    // Listen to token setup for CG SDK, then launch related events.
+    window.cg.Events.subscribe('auth.setAccessToken', token => {
+      this.handleGiveConsent(e, token);
+    });
+  };
+
   handleGiveConsent = e => {
     e.preventDefault();
 
@@ -82,8 +90,8 @@ class Consent extends React.PureComponent {
 
     this.giveConsent(data, processors.filter(p => p.enabled).map(p => p.id))
       .then(() => {
-        if (this.props.options.callbackUrl) {
-          window.location.assign(this.props.options.callbackUrl);
+        if (this.props.options.onSuccessCallback) {
+          this.props.options.onSuccessCallback();
         }
       })
       .catch(err => {
@@ -107,9 +115,7 @@ class Consent extends React.PureComponent {
     };
 
     await window.cg.Subject.giveConsent(payload)
-      .then(res => {
-        console.log(res);
-      })
+      .then(() => {})
       .catch(err => {
         console.log('failure', err);
       });
