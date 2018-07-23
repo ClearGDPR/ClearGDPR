@@ -31,7 +31,8 @@ const {
   listSubjectsValidator,
   listRectificationRequestsValidator,
   getRectificiationValidator,
-  updateRectificationStatusValidator
+  updateRectificationStatusValidator,
+  getSubjectRestrictionsValidator
 } = require('./subjects/subjects.validators');
 
 const {
@@ -103,6 +104,12 @@ module.exports = app => {
     '/subjects/rectification-requests/:rectificationRequestId/update-status',
     updateRectificationStatusValidator,
     asyncHandler(async (req, res) => subjectsController.updateRectificationRequestStatus(req, res))
+  );
+
+  router.get(
+    '/subjects/:subjectId/get-restrictions',
+    getSubjectRestrictionsValidator,
+    asyncHandler(async (req, res) => subjectsController.getSubjectRestrictions(req, res))
   );
 
   router.get(

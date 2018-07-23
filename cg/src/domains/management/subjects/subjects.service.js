@@ -65,7 +65,7 @@ class SubjectsService {
     };
   }
 
-  async listRectificationRequests(requestedPage = 1) { 
+  async listRectificationRequests(requestedPage = 1) {
     const [{ total_items }] = await this.db('rectification_requests')
       .where('status', RECTIFICATION_STATUSES.PENDING)
       .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
@@ -83,7 +83,7 @@ class SubjectsService {
       .where('status', RECTIFICATION_STATUSES.PENDING)
       .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
       .limit(PAGE_SIZE)
-      .offset((requestedPage - 1 ) * PAGE_SIZE);
+      .offset((requestedPage - 1) * PAGE_SIZE);
 
     return {
       data: requests,
@@ -193,6 +193,15 @@ class SubjectsService {
       createdAt: requestData.rectification_request_created_at,
       status: requestData.status
     };
+  }
+
+  async getSubjectRestrictions(subjectId) {
+    const [subjectRestrictions] = await this.db('subjects')
+      .where('id', subjectId)
+      .select('direct_marketing', 'email_communication', 'research');
+
+    if (!subjectRestrictions) throw new NotFound('Subject not found');
+    return subjectRestrictions;
   }
 }
 
