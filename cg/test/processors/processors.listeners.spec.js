@@ -13,6 +13,7 @@ const {
   recordErasureByController,
   recordConsentGivenTo,
   recordRectificationByController,
+  // recordRestrictionByController,
   sha3,
   setProcessors,
   getSubjectDataState
@@ -146,7 +147,6 @@ describe('Processors listening for blockchain events', () => {
       .get(() => true)
       .reply(200, fakeUserData);
 
-    await setProcessors(['0xedbbe1fa6bc80f55c9ac7e351b777874142baaf8']);
     await recordRectificationByController(subjectId);
 
     //THEN
@@ -162,4 +162,8 @@ describe('Processors listening for blockchain events', () => {
       done();
     }, 4000);
   });
+
+  // it.only('Should react to restriction events', async done => {
+
+  // });
 });

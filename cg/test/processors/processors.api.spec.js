@@ -1,7 +1,7 @@
 jest.mock('../../src/utils/blockchain/web3-provider-factory');
 jest.mock('../../src/utils/helpers');
-const encryption = require('./../../src/utils/encryption');
 
+const encryption = require('./../../src/utils/encryption');
 const { initResources, fetch, closeResources } = require('../utils');
 const { deployContract } = require('../blockchain-setup');
 const { processorJWT } = require('../../src/utils/jwt');
@@ -130,7 +130,4 @@ describe('Processor requesting contract details', () => {
     expect(res.ok).toBeFalsy();
     expect(res.status).toBe(Unauthorized.StatusCode);
   });
-
-  // no need to test more IMO, because the controller does exact same thing as the one in management domain (if we don't need it
-  // there we can move the service method code)
 });
