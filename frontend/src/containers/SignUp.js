@@ -17,10 +17,6 @@ class SignUp extends Component {
 
     this.setState({ isLoading: true });
 
-    setTimeout(() => {
-      window.cg.setAccessToken('ASDASD');
-    }, 5000);
-
     fetch(url, {
       method: 'POST',
       headers: {
@@ -34,7 +30,10 @@ class SignUp extends Component {
       .then(res => res.json())
       .then(token => {
         this.setState({ isLoading: false });
-        window.cg.setAccessToken('ASDASD');
+        // Set up CG token to allow methods to acces API
+        window.cg.setAccessToken(token.cgToken);
+
+        // Save token for future usages (logged in users)
         localStorage.setItem('cgToken', token.cgToken);
       })
       .catch(console.log);
@@ -52,11 +51,10 @@ class SignUp extends Component {
           fontSize: '12px'
         }
       },
-      // onSuccessCallbackUrl: '/success',
-      // onSuccessCallback: () => {
-      //   this.props.history.push('/profile');
-      // },
-      required: true
+      required: true,
+      onSuccessCallback: () => {
+        this.props.history.push('/success');
+      }
     });
 
     return (
