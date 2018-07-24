@@ -59,7 +59,7 @@ MY_ADDRESS=${controllerAccount}
 JWT_TOKEN_EXPIRY=604800
 
 # for processor, but also for tests
-CONTROLLER_URL=http://localhost:8082
+CONTROLLER_URL=http://cg:8082
 ALLOWED_REQUEST_ORIGIN=http://localhost:3000,http://localhost:4000`;
 
     return writeFile('.env', dotEnv);
