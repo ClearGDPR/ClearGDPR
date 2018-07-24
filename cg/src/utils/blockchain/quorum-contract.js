@@ -39,7 +39,6 @@ class QuorumContract {
       .send({ gas: '4700000', from: this.contractOwnerAddress });
 
     this.contract = newContract;
-
     return newContract;
   }
 

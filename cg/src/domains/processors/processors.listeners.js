@@ -4,7 +4,7 @@ const {
   listenerForRectificationEvent,
   listenerForRestrictionEvent
 } = require('./../../utils/blockchain');
-const { getDataForSubject, getRestrictionsForSubject } = require('./processors.requests');
+const { getDataForSubject } = require('./processors.requests');
 const { blockUntilContractReady } = require('./processors.helpers');
 const { inControllerMode } = require('../../utils/helpers');
 const SubjectsService = require('./subjects.service');
@@ -33,19 +33,12 @@ const startRectificationEventListener = () => {
 };
 
 const startRestrictionEventListener = () => {
-  return listenerForRestrictionEvent(async subjectId => {
-    winston.info(`Restriction event received for subject ${subjectId}`);
-    const response = await getRestrictionsForSubject(subjectId).catch(err => {
-      return Promise.reject(err);
-    });
-    const subjectRestrictions = await response.json();
-    await subjectsService.restrict(
-      subjectId,
-      subjectRestrictions.direct_marketing,
-      subjectRestrictions.email_communication,
-      subjectRestrictions.research
-    );
-  });
+  return listenerForRestrictionEvent(
+    async (subjectId, directMarketing, emailCommunication, research) => {
+      winston.info(`Restriction event received for subject ${subjectId}`);
+      await subjectsService.restrict(subjectId, directMarketing, emailCommunication, research);
+    }
+  );
 };
 
 const startErasureEventListener = () => {

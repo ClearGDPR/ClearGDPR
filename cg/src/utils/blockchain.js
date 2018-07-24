@@ -135,9 +135,9 @@ async function recordRectificationByController(subjectId) {
 
 async function recordRestrictionByController(
   subjectId,
-  directMarketing = false,
-  emailCommunication = false,
-  research = false
+  directMarketing = true,
+  emailCommunication = true,
+  research = true
 ) {
   return await runContractMethod('recordRestrictionByController', [
     subjectId,
@@ -203,7 +203,15 @@ async function listenerForRestrictionEvent(callback) {
       winston.error(`Error handling restriction ${error.toString()}`);
       return;
     }
-    callback(data.returnValues.subjectId);
+
+    // There's a bug when a smart contract event is fired with a boolean parameter set to 'false', which transforms that boolean in 'null'.
+    // This piece of code corrects the nulled booleans, if there is any.
+    // I'm not sure why this bug happens, but it seems to be an issue with event firing in Ethereum/Quorum
+    const directMarketing = data.returnValues.directMarketing === null ? false : true;
+    const emailCommunication = data.returnValues.emailCommunication === null ? false : true;
+    const research = data.returnValues.research === null ? false : true;
+
+    callback(data.returnValues.subjectId, directMarketing, emailCommunication, research);
   });
 }
 
