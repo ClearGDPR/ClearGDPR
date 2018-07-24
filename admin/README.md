@@ -5,6 +5,7 @@
 - [ClearGDPR Admin](#cleargdpr-admin)
   - [Install](#install)
   - [Build](#build)
+  - [Default admin](#default-admin)
   - [Run tests](#run-tests)
     - [Run inside docker](#run-inside-docker)
     - [Run locally in watch mode](#run-locally-in-watch-mode)
@@ -27,6 +28,10 @@ yarn start
 ```bash
 make -C admin dist
 ```
+
+## Default admin
+
+Default admin credentials are admin/clearGDPR
 
 ## Run tests
 
