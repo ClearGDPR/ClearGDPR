@@ -28,13 +28,19 @@ class SignUp extends Component {
       })
     })
       .then(res => res.json())
-      .then(token => {
+      .then(response => {
         this.setState({ isLoading: false });
+
+        if (response.error) {
+          this.setState({ error: response.error });
+          return;
+        }
+
         // Set up CG token to allow methods to acces API
-        window.cg.setAccessToken(token.cgToken);
+        window.cg.setAccessToken(response.cgToken);
 
         // Save token for future usages (logged in users)
-        localStorage.setItem('cgToken', token.cgToken);
+        localStorage.setItem('cgToken', response.cgToken);
       })
       .catch(console.log);
   };
@@ -56,6 +62,7 @@ class SignUp extends Component {
         this.props.history.push('/success');
       }
     });
+    const { error } = this.state;
 
     return (
       <section className="section" id="give-consent">
@@ -73,6 +80,7 @@ class SignUp extends Component {
               <p>{`To create your Account simply fill the short form below`}</p>
               <hr />
               <form onSubmit={e => this.onSignUpHandler(e)}>
+                {error ? <div className="notification is-danger">{error}</div> : null}
                 <div className="field">
                   <label className="label">First Name</label>
                   <div className="control">
