@@ -6,7 +6,8 @@ import Elements from '../Elements';
 
 class SignUp extends Component {
   state = {
-    isLoading: false
+    isLoading: false,
+    error: false
   };
 
   onSignUpHandler = e => {
@@ -80,7 +81,7 @@ class SignUp extends Component {
               <p>{`To create your Account simply fill the short form below`}</p>
               <hr />
               <form onSubmit={e => this.onSignUpHandler(e)}>
-                {error ? <div className="notification is-danger">{error}</div> : null}
+                {error && <div className="notification is-danger">{error}</div>}
                 <div className="field">
                   <label className="label">First Name</label>
                   <div className="control">
