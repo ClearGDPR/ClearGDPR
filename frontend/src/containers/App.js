@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 class App extends Component {
   render() {
     const { props } = this;
+    const isGuest = !localStorage.getItem('cgToken');
     return (
       <div>
         <nav className="navbar is-white" aria-label="main navigation">
@@ -16,16 +17,20 @@ class App extends Component {
           </div>
           <div className="navbar-menu">
             <div className="navbar-start">
-              <div className="navbar-item">
-                <Link to="/login" className="navbar-item">
-                  Login
-                </Link>
-              </div>
-              <div className="navbar-item">
-                <Link to="/sign-up" className="navbar-item">
-                  Sign up
-                </Link>
-              </div>
+              {isGuest
+                ? [
+                    <div className="navbar-item" key="login">
+                      <Link to="/login" className="navbar-item">
+                        Login
+                      </Link>
+                    </div>,
+                    <div className="navbar-item" key="signup">
+                      <Link to="/sign-up" className="navbar-item">
+                        Sign up
+                      </Link>
+                    </div>
+                  ]
+                : null}
               <div className="navbar-item">
                 <Link to="/shares" className="navbar-item">
                   Shares
