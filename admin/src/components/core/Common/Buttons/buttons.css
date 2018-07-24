@@ -13,20 +13,76 @@
   transform: scale(0.94);
 }
 
+.action-bar .ui-action.btn {
+  margin-left: 1rem;
+}
+
 .ui-action.btn {
   height: 30px;
   font-weight: 800;
   transition: all 0.4s ease-in-out;
   border-color: transparent;
+  background-color: transparent;
   box-shadow: 0 0 2px rgba(3, 3, 3, 0.1);
 }
 
-.action-bar .ui-action.btn {
-  margin-left: 1rem;
+.ui-action.btn.success {
+  color: var(--color-brand-primary);
+  border-color: transparent !important;
+}
+
+.ui-action.btn.warning {
+  color: var(--color-warning);
+  border-color: transparent !important;
+}
+
+.ui-action.btn.error {
+  color: var(--color-error);
+  background-color: transparent;
+  border-color: transparent !important;
 }
 
 .btn.primary {
   color: var(--text-inverted);
   background-color: var(--color-foreground);
   border-color: var(--color-foreground);
+}
+
+.btn.primary.success {
+  color: var(--color-foreground);
+  background-color: var(--color-brand-primary);
+  border-color: var(--color-brand-primary);
+}
+
+.btn.primary.warning {
+  color: var(--color-background);
+  background-color: var(--color-warning);
+  border-color: var(--color-warning);
+}
+
+.btn.primary.error {
+  color: var(--color-background);
+  background-color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.btn.secondary {
+  color: var(--color-foreground);
+  background-color: transparent;
+  border: 2px solid var(--color-foreground) !important;
+}
+
+.btn.secondary.success {
+  color: var(--color-foreground);
+  border: 2px solid var(--color-brand-primary) !important;
+}
+
+.btn.secondary.warning {
+  color: var(--color-foreground);
+  border: 2px solid var(--color-warning) !important;
+}
+
+.btn.secondary.error {
+  color: var(--color-foreground);
+  border: 2px solid var(--color-error) !important;
 }

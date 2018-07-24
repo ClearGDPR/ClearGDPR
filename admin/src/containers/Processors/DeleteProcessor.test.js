@@ -45,11 +45,11 @@ describe('(Container) Delete processor', () => {
   });
 
   it('should call onClose when deleting processor is unsuccessful', async () => {
-    const { props, component } = setup({
+    const { component } = setup({
       deleteProcessor: jest.fn().mockReturnValue(Promise.reject('Some error!'))
     });
     await component.instance().deleteProcessor();
     await TestUtils.flushPromises();
-    expect(props.onClose).toHaveBeenCalled();
+    expect(component.state().isLoading).toBeFalsy();
   });
 });

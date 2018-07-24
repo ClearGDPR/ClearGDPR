@@ -44,7 +44,7 @@ export class ChangePassword extends React.Component {
           validateOnBlur
           validate={this.props.validatePassword}
         />
-        <PrimaryButton type="submit" className="btn" text="Save" />
+        <PrimaryButton type="submit" text="Save" />
       </React.Fragment>
     );
   }

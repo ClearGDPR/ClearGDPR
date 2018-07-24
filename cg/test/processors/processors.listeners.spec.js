@@ -49,7 +49,10 @@ describe('Processors listening for blockchain events', () => {
 
     await db('subjects').insert({
       id: subjectId,
-      personal_data: encryptForStorage(JSON.stringify({ test: true }), key)
+      personal_data: encryptForStorage(JSON.stringify({ test: true }), key),
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
 
     await db('subject_keys').insert({
@@ -126,7 +129,10 @@ describe('Processors listening for blockchain events', () => {
     const encryptionKey = encryption.generateClientKey();
     await db('subjects').insert({
       id: subjectId,
-      personal_data: encryptForStorage(JSON.stringify({ data: 'some data' }), encryptionKey)
+      personal_data: encryptForStorage(JSON.stringify({ data: 'some data' }), encryptionKey),
+      direct_marketing: true,
+      email_communication: true,
+      research: true
     });
     await db('subject_keys').insert({
       subject_id: subjectId,

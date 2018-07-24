@@ -1,7 +1,7 @@
+/* eslint react/prop-types: 0 */
+
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
-const propTypes = {};
 
 class App extends Component {
   render() {
@@ -87,5 +87,4 @@ class App extends Component {
   }
 }
 
-App.propTypes = propTypes;
 export default App;

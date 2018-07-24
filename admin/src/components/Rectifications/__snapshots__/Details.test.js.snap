@@ -215,7 +215,7 @@ exports[`(Component) Rectification details should render array values in propert
     Status: 
     APPROVED
   </p>
-  <Component
+  <PrimaryButton
     onClick={[Function]}
     text="Approve"
     type="button"
@@ -344,7 +344,7 @@ exports[`(Component) Rectification details should render nested properties corre
     Status: 
     APPROVED
   </p>
-  <Component
+  <PrimaryButton
     onClick={[Function]}
     text="Approve"
     type="button"
@@ -466,7 +466,7 @@ exports[`(Component) Rectification details should render when not loading correc
     Status: 
     PENDING
   </p>
-  <Component
+  <PrimaryButton
     onClick={[Function]}
     text="Approve"
     type="button"

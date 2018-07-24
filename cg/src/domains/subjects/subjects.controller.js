@@ -12,7 +12,7 @@ class SubjectsController {
       req.body.personalData,
       req.body.processors || []
     );
-    res.send({ success: true });
+    res.json({ success: true });
   }
 
   async updateConsent(req, res) {
@@ -20,7 +20,7 @@ class SubjectsController {
       req.subject.id,
       req.body.processors || []
     );
-    res.send({ success: true });
+    res.json({ success: true });
   }
 
   async requestDataAccess(req, res) {
@@ -30,7 +30,7 @@ class SubjectsController {
 
   async eraseData(req, res) {
     await this.subjectsService.eraseDataAndRevokeConsent(req.subject.id);
-    res.send({ success: true });
+    res.json({ success: true });
   }
 
   async getPersonalDataStatus(req, res) {
@@ -45,6 +45,22 @@ class SubjectsController {
       )
     );
   }
+
+  async restrict(req, res) {
+    await this.subjectsService.restrict(
+      req.subject.id, 
+      req.body.directMarketing,
+      req.body.emailCommunication,
+      req.body.research
+    );
+    res.json({ success: true });
+  }
+
+  async getRestrictions(req, res) {
+    const subjectRestrictions = await this.subjectsService.getRestrictions(req.subject.id);
+    res.json(subjectRestrictions);
+  }
+
 }
 
 module.exports = SubjectsController;

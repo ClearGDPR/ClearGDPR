@@ -6,7 +6,7 @@ import Login from './containers/Login';
 import SignUp from './containers/SignUp';
 import Profile from './containers/Profile';
 import Share from './containers/Share';
-import ConsentSuccess from './elements/components/ConsentSuccess';
+import ConsentSuccess from './Elements/components/Consent/ConsentSuccess';
 
 import NoMatch from './components/NoMatch';
 

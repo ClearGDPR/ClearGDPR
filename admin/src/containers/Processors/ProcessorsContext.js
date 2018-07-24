@@ -33,38 +33,38 @@ export class ProcessorsProvider extends Component {
     });
   };
 
-  addProcessor = async processor => {
-    this.setLoading(true);
+  refreshProcessors = () => {
+    this.fetchProcessors()
+      .then(() => {})
+      .catch(() => {});
+  };
 
+  addProcessor = async processor => {
     const newProcessor = await this._addProcessor(processor).catch(
       this.cancelLoadingAndReject.bind(this)
     );
     toast.success('Processor successfully added.');
-    await this.fetchProcessors();
+    this.refreshProcessors();
 
     return newProcessor;
   };
 
   updateProcessor = async processor => {
-    this.setLoading(true);
-
     const updatedProcessor = await this._updateProcessor(processor).catch(
       this.cancelLoadingAndReject.bind(this)
     );
     toast.success('Processor successfully updated.');
-    await this.fetchProcessors();
+    this.refreshProcessors();
 
     return updatedProcessor;
   };
 
   deleteProcessor = async processor => {
-    this.setLoading(true);
-
     const isDeleted = await this._deleteProcessor(processor).catch(
       this.cancelLoadingAndReject.bind(this)
     );
     toast.success('Processor successfully deleted.');
-    await this.fetchProcessors();
+    this.refreshProcessors();
 
     return isDeleted;
   };

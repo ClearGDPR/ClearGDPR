@@ -12,10 +12,15 @@ export class AddProcessorContainer extends React.Component {
   };
 
   state = {
+    isLoading: false,
     errors: {}
   };
 
   onSubmit = processor => {
+    this.setState({
+      isLoading: true
+    });
+
     processor.scopes = Object.keys(processor.scopes).reduce((scopes, s) => {
       return processor.scopes[s] ? scopes.concat(s) : scopes;
     }, []);
@@ -25,6 +30,7 @@ export class AddProcessorContainer extends React.Component {
       .then(() => this.props.closePanel())
       .catch(e =>
         this.setState({
+          isLoading: false,
           errors: {
             processor: e.toString()
           }

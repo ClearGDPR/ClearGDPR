@@ -14,7 +14,7 @@ exports[`(Component) Register should render correctly when no props provided 1`]
     placeholder="*********"
     type="password"
   />
-  <Component
+  <PrimaryButton
     className="btn"
     text="Register"
     type="submit"
@@ -36,7 +36,7 @@ exports[`(Component) Register should render correctly when the prop isLoading is
     placeholder="*********"
     type="password"
   />
-  <Component
+  <PrimaryButton
     className="btn"
     text="Register"
     type="submit"
@@ -58,7 +58,7 @@ exports[`(Component) Register should render correctly when the prop isLoading is
     placeholder="*********"
     type="password"
   />
-  <Component
+  <PrimaryButton
     className="btn"
     text="Register"
     type="submit"

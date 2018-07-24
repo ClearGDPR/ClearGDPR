@@ -6,6 +6,7 @@ import Overview from 'components/core/cards/dashboard/Overview';
 import Processors from 'components/core/cards/dashboard/Processors';
 import Panel from 'components/core/cards/dashboard/Panel';
 import Loader from 'components/core/cards/dashboard/Loader';
+import Elements from 'components/core/cards/dashboard/Elements';
 import Form from 'components/core/Common/Forms/Form';
 
 import * as ProcessorsDataFactory from 'tests/data/processors.factory';
@@ -107,6 +108,7 @@ class Dashboard extends Component {
               )}
             />
             <Route exact path="/kitchen-sink/loader" render={() => <Loader />} />
+            <Route exact path="/kitchen-sink/elements" render={() => <Elements />} />
           </Switch>
           <Panel
             isPanelOpen={this.state.isPanelOpen}

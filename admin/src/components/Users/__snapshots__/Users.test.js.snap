@@ -9,7 +9,7 @@ exports[`(Component) Users should render when loading correctly 1`] = `
       desc="Manage users that can access the administrative panel"
       title="Users"
     >
-      <Component
+      <DefaultButton
         onClick={[Function]}
         text="+ Register user"
       />
@@ -40,7 +40,7 @@ exports[`(Component) Users should render when not loading correctly 1`] = `
       desc="Manage users that can access the administrative panel"
       title="Users"
     >
-      <Component
+      <DefaultButton
         onClick={[Function]}
         text="+ Register user"
       />

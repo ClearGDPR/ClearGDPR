@@ -40,12 +40,12 @@ exports[`(Component) Delete User should render correctly when closed 1`] = `
       Are you sure you want to delete this user?
     </p>
     <p>
-      <Component
+      <PrimaryButton
         onClick={[Function]}
         text="Cancel"
       />
        
-      <Component
+      <PrimaryButton
         onClick={[Function]}
         text="OK"
       />
@@ -94,12 +94,12 @@ exports[`(Component) Delete User should render correctly when open 1`] = `
       Are you sure you want to delete this user?
     </p>
     <p>
-      <Component
+      <PrimaryButton
         onClick={[Function]}
         text="Cancel"
       />
        
-      <Component
+      <PrimaryButton
         onClick={[Function]}
         text="OK"
       />
@@ -148,12 +148,12 @@ exports[`(Component) Delete User should render correctly when the prop isLoading
       Are you sure you want to delete this user?
     </p>
     <p>
-      <Component
+      <PrimaryButton
         onClick={[Function]}
         text="Cancel"
       />
        
-      <Component
+      <PrimaryButton
         onClick={[Function]}
         text="OK"
       />

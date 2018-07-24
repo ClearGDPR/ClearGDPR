@@ -32,7 +32,6 @@ CG_SECRET=${subjectsSecret}
 HEALTH_CHECK_SECRET=${healthCheckSecret}
 ALLOWED_REQUEST_ORIGIN=http://localhost:3000,http://localhost:4000\`;
 `;
-
     return writeFile('.env', dotEnv);
   })
   .catch(console.error);

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+/* eslint react/prop-types: 0 */
 
-const propTypes = {};
+import React, { Component } from 'react';
 
 class NoMatch extends Component {
   render() {
@@ -23,5 +23,4 @@ class NoMatch extends Component {
   }
 }
 
-NoMatch.propTypes = propTypes;
 export default NoMatch;

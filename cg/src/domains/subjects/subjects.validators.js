@@ -19,7 +19,7 @@ const updateConsentValidator = celebrate({
   })
 });
 
-const rectificationRequestValidator = celebrate({
+const rectificationValidator = celebrate({
   body: Joi.object().keys({
     rectificationPayload: Joi.object(),
     requestReason: Joi.string()
@@ -28,10 +28,17 @@ const rectificationRequestValidator = celebrate({
   })
 });
 
-
+const restrictionValidator = celebrate({
+  body: Joi.object().keys({
+    directMarketing: Joi.boolean().required(),
+    emailCommunication: Joi.boolean().required(),
+    research: Joi.boolean().required()  
+  })
+});
 
 module.exports = {
   giveConsentValidator,
   updateConsentValidator,
-  rectificationRequestValidator
+  rectificationValidator,
+  restrictionValidator
 };
