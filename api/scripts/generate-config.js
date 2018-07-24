@@ -7,16 +7,14 @@ const randomBytes = Promise.promisify(crypto.randomBytes);
 const writeFile = Promise.promisify(fs.writeFile);
 
 const arguments = process.argv.slice(2);
-const [ dbPassword, subjectsSecret ] = arguments;
+const [dbPassword, subjectsSecret] = arguments;
 
 const sessionSecret = cryptoRandomString(20);
 const healthCheckSecret = cryptoRandomString(20);
 
 randomBytes(64)
-    .then(buffer => {
-        const appHexKey = buffer.toString('hex');
-
-        const dotEnv = `NODE_ENV=local
+  .then(buffer => {
+    const dotEnv = `NODE_ENV=local
 
 DB_ENGINE=postgres
 DB_HOST=db
@@ -32,8 +30,9 @@ PORT=8080
 SESSION_SECRET=${sessionSecret}
 CG_SECRET=${subjectsSecret}
 HEALTH_CHECK_SECRET=${healthCheckSecret}
+ALLOWED_REQUEST_ORIGIN=http://localhost:3000,http://localhost:4000\`;
 `;
 
-        return writeFile('.env', dotEnv);
-    })
-    .catch(console.error);
+    return writeFile('.env', dotEnv);
+  })
+  .catch(console.error);
