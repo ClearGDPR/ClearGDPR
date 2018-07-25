@@ -207,9 +207,9 @@ async function listenerForRestrictionEvent(callback) {
     // There's a bug when a smart contract event is fired with a boolean parameter set to 'false', which transforms that boolean in 'null'.
     // This piece of code corrects the nulled booleans, if there is any.
     // I'm not sure why this bug happens, but it seems to be an issue with event firing in Ethereum/Quorum
-    const directMarketing = data.returnValues.directMarketing === null ? false : true;
-    const emailCommunication = data.returnValues.emailCommunication === null ? false : true;
-    const research = data.returnValues.research === null ? false : true;
+    const directMarketing = data.returnValues.directMarketing !== null;
+    const emailCommunication = data.returnValues.emailCommunication !== null;
+    const research = data.returnValues.research !== null;
 
     callback(data.returnValues.subjectId, directMarketing, emailCommunication, research);
   });

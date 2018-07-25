@@ -1,14 +1,14 @@
 jest.mock('../../src/utils/blockchain/web3-provider-factory');
 jest.mock('../../src/utils/helpers');
 
-const encryption = require('./../../src/utils/encryption');
+const encryption = require('../../src/utils/encryption');
 const { initResources, fetch, closeResources } = require('../utils');
 const { deployContract } = require('../blockchain-setup');
 const { processorJWT } = require('../../src/utils/jwt');
 const { db } = require('../../src/db');
 const { encryptForStorage, hash } = require('../../src/utils/encryption');
 const { Unauthorized } = require('../../src/utils/errors');
-const helpers = require('./../../src/utils/helpers');
+const helpers = require('../../src/utils/helpers');
 
 beforeAll(async () => {
   helpers.getMyAddress.mockReturnValue(process.env.MY_ADDRESS);
