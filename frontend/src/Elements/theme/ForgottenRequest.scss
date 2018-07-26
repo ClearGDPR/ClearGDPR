@@ -4,8 +4,17 @@
   display: flex;
   margin-bottom: 30px;
 }
+.full {
+  max-width: 100%;
+  padding-right: 2rem;
+
+  button {
+    margin: 10px auto 0;
+    background: $water;
+  }
+}
 .left {
-  max-width: 50%;
+  max-width: 100%;
   padding-right: 2rem;
 }
 .right {
