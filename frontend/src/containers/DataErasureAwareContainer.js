@@ -11,9 +11,8 @@ class Container extends React.Component {
 
   render() {
     const { subject } = this.props;
-
     if (subject.isGuest) {
-      this.props.history.push('/sign-up');
+      setTimeout(() => this.props.history.push('/sign-up'));
     }
 
     if (!subject.isFetched) {
