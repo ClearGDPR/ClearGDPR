@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { inject } from '../../../containers/SubjectContext';
 
@@ -83,5 +84,9 @@ class UserData extends React.PureComponent {
     );
   }
 }
+
+UserData.propTypes = {
+  subject: PropTypes.object
+};
 
 export default inject(UserData);
