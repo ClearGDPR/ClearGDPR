@@ -1,3 +1,6 @@
+// Command to execute this script:
+// docker-compose exec cg node scripts/deploy-blockchain-contract
+
 const winston = require('winston');
 const ContractService = require('../src/domains/management/contract/contract.service');
 const contractABI = require('../src/utils/blockchain/contract-abi.json');

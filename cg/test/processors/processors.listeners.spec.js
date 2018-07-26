@@ -14,6 +14,7 @@ const {
   recordConsentGivenTo,
   recordRectificationByController,
   recordRestrictionByController,
+  recordObjectionByController,
   sha3,
   setProcessors,
   getSubjectDataState
@@ -53,6 +54,7 @@ describe('Processors listening for blockchain events', () => {
     await db('subjects').insert({
       id: subjectId,
       personal_data: encryptForStorage(JSON.stringify({ test: true }), key),
+      objection: false,
       direct_marketing: true,
       email_communication: true,
       research: true
@@ -133,6 +135,7 @@ describe('Processors listening for blockchain events', () => {
     await db('subjects').insert({
       id: subjectId,
       personal_data: encryptForStorage(JSON.stringify({ data: 'some data' }), encryptionKey),
+      objection: false,
       direct_marketing: true,
       email_communication: true,
       research: true
@@ -173,6 +176,7 @@ describe('Processors listening for blockchain events', () => {
     await db('subjects').insert({
       id: subjectId,
       personal_data: encryptForStorage(JSON.stringify({ data: 'some data' }), encryptionKey),
+      objection: false,
       direct_marketing: true,
       email_communication: true,
       research: true
@@ -196,6 +200,40 @@ describe('Processors listening for blockchain events', () => {
         direct_marketing: false,
         email_communication: true,
         research: false
+      });
+      done();
+    }, 1000);
+  });
+
+  it('Should react to objection events', async done => {
+    // Given
+    let subjectId = sha3('986546983468');
+    const encryptionKey = encryption.generateClientKey();
+    await db('subjects').insert({
+      id: subjectId,
+      personal_data: encryptForStorage(JSON.stringify({ data: 'some data' }), encryptionKey),
+      objection: false,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
+    });
+    await db('subject_keys').insert({
+      subject_id: subjectId,
+      key: encryptionKey
+    });
+
+    // When
+    await recordObjectionByController(subjectId, true);
+
+    // Then
+    setTimeout(async () => {
+      // We have to wait for the processor to update his database with the new subject restrictions
+      const [objection] = await db('subjects')
+        .where('id', subjectId)
+        .select('objection');
+
+      expect(objection).toEqual({
+        objection: true
       });
       done();
     }, 1000);

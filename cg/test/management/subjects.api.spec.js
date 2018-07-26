@@ -123,6 +123,7 @@ describe('List subjects that have given consent', () => {
     await db('subjects').insert({
       id: subjectIdHash,
       personal_data: encryptedSubjectData,
+      objection: false,
       direct_marketing: true,
       email_communication: true,
       research: true
@@ -170,6 +171,7 @@ describe('List subjects that have given consent', () => {
     await db('subjects').insert({
       id: subjectIdHash,
       personal_data: encryptedSubjectData,
+      objection: false,
       direct_marketing: true,
       email_communication: true,
       research: true
@@ -217,6 +219,7 @@ describe('List subjects that have given consent', () => {
     await db('subjects').insert({
       id: subjectIdHash1,
       personal_data: encryptedSubjectData1,
+      objection: false,
       direct_marketing: true,
       email_communication: true,
       research: true
@@ -238,6 +241,7 @@ describe('List subjects that have given consent', () => {
     await db('subjects').insert({
       id: subjectIdHash2,
       personal_data: encryptedSubjectData2,
+      objection: false,
       direct_marketing: true,
       email_communication: true,
       research: true
@@ -385,6 +389,7 @@ describe('List subjects that have given consent', () => {
     await db('subjects').insert({
       id: subjectIdHash1,
       personal_data: encryptedSubjectData1,
+      objection: false,
       direct_marketing: true,
       email_communication: true,
       research: true
@@ -406,6 +411,7 @@ describe('List subjects that have given consent', () => {
     await db('subjects').insert({
       id: subjectIdHash2,
       personal_data: encryptedSubjectData2,
+      objection: false,
       direct_marketing: true,
       email_communication: true,
       research: true
@@ -473,6 +479,7 @@ describe('List subjects that have given consent', () => {
       await db('subjects').insert({
         id: subjectId,
         personal_data: encryptedSubjectData,
+        objection: false,
         direct_marketing: true,
         email_communication: true,
         research: true
@@ -520,7 +527,7 @@ describe('Tests of listing rectification requests', () => {
     const managementToken = await managementJWT.sign({ id: 1 });
     await createSubjectWithRectification();
     await createSubjectWithRectification();
-    
+
     //WHEN
     const res = await fetch('/api/management/subjects/rectification-requests/list', {
       method: 'GET',
@@ -538,7 +545,7 @@ describe('Tests of listing rectification requests', () => {
   it('Should list the requests sucessfully when there is 0', async () => {
     //GIVEN
     const managementToken = await managementJWT.sign({ id: 1 });
-   
+
     //WHEN
     const res = await fetch('/api/management/subjects/rectification-requests/list', {
       method: 'GET',
@@ -557,7 +564,7 @@ describe('Tests of listing rectification requests', () => {
   it('Should list requests in pages bigger than 1 correctly', async () => {
     //GIVEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    const subjectToken = await subjectJWT.sign({ subjectId: '646416818971'});
+    const subjectToken = await subjectJWT.sign({ subjectId: '646416818971' });
     await fetch('/api/subject/give-consent', {
       method: 'POST',
       headers: {
@@ -569,8 +576,8 @@ describe('Tests of listing rectification requests', () => {
         },
         processors: []
       }
-    });  
-    for(let i = 0; i < 12; i++){
+    });
+    for (let i = 0; i < 12; i++) {
       await fetch('/api/subject/initiate-rectification', {
         method: 'POST',
         headers: {
@@ -598,23 +605,27 @@ describe('Tests of listing rectification requests', () => {
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual(
       expect.objectContaining({
-        data: 
-          [ { id: expect.any(Number),
-              request_reason: 'Data incomplete',
-              created_at: expect.any(String) },
-          {  id: expect.any(Number),
-              request_reason: 'Data incomplete',
-              created_at: expect.any(String) } 
-          ],
+        data: [
+          {
+            id: expect.any(Number),
+            request_reason: 'Data incomplete',
+            created_at: expect.any(String)
+          },
+          {
+            id: expect.any(Number),
+            request_reason: 'Data incomplete',
+            created_at: expect.any(String)
+          }
+        ],
         paging: { current: 2, total: 2 }
       })
     );
   });
 
   it('Should fail if page number is too big', async () => {
-    //GIVEN      
+    //GIVEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    
+
     //WHEN
     const res = await fetch('/api/management/subjects/rectification-requests/list?page=6', {
       method: 'GET',
@@ -656,15 +667,15 @@ describe('Tests of listing rectification requests', () => {
     await db('subject_keys')
       .where({ subject_id: subjectId })
       .delete();
-      
-    //WHEN  
+
+    //WHEN
     const res = await fetch('/api/management/subjects/rectification-requests/list', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
       }
     });
-    
+
     //THEN
     expect(res.status).toEqual(200);
     const body = await res.json();
@@ -706,7 +717,7 @@ describe('Tests of listing archived rectification requests', () => {
   it('Should list archived requests in pages bigger than 1 correctly', async () => {
     //GIVEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    const subjectToken = await subjectJWT.sign({ subjectId: '65498736186+968'});
+    const subjectToken = await subjectJWT.sign({ subjectId: '65498736186+968' });
     await fetch('/api/subject/give-consent', {
       method: 'POST',
       headers: {
@@ -718,8 +729,8 @@ describe('Tests of listing archived rectification requests', () => {
         },
         processors: []
       }
-    });  
-    for(let i = 0; i < 12; i++){
+    });
+    for (let i = 0; i < 12; i++) {
       await fetch('/api/subject/initiate-rectification', {
         method: 'POST',
         headers: {
@@ -742,7 +753,7 @@ describe('Tests of listing archived rectification requests', () => {
     });
     const requestsData = await res1.json();
     const firstRequestId = requestsData.data[0].id;
-    for(let i = firstRequestId; i < firstRequestId + 12; i++){
+    for (let i = firstRequestId; i < firstRequestId + 12; i++) {
       await fetch(`/api/management/subjects/rectification-requests/${i}/update-status`, {
         method: 'POST',
         headers: {
@@ -767,15 +778,20 @@ describe('Tests of listing archived rectification requests', () => {
     expect(res2.status).toBe(200);
     expect(await res2.json()).toEqual(
       expect.objectContaining({
-        data: 
-          [ { id: expect.any(Number),
-              request_reason: 'Data changed',
-              created_at: expect.any(String),
-              status: 'APPROVED' },
-            { id: expect.any(Number),
-              request_reason: 'Data changed',
-              created_at: expect.any(String),
-              status: 'APPROVED' } ],
+        data: [
+          {
+            id: expect.any(Number),
+            request_reason: 'Data changed',
+            created_at: expect.any(String),
+            status: 'APPROVED'
+          },
+          {
+            id: expect.any(Number),
+            request_reason: 'Data changed',
+            created_at: expect.any(String),
+            status: 'APPROVED'
+          }
+        ],
         paging: { current: 2, total: 2 }
       })
     );
@@ -949,7 +965,7 @@ describe('Update rectification request status', () => {
     //GIVEN
     const managementToken = await managementJWT.sign({ id: 1 });
     const { rectificationRequestId } = await createSubjectWithRectification();
-    
+
     //WHEN
     const res = await fetch(
       `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
@@ -1009,7 +1025,7 @@ describe('Update rectification request status', () => {
     //GIVEN
     const managementToken = await managementJWT.sign({ id: 1 });
     const { rectificationRequestId } = await createSubjectWithRectification();
-    
+
     //WHEN
     const res = await fetch(
       `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
@@ -1055,7 +1071,7 @@ describe('Update rectification request status', () => {
   it('Should error if the request does not exist', async () => {
     //GIVEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    
+
     //WHEN
     const res = await fetch(
       `/api/management/subjects/rectification-requests/1212121/update-status`,

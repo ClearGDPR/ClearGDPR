@@ -6,9 +6,11 @@ const {
   getIsErased,
   getSubjectDataState,
   getSubjectRestrictions,
+  getSubjectObjection,
   getProcessors,
   setSubjectDataState,
   setSubjectRestrictions,
+  setSubjectObjection,
   setProcessors,
   isProcessor,
   areAllValidProcessors,
@@ -17,6 +19,7 @@ const {
   recordAccessByController,
   recordRectificationByController,
   recordRestrictionByController,
+  recordObjectionByController,
   recordErasureByController,
   recordErasureByProcessor,
   getPastEvents
@@ -42,12 +45,22 @@ const {
 //   .catch(console.error)
 //   .then(() => process.exit(0));
 
+// getSubjectObjection("0x1111111111111111111111111111111111111111111111111111111111111111")
+//   .then(console.log)
+//   .catch(console.error)
+//   .then(() => process.exit(0));
+
 // setSubjectDataState("0x1111111111111111111111111111111111111111111111111111111111111111", "0x0000000000000000000000000000000000000001", 1)
 //   .then(console.log)
 //   .catch(console.error)
 //   .then(() => process.exit(0));
 
 // setSubjectRestrictions("0x1111111111111111111111111111111111111111111111111111111111111111", true, false, true)
+//   .then(console.log)
+//   .catch(console.error)
+//   .then(() => process.exit(0));
+
+// setSubjectObjection("0x1111111111111111111111111111111111111111111111111111111111111111", true)
 //   .then(console.log)
 //   .catch(console.error)
 //   .then(() => process.exit(0));
@@ -93,6 +106,11 @@ const {
 //   .then(() => process.exit(0));
 
 // recordRestrictionByController("0x1111111111111111111111111111111111111111111111111111111111111111", false, true, false)
+//   .then(console.log)
+//   .catch(console.error)
+//   .then(() => process.exit(0));
+
+// recordObjectionByController("0x1111111111111111111111111111111111111111111111111111111111111111", true)
 //   .then(console.log)
 //   .catch(console.error)
 //   .then(() => process.exit(0));

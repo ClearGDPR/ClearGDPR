@@ -14,7 +14,8 @@ const {
   giveConsentValidator,
   updateConsentValidator,
   rectificationValidator,
-  restrictionValidator
+  restrictionValidator,
+  objectionValidator
 } = require('./subjects.validators');
 
 const router = express.Router();
@@ -98,6 +99,18 @@ module.exports = app => {
   router.get(
     '/get-restrictions',
     asyncHandler(async (req, res) => subjectsController.getRestrictions(req, res))
+  );
+
+  router.post(
+    '/object',
+    controllerOnly,
+    objectionValidator,
+    asyncHandler(async (req, res) => subjectsController.object(req, res))
+  );
+
+  router.get(
+    '/get-objection',
+    asyncHandler(async (req, res) => subjectsController.getObjection(req, res))
   );
 
   router.post(

@@ -10,6 +10,7 @@ const {
   recordConsentGivenTo,
   recordAccessByController,
   recordRestrictionByController,
+  recordObjectionByController,
   recordErasureByController
 } = require('../../utils/blockchain');
 const { ValidationError, NotFound, Unauthorized, Forbidden } = require('../../utils/errors');
@@ -229,6 +230,27 @@ class SubjectsService {
 
     if (!subjectRestrictions) throw new NotFound('Subject not found');
     return subjectRestrictions;
+  }
+
+  async object(subjectId, objection) {
+    const subjectObjectionUpdates = await this.db('subjects')
+      .where('id', subjectId)
+      .update({
+        objection: objection
+      });
+
+    if (subjectObjectionUpdates === 0) throw new NotFound('Subject not found');
+    if (subjectObjectionUpdates > 1) throw new Forbidden('Duplicated subject in the database');
+    await recordObjectionByController(subjectId, objection);
+  }
+
+  async getObjection(subjectId) {
+    const [subjectObjection] = await this.db('subjects')
+      .where('id', subjectId)
+      .select('objection');
+
+    if (!subjectObjection) throw new NotFound('Subject not found');
+    return subjectObjection;
   }
 }
 

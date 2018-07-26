@@ -16,10 +16,7 @@ class SubjectsController {
   }
 
   async updateConsent(req, res) {
-    await this.subjectsService.updateConsent(
-      req.subject.id,
-      req.body.processors || []
-    );
+    await this.subjectsService.updateConsent(req.subject.id, req.body.processors || []);
     res.json({ success: true });
   }
 
@@ -48,7 +45,7 @@ class SubjectsController {
 
   async restrict(req, res) {
     await this.subjectsService.restrict(
-      req.subject.id, 
+      req.subject.id,
       req.body.directMarketing,
       req.body.emailCommunication,
       req.body.research
@@ -61,6 +58,15 @@ class SubjectsController {
     res.json(subjectRestrictions);
   }
 
+  async object(req, res) {
+    await this.subjectsService.object(req.subject.id, req.body.objection);
+    res.json({ success: true });
+  }
+
+  async getObjection(req, res) {
+    const subjectObjection = await this.subjectsService.getObjection(req.subject.id);
+    res.json(subjectObjection);
+  }
 }
 
 module.exports = SubjectsController;
