@@ -3,7 +3,7 @@ import React from 'react';
 
 import Elements from '../Elements';
 
-import { SubjectConsumer } from './SubjectContext';
+import { inject } from './SubjectContext';
 import LoadingScreen from '../Elements/components/Common/Views/LoadingScreen';
 import DataErasedScreen from '../Elements/components/Common/Views/DataErasedScreen';
 
@@ -29,6 +29,10 @@ class Profile extends React.Component {
     });
 
     const { subject } = this.props;
+
+    if (subject.isGuest) {
+      this.props.history.push('/sign-up');
+    }
 
     if (!subject.isFetched) {
       return <LoadingScreen />;
@@ -99,4 +103,4 @@ class Profile extends React.Component {
   }
 }
 
-export default () => <SubjectConsumer>{subject => <Profile {...{ subject }} />}</SubjectConsumer>;
+export default inject(Profile);

@@ -13,8 +13,8 @@ export class SubjectProvider extends React.Component {
   };
 
   fetchData = async () => {
-    const { isLoading, isFetched } = this.state;
-    if (isLoading || isFetched) {
+    const { isLoading, isFetched, isGuest } = this.state;
+    if (isLoading || isFetched || isGuest) {
       return;
     }
 
@@ -56,6 +56,7 @@ export class SubjectProvider extends React.Component {
   }
 
   state = {
+    isGuest: !localStorage.getItem('cgToken'),
     fetchData: this.fetchData,
     isLoading: false,
     isFetched: false,
@@ -70,4 +71,10 @@ export class SubjectProvider extends React.Component {
   }
 }
 
-export const SubjectConsumer = SubjectContext.Consumer;
+export const inject = component => {
+  return props => (
+    <SubjectContext.Consumer>
+      {subject => React.createElement(component, { ...props, subject })}
+    </SubjectContext.Consumer>
+  );
+};
