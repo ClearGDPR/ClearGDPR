@@ -72,12 +72,6 @@ module.exports = app => {
     asyncHandler(async (req, res) => subjectsController.requestDataAccess(req, res))
   );
 
-  router.post(
-    '/erase-data',
-    controllerOnly,
-    asyncHandler(async (req, res) => subjectsController.eraseData(req, res))
-  );
-
   router.get(
     '/data-status',
     asyncHandler(async (req, res) => subjectsController.getPersonalDataStatus(req, res))
@@ -114,12 +108,6 @@ module.exports = app => {
   );
 
   router.post(
-    '/data-shares/:dataShareId/remove',
-    removeDataShareValidator,
-    asyncHandler(async (req, res) => dataShareController.removeDataShare(req, res))
-  );
-
-  router.post(
     '/data-shares/create',
     createDataShareValidator,
     asyncHandler(async (req, res) => dataShareController.createDataShare(req, res))
@@ -128,5 +116,17 @@ module.exports = app => {
   router.get(
     '/data-shares/list',
     asyncHandler(async (req, res) => dataShareController.getDataShares(req, res))
+  );
+
+  router.post(
+    '/data-shares/:dataShareId/remove',
+    removeDataShareValidator,
+    asyncHandler(async (req, res) => dataShareController.removeDataShare(req, res))
+  );
+
+  router.post(
+    '/erase-data',
+    controllerOnly,
+    asyncHandler(async (req, res) => subjectsController.eraseData(req, res))
   );
 };
