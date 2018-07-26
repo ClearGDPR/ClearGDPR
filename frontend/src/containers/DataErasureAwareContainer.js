@@ -1,6 +1,7 @@
 import React from 'react';
 import LoadingScreen from '../Elements/components/Common/Views/LoadingScreen';
 import DataErasedScreen from '../Elements/components/Common/Views/DataErasedScreen';
+import PropTypes from 'prop-types';
 import { inject } from './SubjectContext';
 
 class Container extends React.Component {
@@ -26,6 +27,12 @@ class Container extends React.Component {
     return <React.Fragment>{this.props.children}</React.Fragment>;
   }
 }
+
+Container.propTypes = {
+  subject: PropTypes.object,
+  history: PropTypes.object,
+  children: PropTypes.array
+};
 
 const AttachedToSubjectContext = inject(Container);
 
