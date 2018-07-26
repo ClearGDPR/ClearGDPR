@@ -2,12 +2,28 @@
 import React from 'react';
 
 import Elements from '../Elements';
+import { SubjectConsumer } from './SubjectContext';
+import LoadingScreen from '../Elements/components/Common/Views/LoadingScreen';
+import DataErasedScreen from '../Elements/components/Common/Views/DataErasedScreen';
 
 class Share extends React.Component {
+  componentDidMount() {
+    this.props.subject.fetchData();
+  }
   render() {
     const ShareData = Elements.element({
       source: 'share-data'
     });
+
+    const { subject } = this.props;
+
+    if (!subject.isFetched) {
+      return <LoadingScreen />;
+    }
+
+    if (subject.isErased) {
+      return <DataErasedScreen />;
+    }
 
     return (
       <React.Fragment>
@@ -34,4 +50,4 @@ class Share extends React.Component {
   }
 }
 
-export default Share;
+export default () => <SubjectConsumer>{subject => <Share {...{ subject }} />}</SubjectConsumer>;

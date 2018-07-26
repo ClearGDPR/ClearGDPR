@@ -3,7 +3,14 @@ import React from 'react';
 
 import Elements from '../Elements';
 
+import { SubjectConsumer } from './SubjectContext';
+import LoadingScreen from '../Elements/components/Common/Views/LoadingScreen';
+import DataErasedScreen from '../Elements/components/Common/Views/DataErasedScreen';
+
 class Profile extends React.Component {
+  componentDidMount() {
+    this.props.subject.fetchData();
+  }
   render() {
     const ForgottenRequestButton = Elements.element({
       source: 'forgotten',
@@ -20,6 +27,16 @@ class Profile extends React.Component {
     const UserDataStatus = Elements.element({
       source: 'data'
     });
+
+    const { subject } = this.props;
+
+    if (!subject.isFetched) {
+      return <LoadingScreen />;
+    }
+
+    if (subject.isErased) {
+      return <DataErasedScreen />;
+    }
 
     return (
       <React.Fragment>
@@ -82,4 +99,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default () => <SubjectConsumer>{subject => <Profile {...{ subject }} />}</SubjectConsumer>;
