@@ -108,6 +108,12 @@ module.exports = app => {
   );
 
   router.post(
+    '/data-shares/:dataShareId/remove',
+    removeDataShareValidator,
+    asyncHandler(async (req, res) => dataShareController.removeDataShare(req, res))
+  );
+
+  router.post(
     '/data-shares/create',
     createDataShareValidator,
     asyncHandler(async (req, res) => dataShareController.createDataShare(req, res))
