@@ -9,7 +9,8 @@
 *       3. In production only the record functions should be used and they should provide all functionality needed to the system
 *       4. There's a bug when we use bytes32 instead of address to identificate the processors. The memory seems to not be cleared out
 *       5. A subject restrictions apply to all the processors, globally
-*       5. This smart contract was compiled without errors or warnings and all functions were tested
+*       6. A subject objection also apply to all processors, globally
+*       7. This smart contract was compiled without errors or warnings and all functions were tested
 */
 
 pragma solidity ^0.4.24; 
@@ -19,8 +20,9 @@ contract ClearGDPR {
     enum State {unconsented, consented, erased}
     struct subjectStatus{
         bool isErased;
+        bool isObjected;
         uint256 rectificationCount;
-        //Bellow are the actions that can be restricted
+        // The 3 booleans bellow are the actions that can be restricted
         bool directMarketing;
         bool emailCommunication;
         bool research;
@@ -33,6 +35,7 @@ contract ClearGDPR {
     event Controller_SubjectDataAccessed(bytes32 subjectId);
     event Controller_SubjectDataRectified(bytes32 subjectId, uint256 rectificationCount);
     event Controller_SubjectDataRestricted(bytes32 subjectId, bool directMarketing, bool emailCommunication, bool research);
+    event Controller_SubjectDataObjected(bytes32 subjectId, bool objection);
     event Controller_SubjectDataErased(bytes32 subjectId); 
     event Processor_SubjectDataErased(bytes32 subjectId, address processor);
     
@@ -74,7 +77,7 @@ contract ClearGDPR {
         return subjects[_subjectId].rectificationCount;
     }
 
-    function getIsErased(bytes32 _subjectId) public view returns(bool){
+    function getIsErased(bytes32 _subjectId) public view returns(bool){ // We should change this to getSubjectErasure
         return subjects[_subjectId].isErased;
     }
 
@@ -84,6 +87,10 @@ contract ClearGDPR {
     
     function getSubjectRestrictions(bytes32 _subjectId) public view returns(bool, bool, bool){
         return (subjects[_subjectId].directMarketing, subjects[_subjectId].emailCommunication, subjects[_subjectId].research);
+    }
+    
+    function getSubjectObjection(bytes32 _subjectId) public view returns(bool){
+        return subjects[_subjectId].isObjected;
     }
 
     function getProcessors() public view returns(address[], uint256){
@@ -99,6 +106,11 @@ contract ClearGDPR {
         subjects[_subjectId].directMarketing = _directMarketing;
         subjects[_subjectId].emailCommunication = _emailCommunication;
         subjects[_subjectId].research = _research;
+        return true;
+    }
+    
+    function setSubjectObjection(bytes32 _subjectId, bool _objection) public returns(bool){
+        subjects[_subjectId].isObjected = _objection;
         return true;
     }
 
@@ -166,6 +178,12 @@ contract ClearGDPR {
         emit Controller_SubjectDataRestricted(_subjectId, _directMarketing, _emailCommunication, _research);
         return true;
     }
+    
+    function recordObjectionByController(bytes32 _subjectId, bool _objection) public onlyController notErased(_subjectId) returns(bool){
+        require(setSubjectObjection(_subjectId, _objection));
+        emit Controller_SubjectDataObjected(_subjectId, _objection);
+        return true;
+    }
 
     function recordErasureByController(bytes32 _subjectId) public onlyController notErased(_subjectId) returns(bool){
         subjects[_subjectId].isErased = true;
@@ -182,7 +200,7 @@ contract ClearGDPR {
 
 /*  ASSUMPTIONS:
 *       1. Only 1 controller per smart contract.
-*       2. Users can only interact directly with the controller. That means data access requests don't need to be informed to the processors.
+*       2. Subjects can only interact directly with the controller. That means data access requests don't need to be informed to the processors.
 *       3. Only controllers can initiate data erasure events.
 *       4. The controller always has consent to use the user data. Else how could the user data be stored in the first place?
 *
@@ -191,5 +209,4 @@ contract ClearGDPR {
 *       2. Implement the add/remove function of processor nodes in the network, or use a system ID for each processor, which would be simpler
 *       3. Study more about memory allocation/deallocation in Solidity. Will need to dive in inline Assembly
 *       4. Consider that each processor can delete their data of a subject, without the data being deleted from the whole network
-*       5. When a subjects gives consent, does that functions as a rectification of data? If not, his data should not be altered when he gives consent again
 */

@@ -25,6 +25,12 @@ class ProcessorsController {
     const subjectRestrictions = await this.subjectsService.getSubjectRestrictions(subjectId);
     res.json(subjectRestrictions);
   }
+
+  async getSubjectObjection(req, res) {
+    const subjectId = req.params.subjectId;
+    const subjectObjection = await this.subjectsService.getSubjectObjection(subjectId);
+    res.json(subjectObjection);
+  }
 }
 
 module.exports = ProcessorsController;

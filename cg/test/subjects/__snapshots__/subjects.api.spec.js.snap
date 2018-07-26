@@ -28,6 +28,20 @@ Object {
 }
 `;
 
+exports[`Tests of subjects objecting to the processing of their data Should not allow a subject that has given consent to object without specifying the objection 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "child \\"objection\\" fails because [\\"objection\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "objection",
+    ],
+    "source": "body",
+  },
+}
+`;
+
 exports[`Tests of subjects restricting the processing of their data Should not allow a subject that has given consent to restrict without specifying the actions to restrict 1`] = `
 Object {
   "error": "Bad Request",

@@ -30,4 +30,11 @@ module.exports = app => {
     asyncHandler(ensureProcessorAccessToSubject),
     asyncHandler(async (req, res) => processorsController.getSubjectRestrictions(req, res))
   );
+
+  router.get(
+    '/subject/:subjectId/get-objection',
+    controllerOnly,
+    asyncHandler(ensureProcessorAccessToSubject),
+    asyncHandler(async (req, res) => processorsController.getSubjectObjection(req, res))
+  );
 };

@@ -78,6 +78,12 @@ async function getSubjectRestrictions(subjectId) {
   return result;
 }
 
+async function getSubjectObjection(subjectId) {
+  const quorumContract = await getContract();
+  let result = await quorumContract.methods.getSubjectObjection(subjectId).call();
+  return result;
+}
+
 async function getProcessors() {
   const quorumContract = await getContract();
   return await quorumContract.methods.getProcessors().call();
@@ -99,6 +105,10 @@ async function setSubjectRestrictions(
     emailCommunication,
     research
   ]);
+}
+
+async function setSubjectObjection(subjectId, objection) {
+  return await runContractMethod('setSubjectObjection', [subjectId, objection]);
 }
 
 async function setProcessors(newProcessors = []) {
@@ -145,6 +155,10 @@ async function recordRestrictionByController(
     emailCommunication,
     research
   ]);
+}
+
+async function recordObjectionByController(subjectId, objection) {
+  return await runContractMethod('recordObjectionByController', [subjectId, objection]);
 }
 
 async function recordErasureByController(subjectId) {
@@ -212,6 +226,18 @@ async function listenerForRestrictionEvent(callback) {
     const research = data.returnValues.research !== null;
 
     callback(data.returnValues.subjectId, directMarketing, emailCommunication, research);
+  });
+}
+
+async function listenerForObjectionEvent(callback) {
+  const quorumContract = await getContract();
+  return await quorumContract.contract.events.Controller_SubjectDataObjected((error, data) => {
+    if (error) {
+      winston.error(`Error handling objection ${error.toString()}`);
+      return;
+    }
+    const objection = data.returnValues.objection !== null;
+    callback(data.returnValues.subjectId, objection);
   });
 }
 
@@ -286,9 +312,11 @@ module.exports = {
   getIsErased,
   getSubjectDataState,
   getSubjectRestrictions,
+  getSubjectObjection,
   getProcessors,
   setSubjectDataState,
   setSubjectRestrictions,
+  setSubjectObjection,
   setProcessors,
   isProcessor,
   areAllValidProcessors,
@@ -297,12 +325,14 @@ module.exports = {
   recordAccessByController,
   recordRectificationByController,
   recordRestrictionByController,
+  recordObjectionByController,
   recordErasureByController,
   recordErasureByProcessor,
   allEvents,
   listenerForConsentEvent,
   listenerForRectificationEvent,
   listenerForRestrictionEvent,
+  listenerForObjectionEvent,
   listenerForErasureEvent,
   listenerForProcessorErasureEvent,
   getPastEvents,

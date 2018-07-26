@@ -65,6 +65,7 @@ describe('Processor requesting data', () => {
     await db('subjects').insert({
       id: subjectId,
       personal_data: encryptForStorage(JSON.stringify(testData), key),
+      objection: false,
       direct_marketing: true,
       email_communication: true,
       research: true
@@ -100,6 +101,7 @@ describe('Processor requesting data', () => {
     await db('subjects').insert({
       id: hash('p2'),
       personal_data: encryptForStorage(JSON.stringify(testData), key),
+      objection: false,
       direct_marketing: true,
       email_communication: true,
       research: true

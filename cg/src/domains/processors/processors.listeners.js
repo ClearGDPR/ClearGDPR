@@ -2,7 +2,8 @@ const {
   listenerForErasureEvent,
   listenerForConsentEvent,
   listenerForRectificationEvent,
-  listenerForRestrictionEvent
+  listenerForRestrictionEvent,
+  listenerForObjectionEvent
 } = require('./../../utils/blockchain');
 const { getDataForSubject } = require('./processors.requests');
 const { blockUntilContractReady } = require('./processors.helpers');
@@ -41,6 +42,13 @@ const startRestrictionEventListener = () => {
   );
 };
 
+const startObjectionEventListener = () => {
+  return listenerForObjectionEvent(async (subjectId, objection) => {
+    winston.info(`Objection event received for subject ${subjectId}`);
+    await subjectsService.object(subjectId, objection);
+  });
+};
+
 const startErasureEventListener = () => {
   return listenerForErasureEvent(async subjectId => {
     winston.info(`Erasure event received for subject ${subjectId}`);
@@ -57,6 +65,7 @@ const startAll = async () => {
   await startConsentEventListener();
   await startRectificationEventListener();
   await startRestrictionEventListener();
+  await startObjectionEventListener();
   await startErasureEventListener();
 };
 
