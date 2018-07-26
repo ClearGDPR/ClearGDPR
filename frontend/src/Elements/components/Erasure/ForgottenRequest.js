@@ -2,19 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ModalView from '../Common/Views/Modal';
-import Checkbox from '../Common/Checkbox';
 import styles from '../../theme/ForgottenRequest.scss';
 
 const about = `The data subject shall have the right to request from the controller the erasure of
 personal data concerning him or her without undue delay and the controller shall have
 the obligation to erase personal data without undue delay where one of the following
 grounds applies:`;
-
-const reasons = [
-  'Personal data is no longer necessary in relation to the purposes for which they were collected or otherwise processed',
-  'The personal data has to be erased for compliance with a legal obligation in Union or Member State law to which the controller is subject',
-  'The personal data has been unlawfully processed'
-];
 
 class ForgottenRequest extends React.PureComponent {
   state = {
@@ -89,13 +82,10 @@ class ForgottenRequest extends React.PureComponent {
         <ModalView open={this.state.openModal} onClose={this.onCloseModal}>
           {!success ? (
             <div className={styles.container}>
-              <div className={styles.left}>
+              <div className={styles.full}>
                 <h2 className={styles.heading}>Erase Data</h2>
                 <h3 className={styles.subheading}>You're about to erase your data</h3>
                 <p className={styles.text}>{about}</p>
-              </div>
-              <div className={styles.right}>
-                {reasons.map((r, i) => <Checkbox id={`erase-${i}`} label={r} key={i} />)}
                 <button
                   className={`button is-primary ${processing ? 'is-loading' : ''}`}
                   onClick={this.eraseData.bind(this)}
