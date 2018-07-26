@@ -1,16 +1,9 @@
 /* eslint react/prop-types: 0 */
 import React from 'react';
-
 import Elements from '../Elements';
-
-import { inject } from './SubjectContext';
-import LoadingScreen from '../Elements/components/Common/Views/LoadingScreen';
-import DataErasedScreen from '../Elements/components/Common/Views/DataErasedScreen';
+import { wrap } from './DataErasureAwareContainer';
 
 class Profile extends React.Component {
-  componentDidMount() {
-    this.props.subject.fetchData();
-  }
   render() {
     const ForgottenRequestButton = Elements.element({
       source: 'forgotten',
@@ -27,20 +20,6 @@ class Profile extends React.Component {
     const UserDataStatus = Elements.element({
       source: 'data'
     });
-
-    const { subject } = this.props;
-
-    if (subject.isGuest) {
-      this.props.history.push('/sign-up');
-    }
-
-    if (!subject.isFetched) {
-      return <LoadingScreen />;
-    }
-
-    if (subject.isErased) {
-      return <DataErasedScreen />;
-    }
 
     return (
       <React.Fragment>
@@ -103,4 +82,4 @@ class Profile extends React.Component {
   }
 }
 
-export default inject(Profile);
+export default wrap(Profile);
