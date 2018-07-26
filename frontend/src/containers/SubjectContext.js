@@ -25,15 +25,15 @@ export class SubjectProvider extends React.Component {
     window.cg.setAccessToken(cgToken);
 
     let data;
-    let dataStatus;
+    let status;
 
     try {
-      dataStatus = await window.cg.Subject.getDataStatus();
+      status = await window.cg.Subject.getDataStatus();
     } catch (e) {
-      dataStatus = null;
+      status = null;
     }
 
-    const isErased = !dataStatus || dataStatus.controller === 2;
+    const isErased = !status || status.controller === 2;
 
     if (!isErased) {
       try {
@@ -47,7 +47,8 @@ export class SubjectProvider extends React.Component {
       isLoading: false,
       isFetched: true,
       isErased,
-      data
+      data,
+      status
     });
   };
 
@@ -60,8 +61,9 @@ export class SubjectProvider extends React.Component {
     fetchData: this.fetchData,
     isLoading: false,
     isFetched: false,
+    isErased: false,
     data: null,
-    isErased: false
+    status: null
   };
 
   render() {
