@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import ModalView from '../Common/Views/Modal';
 import styles from '../../theme/ForgottenRequest.scss';
 
+import { inject } from '../../../containers/SubjectContext';
+
 const about = `The data subject shall have the right to request from the controller the erasure of
 personal data concerning him or her without undue delay and the controller shall have
 the obligation to erase personal data without undue delay where one of the following
@@ -29,6 +31,7 @@ class ForgottenRequest extends React.PureComponent {
             processing: false,
             err: null
           });
+          this.props.subject.initNewSession();
         })
         .catch(err => {
           this.setState({
@@ -105,7 +108,8 @@ class ForgottenRequest extends React.PureComponent {
 }
 
 ForgottenRequest.propTypes = {
-  options: PropTypes.object
+  options: PropTypes.object,
+  subject: PropTypes.object
 };
 
-export default ForgottenRequest;
+export default inject(ForgottenRequest);

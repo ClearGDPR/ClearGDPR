@@ -95,14 +95,18 @@ export class SubjectProvider extends React.Component {
       return;
     }
 
-    this.setState(this._makeNewSubjectSession());
-    console.log(this.state);
+    this._initNewSession();
   }
+
+  _initNewSession = () => {
+    this.setState(this._makeNewSubjectSession());
+  };
 
   _makeNewSubjectSession() {
     return {
       ...DEFAULT_STATE,
       fetchData: this._fetchData,
+      initNewSession: this._initNewSession,
       isGuest: !localStorage.getItem('cgToken')
     };
   }
