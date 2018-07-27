@@ -9,6 +9,10 @@ class Container extends React.Component {
     this.props.subject.fetchData();
   }
 
+  componentDidUpdate() {
+    this.props.subject.fetchData();
+  }
+
   render() {
     const { subject } = this.props;
     if (subject.isGuest) {
@@ -30,7 +34,7 @@ class Container extends React.Component {
 Container.propTypes = {
   subject: PropTypes.object,
   history: PropTypes.object,
-  children: PropTypes.array
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 
 const AttachedToSubjectContext = inject(Container);
