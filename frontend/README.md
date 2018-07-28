@@ -10,7 +10,7 @@ This package has 3 main sub-packages. We are trying to build a SDK of usable and
 ├─ scripts
 └─ src
    ├─ components   # Dumb components
-   ├─ containers   # Smart components (aka containers) that connect to redux
+   ├─ containers   # Smart components (aka containers) that connect to Elements and JS-SDK
    ├─ config.js
    ├─ history.js
    ├─ index.js     # where the react app is mounted
@@ -55,12 +55,12 @@ These two are the main patterns the Core SDK is based on:
 └─ src
    └─ Elements
       ├─ components
-      |  ├─ Common		      # Reusable components for all the Rights
-      |  ├─ Consent		      # Right to Consent Components
-      |  ├─ Erasure		      # Right to be Forgotten Components
-      |  ├─ Portability		  # Data Portability Components
-      |  ├─ Processors		  # Processors Components (used by other components)
-      |  ├─ Rectification		# Right to Rectification Components
+      |  ├─ Common          # Reusable components for all the Rights
+      |  ├─ Consent         # Right to Consent Components
+      |  ├─ Erasure         # Right to be Forgotten Components
+      |  ├─ Portability     # Data Portability Components
+      |  ├─ Processors      # Processors Components (used by other components)
+      |  ├─ Rectification   # Right to Rectification Components
       |  └─ Share           # Data Sharing Componets
       ├─ theme              # Default styling
       ├─ utils              # Useful functions
