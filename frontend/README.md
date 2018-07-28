@@ -1,53 +1,74 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+# Frontend 
 
-- [Frontend](#frontend)
-  - [Directory structure](#directory-structure)
+This package has 3 main sub-packages. We are trying to build a SDK of usable and simple to integrate components. Since different the approaches of implementing and solving the way a Subject request right to control of his own data, strategy followed is to figure out the best flow and then adding the recyclable components to the main SDK.
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# Frontend
-
-This project uses many libraries, including:
-
-* [redux](https://redux.js.org/)
-* [react router](https://github.com/ReactTraining/react-router)
-* [redux saga](https://github.com/redux-saga/redux-saga)
-
-It is also prepared to use
-[redux-cli](https://github.com/SpencerCDixon/redux-cli) so you can create new
-redux reducers and react containers and components by using:
-
-```bash
-npm i redux-cli -g # Install the CLI tool first
-
-redux g duck myreducer
-redux g dumb MyComponent
-redux g smart MyContainer
-```
-
-## Directory structure
-
-Main files and directories of the application
+## Demo
 
 ```
-frontend
 ├─ config
 ├─ public          # Public assets (e.g. images)
 ├─ scripts
 └─ src
    ├─ components   # Dumb components
    ├─ containers   # Smart components (aka containers) that connect to redux
-   ├─ redux
-   │  ├─ api       # code that intereacts with the backend
-   │  ├─ modules   # redux reducers, constants and action creators
-   │  ├─ sagas     # redux sagas
-   │  └─ store.js  # where the redux store is created and configured
-   ├─ shared       # utilities
    ├─ config.js
    ├─ history.js
    ├─ index.js     # where the react app is mounted
    ├─ routes.js    # react-router configuration
    └─ yarn.lock
 ```
+
+## JS-SDK
+
+SDK design is based on several patterns, but main idea is to provide a way to abstract calls to the CG API, and have a way to trigger internal Events when some specific actions is done.
+
+These two are the main patterns the Core SDK is based on:
+
+- https://github.com/dropbox/dropbox-sdk-js
+- https://developers.facebook.com/docs/javascript/reference/v3.1
+
+```
+├─ config
+├─ scripts
+└─ src
+   └─ js-sdk
+      ├─ common     # Reusable functions
+      ├─ factories  # Service provider of different functions
+      ├─ modules    # Each module represents a specification of the CG API
+      ├─ cg.js      # CG SDK definition require Token and register all the modules
+      ├─ config.js  # Default configuration, could be overwritten
+      └─ index.js   
+```
+
+
+## Elements SDK
+
+These two are the main patterns the Core SDK is based on:
+
+- https://github.com/stripe/react-stripe-elements
+- https://auth0.com/docs/libraries/lock/v11
+
+
+```
+├─ config
+├─ scripts
+└─ src
+   └─ Elements
+      ├─ components
+      |  ├─ Common		      # Reusable components for all the Rights
+      |  ├─ Consent		      # Right to Consent Components
+      |  ├─ Erasure		      # Right to be Forgotten Components
+      |  ├─ Portability		  # Data Portability Components
+      |  ├─ Processors		  # Processors Components (used by other components)
+      |  ├─ Rectification		# Right to Rectification Components
+      |  └─ Share           # Data Sharing Componets
+      ├─ theme              # Default styling
+      ├─ utils              # Useful functions
+      ├─ Element.js         # Factory to instance different Components
+      ├─ Elements.js        # Inject `window.cg` or check if exists and give access to different flows
+      └─ index.js
+```
+
+
+
+
