@@ -4,7 +4,7 @@ import format from 'helpers/date-formatter';
 import TableCard from 'components/core/cards/dashboard/TableCard';
 import Event from './Event';
 
-const EventsList = ({ subjects, isLoading, errorState }) => {
+const EventsList = ({ events, isLoading, errorState }) => {
   const columns = {
     event: { title: 'Event' },
     date: { title: 'Date' }
@@ -12,19 +12,16 @@ const EventsList = ({ subjects, isLoading, errorState }) => {
 
   // TODO: loading?1
 
-  // Once we start reaching into data here, this code becomes janky since data is not ours
-  /*const rows = subjects.map(subject => {
-    return {
-      event: 'test'
-    };
-  });*/
-  const rows = [{ event: <Event />, date: format(new Date()) }];
+  const rows = events.map(eventData => ({
+    event: <Event event={eventData} />,
+    date: format(eventData.time)
+  }));
 
   return <TableCard columns={columns} rows={rows} title="Events" />;
 };
 
 EventsList.propTypes = {
-  subjects: PropTypes.array,
+  events: PropTypes.array,
   isLoading: PropTypes.bool,
   errorState: PropTypes.bool
 };
