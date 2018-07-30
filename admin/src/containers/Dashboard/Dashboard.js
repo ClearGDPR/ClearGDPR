@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SubjectsList from './Widgets/SubjectsList';
+import EventsList from './Widgets/EventsList';
 import ControllerConsentDial from 'components/Dashboard/Widgets/ControllerConsentDial';
 import ConsentByProcessor from 'components/Dashboard/Widgets/ConsentByProcessor';
 import { StatsConsumer } from './StatsContext';
@@ -29,7 +30,7 @@ class Stats extends Component {
 }
 
 Stats.propTypes = {
-  stats: PropTypes.Object,
+  stats: PropTypes.object,
   fetchStats: PropTypes.func,
   isLoading: PropTypes.bool
 };
@@ -38,9 +39,8 @@ export default class Dashboard extends Component {
   render() {
     return (
       <section className="cards">
-        <div className="row">
-          <SubjectsList />
-        </div>
+        <SubjectsList />
+        <EventsList />
         <div className="row">
           <StatsConsumer>{statsState => <Stats {...statsState} />}</StatsConsumer>
         </div>
