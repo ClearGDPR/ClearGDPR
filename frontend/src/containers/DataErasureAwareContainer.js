@@ -1,6 +1,6 @@
 import React from 'react';
-import LoadingScreen from '../Elements/components/Common/Views/LoadingScreen';
-import DataErasedScreen from '../Elements/components/Common/Views/DataErasedScreen';
+import LoadingScreen from '../components/LoadingScreen';
+import DataErasedScreen from '../components/DataErasedScreen';
 import PropTypes from 'prop-types';
 import { inject } from './SubjectContext';
 

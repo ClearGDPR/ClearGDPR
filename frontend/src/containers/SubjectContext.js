@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { DATA_ERASED } from '../constants';
 
 const SubjectContext = React.createContext();
 
@@ -15,7 +16,7 @@ let originalLocalStorageSetItem;
 const EVENT_NAME = 'localStorage.itemInserted';
 const LOCAL_STORAGE_EVENTS = [EVENT_NAME, 'storage'];
 
-function upgradeLocalStorage() {
+const upgradeLocalStorage = function() {
   if (originalLocalStorageSetItem) {
     return;
   }
@@ -29,12 +30,12 @@ function upgradeLocalStorage() {
     keyboardEvent.value = arguments[1];
     window.dispatchEvent(keyboardEvent);
   };
-}
+};
 
-function downgradeLocalStorage() {
+const downgradeLocalStorage = function() {
   localStorage.setItem = originalLocalStorageSetItem;
   originalLocalStorageSetItem = null;
-}
+};
 
 export class SubjectProvider extends React.Component {
   static propTypes = {
@@ -66,7 +67,7 @@ export class SubjectProvider extends React.Component {
       status = null;
     }
 
-    const isErased = !status || status.controller === 2;
+    const isErased = !status || status.controller === DATA_ERASED;
 
     if (!isErased) {
       try {
