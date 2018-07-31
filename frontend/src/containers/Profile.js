@@ -1,7 +1,7 @@
 /* eslint react/prop-types: 0 */
 import React from 'react';
-
 import Elements from '../Elements';
+import { wrap } from './DataErasureAwareContainer';
 
 class Profile extends React.Component {
   render() {
@@ -82,4 +82,4 @@ class Profile extends React.Component {
   }
 }
 
-export default Profile;
+export default wrap(Profile);

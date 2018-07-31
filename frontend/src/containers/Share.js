@@ -2,6 +2,7 @@
 import React from 'react';
 
 import Elements from '../Elements';
+import { wrap } from './DataErasureAwareContainer';
 
 class Share extends React.Component {
   render() {
@@ -34,4 +35,4 @@ class Share extends React.Component {
   }
 }
 
-export default Share;
+export default wrap(Share);

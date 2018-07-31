@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { inject } from '../../../containers/SubjectContext';
 
 import styles from '../../theme/SubjectData.scss';
 
@@ -29,27 +31,12 @@ class UserData extends React.PureComponent {
         .catch(err => {
           console.log('failure', err);
         });
-
-      window.cg.Subject.accessData()
-        .then(data => {
-          this.setState({ data });
-        })
-        .catch(err => {
-          console.log('failure', err);
-        });
-
-      window.cg.Subject.getDataStatus()
-        .then(status => {
-          this.setState({ status });
-        })
-        .catch(err => {
-          console.log('failure', err);
-        });
     }, 1000);
   }
 
   render() {
-    const { data, status, processors } = this.state;
+    const { processors } = this.state;
+    const { data, status } = this.props.subject;
 
     if (!data || !status) {
       return <div>Loading</div>;
@@ -98,4 +85,8 @@ class UserData extends React.PureComponent {
   }
 }
 
-export default UserData;
+UserData.propTypes = {
+  subject: PropTypes.object
+};
+
+export default inject(UserData);

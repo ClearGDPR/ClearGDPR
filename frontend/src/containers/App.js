@@ -2,13 +2,14 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { SubjectProvider } from './SubjectContext';
 
 class App extends Component {
   render() {
     const { props } = this;
     const isGuest = !localStorage.getItem('cgToken');
     return (
-      <div>
+      <SubjectProvider>
         <nav className="navbar is-white" aria-label="main navigation">
           <div className="navbar-brand">
             <Link className="navbar-item" to="/">
@@ -87,7 +88,7 @@ class App extends Component {
         </div>
 
         {props.children}
-      </div>
+      </SubjectProvider>
     );
   }
 }
