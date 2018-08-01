@@ -53,4 +53,17 @@ describe('(Container) Add Processor', () => {
     await TestUtils.flushPromises();
     expect(props.closePanel).toHaveBeenCalled();
   });
+
+  it('should be able to add processor without scopes', () => {
+    const { component } = setupShallow();
+    const stubProcessor = {
+      name: 'Processor Name',
+      logoUrl: 'https://a_valid_url.com/file.png'
+    };
+    try {
+      component.instance().onSubmit(stubProcessor);
+    } catch (e) {
+      expect(true).toBe(false);
+    }
+  });
 });

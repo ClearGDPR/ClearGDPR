@@ -21,7 +21,7 @@ export class AddProcessorContainer extends React.Component {
       isLoading: true
     });
 
-    processor.scopes = Object.keys(processor.scopes).reduce((scopes, s) => {
+    processor.scopes = Object.keys(processor.scopes || {}).reduce((scopes, s) => {
       return processor.scopes[s] ? scopes.concat(s) : scopes;
     }, []);
 
