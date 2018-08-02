@@ -4,11 +4,11 @@ const { getMyAddress } = require('../helpers');
 class QuorumContract {
   constructor(web3, contractAbiJson = undefined, contractAddress) {
     this.web3 = web3;
-    const contractABIDefinition = contractAbiJson || require('./contract-abi.json');
+    const contractAbiDefinition = contractAbiJson || require('./contract-abi.json');
     if (contractAddress) {
-      this.contract = new web3.eth.Contract(contractABIDefinition, contractAddress);
+      this.contract = new web3.eth.Contract(contractAbiDefinition, contractAddress);
     } else {
-      this.contract = new web3.eth.Contract(contractABIDefinition);
+      this.contract = new web3.eth.Contract(contractAbiDefinition);
     }
 
     this.contractOwnerAddress = process.env.CONTRACT_OWNER_ADDRESS;
@@ -36,11 +36,36 @@ class QuorumContract {
     await this._unlockAccount(this.contractOwnerAddress);
     const newContract = await this.contract
       .deploy({ data })
-      .send({ gas: '4700000', from: this.contractOwnerAddress });
+      .send({ 
+        gas: '4700000',
+        from: this.contractOwnerAddress,
+        // If we need to deploy a private contract from an existing contract, use 'privateFor' or 'privateFrom' as shown below
+        // privateFor: ["kPidpmUjAtagI4lLDvP2y2pPYDUVqLOk/wLa7q9sums="] // The privateFor specifies which nodes will have access to the private smart contract. The value is an array of strings, in which each string is the public key of the node inside the Quorum network. It's the public key used by the Enclave.
+        // privateFrom: '7ZtpI6yn969H3NHBukwsTtO+E/LXtRO6FtH3vIBU/iM='
+      });
 
     this.contract = newContract;
     return newContract;
   }
+
+  // This function will be used in the future, leave it alone for now
+  // async deployPrivateContract(contractByteCode){
+  //   await this._unlockAccount(this.contractOwnerAddress);
+  //   let privateContractAddress;
+  //   await this.web3.eth.sendTransaction(
+  //     {
+  //       from: this.contractOwnerAddress,
+  //       gas: '4700000',
+  //       data: contractByteCode,
+  //       // privateFrom: '7ZtpI6yn969H3NHBukwsTtO+E/LXtRO6FtH3vIBU/iM='
+  //       privateFor: ["kPidpmUjAtagI4lLDvP2y2pPYDUVqLOk/wLa7q9sums="]
+  //     }).then(function(receipt){
+  //       // console.log(receipt);
+  //       privateContractAddress = receipt.contractAddress;
+  //     });
+  //  
+  //   return privateContractAddress;
+  // }
 
   get methods() {
     return this.contract.methods;

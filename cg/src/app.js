@@ -26,7 +26,6 @@ require('./routes/robots')(app);
 require('./routes/index')(app);
 expressWs(app);
 
-//
 // API routes
 const api = express.Router();
 require('./domains/subjects/subjects.routes')(api);

@@ -3,13 +3,13 @@
 
 const winston = require('winston');
 const ContractService = require('../src/domains/management/contract/contract.service');
-const contractABI = require('../src/utils/blockchain/contract-abi.json');
+const contractAbiJson = require('../src/utils/blockchain/contract-abi.json');
 const contractByteCode = require('../src/utils/blockchain/contract-bytecode.js');
 
 const service = new ContractService();
 
 async function deployContract() {
-  const address = await service.deployContract(contractABI, contractByteCode);
+  const address = await service.deployContract(contractAbiJson, contractByteCode);
   winston.info(`Contract created at address: ${address}`);
 }
 
