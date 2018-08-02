@@ -27,7 +27,6 @@ const {
 
 // To test the functions, uncomment one and execute it, one at a time.
 
-
 // getRectificationCount("0x1111111111111111111111111111111111111111111111111111111111111111")
 //   .then(console.log)
 //   .catch(console.error)

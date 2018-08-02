@@ -1,10 +1,6 @@
 const { db } = require('./../../../db');
 const { getConfig, updateConfig } = require('../../shared-kernel/config.repository');
-const { 
-  CONTRACT_CONFIG_KEY, 
-  deployContract,  
-  allEvents 
-} = require('../../../utils/blockchain');
+const { CONTRACT_CONFIG_KEY, deployContract, allEvents } = require('../../../utils/blockchain');
 const winston = require('winston');
 
 async function addressToName(address) {
