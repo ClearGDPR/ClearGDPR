@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Switch should render correctly 1`] = `
+<div
+  className=" "
+  onClick={[Function]}
+>
+  <div />
+</div>
+`;

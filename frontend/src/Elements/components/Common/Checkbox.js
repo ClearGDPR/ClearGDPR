@@ -8,17 +8,13 @@ class Checkbox extends React.PureComponent {
     const exStyles = this.props.styles || {};
 
     return (
-      <label
-        className={styles.labelWrapper}
-        htmlFor={this.props.id}
-        name={this.props.name}
-        onChange={this.props.onChange}
-      >
+      <label className={styles.labelWrapper} htmlFor={this.props.id} name={this.props.name}>
         <input
           className={styles.checkbox}
           type="checkbox"
           id={this.props.id}
           required={this.props.required}
+          onChange={this.props.onChange}
         />
         <span style={exStyles.label} className={styles.label}>
           {this.props.label}

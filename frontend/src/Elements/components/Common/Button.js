@@ -11,7 +11,7 @@ class Button extends React.Component {
   }
 
   handleClick() {
-    console.log('should open sidebar/menu/modal', this);
+    this.props.onClick();
   }
 
   render() {
@@ -24,7 +24,7 @@ class Button extends React.Component {
 }
 
 Button.propTypes = {
-  styles: PropTypes.object
+  onClick: PropTypes.func
 };
 
 export default Button;
