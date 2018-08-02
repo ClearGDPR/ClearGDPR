@@ -14,16 +14,11 @@ class Processor extends React.PureComponent {
 
   render() {
     const { processor } = this.props;
-
     return (
       <div className={styles.container}>
         <div className={styles.processor}>
           <img className={styles.logo} src={processor.logoUrl} alt={processor.name} />
-          <Switch
-            className={styles.switch}
-            value={processor.enabled}
-            onChange={this.onChange.bind(this)}
-          />
+          <Switch value={processor.enabled} onChange={this.onChange.bind(this)} />
         </div>
         <div className={styles.description}>{processor.description}</div>
         <ul className={styles.scopes}>
