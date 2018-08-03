@@ -9,29 +9,24 @@ class ExportRequest extends React.PureComponent {
     error: null
   };
 
-  eraseData() {
+  async eraseData() {
     this.setState({ processing: true });
-    setTimeout(() => {
-      const cgToken = localStorage.getItem('cgToken');
-      window.cg.setAccessToken(cgToken);
-      window.cg.Subject.accessData()
-        .then(data => {
-          const blob = new Blob([JSON.stringify(data)], { type: 'text/plain;charset=utf-8' });
-          FileSaver.saveAs(blob, 'personal_data.json');
-          this.setState({
-            success: true,
-            processing: false,
-            err: null
-          });
-        })
-        .catch(err => {
-          this.setState({
-            success: false,
-            processing: false,
-            error: err
-          });
-        });
-    }, 1000);
+    try {
+      const data = await this.props.cg.Subject.accessData();
+      const blob = new Blob([JSON.stringify(data)], { type: 'text/plain;charset=utf-8' });
+      FileSaver.saveAs(blob, 'personal_data.json');
+      this.setState({
+        success: true,
+        processing: false,
+        err: null
+      });
+    } catch (e) {
+      this.setState({
+        success: false,
+        processing: false,
+        error: e.toString()
+      });
+    }
   }
 
   render() {
@@ -50,7 +45,8 @@ class ExportRequest extends React.PureComponent {
 }
 
 ExportRequest.propTypes = {
-  options: PropTypes.object
+  options: PropTypes.object,
+  cg: PropTypes.object
 };
 
 export default ExportRequest;

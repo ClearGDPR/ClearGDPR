@@ -18,14 +18,14 @@ const ELEMENT_TYPES = {
  * Factory to setup elements by `source` type.
  */
 export default class Element {
-  static create({ source, ...options }) {
+  static create({ source, cg, ...options }) {
     switch (source) {
       case ELEMENT_TYPES.CONSENT:
         return <Consent options={options} />;
       case ELEMENT_TYPES.ERASURE:
         return <ForgottenRequest options={options} />;
       case ELEMENT_TYPES.DATA_EXPORT:
-        return <ExportRequest options={options} />;
+        return <ExportRequest {...{ options, cg }} />;
       case ELEMENT_TYPES.DATA_STATUS:
         return <UserData options={options} />;
       case ELEMENT_TYPES.DATA_SHARE:

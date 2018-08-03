@@ -13,8 +13,9 @@ class Elements {
     //   <div class="cg-consent" data-sitekey="your_site_key"></div>
     // TODO: `apiKey` is a way to whitelist client usage. A warning should be triggered if not defined.
     if (!window.cg) {
-      const cg = new CG({ apiKey, apiUrl });
-      window.cg = cg;
+      this.cg = new CG({ apiKey, apiUrl });
+      this.cg.setAccessToken(localStorage.getItem('cgToken'));
+      window.cg = this.cg;
     }
   }
 
@@ -30,11 +31,7 @@ class Elements {
    * Return a new Element
    */
   element(elementOptions) {
-    if (!window.cg) {
-      throw new Error('CG SDK is not defined');
-    }
-
-    return Element.create({ ...elementOptions });
+    return Element.create({ ...elementOptions, cg: this.cg });
   }
 }
 
