@@ -15,23 +15,17 @@ class UserData extends React.PureComponent {
   };
 
   componentDidMount() {
-    // TODO: Improve cache, save to elements store, add localStorage
-    setTimeout(() => {
-      const cgToken = localStorage.getItem('cgToken');
-
-      window.cg.setAccessToken(cgToken);
-      window.cg.Subject.getProcessors()
-        .then(processors => {
-          processors.map(p => {
-            p.enabled = true;
-            return p;
-          });
-          this.setState({ processors });
-        })
-        .catch(err => {
-          console.log('failure', err);
+    this.props.cg.Subject.getProcessors()
+      .then(processors => {
+        processors.map(p => {
+          p.enabled = true;
+          return p;
         });
-    }, 1000);
+        this.setState({ processors });
+      })
+      .catch(err => {
+        console.log('failure', err);
+      });
   }
 
   render() {
@@ -86,7 +80,8 @@ class UserData extends React.PureComponent {
 }
 
 UserData.propTypes = {
-  subject: PropTypes.object
+  subject: PropTypes.object,
+  cg: PropTypes.object
 };
 
 export default inject(UserData);

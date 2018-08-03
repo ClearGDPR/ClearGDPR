@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Elements) Consent should render correctly 1`] = `
+<Consent
+  cg={
+    CG {
+      "Events": Events {
+        "_events": Object {},
+      },
+      "Processors": Processors {
+        "_request": RequestFactory {
+          "config": [Circular],
+        },
+      },
+      "Subject": Subject {
+        "_request": RequestFactory {
+          "config": [Circular],
+        },
+        "getProcessors": [Function],
+        "giveConsent": [Function],
+      },
+      "_config": Object {
+        "apiKey": "test",
+        "apiTimeout": 30,
+        "apiUrl": "test",
+        "apiVersion": undefined,
+        "auth": null,
+        "debug": false,
+      },
+    }
+  }
+  options={
+    Object {
+      "label": "Test label",
+      "onSuccessCallback": [Function],
+      "required": true,
+      "styles": Object {
+        "label": Object {
+          "fontSize": "12px",
+        },
+      },
+    }
+  }
+>
+  <div>
+    <Checkbox
+      label="Test label"
+      name="cleargdpr-give-consent"
+      required={true}
+      styles={
+        Object {
+          "label": Object {
+            "fontSize": "12px",
+          },
+        }
+      }
+    >
+      <label
+        name="cleargdpr-give-consent"
+      >
+        <input
+          required={true}
+          type="checkbox"
+        />
+        <span
+          style={
+            Object {
+              "fontSize": "12px",
+            }
+          }
+        >
+          Test label
+        </span>
+      </label>
+    </Checkbox>
+    <div
+      style={
+        Object {
+          "padding": "10px 0 0 40px",
+          "position": "relative",
+        }
+      }
+    >
+      <button
+        className="button is-primary is-outlined is-small"
+        onClick={[Function]}
+      >
+        <span
+          aria-labelledby="lock"
+          role="img"
+        >
+          🔒
+        </span>
+        Config Processors
+      </button>
+    </div>
+  </div>
+</Consent>
+`;

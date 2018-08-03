@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ForgottenRequest should render correctly 1`] = `
+<Component
+  cg={
+    CG {
+      "Events": Events {
+        "_events": Object {},
+      },
+      "Processors": Processors {
+        "_request": RequestFactory {
+          "config": [Circular],
+        },
+      },
+      "Subject": Subject {
+        "_request": RequestFactory {
+          "config": [Circular],
+        },
+        "eraseData": [Function],
+      },
+      "_config": Object {
+        "apiKey": "test",
+        "apiTimeout": 30,
+        "apiUrl": "test",
+        "apiVersion": undefined,
+        "auth": null,
+        "debug": false,
+      },
+    }
+  }
+  options={
+    Object {
+      "label": "Erase",
+    }
+  }
+  subject={
+    Object {
+      "data": Object {},
+      "initNewSession": [Function],
+      "status": 1,
+    }
+  }
+>
+  <ForgottenRequest
+    cg={
+      CG {
+        "Events": Events {
+          "_events": Object {},
+        },
+        "Processors": Processors {
+          "_request": RequestFactory {
+            "config": [Circular],
+          },
+        },
+        "Subject": Subject {
+          "_request": RequestFactory {
+            "config": [Circular],
+          },
+          "eraseData": [Function],
+        },
+        "_config": Object {
+          "apiKey": "test",
+          "apiTimeout": 30,
+          "apiUrl": "test",
+          "apiVersion": undefined,
+          "auth": null,
+          "debug": false,
+        },
+      }
+    }
+    options={
+      Object {
+        "label": "Erase",
+      }
+    }
+  >
+    <button
+      className="button is-primary"
+      onClick={[Function]}
+    >
+      Erase
+    </button>
+    <ModalView
+      onClose={[Function]}
+      open={false}
+    >
+      <Modal
+        animationDuration={500}
+        center={false}
+        classNames={
+          Object {
+            "0": "M",
+            "1": "o",
+            "2": "d",
+            "3": "a",
+            "4": "l",
+            "5": ".",
+            "6": "s",
+            "7": "c",
+            "8": "s",
+            "9": "s",
+          }
+        }
+        classes={
+          Object {
+            "closeButton": "styles_closeButton__20ID4",
+            "closeIcon": "styles_closeIcon__1QwbI",
+            "modal": "styles_modal__gNwvD",
+            "overlay": "styles_overlay__CLSq-",
+            "overlayCenter": "styles_overlayCenter__YHoO7",
+            "transitionEnter": "styles_transitionEnter__3j_-a",
+            "transitionEnterActive": "styles_transitionEnterActive___eQs7",
+            "transitionExit": "styles_transitionExit__1KmEf",
+            "transitionExitActive": "styles_transitionExitActive__1nQXw",
+          }
+        }
+        closeIconSize={28}
+        closeIconSvgPath={
+          <path
+            d="M28.5 9.62L26.38 7.5 18 15.88 9.62 7.5 7.5 9.62 15.88 18 7.5 26.38l2.12 2.12L18 20.12l8.38 8.38 2.12-2.12L20.12 18z"
+          />
+        }
+        closeOnEsc={true}
+        closeOnOverlayClick={true}
+        onClose={[Function]}
+        onEntered={null}
+        onEscKeyDown={null}
+        onExited={null}
+        onOverlayClick={null}
+        open={false}
+        showCloseIcon={true}
+        styles={Object {}}
+      />
+    </ModalView>
+  </ForgottenRequest>
+</Component>
+`;
