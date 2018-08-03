@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExportRequest should render correctly 1`] = `
+<button
+  className="button is-primary"
+  disabled={false}
+  onClick={[Function]}
+>
+  <React.Fragment>
+    Load data
+  </React.Fragment>
+</button>
+`;
