@@ -21,13 +21,13 @@ export default class Element {
   static create({ source, cg, ...options }) {
     switch (source) {
       case ELEMENT_TYPES.CONSENT:
-        return <Consent options={options} />;
+        return <Consent {...{ options, cg }} />;
       case ELEMENT_TYPES.ERASURE:
-        return <ForgottenRequest options={options} />;
+        return <ForgottenRequest {...{ options, cg }} />;
       case ELEMENT_TYPES.DATA_EXPORT:
         return <ExportRequest {...{ options, cg }} />;
       case ELEMENT_TYPES.DATA_STATUS:
-        return <UserData options={options} />;
+        return <UserData {...{ options, cg }} />;
       case ELEMENT_TYPES.DATA_SHARE:
         return <ShareData options={options} />;
       default:

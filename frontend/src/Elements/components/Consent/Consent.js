@@ -13,29 +13,28 @@ class Consent extends React.PureComponent {
     showProcessors: false
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     if (!this.state.processors.lenght) {
-      window.cg.Subject.getProcessors()
-        .then(processors => {
-          processors.map(p => {
+      try {
+        const processors = await this.props.cg.Subject.getProcessors();
+        this.setState({
+          processors: processors.map(p => {
             p.enabled = true;
             return p;
-          });
-          this.setState({ processors });
-        })
-        .catch(err => {
-          console.log('failure', err);
+          })
         });
+      } catch (e) {
+        console.log('failure', e);
+      }
     }
 
-    const form = ReactDOM.findDOMNode(this).parentNode;
-    form.addEventListener('submit', this.waitForToken, false);
+    this.form = ReactDOM.findDOMNode(this).parentNode;
+    this.form.addEventListener('submit', this.waitForToken, false);
   }
 
   componentWillUnmount() {
-    const form = ReactDOM.findDOMNode(this).parentNode;
-    form.removeEventListener('submit', () => {});
-    window.cg.Events.clear('auth.setAccessToken');
+    this.form.removeEventListener('submit', () => {});
+    this.props.cg.Events.clear('auth.setAccessToken');
   }
 
   toggleProcessors = e => {
@@ -46,57 +45,36 @@ class Consent extends React.PureComponent {
     }));
   };
 
-  onSubmit = e => {
-    if (this.props.options.onSubmit) {
-      this.props.options.onSubmit();
-    }
-  };
-
-  onChange = e => {
-    if (this.props.options.onChange) {
-      this.props.options.onChange();
-    }
-  };
-
-  callback = e => {
-    if (this.props.options.callbackFn) {
-      this.props.options.callbackFn();
-    }
-  };
-
   waitForToken = e => {
     // Listen to token setup for CG SDK, then launch related events.
-    window.cg.Events.subscribe('auth.setAccessToken', token => {
+    this.props.cg.Events.subscribe('auth.setAccessToken', token => {
       this.handleGiveConsent(e, token);
     });
   };
 
-  handleGiveConsent = e => {
+  handleGiveConsent = async e => {
     e.preventDefault();
 
-    let data = {};
     let processors = this.state.processors.slice();
 
     // Get Data from parent form
-    const form = ReactDOM.findDOMNode(this).parentNode;
-
-    for (let field in { ...form }) {
-      const input = form[field];
-      const hasConsent = input.attributes && input.attributes.getNamedItem('data-cleargdpr');
-      if (hasConsent && hasConsent.value === 'true' && input.value) {
-        data[input.name] = input.value;
-      }
-    }
-
-    this.giveConsent(data, processors.filter(p => p.enabled).map(p => p.id))
-      .then(() => {
-        if (this.props.options.onSuccessCallback) {
-          this.props.options.onSuccessCallback();
+    const data = Array.prototype.slice
+      .call(this.form.querySelectorAll('[data-cleargdpr="true"]'), 0)
+      .reduce((result, formField) => {
+        if (formField.value) {
+          result[formField.name] = formField.value;
         }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+        return result;
+      }, []);
+
+    try {
+      await this.giveConsent(data, processors.filter(p => p.enabled).map(p => p.id));
+      if (this.props.options.onSuccessCallback) {
+        this.props.options.onSuccessCallback();
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   onProcessorChange = processor => {
@@ -114,11 +92,11 @@ class Consent extends React.PureComponent {
       processors: [...processors]
     };
 
-    await window.cg.Subject.giveConsent(payload)
-      .then(() => {})
-      .catch(err => {
-        console.log('failure', err);
-      });
+    try {
+      await this.props.cg.Subject.giveConsent(payload);
+    } catch (e) {
+      console.log('failure', e);
+    }
   };
 
   render() {
@@ -155,7 +133,8 @@ class Consent extends React.PureComponent {
 }
 
 Consent.propTypes = {
-  options: PropTypes.object
+  options: PropTypes.object,
+  cg: PropTypes.object
 };
 
 export default Consent;

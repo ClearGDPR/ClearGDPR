@@ -104,12 +104,12 @@ class Events {
 
   clear(eventName) {
     delete this._events[eventName];
-  };
+  }
 
   once(eventName, listener) {
-    this.subscribe(eventName, function f () {
+    this.subscribe(eventName, function f() {
       this.clear(eventName);
       listener.apply(this, arguments);
     });
-  };
+  }
 }

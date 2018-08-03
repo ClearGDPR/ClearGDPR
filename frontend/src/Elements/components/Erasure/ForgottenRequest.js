@@ -21,26 +21,22 @@ class ForgottenRequest extends React.PureComponent {
 
   eraseData() {
     this.setState({ processing: true });
-    setTimeout(() => {
-      const cgToken = localStorage.getItem('cgToken');
-      window.cg.setAccessToken(cgToken);
-      window.cg.Subject.eraseData()
-        .then(() => {
-          this.setState({
-            success: true,
-            processing: false,
-            err: null
-          });
-          this.props.subject.initNewSession();
-        })
-        .catch(err => {
-          this.setState({
-            success: false,
-            processing: false,
-            error: err
-          });
+    this.props.cg.Subject.eraseData()
+      .then(() => {
+        this.setState({
+          success: true,
+          processing: false,
+          err: null
         });
-    }, 1000);
+        this.props.subject.initNewSession();
+      })
+      .catch(err => {
+        this.setState({
+          success: false,
+          processing: false,
+          error: err
+        });
+      });
   }
 
   handleClick(e) {
@@ -109,7 +105,8 @@ class ForgottenRequest extends React.PureComponent {
 
 ForgottenRequest.propTypes = {
   options: PropTypes.object,
-  subject: PropTypes.object
+  subject: PropTypes.object,
+  cg: PropTypes.object
 };
 
 export default inject(ForgottenRequest);
