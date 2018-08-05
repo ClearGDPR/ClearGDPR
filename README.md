@@ -37,7 +37,7 @@ The project is split into multiple services, each contained within it's own dire
 ```
 project root
 ├─ quorum                           # Blockchain related docker images and helper tools
-├─ og                               # Code for the ClearGDPR API implementation
+├─ cg                               # Code for the ClearGDPR API implementation
 ├─ frontend                         # Example React UI to interact with ClearGDPR API
 ├─ api                              # Example back-end React UI to interact with ClearGDPR API
 ├─ docs                             # Documentation artifacts (images, documents, etc.)
