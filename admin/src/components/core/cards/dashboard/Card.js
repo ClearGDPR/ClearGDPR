@@ -18,7 +18,7 @@ const Card = props => {
 Card.propTypes = {
   onClick: PropTypes.func,
   cols: PropTypes.number.isRequired,
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   children: PropTypes.element
 };
 
