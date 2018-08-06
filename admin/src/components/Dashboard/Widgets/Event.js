@@ -1,5 +1,6 @@
 // findsecrets-ignore-file
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ProcessorsUpdated = ({ params = {} }) => (
   <React.Fragment>New processor address - {params.address}</React.Fragment>
@@ -82,7 +83,7 @@ const EVENTS_MAP = {
   Processor_SubjectDataErased: DataErasedByProcessor
 };
 
-export default ({ event }) => {
+const Event = ({ event }) => {
   const { eventName, from, fromName } = event;
   const eventView = EVENTS_MAP[eventName] || GenericEvent;
   return (
@@ -97,3 +98,13 @@ export default ({ event }) => {
     </React.Fragment>
   );
 };
+
+ProcessorsUpdated.propTypes = ConsentGiven.propTypes = DataAccessed.propTypes = DataRectified.propTypes = DataRestricted.propTypes = DataObjected.propTypes = DataErasedByController.propTypes = DataErasedByProcessor.propTypes = GenericEvent.propTypes = {
+  params: PropTypes.object
+};
+
+Event.propTypes = {
+  event: PropTypes.object
+};
+
+export default Event;
