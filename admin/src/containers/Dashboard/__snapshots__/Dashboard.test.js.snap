@@ -4,11 +4,8 @@ exports[`(Container) Dashboard Should render without an error 1`] = `
 <section
   className="cards"
 >
-  <div
-    className="row"
-  >
-    <SubjectsListContainer />
-  </div>
+  <SubjectsListContainer />
+  <EventsListContainer />
   <div
     className="row"
   >
