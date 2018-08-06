@@ -16,7 +16,7 @@ const TableCard = props => {
 
 TableCard.propTypes = {
   cols: PropTypes.number,
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   rows: PropTypes.array.isRequired,
   columns: PropTypes.object.isRequired,
   actions: PropTypes.array
