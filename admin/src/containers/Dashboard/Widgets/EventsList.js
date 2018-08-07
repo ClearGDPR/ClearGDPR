@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SubjectsListComponent from 'components/Dashboard/Widgets/EventsList';
+import EventsListComponent from 'components/Dashboard/Widgets/EventsList';
+import Paginate from 'components/core/Paginate';
 
 class EventsListContainer extends React.Component {
   state = {
     errorState: false,
     connected: false,
-    paging: {},
+    selectedPage: 0,
     events: []
   };
 
@@ -37,17 +38,34 @@ class EventsListContainer extends React.Component {
     this.websocket.close();
   }
 
+  handlePageClick = ({ selected }) => {
+    this.setState({ selectedPage: selected });
+  };
+
   render() {
+    const { events, selectedPage } = this.state;
+    const { pageSize } = this.props;
+    const offset = selectedPage * pageSize;
+    const totalPages = Math.ceil(events.length / pageSize);
+
     return (
       <div>
-        <SubjectsListComponent {...this.state} />
+        <EventsListComponent
+          {...{ ...this.state, events: events.slice(offset, offset + pageSize) }}
+        />
+        <Paginate pageCount={totalPages || 1} onPageChange={this.handlePageClick} />
       </div>
     );
   }
 }
 
 EventsListContainer.propTypes = {
-  webSocketUrl: PropTypes.string
+  webSocketUrl: PropTypes.string,
+  pageSize: PropTypes.number
+};
+
+EventsListContainer.defaultProps = {
+  pageSize: 20
 };
 
 export default EventsListContainer;
