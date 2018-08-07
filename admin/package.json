@@ -120,6 +120,7 @@
     "enzyme-to-json": "^3.3.4",
     "eslint-import-resolver-babel-module": "4.0.0",
     "eslint-plugin-jest": "^21.17.0",
+    "mock-socket": "^8.0.2",
     "sinon": "^6.0.0"
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import config from 'config';
 import SubjectsList from './Widgets/SubjectsList';
 import EventsList from './Widgets/EventsList';
 import ControllerConsentDial from 'components/Dashboard/Widgets/ControllerConsentDial';
@@ -40,7 +41,9 @@ export default class Dashboard extends Component {
     return (
       <section className="cards">
         <SubjectsList />
-        <EventsList />
+        <EventsList
+          webSocketUrl={config.API_URL.replace('http://', 'ws://') + '/api/management/events/feed'}
+        />
         <div className="row">
           <StatsConsumer>{statsState => <Stats {...statsState} />}</StatsConsumer>
         </div>

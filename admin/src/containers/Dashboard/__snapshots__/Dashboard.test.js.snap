@@ -5,7 +5,9 @@ exports[`(Container) Dashboard Should render without an error 1`] = `
   className="cards"
 >
   <SubjectsListContainer />
-  <EventsListContainer />
+  <EventsListContainer
+    webSocketUrl="ws://localhost:8082/api/management/events/feed"
+  />
   <div
     className="row"
   >
