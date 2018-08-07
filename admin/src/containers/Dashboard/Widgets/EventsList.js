@@ -1,20 +1,17 @@
 import React from 'react';
-import config from 'config';
+import PropTypes from 'prop-types';
 import SubjectsListComponent from 'components/Dashboard/Widgets/EventsList';
-import Paginate from 'components/core/Paginate';
 
-export class EventsListContainer extends React.Component {
+class EventsListContainer extends React.Component {
   state = {
-    isLoading: false,
     errorState: false,
+    connected: false,
     paging: {},
     events: []
   };
 
   componentDidMount() {
-    this.websocket = new WebSocket(
-      config.API_URL.replace('http://', 'ws://') + '/api/management/events/feed'
-    );
+    this.websocket = new WebSocket(this.props.webSocketUrl);
     this.websocket.onopen = event => {
       this.setState({ connected: true });
     };
@@ -22,7 +19,9 @@ export class EventsListContainer extends React.Component {
       this._addEvent(JSON.parse(event.data));
     };
     this.websocket.onclose = () => {
-      this.setState({ connected: false });
+      if (!this._isUnmounted) {
+        this.setState({ connected: false });
+      }
     };
     this.websocket.onerror = event => {
       this.setState({ errorState: true });
@@ -34,25 +33,21 @@ export class EventsListContainer extends React.Component {
   }
 
   componentWillUnmount() {
-    this.ws.close();
+    this._isUnmounted = true;
+    this.websocket.close();
   }
-
-  handlePageClick = data => {
-    const page = data.selected;
-    this.fetchSubjects(page + 1);
-  };
 
   render() {
     return (
       <div>
         <SubjectsListComponent {...this.state} />
-        <Paginate
-          pageCount={(this.state.paging && this.state.paging.total) || 1}
-          onPageChange={this.handlePageClick}
-        />
       </div>
     );
   }
 }
+
+EventsListContainer.propTypes = {
+  webSocketUrl: PropTypes.string
+};
 
 export default EventsListContainer;
