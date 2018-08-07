@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Button from './Button';
 
 const setup = props => {
-  return shallow(<Button {...Object.assign({ onClick: () => {} }, props)}>test</Button>);
+  return shallow(<Button {...{ ...{ onClick: () => {} }, ...props }}>test</Button>);
 };
 
 describe('Button', () => {
