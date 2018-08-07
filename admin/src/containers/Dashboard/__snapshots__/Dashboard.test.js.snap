@@ -6,6 +6,7 @@ exports[`(Container) Dashboard Should render without an error 1`] = `
 >
   <SubjectsListContainer />
   <EventsListContainer
+    pageSize={20}
     webSocketUrl="ws://localhost:8082/api/management/events/feed"
   />
   <div

@@ -2,11 +2,14 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import * as mockSocket from 'mock-socket';
 import EventsList from './EventsList';
+import Paginate from '../../../components/core/Paginate';
+import EventsListComponent from '../../../components/Dashboard/Widgets/EventsList';
 
 window.WebSocket = mockSocket.WebSocket;
 
 const fakeUrl = 'ws://localhost:8080';
-const setup = socketUrl => shallow(<EventsList webSocketUrl={socketUrl || fakeUrl} />);
+const setup = (socketUrl, pageSize = 20) =>
+  shallow(<EventsList webSocketUrl={socketUrl || fakeUrl} pageSize={pageSize} />);
 
 let mockServer;
 
@@ -67,8 +70,46 @@ describe('Events list', () => {
     }, 200);
   });
 
+  it('should render paginator', async done => {
+    const pageSize = 2;
+    const component = setup(fakeUrl, pageSize);
+
+    mockServer.on('connection', socket => {
+      for (let i = 0; i < 10; i++) {
+        socket.send(JSON.stringify({ event: 'test', i }));
+      }
+    });
+
+    setTimeout(() => {
+      component.update();
+      const paginator = component.find(Paginate);
+      expect(paginator.props().pageCount).toBe(5);
+      done();
+    }, 200);
+  });
+
+  it('should pass one page to nested component', async done => {
+    const pageSize = 2;
+    const component = setup(fakeUrl, pageSize);
+
+    mockServer.on('connection', socket => {
+      for (let i = 0; i < 10; i++) {
+        socket.send(JSON.stringify({ event: 'test', i }));
+      }
+    });
+
+    setTimeout(() => {
+      component.update();
+      const listComponent = component.find(EventsListComponent);
+      const { events } = listComponent.props();
+      expect(events).toHaveLength(pageSize);
+      expect(events[0].i).toBe(0);
+      expect(events[1].i).toBe(1);
+      done();
+    }, 200);
+  });
+
   it('should close websocket connection after unmount', async done => {
-    //const spy = jest.spyOn(WebSocket, 'close');
     const component = setup();
     const spy = jest.spyOn(window.WebSocket.prototype, 'close');
 
@@ -82,5 +123,5 @@ describe('Events list', () => {
     }, 200);
   });
 
-  afterEach(() => mockServer.close());
+  afterEach(() => mockServer.stop());
 });
