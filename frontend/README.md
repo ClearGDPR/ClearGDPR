@@ -49,6 +49,7 @@ These two are the main patterns the Core SDK is based on:
 - https://auth0.com/docs/libraries/lock/v11
 
 
+
 ```
 ├─ config
 ├─ scripts
