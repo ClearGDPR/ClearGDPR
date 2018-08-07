@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Checkbox from './Checkbox';
 
 const setup = props => {
-  return shallow(<Checkbox {...Object.assign({ onCLick: () => {} }, props)}>test</Checkbox>);
+  return shallow(<Checkbox {...{ ...{ onClick: () => {} }, ...props }}>test</Checkbox>);
 };
 
 describe('Checkbox', () => {

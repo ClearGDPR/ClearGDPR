@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import Switch from './Switch';
 
 const setup = props => {
-  return shallow(<Switch {...Object.assign({ onChange: () => {} }, props)} />);
+  return shallow(<Switch {...{ ...{ onChange: () => {} }, ...props }} />);
 };
 
 describe('Switch', () => {
