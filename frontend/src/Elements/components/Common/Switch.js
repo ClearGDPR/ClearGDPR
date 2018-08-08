@@ -11,7 +11,14 @@ class Switch extends React.PureComponent {
     };
   }
 
+  componentDidUpdate() {
+    this.setState({ value: this.props.value });
+  }
+
   handleClick() {
+    if (this.props.disabled) {
+      return;
+    }
     this.setState(prevState => ({
       value: !prevState.value
     }));
@@ -34,7 +41,8 @@ class Switch extends React.PureComponent {
 
 Switch.propTypes = {
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.bool
+  value: PropTypes.bool,
+  disabled: PropTypes.bool
 };
 
 export default Switch;

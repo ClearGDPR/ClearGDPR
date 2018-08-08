@@ -13,6 +13,18 @@ export default class Subject extends ResourceBase {
     return this.request(`${SUBJECT}/update-consent`, { method, payload });
   }
 
+  getObjectionStatus() {
+    return this.request(`${SUBJECT}/get-objection`);
+  }
+
+  updateObjection(restrictProcessing) {
+    const method = 'POST';
+    return this.request(`${SUBJECT}/object`, {
+      method,
+      payload: { objection: restrictProcessing }
+    });
+  }
+
   accessData() {
     return this.request(`${SUBJECT}/access-data`);
   }
