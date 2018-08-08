@@ -1,5 +1,7 @@
 # Frontend 
 
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
+
 This package has 3 main sub-packages. We are trying to build a SDK of usable and simple to integrate components. Since different the approaches of implementing and solving the way a Subject request right to control of his own data, strategy followed is to figure out the best flow and then adding the recyclable components to the main SDK.
 
 ## Demo
