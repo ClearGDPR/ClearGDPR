@@ -18,4 +18,17 @@ describe('Switch', () => {
     component.simulate('click');
     expect(callback).toBeCalled();
   });
+
+  it('should do nothing in disabled state', () => {
+    const callback = jest.fn();
+    const component = setup({ onChange: callback, disabled: true });
+    component.simulate('click');
+    expect(callback).not.toBeCalled();
+  });
+
+  it('should update state value when receive new props', () => {
+    const component = setup({ value: true });
+    component.setProps({ value: false });
+    expect(component.state().value).toBe(false);
+  });
 });

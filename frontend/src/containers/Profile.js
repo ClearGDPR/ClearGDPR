@@ -17,6 +17,11 @@ class Profile extends React.Component {
       label: 'Export data'
     });
 
+    const Objection = Elements.element({
+      source: 'objection',
+      label: 'Allow data processing'
+    });
+
     const UserDataStatus = Elements.element({
       source: 'data'
     });
@@ -38,6 +43,24 @@ class Profile extends React.Component {
                 </a>
               </div>
               <div className="column is-one-third">{ForgottenRequestButton}</div>
+            </div>
+          </div>
+        </section>
+        <section className="section" id="object-data-processing">
+          <div className="container">
+            <div className="columns">
+              <div className="column is-two-fifths">
+                <h1 className="title">Right to object →</h1>
+                <p>Article 21 GDPR Right to object</p>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://gdpr-info.eu/art-21-gdpr/"
+                >
+                  Go to GDPR article →
+                </a>
+              </div>
+              <div className="column is-one-third">{Objection}</div>
             </div>
           </div>
         </section>
