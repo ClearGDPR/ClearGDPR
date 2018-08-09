@@ -11,7 +11,7 @@ class Objection extends React.PureComponent {
     const { objection } = await this.props.cg.Subject.getObjectionStatus();
     this.setState({ busy: false, allowDataProcessing: !objection });
   }
-  async toggleDataProcessingAgreement() {
+  toggleDataProcessingAgreement = async () => {
     const { busy, allowDataProcessing } = this.state;
     if (busy) {
       return;
@@ -20,7 +20,7 @@ class Objection extends React.PureComponent {
     this.setState({ allowDataProcessing: !allowDataProcessing, busy: true });
     await this.props.cg.Subject.updateObjection(allowDataProcessing);
     this.setState({ busy: false });
-  }
+  };
   render() {
     const { label = 'Object data processing' } = this.props.options;
     const { allowDataProcessing, busy } = this.state;
@@ -29,7 +29,7 @@ class Objection extends React.PureComponent {
       <div style={{ alignItems: 'center', display: 'flex' }}>
         <label>{label}</label>&nbsp;
         <Switch
-          onChange={this.toggleDataProcessingAgreement.bind(this)}
+          onChange={this.toggleDataProcessingAgreement}
           value={allowDataProcessing}
           disabled={busy}
         />
