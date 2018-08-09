@@ -229,7 +229,12 @@ class SubjectsService {
       .select('direct_marketing', 'email_communication', 'research');
 
     if (!subjectRestrictions) throw new NotFound('Subject not found');
-    return subjectRestrictions;
+
+    return {
+      directMarketing: subjectRestrictions.direct_marketing,
+      emailCommunication: subjectRestrictions.email_communication,
+      research: subjectRestrictions.research,
+    };
   }
 
   async object(subjectId, objection) {

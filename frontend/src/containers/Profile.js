@@ -30,6 +30,11 @@ class Profile extends React.Component {
       source: 'rectification',
       label: 'Request rectification'
     });
+    
+    const Restriction = Elements.element({
+      source: 'restriction',
+      label: 'Restrict processing to controller'
+    });
 
     return (
       <React.Fragment>
@@ -100,6 +105,24 @@ class Profile extends React.Component {
                 </a>
               </div>
               <div className="column is-one-third">{ExportDataButton}</div>
+            </div>
+          </div>
+        </section>
+        <section className="section" id="restrict-data-processing">
+          <div className="container">
+            <div className="columns">
+              <div className="column is-two-fifths">
+                <h1 className="title">Right to restriction of processing →</h1>
+                <p>https://gdpr-info.eu/art-18-gdpr/</p>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://gdpr-info.eu/art-18-gdpr/"
+                >
+                  Go to GDPR article →
+                </a>
+              </div>
+              <div className="column is-one-third">{Restriction}</div>
             </div>
           </div>
         </section>
