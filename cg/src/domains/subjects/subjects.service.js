@@ -233,7 +233,7 @@ class SubjectsService {
     return {
       directMarketing: subjectRestrictions.direct_marketing,
       emailCommunication: subjectRestrictions.email_communication,
-      research: subjectRestrictions.research,
+      research: subjectRestrictions.research
     };
   }
 
