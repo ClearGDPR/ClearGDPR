@@ -30,6 +30,8 @@ class Restriction extends React.PureComponent {
     const { label } = this.props.options;
     const { restrictions } = this.state;
 
+    console.log({ restrictions });
+
     return (
       <div>
         <label>{label}</label>
