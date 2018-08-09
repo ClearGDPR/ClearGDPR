@@ -67,4 +67,20 @@ export default class Subject extends ResourceBase {
       payload: { requestReason, rectificationPayload }
     });
   }
+
+  getRestrictions() {
+    return this.request(`${SUBJECT}/get-restrictions`);
+  }
+
+  updateRestrictions({ directMarketing, emailCommunication, research }) {
+    const method = 'POST';
+    return this.request(`${SUBJECT}/restrict`, {
+      method,
+      payload: {
+        directMarketing,
+        emailCommunication,
+        research
+      }
+    });
+  }
 }

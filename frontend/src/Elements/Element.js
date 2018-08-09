@@ -7,6 +7,7 @@ import UserData from './components/Portability/UserData';
 import ShareData from './components/Share/ShareData';
 import Objection from './components/Objection/Objection';
 import Rectification from './components/Rectification/Rectification';
+import Restriction from './components/Restriction/Restriction';
 
 const ELEMENT_TYPES = {
   CONSENT: 'consent',
@@ -15,7 +16,8 @@ const ELEMENT_TYPES = {
   RECTIFICATION: 'rectification',
   DATA_EXPORT: 'export',
   DATA_STATUS: 'data',
-  DATA_SHARE: 'share-data'
+  DATA_SHARE: 'share-data',
+  RESTRICTION: 'restriction'
 };
 
 /**
@@ -38,6 +40,8 @@ export default class Element {
         return <Objection {...{ options, cg }} />;
       case ELEMENT_TYPES.RECTIFICATION:
         return <Rectification options={options} />;
+      case ELEMENT_TYPES.RESTRICTION:
+        return <Restriction {...{ options, cg }} />;
       default:
         throw new Error('Element was type not specified.');
     }
