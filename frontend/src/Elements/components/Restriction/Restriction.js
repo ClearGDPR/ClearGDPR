@@ -40,20 +40,18 @@ class Restriction extends React.PureComponent {
             alignItems: 'left'
           }}
         >
-          {map(restrictions, (value, key) => {
-            return (
-              <div
-                key={key}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between'
-                }}
-              >
-                <span>{RESTRICTION_LABELS[key]}</span>
-                <Switch onChange={e => this.toggleRestriction(e, key, value)} value={value} />
-              </div>
-            );
-          })}
+          {map(restrictions, (value, key) => (
+            <div
+              key={key}
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between'
+              }}
+            >
+              <span>{RESTRICTION_LABELS[key]}</span>
+              <Switch onChange={e => this.toggleRestriction(e, key, value)} value={value} />
+            </div>
+          ))}
         </div>
       </div>
     );
