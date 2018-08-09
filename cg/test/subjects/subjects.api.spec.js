@@ -979,8 +979,8 @@ describe('Tests of subjects getting their restrictons', () => {
     expect(res.ok).toBeTruthy();
     expect(res.status).toEqual(200);
     expect(await res.json()).toEqual({
-      direct_marketing: true,
-      email_communication: true,
+      directMarketing: true,
+      emailCommunication: true,
       research: true
     });
   });
