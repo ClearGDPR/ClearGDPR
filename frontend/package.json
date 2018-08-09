@@ -45,6 +45,7 @@
     "react": "^16.4.1",
     "react-dev-utils": "^4.1.0",
     "react-dom": "^16.4.1",
+    "react-json-editor-ajrm": "^2.5.2",
     "react-responsive-modal": "^3.1.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
@@ -60,8 +61,8 @@
   "devDependencies": {
     "babel-plugin-module-resolver": "3.1.1",
     "enzyme": "^3.3.0",
-    "enzyme-to-json": "^3.3.4",
     "enzyme-adapter-react-16": "npm:@monastic.panic/enzyme-adapter-react-16",
+    "enzyme-to-json": "^3.3.4",
     "eslint-import-resolver-babel-module": "4.0.0",
     "eslint-plugin-jest": "^21.17.0",
     "sinon": "^6.0.0"
