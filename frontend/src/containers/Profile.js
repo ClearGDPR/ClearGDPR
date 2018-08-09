@@ -30,7 +30,7 @@ class Profile extends React.Component {
       source: 'rectification',
       label: 'Request rectification'
     });
-    
+
     const Restriction = Elements.element({
       source: 'restriction',
       label: 'Restrict processing to controller'
