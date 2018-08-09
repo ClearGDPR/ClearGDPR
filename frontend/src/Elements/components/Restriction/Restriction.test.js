@@ -25,6 +25,7 @@ describe('(Elements SDK) Restriction', () => {
   beforeEach(() => {
     spy = null;
   });
+
   it('should render correctly', () => {
     const component = setup();
     expect(component).toMatchSnapshot();
@@ -42,12 +43,19 @@ describe('(Elements SDK) Restriction', () => {
     expect(restrictions).toEqual(restrictionsStub);
   });
 
-  it('should call `updateRejections` when subject toggles switch', async () => {
-    spy = jest.spyOn(cg.Subject, 'updateRejections');
+  it('should call `updateRestrictions` when subject toggles switch', async () => {
+    spy = jest.spyOn(cg.Subject, 'updateRestrictions');
     const component = await setup();
-    component.find(Switch).simulate('click');
-    expect(component.state().restrictions).toBe(true);
-    expect(spy).toHaveBeenCalledWith(false);
+    component.update();
+    component.find(Switch).at(0).simulate('click');
+    component.find(Switch).at(1).simulate('click');
+    component.find(Switch).at(2).simulate('click');
+    expect(component.state().restrictions).toEqual({
+      directMarketing: false,
+      emailCommunication: true,
+      research: true
+    });
+    expect(spy).toHaveBeenCalledTimes(3);
   });
 
   afterEach(() => {

@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`(Elements SDK) Restriction should render correctly 1`] = `
+<Restriction
+  cg={
+    CG {
+      "Events": Events {
+        "_events": Object {},
+      },
+      "Processors": Processors {
+        "_request": RequestFactory {
+          "config": [Circular],
+        },
+      },
+      "Subject": Subject {
+        "_request": RequestFactory {
+          "config": [Circular],
+        },
+        "getRestrictions": [Function],
+        "updateRestrictions": [Function],
+      },
+      "_config": Object {
+        "apiKey": "test",
+        "apiTimeout": 30,
+        "apiUrl": "test",
+        "apiVersion": undefined,
+        "auth": null,
+        "debug": false,
+      },
+    }
+  }
+  options={Object {}}
+>
+  <div>
+    <label />
+    <div
+      style={
+        Object {
+          "alignItems": "left",
+          "display": "flex",
+          "flexDirection": "column",
+        }
+      }
+    />
+  </div>
+</Restriction>
+`;
