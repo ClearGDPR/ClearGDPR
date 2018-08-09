@@ -6,11 +6,13 @@ import ExportRequest from './components/Portability/ExportRequest';
 import UserData from './components/Portability/UserData';
 import ShareData from './components/Share/ShareData';
 import Objection from './components/Objection/Objection';
+import Rectification from './components/Rectification/Rectification';
 
 const ELEMENT_TYPES = {
   CONSENT: 'consent',
   ERASURE: 'forgotten',
   OBJECTION: 'objection',
+  RECTIFICATION: 'rectification',
   DATA_EXPORT: 'export',
   DATA_STATUS: 'data',
   DATA_SHARE: 'share-data'
@@ -34,6 +36,8 @@ export default class Element {
         return <ShareData options={options} />;
       case ELEMENT_TYPES.OBJECTION:
         return <Objection {...{ options, cg }} />;
+      case ELEMENT_TYPES.RECTIFICATION:
+        return <Rectification options={options} />;
       default:
         throw new Error('Element was type not specified.');
     }

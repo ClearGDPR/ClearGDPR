@@ -59,4 +59,12 @@ export default class Subject extends ResourceBase {
     const method = 'POST';
     return this.request(`${SUBJECT}/data-shares/${dataShareId}/remove`, { method });
   }
+
+  initiateRectification(requestReason, rectificationPayload) {
+    const method = 'POST';
+    return this.request(`${SUBJECT}/initiate-rectification`, {
+      method,
+      payload: { requestReason, rectificationPayload }
+    });
+  }
 }

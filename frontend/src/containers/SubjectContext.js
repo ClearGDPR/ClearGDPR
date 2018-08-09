@@ -37,6 +37,7 @@ const downgradeLocalStorage = function() {
   originalLocalStorageSetItem = null;
 };
 
+//@todo Figure out how to inject `cg` instance instead of using global variable
 export class SubjectProvider extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([
@@ -44,6 +45,13 @@ export class SubjectProvider extends React.Component {
       PropTypes.object,
       PropTypes.arrayOf(PropTypes.element)
     ])
+  };
+
+  _initiateRectification = async (requestReason, rectificationPayload) => {
+    const cgToken = localStorage.getItem('cgToken');
+    window.cg.setAccessToken(cgToken);
+
+    return await window.cg.Subject.initiateRectification(requestReason, rectificationPayload);
   };
 
   _fetchData = async () => {
@@ -107,6 +115,7 @@ export class SubjectProvider extends React.Component {
     return {
       ...DEFAULT_STATE,
       fetchData: this._fetchData,
+      initiateRectification: this._initiateRectification,
       initNewSession: this._initNewSession,
       isGuest: !localStorage.getItem('cgToken')
     };

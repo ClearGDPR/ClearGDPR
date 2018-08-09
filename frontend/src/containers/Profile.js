@@ -26,9 +26,30 @@ class Profile extends React.Component {
       source: 'data'
     });
 
+    const Rectification = Elements.element({
+      source: 'rectification',
+      label: 'Request rectification'
+    });
+
     return (
       <React.Fragment>
         <section className="section" id="erase-data">
+          <div className="container">
+            <div className="columns">
+              <div className="column is-two-fifths">
+                <h1 className="title">Right to rectification →</h1>
+                <p>Article 16 GDPR Right to rectification</p>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://gdpr-info.eu/art-17-gdpr/"
+                >
+                  Go to GDPR article →
+                </a>
+              </div>
+              <div className="column is-one-third">{Rectification}</div>
+            </div>
+          </div>
           <div className="container">
             <div className="columns">
               <div className="column is-two-fifths">
