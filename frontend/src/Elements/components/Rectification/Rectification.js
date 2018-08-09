@@ -1,53 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import JSONInput from 'react-json-editor-ajrm';
-import locale from 'react-json-editor-ajrm/locale/en';
+import RectificationForm from './RectificationForm';
 import { inject } from '../../../containers/SubjectContext';
 import ModalView from '../Common/Views/Modal';
 import styles from '../../theme/ForgottenRequest.scss';
-
-const RectificationForm = ({ data, label, error, processingRequest, onSubmit }) => {
-  let resultData = { ...data };
-  let reason;
-  const onFormSubmit = e => {
-    e.preventDefault();
-    onSubmit(reason, resultData);
-  };
-  return (
-    <form onSubmit={onFormSubmit}>
-      <JSONInput
-        id="a_unique_id"
-        placeholder={resultData}
-        locale={locale}
-        viewOnly={processingRequest}
-        onChange={({ jsObject }) => (resultData = { ...jsObject })}
-        theme="light_mitsuketa_tribute"
-        height="350px"
-      />
-      <div className="field">
-        <label className="label">Reason</label>
-        <div className="control">
-          <input
-            className="input"
-            type="text"
-            required="true"
-            onChange={e => (reason = e.target.value)}
-          />
-        </div>
-      </div>
-      {error && <div className={styles.error}>{error}</div>}
-      <button className={`button is-primary`}>{processingRequest ? 'Processing...' : label}</button>
-    </form>
-  );
-};
-
-RectificationForm.propTypes = {
-  data: PropTypes.object,
-  label: PropTypes.string,
-  error: PropTypes.string,
-  onSubmit: PropTypes.func,
-  processingRequest: PropTypes.bool
-};
 
 const Loading = () => (
   <div style={{ textAlign: 'center' }}>
