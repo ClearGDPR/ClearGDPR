@@ -1,3 +1,60 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Objection should render correctly 1`] = `Promise {}`;
+exports[`Objection should render correctly 1`] = `
+<Objection
+  cg={
+    CG {
+      "Events": Events {
+        "_events": Object {},
+      },
+      "Processors": Processors {
+        "_request": RequestFactory {
+          "config": [Circular],
+        },
+      },
+      "Subject": Subject {
+        "_request": RequestFactory {
+          "config": [Circular],
+        },
+        "getObjectionStatus": [Function],
+        "updateObjection": [Function],
+      },
+      "_config": Object {
+        "apiKey": "test",
+        "apiTimeout": 30,
+        "apiUrl": "test",
+        "apiVersion": undefined,
+        "auth": null,
+        "debug": false,
+      },
+    }
+  }
+  options={Object {}}
+>
+  <div
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+      }
+    }
+  >
+    <label>
+      Object data processing
+    </label>
+     
+    <Switch
+      disabled={true}
+      onChange={[Function]}
+      value={true}
+    >
+      <div
+        className=" "
+        onClick={[Function]}
+      >
+        <div />
+      </div>
+    </Switch>
+  </div>
+</Objection>
+`;
