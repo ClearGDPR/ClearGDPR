@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { SubjectProvider } from './SubjectContext';
+import { SubjectProvider } from '../Elements/contexts/SubjectContext';
 
 class App extends Component {
   render() {

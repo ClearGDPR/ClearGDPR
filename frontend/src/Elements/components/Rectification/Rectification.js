@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RectificationForm from './RectificationForm';
-import { inject } from '../../../containers/SubjectContext';
 import ModalView from '../Common/Views/Modal';
 import styles from '../../theme/ForgottenRequest.scss';
 
@@ -97,4 +96,4 @@ Rectification.propTypes = {
   subject: PropTypes.object
 };
 
-export default inject(Rectification);
+export default Rectification;

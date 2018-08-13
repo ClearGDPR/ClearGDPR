@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { inject } from '../../../containers/SubjectContext';
 
 import styles from '../../theme/SubjectData.scss';
 
@@ -84,4 +83,4 @@ UserData.propTypes = {
   cg: PropTypes.object
 };
 
-export default inject(UserData);
+export default UserData;

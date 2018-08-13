@@ -1,3 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`UserData should render correctly 1`] = `<[object Object] />`;
+exports[`UserData should render correctly 1`] = `
+<div>
+  <b>
+    Data shared: 
+  </b>
+  <br />
+  <ul>
+    <li
+      key="name"
+    >
+      <b>
+        name
+      </b>
+      : 
+      John
+    </li>
+    <li
+      key="email"
+    >
+      <b>
+        email
+      </b>
+      : 
+      john@gmail.com
+    </li>
+  </ul>
+  <br />
+  <b>
+    Your data is shared with: 
+  </b>
+  <div>
+    Controller: 
+  </div>
+  <br />
+  <b>
+    Processors
+  </b>
+</div>
+`;
