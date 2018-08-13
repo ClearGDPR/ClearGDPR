@@ -2,33 +2,6 @@
 
 exports[`(Elements) Consent should render correctly 1`] = `
 <Consent
-  cg={
-    CG {
-      "Events": Events {
-        "_events": Object {},
-      },
-      "Processors": Processors {
-        "_request": RequestFactory {
-          "config": [Circular],
-        },
-      },
-      "Subject": Subject {
-        "_request": RequestFactory {
-          "config": [Circular],
-        },
-        "getProcessors": [Function],
-        "giveConsent": [Function],
-      },
-      "_config": Object {
-        "apiKey": "test",
-        "apiTimeout": 30,
-        "apiUrl": "test",
-        "apiVersion": undefined,
-        "auth": null,
-        "debug": false,
-      },
-    }
-  }
   options={
     Object {
       "label": "Test label",
@@ -39,6 +12,83 @@ exports[`(Elements) Consent should render correctly 1`] = `
           "fontSize": "12px",
         },
       },
+    }
+  }
+  subject={
+    Subject {
+      "_propagateMutation": [Function],
+      "cg": CG {
+        "Events": Events {
+          "_events": Object {},
+        },
+        "Processors": Processors {
+          "_request": RequestFactory {
+            "config": [Circular],
+          },
+        },
+        "Subject": Subject {
+          "_request": RequestFactory {
+            "config": [Circular],
+          },
+          "getProcessors": [Function],
+          "giveConsent": [Function],
+        },
+        "_config": Object {
+          "apiKey": "test",
+          "apiTimeout": 30,
+          "apiUrl": "test",
+          "apiVersion": undefined,
+          "auth": null,
+          "debug": false,
+        },
+      },
+      "data": null,
+      "isErased": false,
+      "isFetched": false,
+      "isGuest": true,
+      "isLoading": false,
+      "objection": null,
+      "processors": Array [
+        Object {
+          "consented": 72,
+          "description": "",
+          "enabled": true,
+          "id": 1,
+          "logoUrl": "",
+          "name": "Nielsen",
+          "scopes": Array [
+            "Full Name",
+            "Email",
+            "Phone Number",
+          ],
+        },
+        Object {
+          "consented": 64,
+          "description": "",
+          "enabled": true,
+          "id": 2,
+          "logoUrl": "",
+          "name": "Live Ramp",
+          "scopes": Array [
+            "Email",
+          ],
+        },
+        Object {
+          "consented": 25,
+          "description": "",
+          "enabled": true,
+          "id": 3,
+          "logoUrl": "",
+          "name": "Experian",
+          "scopes": Array [
+            "Full Name",
+            "Phone Number",
+          ],
+        },
+      ],
+      "restrictions": null,
+      "shares": null,
+      "status": null,
     }
   }
 >

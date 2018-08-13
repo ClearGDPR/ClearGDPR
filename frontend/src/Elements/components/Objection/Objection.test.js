@@ -3,6 +3,7 @@ import { mount } from 'enzyme';
 import Objection from './Objection';
 import { CG } from '../../../js-sdk';
 import Switch from '../Common/Switch';
+import Subject from '../../contexts/Subject';
 
 const cg = new CG({
   apiKey: 'test',
@@ -11,7 +12,9 @@ const cg = new CG({
 cg.Subject.getObjectionStatus = async () => ({ objection: true });
 cg.Subject.updateObjection = async () => {};
 
-const setup = () => mount(<Objection {...{ options: {}, cg }} />);
+const subject = new Subject(cg, { propagateMutation: () => {} });
+
+const setup = async () => mount(<Objection {...{ options: {}, subject }} />);
 
 let spy;
 
@@ -24,24 +27,16 @@ describe('Objection', () => {
     expect(component).toMatchSnapshot();
   });
 
-  it('should call `getObjectionStatus` method to retrieve current status', async () => {
-    spy = jest.spyOn(cg.Subject, 'getObjectionStatus');
+  it('should call `fetchObjectionStatus` method to retrieve current status', async () => {
+    spy = jest.spyOn(subject, 'fetchObjectionStatus');
     setup();
     expect(spy).toHaveBeenCalled();
   });
 
-  it('aligns state with received objection status', async () => {
-    const component = await setup();
-    const { allowDataProcessing, busy } = component.state();
-    expect(allowDataProcessing).toBe(false);
-    expect(busy).toBe(false);
-  });
-
   it('should call `updateObjection` when subject toggles switch', async () => {
-    spy = jest.spyOn(cg.Subject, 'updateObjection');
+    spy = jest.spyOn(subject, 'updateObjection');
     const component = await setup();
     component.find(Switch).simulate('click');
-    expect(component.state().allowDataProcessing).toBe(true);
     expect(spy).toHaveBeenCalledWith(false);
   });
 

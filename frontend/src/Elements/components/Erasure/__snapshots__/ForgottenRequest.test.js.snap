@@ -2,41 +2,46 @@
 
 exports[`ForgottenRequest should render correctly 1`] = `
 <ForgottenRequest
-  cg={
-    CG {
-      "Events": Events {
-        "_events": Object {},
-      },
-      "Processors": Processors {
-        "_request": RequestFactory {
-          "config": [Circular],
-        },
-      },
-      "Subject": Subject {
-        "_request": RequestFactory {
-          "config": [Circular],
-        },
-        "eraseData": [Function],
-      },
-      "_config": Object {
-        "apiKey": "test",
-        "apiTimeout": 30,
-        "apiUrl": "test",
-        "apiVersion": undefined,
-        "auth": null,
-        "debug": false,
-      },
-    }
-  }
   options={
     Object {
       "label": "Erase",
     }
   }
   subject={
-    Object {
+    Subject {
+      "_propagateMutation": [Function],
+      "cg": CG {
+        "Events": Events {
+          "_events": Object {},
+        },
+        "Processors": Processors {
+          "_request": RequestFactory {
+            "config": [Circular],
+          },
+        },
+        "Subject": Subject {
+          "_request": RequestFactory {
+            "config": [Circular],
+          },
+          "eraseData": [Function],
+        },
+        "_config": Object {
+          "apiKey": "test",
+          "apiTimeout": 30,
+          "apiUrl": "test",
+          "apiVersion": undefined,
+          "auth": null,
+          "debug": false,
+        },
+      },
       "data": Object {},
-      "initNewSession": [Function],
+      "isErased": false,
+      "isFetched": false,
+      "isGuest": true,
+      "isLoading": false,
+      "objection": null,
+      "processors": null,
+      "shares": null,
       "status": 1,
     }
   }

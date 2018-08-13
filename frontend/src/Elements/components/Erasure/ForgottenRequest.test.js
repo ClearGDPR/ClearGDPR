@@ -3,6 +3,7 @@ import { CG } from '../../../js-sdk';
 import { mount } from 'enzyme';
 import ForgottenRequest from './ForgottenRequest';
 import ModalView from '../Common/Views/Modal';
+import Subject from '../../contexts/Subject';
 
 const cg = new CG({
   apiKey: 'test',
@@ -10,13 +11,13 @@ const cg = new CG({
 });
 cg.Subject.eraseData = async () => {};
 
-const subject = {
+const subject = new Subject(cg, {
   status: 1,
   data: {},
   initNewSession: () => {}
-};
+});
 
-const setup = () => mount(<ForgottenRequest {...{ options: { label: 'Erase' }, subject, cg }} />);
+const setup = () => mount(<ForgottenRequest {...{ options: { label: 'Erase' }, subject }} />);
 
 let spy;
 
@@ -36,7 +37,7 @@ describe('ForgottenRequest', () => {
   it('should execute `eraseData` after confirmation and sets `processing` state attribute to true', async () => {
     const component = setup();
     component.find('button').simulate('click');
-    spy = jest.spyOn(cg.Subject, 'eraseData');
+    spy = jest.spyOn(subject, 'eraseData');
 
     component
       .find(ModalView)

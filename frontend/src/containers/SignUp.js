@@ -37,9 +37,6 @@ class SignUp extends Component {
           return;
         }
 
-        // Set up CG token to allow methods to acces API
-        window.cg.setAccessToken(response.cgToken);
-
         // Save token for future usages (logged in users)
         localStorage.setItem('cgToken', response.cgToken);
       })

@@ -6,6 +6,7 @@ import _ from 'lodash';
 import Checkbox from '../Common/Checkbox';
 import PopoverView from '../Common/Views/Popover';
 import ProcessorsList from '../Processors/ProcessorsList';
+import Subject from '../../contexts/Subject';
 
 class Consent extends React.PureComponent {
   state = {
@@ -13,28 +14,21 @@ class Consent extends React.PureComponent {
     showProcessors: false
   };
 
+  consentGiven = false;
+
   async componentDidMount() {
-    if (!this.state.processors.lenght) {
-      try {
-        const processors = await this.props.cg.Subject.getProcessors();
-        this.setState({
-          processors: processors.map(p => {
-            p.enabled = true;
-            return p;
-          })
-        });
-      } catch (e) {
-        console.log('failure', e);
-      }
-    }
+    await this.props.subject.fetchProcessors();
+    const { processors, isGuest } = this.props.subject;
+    this.setState({ processors, isGuest });
 
     this.form = ReactDOM.findDOMNode(this).parentNode;
-    this.form.addEventListener('submit', this.waitForToken, false);
   }
 
-  componentWillUnmount() {
-    this.form.removeEventListener('submit', () => {});
-    this.props.cg.Events.clear('auth.setAccessToken');
+  componentWillUpdate(newProps) {
+    //@todo figure out a better way how to listen to subject's sign up event
+    if (this.props.subject.isGuest && !newProps.subject.isGuest && !this.consentGiven) {
+      this.handleGiveConsent();
+    }
   }
 
   toggleProcessors = e => {
@@ -45,16 +39,8 @@ class Consent extends React.PureComponent {
     }));
   };
 
-  waitForToken = e => {
-    // Listen to token setup for CG SDK, then launch related events.
-    this.props.cg.Events.subscribe('auth.setAccessToken', token => {
-      this.handleGiveConsent(e, token);
-    });
-  };
-
-  handleGiveConsent = async e => {
-    e.preventDefault();
-
+  handleGiveConsent = async () => {
+    this.consentGiven = true;
     let processors = this.state.processors.slice();
 
     // Get Data from parent form
@@ -87,16 +73,10 @@ class Consent extends React.PureComponent {
   };
 
   giveConsent = async (data = {}, processors) => {
-    const payload = {
+    this.props.subject.giveConsent({
       personalData: { ...data },
       processors: [...processors]
-    };
-
-    try {
-      await this.props.cg.Subject.giveConsent(payload);
-    } catch (e) {
-      console.log('failure', e);
-    }
+    });
   };
 
   render() {
@@ -134,7 +114,7 @@ class Consent extends React.PureComponent {
 
 Consent.propTypes = {
   options: PropTypes.object,
-  cg: PropTypes.object
+  subject: PropTypes.instanceOf(Subject)
 };
 
 export default Consent;

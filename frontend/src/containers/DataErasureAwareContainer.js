@@ -3,13 +3,10 @@ import LoadingScreen from '../components/LoadingScreen';
 import DataErasedScreen from '../components/DataErasedScreen';
 import PropTypes from 'prop-types';
 import { inject } from '../Elements/contexts/SubjectContext';
+import Subject from '../Elements/contexts/Subject';
 
 class Container extends React.Component {
   componentDidMount() {
-    this.props.subject.fetchData();
-  }
-
-  componentDidUpdate() {
     this.props.subject.fetchData();
   }
 
@@ -32,7 +29,7 @@ class Container extends React.Component {
 }
 
 Container.propTypes = {
-  subject: PropTypes.object,
+  subject: PropTypes.instanceOf(Subject),
   history: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };

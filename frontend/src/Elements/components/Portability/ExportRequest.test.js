@@ -2,6 +2,9 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import FileSaver from 'file-saver';
 import ExportRequest from './ExportRequest';
+import Subject from '../../contexts/Subject';
+
+jest.useFakeTimers();
 
 const testData = {
   name: 'John',
@@ -15,12 +18,20 @@ const cg = {
   }
 };
 
+const subject = new Subject(cg, { data: testData });
+
 const setup = () => {
-  return shallow(<ExportRequest options={{ label: 'Load data' }} cg={cg} />);
+  return shallow(<ExportRequest options={{ label: 'Load data' }} subject={subject} />);
 };
 
 describe('ExportRequest', () => {
   let spy;
+  let saveAs;
+
+  beforeEach(() => {
+    saveAs = FileSaver.saveAs;
+    FileSaver.saveAs = () => {};
+  });
 
   it('should render correctly', () => {
     const component = setup();
@@ -36,7 +47,7 @@ describe('ExportRequest', () => {
   });
 
   it('should request access to subjects data', async () => {
-    spy = jest.spyOn(cg.Subject, 'accessData');
+    spy = jest.spyOn(subject, 'fetchData');
     const component = setup();
     await component.simulate('click');
     expect(spy).toBeCalled();
@@ -46,38 +57,23 @@ describe('ExportRequest', () => {
     spy = jest.spyOn(FileSaver, 'saveAs');
     const component = setup();
     await component.simulate('click');
+    jest.runAllTimers();
     expect(spy).toBeCalledWith(expect.any(Blob), 'personal_data.json');
   });
 
   it('should toggle itself into success state', async () => {
-    const saveAs = FileSaver.saveAs;
-    FileSaver.saveAs = () => {};
     const component = setup();
     await component.simulate('click');
-    FileSaver.saveAs = saveAs;
+    jest.runAllTimers();
     const { success, processing } = component.state();
     expect(success).toBe(true);
     expect(processing).toBe(false);
-  });
-
-  it('should toggle itself into error state', async () => {
-    const saveAs = FileSaver.saveAs;
-    const err = new Error('Test');
-    FileSaver.saveAs = () => {
-      throw err;
-    };
-    const component = setup();
-    await component.simulate('click');
-    FileSaver.saveAs = saveAs;
-    const { success, processing, error } = component.state();
-    expect(success).toBe(false);
-    expect(processing).toBe(false);
-    expect(error).toBe(err.toString());
   });
 
   afterEach(() => {
     if (spy) {
       spy.mockClear();
     }
+    FileSaver.saveAs = saveAs;
   });
 });

@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DATA_ERASED } from '../constants';
+import config from '../../config';
+import { CG } from '../../js-sdk';
+import Subject from './Subject';
+
+const cg = new CG({ apiKey: config.CG_API_KEY, apiUrl: `${config.CG_API_BASE}/api` });
+cg.setAccessToken(localStorage.getItem('cgToken'));
 
 const SubjectContext = React.createContext();
 
@@ -9,7 +14,11 @@ const DEFAULT_STATE = {
   isLoading: false,
   isErased: false,
   data: null,
-  status: null
+  status: null,
+  processors: null,
+  objection: null,
+  shares: null,
+  restrictions: null
 };
 
 let originalLocalStorageSetItem;
@@ -37,7 +46,6 @@ const downgradeLocalStorage = function() {
   originalLocalStorageSetItem = null;
 };
 
-//@todo Figure out how to inject `cg` instance instead of using global variable
 export class SubjectProvider extends React.Component {
   static propTypes = {
     children: PropTypes.oneOfType([
@@ -47,83 +55,33 @@ export class SubjectProvider extends React.Component {
     ])
   };
 
-  _initiateRectification = async (requestReason, rectificationPayload) => {
-    const cgToken = localStorage.getItem('cgToken');
-    window.cg.setAccessToken(cgToken);
-
-    return await window.cg.Subject.initiateRectification(requestReason, rectificationPayload);
-  };
-
-  _fetchData = async () => {
-    const { isLoading, isFetched, isGuest } = this.state;
-    if (isLoading || isFetched || isGuest) {
-      return;
-    }
-
-    this._setLoading(true);
-
-    const cgToken = localStorage.getItem('cgToken');
-
-    window.cg.setAccessToken(cgToken);
-
-    let data;
-    let status;
-
-    try {
-      status = await window.cg.Subject.getDataStatus();
-    } catch (e) {
-      status = null;
-    }
-
-    const isErased = !status || status.controller === DATA_ERASED;
-
-    if (!isErased) {
-      try {
-        data = await window.cg.Subject.accessData();
-      } catch (e) {
-        data = null;
-      }
-    }
-
-    this.setState({
-      isLoading: false,
-      isFetched: true,
-      isErased,
-      data,
-      status
-    });
-  };
-
-  _setLoading() {
-    this.setState({ isLoading: true });
-  }
-
   _localStorageEventListener(e) {
     const { key } = e;
     if (key && key !== 'cgToken') {
       return;
     }
 
+    cg.setAccessToken(localStorage.getItem('cgToken'));
     this._initNewSession();
   }
 
   _initNewSession = () => {
-    this.setState(this._makeNewSubjectSession());
+    this.setState({ subject: new Subject(cg, this._makeNewSubjectSession()) });
   };
 
   _makeNewSubjectSession() {
     return {
       ...DEFAULT_STATE,
-      fetchData: this._fetchData,
-      initiateRectification: this._initiateRectification,
-      initNewSession: this._initNewSession,
-      isGuest: !localStorage.getItem('cgToken')
+      isGuest: !localStorage.getItem('cgToken'),
+      propagateMutation: subject => {
+        this.setState({ subject });
+      }
     };
   }
 
   constructor(props) {
     super(props);
-    this.state = this._makeNewSubjectSession();
+    this.state = { subject: new Subject(cg, this._makeNewSubjectSession()) };
     this._localStorageEventListener = this._localStorageEventListener.bind(this);
   }
 
@@ -151,7 +109,7 @@ export class SubjectProvider extends React.Component {
 export const inject = component => {
   return props => (
     <SubjectContext.Consumer>
-      {subject => React.createElement(component, { ...props, subject })}
+      {context => React.createElement(component, { ...props, subject: context.subject })}
     </SubjectContext.Consumer>
   );
 };
