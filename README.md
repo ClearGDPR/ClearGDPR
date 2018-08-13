@@ -2,9 +2,9 @@
 
 ![Logo](logo.png)
 
-[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
-
 ## Overview
+
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 
 Regardless of your data stores, ClearGDPR allows you to install on-premise or in the cloud, a complete web based GDPR compliance tool, with Blockchain anchored chain-of-custody records.
 
