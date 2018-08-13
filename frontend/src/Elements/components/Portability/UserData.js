@@ -3,33 +3,17 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import styles from '../../theme/SubjectData.scss';
+import Subject from '../../contexts/Subject';
 
 const SUBJECT_DATA_STATUS = ['Unconsented', 'Consented', 'Erased'];
 
 class UserData extends React.PureComponent {
-  state = {
-    data: null,
-    status: null,
-    processors: []
-  };
-
   componentDidMount() {
-    this.props.cg.Subject.getProcessors()
-      .then(processors => {
-        processors.map(p => {
-          p.enabled = true;
-          return p;
-        });
-        this.setState({ processors });
-      })
-      .catch(err => {
-        console.log('failure', err);
-      });
+    this.props.subject.fetchProcessors();
   }
 
   render() {
-    const { processors } = this.state;
-    const { data, status } = this.props.subject;
+    const { data, status, processors } = this.props.subject;
 
     if (!data || !status) {
       return <div>Loading</div>;
@@ -79,8 +63,7 @@ class UserData extends React.PureComponent {
 }
 
 UserData.propTypes = {
-  subject: PropTypes.object,
-  cg: PropTypes.object
+  subject: PropTypes.instanceOf(Subject)
 };
 
 export default UserData;

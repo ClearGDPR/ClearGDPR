@@ -2,6 +2,7 @@ import { CG } from '../../../js-sdk';
 import { shallow } from 'enzyme/build/index';
 import React from 'react';
 import UserData from './UserData';
+import Subject from '../../contexts/Subject';
 
 const processors = [
   {
@@ -42,11 +43,11 @@ const setup = async () => {
   return shallow(
     <UserData
       {...{
-        subject: {
+        subject: new Subject(cg, {
           data: { name: 'John', email: 'john@gmail.com' },
-          status: 1
-        },
-        cg
+          status: 1,
+          propagateMutation: () => {}
+        })
       }}
     />
   );

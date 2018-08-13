@@ -7,10 +7,10 @@ import clipboardSvg from '../../../assets/graph_clipboard.svg';
 
 import NewForm from './Edit';
 import ShareDataItem from './Item';
+import Subject from '../../contexts/Subject';
 
 class ShareData extends React.Component {
   state = {
-    shares: [],
     isNew: false
   };
 
@@ -20,16 +20,8 @@ class ShareData extends React.Component {
   };
 
   handleOnCreate = ({ name }) => {
-    window.cg.Subject.addDataShare({
-      name: name.value
-    })
-      .then(() => {
-        this.loadDataShares();
-        this.setState({ isNew: false });
-      })
-      .catch(err => {
-        console.log('failure', err);
-      });
+    this.props.subject.addDataShare(name.value);
+    this.setState({ isNew: false });
   };
 
   handleOnUpdate = e => {
@@ -41,14 +33,8 @@ class ShareData extends React.Component {
   handleOnDelete = (e, shareId) => {
     e.preventDefault();
 
-    window.cg.Subject.removeDataShare(shareId)
-      .then(() => {
-        this.loadDataShares();
-        this.setState({ isDelete: false });
-      })
-      .catch(err => {
-        console.log('failure', err);
-      });
+    this.props.subject.removeDataShare(shareId);
+    this.setState({ isDelete: false });
   };
 
   handleOnCopyURL = (e, toClipboard) => {
@@ -58,29 +44,21 @@ class ShareData extends React.Component {
   };
 
   loadDataShares = () => {
-    console.log(window.cg);
-    window.cg.Subject.getDataShares()
-      .then(shares => {
-        this.setState({ shares });
-      })
-      .catch(err => {
-        console.log('failure', err);
-      });
+    this.props.subject.fetchDataShares();
   };
 
   componentDidMount() {
-    const cgToken = localStorage.getItem('cgToken');
-    window.cg.setAccessToken(cgToken);
-    this.loadDataShares();
+    this.props.subject.fetchDataShares();
   }
 
   render() {
-    const { isNew, shares } = this.state;
+    const { isNew } = this.state;
+    const { shares } = this.props.subject;
 
     return (
       <div className="columns is-mobile is-multiline">
-        {shares.map((share, i) => (
-          <div key={i} className="column">
+        {(shares || []).map(share => (
+          <div key={share.id} className="column">
             <ShareDataItem
               share={share}
               onDelete={this.handleOnDelete}
@@ -113,7 +91,7 @@ class ShareData extends React.Component {
 }
 
 ShareData.propTypes = {
-  styles: PropTypes.object
+  subject: PropTypes.instanceOf(Subject)
 };
 
 export default ShareData;

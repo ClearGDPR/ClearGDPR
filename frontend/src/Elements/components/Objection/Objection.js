@@ -1,37 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Switch from '../Common/Switch';
+import Subject from '../../contexts/Subject';
 
 class Objection extends React.PureComponent {
   state = {
     allowDataProcessing: true,
-    busy: true
+    busy: false
   };
-  async componentDidMount() {
-    const { objection } = await this.props.cg.Subject.getObjectionStatus();
-    this.setState({ busy: false, allowDataProcessing: !objection });
+  componentDidMount() {
+    this.props.subject.fetchObjectionStatus();
   }
   toggleDataProcessingAgreement = async () => {
-    const { busy, allowDataProcessing } = this.state;
+    const { busy } = this.state;
+    const { objection } = this.props.subject;
     if (busy) {
       return;
     }
 
-    this.setState({ allowDataProcessing: !allowDataProcessing, busy: true });
-    await this.props.cg.Subject.updateObjection(allowDataProcessing);
+    this.setState({ busy: true });
+    await this.props.subject.updateObjection(!objection);
     this.setState({ busy: false });
   };
   render() {
     const { label = 'Object data processing' } = this.props.options;
-    const { allowDataProcessing, busy } = this.state;
+    const { busy } = this.state;
+    const { objection } = this.props.subject;
 
     return (
       <div style={{ alignItems: 'center', display: 'flex' }}>
         <label>{label}</label>&nbsp;
         <Switch
           onChange={this.toggleDataProcessingAgreement}
-          value={allowDataProcessing}
-          disabled={busy}
+          value={!objection}
+          disabled={busy || objection === null}
         />
       </div>
     );
@@ -40,7 +42,7 @@ class Objection extends React.PureComponent {
 
 Objection.propTypes = {
   options: PropTypes.object,
-  cg: PropTypes.object
+  subject: PropTypes.instanceOf(Subject)
 };
 
 export default Objection;

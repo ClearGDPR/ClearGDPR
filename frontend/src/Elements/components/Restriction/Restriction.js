@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Switch from '../Common/Switch';
 import { map } from 'lodash';
+import Subject from '../../contexts/Subject';
 
 const RESTRICTION_LABELS = {
   directMarketing: 'Direct marketing',
@@ -14,23 +15,18 @@ class Restriction extends React.PureComponent {
     restrictions: {}
   };
 
-  async componentDidMount() {
-    const restrictions = await this.props.cg.Subject.getRestrictions();
-    this.setState({ restrictions });
+  componentDidMount() {
+    this.props.subject.fetchRestrictions();
   }
 
-  toggleRestriction = async (e, key, value) => {
-    const restrictionsPayload = { ...this.state.restrictions, ...{ [key]: !value } };
-    this.setState({ restrictions: restrictionsPayload });
-
-    return await this.props.cg.Subject.updateRestrictions(restrictionsPayload);
+  toggleRestriction = (e, key, value) => {
+    const restrictionsPayload = { ...this.props.subject.restrictions, ...{ [key]: !value } };
+    this.props.subject.updateRestrictions(restrictionsPayload);
   };
 
   render() {
     const { label } = this.props.options;
-    const { restrictions } = this.state;
-
-    console.log({ restrictions });
+    const { restrictions } = this.props.subject;
 
     return (
       <div>
@@ -62,7 +58,7 @@ class Restriction extends React.PureComponent {
 
 Restriction.propTypes = {
   options: PropTypes.object,
-  cg: PropTypes.object
+  subject: PropTypes.instanceOf(Subject)
 };
 
 Restriction.defaultProps = {
