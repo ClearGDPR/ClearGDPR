@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import ModalView from '../Common/Views/Modal';
 import styles from '../../theme/ForgottenRequest.scss';
 
-import { inject } from '../../../containers/SubjectContext';
-
 const about = `The data subject shall have the right to request from the controller the erasure of
 personal data concerning him or her without undue delay and the controller shall have
 the obligation to erase personal data without undue delay where one of the following
@@ -109,4 +107,4 @@ ForgottenRequest.propTypes = {
   cg: PropTypes.object
 };
 
-export default inject(ForgottenRequest);
+export default ForgottenRequest;

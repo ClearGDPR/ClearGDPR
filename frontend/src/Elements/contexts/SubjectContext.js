@@ -25,10 +25,10 @@ const upgradeLocalStorage = function() {
   localStorage.setItem = function() {
     originalLocalStorageSetItem.apply(this, arguments);
 
-    const keyboardEvent = new CustomEvent(EVENT_NAME);
-    keyboardEvent.key = arguments[0];
-    keyboardEvent.value = arguments[1];
-    window.dispatchEvent(keyboardEvent);
+    const event = new CustomEvent(EVENT_NAME);
+    event.key = arguments[0];
+    event.value = arguments[1];
+    window.dispatchEvent(event);
   };
 };
 
