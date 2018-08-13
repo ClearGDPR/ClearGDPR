@@ -4,12 +4,18 @@
   "private": true,
   "description": "ClearGDPR",
   "author": "Clevertech <support@clevertech.biz>",
+  "license": "LGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClearGDPR/ClearGDPR.git"
+  },
   "scripts": {
     "precommit": "lint-staged",
     "lint": "eslint .",
     "e2e": "testcafe chrome e2e/*.test.js",
     "db-client": "bnr --path=./api/.env db-client",
-    "browse": "browse"
+    "browse": "browse",
+    "lerna": "lerna"
   },
   "betterScripts": {
     "db-client": "PGPASSWORD=$DB_PASSWORD psql -h 127.0.0.1 -U $DB_USER $DB_DATABASE"
@@ -50,7 +56,8 @@
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
     "prettier": "^1.13.7",
-    "testcafe": "^0.18.6"
+    "testcafe": "^0.18.6",
+    "lerna": "^3.0.0-rc.0"
   },
   "dependencies": {
     "bluebird": "3.5.1"
