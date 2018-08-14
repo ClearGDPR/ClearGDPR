@@ -2,34 +2,47 @@
 
 exports[`(Elements SDK) Restriction should render correctly 1`] = `
 <Restriction
-  cg={
-    CG {
-      "Events": Events {
-        "_events": Object {},
-      },
-      "Processors": Processors {
-        "_request": RequestFactory {
-          "config": [Circular],
+  options={Object {}}
+  subject={
+    Subject {
+      "_propagateMutation": [Function],
+      "cg": CG {
+        "Events": Events {
+          "_events": Object {},
+        },
+        "Processors": Processors {
+          "_request": RequestFactory {
+            "config": [Circular],
+          },
+        },
+        "Subject": Subject {
+          "_request": RequestFactory {
+            "config": [Circular],
+          },
+          "getRestrictions": [Function],
+          "updateRestrictions": [Function],
+        },
+        "_config": Object {
+          "apiKey": "test",
+          "apiTimeout": 30,
+          "apiUrl": "test",
+          "apiVersion": undefined,
+          "auth": null,
+          "debug": false,
         },
       },
-      "Subject": Subject {
-        "_request": RequestFactory {
-          "config": [Circular],
-        },
-        "getRestrictions": [Function],
-        "updateRestrictions": [Function],
-      },
-      "_config": Object {
-        "apiKey": "test",
-        "apiTimeout": 30,
-        "apiUrl": "test",
-        "apiVersion": undefined,
-        "auth": null,
-        "debug": false,
-      },
+      "data": null,
+      "isErased": false,
+      "isFetched": false,
+      "isGuest": true,
+      "isLoading": false,
+      "objection": null,
+      "processors": null,
+      "restrictions": null,
+      "shares": null,
+      "status": null,
     }
   }
-  options={Object {}}
 >
   <div>
     <label />

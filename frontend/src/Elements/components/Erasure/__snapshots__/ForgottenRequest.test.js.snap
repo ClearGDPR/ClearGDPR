@@ -41,6 +41,7 @@ exports[`ForgottenRequest should render correctly 1`] = `
       "isLoading": false,
       "objection": null,
       "processors": null,
+      "restrictions": null,
       "shares": null,
       "status": 1,
     }
