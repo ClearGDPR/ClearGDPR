@@ -6,7 +6,7 @@ const { initResources, fetch, closeResources } = require('../utils');
 const { deployContract } = require('../blockchain-setup');
 const { db } = require('../../src/db');
 const { managementJWT, subjectJWT } = require('../../src/utils/jwt');
-const { setProcessors } = require('../../src/utils/blockchain');
+const { setProcessors, recordConsentGivenTo, sha3 } = require('../../src/utils/blockchain');
 
 const { VALID_RUN_MODES } = require('../../src/utils/constants');
 
@@ -40,6 +40,25 @@ beforeEach(() => {
   process.env.MODE = VALID_RUN_MODES.CONTROLLER;
 });
 afterAll(closeResources);
+
+async function clearEvents() {
+  try {
+    await deployContract();
+  } catch (e) {
+    winston.error(`Failed deploying contract ${e.toString()}`);
+  }
+}
+
+const SUBJECTS = [sha3('subject 1'), sha3('subject 2'), sha3('subject 3')];
+
+async function prepareEvents() {
+  await clearEvents();
+  let r;
+  for (let i in SUBJECTS) {
+    r = await recordConsentGivenTo(SUBJECTS[i], []);
+  }
+  return r.blockNumber;
+}
 
 describe('Stats endpoint', () => {
   it('Should display 0 stats properly if there is no entries yet', async () => {
@@ -134,5 +153,74 @@ describe('Stats endpoint', () => {
         }
       })
     );
+  });
+
+  it('should return events', async () => {
+    await prepareEvents();
+    const managementToken = await managementJWT.sign({
+      id: 1
+    });
+    const res = await fetch('/api/management/events', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+    const events = await res.json();
+    expect(events).toHaveLength(3);
+  });
+
+  it('should allow to filter events', async () => {
+    await prepareEvents();
+    const managementToken = await managementJWT.sign({
+      id: 1
+    });
+    const res = await fetch(
+      `/api/management/events?eventType=Controller_ConsentGivenTo&filter={"subjectId": "${
+        SUBJECTS[0]
+      }"}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${managementToken}`
+        }
+      }
+    );
+    const events = await res.json();
+    expect(events).toHaveLength(1);
+    expect(events[0].returnValues.subjectId).toBe(SUBJECTS[0]);
+  });
+
+  it('should allow to skip events', async () => {
+    const lastBlockNumber = await prepareEvents();
+    const managementToken = await managementJWT.sign({
+      id: 1
+    });
+    const res = await fetch(`/api/management/events?fromBlock=${lastBlockNumber}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+    const events = await res.json();
+    expect(events).toHaveLength(1);
+    expect(events[0].blockNumber).toBe(lastBlockNumber);
+  });
+
+  it('should allow to get events before some certain event', async () => {
+    const lastBlockNumber = await prepareEvents();
+    const firstBlockNumber = lastBlockNumber - SUBJECTS.length + 1;
+    const managementToken = await managementJWT.sign({
+      id: 1
+    });
+    const res = await fetch(`/api/management/events?toBlock=${firstBlockNumber}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+    const events = await res.json();
+    expect(events).toHaveLength(1);
+    expect(events[0].blockNumber).toBe(firstBlockNumber);
   });
 });
