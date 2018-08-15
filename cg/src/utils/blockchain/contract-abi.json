@@ -1,134 +1,22 @@
 [
   {
-    "anonymous": false,
+    "constant": true,
     "inputs": [
       {
-        "indexed": false,
-        "name": "subjectId",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "name": "processor",
+        "name": "_processor",
         "type": "address"
       }
     ],
-    "name": "Processor_SubjectDataErased",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
+    "name": "isProcessor",
+    "outputs": [
       {
-        "indexed": false,
-        "name": "subjectId",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "name": "processorsConsented",
-        "type": "address[]"
-      }
-    ],
-    "name": "Controller_ConsentGivenTo",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "subjectId",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "name": "objection",
+        "name": "",
         "type": "bool"
       }
     ],
-    "name": "Controller_SubjectDataObjected",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "newProcessors",
-        "type": "address[]"
-      }
-    ],
-    "name": "Controller_ProcessorsUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "subjectId",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "name": "directMarketing",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "name": "emailCommunication",
-        "type": "bool"
-      },
-      {
-        "indexed": false,
-        "name": "research",
-        "type": "bool"
-      }
-    ],
-    "name": "Controller_SubjectDataRestricted",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "subjectId",
-        "type": "bytes32"
-      }
-    ],
-    "name": "Controller_SubjectDataErased",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "subjectId",
-        "type": "bytes32"
-      },
-      {
-        "indexed": false,
-        "name": "rectificationCount",
-        "type": "uint256"
-      }
-    ],
-    "name": "Controller_SubjectDataRectified",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "name": "subjectId",
-        "type": "bytes32"
-      }
-    ],
-    "name": "Controller_SubjectDataAccessed",
-    "type": "event"
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "constant": false,
@@ -136,17 +24,121 @@
       {
         "name": "_subjectId",
         "type": "bytes32"
+      },
+      {
+        "name": "_processor",
+        "type": "address"
+      },
+      {
+        "name": "_state",
+        "type": "uint8"
       }
     ],
-    "name": "recordAccessByController",
+    "name": "setSubjectDataState",
     "outputs": [
       {
         "name": "",
-        "type": "uint8[]"
+        "type": "bool"
       }
     ],
     "payable": false,
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_subjectId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getSubjectRestrictions",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      },
+      {
+        "name": "",
+        "type": "bool"
+      },
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_subjectId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getRectificationCount",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_subjectId",
+        "type": "bytes32"
+      },
+      {
+        "name": "_directMarketing",
+        "type": "bool"
+      },
+      {
+        "name": "_emailCommunication",
+        "type": "bool"
+      },
+      {
+        "name": "_research",
+        "type": "bool"
+      }
+    ],
+    "name": "recordRestrictionByController",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_subjectId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getSubjectObjection",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -173,22 +165,26 @@
     "type": "function"
   },
   {
-    "constant": false,
+    "constant": true,
     "inputs": [
       {
         "name": "_subjectId",
         "type": "bytes32"
+      },
+      {
+        "name": "_processor",
+        "type": "address"
       }
     ],
-    "name": "recordErasureByController",
+    "name": "getSubjectDataState",
     "outputs": [
       {
         "name": "",
-        "type": "bool"
+        "type": "uint8"
       }
     ],
     "payable": false,
-    "stateMutability": "nonpayable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -204,29 +200,6 @@
       }
     ],
     "name": "recordErasureByProcessor",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "constant": false,
-    "inputs": [
-      {
-        "name": "_subjectId",
-        "type": "bytes32"
-      },
-      {
-        "name": "_objection",
-        "type": "bool"
-      }
-    ],
-    "name": "recordObjectionByController",
     "outputs": [
       {
         "name": "",
@@ -281,21 +254,9 @@
       {
         "name": "_subjectId",
         "type": "bytes32"
-      },
-      {
-        "name": "_directMarketing",
-        "type": "bool"
-      },
-      {
-        "name": "_emailCommunication",
-        "type": "bool"
-      },
-      {
-        "name": "_research",
-        "type": "bool"
       }
     ],
-    "name": "recordRestrictionByController",
+    "name": "recordErasureByController",
     "outputs": [
       {
         "name": "",
@@ -304,6 +265,24 @@
     ],
     "payable": false,
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "getProcessors",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address[]"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -326,6 +305,63 @@
     "type": "function"
   },
   {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_processors",
+        "type": "address[]"
+      }
+    ],
+    "name": "areAllValidProcessors",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "_subjectId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getIsErased",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_subjectId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "recordAccessByController",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint8[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "constant": false,
     "inputs": [
       {
@@ -333,15 +369,19 @@
         "type": "bytes32"
       },
       {
-        "name": "_processor",
-        "type": "address"
+        "name": "_directMarketing",
+        "type": "bool"
       },
       {
-        "name": "_state",
-        "type": "uint8"
+        "name": "_emailCommunication",
+        "type": "bool"
+      },
+      {
+        "name": "_research",
+        "type": "bool"
       }
     ],
-    "name": "setSubjectDataState",
+    "name": "setSubjectRestrictions",
     "outputs": [
       {
         "name": "",
@@ -383,19 +423,11 @@
         "type": "bytes32"
       },
       {
-        "name": "_directMarketing",
-        "type": "bool"
-      },
-      {
-        "name": "_emailCommunication",
-        "type": "bool"
-      },
-      {
-        "name": "_research",
+        "name": "_objection",
         "type": "bool"
       }
     ],
-    "name": "setSubjectRestrictions",
+    "name": "recordObjectionByController",
     "outputs": [
       {
         "name": "",
@@ -404,31 +436,6 @@
     ],
     "payable": false,
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "payable": false,
-    "stateMutability": "nonpayable",
-    "type": "constructor"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_processors",
-        "type": "address[]"
-      }
-    ],
-    "name": "areAllValidProcessors",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -446,147 +453,140 @@
     "type": "function"
   },
   {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_subjectId",
-        "type": "bytes32"
-      }
-    ],
-    "name": "getIsErased",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
     "inputs": [],
-    "name": "getProcessors",
-    "outputs": [
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
       {
-        "name": "",
+        "indexed": false,
+        "name": "newProcessors",
         "type": "address[]"
+      }
+    ],
+    "name": "Controller_ProcessorsUpdated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "subjectId",
+        "type": "bytes32"
       },
       {
-        "name": "",
+        "indexed": false,
+        "name": "processorsConsented",
+        "type": "address[]"
+      }
+    ],
+    "name": "Controller_ConsentGivenTo",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "subjectId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Controller_SubjectDataAccessed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "subjectId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "rectificationCount",
         "type": "uint256"
       }
     ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "name": "Controller_SubjectDataRectified",
+    "type": "event"
   },
   {
-    "constant": true,
+    "anonymous": false,
     "inputs": [
       {
-        "name": "_subjectId",
-        "type": "bytes32"
-      }
-    ],
-    "name": "getRectificationCount",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_subjectId",
+        "indexed": true,
+        "name": "subjectId",
         "type": "bytes32"
       },
       {
-        "name": "_processor",
+        "indexed": false,
+        "name": "directMarketing",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "emailCommunication",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "name": "research",
+        "type": "bool"
+      }
+    ],
+    "name": "Controller_SubjectDataRestricted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "subjectId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "objection",
+        "type": "bool"
+      }
+    ],
+    "name": "Controller_SubjectDataObjected",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "subjectId",
+        "type": "bytes32"
+      }
+    ],
+    "name": "Controller_SubjectDataErased",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "subjectId",
+        "type": "bytes32"
+      },
+      {
+        "indexed": true,
+        "name": "processor",
         "type": "address"
       }
     ],
-    "name": "getSubjectDataState",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint8"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_subjectId",
-        "type": "bytes32"
-      }
-    ],
-    "name": "getSubjectObjection",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_subjectId",
-        "type": "bytes32"
-      }
-    ],
-    "name": "getSubjectRestrictions",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      },
-      {
-        "name": "",
-        "type": "bool"
-      },
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_processor",
-        "type": "address"
-      }
-    ],
-    "name": "isProcessor",
-    "outputs": [
-      {
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
+    "name": "Processor_SubjectDataErased",
+    "type": "event"
   }
 ]

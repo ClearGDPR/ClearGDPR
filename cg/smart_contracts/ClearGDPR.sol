@@ -31,13 +31,13 @@ contract ClearGDPR {
     mapping(bytes32 => subjectStatus) private subjects;
 
     event Controller_ProcessorsUpdated(address[] newProcessors);
-    event Controller_ConsentGivenTo(bytes32 subjectId, address[] processorsConsented); 
-    event Controller_SubjectDataAccessed(bytes32 subjectId);
-    event Controller_SubjectDataRectified(bytes32 subjectId, uint256 rectificationCount);
-    event Controller_SubjectDataRestricted(bytes32 subjectId, bool directMarketing, bool emailCommunication, bool research);
-    event Controller_SubjectDataObjected(bytes32 subjectId, bool objection);
-    event Controller_SubjectDataErased(bytes32 subjectId); 
-    event Processor_SubjectDataErased(bytes32 subjectId, address processor);
+    event Controller_ConsentGivenTo(bytes32 indexed subjectId, address[] processorsConsented);
+    event Controller_SubjectDataAccessed(bytes32 indexed subjectId);
+    event Controller_SubjectDataRectified(bytes32 indexed subjectId, uint256 rectificationCount);
+    event Controller_SubjectDataRestricted(bytes32 indexed subjectId, bool directMarketing, bool emailCommunication, bool research);
+    event Controller_SubjectDataObjected(bytes32 indexed subjectId, bool objection);
+    event Controller_SubjectDataErased(bytes32 indexed subjectId);
+    event Processor_SubjectDataErased(bytes32 indexed subjectId, address indexed processor);
     
     modifier onlyController(){
         require(msg.sender == controller);
