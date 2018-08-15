@@ -54,7 +54,7 @@ class StatsService {
   }
 
   async events(eventType = 'allEvents', fromBlock = 0, toBlock = 'latest', filter) {
-    return await blockchain.getPastEvents(eventType, fromBlock, toBlock, filter);
+    return blockchain.getPastEvents(eventType, fromBlock, toBlock, filter);
   }
 }
 
