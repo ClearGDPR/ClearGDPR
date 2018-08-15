@@ -174,9 +174,9 @@ async function recordErasureByProcessor(subjectId) {
 
 // AUDITING FUNCTION
 
-async function getPastEvents(event) {
+async function getPastEvents(eventType, fromBlock, toBlock, filter) {
   const quorumContract = await getContract();
-  return await quorumContract.contract.getPastEvents(event, { fromBlock: 0, toBlock: 'latest' });
+  return await quorumContract.contract.getPastEvents(eventType, { fromBlock, toBlock, filter });
 }
 
 // LISTENER FUNCTIONS
