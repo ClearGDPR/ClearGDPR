@@ -1,4 +1,5 @@
 const { db } = require('../../../db');
+const blockchain = require('../../../utils/blockchain');
 
 class StatsService {
   constructor(database = db) {
@@ -50,6 +51,10 @@ class StatsService {
       controller: controllerData,
       processors: processorData
     };
+  }
+
+  async events(eventType = 'allEvents', fromBlock = 0, toBlock = 'latest', filter) {
+    return await blockchain.getPastEvents(eventType, fromBlock, toBlock, filter);
   }
 }
 
