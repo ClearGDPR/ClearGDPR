@@ -23,8 +23,8 @@ class UserData extends React.PureComponent {
 
     if (processors && status.processors) {
       processorsList = processors.map(p => {
-        const s = _.find(status.processors, { id: p.id });
-        p.status = SUBJECT_DATA_STATUS[s.status];
+        const s = _.find(status.processors, { id: p.id }) || {};
+        p.status = s.status ? SUBJECT_DATA_STATUS[s.status] : 'Unconsented';
         return p;
       });
     }
@@ -48,7 +48,7 @@ class UserData extends React.PureComponent {
         {processorsList.map(p => (
           <div key={p.id} className={styles.processor}>
             <div>
-              <img src={p.logoUrl} alt={p.name} />
+              <img src={p.logoUrl} alt={p.name} style={{ height: 60 }} />
             </div>
             <div>{p.name}</div>
             <div>{p.description}</div>

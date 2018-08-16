@@ -2,6 +2,10 @@
 
 .data {
   .processor {
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 15px;
+    margin-bottom: 10px;
+
     .status {
       display: inline-block;
       position: relative;
