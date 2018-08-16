@@ -14,6 +14,7 @@ const {
   getIsErased,
   setProcessors
 } = require('../../src/utils/blockchain');
+const Blockchain = require('../../src/utils/blockchain');
 const { SubjectDataStatus } = require('../../src/utils/blockchain/models');
 const { VALID_RUN_MODES } = require('../../src/utils/constants');
 const processor1Address = '0x00000000000000000000000000000000000000A1';
@@ -46,6 +47,7 @@ beforeAll(async () => {
   addressesToInsert.forEach(a => expect(addresses).toContainEqual(a));
 });
 beforeEach(() => {
+  Blockchain.recordConsentGivenTo = recordConsentGivenTo;
   process.env.MODE = VALID_RUN_MODES.CONTROLLER;
 });
 afterAll(closeResources);
@@ -312,6 +314,34 @@ describe('Tests of subjects giving consent', () => {
     expect(await getSubjectDataState(subjectIdHashed, processor1Address)).toBe(
       SubjectDataStatus.unconsented
     );
+  });
+
+    it('Should not register consent if blockchain fails', async () => {
+    // Given
+    Blockchain.recordConsentGivenTo = jest.fn().mockImplementation(() => {
+      throw Error('Boom!')
+    });
+
+    const subjectToken = await subjectJWT.sign({ subjectId: 'kevin-1' });
+    const personalData = { sensitiveData: 'some sensitive data' };
+    const payload = {
+      personalData,
+      processors: []
+    };
+
+    // When
+    const res = await fetch('/api/subject/give-consent', {
+      method: 'POST',
+      body: payload,
+      headers: {
+        Authorization: `Bearer ${subjectToken}`
+      }
+    });
+
+    // Then
+    let subjectIdHashed = hash('kevin-1');
+    expect(Blockchain.recordConsentGivenTo.mock.calls.length).toBe(1);
+    expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.unconsented);
   });
 });
 
