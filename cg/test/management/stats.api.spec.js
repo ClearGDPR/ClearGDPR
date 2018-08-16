@@ -61,7 +61,7 @@ async function prepareEvents() {
 }
 
 describe('Stats endpoint', () => {
-  it('Should display 0 stats properly if there is no entries yet', async () => {
+  it('Should display 0 stats properly if there are no entries yet', async () => {
     const managementToken = await managementJWT.sign({
       id: 1
     });
