@@ -19,6 +19,9 @@ const statsController = new StatsController();
 const ProcessorsController = require('./processors/processors.controller');
 const processorsController = new ProcessorsController();
 
+const DataController = require('./data/data.controller');
+const dataController = new DataController();
+
 const { contractDeployValidator } = require('./contract/contract.validators');
 
 const {
@@ -40,6 +43,8 @@ const {
   usersRemovalValidator,
   usersUpdatePasswordValidator
 } = require('./users/users.validators');
+
+const { updateAttributesConfigValidator } = require('./data/data.validators');
 
 module.exports = app => {
   app.use('/management', router);
@@ -144,6 +149,17 @@ module.exports = app => {
     '/users/:userId/update-password',
     usersUpdatePasswordValidator,
     asyncHandler(async (req, res) => usersController.updatePassword(req, res))
+  );
+
+  router.put(
+    '/data/attributes-config',
+    updateAttributesConfigValidator,
+    asyncHandler(async (req, res) => dataController.updateAttributesConfig(req, res))
+  );
+
+  router.get(
+    '/data/attributes-config',
+    asyncHandler(async (req, res) => dataController.getAttributesConfig(req, res))
   );
 
   router.get('/users/list', asyncHandler(async (req, res) => usersController.listUsers(req, res)));
