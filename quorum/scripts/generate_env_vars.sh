@@ -14,7 +14,8 @@ if [ "$1" = "" ] ; then
 fi
 
 GENESIS_JSON=`node "$pwd/quorum/scripts/generate_genesis.js" $@`
-STATIC_NODES=`node "$pwd/quorum/scripts/generate_static_nodes.js" $@`
+STATIC_NODES=`node "$pwd/quorum/scripts/generate_static_nodes.js" $1`
+STATIC_NODES_PROCESSOR=`node "$pwd/quorum/scripts/generate_static_nodes.js" $2`
 
 for i in "${@:1}"
 do
@@ -48,6 +49,8 @@ do
     echo "GENESIS_JSON=$GENESIS_JSON" >> $target_env
     echo "" >> $target_env
     echo "STATIC_NODES=$STATIC_NODES" >> $target_env
-    
+    echo "" >> $target_env
+    echo "STATIC_NODES_PROCESSOR=$STATIC_NODES_PROCESSOR" >> $target_env
+
     echo ".env for $i generated in $target_dir/.env"
 done

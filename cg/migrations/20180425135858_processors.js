@@ -4,7 +4,7 @@ exports.up = function(knex) {
     table.string('name').notNullable();
     table.string('logoUrl');
     table.text('description');
-    table.jsonb('scopes');
+    table.jsonb('scopes'); // processingActions
   });
 };
 

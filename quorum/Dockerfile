@@ -71,7 +71,7 @@ COPY --from=builder \
         /usr/local/bin/constellation-node \
         /usr/local/bin/geth \
         /usr/local/bin/bootnode \
-    /usr/local/bin/
+        /usr/local/bin/
 
 
 COPY ./templates/tm.conf /templates/tm.conf

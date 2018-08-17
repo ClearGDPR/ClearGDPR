@@ -26,6 +26,7 @@ arguments.forEach(dir => {
     .toString()
     .split('\n')
     .shift();
+    
   genesis.alloc[account] = {
     balance
   };

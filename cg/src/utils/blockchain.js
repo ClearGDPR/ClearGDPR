@@ -125,6 +125,10 @@ async function areAllValidProcessors(processors) {
   return await quorumContract.methods.areAllValidProcessors(processors).call();
 }
 
+async function createProcessorAccount(){
+  // return await web3
+}
+
 // SMART CONTRACT MAIN FUNCTIONS
 
 async function recordProcessorsUpdate(newProcessors) {
@@ -188,12 +192,11 @@ async function listenerForConsentEvent(callback) {
       winston.error(`Error handling consent given to ${error.toString()}`);
       return;
     }
-    if (
-      // we need to downcase the addresses so they are in a consistent format. One was coming in with capitals and one was not.
+    if (data.returnValues.processorsConsented){
       data.returnValues.processorsConsented
         .map(address => address.toLowerCase())
-        .includes(getMyAddress().toLowerCase())
-    ) {
+        // we need to downcase the addresses so they are in a consistent format. One was coming in with capitals and one was not.
+      
       callback(data.returnValues.subjectId);
     }
   });
@@ -320,6 +323,7 @@ module.exports = {
   setProcessors,
   isProcessor,
   areAllValidProcessors,
+  createProcessorAccount,
   recordProcessorsUpdate,
   recordConsentGivenTo,
   recordAccessByController,

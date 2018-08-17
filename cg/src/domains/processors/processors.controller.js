@@ -1,11 +1,18 @@
 const SubjectsService = require('./subjects.service');
 const ContractService = require('./contract.service');
+const ProcessorsService = require('./processors.service');
 const { NotFound } = require('../../utils/errors');
 
 class ProcessorsController {
-  constructor(subjectsService = null, contractService = null) {
+  constructor(processorsService = null, subjectsService = null, contractService = null) {
+    this.processorsService = processorsService || new ProcessorsService();
     this.subjectsService = subjectsService || new SubjectsService();
     this.contractService = contractService || new ContractService();
+  }
+
+  async join(req, res){
+    const processorConfiguration = await this.processorsService.join(req.body);
+    res.json(processorConfiguration);
   }
 
   async getContractDetails(req, res) {

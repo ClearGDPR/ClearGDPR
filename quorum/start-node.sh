@@ -44,7 +44,7 @@ elif [ "$SERVICE" = "geth" ]; then
 
   # adding static-nodes.json
   [ ! -f "/qdata/dd/static-nodes.json" ] || rm "/qdata/dd/static-nodes.json"
-  echo $STATIC_NODES | base64 --decode --ignore-garbage > "/qdata/dd/static-nodes.json"
+  echo $STATIC_NODES_PROCESSOR | base64 --decode --ignore-garbage > "/qdata/dd/static-nodes.json"
 
   # adding the account private key (password protected)
   [ ! -f "/qdata/dd/keystore/"$KEYSTORE_FILE_NAME ] || rm "/qdata/dd/keystore/"$KEYSTORE_FILE_NAME
@@ -69,7 +69,7 @@ elif [ "$SERVICE" = "geth" ]; then
     /usr/local/bin/geth --datadir /qdata/dd init /qdata/genesis.json
   fi
 
-  GETH_ARGS="--datadir /qdata/dd --raft --rpc --rpcaddr 0.0.0.0 --port "$ETH_PORT" --ws --wsorigins="*" --wsaddr 0.0.0.0 --wsport "$WEBSOCKET_PORT" --rpcport "$RPC_PORT" --raftport "$RAFT_PORT" --wsapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum --nodiscover --unlock 0 --password /qdata/passwords.txt"
+  GETH_ARGS="--datadir /qdata/dd --raft --raftjoinexisting 2 --rpc --rpcaddr 0.0.0.0 --port "$ETH_PORT" --ws --wsorigins="*" --wsaddr 0.0.0.0 --wsport "$WEBSOCKET_PORT" --rpcport "$RPC_PORT" --raftport "$RAFT_PORT" --wsapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,raft --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,raft --nodiscover --unlock 0 --password /qdata/passwords.txt"
 
   # sleep 10 # fixed with a healthcheck on constellation (https://docs.docker.com/compose/compose-file/compose-file-v2/#healthcheck)
   echo "[*] Starting Geth node"
