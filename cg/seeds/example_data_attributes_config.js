@@ -1,8 +1,6 @@
-const KEY = 'SUBJECT_DATA_ATTRIBUTES_CONFIG';
-
-exports.up = async function(knex, Promise) {
+exports.seed = async function(knex, Promise) {
   await knex('config').insert({
-    key: KEY,
+    key: 'SUBJECT_DATA_ATTRIBUTES_CONFIG',
     value: JSON.stringify({
       email: {
         type: 'email',
@@ -26,10 +24,4 @@ exports.up = async function(knex, Promise) {
       }
     })
   });
-};
-
-exports.down = async function(knex, Promise) {
-  await knex('config')
-    .where('key', KEY)
-    .delete();
 };
