@@ -14,21 +14,17 @@ class Consent extends React.PureComponent {
     showProcessors: false
   };
 
-  consentGiven = false;
-
   async componentDidMount() {
     await this.props.subject.fetchProcessors();
     const { processors, isGuest } = this.props.subject;
     this.setState({ processors, isGuest });
 
     this.form = ReactDOM.findDOMNode(this).parentNode;
+    this.props.subject.onEntrance(this.handleGiveConsent);
   }
 
-  componentWillUpdate(newProps) {
-    //@todo figure out a better way how to listen to subject's sign up event
-    if (this.props.subject.isGuest && !newProps.subject.isGuest && !this.consentGiven) {
-      this.handleGiveConsent();
-    }
+  componentWillUnmount() {
+    this.props.subject.clearEntranceListeners();
   }
 
   toggleProcessors = e => {
@@ -40,7 +36,6 @@ class Consent extends React.PureComponent {
   };
 
   handleGiveConsent = async () => {
-    this.consentGiven = true;
     let processors = this.state.processors.slice();
 
     // Get Data from parent form

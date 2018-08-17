@@ -174,7 +174,6 @@ export default class Subject {
       await this.cg.Subject.updateRestrictions(restrictions);
     } catch (e) {
       console.log(e);
-      return;
     }
   }
 
@@ -184,5 +183,13 @@ export default class Subject {
     } catch (e) {
       console.log('failure', e);
     }
+  }
+
+  onEntrance(callback) {
+    this.cg.Events.subscribe('auth.setAccessToken', callback);
+  }
+
+  clearEntranceListeners() {
+    this.cg.Events.clear('auth.setAccessToken');
   }
 }

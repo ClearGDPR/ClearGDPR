@@ -13,7 +13,7 @@ class Elements {
    * Return a new Element
    */
   element(elementOptions) {
-    return Element.create({ ...elementOptions, cg: this.cg });
+    return Element.create({ ...elementOptions });
   }
 }
 
