@@ -28,7 +28,7 @@ export default class Element {
   static create({ source, cg, ...options }) {
     const element = ELEMENTS[source];
     if (!element) {
-      throw new Error('Element was type not specified.');
+      throw new Error('Element type was not specified.');
     }
     return React.createElement(element, { options, cg });
   }
