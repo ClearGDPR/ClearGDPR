@@ -10,7 +10,7 @@ const joinProcessorsValidator = celebrate({
     scopes: Joi.object().keys({
       directMarketing: Joi.boolean(),
       emailCommunication: Joi.boolean(),
-      research: Joi.boolean(),
+      research: Joi.boolean()
     })
     //address: Joi.string().regex(/^0x[\da-fA-F]{40}$/)
   })

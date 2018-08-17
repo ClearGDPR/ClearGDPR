@@ -3,32 +3,27 @@ const winston = require('winston');
 const { NotFound, Forbidden, BadRequest } = require('../../utils/errors');
 const { recordProcessorsUpdate } = require('../../utils/blockchain');
 
-
 class ProcessorsService {
   constructor(database = db) {
     this.db = database;
   }
 
-  async join(processorInformation){
-		const [ processorExists ] = await this.db('processors')
-			.where('name', processorInformation.name);
-	
-		if(processorExists) throw new BadRequest('Processor already exists');
+  async join(processorInformation) {
+    const [processorExists] = await this.db('processors').where('name', processorInformation.name);
 
-		const [ processorId ] = await this.db('processors')
-			.insert(processorInformation)
-			.returning('id');
+    if (processorExists) throw new BadRequest('Processor already exists');
 
-		await this.db('processor_address')
-			.insert({
-				processor_id: processorId,
-				address: 'AAAAAAAAAAAAAAAAAAA'
-			})
+    const [processorId] = await this.db('processors')
+      .insert(processorInformation)
+      .returning('id');
 
+    await this.db('processor_address').insert({
+      processor_id: processorId,
+      address: 'AAAAAAAAAAAAAAAAAAA'
+    });
 
-		return { success: true };
-	}
-
+    return { success: true };
+  }
 }
 
 module.exports = ProcessorsService;

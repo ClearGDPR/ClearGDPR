@@ -125,7 +125,7 @@ async function areAllValidProcessors(processors) {
   return await quorumContract.methods.areAllValidProcessors(processors).call();
 }
 
-async function createProcessorAccount(){
+async function createProcessorAccount() {
   // return await web3
 }
 
@@ -192,11 +192,10 @@ async function listenerForConsentEvent(callback) {
       winston.error(`Error handling consent given to ${error.toString()}`);
       return;
     }
-    if (data.returnValues.processorsConsented){
-      data.returnValues.processorsConsented
-        .map(address => address.toLowerCase())
-        // we need to downcase the addresses so they are in a consistent format. One was coming in with capitals and one was not.
-      
+    if (data.returnValues.processorsConsented) {
+      data.returnValues.processorsConsented.map(address => address.toLowerCase());
+      // we need to downcase the addresses so they are in a consistent format. One was coming in with capitals and one was not.
+
       callback(data.returnValues.subjectId);
     }
   });

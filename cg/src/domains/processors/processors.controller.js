@@ -10,7 +10,7 @@ class ProcessorsController {
     this.contractService = contractService || new ContractService();
   }
 
-  async join(req, res){
+  async join(req, res) {
     const processorConfiguration = await this.processorsService.join(req.body);
     res.json(processorConfiguration);
   }

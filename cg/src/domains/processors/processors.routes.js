@@ -7,8 +7,8 @@ const router = express.Router();
 const ProcessorsController = require('./processors.controller');
 const processorsController = new ProcessorsController();
 
-const { joinProcessorsValidator } = require('./processors.validators')
- 
+const { joinProcessorsValidator } = require('./processors.validators');
+
 module.exports = app => {
   app.use('/processors', router);
 
