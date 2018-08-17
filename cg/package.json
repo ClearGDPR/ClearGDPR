@@ -20,7 +20,7 @@
     "start-dev": "node src/wait-for-db.js && knex migrate:latest && nodemon --inspect=0.0.0.0:9230",
     "knex": "knex",
     "test": {
-      "command": "jest --forceExit --detectOpenHandles",
+      "command": "jest --forceExit",
       "env": {
         "DB_POOL_MIN": "0",
         "PORT": "0",
