@@ -153,8 +153,8 @@ module.exports = app => {
     asyncHandler(async (req, res) => usersController.updatePassword(req, res))
   );
 
-  router.put(
-    '/data/attributes-config',
+  router.post(
+    '/data/attributes-config/update',
     updateAttributesConfigValidator,
     asyncHandler(async (req, res) => dataController.updateAttributesConfig(req, res))
   );
