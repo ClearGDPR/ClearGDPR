@@ -15,7 +15,7 @@ const {
 } = require('../../utils/blockchain');
 const { ValidationError, NotFound, Unauthorized, Forbidden } = require('../../utils/errors');
 const winston = require('winston');
-const { RECTIFICATION_STATUSES } = require('./../../utils/constants');
+const { RECTIFICATION_STATUSES, DATA_STATUSES } = require('./../../utils/constants');
 
 class SubjectsService {
   constructor(database = db) {
@@ -143,6 +143,20 @@ class SubjectsService {
     });
   }
 
+  async _getSubjectDataState(subjectId, processor) {
+    const status = await getSubjectDataState(subjectId, processor);
+    switch (status) {
+      case 0:
+        return DATA_STATUSES.UNCONSENTED;
+      case 1:
+        return DATA_STATUSES.CONSENTED;
+      case 2:
+        return DATA_STATUSES.ERASED;
+      default:
+        throw new Error('Wrong data status!');
+    }
+  }
+
   async getPerProcessorDataStatus(subjectId) {
     const processorIdsWithAddress = this.db('subject_processors')
       .innerJoin('processors', 'subject_processors.processor_id', 'processors.id')
@@ -156,11 +170,11 @@ class SubjectsService {
       processorIdsWithAddress.map(async p => {
         return {
           id: p.id,
-          status: await getSubjectDataState(subjectId, p.address)
+          status: await this._getSubjectDataState(subjectId, p.address)
         };
       })
     );
-    const controllerStatus = await getSubjectDataState(subjectId);
+    const controllerStatus = await this._getSubjectDataState(subjectId);
     return {
       controller: controllerStatus,
       processors: processorIdsWithDataStatus
