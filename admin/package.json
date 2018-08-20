@@ -45,6 +45,7 @@
     "react": "^16.4.1",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.4.0",
+    "react-json-editor-ajrm": "^2.5.2",
     "react-modal": "3.4.5",
     "react-paginate": "^5.2.3",
     "react-particles-js": "^2.2.0",

@@ -5,6 +5,7 @@ import { UsersProvider } from 'containers/Users/UsersContext';
 import { ProcessorsProvider } from 'containers/Processors/ProcessorsContext';
 import { PanelProvider } from 'containers/MainLayout/PanelContext';
 import { RectificationsProvider } from 'containers/Rectifications/RectificationsContext';
+import { AttributesConfigProvider } from 'containers/Data/AttributesConfigContext';
 import { StatsProvider } from 'containers/Dashboard/StatsContext';
 
 export const withWrapper = Wrapper => Component => {
@@ -23,6 +24,7 @@ export const withContextProviders = lodash.flow.apply(null, [
   withWrapper(UsersProvider),
   withWrapper(ProcessorsProvider),
   withWrapper(RectificationsProvider),
+  withWrapper(AttributesConfigProvider),
   withWrapper(PanelProvider),
   withWrapper(StatsProvider)
 ]);
