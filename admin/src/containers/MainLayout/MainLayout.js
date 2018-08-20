@@ -10,6 +10,7 @@ import MainLayout from 'components/MainLayout/MainLayout';
 import UsersContainer from 'containers/Users/Users';
 import ProcessorsContainer from 'containers/Processors/Processors';
 import Rectifications from 'containers/Rectifications/Rectifications';
+import DataAttributesEditor from 'containers/Data/DataAttributesEditor';
 import DashboardContainer from 'containers/Dashboard/Dashboard';
 
 import { withContextProviders } from 'helpers/wrappers';
@@ -60,6 +61,7 @@ class MainLayoutContainer extends Component {
                 <Route exact path="/processors" render={() => <ProcessorsContainer />} />
                 <Route exact path="/users" render={() => <UsersContainer />} />
                 <Route exact path="/rectifications" render={() => <Rectifications />} />
+                <Route exact path="/data-attributes" render={() => <DataAttributesEditor />} />
                 <Route
                   exact
                   path="/profile"

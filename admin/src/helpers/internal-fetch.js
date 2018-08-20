@@ -18,6 +18,10 @@ const internalFetch = (url, config = {}) => {
 
   return fetch(url, internalConfig)
     .then(async res => {
+      if (res.status === 204) {
+        return;
+      }
+
       let resBody;
       try {
         resBody = await res.json();
