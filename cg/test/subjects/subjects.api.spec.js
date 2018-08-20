@@ -15,7 +15,7 @@ const {
   setProcessors
 } = require('../../src/utils/blockchain');
 const { SubjectDataStatus } = require('../../src/utils/blockchain/models');
-const { VALID_RUN_MODES } = require('../../src/utils/constants');
+const { VALID_RUN_MODES, DATA_STATUSES } = require('../../src/utils/constants');
 const processor1Address = '0x00000000000000000000000000000000000000A1';
 const processor2Address = '0x00000000000000000000000000000000000000A2';
 const processor3Address = '0x00000000000000000000000000000000000000A3';
@@ -561,7 +561,7 @@ describe('Tests of subjects erasing data and revoking consent', () => {
     expect(res3.status).toBe(200);
     expect(await res3.json()).toEqual(
       expect.objectContaining({
-        controller: 2,
+        controller: DATA_STATUSES.ERASED,
         processors: []
       })
     );
@@ -603,11 +603,11 @@ describe('Tests of subjects getting their data status per processor', () => {
     expect(res.ok).toBeTruthy();
     expect(await res.json()).toEqual(
       expect.objectContaining({
-        controller: SubjectDataStatus.consented,
+        controller: DATA_STATUSES.CONSENTED,
         processors: expect.arrayContaining([
           {
             id: 201,
-            status: SubjectDataStatus.consented
+            status: DATA_STATUSES.CONSENTED
           }
         ])
       })

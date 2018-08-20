@@ -1,1 +1,1 @@
-export const DATA_ERASED = 2;
+export const DATA_ERASED = 'ERASED';
