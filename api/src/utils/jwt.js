@@ -27,7 +27,9 @@ class JWT {
   }
 }
 
-exports.JWT = JWT;
+const DEFAULT_JWT_TOKEN_EXPIRY = 3600;
+const JWT_TOKEN_EXPIRY = process.env.JWT_TOKEN_EXPIRY || DEFAULT_JWT_TOKEN_EXPIRY;
 
-exports.sessionJWT = new JWT('HS256', process.env.SESSION_SECRET, process.env.SESSION_SECRET);
-exports.cgJWT = new JWT('HS256', process.env.CG_SECRET, process.env.CG_SECRET);
+exports.JWT = JWT;
+exports.sessionJWT = new JWT('HS256', process.env.SESSION_SECRET, process.env.SESSION_SECRET, { expiresIn: JWT_TOKEN_EXPIRY });
+exports.cgJWT = new JWT('HS256', process.env.CG_SECRET, process.env.CG_SECRET, { expiresIn: JWT_TOKEN_EXPIRY });
