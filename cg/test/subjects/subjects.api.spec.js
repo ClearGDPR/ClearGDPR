@@ -316,7 +316,7 @@ describe('Tests of subjects giving consent', () => {
     );
   });
 
-    it('Should not register consent if blockchain fails', async () => {
+  it('Should not register consent if blockchain fails', async () => {
     // Given
     Blockchain.recordConsentGivenTo = jest.fn().mockImplementation(() => {
       throw Error('Boom!')
@@ -340,6 +340,9 @@ describe('Tests of subjects giving consent', () => {
 
     // Then
     let subjectIdHashed = hash('kevin-1');
+    
+    const [subject] = await db('subjects').where({ id: subjectIdHashed });
+    expect(subject).toBeFalsy();
     expect(Blockchain.recordConsentGivenTo.mock.calls.length).toBe(1);
     expect(await getSubjectDataState(subjectIdHashed)).toBe(SubjectDataStatus.unconsented);
   });
