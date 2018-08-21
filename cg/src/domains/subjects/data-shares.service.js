@@ -1,10 +1,13 @@
 const { db } = require('../../db');
 const crypto = require('crypto');
 const { NotFound, BadRequest } = require('./../../utils/errors');
+const { assertSubjectExists } = require('./subjects.helpers');
 const { decryptFromStorage } = require('../../utils/encryption');
 
 class DataShareService {
   async getDataShares(subjectId) {
+    await assertSubjectExists(db, subjectId);
+
     return db('data_shares')
       .where({ subject_id: subjectId })
       .map(dataShare => ({
@@ -16,6 +19,8 @@ class DataShareService {
   }
 
   async createDataShare(subjectId, name) {
+    await assertSubjectExists(db, subjectId);
+
     const token = crypto.randomBytes(48).toString('hex');
     const data = {
       subject_id: subjectId,

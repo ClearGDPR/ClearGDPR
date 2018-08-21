@@ -14,6 +14,7 @@ const {
   recordErasureByController
 } = require('../../utils/blockchain');
 const { ValidationError, NotFound, Unauthorized, Forbidden } = require('../../utils/errors');
+const { assertSubjectExists } = require('./subjects.helpers');
 const winston = require('winston');
 const { RECTIFICATION_STATUSES } = require('./../../utils/constants');
 
@@ -48,9 +49,8 @@ class SubjectsService {
   }
 
   async updateConsent(subjectId, processorsConsented = []) {
-    const [subjectExists] = await this.db('subjects').where('id', subjectId);
+    await assertSubjectExists(this.db, subjectId);
 
-    if (!subjectExists) throw new NotFound('Subject not found');
     let processorIdsWithAddresses;
     await this.db.transaction(async trx => {
       processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(
@@ -125,6 +125,8 @@ class SubjectsService {
   }
 
   async eraseDataAndRevokeConsent(subjectId) {
+    await assertSubjectExists(this.db, subjectId);
+
     await this.db.transaction(async trx => {
       await this.db('subject_keys')
         .transacting(trx)
@@ -144,6 +146,8 @@ class SubjectsService {
   }
 
   async getPerProcessorDataStatus(subjectId) {
+    await assertSubjectExists(this.db, subjectId);
+
     const processorIdsWithAddress = this.db('subject_processors')
       .innerJoin('processors', 'subject_processors.processor_id', 'processors.id')
       .innerJoin('processor_address', 'processors.id', 'processor_address.processor_id')
@@ -178,13 +182,17 @@ class SubjectsService {
   }
 
   async getData(subjectId) {
+    await assertSubjectExists(this.db, subjectId);
+
     const [data] = await this.db('subjects')
       .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
       .select('personal_data')
       .select('key')
       .where({ subject_id: subjectId });
 
-    if (!data) throw new NotFound('Subject not found');
+    if (!data) {
+      throw new NotFound('Subject not found');
+    }
     const decryptedData = decryptFromStorage(data.personal_data, data.key);
     await recordAccessByController(subjectId);
     return JSON.parse(decryptedData);
@@ -210,6 +218,8 @@ class SubjectsService {
   }
 
   async restrict(subjectId, directMarketing, emailCommunication, research) {
+    await assertSubjectExists(this.db, subjectId);
+
     const subjectRestrictionsUpdates = await this.db('subjects')
       .where('id', subjectId)
       .update({
@@ -218,17 +228,16 @@ class SubjectsService {
         research: research
       });
 
-    if (subjectRestrictionsUpdates === 0) throw new NotFound('Subject not found');
     if (subjectRestrictionsUpdates > 1) throw new Forbidden('Duplicated subject in the database');
     await recordRestrictionByController(subjectId, directMarketing, emailCommunication, research);
   }
 
   async getRestrictions(subjectId) {
+    await assertSubjectExists(this.db, subjectId);
+
     const [subjectRestrictions] = await this.db('subjects')
       .where('id', subjectId)
       .select('direct_marketing', 'email_communication', 'research');
-
-    if (!subjectRestrictions) throw new NotFound('Subject not found');
 
     return {
       directMarketing: subjectRestrictions.direct_marketing,
@@ -238,23 +247,25 @@ class SubjectsService {
   }
 
   async object(subjectId, objection) {
+    await assertSubjectExists(this.db, subjectId);
+
     const subjectObjectionUpdates = await this.db('subjects')
       .where('id', subjectId)
       .update({
         objection: objection
       });
 
-    if (subjectObjectionUpdates === 0) throw new NotFound('Subject not found');
     if (subjectObjectionUpdates > 1) throw new Forbidden('Duplicated subject in the database');
     await recordObjectionByController(subjectId, objection);
   }
 
   async getObjection(subjectId) {
+    await assertSubjectExists(this.db, subjectId);
+
     const [subjectObjection] = await this.db('subjects')
       .where('id', subjectId)
       .select('objection');
 
-    if (!subjectObjection) throw new NotFound('Subject not found');
     return subjectObjection;
   }
 }
