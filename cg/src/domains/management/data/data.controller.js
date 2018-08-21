@@ -13,7 +13,7 @@ class DataController {
   async updateAttributesConfig(req, res) {
     await this.service.updateAttributesConfig(req.body);
     res.status(204);
-    return res.send();
+    res.send();
   }
 }
 
