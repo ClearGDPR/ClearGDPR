@@ -2,7 +2,7 @@
 
 .data {
   .processor {
-    border: 1px solid rgba(0,0,0,0.1);
+    border: 1px solid $light-grey;
     padding: 15px;
     margin-bottom: 10px;
 
@@ -14,7 +14,7 @@
       height: 20px;
       margin-right: 10px;
       border-radius: 50%;
-      background: #aaa;
+      background: $grey;
     }
 
     .isActive {
