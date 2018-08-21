@@ -98,7 +98,7 @@ describe('Stats endpoint', () => {
     });
 
     const token1 = await subjectJWT.sign({ subjectId: '1aadddsas21322b' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       body: {
         personalData: { name: 'dan' },
@@ -110,7 +110,7 @@ describe('Stats endpoint', () => {
     });
 
     const token2 = await subjectJWT.sign({ subjectId: '1aadddsas22322b' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       body: {
         personalData: { name: 'dave' },
@@ -122,8 +122,8 @@ describe('Stats endpoint', () => {
     });
 
     // When statement
-    await fetch('/api/subject/erase-data', {
-      method: 'POST',
+    await fetch('/api/subject/data', {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token2}`
       }

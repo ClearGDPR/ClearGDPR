@@ -18,7 +18,7 @@
       - [GET Get data status](#get-get-data-status)
         - [Headers](#headers-1)
         - [Example Request](#example-request-1)
-      - [POST Erase data](#post-erase-data)
+      - [DELETE Erase data](#delete-erase-data)
         - [Headers](#headers-2)
         - [Example Request](#example-request-2)
       - [POST Give consent](#post-give-consent)
@@ -101,7 +101,7 @@ You can reach out to us or open an issue on https://github.com/clevertech/ClearG
 Access Subject's data and Processors Ids associated to it.
 
 ```
-{{cg_base_url}}/api/subject/access-data
+{{cg_base_url}}/api/subject/data
 ```
 
 ##### Headers
@@ -114,7 +114,7 @@ Access Subject's data and Processors Ids associated to it.
 
 ```
 curl --request GET \
-  --url 'http://{{cg_base_url}}/api/subject/access-data' \
+  --url 'http://{{cg_base_url}}/api/subject/data' \
   --header 'Content-Type: application/json'
 ```
 
@@ -123,7 +123,7 @@ curl --request GET \
 Show data status by specific subject ordered by Processor Id
 
 ```
-{{cg_base_url}}/api/subject/data-status
+{{cg_base_url}}/api/subject/data/status
 ```
 
 ##### Headers
@@ -135,16 +135,16 @@ Show data status by specific subject ordered by Processor Id
 ##### Example Request
 ```
 curl --request GET \
-  --url 'http://{{cg_base_url}}/api/subject/data-status' \
+  --url 'http://{{cg_base_url}}/api/subject/data/status' \
   --header 'Content-Type: application/json'
 ```
 
-#### POST Erase data
+#### DELETE Erase data
 
 Delete Subject's data from the backend
 
 ```
-{{cg_base_url}}/api/subject/erase-data
+{{cg_base_url}}/api/subject/data
 ```
 
 ##### Headers
@@ -155,8 +155,8 @@ Delete Subject's data from the backend
 
 ##### Example Request
 ```
-curl --request POST \
-  --url 'http://{{cg_base_url}}/api/subject/erase-data' \
+curl --request DELETE \
+  --url 'http://{{cg_base_url}}/api/subject/data' \
   --header 'Content-Type: application/json'
 ```
 
@@ -165,7 +165,7 @@ curl --request POST \
 Handles right to access of different processors to Subject's data. The list of Processors Ids should be always explicit. The list of all the processors should be fetch from `GET List processors` endpoint.
 
 ```
-{{cg_base_url}}/api/subject/give-consent
+{{cg_base_url}}/api/subject/consent
 ```
 
 ##### Headers
@@ -184,7 +184,7 @@ Handles right to access of different processors to Subject's data. The list of P
 ##### Example Request
 ```
 curl --request POST \
-  --url 'http://{{cg_base_url}}/api/subject/give-consent' \
+  --url 'http://{{cg_base_url}}/api/subject/consent' \
   --header 'Content-Type: application/json' \
   --data '{
 	"personalData": {

@@ -18,7 +18,7 @@ afterAll(closeResources);
 
 async function createUser(id, data = { name: 'test' }) {
   const token = await subjectJWT.sign({ subjectId: id });
-  await fetch('/api/subject/give-consent', {
+  await fetch('/api/subject/consent', {
     method: 'POST',
     body: {
       personalData: data,
@@ -41,7 +41,7 @@ describe('Listing data-shares', () => {
     await db('data_shares').insert({ subject_id: idHash, name: 'test2', token: 'token2' });
 
     //WHEN
-    const res = await fetchWithAuthorization('/api/subject/data-shares/list', token);
+    const res = await fetchWithAuthorization('/api/subject/data-shares', token);
 
     //THEN
     expect(res.status).toEqual(200);
@@ -65,7 +65,7 @@ describe('Listing data-shares', () => {
     const subjectId = '84291212';
     const token = await createUser(subjectId);
 
-    const res = await fetchWithAuthorization(`/api/subject/data-shares/list`, token);
+    const res = await fetchWithAuthorization(`/api/subject/data-shares`, token);
 
     expect(res.status).toEqual(200);
     expect(await res.json()).toHaveLength(0);
@@ -77,7 +77,7 @@ describe('Data share create', () => {
     const subjectId = '84215211';
     const token = await createUser(subjectId);
     const body = { name: 'test6' };
-    const res = await fetchWithAuthorization('/api/subject/data-shares/create', token, {
+    const res = await fetchWithAuthorization('/api/subject/data-shares', token, {
       method: 'POST',
       body
     });
@@ -91,7 +91,7 @@ describe('Data share create', () => {
   it('Should error if no name is provided', async () => {
     const subjectId = '8421511011';
     const token = await createUser(subjectId);
-    const res = await fetchWithAuthorization('/api/subject/data-shares/create', token, {
+    const res = await fetchWithAuthorization('/api/subject/data-shares', token, {
       method: 'POST',
       body: {}
     });
@@ -110,13 +110,9 @@ describe('Data share remove', () => {
 
     expect(dataShare).toBeTruthy();
 
-    const res = await fetchWithAuthorization(
-      `/api/subject/data-shares/${dataShare.id}/remove`,
-      token,
-      {
-        method: 'POST'
-      }
-    );
+    const res = await fetchWithAuthorization(`/api/subject/data-shares/${dataShare.id}`, token, {
+      method: 'DELETE'
+    });
 
     expect(res.status).toEqual(200);
     const [dataShare2] = await db('data_shares').where({ name: 'test7' });
@@ -139,7 +135,7 @@ describe('Data share sharing', () => {
   it('Should provide the users personal data in a json format if token is correct', async () => {
     const subjectId = '2';
     const token = await createUser(subjectId, { customData: true });
-    const res = await fetchWithAuthorization('/api/subject/data-shares/create', token, {
+    const res = await fetchWithAuthorization('/api/subject/data-shares', token, {
       method: 'POST',
       body: { name: 'testdatasharing' }
     });
@@ -167,7 +163,7 @@ describe('Data share sharing', () => {
     const idHash = hash(subjectId);
     const token = await createUser(subjectId);
 
-    const res = await fetchWithAuthorization('/api/subject/data-shares/create', token, {
+    const res = await fetchWithAuthorization('/api/subject/data-shares', token, {
       method: 'POST',
       body: { name: 'no-decryption-key' }
     });
