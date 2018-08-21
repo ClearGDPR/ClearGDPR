@@ -19,33 +19,25 @@ export class AttributesConfigProvider extends Component {
     ])
   };
 
-  setBusy(busy) {
-    this.setState({
-      isBusy: busy
-    });
-  }
-
   fetchConfig = async () => {
     const { busy, config } = this.state;
     if (busy || config) {
       return;
     }
-    this.setBusy(true);
+    this.setState({ isBusy: true });
     const response = await internalFetch(
       `${AppConfig.API_URL}/api/management/data/attributes-config`
     );
-    this.setState({ config: response });
-    this.setBusy(false);
+    this.setState({ config: response, isBusy: false });
   };
 
   updateConfig = async config => {
-    this.setBusy(true);
+    this.setState({ isBusy: true });
     await internalFetch(`${AppConfig.API_URL}/api/management/data/attributes-config/update`, {
       method: 'POST',
       body: JSON.stringify(config)
     });
-    this.setState({ config });
-    this.setBusy(false);
+    this.setState({ isBusy: false, config });
   };
 
   state = {
