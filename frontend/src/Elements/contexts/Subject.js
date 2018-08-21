@@ -1,4 +1,5 @@
-import { DATA_ERASED } from '../constants';
+import _ from 'lodash';
+import { DATA_ERASED, DATA_STATUS } from '../constants';
 
 export default class Subject {
   constructor(
@@ -87,6 +88,12 @@ export default class Subject {
 
     this.processors = processors.map(p => {
       p.enabled = true;
+
+      if (this.status) {
+        const s = _.find(this.status.processors, { id: p.id }) || {};
+        p.status = s.status ? DATA_STATUS[s.status] : DATA_STATUS.UNCONSENTED;
+      }
+
       return p;
     });
 
