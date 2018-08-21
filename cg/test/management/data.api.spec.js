@@ -58,8 +58,8 @@ describe('Data attributes config API', () => {
     };
     const newConfig = { ...TEST_CONFIG, name };
 
-    await fetch('/api/management/data/attributes-config/update', {
-      method: 'POST',
+    await fetch('/api/management/data/attributes-config', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -85,8 +85,8 @@ describe('Data attributes config API', () => {
     };
     const newConfig = { ...TEST_CONFIG, name };
 
-    const res = await fetch('/api/management/data/attributes-config/update', {
-      method: 'POST',
+    const res = await fetch('/api/management/data/attributes-config', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`
       },

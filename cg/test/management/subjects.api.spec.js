@@ -76,7 +76,7 @@ async function createSubjectWithRectification(overrides = {}) {
 describe('List subjects that have given consent', () => {
   it('should not allow a manager to list subjects without a manager JWT', async () => {
     //GIVEN AND WHEN
-    const res = await fetch('/api/management/subjects/list', {
+    const res = await fetch('/api/management/subjects', {
       method: 'GET',
       headers: {}
     });
@@ -93,7 +93,7 @@ describe('List subjects that have given consent', () => {
 
   it('should not allow a manager to list subjects with an invalid manager JWT', async () => {
     //GIVEN AND WHEN
-    const res = await fetch('/api/management/subjects/list', {
+    const res = await fetch('/api/management/subjects', {
       method: 'GET',
       headers: {
         Authorization: `invalid_token`
@@ -136,7 +136,7 @@ describe('List subjects that have given consent', () => {
 
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    const res = await fetch('/api/management/subjects/list', {
+    const res = await fetch('/api/management/subjects', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -184,7 +184,7 @@ describe('List subjects that have given consent', () => {
 
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    const res = await fetch('/api/management/subjects/list', {
+    const res = await fetch('/api/management/subjects', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -254,7 +254,7 @@ describe('List subjects that have given consent', () => {
 
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    const res = await fetch('/api/management/subjects/list', {
+    const res = await fetch('/api/management/subjects', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -292,7 +292,7 @@ describe('List subjects that have given consent', () => {
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/subjects/list', {
+    const res = await fetch('/api/management/subjects', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -309,7 +309,7 @@ describe('List subjects that have given consent', () => {
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/subjects/list?page=-1', {
+    const res = await fetch('/api/management/subjects?page=-1', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -326,7 +326,7 @@ describe('List subjects that have given consent', () => {
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/subjects/list?page=0', {
+    const res = await fetch('/api/management/subjects?page=0', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -343,7 +343,7 @@ describe('List subjects that have given consent', () => {
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/subjects/list?page=99999999999999', {
+    const res = await fetch('/api/management/subjects?page=99999999999999', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -363,7 +363,7 @@ describe('List subjects that have given consent', () => {
   it('should not allow a page query without an integer page number', async () => {
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    const res = await fetch('/api/management/subjects/list?page=string', {
+    const res = await fetch('/api/management/subjects?page=string', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -424,7 +424,7 @@ describe('List subjects that have given consent', () => {
 
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    const res = await fetch('/api/management/subjects/list?page=1', {
+    const res = await fetch('/api/management/subjects?page=1', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -492,7 +492,7 @@ describe('List subjects that have given consent', () => {
     }
     //WHEN
     const managementToken = await managementJWT.sign({ id: 1 });
-    const res = await fetch('/api/management/subjects/list?page=2', {
+    const res = await fetch('/api/management/subjects?page=2', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -529,7 +529,7 @@ describe('Tests of listing rectification requests', () => {
     await createSubjectWithRectification();
 
     //WHEN
-    const res = await fetch('/api/management/subjects/rectification-requests/list', {
+    const res = await fetch('/api/management/subjects/rectification-requests', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -547,7 +547,7 @@ describe('Tests of listing rectification requests', () => {
     const managementToken = await managementJWT.sign({ id: 1 });
 
     //WHEN
-    const res = await fetch('/api/management/subjects/rectification-requests/list', {
+    const res = await fetch('/api/management/subjects/rectification-requests', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -565,7 +565,7 @@ describe('Tests of listing rectification requests', () => {
     //GIVEN
     const managementToken = await managementJWT.sign({ id: 1 });
     const subjectToken = await subjectJWT.sign({ subjectId: '646416818971' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -578,7 +578,7 @@ describe('Tests of listing rectification requests', () => {
       }
     });
     for (let i = 0; i < 12; i++) {
-      await fetch('/api/subject/initiate-rectification', {
+      await fetch('/api/subject/rectification', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${subjectToken}`
@@ -593,7 +593,7 @@ describe('Tests of listing rectification requests', () => {
     }
 
     //WHEN
-    const res = await fetch('/api/management/subjects/rectification-requests/list?page=2', {
+    const res = await fetch('/api/management/subjects/rectification-requests?page=2', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -627,7 +627,7 @@ describe('Tests of listing rectification requests', () => {
     const managementToken = await managementJWT.sign({ id: 1 });
 
     //WHEN
-    const res = await fetch('/api/management/subjects/rectification-requests/list?page=6', {
+    const res = await fetch('/api/management/subjects/rectification-requests?page=6', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -647,7 +647,7 @@ describe('Tests of listing rectification requests', () => {
     const managementToken = await managementJWT.sign({ id: 1 });
 
     //WHEN
-    const res = await fetch('/api/management/subjects/rectification-requests/list', {
+    const res = await fetch('/api/management/subjects/rectification-requests', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -669,7 +669,7 @@ describe('Tests of listing rectification requests', () => {
       .delete();
 
     //WHEN
-    const res = await fetch('/api/management/subjects/rectification-requests/list', {
+    const res = await fetch('/api/management/subjects/rectification-requests', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -718,7 +718,7 @@ describe('Tests of listing archived rectification requests', () => {
     //GIVEN
     const managementToken = await managementJWT.sign({ id: 1 });
     const subjectToken = await subjectJWT.sign({ subjectId: '65498736186+968' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -731,7 +731,7 @@ describe('Tests of listing archived rectification requests', () => {
       }
     });
     for (let i = 0; i < 12; i++) {
-      await fetch('/api/subject/initiate-rectification', {
+      await fetch('/api/subject/rectification', {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${subjectToken}`
@@ -745,7 +745,7 @@ describe('Tests of listing archived rectification requests', () => {
       });
     }
 
-    let res1 = await fetch(`/api/management/subjects/rectification-requests/list`, {
+    let res1 = await fetch(`/api/management/subjects/rectification-requests`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -754,8 +754,8 @@ describe('Tests of listing archived rectification requests', () => {
     const requestsData = await res1.json();
     const firstRequestId = requestsData.data[0].id;
     for (let i = firstRequestId; i < firstRequestId + 12; i++) {
-      await fetch(`/api/management/subjects/rectification-requests/${i}/update-status`, {
-        method: 'POST',
+      await fetch(`/api/management/subjects/rectification-requests/${i}`, {
+        method: 'PUT',
         headers: {
           Authorization: `Bearer ${managementToken}`
         },
@@ -968,9 +968,9 @@ describe('Update rectification request status', () => {
 
     //WHEN
     const res = await fetch(
-      `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
+      `/api/management/subjects/rectification-requests/${rectificationRequestId}`,
       {
-        method: 'POST',
+        method: 'PUT',
         body: {
           status: RECTIFICATION_STATUSES.APPROVED
         },
@@ -995,9 +995,9 @@ describe('Update rectification request status', () => {
 
     //WHEN
     const res = await fetch(
-      `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
+      `/api/management/subjects/rectification-requests/${rectificationRequestId}`,
       {
-        method: 'POST',
+        method: 'PUT',
         body: {
           status: RECTIFICATION_STATUSES.APPROVED
         },
@@ -1028,9 +1028,9 @@ describe('Update rectification request status', () => {
 
     //WHEN
     const res = await fetch(
-      `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
+      `/api/management/subjects/rectification-requests/${rectificationRequestId}`,
       {
-        method: 'POST',
+        method: 'PUT',
         body: {
           status: RECTIFICATION_STATUSES.DISAPPROVED
         },
@@ -1053,9 +1053,9 @@ describe('Update rectification request status', () => {
 
     //WHEN
     const res = await fetch(
-      `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
+      `/api/management/subjects/rectification-requests/${rectificationRequestId}`,
       {
-        method: 'POST',
+        method: 'PUT',
         headers: {
           Authorization: `Bearer ${managementToken}`
         },
@@ -1073,18 +1073,15 @@ describe('Update rectification request status', () => {
     const managementToken = await managementJWT.sign({ id: 1 });
 
     //WHEN
-    const res = await fetch(
-      `/api/management/subjects/rectification-requests/1212121/update-status`,
-      {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${managementToken}`
-        },
-        body: {
-          status: RECTIFICATION_STATUSES.APPROVED
-        }
+    const res = await fetch(`/api/management/subjects/rectification-requests/1212121`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      },
+      body: {
+        status: RECTIFICATION_STATUSES.APPROVED
       }
-    );
+    });
 
     //THEN
     expect(res.status).toEqual(404);
@@ -1103,9 +1100,9 @@ describe('Update rectification request status', () => {
 
     //WHEN
     const res = await fetch(
-      `/api/management/subjects/rectification-requests/${rectificationRequestId}/update-status`,
+      `/api/management/subjects/rectification-requests/${rectificationRequestId}`,
       {
-        method: 'POST',
+        method: 'PUT',
         body: {
           status: RECTIFICATION_STATUSES.APPROVED
         },

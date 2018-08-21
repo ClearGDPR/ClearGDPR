@@ -39,9 +39,9 @@ export class RectificationsProvider extends Component {
   approveRectification = async id => {
     try {
       await internalFetch(
-        `${config.API_URL}/api/management/subjects/rectification-requests/${id}/update-status`,
+        `${config.API_URL}/api/management/subjects/rectification-requests/${id}`,
         {
-          method: 'POST',
+          method: 'PUT',
           body: JSON.stringify({
             status: 'APPROVED'
           })
@@ -68,7 +68,7 @@ export class RectificationsProvider extends Component {
   async _getPendingRectifications(page = 1) {
     return this._mapRectificationResults(
       await internalFetch(
-        `${config.API_URL}/api/management/subjects/rectification-requests/list?page=${page}`
+        `${config.API_URL}/api/management/subjects/rectification-requests?page=${page}`
       )
     );
   }

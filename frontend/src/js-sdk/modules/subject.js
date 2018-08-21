@@ -5,16 +5,16 @@ export const SUBJECT = 'subject';
 export default class Subject extends ResourceBase {
   giveConsent(payload) {
     const method = 'POST';
-    return this.request(`${SUBJECT}/give-consent`, { method, payload });
+    return this.request(`${SUBJECT}/consent`, { method, payload });
   }
 
   updateConsent(payload) {
-    const method = 'POST';
-    return this.request(`${SUBJECT}/update-consent`, { method, payload });
+    const method = 'PUT';
+    return this.request(`${SUBJECT}/consent`, { method, payload });
   }
 
   getObjectionStatus() {
-    return this.request(`${SUBJECT}/get-objection`);
+    return this.request(`${SUBJECT}/objection`);
   }
 
   updateObjection(restrictProcessing) {
@@ -26,16 +26,16 @@ export default class Subject extends ResourceBase {
   }
 
   accessData() {
-    return this.request(`${SUBJECT}/access-data`);
+    return this.request(`${SUBJECT}/data`);
   }
 
   eraseData() {
-    const method = 'POST';
-    return this.request(`${SUBJECT}/erase-data`, { method });
+    const method = 'DELETE';
+    return this.request(`${SUBJECT}/data`, { method });
   }
 
   getDataStatus() {
-    return this.request(`${SUBJECT}/data-status`);
+    return this.request(`${SUBJECT}/data/status`);
   }
 
   getProcessors() {
@@ -47,34 +47,34 @@ export default class Subject extends ResourceBase {
   }
 
   getDataShares() {
-    return this.request(`${SUBJECT}/data-shares/list`);
+    return this.request(`${SUBJECT}/data-shares`);
   }
 
   addDataShare(payload) {
     const method = 'POST';
-    return this.request(`${SUBJECT}/data-shares/create`, { method, payload });
+    return this.request(`${SUBJECT}/data-shares`, { method, payload });
   }
 
   removeDataShare(dataShareId) {
-    const method = 'POST';
-    return this.request(`${SUBJECT}/data-shares/${dataShareId}/remove`, { method });
+    const method = 'DELETE';
+    return this.request(`${SUBJECT}/data-shares/${dataShareId}`, { method });
   }
 
   initiateRectification(requestReason, rectificationPayload) {
     const method = 'POST';
-    return this.request(`${SUBJECT}/initiate-rectification`, {
+    return this.request(`${SUBJECT}/rectification`, {
       method,
       payload: { requestReason, rectificationPayload }
     });
   }
 
   getRestrictions() {
-    return this.request(`${SUBJECT}/get-restrictions`);
+    return this.request(`${SUBJECT}/restrictions`);
   }
 
   updateRestrictions({ directMarketing, emailCommunication, research }) {
     const method = 'POST';
-    return this.request(`${SUBJECT}/restrict`, {
+    return this.request(`${SUBJECT}/restrictions`, {
       method,
       payload: {
         directMarketing,

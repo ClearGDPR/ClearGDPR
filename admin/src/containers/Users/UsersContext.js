@@ -66,7 +66,7 @@ export class UsersProvider extends Component {
   }
 
   _registerUser(username, password) {
-    return internalFetch(`${config.API_URL}/api/management/users/register`, {
+    return internalFetch(`${config.API_URL}/api/management/users`, {
       method: 'POST',
       body: JSON.stringify({
         username,
@@ -76,8 +76,8 @@ export class UsersProvider extends Component {
   }
 
   async _deleteUser(userId) {
-    await internalFetch(`${config.API_URL}/api/management/users/${userId}/remove`, {
-      method: 'POST'
+    await internalFetch(`${config.API_URL}/api/management/users/${userId}`, {
+      method: 'DELETE'
     });
   }
 

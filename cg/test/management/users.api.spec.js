@@ -16,7 +16,7 @@ afterAll(closeResources);
 describe('Management user Registration', () => {
   it('Should fail if no username/password is provided', async () => {
     // When
-    const res = await fetch('/api/management/users/register', {
+    const res = await fetch('/api/management/users', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {}
@@ -34,14 +34,14 @@ describe('Management user Registration', () => {
       username: 'manager',
       password: 'manager_password'
     };
-    const res1 = await fetch('/api/management/users/register', {
+    const res1 = await fetch('/api/management/users', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: manager
     });
 
     // When
-    const res2 = await fetch('/api/management/users/register', {
+    const res2 = await fetch('/api/management/users', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
@@ -60,7 +60,7 @@ describe('Management user Registration', () => {
 
   it('Should allow a manager to register', async () => {
     //When
-    const res = await fetch('/api/management/users/register', {
+    const res = await fetch('/api/management/users', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
@@ -87,8 +87,8 @@ describe('Management user Registration', () => {
 describe('Management user removal', () => {
   it('Should not allow the removal of unregistered managers', async () => {
     //When
-    const res = await fetch('/api/management/users/999/remove', {
-      method: 'POST',
+    const res = await fetch('/api/management/users/999', {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${managementToken}`
       }
@@ -104,8 +104,8 @@ describe('Management user removal', () => {
 
   it('Should not allow the removal with an ID thats not a positive integer', async () => {
     //When
-    const res = await fetch('/api/management/users/string/remove', {
-      method: 'POST',
+    const res = await fetch('/api/management/users/string', {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${managementToken}`
       }
@@ -119,7 +119,7 @@ describe('Management user removal', () => {
 
   it('Should not allow the removal of the current user himself', async () => {
     //Given
-    const res1 = await fetch('/api/management/users/register', {
+    const res1 = await fetch('/api/management/users', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -142,11 +142,11 @@ describe('Management user removal', () => {
       }
     });
     const loggedUser = await res2.json();
-    const loggedUserToken = loggedUser.jwt; 
+    const loggedUserToken = loggedUser.jwt;
 
     //When
-    const res3 = await fetch(`/api/management/users/${registeredUserId}/remove`, {
-      method: 'POST',
+    const res3 = await fetch(`/api/management/users/${registeredUserId}`, {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${loggedUserToken}`
       }
@@ -162,7 +162,7 @@ describe('Management user removal', () => {
 
   it('Should allow the removal of a registered manager', async () => {
     //Given
-    await fetch('/api/management/users/register', {
+    await fetch('/api/management/users', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
@@ -178,8 +178,8 @@ describe('Management user removal', () => {
     const [{ id }] = await res1.json();
 
     //When
-    const res2 = await fetch(`/api/management/users/${id}/remove`, {
-      method: 'POST',
+    const res2 = await fetch(`/api/management/users/${id}`, {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${managementToken}`
       }
@@ -213,7 +213,7 @@ describe('Management user Login', () => {
 
   it('Return unauthorized for wrong passwords', async () => {
     //Given
-    await fetch('/api/management/users/register', {
+    await fetch('/api/management/users', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
@@ -256,7 +256,7 @@ describe('Management user Login', () => {
 
   it('Should allow a manager to login', async () => {
     //Given
-    await fetch('/api/management/users/register', {
+    await fetch('/api/management/users', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
@@ -317,7 +317,7 @@ describe('Management user password update', () => {
 
   it('Should allow a managers password to be updated', async () => {
     //Given
-    await fetch('/api/management/users/register', {
+    await fetch('/api/management/users', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
@@ -373,7 +373,7 @@ describe('Listing management users', () => {
 
   it('Should display correctly the registered managers', async () => {
     //Given
-    await fetch('/api/management/users/register', {
+    await fetch('/api/management/users', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {
@@ -381,7 +381,7 @@ describe('Listing management users', () => {
         password: 'manager1_password'
       }
     });
-    await fetch('/api/management/users/register', {
+    await fetch('/api/management/users', {
       method: 'POST',
       headers: { Authorization: `Bearer ${managementToken}` },
       body: {

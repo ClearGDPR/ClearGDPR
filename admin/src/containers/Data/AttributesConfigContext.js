@@ -33,8 +33,8 @@ export class AttributesConfigProvider extends Component {
 
   updateConfig = async config => {
     this.setState({ isBusy: true });
-    await internalFetch(`${AppConfig.API_URL}/api/management/data/attributes-config/update`, {
-      method: 'POST',
+    await internalFetch(`${AppConfig.API_URL}/api/management/data/attributes-config`, {
+      method: 'PUT',
       body: JSON.stringify(config)
     });
     this.setState({ isBusy: false, config });

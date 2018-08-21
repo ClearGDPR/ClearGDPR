@@ -14,7 +14,7 @@ export class SubjectsListContainer extends React.Component {
 
   fetchSubjects(page = 1) {
     this.setState({ errorState: false, loading: true });
-    internalFetch(`${config.API_URL}/api/management/subjects/list?page=${page}`)
+    internalFetch(`${config.API_URL}/api/management/subjects?page=${page}`)
       .then(({ data, paging }) => {
         this.setState({ subjects: data, paging, loading: false });
       })

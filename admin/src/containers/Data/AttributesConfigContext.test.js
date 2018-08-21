@@ -66,10 +66,10 @@ describe('AttributesConfigProvider', () => {
     const provider = setupProvider();
     provider.state().updateConfig(EXAMPLE_CONFIG);
     expect(internalFetch).toHaveBeenCalledWith(
-      `${AppConfig.API_URL}/api/management/data/attributes-config/update`,
+      `${AppConfig.API_URL}/api/management/data/attributes-config`,
       {
         body: JSON.stringify(EXAMPLE_CONFIG),
-        method: 'POST'
+        method: 'PUT'
       }
     );
   });

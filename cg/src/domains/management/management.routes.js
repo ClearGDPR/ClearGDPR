@@ -79,13 +79,13 @@ module.exports = app => {
   );
 
   router.get(
-    '/subjects/list',
+    '/subjects',
     listSubjectsValidator,
     asyncHandler(async (req, res) => subjectsController.listSubjects(req, res))
   );
 
   router.get(
-    '/subjects/rectification-requests/list',
+    '/subjects/rectification-requests',
     listRectificationRequestsValidator,
     asyncHandler(async (req, res) => subjectsController.listRectificationRequests(req, res))
   );
@@ -106,43 +106,43 @@ module.exports = app => {
 
   router.get('/events', asyncHandler(async (req, res) => statsController.events(req, res)));
 
-  router.post(
-    '/subjects/rectification-requests/:rectificationRequestId/update-status',
+  router.put(
+    '/subjects/rectification-requests/:rectificationRequestId',
     updateRectificationStatusValidator,
     asyncHandler(async (req, res) => subjectsController.updateRectificationRequestStatus(req, res))
   );
 
   router.get(
-    '/processors/list',
+    '/processors',
     asyncHandler(async (req, res) => processorsController.listProcessors(req, res))
   );
 
   router.post(
-    '/processors/add',
+    '/processors',
     addProcessorValidator,
     asyncHandler(async (req, res) => processorsController.addProcessor(req, res))
   );
 
-  router.post(
-    '/processors/update',
+  router.put(
+    '/processors',
     updateProcessorValidator,
     asyncHandler(async (req, res) => processorsController.updateProcessor(req, res))
   );
 
-  router.post(
-    '/processors/remove',
+  router.delete(
+    '/processors',
     deleteProcessorValidator,
     asyncHandler(async (req, res) => processorsController.removeProcessors(req, res))
   );
 
   router.post(
-    '/users/register',
+    '/users',
     usersRegistrationValidator,
     asyncHandler(async (req, res) => usersController.register(req, res))
   );
 
-  router.post(
-    '/users/:userId/remove',
+  router.delete(
+    '/users/:userId',
     usersRemovalValidator,
     asyncHandler(async (req, res) => usersController.remove(req, res))
   );
@@ -153,8 +153,8 @@ module.exports = app => {
     asyncHandler(async (req, res) => usersController.updatePassword(req, res))
   );
 
-  router.post(
-    '/data/attributes-config/update',
+  router.put(
+    '/data/attributes-config',
     updateAttributesConfigValidator,
     asyncHandler(async (req, res) => dataController.updateAttributesConfig(req, res))
   );

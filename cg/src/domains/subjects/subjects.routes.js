@@ -60,44 +60,44 @@ module.exports = app => {
   router.use(asyncHandler(async (req, res, next) => subjectNotErased(req, res, next)));
 
   router.post(
-    '/give-consent',
+    '/consent',
     controllerOnly,
     giveConsentValidator,
     asyncHandler(async (req, res) => subjectsController.giveConsent(req, res))
   );
 
-  router.post(
-    '/update-consent',
+  router.put(
+    '/consent',
     controllerOnly,
     updateConsentValidator,
     asyncHandler(async (req, res) => subjectsController.updateConsent(req, res))
   );
 
   router.get(
-    '/access-data',
+    '/data',
     asyncHandler(async (req, res) => subjectsController.requestDataAccess(req, res))
   );
 
   router.get(
-    '/data-status',
+    '/data/status',
     asyncHandler(async (req, res) => subjectsController.getPersonalDataStatus(req, res))
   );
 
   router.post(
-    '/initiate-rectification',
+    '/rectification',
     rectificationValidator,
     asyncHandler(async (req, res) => subjectsController.initiateRectification(req, res))
   );
 
   router.post(
-    '/restrict',
+    '/restrictions',
     controllerOnly,
     restrictionValidator,
     asyncHandler(async (req, res) => subjectsController.restrict(req, res))
   );
 
   router.get(
-    '/get-restrictions',
+    '/restrictions',
     asyncHandler(async (req, res) => subjectsController.getRestrictions(req, res))
   );
 
@@ -109,29 +109,29 @@ module.exports = app => {
   );
 
   router.get(
-    '/get-objection',
+    '/objection',
     asyncHandler(async (req, res) => subjectsController.getObjection(req, res))
   );
 
   router.post(
-    '/data-shares/create',
+    '/data-shares',
     createDataShareValidator,
     asyncHandler(async (req, res) => dataShareController.createDataShare(req, res))
   );
 
   router.get(
-    '/data-shares/list',
+    '/data-shares',
     asyncHandler(async (req, res) => dataShareController.getDataShares(req, res))
   );
 
-  router.post(
-    '/data-shares/:dataShareId/remove',
+  router.delete(
+    '/data-shares/:dataShareId',
     removeDataShareValidator,
     asyncHandler(async (req, res) => dataShareController.removeDataShare(req, res))
   );
 
-  router.post(
-    '/erase-data',
+  router.delete(
+    '/data',
     controllerOnly,
     asyncHandler(async (req, res) => subjectsController.eraseData(req, res))
   );

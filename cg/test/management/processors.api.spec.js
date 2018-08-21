@@ -17,8 +17,8 @@ afterAll(closeResources);
 
 describe('List processors', () => {
   it('should not allow listing processors without a token', async () => {
-    const res = await fetch('/api/management/processors/remove', {
-      method: 'POST'
+    const res = await fetch('/api/management/processors', {
+      method: 'DELETE'
     });
 
     expect(res.ok).toBeFalsy();
@@ -48,7 +48,7 @@ describe('List processors', () => {
       address: '0x0000000000000000000000000000000000000003'
     });
 
-    const res = await fetch('/api/management/processors/list', {
+    const res = await fetch('/api/management/processors', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`
@@ -78,7 +78,7 @@ describe('List processors', () => {
 
 describe('Add processor', () => {
   it('should not allow adding processors without a token', async () => {
-    const res = await fetch('/api/management/processors/add', {
+    const res = await fetch('/api/management/processors', {
       method: 'POST'
     });
 
@@ -89,7 +89,7 @@ describe('Add processor', () => {
   it('should not allow empty body', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/processors/add', {
+    const res = await fetch('/api/management/processors', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -105,7 +105,7 @@ describe('Add processor', () => {
   it('should not allow processor without a name', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/processors/add', {
+    const res = await fetch('/api/management/processors', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -123,7 +123,7 @@ describe('Add processor', () => {
   it('should not allow processor with ID', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/processors/add', {
+    const res = await fetch('/api/management/processors', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -146,7 +146,7 @@ describe('Add processor', () => {
   it('should not allow processor with arbitrary key', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/processors/add', {
+    const res = await fetch('/api/management/processors', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -169,7 +169,7 @@ describe('Add processor', () => {
   it('should not allow improper address format', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/processors/add', {
+    const res = await fetch('/api/management/processors', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -188,7 +188,7 @@ describe('Add processor', () => {
   it('should not allow scopes that are not an array', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/processors/add', {
+    const res = await fetch('/api/management/processors', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -207,7 +207,7 @@ describe('Add processor', () => {
   it('should verify the types of name parameter', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/processors/add', {
+    const res = await fetch('/api/management/processors', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -233,7 +233,7 @@ describe('Add processor', () => {
       address: '0x00000000000000000000000000000000000000A5'
     };
 
-    const res = await fetch('/api/management/processors/add', {
+    const res = await fetch('/api/management/processors', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`
@@ -268,8 +268,8 @@ describe('Add processor', () => {
 
 describe('Update processor', () => {
   it('should not allow the update of the processor without a token', async () => {
-    const res = await fetch('/api/management/processors/update', {
-      method: 'POST'
+    const res = await fetch('/api/management/processors', {
+      method: 'PUT'
     });
 
     expect(res.ok).toBeFalsy();
@@ -279,8 +279,8 @@ describe('Update processor', () => {
   it('should not allow empty body', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/processors/update', {
-      method: 'POST',
+    const res = await fetch('/api/management/processors', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -295,8 +295,8 @@ describe('Update processor', () => {
   it('should not allow processor without an ID', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/processors/update', {
-      method: 'POST',
+    const res = await fetch('/api/management/processors', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -314,8 +314,8 @@ describe('Update processor', () => {
   it('should not allow updating an address', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/processors/update', {
-      method: 'POST',
+    const res = await fetch('/api/management/processors', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -338,8 +338,8 @@ describe('Update processor', () => {
   it('should return not found when processor does not exist', async () => {
     const token = await managementJWT.sign({ id: 1 });
 
-    const res = await fetch('/api/management/processors/update', {
-      method: 'POST',
+    const res = await fetch('/api/management/processors', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -369,8 +369,8 @@ describe('Update processor', () => {
       scopes: JSON.stringify(['email', 'first name'])
     });
 
-    const res = await fetch('/api/management/processors/update', {
-      method: 'POST',
+    const res = await fetch('/api/management/processors', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -410,8 +410,8 @@ describe('Update processor', () => {
       scopes: JSON.stringify(['email', 'first name'])
     });
 
-    const res = await fetch('/api/management/processors/update', {
-      method: 'POST',
+    const res = await fetch('/api/management/processors', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -439,8 +439,8 @@ describe('Update processor', () => {
 
 describe('Remove processors', () => {
   it('should not allow the delete processors without a token', async () => {
-    const res = await fetch('/api/management/processors/remove', {
-      method: 'POST'
+    const res = await fetch('/api/management/processors', {
+      method: 'DELETE'
     });
 
     expect(res.ok).toBeFalsy();
@@ -452,8 +452,8 @@ describe('Remove processors', () => {
       id: 1
     });
 
-    const res = await fetch('/api/management/processors/remove', {
-      method: 'POST',
+    const res = await fetch('/api/management/processors', {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -469,8 +469,8 @@ describe('Remove processors', () => {
       id: 1
     });
 
-    const res = await fetch('/api/management/processors/remove', {
-      method: 'POST',
+    const res = await fetch('/api/management/processors', {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,
         body: {}
@@ -487,8 +487,8 @@ describe('Remove processors', () => {
       id: 1
     });
 
-    const res = await fetch('/api/management/processors/remove', {
-      method: 'POST',
+    const res = await fetch('/api/management/processors', {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`
       },
@@ -546,8 +546,8 @@ describe('Remove processors', () => {
 
     const removedProcessorIds = [612, 655];
 
-    const res = await fetch('/api/management/processors/remove', {
-      method: 'POST',
+    const res = await fetch('/api/management/processors', {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`
       },

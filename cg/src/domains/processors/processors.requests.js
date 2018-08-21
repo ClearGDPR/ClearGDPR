@@ -15,7 +15,7 @@ async function getDataForSubject(subjectId) {
 }
 
 async function getRestrictionsForSubject(subjectId) {
-  return await fetch(`${CONTROLLER_URL}/api/processors/subject/${subjectId}/get-restrictions`, {
+  return await fetch(`${CONTROLLER_URL}/api/processors/subject/${subjectId}/restrictions`, {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${PROCESSOR_JWT}`

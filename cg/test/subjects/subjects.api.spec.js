@@ -54,7 +54,7 @@ afterAll(closeResources);
 
 describe('Tests of subjects giving consent', () => {
   it('should return Unauthorized when no token is provided', async () => {
-    const res = await fetch('/api/subject/give-consent', {
+    const res = await fetch('/api/subject/consent', {
       method: 'POST',
       body: {}
     });
@@ -65,7 +65,7 @@ describe('Tests of subjects giving consent', () => {
 
   it('Should return Unauthorized when token has no subjectId', async () => {
     const token = await subjectJWT.sign({ test: '1' });
-    const res = await fetch('/api/subject/give-consent', {
+    const res = await fetch('/api/subject/consent', {
       method: 'POST',
       body: {},
       headers: {
@@ -85,7 +85,7 @@ describe('Tests of subjects giving consent', () => {
     const token = await subjectJWT.sign({ test: '10' }, { expiresIn: 1 });
     expect.assertions(2);
     setTimeout(async () => {
-      const res = await fetch('/api/subject/give-consent', {
+      const res = await fetch('/api/subject/consent', {
         method: 'POST',
         body: {},
         headers: {
@@ -101,7 +101,7 @@ describe('Tests of subjects giving consent', () => {
   it('Should return Unauthorized when not in controller mode', async () => {
     process.env.MODE = VALID_RUN_MODES.PROCESSOR;
     const token = await subjectJWT.sign({ subjectId: '1aa22b' });
-    const res = await fetch('/api/subject/give-consent', {
+    const res = await fetch('/api/subject/consent', {
       method: 'POST',
       body: {},
       headers: {
@@ -124,7 +124,7 @@ describe('Tests of subjects giving consent', () => {
     };
 
     // When
-    const res = await fetch('/api/subject/give-consent', {
+    const res = await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
@@ -148,7 +148,7 @@ describe('Tests of subjects giving consent', () => {
     };
 
     // When
-    const res = await fetch('/api/subject/give-consent', {
+    const res = await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
@@ -182,7 +182,7 @@ describe('Tests of subjects giving consent', () => {
     };
 
     // When
-    const res = await fetch('/api/subject/give-consent', {
+    const res = await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
@@ -204,7 +204,7 @@ describe('Tests of subjects giving consent', () => {
     // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '546857156' });
     const personalData = { sensitiveData: 'some sensitive data' };
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -216,7 +216,7 @@ describe('Tests of subjects giving consent', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/give-consent', {
+    const res = await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -245,7 +245,7 @@ describe('Tests of subjects giving consent', () => {
     };
 
     // When
-    const res = await fetch('/api/subject/give-consent', {
+    const res = await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
@@ -299,7 +299,7 @@ describe('Tests of subjects giving consent', () => {
     };
 
     // When
-    const res = await fetch('/api/subject/give-consent', {
+    const res = await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
@@ -352,7 +352,7 @@ describe('Tests of subjects updating their consented processors', () => {
   it('Should not allow a subject to update consent without specifying the processors consented', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '6496968798796713565' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -364,8 +364,8 @@ describe('Tests of subjects updating their consented processors', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/update-consent', {
-      method: 'POST',
+    const res = await fetch('/api/subject/consent', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${subjectToken}`
       },
@@ -381,7 +381,7 @@ describe('Tests of subjects updating their consented processors', () => {
   it('Should not allow an existing subject to update consent to a non-existent processor', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '54687316598649874' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -395,8 +395,8 @@ describe('Tests of subjects updating their consented processors', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/update-consent', {
-      method: 'POST',
+    const res = await fetch('/api/subject/consent', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${subjectToken}`
       },
@@ -420,7 +420,7 @@ describe('Tests of subjects updating their consented processors', () => {
       id: 89673521,
       name: 'No address processor'
     });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -434,8 +434,8 @@ describe('Tests of subjects updating their consented processors', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/update-consent', {
-      method: 'POST',
+    const res = await fetch('/api/subject/consent', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${subjectToken}`
       },
@@ -457,8 +457,8 @@ describe('Tests of subjects updating their consented processors', () => {
     const subjectToken = await subjectJWT.sign({ subjectId: '1457636849461464612' });
 
     // When
-    const res = await fetch('/api/subject/update-consent', {
-      method: 'POST',
+    const res = await fetch('/api/subject/consent', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${subjectToken}`
       },
@@ -478,7 +478,7 @@ describe('Tests of subjects updating their consented processors', () => {
   it('Should allow an existing subject to update consent to the specified processors', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '168798764848474' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -492,8 +492,8 @@ describe('Tests of subjects updating their consented processors', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/update-consent', {
-      method: 'POST',
+    const res = await fetch('/api/subject/consent', {
+      method: 'PUT',
       headers: {
         Authorization: `Bearer ${subjectToken}`
       },
@@ -536,8 +536,8 @@ describe('Tests of subjects erasing data and revoking consent', () => {
     const subjectToken = await subjectJWT.sign({ subjectId: '8547567523' });
 
     // When
-    const res = await fetch('/api/subject/erase-data', {
-      method: 'POST',
+    const res = await fetch('/api/subject/data', {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${subjectToken}`
       }
@@ -558,7 +558,7 @@ describe('Tests of subjects erasing data and revoking consent', () => {
       name: 'subject',
       email: 'subject@clevertech.biz'
     };
-    const res1 = await fetch('/api/subject/give-consent', {
+    const res1 = await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -570,13 +570,13 @@ describe('Tests of subjects erasing data and revoking consent', () => {
     });
 
     // When
-    const res2 = await fetch('/api/subject/erase-data', {
-      method: 'POST',
+    const res2 = await fetch('/api/subject/data', {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${subjectToken}`
       }
     });
-    const res3 = await fetch('/api/subject/data-status', {
+    const res3 = await fetch('/api/subject/data/status', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -620,7 +620,7 @@ describe('Tests of subjects getting their data status per processor', () => {
     const subjectToken = await subjectJWT.sign({ subjectId });
 
     // When
-    const res = await fetch('/api/subject/data-status', {
+    const res = await fetch('/api/subject/data/status', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -658,7 +658,7 @@ describe('Tests of subjects accessing their data', () => {
       personalData,
       processors: []
     };
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
@@ -667,7 +667,7 @@ describe('Tests of subjects accessing their data', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/access-data', {
+    const res = await fetch('/api/subject/data', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -691,29 +691,29 @@ describe('Tests of subjects accessing their data', () => {
       personalData,
       processors: []
     };
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
-    const res = await fetch('/api/subject/access-data', {
+    const res = await fetch('/api/subject/data', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
     const data = await res.json();
-    const res2 = await fetch('/api/subject/erase-data', {
-      method: 'POST',
+    const res2 = await fetch('/api/subject/data', {
+      method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`
       }
     });
 
     // When
-    const res3 = await fetch('/api/subject/access-data', {
+    const res3 = await fetch('/api/subject/data', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`
@@ -737,7 +737,7 @@ describe('Tests of subjects initiating rectifications', () => {
       personalData: {},
       processors: []
     };
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
@@ -746,7 +746,7 @@ describe('Tests of subjects initiating rectifications', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/initiate-rectification', {
+    const res = await fetch('/api/subject/rectification', {
       method: 'POST',
       body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
       headers: {
@@ -770,7 +770,7 @@ describe('Tests of subjects initiating rectifications', () => {
       personalData: {},
       processors: []
     };
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
@@ -779,7 +779,7 @@ describe('Tests of subjects initiating rectifications', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/initiate-rectification', {
+    const res = await fetch('/api/subject/rectification', {
       method: 'POST',
       body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
       headers: {
@@ -806,7 +806,7 @@ describe('Tests of subjects initiating rectifications', () => {
       personalData: {},
       processors: []
     };
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
@@ -815,7 +815,7 @@ describe('Tests of subjects initiating rectifications', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/initiate-rectification', {
+    const res = await fetch('/api/subject/rectification', {
       method: 'POST',
       body: {},
       headers: {
@@ -837,7 +837,7 @@ describe('Tests of subjects initiating rectifications', () => {
       personalData: {},
       processors: []
     };
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
@@ -849,7 +849,7 @@ describe('Tests of subjects initiating rectifications', () => {
       .delete();
 
     // When
-    const res = await fetch('/api/subject/initiate-rectification', {
+    const res = await fetch('/api/subject/rectification', {
       method: 'POST',
       body: { rectificationPayload: { name: 'dave' }, requestReason: 'my name is dave' },
       headers: {
@@ -869,7 +869,7 @@ describe('Tests of subjects restricting the processing of their data', () => {
   it('Should not allow a subject that has given consent to restrict without specifying the actions to restrict', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '6947987194298749879' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -883,7 +883,7 @@ describe('Tests of subjects restricting the processing of their data', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/restrict', {
+    const res = await fetch('/api/subject/restrictions', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -902,7 +902,7 @@ describe('Tests of subjects restricting the processing of their data', () => {
     const subjectToken = await subjectJWT.sign({ subjectId: '98489719179871' });
 
     // When
-    const res = await fetch('/api/subject/restrict', {
+    const res = await fetch('/api/subject/restrictions', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -925,7 +925,7 @@ describe('Tests of subjects restricting the processing of their data', () => {
   it('Should allow a subject that has given consent to restrict the processing of his data', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '124589635745498' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -939,7 +939,7 @@ describe('Tests of subjects restricting the processing of their data', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/restrict', {
+    const res = await fetch('/api/subject/restrictions', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -966,7 +966,7 @@ describe('Tests of subjects getting their restrictons', () => {
     const subjectToken = await subjectJWT.sign({ subjectId: '989874937987987' });
 
     // When
-    const res = await fetch('/api/subject/get-restrictions', {
+    const res = await fetch('/api/subject/restrictions', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -984,7 +984,7 @@ describe('Tests of subjects getting their restrictons', () => {
   it('Should allow a subject that has given consent to get his restrictions', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '989874937987987' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -998,7 +998,7 @@ describe('Tests of subjects getting their restrictons', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/get-restrictions', {
+    const res = await fetch('/api/subject/restrictions', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -1020,7 +1020,7 @@ describe('Tests of subjects objecting to the processing of their data', () => {
   it('Should not allow a subject that has given consent to object without specifying the objection', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '641698719871987' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -1074,7 +1074,7 @@ describe('Tests of subjects objecting to the processing of their data', () => {
   it('Should allow a subject that has given consent to object to the processing of his data', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '68149879879817982' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -1113,7 +1113,7 @@ describe('Tests of subjects getting their objection status', () => {
     const subjectToken = await subjectJWT.sign({ subjectId: '124785212598348' });
 
     // When
-    const res = await fetch('/api/subject/get-objection', {
+    const res = await fetch('/api/subject/objection', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -1131,7 +1131,7 @@ describe('Tests of subjects getting their objection status', () => {
   it('Should allow a subject that has given consent to get his objection status', async () => {
     // Given
     const subjectToken = await subjectJWT.sign({ subjectId: '6546873212765469874' });
-    await fetch('/api/subject/give-consent', {
+    await fetch('/api/subject/consent', {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${subjectToken}`
@@ -1145,7 +1145,7 @@ describe('Tests of subjects getting their objection status', () => {
     });
 
     // When
-    const res = await fetch('/api/subject/get-objection', {
+    const res = await fetch('/api/subject/objection', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${subjectToken}`

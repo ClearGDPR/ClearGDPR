@@ -189,7 +189,7 @@ describe('RectificationsProvider', () => {
       internalFetch.mockImplementation(url => {
         if (lodash.includes(url, 'rectification-requests/archive')) {
           return Promise.resolve(newProcessed);
-        } else if (lodash.includes(url, 'rectification-requests/list')) {
+        } else if (lodash.includes(url, 'rectification-requests')) {
           return Promise.resolve(newPending);
         } else {
           return Promise.resolve({ success: true });
