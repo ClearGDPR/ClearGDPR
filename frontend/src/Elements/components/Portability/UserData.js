@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import styles from '../../theme/SubjectData.scss';
 import Subject from '../../contexts/Subject';
-
-const SUBJECT_DATA_STATUS = ['Unconsented', 'Consented', 'Erased'];
 
 class UserData extends React.PureComponent {
   componentDidMount() {
@@ -15,18 +12,8 @@ class UserData extends React.PureComponent {
   render() {
     const { data, status, processors } = this.props.subject;
 
-    if (!data || !status) {
+    if (!data || !status || !processors) {
       return <div>Loading</div>;
-    }
-
-    let processorsList = [];
-
-    if (processors && status.processors) {
-      processorsList = processors.map(p => {
-        const s = _.find(status.processors, { id: p.id }) || {};
-        p.status = s.status ? SUBJECT_DATA_STATUS[s.status] : 'Unconsented';
-        return p;
-      });
     }
 
     return (
@@ -45,7 +32,7 @@ class UserData extends React.PureComponent {
         <div>Controller: {status.controller}</div>
         <br />
         <b>Processors</b>
-        {processorsList.map(p => (
+        {processors.map(p => (
           <div key={p.id} className={styles.processor}>
             <div>
               <img src={p.logoUrl} alt={p.name} style={{ height: 60 }} />
