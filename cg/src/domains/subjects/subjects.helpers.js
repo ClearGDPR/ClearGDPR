@@ -1,8 +1,9 @@
-const { Unauthorized } = require('../../utils/errors');
+const { Unauthorized, Forbidden } = require('../../utils/errors');
 const { subjectJWT } = require('./../../utils/jwt');
 const jwtMiddlewareFactory = require('./../../utils/jwt-middleware-factory');
 const { hash } = require('../../utils/encryption');
 const { NotFound } = require('../../utils/errors');
+const { DATA_STATUSES } = require('./../../utils/constants');
 
 const requireSubjectId = async (req, res, next) => {
   if (!req.subject.subjectId) {

@@ -590,13 +590,10 @@ describe('Tests of subjects erasing data and revoking consent', () => {
     expect(res2.ok).toBeTruthy();
     expect(res2.status).toBe(200);
     expect(await res2.json()).toEqual({ success: true });
-    expect(res3.ok).toBeTruthy();
-    expect(res3.status).toBe(200);
+    expect(res3.ok).toBeFalsy()
+    expect(res3.status).toBe(404);
     expect(await res3.json()).toEqual(
-      expect.objectContaining({
-        controller: DATA_STATUSES.ERASED,
-        processors: []
-      })
+      expect.objectContaining({ error: 'Subject is erased' })
     );
   });
 });
