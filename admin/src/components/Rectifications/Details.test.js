@@ -92,8 +92,11 @@ describe('(Component) Rectification details', () => {
   });
 
   it('should render nested properties correctly', () => {
-    const { component } = setup({ rectification: nestedRectification });
+    const { component, mounted } = setup({ rectification: nestedRectification });
     expect(component).toMatchSnapshot();
+
+    const button = mounted.find('button').at(0);
+    expect(button.exists()).toBe(false);
   });
 
   it('should render array values in properties correctly', () => {

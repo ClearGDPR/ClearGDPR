@@ -39,14 +39,16 @@ const Details = ({ rectification, onApprove, isLoading }) => {
         </p>
         <p>{renderObject(rectification.updates)}</p>
         <p>Status: {rectification.status}</p>
-        <PrimaryButton
-          type="button"
-          onClick={e => {
-            e.preventDefault();
-            onApprove();
-          }}
-          text="Approve"
-        />
+        {rectification.status !== 'APPROVED' && (
+          <PrimaryButton
+            type="button"
+            onClick={e => {
+              e.preventDefault();
+              onApprove();
+            }}
+            text="Approve"
+          />
+        )}
       </React.Fragment>
     );
   }
