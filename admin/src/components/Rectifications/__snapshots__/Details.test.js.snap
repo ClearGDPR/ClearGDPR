@@ -215,11 +215,6 @@ exports[`(Component) Rectification details should render array values in propert
     Status: 
     APPROVED
   </p>
-  <PrimaryButton
-    onClick={[Function]}
-    text="Approve"
-    type="button"
-  />
 </React.Fragment>
 `;
 
@@ -344,11 +339,6 @@ exports[`(Component) Rectification details should render nested properties corre
     Status: 
     APPROVED
   </p>
-  <PrimaryButton
-    onClick={[Function]}
-    text="Approve"
-    type="button"
-  />
 </React.Fragment>
 `;
 
