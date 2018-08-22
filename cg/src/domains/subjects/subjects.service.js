@@ -188,7 +188,6 @@ class SubjectsService {
       controller: controllerStatus,
       processors: processorIdsWithDataStatus
     };
-    //Would be cool to refactor this to show the string of the status, not just the number
   }
 
   async _saveSubjectEncryptionKey(trx, subjectId, encryptionKey) {

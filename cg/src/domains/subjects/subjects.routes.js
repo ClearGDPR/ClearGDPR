@@ -20,6 +20,10 @@ const {
 
 const router = express.Router();
 
+const {
+  isSubjectErased
+} = require('./subjects.middlewares');
+
 const SubjectsController = require('./subjects.controller');
 const subjectsController = new SubjectsController();
 
@@ -52,6 +56,8 @@ module.exports = app => {
   // JWT SECURED ENDPOINTS
 
   router.use(verifyJWT, requireSubjectId, transformSubjectId);
+  
+  router.use(asyncHandler(async (req, res, next) => isSubjectErased(req, res, next)));
 
   router.post(
     '/give-consent',
