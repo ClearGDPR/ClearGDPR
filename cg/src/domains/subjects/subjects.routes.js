@@ -21,7 +21,7 @@ const {
 const router = express.Router();
 
 const {
-  isSubjectErased
+  subjectNotErased
 } = require('./subjects.middlewares');
 
 const SubjectsController = require('./subjects.controller');
@@ -57,7 +57,7 @@ module.exports = app => {
 
   router.use(verifyJWT, requireSubjectId, transformSubjectId);
   
-  router.use(asyncHandler(async (req, res, next) => isSubjectErased(req, res, next)));
+  router.use(asyncHandler(async (req, res, next) => subjectNotErased(req, res, next)));
 
   router.post(
     '/give-consent',

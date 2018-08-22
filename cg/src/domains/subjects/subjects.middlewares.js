@@ -6,7 +6,7 @@ const {
   NotFound
 } = require('../../utils/errors');
 
-const isSubjectErased = async (req, res, next) => {
+const subjectNotErased = async (req, res, next) => {
   const controllerStatus = await getSubjectDataState(req.subject.id);
 
   if (controllerStatus === 2) {
@@ -17,5 +17,5 @@ const isSubjectErased = async (req, res, next) => {
 };
 
 module.exports = {
-  isSubjectErased
+  subjectNotErased
 };
