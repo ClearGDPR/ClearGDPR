@@ -3,11 +3,12 @@
 ![Logo](logo.png)
 
 
-## Overview
+## Introduction
+ClearGDPR offers front-end SDK and HTTP API to allow your website to manage user personal data according to the GDPR articles. Blockchain technology is used as an immutable audit log.
 
-Regardless of your data stores, ClearGDPR allows you to install on-premise or in the cloud, a complete web based GDPR compliance tool, with Blockchain anchored chain-of-custody records.
-
-This repository contains implementation of the ClearGDPR platform as well as an example UI for the data subjects to demonstrate how developers can integrate with the ClearGDPR APIs and have a drop-in style compliance enabled for their project.
+ClearGDPR can be implemented by 2 different ways:
+- ElementSDK (set of ReactJS component - recommended - easiest).
+- API (HTTP API).
 
 # Table of contents
 
@@ -17,9 +18,23 @@ This repository contains implementation of the ClearGDPR platform as well as an 
 
 - [Architecture](#architecture)
   - [Project structure](#project-structure)
-- [Quick Start guide](#quick-start-guide)
+- [Requirements](#requirements)
+- [Quick Start](#quick-start)
+  - [Full Installation Setup](#full-installation-setup)
+  - [Development Mode](#development-mode)
+  - [Troubleshooting](#troubleshooting)
+- [Integrations](#integrations)
+  - [Element SDK](#element-sdk)
+    - [Demo](#demo)
+    - [Installation](#installation)
+    - [Code Example](#code-example)
+  - [API](#api)
+    - [Example](#example)
+    - [Documentation](#documentation)
+      - [Website](#website)
+      - [Postman Collections](#postman-collections)
 - [Further reading](#further-reading)
-- [Troubleshooting](#troubleshooting)
+- [Troubleshooting](#troubleshooting-1)
 - [Roadmap](#roadmap)
 - [License](#license)
 - [Contributing](#contributing)
@@ -32,27 +47,82 @@ This repository contains implementation of the ClearGDPR platform as well as an 
 
 ## Project structure
 
-The project is split into multiple services, each contained within it's own directory:
-
 ```
 project root
-├─ quorum                           # Blockchain related docker images and helper tools
-├─ cg                               # Code for the ClearGDPR API implementation
-├─ frontend                         # Example React UI to interact with ClearGDPR API
-├─ api                              # Example back-end React UI to interact with ClearGDPR API
-├─ docs                             # Documentation artifacts (images, documents, etc.)
-└─ travis                           # Scripts used on the CI server
+├─ lib
+  ├─ api (cg)                 # Code for the ClearGDPR API implementation
+  ├─ js-sdk                   # Code for the ClearGDPR JS SDK implementation
+  └─ element-sdk              # Code for the ClearGDPR ElementSDK implementation
+├─ ui
+  └─ admin                    # Admin UI to manage the controller
+├─ tools
+  ├─ quorum                   # Blockchain related docker images and helper tools
+  ├─ docker                   # Helpers for docker run, stop, start.
+├─ demo
+  ├─ back-end                 # demo back-end integrating ClearGDPR API
+  └─ front-end                # demo front-end integrating ClearGDPR ElementSDK
+├─ website                    # ClearGDPR public website
+├─ travis                     # Scripts used on the CI server
 ```
 
-# Quick Start guide
+# Requirements
+- NodeJS v7.6+
+- Docker
+- Docker-compose
 
+# Quick Start
 The `docker-compose.yml` contains configuration for a reference development environment of one Data Controller and one Data Processor and all required dependencies.
 
-To get started with the project the only pre-reqs are node (v7.6+), docker and docker-compose.
+## Full Installation Setup
+The wizard will setup all the dependencies and demo website for you. Please follow the command line prompt.
+```
+node setup.js
+``` 
 
-Our interactive quick start will get you up and running, simply run `node setup.js` from the root of the project and follow the prompts. 
+Once the setup done, you will have access to:
+- http://localhost:3000 - Demo Website
+- http://localhost:4000 - ClearGDPR Admin (pwd admin/clearGDPR)
+- http://localhost:8082 - ClearGDPR API
 
-If you have issues getting up and running, be sure to check out our [troubleshooting guide](TROUBLESHOOTING.md). 
+## Development Mode
+Docker is used for each part of the project, you can run all of them in watch (with nodemon) and development mode:
+```
+docker/run
+```
+Please make sure you ran `node setup` before.
+
+## Troubleshooting
+If you have issues getting up and running, be sure to check out our [troubleshooting guide](TROUBLESHOOTING.md).
+
+# Integrations
+## Element SDK
+
+### Demo
+Coming soon.
+
+### Installation
+Coming soon.
+
+### Code Example
+Coming soon.
+
+## API
+### Example
+The API use authentification with Bearer Authentication. In internal we use JWT to generate and manage API tokens. Depending of the context (subject, processor or management), the token name can change.
+```
+curl -X GET \
+  <ClearGDPR_API_URL>/api/subject/access-data \
+  -H 'Authorization: Bearer <JWT>' \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json'
+```
+
+### Documentation
+#### Website
+Soon.
+#### Postman Collections
+- ClearGDPR API https://gist.github.com/Nelrohd/6c3e554ea0dcfea27784fa21dc5e4586
+- Demo website (create/login user) https://gist.github.com/Nelrohd/e9d0bc833dd5cf4216eafd4b214e482e
 
 # Further reading
 
