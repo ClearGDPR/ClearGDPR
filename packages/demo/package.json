@@ -2,8 +2,15 @@
   "name": "@cleargdpr/examples",
   "description": "ClearGDPR Examples",
   "version": "1.0.0",
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js --env=jsdom",
+    "test:watch": "node scripts/test.js --env=jsdom --watch"
+  },
   "dependencies": {
     "@cleargdpr/elements": "^1.0.0",
+    "@cleargdpr/js-sdk": "^1.0.0",
     "autoprefixer": "7.1.2",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",

@@ -1,3 +1,5 @@
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
@@ -7,7 +9,9 @@ delete require.cache[require.resolve('./paths')];
 
 const NODE_ENV = process.env.NODE_ENV;
 if (!NODE_ENV) {
-  throw new Error('The NODE_ENV environment variable is required but was not specified.');
+  throw new Error(
+    'The NODE_ENV environment variable is required but was not specified.'
+  );
 }
 
 // https://github.com/bkeepers/dotenv#what-other-env-files-can-i-use
@@ -18,18 +22,21 @@ var dotenvFiles = [
   // since normally you expect tests to produce the same
   // results for everyone
   NODE_ENV !== 'test' && `${paths.dotenv}.local`,
-  paths.dotenv
+  paths.dotenv,
 ].filter(Boolean);
 
 // Load environment variables from .env* files. Suppress warnings using silent
 // if this file is missing. dotenv will never modify any environment variables
-// that have already been set.
+// that have already been set.  Variable expansion is supported in .env files.
 // https://github.com/motdotla/dotenv
+// https://github.com/motdotla/dotenv-expand
 dotenvFiles.forEach(dotenvFile => {
   if (fs.existsSync(dotenvFile)) {
-    require('dotenv').config({
-      path: dotenvFile
-    });
+    require('dotenv-expand')(
+      require('dotenv').config({
+        path: dotenvFile,
+      })
+    );
   }
 });
 
@@ -69,7 +76,7 @@ function getClientEnvironment(publicUrl) {
         // For example, <img src={process.env.PUBLIC_URL + '/img/logo.png'} />.
         // This should only be used as an escape hatch. Normally you would put
         // images into the `src` and `import` them in code to get their paths.
-        PUBLIC_URL: publicUrl
+        PUBLIC_URL: publicUrl,
       }
     );
   // Stringify all values so we can feed into Webpack DefinePlugin
@@ -77,7 +84,7 @@ function getClientEnvironment(publicUrl) {
     'process.env': Object.keys(raw).reduce((env, key) => {
       env[key] = JSON.stringify(raw[key]);
       return env;
-    }, {})
+    }, {}),
   };
 
   return { raw, stringified };
