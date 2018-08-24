@@ -3,11 +3,7 @@ import Config from './config';
 import Modules from './modules';
 import { SDKError } from './common/exceptions';
 import * as Helpers from './utils/helpers';
-
-const EVENTS = {
-  SET_API_KEY: 'auth.setApiKey',
-  SET_ACCESS_TOKEN: 'auth.setAccessToken'
-};
+import Events, { EventTypes } from './events';
 
 /**
  * Creates a new CG ClearGDPR API client
@@ -51,7 +47,7 @@ export class CG {
   setAccessToken(accessToken) {
     if (accessToken) {
       this._setConfigField('auth', `Bearer ${accessToken}`);
-      this.Events.emit(EVENTS.SET_ACCESS_TOKEN, accessToken);
+      this.Events.emit(EventTypes.SET_ACCESS_TOKEN, accessToken);
     }
   }
 
@@ -62,7 +58,7 @@ export class CG {
   setAPIKey(apiKey) {
     if (apiKey) {
       this._setConfigField('apiKey', apiKey);
-      this.Events.emit(EVENTS.SET_API_KEY, apiKey);
+      this.Events.emit(EventTypes.SET_API_KEY, apiKey);
     }
   }
 
@@ -74,42 +70,5 @@ export class CG {
 
   _setConfigField(key, value) {
     this._config[key] = value;
-  }
-}
-
-class Events {
-  constructor() {
-    this._events = {};
-  }
-
-  emit(eventName, data) {
-    const event = this._events[eventName];
-    if (event) {
-      event.forEach(fn => {
-        fn.call(null, data);
-      });
-    }
-  }
-
-  subscribe(eventName, fn) {
-    if (!this._events[eventName]) {
-      this._events[eventName] = [];
-    }
-
-    this._events[eventName].push(fn);
-    return () => {
-      this._events[eventName] = this._events[eventName].filter(eventFn => fn !== eventFn);
-    };
-  }
-
-  clear(eventName) {
-    delete this._events[eventName];
-  }
-
-  once(eventName, listener) {
-    this.subscribe(eventName, function f() {
-      this.clear(eventName);
-      listener.apply(this, arguments);
-    });
   }
 }
