@@ -1,0 +1,100 @@
+{
+  "info": {
+    "_postman_id": "5be4943b-2b63-4e3f-a6f4-b35d858dcc31",
+    "name": "CLIENT WEBSITE (DEMO)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Register user",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw":
+                "{\n\t\"username\": \"subject@clevertech.biz\",\n\t\"password\": \"subject_password\"\n}"
+            },
+            "url": {
+              "raw": "{{api_base_url}}/api/users/register",
+              "host": ["{{api_base_url}}"],
+              "path": ["api", "users", "register"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw":
+                "{\n\t\"username\": \"subject@clevertech.biz\",\n\t\"password\": \"subject_password\"\n}"
+            },
+            "url": {
+              "raw": "{{api_base_url}}/api/users/login",
+              "host": ["{{api_base_url}}"],
+              "path": ["api", "users", "login"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "CORS",
+      "request": {
+        "method": "OPTIONS",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "{{api_base_url}}/",
+          "host": ["{{api_base_url}}"],
+          "path": [""]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "982980da-a6e7-415b-9b1d-a144827753b5",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "b7db94f8-5fc2-4c04-b29c-907194768fa3",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ]
+}
