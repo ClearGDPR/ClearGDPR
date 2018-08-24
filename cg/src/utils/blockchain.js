@@ -54,6 +54,17 @@ async function deployContract(contractAbiJson, contractByteCode) {
   return quorumContract.address;
 }
 
+async function isContractDeployed() {
+  const contractConfig = await getConfig(CONTRACT_CONFIG_KEY);
+  if (contractConfig) return true;
+  return false;
+}
+
+async function createAccount(accountPassword) {
+  const accountAddress = await web3.eth.personal.newAccount(accountPassword);
+  return accountAddress;
+}
+
 // SMART CONTRACT AUXILIARY FUNCTIONS
 
 async function getRectificationCount(subjectId) {
@@ -123,10 +134,6 @@ async function isProcessor(processor) {
 async function areAllValidProcessors(processors) {
   const quorumContract = await getContract();
   return await quorumContract.methods.areAllValidProcessors(processors).call();
-}
-
-async function createProcessorAccount() {
-  // return await web3
 }
 
 // SMART CONTRACT MAIN FUNCTIONS
@@ -309,6 +316,7 @@ async function allEvents(callback) {
 module.exports = {
   deployContract,
   getContract,
+  isContractDeployed,
   sha3: web3.utils.sha3,
   getRectificationCount,
   getIsErased,
@@ -322,7 +330,7 @@ module.exports = {
   setProcessors,
   isProcessor,
   areAllValidProcessors,
-  createProcessorAccount,
+  createAccount,
   recordProcessorsUpdate,
   recordConsentGivenTo,
   recordAccessByController,

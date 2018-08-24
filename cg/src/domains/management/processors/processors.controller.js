@@ -9,13 +9,13 @@ class ProcessorsController {
     res.json(await this.processorsService.listProcessors());
   }
 
-  async updateProcessor(req, res) {
-    await this.processorsService.updateProcessor(req.body);
-    res.send({ success: true });
+  async addProcessor(req, res) {
+    const processorRaftId = await this.processorsService.addProcessor(req.body);
+    res.json(processorRaftId);
   }
 
-  async addProcessor(req, res) {
-    await this.processorsService.addProcessor(req.body);
+  async updateProcessor(req, res) {
+    await this.processorsService.updateProcessor(req.body);
     res.send({ success: true });
   }
 

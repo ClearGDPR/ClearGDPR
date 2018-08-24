@@ -1,8 +1,8 @@
 const { db } = require('../../../db');
+const requestPromise = require('request-promise');
 const _ = require('underscore');
-const { NotFound } = require('../../../utils/errors');
-
-const { setProcessors } = require('../../../utils/blockchain');
+const { NotFound, BadRequest } = require('../../../utils/errors');
+const { isContractDeployed, recordProcessorsUpdate } = require('../../../utils/blockchain');
 
 class ProcessorsService {
   constructor(database = db) {
@@ -39,31 +39,66 @@ class ProcessorsService {
     });
   }
 
-  async addProcessor(newProcessor) {
+  async addProcessor(processorInformation) {
+    const [processorExists] = await this.db('processors').where('name', processorInformation.name);
+    if (processorExists) throw new BadRequest('Processor already added to the network');
+    const contractDeployed = await isContractDeployed();
+    if (!contractDeployed) throw new NotFound('No contract deployed');
+
+    const requestOptions = {
+      url: 'http://quorum1:8545',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json-rpc'
+      },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        method: 'raft_addPeer',
+        params: [processorInformation.enode],
+        id: 1 // This is the request Id, not the raftId
+      })
+    };
+    let response;
+    try {
+      response = await requestPromise(requestOptions);
+    } catch (e) {
+      console.log(`Something went wrong with the HTTP request to the Quorum RPC API: ${e}`);
+    }
+    const responseObject = JSON.parse(response);
+    const raftError = responseObject.error;
+    if (raftError)
+      throw new BadRequest(
+        `Something went wrong when executing raft.addPeer: ${raftError.message}`
+      );
+    const raftId = responseObject.result;
+
     await this.db.transaction(async trx => {
-      const data = _.clone(newProcessor);
-      delete data.address;
-
-      if (data.scopes) {
-        data.scopes = JSON.stringify(data.scopes);
+      const processorInformationCopy = _.clone(processorInformation);
+      delete processorInformationCopy.accountAddress;
+      delete processorInformationCopy.enode;
+      if (processorInformationCopy.scopes) {
+        processorInformationCopy.scopes = JSON.stringify(processorInformationCopy.scopes);
       }
-
-      const [id] = await db('processors')
+      const [processorId] = await db('processors')
         .transacting(trx)
-        .insert(data)
+        .insert(processorInformationCopy)
         .returning('id');
 
-      if (newProcessor.address) {
+      if (processorInformation.accountAddress) {
         await db('processor_address')
           .transacting(trx)
           .insert({
-            processor_id: id,
-            address: newProcessor.address
+            processor_id: processorId,
+            address: processorInformation.accountAddress
           });
-
-        await this._setProcessors(trx);
       }
+      await this._recordProcessorsUpdate(trx);
     });
+
+    // FUND THE PROCESSOR'S ACCOUNT
+    return {
+      raftId
+    };
   }
 
   async removeProcessors(processorIds) {
@@ -72,15 +107,16 @@ class ProcessorsService {
         .whereIn('id', processorIds)
         .del();
 
-      return await this._setProcessors(trx);
+      return await this._recordProcessorsUpdate(trx);
     });
   }
 
-  async _setProcessors(trx) {
+  async _recordProcessorsUpdate(trx) {
     let remainingProcessors = await this.db('processor_address')
       .transacting(trx)
       .select('address');
-    return await setProcessors(remainingProcessors.map(p => p.address));
+
+    return await recordProcessorsUpdate(remainingProcessors.map(p => p.address));
   }
 }
 

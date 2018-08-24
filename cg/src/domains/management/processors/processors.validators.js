@@ -8,7 +8,10 @@ const addProcessorValidator = celebrate({
     logoUrl: Joi.string().max(255),
     description: Joi.string(),
     scopes: Joi.array().items(Joi.string()),
-    address: Joi.string().regex(/^0x[\da-fA-F]{40}$/)
+    enode: Joi.string()
+      .required()
+      .max(255),
+    accountAddress: Joi.string().regex(/^0x[\da-fA-F]{40}$/) // Blockchain account address
   })
 });
 

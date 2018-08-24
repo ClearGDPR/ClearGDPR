@@ -12,7 +12,8 @@ const joinProcessorsValidator = celebrate({
       emailCommunication: Joi.boolean(),
       research: Joi.boolean()
     })
-    //address: Joi.string().regex(/^0x[\da-fA-F]{40}$/)
+    // enode
+    // accountAddress
   })
 });
 
