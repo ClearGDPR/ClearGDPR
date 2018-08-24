@@ -36,7 +36,7 @@ const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
 const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
+if (!checkRequiredFiles([paths.appIndexJs])) {
   process.exit(1);
 }
 
@@ -48,7 +48,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
     // Merge with the public folder
-    copyPublicFolder();
+    // copyPublicFolder();
     // Start the webpack build
     return build(previousFileSizes);
   })
@@ -102,6 +102,7 @@ measureFileSizesBeforeBuild(paths.appBuild)
 
 // Create the production build and print the deployment instructions.
 function build(previousFileSizes) {
+  console.log()
   console.log('Creating an optimized production build...');
 
   let compiler = webpack(config);
@@ -143,8 +144,7 @@ function build(previousFileSizes) {
 }
 
 function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuild, {
-    dereference: true,
-    filter: file => file !== paths.appHtml,
+  fs.copySync(paths.appBuild, {
+    dereference: true
   });
 }

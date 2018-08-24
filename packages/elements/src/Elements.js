@@ -15,7 +15,6 @@ export default class Elements {
       }
 
       const el = document.createElement('div');
-      el.setAttribute('class', 'cleanslate');
       document.body.appendChild(el);
       ReactDOM.render(component, el);
       Elements.el = el;
