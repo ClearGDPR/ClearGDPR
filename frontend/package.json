@@ -1,8 +1,10 @@
 {
-  "name": "clear-gdpr-frontend",
+  "name": "@cleargdpr/demo",
+  "description": "ClearGDPR Frontend",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@cleargdpr/elements": "^1.0.0",
     "autoprefixer": "7.1.2",
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
@@ -115,11 +117,5 @@
       "node",
       "mjs"
     ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  },
-  "description": "ClearGDPR Frontend"
+  }
 }

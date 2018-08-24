@@ -1,6 +1,6 @@
 /* eslint react/prop-types: 0 */
 import React from 'react';
-import Elements from '../Elements';
+import Elements from '@cleargdpr/elements/src';
 import { wrap } from './DataErasureAwareContainer';
 
 class Profile extends React.Component {
