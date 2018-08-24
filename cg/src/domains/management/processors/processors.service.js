@@ -2,7 +2,11 @@ const { db } = require('../../../db');
 const requestPromise = require('request-promise');
 const _ = require('underscore');
 const { NotFound, BadRequest } = require('../../../utils/errors');
-const { isContractDeployed, recordProcessorsUpdate } = require('../../../utils/blockchain');
+const {
+  isContractDeployed,
+  recordProcessorsUpdate,
+  transferFunds
+} = require('../../../utils/blockchain');
 
 class ProcessorsService {
   constructor(database = db) {
@@ -95,7 +99,9 @@ class ProcessorsService {
       await this._recordProcessorsUpdate(trx);
     });
 
-    // FUND THE PROCESSOR'S ACCOUNT
+    // Send funds to the processor account. The processor account needs funds to be able to execute transactions, even thugh the funds won't be spent in a Quorum network
+    await transferFunds(processorInformation.accountAddress);
+
     return {
       raftId
     };

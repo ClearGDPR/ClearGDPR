@@ -65,6 +65,11 @@ async function createAccount(accountPassword) {
   return accountAddress;
 }
 
+async function transferFunds(accountAddressToFund) {
+  const quorumContract = await getContract();
+  await quorumContract.transferFunds(accountAddressToFund);
+}
+
 // SMART CONTRACT AUXILIARY FUNCTIONS
 
 async function getRectificationCount(subjectId) {
@@ -80,7 +85,7 @@ async function getIsErased(subjectId) {
 async function getSubjectDataState(subjectId, processor = controllerAddress) {
   const quorumContract = await getContract();
   let result = await quorumContract.methods.getSubjectDataState(subjectId, processor).call();
-  return +result; //'+' coerces the returned value to a string
+  return +result; //'+' coerces the returned value to a number?
 }
 
 async function getSubjectRestrictions(subjectId) {
@@ -317,6 +322,8 @@ module.exports = {
   deployContract,
   getContract,
   isContractDeployed,
+  createAccount,
+  transferFunds,
   sha3: web3.utils.sha3,
   getRectificationCount,
   getIsErased,
@@ -330,7 +337,6 @@ module.exports = {
   setProcessors,
   isProcessor,
   areAllValidProcessors,
-  createAccount,
   recordProcessorsUpdate,
   recordConsentGivenTo,
   recordAccessByController,

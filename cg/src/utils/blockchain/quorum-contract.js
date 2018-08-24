@@ -50,7 +50,7 @@ class QuorumContract {
   // async deployPrivateContract(contractByteCode){
   //   await this._unlockAccount(this.contractOwnerAddress);
   //   let privateContractAddress;
-  //   await this.web3.eth.sendTransaction(
+  //   this.web3.eth.sendTransaction(  // We cal also await this
   //     {
   //       from: this.contractOwnerAddress,
   //       gas: '4700000',
@@ -64,6 +64,22 @@ class QuorumContract {
   //
   //   return privateContractAddress;
   // }
+
+  async transferFunds(accountAddressToFund) {
+    await this._unlockAccount(this.contractOwnerAddress);
+    this.web3.eth
+      .sendTransaction({
+        from: this.contractOwnerAddress,
+        // gas: '4700000',
+        to: accountAddressToFund,
+        value: '10000000000000000000000' // the Controller can fund 10^5 accounts with this value
+      })
+      .then(function(receipt) {
+        console.log(receipt);
+      });
+
+    // return privateContractAddress;
+  }
 
   get methods() {
     return this.contract.methods;
