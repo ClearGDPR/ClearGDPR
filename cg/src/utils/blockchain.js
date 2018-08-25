@@ -67,7 +67,8 @@ async function createAccount(accountPassword) {
 
 async function transferFunds(accountAddressToFund) {
   const quorumContract = await getContract();
-  await quorumContract.transferFunds(accountAddressToFund);
+  const receipt = await quorumContract.transferFunds(accountAddressToFund);
+  return receipt;
 }
 
 // SMART CONTRACT AUXILIARY FUNCTIONS
