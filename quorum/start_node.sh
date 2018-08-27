@@ -44,7 +44,7 @@ elif [ "$SERVICE" = "geth" ]; then
 
   # adding static-nodes.json
   [ ! -f "/qdata/dd/static-nodes.json" ] || rm "/qdata/dd/static-nodes.json"
-  echo $STATIC_NODES_PROCESSOR | base64 --decode --ignore-garbage > "/qdata/dd/static-nodes.json"
+  echo $STATIC_NODES | base64 --decode --ignore-garbage > "/qdata/dd/static-nodes.json"
 
   # adding the account private key (password protected)
   [ ! -f "/qdata/dd/keystore/"$KEYSTORE_FILE_NAME ] || rm "/qdata/dd/keystore/"$KEYSTORE_FILE_NAME
