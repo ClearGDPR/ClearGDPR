@@ -24,5 +24,8 @@ module.exports = {
     'import/resolver': {
       'babel-module': {}
     }
+  },
+  parserOptions: {
+    sourceType: 'module'
   }
 };
