@@ -58,6 +58,11 @@ class SubjectsController {
       )
     );
   }
+
+  async requestDataAccess(req, res) {
+    const subjectData = await this.subjectsService.getData(req.params.subjectId);
+    return res.json(subjectData);
+  }
 }
 
 module.exports = SubjectsController;

@@ -519,6 +519,42 @@ describe('List subjects that have given consent', () => {
       })
     );
   });
+
+  it('Should allow a manager to get subjects data', async () => {
+    const subjectData = {
+      username: 'subject1',
+      email: 'subject1@clevertech.biz'
+    };
+    const encryptionKey1 = generateClientKey();
+    const encryptedSubjectData1 = encryptForStorage(JSON.stringify(subjectData), encryptionKey1);
+    const subjectIdHash1 = hash('user15786'); // Random ID to not influence other tests
+
+    await db('subjects').insert({
+      id: subjectIdHash1,
+      personal_data: encryptedSubjectData1,
+      objection: false,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
+    });
+
+    await db('subject_keys').insert({
+      subject_id: subjectIdHash1,
+      key: encryptionKey1
+    });
+
+    //WHEN
+    const managementToken = await managementJWT.sign({ id: 1 });
+    const res = await fetch(`/api/management/subjects/${subjectIdHash1}/data`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${managementToken}`
+      }
+    });
+
+    const data = await res.json();
+    expect(data).toEqual(expect.objectContaining(subjectData));
+  });
 });
 
 describe('Tests of listing rectification requests', () => {

@@ -65,7 +65,24 @@ class SubjectsService {
     };
   }
 
-  async listRectificationRequests(requestedPage = 1) { 
+  async getData(subjectId) {
+    const [data] = await this.db('subjects')
+      .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
+      .select('personal_data')
+      .select('key')
+      .where({ subject_id: subjectId });
+
+    if (!data) {
+      throw new NotFound('Subject not found');
+    }
+    const decryptedData = decryptFromStorage(data.personal_data, data.key);
+    /**
+     * @todo We may need to create blockchain record
+     */
+    return JSON.parse(decryptedData);
+  }
+
+  async listRectificationRequests(requestedPage = 1) {
     const [{ total_items }] = await this.db('rectification_requests')
       .where('status', RECTIFICATION_STATUSES.PENDING)
       .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
@@ -83,7 +100,7 @@ class SubjectsService {
       .where('status', RECTIFICATION_STATUSES.PENDING)
       .join('subject_keys', 'rectification_requests.subject_id', 'subject_keys.subject_id')
       .limit(PAGE_SIZE)
-      .offset((requestedPage - 1 ) * PAGE_SIZE);
+      .offset((requestedPage - 1) * PAGE_SIZE);
 
     return {
       data: requests,

@@ -104,6 +104,11 @@ module.exports = app => {
     asyncHandler(async (req, res) => subjectsController.getRectificationRequest(req, res))
   );
 
+  router.get(
+    '/subjects/:subjectId/data',
+    asyncHandler(async (req, res) => subjectsController.requestDataAccess(req, res))
+  );
+
   router.get('/events', asyncHandler(async (req, res) => statsController.events(req, res)));
 
   router.put(
