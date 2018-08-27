@@ -2,7 +2,12 @@
   "name": "@cleargdpr/elements",
   "description": "ClearGDPR Elements SDK",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js --env=jsdom",
+    "test:watch": "node scripts/test.js --env=jsdom --watch"
+  },
   "dependencies": {
     "@cleargdpr/js-sdk": "^1.0.0",
     "autoprefixer": "7.1.2",
@@ -112,11 +117,6 @@
       "jsx",
       "node",
       "mjs"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
     ]
   }
 }
