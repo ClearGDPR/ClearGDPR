@@ -1,15 +1,11 @@
-# Elements SDK
+# Elements SDK API Reference
 
-## Getting Started
+- `elements.mount`
+- `elements.unmount`
+- `elements.element`
 
-### Requirements and Dependencies
+## elements.mount()
 
-- CDN: `https://netlify.net/cleargdpr/elements.min.js`
-- NPM package: `@cleargdpr/elements`
-- `JS-SDK`
+## elements.unmount()
 
-### How to instance
-
-### Embed into website
-
-## Using Elements
+## elements.element(elementType, [options])
