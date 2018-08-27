@@ -27,7 +27,9 @@ const { contractDeployValidator } = require('./contract/contract.validators');
 const {
   addProcessorValidator,
   updateProcessorValidator,
-  deleteProcessorValidator
+  deleteProcessorValidator,
+  testAddProcessorValidator,
+  testDeleteProcessorsValidator
 } = require('./processors/processors.validators');
 
 const {
@@ -172,4 +174,18 @@ module.exports = app => {
   router.get('/stats', asyncHandler(async (req, res) => statsController.stats(req, res)));
 
   router.get('/events', asyncHandler(async (req, res) => statsController.events(req, res)));
+
+  // TEST ROUTES USED ONLY FOR DEVELOPMENT
+
+  router.post(
+    '/TEST/processors',
+    testAddProcessorValidator,
+    asyncHandler(async (req, res) => processorsController.testAddProcessor(req, res))
+  );
+
+  router.delete(
+    '/TEST/processors',
+    testDeleteProcessorsValidator,
+    asyncHandler(async (req, res) => processorsController.testRemoveProcessors(req, res))
+  );
 };

@@ -5,7 +5,6 @@ exports.up = function(knex) {
     table.string('logoUrl');
     table.text('description');
     table.jsonb('scopes'); // processingActions
-    // table.string('enode');
   });
 };
 

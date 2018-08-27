@@ -23,6 +23,18 @@ class ProcessorsController {
     await this.processorsService.removeProcessors(req.body.processorIds);
     res.send({ success: true });
   }
+
+  // TEST FUNCTIONS USED ONLY FOR DEVELOPMENT
+
+  async testAddProcessor(req, res) {
+    await this.processorsService.testAddProcessor(req.body);
+    res.json({ success: true });
+  }
+
+  async testRemoveProcessors(req, res) {
+    await this.processorsService.testRemoveProcessors(req.body.processorIds);
+    res.send({ success: true });
+  }
 }
 
 module.exports = ProcessorsController;
