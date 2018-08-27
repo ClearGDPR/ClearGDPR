@@ -33,7 +33,7 @@ class QuorumContract {
   // async deployPrivateContract(contractByteCode){
   //   await this._unlockAccount(this.contractOwnerAddress);
   //   let privateContractAddress;
-  //   this.web3.eth.sendTransaction(  // We cal also await this
+  //   this.web3.eth.sendTransaction(  // We can also await this
   //     {
   //       from: this.contractOwnerAddress,
   //       gas: '4700000',

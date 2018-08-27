@@ -75,7 +75,7 @@ COPY --from=builder \
 
 
 COPY ./templates/tm.conf /templates/tm.conf
-COPY ./start_node.sh /scripts/start_node.sh
-RUN chmod +x /scripts/start_node.sh
+COPY ./start_node_processor.sh /scripts/start_node_processor.sh
+RUN chmod +x /scripts/start_node_processor.sh
 
-CMD ["/scripts/start_node.sh"]
+CMD ["/scripts/start_node_processor.sh"]

@@ -69,7 +69,7 @@ elif [ "$SERVICE" = "geth" ]; then
     /usr/local/bin/geth --datadir /qdata/dd init /qdata/genesis.json
   fi
 
-  GETH_ARGS="--datadir /qdata/dd --raft --raftjoinexisting 2 --rpc --rpcaddr 0.0.0.0 --port "$ETH_PORT" --ws --wsorigins="*" --wsaddr 0.0.0.0 --wsport "$WEBSOCKET_PORT" --rpcport "$RPC_PORT" --raftport "$RAFT_PORT" --wsapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,raft --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,raft --nodiscover --unlock 0 --password /qdata/passwords.txt"
+  GETH_ARGS="--datadir /qdata/dd --raft --rpc --rpcaddr 0.0.0.0 --port "$ETH_PORT" --ws --wsorigins="*" --wsaddr 0.0.0.0 --wsport "$WEBSOCKET_PORT" --rpcport "$RPC_PORT" --raftport "$RAFT_PORT" --wsapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,raft --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,raft --nodiscover --unlock 0 --password /qdata/passwords.txt"
 
   # sleep 10 # fixed with a healthcheck on constellation (https://docs.docker.com/compose/compose-file/compose-file-v2/#healthcheck)
   echo "[*] Starting Geth node"
