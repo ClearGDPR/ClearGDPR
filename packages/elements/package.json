@@ -49,6 +49,7 @@
     "prettier": "^1.8.2",
     "promise": "8.0.1",
     "raf": "^3.4.0",
+    "react": "^16.4.1",
     "react-dev-utils": "^4.1.0",
     "react-dom": "^16.4.1",
     "react-responsive-modal": "^3.1.0",
@@ -62,9 +63,6 @@
     "webpack-dev-server": "2.8.2",
     "webpack-manifest-plugin": "1.2.1",
     "whatwg-fetch": "2.0.3"
-  },
-  "peerDependencies": {
-    "react": "^16.4.1"
   },
   "devDependencies": {
     "babel-plugin-module-resolver": "3.1.1",
