@@ -330,7 +330,7 @@ describe('Tests of subjects giving consent', () => {
     };
 
     // When
-    const res = await fetch('/api/subject/give-consent', {
+    const res = await fetch('/api/subject/consent', {
       method: 'POST',
       body: payload,
       headers: {
