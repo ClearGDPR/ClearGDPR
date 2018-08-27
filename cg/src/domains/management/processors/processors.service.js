@@ -66,7 +66,7 @@ class ProcessorsService {
     try {
       response = await requestPromise(requestOptions);
     } catch (e) {
-      console.log(`Something went wrong with the HTTP request to the Quorum RPC API: ${e}`);
+      throw new Error(`Something went wrong with the HTTP request to the Quorum RPC API: ${e}`);
     }
     const responseObject = JSON.parse(response);
     const raftError = responseObject.error;
@@ -101,7 +101,6 @@ class ProcessorsService {
 
     // Send funds to the processor account. The processor account needs funds to be able to execute transactions, even thugh the funds won't be spent in a Quorum network
     await transferFunds(processorInformation.accountAddress);
-
     return {
       raftId
     };

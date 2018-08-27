@@ -109,8 +109,6 @@ module.exports = app => {
     asyncHandler(async (req, res) => subjectsController.requestDataAccess(req, res))
   );
 
-  router.get('/events', asyncHandler(async (req, res) => statsController.events(req, res)));
-
   router.put(
     '/subjects/rectification-requests/:rectificationRequestId',
     updateRectificationStatusValidator,
@@ -139,6 +137,8 @@ module.exports = app => {
     deleteProcessorValidator,
     asyncHandler(async (req, res) => processorsController.removeProcessors(req, res))
   );
+
+  router.get('/users', asyncHandler(async (req, res) => usersController.listUsers(req, res)));
 
   router.post(
     '/users',
@@ -169,7 +169,7 @@ module.exports = app => {
     asyncHandler(async (req, res) => dataController.getAttributesConfig(req, res))
   );
 
-  router.get('/users/list', asyncHandler(async (req, res) => usersController.listUsers(req, res)));
-
   router.get('/stats', asyncHandler(async (req, res) => statsController.stats(req, res)));
+
+  router.get('/events', asyncHandler(async (req, res) => statsController.events(req, res)));
 };
