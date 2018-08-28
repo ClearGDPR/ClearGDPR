@@ -129,15 +129,15 @@ a.deleteIcon {
       padding: 2px;
       background: white;
       position: relative;
-      border: 1px solid #E1E1E1;
+      border: 1px solid #e1e1e1;
       border-radius: 3px;
       box-shadow: none;
       vertical-align: middle;
-    
+
       &:checked {
         border-color: $green;
         background: $green;
-    
+
         &::after {
           content: '\2714';
           font-size: 11px;
