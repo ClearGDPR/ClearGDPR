@@ -13,7 +13,6 @@ process.on('unhandledRejection', err => {
 require('../config/env');
 
 const fs = require('fs-extra');
-// const path = require('path');
 const chalk = require('chalk');
 const webpack = require('webpack');
 const config = require('../config/webpack.config.prod');
@@ -25,7 +24,6 @@ const printBuildError = require('react-dev-utils/printBuildError');
 
 const measureFileSizesBeforeBuild = FileSizeReporter.measureFileSizesBeforeBuild;
 const printFileSizesAfterBuild = FileSizeReporter.printFileSizesAfterBuild;
-// const useYarn = fs.existsSync(paths.yarnLockFile);
 
 // These sizes are pretty large. We'll warn for bundles exceeding them.
 const WARN_AFTER_BUNDLE_GZIP_SIZE = 512 * 1024;
@@ -67,12 +65,6 @@ measureFileSizesBeforeBuild(paths.appBuild)
         WARN_AFTER_CHUNK_GZIP_SIZE
       );
       console.log();
-
-    //   const appPackage = require(paths.appPackageJson);
-    //   const publicUrl = paths.publicUrl;
-    //   const publicPath = config.output.publicPath;
-    //   const buildFolder = path.relative(process.cwd(), paths.appBuild);
-    //   printHostingInstructions(appPackage, publicUrl, publicPath, buildFolder, useYarn);
     },
     err => {
       console.log(chalk.red('Failed to compile.\n'));
@@ -91,7 +83,7 @@ function build(previousFileSizes) {
       if (err) {
         return reject(err);
       }
-    
+
       const messages = formatWebpackMessages(stats.toJson({}, true));
       if (messages.errors.length) {
         // Only keep the first error. Others are often indicative
