@@ -178,13 +178,13 @@ module.exports = app => {
   // TEST ROUTES USED ONLY FOR DEVELOPMENT
 
   router.post(
-    '/TEST/processors',
+    '/processors/TEST',
     testAddProcessorValidator,
     asyncHandler(async (req, res) => processorsController.testAddProcessor(req, res))
   );
 
   router.delete(
-    '/TEST/processors',
+    '/processors/TEST',
     testDeleteProcessorsValidator,
     asyncHandler(async (req, res) => processorsController.testRemoveProcessors(req, res))
   );

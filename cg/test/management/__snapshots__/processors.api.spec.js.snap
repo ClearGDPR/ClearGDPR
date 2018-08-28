@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Add processor should not allow empty body 1`] = `
+exports[`TEST - Add processor used for development should not add a processor without a name 1`] = `
 Object {
   "error": "Bad Request",
   "message": "child \\"name\\" fails because [\\"name\\" is required]",
@@ -14,10 +14,24 @@ Object {
 }
 `;
 
-exports[`Add processor should not allow improper address format 1`] = `
+exports[`TEST - Add processor used for development should not allow an empty body 1`] = `
 Object {
   "error": "Bad Request",
-  "message": "child \\"address\\" fails because [\\"address\\" with value \\"1234\\" fails to match the required pattern: /^0x[\\\\da-fA-F]{40}$/]",
+  "message": "child \\"name\\" fails because [\\"name\\" is required]",
+  "statusCode": 400,
+  "validation": Object {
+    "keys": Array [
+      "name",
+    ],
+    "source": "body",
+  },
+}
+`;
+
+exports[`TEST - Add processor used for development should not allow improper address format 1`] = `
+Object {
+  "error": "Bad Request",
+  "message": "\\"address\\" is not allowed",
   "statusCode": 400,
   "validation": Object {
     "keys": Array [
@@ -28,21 +42,7 @@ Object {
 }
 `;
 
-exports[`Add processor should not allow processor without a name 1`] = `
-Object {
-  "error": "Bad Request",
-  "message": "child \\"name\\" fails because [\\"name\\" is required]",
-  "statusCode": 400,
-  "validation": Object {
-    "keys": Array [
-      "name",
-    ],
-    "source": "body",
-  },
-}
-`;
-
-exports[`Add processor should not allow scopes that are not an array 1`] = `
+exports[`TEST - Add processor used for development should not allow scopes that are not an array 1`] = `
 Object {
   "error": "Bad Request",
   "message": "child \\"scopes\\" fails because [\\"scopes\\" must be an array]",
@@ -56,7 +56,7 @@ Object {
 }
 `;
 
-exports[`Add processor should verify the types of name parameter 1`] = `
+exports[`TEST - Add processor used for development should verify the type of the name parameter 1`] = `
 Object {
   "error": "Bad Request",
   "message": "child \\"name\\" fails because [\\"name\\" must be a string]",
@@ -70,7 +70,7 @@ Object {
 }
 `;
 
-exports[`Remove processors should not allow empty IDs array 1`] = `
+exports[`TEST - Remove processors used for development should not allow empty processor IDs array 1`] = `
 Object {
   "error": "Bad Request",
   "message": "child \\"processorIds\\" fails because [\\"processorIds\\" is required]",
@@ -84,7 +84,7 @@ Object {
 }
 `;
 
-exports[`Remove processors should not allow missing IDS 1`] = `
+exports[`TEST - Remove processors used for development should not allow missing processors IDS 1`] = `
 Object {
   "error": "Bad Request",
   "message": "child \\"processorIds\\" fails because [\\"processorIds\\" is required]",
@@ -98,7 +98,7 @@ Object {
 }
 `;
 
-exports[`Remove processors should not allow numbers in processors IDs 1`] = `
+exports[`TEST - Remove processors used for development should not allow strings in processors IDs 1`] = `
 Object {
   "error": "Bad Request",
   "message": "child \\"processorIds\\" fails because [\\"processorIds\\" at position 1 fails because [\\"1\\" must be a number]]",

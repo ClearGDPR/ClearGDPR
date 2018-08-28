@@ -192,6 +192,7 @@ class ProcessorsService {
     });
   }
 
+  // Removes a processor from the database and the smart-contract state
   async testRemoveProcessors(processorsIds) {
     const contractDeployed = await isContractDeployed();
     if (!contractDeployed) throw new NotFound('No contract deployed');
