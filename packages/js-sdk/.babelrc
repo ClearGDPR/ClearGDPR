@@ -1,0 +1,22 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["> 1%", "last 2 versions"]
+        }
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "extensions": [".js", ".jsx", ".es", ".es6", ".mjs"],
+        "root": ["./src"],
+        "alias": {}
+      }
+    ]
+  ]
+}
