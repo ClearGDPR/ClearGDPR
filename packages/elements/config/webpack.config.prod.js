@@ -351,7 +351,20 @@ module.exports = {
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ],
-  externals: ['react', 'react-dom'],
+  externals: [
+    {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react'
+    },
+    {
+      root: 'ReactDOM',
+      commonjs2: 'react-dom',
+      commonjs: 'react-dom',
+      amd: 'react-dom'
+    }
+  ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
   node: {
