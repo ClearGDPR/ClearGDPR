@@ -1,7 +1,7 @@
 /* eslint react/prop-types: 0 */
 import React from 'react';
 
-import Elements from '@cleargdpr/elements';
+import { Elements } from '@cleargdpr/elements';
 import { wrap } from './DataErasureAwareContainer';
 
 class Share extends React.Component {
