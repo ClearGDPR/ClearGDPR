@@ -16,7 +16,13 @@
       {
         "extensions": [".js", ".jsx", ".es", ".es6", ".mjs"],
         "root": ["./src"],
-        "alias": {}
+        "alias": {
+          "assets": "./src/assets",
+          "theme": "./src/theme",
+          "components": "./src/components",
+          "containers": "./src/containers",
+          "contexts": "./src/contexts"
+        }
       }
     ]
   ]
