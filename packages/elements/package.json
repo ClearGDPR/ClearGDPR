@@ -5,9 +5,11 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "postinstall": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "test:watch": "node scripts/test.js --env=jsdom --watch"
   },
+  "main": "dist/elements.js",
   "dependencies": {
     "@cleargdpr/js-sdk": "^1.0.0",
     "autoprefixer": "7.1.2",
@@ -52,6 +54,7 @@
     "react": "^16.4.1",
     "react-dev-utils": "^4.1.0",
     "react-dom": "^16.4.1",
+    "react-json-editor-ajrm": "^2.5.2",
     "react-responsive-modal": "^3.1.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
@@ -73,6 +76,9 @@
     "eslint-import-resolver-babel-module": "4.0.0",
     "eslint-plugin-jest": "^21.17.0",
     "sinon": "^6.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.4.1"
   },
   "jest": {
     "snapshotSerializers": [
