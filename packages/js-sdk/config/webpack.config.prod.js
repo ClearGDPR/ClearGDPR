@@ -13,6 +13,18 @@ const config = {
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        include: paths.appSrc,
+        loader: require.resolve('babel-loader'),
+        options: {
+          compact: true
+        }
+      }
+    ]
   }
 };
 
