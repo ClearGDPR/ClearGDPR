@@ -1,4 +1,4 @@
-import { CG } from '../../../js-sdk';
+import { CG } from '@cleargdpr/js-sdk';
 import { shallow } from 'enzyme/build/index';
 import React from 'react';
 import UserData from './UserData';

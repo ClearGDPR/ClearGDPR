@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Objection from './Objection';
-import { CG } from '../../../js-sdk';
+import { CG } from '@cleargdpr/js-sdk';
 import Switch from '../Common/Switch';
 import Subject from '../../contexts/Subject';
 
