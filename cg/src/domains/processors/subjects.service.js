@@ -188,6 +188,7 @@ class SubjectsService {
       });
 
     if (subjectObjectionUpdates === 0) throw new NotFound('Subject not found');
+    // There is a bug in the above line!! When it is 0, it's breaking
     if (subjectObjectionUpdates > 1) throw new Forbidden('Duplicated subject in the database');
   }
 

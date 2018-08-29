@@ -5,8 +5,6 @@ const {
   encryptForStorage,
   decryptFromStorage
 } = require('../../utils/encryption');
-const Blockchain = require('../../utils/blockchain');
-
 const {
   getSubjectDataState,
   recordConsentGivenTo,
@@ -33,24 +31,21 @@ class SubjectsService {
 
   async registerConsentToProcessData(subjectId, personalData, processorsConsented = []) {
     const [subjectExists] = await this.db('subjects').where('id', subjectId);
-
     if (subjectExists) throw new Unauthorized('Subject already gave consent');
-    let processorIdsWithAddresses;
-    
-    return this.db.transaction(async trx => {
-      await trx.transaction(async (nestedTrx) => {
-        await this._initializeUserInTransaction(nestedTrx, subjectId, personalData);
-        processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(
-          nestedTrx,
-          processorsConsented
-        );
-        await this._verifyProcessors(processorIdsWithAddresses, processorsConsented);
-        await Promise.all(processorsConsented
-          .map(processor => this._setConsentGiven(nestedTrx, subjectId, processor)));
-      })
 
-      await Blockchain.recordConsentGivenTo(subjectId, processorIdsWithAddresses.map(p => p.address));
+    let processorIdsWithAddresses;
+    await this.db.transaction(async trx => {
+      await this._initializeUserInTransaction(trx, subjectId, personalData);
+      processorIdsWithAddresses = await this._getProcessorIdsWithAddresses(
+        trx,
+        processorsConsented
+      );
+      await this._verifyProcessors(processorIdsWithAddresses, processorsConsented);
+      await Promise.all(
+        processorsConsented.map(processor => this._setConsentGiven(trx, subjectId, processor))
+      );
     });
+    await recordConsentGivenTo(subjectId, processorIdsWithAddresses.map(p => p.address));
   }
 
   async updateConsent(subjectId, processorsConsented = []) {

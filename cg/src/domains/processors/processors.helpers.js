@@ -10,11 +10,13 @@ const { getContractDetails } = require('./processors.requests');
 const contractService = new ContractService();
 
 const _canProcessorAccessSubject = async (processorId, subjectId) => {
+  // This logic is wrong! It should check of the processor ID was inside the event fired!!
   const [subjectProcessor] = await db('subject_processors').where({
     processor_id: processorId,
     subject_id: subjectId
   });
 
+  // If subjectProcessor is allowed to be [] or {} there can be a bug here
   return !!subjectProcessor;
 };
 
