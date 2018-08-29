@@ -2,7 +2,7 @@ import { CG } from '@cleargdpr/js-sdk';
 import { shallow } from 'enzyme/build/index';
 import React from 'react';
 import UserData from './UserData';
-import Subject from '../../contexts/Subject';
+import Subject from 'contexts/Subject';
 
 const processors = [
   {

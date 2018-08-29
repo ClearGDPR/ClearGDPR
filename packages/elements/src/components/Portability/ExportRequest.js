@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FileSaver from 'file-saver';
-import Subject from '../../contexts/Subject';
+import Subject from 'contexts/Subject';
 
 class ExportRequest extends React.PureComponent {
   state = {

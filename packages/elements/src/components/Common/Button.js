@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from '../../theme/Button.scss';
+import styles from 'theme/Button.scss';
 
 class Button extends React.Component {
   constructor(props) {
@@ -24,6 +24,7 @@ class Button extends React.Component {
 }
 
 Button.propTypes = {
+  children: PropTypes.node,
   onClick: PropTypes.func
 };
 

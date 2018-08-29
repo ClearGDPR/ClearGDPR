@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Switch from '../Common/Switch';
-import styles from '../../theme/Processor.scss';
+import Switch from 'components/Common/Switch';
+import styles from 'theme/Processor.scss';
 
 class Processor extends React.PureComponent {
   onChange(status) {

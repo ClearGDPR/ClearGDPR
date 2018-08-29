@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from '../../theme/Switch.scss';
+import styles from 'theme/Switch.scss';
 
 class Switch extends React.PureComponent {
   constructor(props) {

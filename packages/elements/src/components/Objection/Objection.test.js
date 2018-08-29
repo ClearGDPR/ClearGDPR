@@ -2,8 +2,8 @@ import React from 'react';
 import { mount } from 'enzyme';
 import Objection from './Objection';
 import { CG } from '@cleargdpr/js-sdk';
-import Switch from '../Common/Switch';
-import Subject from '../../contexts/Subject';
+import Switch from 'components/Common/Switch';
+import Subject from 'contexts/Subject';
 
 const cg = new CG({
   apiKey: 'test',

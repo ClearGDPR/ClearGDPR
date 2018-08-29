@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from '../../theme/SubjectData.scss';
-import Subject from '../../contexts/Subject';
+import styles from 'theme/SubjectData.scss';
+import Subject from 'contexts/Subject';
 
 class UserData extends React.PureComponent {
   componentDidMount() {

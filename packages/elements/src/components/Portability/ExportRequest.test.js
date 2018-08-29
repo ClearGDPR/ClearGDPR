@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import FileSaver from 'file-saver';
 import ExportRequest from './ExportRequest';
-import Subject from '../../contexts/Subject';
+import Subject from 'contexts/Subject';
 
 jest.useFakeTimers();
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from '../../theme/ShareData.scss';
+import styles from 'theme/ShareData.scss';
 
 class EditForm extends React.Component {
   handleOnSubmit = e => {

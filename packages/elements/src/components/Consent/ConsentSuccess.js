@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import styles from '../../theme/Success.scss';
+import styles from 'theme/Success.scss';
 
 // TODO: Convert this to a callback screen, or move to a wrapper
 const ConsentSuccess = () => {

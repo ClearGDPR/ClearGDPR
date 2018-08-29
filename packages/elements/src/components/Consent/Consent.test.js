@@ -1,11 +1,11 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Consent from './Consent';
-import PopoverView from '../Common/Views/Popover';
-import Checkbox from '../Common/Checkbox';
-import ProcessorsList from '../Processors/ProcessorsList';
+import PopoverView from 'components/Common/Views/Popover';
+import Checkbox from 'components/Common/Checkbox';
+import ProcessorsList from 'components/Processors/ProcessorsList';
 import { CG } from '@cleargdpr/js-sdk';
-import Subject from '../../contexts/Subject';
+import Subject from 'contexts/Subject';
 
 const processors = [
   {
