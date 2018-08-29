@@ -78,3 +78,6 @@ kubeDef.json
 
 # VS Code settings
 .vscode
+
+# Avoid to publish dist directories
+**/dist/
