@@ -7,6 +7,7 @@
     "postinstall": "node scripts/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "main": "dist/cleargdpr.min.js",
   "dependencies": {
     "babel-core": "6.25.0",
     "babel-eslint": "7.2.3",
