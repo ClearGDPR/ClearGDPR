@@ -4,7 +4,7 @@ import Consent from './Consent';
 import PopoverView from '../Common/Views/Popover';
 import Checkbox from '../Common/Checkbox';
 import ProcessorsList from '../Processors/ProcessorsList';
-import { CG } from '../../../js-sdk';
+import { CG } from '@cleargdpr/js-sdk';
 import Subject from '../../contexts/Subject';
 
 const processors = [

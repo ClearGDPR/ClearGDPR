@@ -6,17 +6,17 @@ exports[`(Elements SDK) Restriction should render correctly 1`] = `
   subject={
     Subject {
       "_propagateMutation": [Function],
-      "cg": CG {
-        "Events": Events {
+      "cg": v {
+        "Events": y {
           "_events": Object {},
         },
         "Processors": Processors {
-          "_request": RequestFactory {
+          "_request": s {
             "config": [Circular],
           },
         },
         "Subject": Subject {
-          "_request": RequestFactory {
+          "_request": s {
             "config": [Circular],
           },
           "getRestrictions": [Function],

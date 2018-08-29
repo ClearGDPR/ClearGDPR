@@ -1,5 +1,5 @@
 import React from 'react';
-import { CG } from '../../../js-sdk';
+import { CG } from '@cleargdpr/js-sdk';
 import { mount } from 'enzyme';
 import ForgottenRequest from './ForgottenRequest';
 import ModalView from '../Common/Views/Modal';

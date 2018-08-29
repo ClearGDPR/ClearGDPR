@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import config from '../../config';
-import { CG } from '../../js-sdk';
+import { CG } from '@cleargdpr/js-sdk';
 import Subject from './Subject';
 
 const cg = new CG({ apiKey: config.CG_API_KEY, apiUrl: `${config.CG_API_BASE}/api` });
