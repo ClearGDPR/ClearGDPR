@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@cleargdpr/elements": "^1.0.0",
     "@cleargdpr/js-sdk": "^1.1.0",
     "autoprefixer": "7.1.2",
     "babel-core": "6.25.0",

@@ -2,8 +2,8 @@ import React from 'react';
 import LoadingScreen from '../components/LoadingScreen';
 import DataErasedScreen from '../components/DataErasedScreen';
 import PropTypes from 'prop-types';
-import { inject } from '../Elements/contexts/SubjectContext';
-import Subject from '../Elements/contexts/Subject';
+import { inject } from '@cleargdpr/elements';
+import Subject from '@cleargdpr/elements';
 
 class Container extends React.Component {
   componentDidMount() {
