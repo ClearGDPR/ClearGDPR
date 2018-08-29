@@ -8,9 +8,12 @@
         }
       }
     ],
-    "react-app"
+    "react"
   ],
   "plugins": [
+    ["transform-class-properties"],
+    ["transform-object-rest-spread"],
+    ["transform-es2015-classes", { "loose": true }],
     [
       "module-resolver",
       {
