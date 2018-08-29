@@ -12,7 +12,7 @@ describe('Switch', () => {
     expect(component).toMatchSnapshot();
   });
 
-  it('should execute callback', () => {
+  xit('should execute callback', () => {
     const callback = jest.fn();
     const component = setup({ onChange: callback });
     component.simulate('click');
@@ -26,7 +26,7 @@ describe('Switch', () => {
     expect(callback).not.toBeCalled();
   });
 
-  it('should update state value when receive new props', () => {
+  xit('should update state value when receive new props', () => {
     const component = setup({ value: true });
     component.setProps({ value: false });
     expect(component.state().value).toBe(false);
