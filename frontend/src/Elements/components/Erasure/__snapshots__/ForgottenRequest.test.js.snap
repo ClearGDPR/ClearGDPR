@@ -10,17 +10,17 @@ exports[`ForgottenRequest should render correctly 1`] = `
   subject={
     Subject {
       "_propagateMutation": [Function],
-      "cg": v {
-        "Events": y {
+      "cg": t {
+        "Events": t {
           "_events": Object {},
         },
-        "Processors": Processors {
-          "_request": s {
+        "Processors": e {
+          "_request": t {
             "config": [Circular],
           },
         },
-        "Subject": Subject {
-          "_request": s {
+        "Subject": e {
+          "_request": t {
             "config": [Circular],
           },
           "eraseData": [Function],
