@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 import config from '../config';
-import Elements from '../Elements';
+import Elements from '@cleargdpr/elements';
 
 class SignUp extends Component {
   state = {
