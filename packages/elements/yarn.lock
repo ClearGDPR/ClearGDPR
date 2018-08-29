@@ -9,6 +9,12 @@
     core-js "^2.5.7"
     regenerator-runtime "^0.12.0"
 
+"@babel/runtime@^7.0.0-rc.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.0.0.tgz#adeb78fedfc855aa05bc041640f3f6f98e85424c"
+  dependencies:
+    regenerator-runtime "^0.12.0"
+
 "@monastic.panic/enzyme-adapter-utils@^1.4.0":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@monastic.panic/enzyme-adapter-utils/-/enzyme-adapter-utils-1.4.1.tgz#c0923189bc76a9cbb64d296a76b52a42277594a0"
@@ -6111,6 +6117,12 @@ react-error-overlay@^3.0.0:
 react-is@^16.4.2:
   version "16.4.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.4.2.tgz#84891b56c2b6d9efdee577cc83501dfc5ecead88"
+
+react-json-editor-ajrm@^2.5.2:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/react-json-editor-ajrm/-/react-json-editor-ajrm-2.5.3.tgz#376febaaeb2902af78371b83a0c2f4d1bc9e61f2"
+  dependencies:
+    "@babel/runtime" "^7.0.0-rc.0"
 
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
