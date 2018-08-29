@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
-import Checkbox from '../Common/Checkbox';
-import PopoverView from '../Common/Views/Popover';
-import ProcessorsList from '../Processors/ProcessorsList';
-import Subject from '../../contexts/Subject';
+import Checkbox from 'components/Common/Checkbox';
+import PopoverView from 'components/Common/Views/Popover';
+import ProcessorsList from 'components/Processors/ProcessorsList';
+import Subject from 'contexts/Subject';
 
 class Consent extends React.PureComponent {
   state = {
@@ -91,7 +91,8 @@ class Consent extends React.PureComponent {
           >
             <span role="img" aria-labelledby="lock">
               🔒
-            </span>Config Processors
+            </span>
+            Config Processors
           </button>
           {this.state.showProcessors ? (
             <PopoverView open={this.state.showProcessors} onClose={this.toggleProcessors}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from '../../../theme/Views/Popover.scss';
+import styles from 'theme/Views/Popover.scss';
 
 class PopoverView extends React.PureComponent {
   onClose(e) {

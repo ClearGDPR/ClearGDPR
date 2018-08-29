@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Copy from 'copy-to-clipboard';
 
-import styles from '../../theme/ShareData.scss';
-import clipboardSvg from '../../../assets/graph_clipboard.svg';
+import styles from 'theme/ShareData.scss';
+import clipboardSvg from 'assets/graph_clipboard.svg';
 
 import NewForm from './Edit';
 import ShareDataItem from './Item';
-import Subject from '../../contexts/Subject';
+import Subject from 'contexts/Subject';
 
 class ShareData extends React.Component {
   state = {

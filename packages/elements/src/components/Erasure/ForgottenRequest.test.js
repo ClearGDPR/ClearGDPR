@@ -2,8 +2,8 @@ import React from 'react';
 import { CG } from '@cleargdpr/js-sdk';
 import { mount } from 'enzyme';
 import ForgottenRequest from './ForgottenRequest';
-import ModalView from '../Common/Views/Modal';
-import Subject from '../../contexts/Subject';
+import ModalView from 'components/Common/Views/Modal';
+import Subject from 'contexts/Subject';
 
 const cg = new CG({
   apiKey: 'test',

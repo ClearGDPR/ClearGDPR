@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Processor from './Processor';
-import Switch from '../Common/Switch';
+import Switch from 'components/Common/Switch';
 
 const PROCESSOR = {
   enabled: true,

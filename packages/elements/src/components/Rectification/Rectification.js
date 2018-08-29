@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import RectificationForm from './RectificationForm';
-import ModalView from '../Common/Views/Modal';
-import styles from '../../theme/ForgottenRequest.scss';
+import ModalView from 'components/Common/Views/Modal';
+import styles from 'theme/ForgottenRequest.scss';
 
 const Loading = () => (
   <div style={{ textAlign: 'center' }}>

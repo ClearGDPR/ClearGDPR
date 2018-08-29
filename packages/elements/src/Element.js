@@ -1,14 +1,14 @@
 import React from 'react';
-import { inject } from './contexts/SubjectContext';
+import { inject } from 'contexts/SubjectContext';
 
-import Consent from './components/Consent/Consent';
-import ForgottenRequest from './components/Erasure/ForgottenRequest';
-import ExportRequest from './components/Portability/ExportRequest';
-import UserData from './components/Portability/UserData';
-import ShareData from './components/Share/ShareData';
-import Objection from './components/Objection/Objection';
-import Rectification from './components/Rectification/Rectification';
-import Restriction from './components/Restriction/Restriction';
+import Consent from 'components/Consent/Consent';
+import ForgottenRequest from 'components/Erasure/ForgottenRequest';
+import ExportRequest from 'components/Portability/ExportRequest';
+import UserData from 'components/Portability/UserData';
+import ShareData from 'components/Share/ShareData';
+import Objection from 'components/Objection/Objection';
+import Rectification from 'components/Rectification/Rectification';
+import Restriction from 'components/Restriction/Restriction';
 
 const ELEMENTS = {
   consent: inject(Consent),

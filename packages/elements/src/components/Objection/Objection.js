@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Switch from '../Common/Switch';
-import Subject from '../../contexts/Subject';
+import Switch from 'components/Common/Switch';
+import Subject from 'contexts/Subject';
 
 class Objection extends React.PureComponent {
   state = {
@@ -29,7 +29,8 @@ class Objection extends React.PureComponent {
 
     return (
       <div style={{ alignItems: 'center', display: 'flex' }}>
-        <label>{label}</label>&nbsp;
+        <label>{label}</label>
+        &nbsp;
         <Switch
           onChange={this.toggleDataProcessingAgreement}
           value={!objection}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Subject from '../contexts/Subject';
-import { inject } from '../contexts/SubjectContext';
+import Subject from 'contexts/Subject';
+import { inject } from 'contexts/SubjectContext';
 
 class ElementsContainer extends React.Component {
   componentDidMount() {
@@ -26,7 +26,7 @@ class ElementsContainer extends React.Component {
 
 ElementsContainer.propTypes = {
   subject: PropTypes.instanceOf(Subject),
-  history: PropTypes.object,
+  // history: PropTypes.object,
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array])
 };
 

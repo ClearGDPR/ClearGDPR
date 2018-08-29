@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ModalView from '../Common/Views/Modal';
-import styles from '../../theme/ForgottenRequest.scss';
-import Subject from '../../contexts/Subject';
+import ModalView from 'components/Common/Views/Modal';
+import styles from 'theme/ForgottenRequest.scss';
+import Subject from 'contexts/Subject';
 
 const about = `The data subject shall have the right to request from the controller the erasure of
 personal data concerning him or her without undue delay and the controller shall have

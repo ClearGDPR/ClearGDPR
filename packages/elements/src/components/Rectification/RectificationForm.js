@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import JSONInput from 'react-json-editor-ajrm/index';
 import locale from 'react-json-editor-ajrm/locale/en';
-import styles from '../../theme/ForgottenRequest.scss';
+import styles from 'theme/ForgottenRequest.scss';
 
 class RectificationForm extends React.Component {
   constructor(props) {
