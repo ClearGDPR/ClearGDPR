@@ -20,9 +20,7 @@ const {
 
 const router = express.Router();
 
-const {
-  subjectNotErased
-} = require('./subjects.middlewares');
+const { subjectNotErased } = require('./subjects.middlewares');
 
 const SubjectsController = require('./subjects.controller');
 const subjectsController = new SubjectsController();
@@ -56,7 +54,7 @@ module.exports = app => {
   // JWT SECURED ENDPOINTS
 
   router.use(verifyJWT, requireSubjectId, transformSubjectId);
-  
+
   router.use(asyncHandler(async (req, res, next) => subjectNotErased(req, res, next)));
 
   router.post(
@@ -102,7 +100,7 @@ module.exports = app => {
   );
 
   router.post(
-    '/object',
+    '/objection',
     controllerOnly,
     objectionValidator,
     asyncHandler(async (req, res) => subjectsController.object(req, res))
