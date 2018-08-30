@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // Routes
+require('./routes/doc')(app);
 require('./routes/healthz')(app);
 require('./routes/robots')(app);
 require('./routes/index')(app);

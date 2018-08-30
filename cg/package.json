@@ -13,7 +13,8 @@
     "test:debug": "bnr test:debug",
     "pretest": "false | cp -i .env.example .env || true",
     "deploy-contract": "bnr deploy-contract",
-    "add-processor": "bnr add-processor"
+    "add-processor": "bnr add-processor",
+    "doc": "aglio -i api.md -o api.html"
   },
   "betterScripts": {
     "start": "knex migrate:latest && node src/index.js",
@@ -50,6 +51,7 @@
     ]
   },
   "dependencies": {
+    "aglio": "^2.3.0",
     "bcryptjs": "^2.4.3",
     "bluebird": "3.5.1",
     "body-parser": "^1.18.2",
