@@ -15,23 +15,6 @@ class QuorumContract {
     this.myAddress = getMyAddress();
   }
 
-  async performMethod(methodName, params = []) {
-    await this._unlockAccount(this.myAddress);
-    return new Promise((resolve, reject) => {
-      this.contract.methods[methodName](...params)
-        .send({
-          from: this.myAddress,
-          gas: '4700000'
-        })
-        .once('transactionHash', resolve)
-        .once('error', reject);
-    });
-  }
-
-  async _unlockAccount(address) {
-    await this.web3.eth.personal.unlockAccount(address, process.env.QUORUM_ACCOUNT_PASSWORD || '');
-  }
-
   async deploy(data) {
     await this._unlockAccount(this.contractOwnerAddress);
     const newContract = await this.contract.deploy({ data }).send({
@@ -50,7 +33,7 @@ class QuorumContract {
   // async deployPrivateContract(contractByteCode){
   //   await this._unlockAccount(this.contractOwnerAddress);
   //   let privateContractAddress;
-  //   await this.web3.eth.sendTransaction(
+  //   this.web3.eth.sendTransaction(  // We can also await this
   //     {
   //       from: this.contractOwnerAddress,
   //       gas: '4700000',
@@ -64,6 +47,35 @@ class QuorumContract {
   //
   //   return privateContractAddress;
   // }
+
+  async performMethod(methodName, params = []) {
+    await this._unlockAccount(this.myAddress);
+    return new Promise((resolve, reject) => {
+      this.contract.methods[methodName](...params)
+        .send({
+          from: this.myAddress,
+          gas: '4700000'
+        })
+        .once('transactionHash', resolve)
+        .once('error', reject);
+    });
+  }
+
+  async transferFunds(accountAddressToFund) {
+    await this._unlockAccount(this.contractOwnerAddress);
+    const receipt = await this.web3.eth.sendTransaction({
+      from: this.contractOwnerAddress,
+      // gas: '4700000', // when left blank, it determines the gas necessary automatically
+      to: accountAddressToFund,
+      value: '10000000000000000000000' // the Controller can fund 10^5 accounts with this value
+    });
+
+    return receipt;
+  }
+
+  async _unlockAccount(address) {
+    await this.web3.eth.personal.unlockAccount(address, process.env.QUORUM_ACCOUNT_PASSWORD || '');
+  }
 
   get methods() {
     return this.contract.methods;
