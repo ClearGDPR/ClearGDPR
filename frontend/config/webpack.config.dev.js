@@ -119,8 +119,7 @@ module.exports = {
             loader: require.resolve('eslint-loader')
           }
         ],
-        include: paths.appSrc,
-        exclude: paths.appSrc + '/js-sdk'
+        include: paths.appSrc
       },
       {
         // "oneOf" will traverse all following loaders until one will
@@ -156,7 +155,7 @@ module.exports = {
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
           {
-            test: /\.scss$/,
+            test: /\.css$/,
             use: ExtractTextPlugin.extract({
               fallback: require.resolve('style-loader'),
               use: [
@@ -167,7 +166,7 @@ module.exports = {
                     importLoaders: 2,
                     modules: true,
                     sourceMap: true,
-                    localIdentName: '[name]__[local]___[hash:base64:5]'
+                    localIdentName: '[local]'
                   }
                 },
                 {
