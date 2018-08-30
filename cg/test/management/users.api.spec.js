@@ -171,7 +171,7 @@ describe('Management user removal', () => {
       }
     });
 
-    const res1 = await fetch('/api/management/users/list', {
+    const res1 = await fetch('/api/management/users', {
       method: 'GET',
       headers: { Authorization: `Bearer ${managementToken}` }
     });
@@ -358,7 +358,7 @@ describe('Management user password update', () => {
 describe('Listing management users', () => {
   it('Should display an empty list when no manager is registered', async () => {
     //When
-    const res = await fetch('/api/management/users/list', {
+    const res = await fetch('/api/management/users', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
@@ -391,7 +391,7 @@ describe('Listing management users', () => {
     });
 
     //When
-    const res = await fetch('/api/management/users/list', {
+    const res = await fetch('/api/management/users', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${managementToken}`
