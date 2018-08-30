@@ -31,6 +31,11 @@ class ProcessorsController {
     const subjectObjection = await this.subjectsService.getSubjectObjection(subjectId);
     res.json(subjectObjection);
   }
+
+  async getSubjects(req, res) {
+    const response = await this.subjectsService.listSubjects(req.processor.id, req.query.page);
+    res.json(response);
+  }
 }
 
 module.exports = ProcessorsController;

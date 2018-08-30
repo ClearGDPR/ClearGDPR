@@ -37,4 +37,9 @@ module.exports = app => {
     asyncHandler(ensureProcessorAccessToSubject),
     asyncHandler(async (req, res) => processorsController.getSubjectObjection(req, res))
   );
+
+  router.get(
+    '/subjects',
+    asyncHandler(async (req, res) => processorsController.getSubjects(req, res))
+  );
 };
