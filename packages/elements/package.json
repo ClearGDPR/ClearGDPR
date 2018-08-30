@@ -6,7 +6,6 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "postinstall": "node scripts/build.js",
-    "prepublish": "rm -rf ./dist && yarn build",
     "test": "node scripts/test.js --env=jsdom",
     "test:watch": "node scripts/test.js --env=jsdom --watch"
   },
@@ -15,16 +14,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/plugin-proposal-class-properties": "^7.0.0",
-    "@babel/plugin-transform-runtime": "^7.0.0",
-    "@babel/preset-env": "^7.0.0",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/runtime-corejs2": "^7.0.0",
     "@cleargdpr/js-sdk": "^1.0.0",
     "autoprefixer": "7.1.2",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
     "cache-loader": "^1.2.2",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
@@ -47,7 +38,6 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "informed": "^1.6.0",
-    "jest": "20.0.4",
     "lodash": "^4.17.10",
     "moment": "^2.19.2",
     "node-sass": "^4.8.3",
@@ -72,14 +62,22 @@
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
-    "babel-core": "7.0.0-bridge.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/runtime-corejs2": "^7.0.0",
+    "babel-core": "^7.0.0-0",
     "babel-eslint": "^7.2.3",
-    "babel-jest": "^20.0.3",
+    "babel-jest": "^23.4.2",
     "babel-loader": "^8.0.0",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-es2015-classes": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-runtime": "6.26.0",
     "enzyme": "^3.3.0",
@@ -87,6 +85,9 @@
     "enzyme-to-json": "^3.3.4",
     "eslint-import-resolver-babel-module": "4.0.0",
     "eslint-plugin-jest": "^21.17.0",
+    "jest": "^23.5.0",
+    "jest-cli": "^23.5.0",
+    "jest-environment-jsdom": "^23.4.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "sinon": "^6.0.0"
@@ -103,15 +104,13 @@
       "src/**/*.{js,jsx,mjs}"
     ],
     "setupFiles": [
-      "<rootDir>/config/polyfills.js",
-      "<rootDir>/config/jest/requestAnimationFrame.js",
       "<rootDir>/config/jest/setupTests.js"
     ],
+    "testEnvironment": "node",
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
     ],
-    "testEnvironment": "node",
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",

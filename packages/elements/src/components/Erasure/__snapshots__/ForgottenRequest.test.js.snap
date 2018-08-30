@@ -59,6 +59,7 @@ exports[`ForgottenRequest should render correctly 1`] = `
   >
     <Modal
       animationDuration={500}
+      blockScroll={true}
       center={false}
       classNames={
         Object {
