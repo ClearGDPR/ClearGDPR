@@ -53,6 +53,11 @@ Start by running:
 yarn install
 ```
 
+## Build the HTML documentation
+```bash
+yarn run doc
+```
+
 ### Deploy the contract:
 
 Remember to follow the guide in main [README](../README.md) to create environment variables in `.env` file.
