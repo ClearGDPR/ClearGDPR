@@ -2,7 +2,7 @@
   "version": "independent",
   "packages": ["packages/*", "frontend/"],
   "npmClient": "yarn",
-  "commands": {
+  "command": {
     "publish": {
       "ignore": ["*.md", "test/**", "*.test.js", "*.spec.js"]
     }
