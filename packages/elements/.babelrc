@@ -1,19 +1,13 @@
 {
-  "presets": [
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "plugins": [
     [
-      "env",
+      "@babel/plugin-transform-runtime",
       {
-        "targets": {
-          "browsers": ["> 1%", "last 2 versions"]
-        }
+        "corejs": 2
       }
     ],
-    "react"
-  ],
-  "plugins": [
-    ["transform-class-properties"],
-    ["transform-object-rest-spread"],
-    ["transform-es2015-classes", { "loose": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": false }],
     [
       "module-resolver",
       {

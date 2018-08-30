@@ -9,7 +9,7 @@ class ProcessorsList extends React.PureComponent {
 
     return (
       <React.Fragment>
-        {processors.length > 0
+        {processors && processors.length > 0
           ? processors.map(p => (
               <Processor
                 key={p.id}
