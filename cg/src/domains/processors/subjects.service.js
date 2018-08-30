@@ -6,7 +6,9 @@ const {
   generateClientKey
 } = require('../../utils/encryption');
 const { recordErasureByProcessor } = require('../../utils/blockchain');
-const { NotFound, Forbidden } = require('../../utils/errors');
+const { ValidationError, NotFound, Forbidden } = require('../../utils/errors');
+
+const PAGE_SIZE = 10; // This could go in constants, inside utils
 
 class SubjectsService {
   constructor(database = db) {
@@ -90,6 +92,51 @@ class SubjectsService {
         subject_id: subjectId,
         key: encryptionKey
       });
+  }
+
+  async listSubjects(processorId, requestedPage = 1) {
+    const [numberOfSubjectsObject] = await this.db('subjects')
+      .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
+      .join('subject_processors', 'subjects.id', '=', 'subject_processors.subject_id')
+      .where({
+        'subject_processors.processor_id': processorId
+      })
+      .whereNotNull('personal_data')
+      .whereNotNull('key')
+      .count('personal_data');
+
+    const numberOfSubjects = numberOfSubjectsObject.count;
+    let totalPages = Math.ceil(numberOfSubjects / PAGE_SIZE);
+    if (totalPages === 0) {
+      // Handles the case in which there are no valid subjects, with valid encryption keys and all, in the db
+      totalPages = 1;
+    }
+    if (requestedPage > totalPages) {
+      throw new ValidationError(`page number too big, maximum page number is ${totalPages}`);
+    }
+    if (requestedPage < 1) {
+      throw new ValidationError('Minimum page number is 1');
+    }
+    const encryptedSubjectsData = await this.db('subjects')
+      .join('subject_keys', 'subjects.id', '=', 'subject_keys.subject_id')
+      .join('subject_processors', 'subjects.id', '=', 'subject_processors.subject_id')
+      .select('subjects.id', 'subjects.created_at')
+      .whereNotNull('personal_data')
+      .whereNotNull('key')
+      .where({
+        'subject_processors.processor_id': processorId
+      })
+      .orderBy('id', 'asc')
+      .limit(PAGE_SIZE)
+      .offset((requestedPage - 1) * PAGE_SIZE);
+
+    return {
+      data: encryptedSubjectsData,
+      paging: {
+        current: requestedPage,
+        total: totalPages
+      }
+    };
   }
 
   async eraseDataAndRevokeConsent(subjectId) {

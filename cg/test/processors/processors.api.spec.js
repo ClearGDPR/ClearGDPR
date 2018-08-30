@@ -7,16 +7,290 @@ const { deployContract } = require('../blockchain-setup');
 const { processorJWT } = require('../../src/utils/jwt');
 const { db } = require('../../src/db');
 const { encryptForStorage, hash } = require('../../src/utils/encryption');
-const { Unauthorized } = require('../../src/utils/errors');
+const { Unauthorized, BadRequest, ValidationError } = require('../../src/utils/errors');
 const helpers = require('../../src/utils/helpers');
+
+const PROCESSOR_ID = 1;
 
 beforeAll(async () => {
   helpers.getMyAddress.mockReturnValue(process.env.MY_ADDRESS);
   await deployContract();
   await initResources();
+
+  await db('processors').insert({
+    id: PROCESSOR_ID,
+    name: 'test'
+  });
 });
 
 afterAll(closeResources);
+
+describe('List subjects that have given consent', () => {
+  it('should not allow a processor to list subjects without a processor JWT', async () => {
+    //GIVEN AND WHEN
+    const res = await fetch('/api/processors/subjects', {
+      method: 'GET',
+      headers: {}
+    });
+
+    //THEN
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toBe(Unauthorized.StatusCode);
+    expect(await res.json()).toEqual(
+      expect.objectContaining({
+        error: 'Authorization header not sent'
+      })
+    );
+  });
+
+  it('should not allow a processor to list subjects with an invalid processor JWT', async () => {
+    //GIVEN AND WHEN
+    const res = await fetch('/api/processors/subjects', {
+      method: 'GET',
+      headers: {
+        Authorization: `invalid_token`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toBe(Unauthorized.StatusCode);
+    expect(await res.json()).toEqual(
+      expect.objectContaining({
+        error: 'Authorization header failed verification'
+      })
+    );
+  });
+
+  it('should not allow an authentic processor to list subjects which didnt give consent', async () => {
+    //GIVEN
+    const subjectData = {
+      username: 'subject',
+      email: 'subject@clevertech.biz'
+    };
+    const encryptionKey = encryption.generateClientKey();
+    const encryptedSubjectData = encryptForStorage(JSON.stringify(subjectData), encryptionKey);
+    const subjectIdHash = hash('user458246'); // Random ID to not influence other tests
+
+    await db('subjects').insert({
+      id: subjectIdHash,
+      personal_data: encryptedSubjectData,
+      objection: false,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
+    });
+
+    await db('subject_keys').insert({
+      subject_id: subjectIdHash,
+      key: encryption.generateClientKey()
+    });
+
+    //WHEN
+    const processorToken = await processorJWT.sign({ id: PROCESSOR_ID });
+    const res = await fetch('/api/processors/subjects', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${processorToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    const json = await res.json();
+    expect(json.data).toHaveLength(0);
+  });
+
+  it('should allow an authentic processor to list subjects which did give consent', async () => {
+    //GIVEN
+    const subjectData = {
+      username: 'subject',
+      email: 'subject@clevertech.biz'
+    };
+    const encryptionKey = encryption.generateClientKey();
+    const encryptedSubjectData = encryptForStorage(JSON.stringify(subjectData), encryptionKey);
+    const subjectIdHash = hash('user458247'); // Random ID to not influence other tests
+
+    await db('subjects').insert({
+      id: subjectIdHash,
+      personal_data: encryptedSubjectData,
+      objection: false,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
+    });
+
+    await db('subject_keys').insert({
+      subject_id: subjectIdHash,
+      key: encryption.generateClientKey()
+    });
+
+    await db('subject_processors').insert({
+      subject_id: subjectIdHash,
+      processor_id: PROCESSOR_ID
+    });
+
+    //WHEN
+    const processorToken = await processorJWT.sign({ id: PROCESSOR_ID });
+    const res = await fetch('/api/processors/subjects', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${processorToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    const json = await res.json();
+    expect(json.data).toHaveLength(1);
+  });
+
+  it('should not allow an authentic processor to list subjects which dont have an encryption key', async () => {
+    //GIVEN
+    const subjectData = {
+      username: 'subject',
+      email: 'subject@clevertech.biz'
+    };
+    const encryptionKey = encryption.generateClientKey();
+    const encryptedSubjectData = encryptForStorage(JSON.stringify(subjectData), encryptionKey);
+    const subjectIdHash = hash('user458248'); // Random ID to not influence other tests
+
+    await db('subjects').insert({
+      id: subjectIdHash,
+      personal_data: encryptedSubjectData,
+      objection: false,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
+    });
+
+    await db('subject_keys').insert({
+      subject_id: subjectIdHash,
+      key: '' // Empty encryption key in the DB implies that the subject should not be listed
+    });
+
+    await db('subject_processors').insert({
+      subject_id: subjectIdHash,
+      processor_id: PROCESSOR_ID
+    });
+
+    //WHEN
+    const processorToken = await processorJWT.sign({ id: PROCESSOR_ID });
+    const res = await fetch('/api/processors/subjects', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${processorToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    expect(await res.json()).not.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          data: {
+            username: 'subject',
+            email: 'subject@clevertech.biz'
+          }
+        })
+      ])
+    );
+  });
+
+  it('should not allow an authentic processor to list subjects which have an invalid encryption key', async () => {
+    //GIVEN
+    const subjectData = {
+      username: 'subject',
+      email: 'subject@clevertech.biz'
+    };
+    const encryptionKey = encryption.generateClientKey();
+    const encryptedSubjectData = encryptForStorage(JSON.stringify(subjectData), encryptionKey);
+    const subjectIdHash = hash('user125469853'); // Random ID to not influence other tests
+
+    await db('subjects').insert({
+      id: subjectIdHash,
+      personal_data: encryptedSubjectData,
+      objection: false,
+      direct_marketing: true,
+      email_communication: true,
+      research: true
+    });
+
+    await db('subject_keys').insert({
+      subject_id: subjectIdHash,
+      key: 'invalid_encryption_key' // Invalid encryption key in the DB implies that the subject should not be listed
+    });
+
+    await db('subject_processors').insert({
+      subject_id: subjectIdHash,
+      processor_id: PROCESSOR_ID
+    });
+
+    //WHEN
+    const processorToken = await processorJWT.sign({ id: PROCESSOR_ID });
+    const res = await fetch('/api/processors/subjects', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${processorToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeTruthy();
+    expect(res.status).toBe(200);
+    expect(await res.json()).not.toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          data: {
+            username: 'subject',
+            email: 'subject@clevertech.biz'
+          }
+        })
+      ])
+    );
+  });
+
+  it('should not allow a page query with the zero page number', async () => {
+    //WHEN
+    const processorToken = await processorJWT.sign({ id: PROCESSOR_ID });
+
+    const res = await fetch('/api/processors/subjects?page=0', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${processorToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toBe(BadRequest.StatusCode);
+    expect(await res.json()).toMatchSnapshot();
+  });
+
+  it('should not allow a page query with a page number too big', async () => {
+    //WHEN
+    const processorToken = await processorJWT.sign({ id: PROCESSOR_ID });
+
+    const res = await fetch('/api/processors/subjects?page=99999999999999', {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${processorToken}`
+      }
+    });
+
+    //THEN
+    expect(res.ok).toBeFalsy();
+    expect(res.status).toBe(ValidationError.StatusCode);
+    expect(await res.json()).toEqual(
+      expect.objectContaining({
+        error: 'page number too big, maximum page number is 1'
+      })
+    );
+  });
+});
 
 describe('Processor requesting data', () => {
   beforeEach(() => {
