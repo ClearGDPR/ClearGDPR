@@ -193,17 +193,6 @@ module.exports = {
                           })
                         ]
                       }
-                    },
-                    {
-                      loader: require.resolve('sass-loader'),
-                      options: {
-                        outputStyle: 'expanded',
-                        modules: true,
-                        sourceMap: true,
-                        importLoaders: 2,
-                        localIdentName: '[name]__[local]___[hash:base64:5]',
-                        includePaths: [paths.appSrc]
-                      }
                     }
                   ]
                 },
@@ -225,8 +214,7 @@ module.exports = {
                     importLoaders: 2,
                     localIdentName: '[name]__[local]___[hash:base64:5]'
                   }
-                },
-                'sass-loader'
+                }
               ]
             })
           },
