@@ -48,7 +48,6 @@ class ProcessorsService {
     // if (!contractDeployed) throw new NotFound('No contract deployed');
     // const [processorExists] = await this.db('processors').where('name', processorInformation.name);
     // if (processorExists) throw new BadRequest('Processor already added to the network');
-
     // const requestOptions = {
     //   url: 'http://quorum1:8545',
     //   method: 'POST',
@@ -75,7 +74,6 @@ class ProcessorsService {
     //     `Something went wrong when executing raft.addPeer: ${raftError.message}`
     //   );
     // const raftId = responseObject.result;
-
     // await this.db.transaction(async trx => {
     //   const processorInformationCopy = _.clone(processorInformation);
     //   delete processorInformationCopy.accountAddress;
@@ -87,7 +85,6 @@ class ProcessorsService {
     //     .transacting(trx)
     //     .insert(processorInformationCopy)
     //     .returning('id');
-
     //   if (processorInformation.accountAddress) {
     //     await db('processor_address')
     //       .transacting(trx)
