@@ -70,8 +70,6 @@
     "pg": "7.4.1",
     "pg-escape": "0.2.0",
     "raven": "^2.2.1",
-    "request": "^2.88.0",
-    "request-promise": "^4.2.2",
     "solc": "0.4.21",
     "underscore": "^1.9.0",
     "web3": "1.0.0-beta.34",
