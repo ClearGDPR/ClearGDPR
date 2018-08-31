@@ -1,15 +1,16 @@
 {
   "info": {
-    "_postman_id": "5be4943b-2b63-4e3f-a6f4-b35d858dcc31",
+    "_postman_id": "a733743c-64aa-4ace-bcb8-fa7e042d8382",
     "name": "CLIENT WEBSITE (DEMO)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Users",
+      "name": "Subjects",
+      "description": null,
       "item": [
         {
-          "name": "Register user",
+          "name": "Register subject",
           "request": {
             "method": "POST",
             "header": [

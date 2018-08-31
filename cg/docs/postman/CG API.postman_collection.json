@@ -1,15 +1,642 @@
 {
   "info": {
-    "_postman_id": "8d23ec16-2ff3-4524-a385-1f2e83923f8c",
+    "_postman_id": "f60edaee-ae2b-4972-8180-f8307017fc2c",
     "name": "CG API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Subjects",
+      "name": "Management",
+      "description": null,
       "item": [
         {
-          "name": "List processors",
+          "name": "Contract",
+          "description": null,
+          "item": [
+            {
+              "name": "Contract details",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/contract/details",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "contract", "details"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Deploy contract",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw":
+                    "{\n\t\"contractByteCode\": \"0x60806040523480156200001157600080fd5b50336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506001604051908082528060200260200182016040528015620000835781602001602082028038833980820191505090505b50600190805190602001906200009b9291906200011d565b506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1660016000815481101515620000cf57fe5b9060005260206000200160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550620001f2565b82805482825590600052602060002090810192821562000199579160200282015b82811115620001985782518260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550916020019190600101906200013e565b5b509050620001a89190620001ac565b5090565b620001ef91905b80821115620001eb57600081816101000a81549073ffffffffffffffffffffffffffffffffffffffff021916905550600101620001b3565b5090565b90565b611d1980620002026000396000f30060806040526004361061011c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168062091988146101215780630c1e947f1461017c5780630d9e390c146101f257806316df743b146102515780632ae4fff81461029657806336cdc92c146103035780634c3e99721461034c57806352843d51146103d85780636017cf4c1461044b57806362b8b300146104b45780636cc4f13014610532578063785779d01461057b57806391bd7223146105c4578063a3514e4a14610637578063ae0ef4b4146106b5578063bd92ccee14610733578063c24b846f1461077c578063e2cc56cc14610802578063f40365d41461086f578063f772e263146108c4578063f77c479114610919575b600080fd5b34801561012d57600080fd5b50610162600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610970565b604051808215151515815260200191505060405180910390f35b34801561018857600080fd5b506101d86004803603810190808035600019169060200190929190803573ffffffffffffffffffffffffffffffffffffffff169060200190929190803560ff169060200190929190505050610a13565b604051808215151515815260200191505060405180910390f35b3480156101fe57600080fd5b506102216004803603810190808035600019169060200190929190505050610a9c565b60405180841515151581526020018315151515815260200182151515158152602001935050505060405180910390f35b34801561025d57600080fd5b506102806004803603810190808035600019169060200190929190505050610b32565b6040518082815260200191505060405180910390f35b3480156102a257600080fd5b506102e96004803603810190808035600019169060200190929190803515159060200190929190803515159060200190929190803515159060200190929190505050610b5a565b604051808215151515815260200191505060405180910390f35b34801561030f57600080fd5b506103326004803603810190808035600019169060200190929190505050610c72565b604051808215151515815260200191505060405180910390f35b34801561035857600080fd5b506103be600480360381019080803560001916906020019092919080359060200190820180359060200190808060200260200160405190810160405280939291908181526020018383602002808284378201915050505050509192919290505050610ca7565b604051808215151515815260200191505060405180910390f35b3480156103e457600080fd5b506104276004803603810190808035600019169060200190929190803573ffffffffffffffffffffffffffffffffffffffff16906020019092919050505061104f565b6040518082600281111561043757fe5b60ff16815260200191505060405180910390f35b34801561045757600080fd5b5061049a6004803603810190808035600019169060200190929190803573ffffffffffffffffffffffffffffffffffffffff1690602001909291905050506110c2565b604051808215151515815260200191505060405180910390f35b3480156104c057600080fd5b506105186004803603810190808035906020019082018035906020019080806020026020016040519081016040528093929190818152602001838360200280828437820191505050505050919291929050505061112a565b604051808215151515815260200191505060405180910390f35b34801561053e57600080fd5b506105616004803603810190808035600019169060200190929190505050611250565b604051808215151515815260200191505060405180910390f35b34801561058757600080fd5b506105aa600480360381019080803560001916906020019092919050505061137e565b604051808215151515815260200191505060405180910390f35b3480156105d057600080fd5b506105d961148c565b6040518080602001838152602001828103825284818151815260200191508051906020019060200280838360005b83811015610622578082015181840152602081019050610607565b50505050905001935050505060405180910390f35b34801561064357600080fd5b5061069b60048036038101908080359060200190820180359060200190808060200260200160405190810160405280939291908181526020018383602002808284378201915050505050509192919290505050611527565b604051808215151515815260200191505060405180910390f35b3480156106c157600080fd5b5061071960048036038101908080359060200190820180359060200190808060200260200160405190810160405280939291908181526020018383602002808284378201915050505050509192919290505050611551565b604051808215151515815260200191505060405180910390f35b34801561073f57600080fd5b5061076260048036038101908080356000191690602001909291905050506115a4565b604051808215151515815260200191505060405180910390f35b34801561078857600080fd5b506107ab60048036038101908080356000191690602001909291905050506115d9565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b838110156107ee5780820151818401526020810190506107d3565b505050509050019250505060405180910390f35b34801561080e57600080fd5b5061085560048036038101908080356000191690602001909291908035151590602001909291908035151590602001909291908035151590602001909291905050506117e0565b604051808215151515815260200191505060405180910390f35b34801561087b57600080fd5b506108aa6004803603810190808035600019169060200190929190803515159060200190929190505050611890565b604051808215151515815260200191505060405180910390f35b3480156108d057600080fd5b506108ff60048036038101908080356000191690602001909291908035151590602001909291905050506118d2565b604051808215151515815260200191505060405180910390f35b34801561092557600080fd5b5061092e6119ce565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600080600090505b600180549050811015610a08578273ffffffffffffffffffffffffffffffffffffffff166001828154811015156109ab57fe5b9060005260206000200160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614156109fb5760019150610a0d565b8080600101915050610978565b600091505b50919050565b60008160026000866000191660001916815260200190815260200160002060030160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690836002811115610a8c57fe5b0217905550600190509392505050565b600080600060026000856000191660001916815260200190815260200160002060020160009054906101000a900460ff1660026000866000191660001916815260200190815260200160002060020160019054906101000a900460ff1660026000876000191660001916815260200190815260200160002060020160029054906101000a900460ff169250925092509193909250565b6000600260008360001916600019168152602001908152602001600020600101549050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610bb757600080fd5b846000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff161515141515610bf657600080fd5b610c02868686866117e0565b1515610c0d57600080fd5b85600019167fe55d4053134cc86e24bacf7020aaf18dce3c96c646bd22d22853626ca027786086868660405180841515151581526020018315151515815260200182151515158152602001935050505060405180910390a26001915050949350505050565b600060026000836000191660001916815260200190815260200160002060000160019054906101000a900460ff169050919050565b60008060606000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610d0757600080fd5b846000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff161515141515610d4657600080fd5b610d4f85611551565b1515610d5a57600080fd5b600092505b600180549050831015610e2f5760006002600088600019166000191681526020019081526020016000206003016000600186815481101515610d9d57fe5b9060005260206000200160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690836002811115610e1d57fe5b02179055508280600101935050610d5f565b610e38856119f3565b9150600092505b8151831015610ee957600160026000886000191660001916815260200190815260200160002060030160008486815181101515610e7857fe5b9060200190602002015173ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff02191690836002811115610ed757fe5b02179055508280600101935050610e3f565b600160026000886000191660001916815260200190815260200160002060020160006101000a81548160ff021916908315150217905550600160026000886000191660001916815260200190815260200160002060020160016101000a81548160ff021916908315150217905550600160026000886000191660001916815260200190815260200160002060020160026101000a81548160ff021916908315150217905550600060026000886000191660001916815260200190815260200160002060000160006101000a81548160ff02191690831515021790555085600019167f17b46fe72172b70500853bedb3b5ba16a452a4734c92f74d2aed8a260c8e5392836040518080602001828103825283818151815260200191508051906020019060200280838360005b8381101561102f578082015181840152602081019050611014565b505050509050019250505060405180910390a26001935050505092915050565b600060026000846000191660001916815260200190815260200160002060030160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b60006110cd33610970565b15156110d857600080fd5b8173ffffffffffffffffffffffffffffffffffffffff1683600019167f7adbefd4047a6b3fc04baed7453752b4eceb772d9036d0006014fc9cfa9af75660405160405180910390a36001905092915050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561118757600080fd5b61119082611527565b151561119b57600080fd5b7fa5ce10be54b4ef0d5b03c912f8855709209175079c70907491e4ab39606cc7b660016040518080602001828103825283818154815260200191508054801561123957602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190600101908083116111ef575b50509250505060405180910390a160019050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156112ad57600080fd5b816000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff1615151415156112ec57600080fd5b6002600084600019166000191681526020019081526020016000206001016000815480929190600101919050555082600019167fd962378467089e92a2763b4d26aa48ad0ce946906eba293d118d06503e8b42ab600260008660001916600019168152602001908152602001600020600101546040518082815260200191505060405180910390a26001915050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415156113db57600080fd5b816000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff16151514151561141a57600080fd5b600160026000856000191660001916815260200190815260200160002060000160006101000a81548160ff02191690831515021790555082600019167f6035499ce5e80742180c62be06aea6c0cce9f0df624f498b9709a79adc8fb99660405160405180910390a26001915050919050565b60606000600180805490508180548060200260200160405190810160405280929190818152602001828054801561151857602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190600101908083116114ce575b50505050509150915091509091565b6000611532826119f3565b60019080519060200190611547929190611c20565b5060019050919050565b600080600090505b825181101561159a57611582838281518110151561157357fe5b90602001906020020151610970565b151561158d57600080fd5b8080600101915050611559565b6001915050919050565b600060026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff169050919050565b60608060008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561163957600080fd5b836000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff16151514151561167857600080fd5b6001805490506040519080825280602002602001820160405280156116ac5781602001602082028038833980820191505090505b509250600091505b6001805490508210156117a45760026000866000191660001916815260200190815260200160002060030160006001848154811015156116f057fe5b9060005260206000200160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16838381518110151561177157fe5b90602001906020020190600281111561178657fe5b9081600281111561179357fe5b8152505081806001019250506116b4565b84600019167f5cee2268933cd873c783419e5be7668e121517767fe669a5a703b09426b1381560405160405180910390a2829350505050919050565b60008360026000876000191660001916815260200190815260200160002060020160006101000a81548160ff0219169083151502179055508260026000876000191660001916815260200190815260200160002060020160016101000a81548160ff0219169083151502179055508160026000876000191660001916815260200190815260200160002060020160026101000a81548160ff02191690831515021790555060019050949350505050565b60008160026000856000191660001916815260200190815260200160002060000160016101000a81548160ff0219169083151502179055506001905092915050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561192f57600080fd5b826000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff16151514151561196e57600080fd5b6119788484611890565b151561198357600080fd5b83600019167f9f6582b165b621f85bf0ac94c8338d0264f3bf0afca92c1a5ac045d3e1a0c0ef84604051808215151515815260200191505060405180910390a2600191505092915050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b6060806000806001855101604051908082528060200260200182016040528015611a2c5781602001602082028038833980820191505090505b5092506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff16836000815181101515611a6057fe5b9060200190602002019073ffffffffffffffffffffffffffffffffffffffff16908173ffffffffffffffffffffffffffffffffffffffff1681525050600091505b8451821015611c15576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168583815181101515611af057fe5b9060200190602002015173ffffffffffffffffffffffffffffffffffffffff1614151515611b1d57600080fd5b6001820190505b8451811015611ba3578481815181101515611b3b57fe5b9060200190602002015173ffffffffffffffffffffffffffffffffffffffff168583815181101515611b6957fe5b9060200190602002015173ffffffffffffffffffffffffffffffffffffffff1614151515611b9657600080fd5b8080600101915050611b24565b8482815181101515611bb157fe5b906020019060200201518360018401815181101515611bcc57fe5b9060200190602002019073ffffffffffffffffffffffffffffffffffffffff16908173ffffffffffffffffffffffffffffffffffffffff16815250508180600101925050611aa1565b829350505050919050565b828054828255906000526020600020908101928215611c99579160200282015b82811115611c985782518260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555091602001919060010190611c40565b5b509050611ca69190611caa565b5090565b611cea91905b80821115611ce657600081816101000a81549073ffffffffffffffffffffffffffffffffffffffff021916905550600101611cb0565b5090565b905600a165627a7a72305820ea3c3f8eadd5883ca18fd70e09524de10e3cd38befcc22d824a30d732690b6880029\",\n\t\"contractAbiJson\": \"[{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"isProcessor\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x00091988\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"},{\\\"name\\\":\\\"_state\\\",\\\"type\\\":\\\"uint8\\\"}],\\\"name\\\":\\\"setSubjectDataState\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x0c1e947f\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"getSubjectRestrictions\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"},{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"},{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x0d9e390c\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"getRectificationCount\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x16df743b\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_directMarketing\\\",\\\"type\\\":\\\"bool\\\"},{\\\"name\\\":\\\"_emailCommunication\\\",\\\"type\\\":\\\"bool\\\"},{\\\"name\\\":\\\"_research\\\",\\\"type\\\":\\\"bool\\\"}],\\\"name\\\":\\\"recordRestrictionByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x2ae4fff8\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"getSubjectObjection\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x36cdc92c\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorsConsented\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"recordConsentGivenTo\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x4c3e9972\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"getSubjectDataState\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint8\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x52843d51\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"recordErasureByProcessor\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x6017cf4c\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"recordProcessorsUpdate\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x62b8b300\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"recordRectificationByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x6cc4f130\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"recordErasureByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x785779d0\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[],\\\"name\\\":\\\"getProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address[]\\\"},{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0x91bd7223\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"setProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0xa3514e4a\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_processors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"areAllValidProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0xae0ef4b4\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"getIsErased\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0xbd92ccee\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"recordAccessByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint8[]\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0xc24b846f\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_directMarketing\\\",\\\"type\\\":\\\"bool\\\"},{\\\"name\\\":\\\"_emailCommunication\\\",\\\"type\\\":\\\"bool\\\"},{\\\"name\\\":\\\"_research\\\",\\\"type\\\":\\\"bool\\\"}],\\\"name\\\":\\\"setSubjectRestrictions\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0xe2cc56cc\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_objection\\\",\\\"type\\\":\\\"bool\\\"}],\\\"name\\\":\\\"setSubjectObjection\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0xf40365d4\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_objection\\\",\\\"type\\\":\\\"bool\\\"}],\\\"name\\\":\\\"recordObjectionByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0xf772e263\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[],\\\"name\\\":\\\"controller\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\",\\\"signature\\\":\\\"0xf77c4791\\\"},{\\\"inputs\\\":[],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"constructor\\\",\\\"signature\\\":\\\"constructor\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"Controller_ProcessorsUpdated\\\",\\\"type\\\":\\\"event\\\",\\\"signature\\\":\\\"0xa5ce10be54b4ef0d5b03c912f8855709209175079c70907491e4ab39606cc7b6\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":true,\\\"name\\\":\\\"subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"processorsConsented\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"Controller_ConsentGivenTo\\\",\\\"type\\\":\\\"event\\\",\\\"signature\\\":\\\"0x17b46fe72172b70500853bedb3b5ba16a452a4734c92f74d2aed8a260c8e5392\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":true,\\\"name\\\":\\\"subjectId\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"Controller_SubjectDataAccessed\\\",\\\"type\\\":\\\"event\\\",\\\"signature\\\":\\\"0x5cee2268933cd873c783419e5be7668e121517767fe669a5a703b09426b13815\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":true,\\\"name\\\":\\\"subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"rectificationCount\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"name\\\":\\\"Controller_SubjectDataRectified\\\",\\\"type\\\":\\\"event\\\",\\\"signature\\\":\\\"0xd962378467089e92a2763b4d26aa48ad0ce946906eba293d118d06503e8b42ab\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":true,\\\"name\\\":\\\"subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"directMarketing\\\",\\\"type\\\":\\\"bool\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"emailCommunication\\\",\\\"type\\\":\\\"bool\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"research\\\",\\\"type\\\":\\\"bool\\\"}],\\\"name\\\":\\\"Controller_SubjectDataRestricted\\\",\\\"type\\\":\\\"event\\\",\\\"signature\\\":\\\"0xe55d4053134cc86e24bacf7020aaf18dce3c96c646bd22d22853626ca0277860\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":true,\\\"name\\\":\\\"subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"objection\\\",\\\"type\\\":\\\"bool\\\"}],\\\"name\\\":\\\"Controller_SubjectDataObjected\\\",\\\"type\\\":\\\"event\\\",\\\"signature\\\":\\\"0x9f6582b165b621f85bf0ac94c8338d0264f3bf0afca92c1a5ac045d3e1a0c0ef\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":true,\\\"name\\\":\\\"subjectId\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"Controller_SubjectDataErased\\\",\\\"type\\\":\\\"event\\\",\\\"signature\\\":\\\"0x6035499ce5e80742180c62be06aea6c0cce9f0df624f498b9709a79adc8fb996\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":true,\\\"name\\\":\\\"subjectId\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":true,\\\"name\\\":\\\"processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"Processor_SubjectDataErased\\\",\\\"type\\\":\\\"event\\\",\\\"signature\\\":\\\"0x7adbefd4047a6b3fc04baed7453752b4eceb772d9036d0006014fc9cfa9af756\\\"}]\"\n}"
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/contract/deploy",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "contract", "deploy"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Subjects",
+          "description": null,
+          "item": [
+            {
+              "name": "Get subjects",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/subjects?page=1",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "subjects"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get subject data",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/subjects/:subjectId/data",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "subjects", ":subjectId", "data"],
+                  "variable": [
+                    {
+                      "key": "subjectId",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get rectification requests",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/subjects/rectification-requests?page=1",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "subjects", "rectification-requests"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Rectification request archive",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw":
+                    "{{cg_base_url}}/api/management/subjects/rectification-requests/archive?page=1",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "subjects", "rectification-requests", "archive"],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Rectification request details",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw":
+                    "{{cg_base_url}}/api/management/subjects/rectification-requests/:rectificationRequestId",
+                  "host": ["{{cg_base_url}}"],
+                  "path": [
+                    "api",
+                    "management",
+                    "subjects",
+                    "rectification-requests",
+                    ":rectificationRequestId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "rectificationRequestId",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Approve rectification request",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"APPROVED\"\n}"
+                },
+                "url": {
+                  "raw":
+                    "{{cg_base_url}}/api/management/subjects/rectification-requests/:rectificationRequestId",
+                  "host": ["{{cg_base_url}}"],
+                  "path": [
+                    "api",
+                    "management",
+                    "subjects",
+                    "rectification-requests",
+                    ":rectificationRequestId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "rectificationRequestId",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Processors",
+          "description": null,
+          "item": [
+            {
+              "name": "Get processors",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/processors",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "processors"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Add processor",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw":
+                    "{\n\t\"name\": \"Nielsen\",\n\t\"logoUrl\": \"https://upload.wikimedia.org/wikipedia/commons/8/Nielsen_logo.svg\",\n\t\"description\": \"Nielsen, a leading global information & measurement company, provides market research, insights & data about what people watch, listen to & buy.\",\n\t\"scopes\": [\"email\", \"first name\", \"purchase history\"],\n\t\"enode\": \"enode://f8b2dcf18e90508bb73ede5b138ae4f2020cf5f7ee7b169ae14af6defc701ee917adfd2f718e8e7ca4092dc9314f4d18db6316b7b5d0857e9b781999cf3e74ba@172.13.0.5:30303?discport=0&raftport=50400\",\n    \"accountAddress\": \"0x99ba3d40c95e24da532ca9296d972861cf924459\"\n}"
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/processors",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "processors"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update processor",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw":
+                    "{\n    \"id\": 1,\n\t\"name\": \"Nielsen\",\n\t\"logoUrl\": \"https://upload.wikimedia.org/wikipedia/commons/8/82/Nielsen_logo.svg\",\n\t\"description\": \"Nielsen, a leading global information & measurement company, provides market research, insights & data about what people watch, listen to & buy.\",\n\t\"scopes\": [\"email\", \"first name\", \"purchase history\"]\n}"
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/processors",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "processors"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "DO NOT USE - Delete processor",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"processorIds\": [3]\n}"
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/processors",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "processors"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "TEST - Add processor",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw":
+                    "{\n\t\"name\": \"Processor\",\n\t\"logoUrl\": \"https://upload.wikimedia.org/wikipedia/commons/8/Nielsen_logo.svg\",\n\t\"description\": \"Nielsen, a leading global information & measurement company, provides market research, insights & data about what people watch, listen to & buy.\",\n\t\"scopes\": [\"email\", \"first name\", \"purchase history\"],\n    \"accountAddress\": \"0x288d872bfa6a5999565593ec3b8738eda1321733\"\n}"
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/processors/TEST",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "processors", "TEST"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "TEST - Delete processor",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"processorIds\": [5]\n}"
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/processors/TEST",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "processors", "TEST"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Managers",
+          "description": null,
+          "item": [
+            {
+              "name": "List users",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": ""
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/users",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "users"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Login",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"clearGDPR\"\n}"
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/users/login",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "users", "login"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Register",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"admin2\",\n  \"password\": \"clearGDPR\"\n}"
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/users",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "users"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update password",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n\t\"password\": \"clearGDPR\"\n}"
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/users/:id/update-password",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "users", ":id", "update-password"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"joe\",\n  \"password\": \"clearGDPR\"\n}"
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/users/:userId",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "users", ":userId"],
+                  "variable": [
+                    {
+                      "key": "userId",
+                      "value": ""
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Configuration",
+          "description": "",
+          "item": [
+            {
+              "name": "Get subjects data configuration",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/data/attributes-config",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "data", "attributes-config"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update subjects data configuration",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw":
+                    "{\n    \"email\": {\n        \"type\": \"email\",\n        \"required\": true,\n        \"placeholder\": \"Provide your email\"\n    },\n    \"name\": {\n        \"type\": \"string\",\n        \"required\": true,\n        \"placeholder\": \"Provide your name\"\n    }\n}"
+                },
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/data/attributes-config",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "data", "attributes-config"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Stats",
+          "description": "",
+          "item": [
+            {
+              "name": "Get stats",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/stats",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "stats"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Get events",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {},
+                "url": {
+                  "raw": "{{cg_base_url}}/api/management/stats",
+                  "host": ["{{cg_base_url}}"],
+                  "path": ["api", "management", "stats"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "_postman_isSubFolder": true
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{management_jwt}}",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "2a23c2e7-8805-416a-89eb-39d6202683f8",
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "2c319e51-b178-491d-b8c8-b6f49ba6c5fd",
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Subjects",
+      "description": null,
+      "item": [
+        {
+          "name": "Get processors",
           "request": {
             "method": "GET",
             "header": [
@@ -23,15 +650,15 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/processors",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/processors",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "processors"]
             }
           },
           "response": []
         },
         {
-          "name": "Request access",
+          "name": "Get personal data",
           "request": {
             "method": "GET",
             "header": [
@@ -45,8 +672,8 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/data",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/data",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "data"]
             }
           },
@@ -67,8 +694,8 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/data/status",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/data/status",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "data", "status"]
             }
           },
@@ -89,8 +716,8 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/restrictions",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/restrictions",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "restrictions"]
             }
           },
@@ -99,17 +726,6 @@
         {
           "name": "Get objection",
           "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value":
-                    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0SWQiOjQsImlhdCI6MTUzNDgyOTk1Mn0.d09dtkIAJQHhLfGazWVys26GEJFhGTTa3rxfcEj3ZA4",
-                  "type": "string"
-                }
-              ]
-            },
             "method": "GET",
             "header": [
               {
@@ -122,15 +738,15 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/objection",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/objection",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "objection"]
             }
           },
           "response": []
         },
         {
-          "name": "List data-shares",
+          "name": "Get data-shares",
           "request": {
             "method": "GET",
             "header": [
@@ -144,8 +760,8 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/data-shares",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/data-shares",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "data-shares"]
             }
           },
@@ -166,15 +782,21 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/data-shares/share",
-              "host": ["{{og_base_url}}"],
-              "path": ["api", "subject", "data-shares", "share"]
+              "raw": "{{cg_base_url}}/api/subject/data-shares/share?shareable-token",
+              "host": ["{{cg_base_url}}"],
+              "path": ["api", "subject", "data-shares", "share"],
+              "query": [
+                {
+                  "key": "shareable-token",
+                  "value": null
+                }
+              ]
             }
           },
           "response": []
         },
         {
-          "name": "Give consent",
+          "name": "Consent",
           "request": {
             "method": "POST",
             "header": [
@@ -186,33 +808,11 @@
             "body": {
               "mode": "raw",
               "raw":
-                "{\n\t\"personalData\": {\n\t\t\"firstName\": \"subject\",\n\t\t\"email\": \"subject@clevertech.biz\",\n\t\t\"sensitiveData\": \"some sensitive data\"\n\t},\n\t\"processors\": [1]\n}"
+                "{\n\t\"personalData\": {\n\t\t\"firstName\": \"subject\",\n\t\t\"email\": \"subject@clevertech.biz\",\n\t\t\"sensitiveData\": \"some sensitive data\"\n\t},\n\t\"processors\": []\n}"
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/consent",
-              "host": ["{{og_base_url}}"],
-              "path": ["api", "subject", "consent"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Update consent",
-          "request": {
-            "method": "PUT",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n\t\"processors\": [1]\n}"
-            },
-            "url": {
-              "raw": "{{og_base_url}}/api/subject/consent",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/consent",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "consent"]
             }
           },
@@ -234,8 +834,8 @@
                 "{\n\t\"rectificationPayload\": {\n\t\t\"firstName\": \"updated_subject\",\n\t\t\"email\": \"updated_subject@clevertech.biz\",\n\t\t\"sensitiveData\": \"some new sensitive data\",\n\t\t\"rectifiedData\": \"Some new data goes here\"\n\t},\n\t\"requestReason\": \"The data was incomplete\"\n}"
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/rectification",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/rectification",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "rectification"]
             }
           },
@@ -257,8 +857,8 @@
                 "{\n\t\"directMarketing\": false,\n\t\"emailCommunication\": false,\n\t\"research\": false\n}"
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/restrictions",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/restrictions",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "restrictions"]
             }
           },
@@ -279,9 +879,9 @@
               "raw": "{\n\t\"objection\": true\n}"
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/object",
-              "host": ["{{og_base_url}}"],
-              "path": ["api", "subject", "object"]
+              "raw": "{{cg_base_url}}/api/subject/objection",
+              "host": ["{{cg_base_url}}"],
+              "path": ["api", "subject", "objection"]
             }
           },
           "response": []
@@ -301,9 +901,31 @@
               "raw": "{\n\t\"name\": \"My data-share\"\n}"
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/data-shares",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/data-shares",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "data-shares"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update consent",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n\t\"processors\": []\n}"
+            },
+            "url": {
+              "raw": "{{cg_base_url}}/api/subject/consent",
+              "host": ["{{cg_base_url}}"],
+              "path": ["api", "subject", "consent"]
             }
           },
           "response": []
@@ -323,8 +945,8 @@
               "raw": "{\n\t\"dataShareId\": 1\n}"
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/data-shares/:dataShareId",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/data-shares/:dataShareId",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "data-shares", ":dataShareId"],
               "variable": [
                 {
@@ -351,8 +973,8 @@
               "raw": ""
             },
             "url": {
-              "raw": "{{og_base_url}}/api/subject/data",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/subject/data",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "subject", "data"]
             }
           },
@@ -389,663 +1011,11 @@
       ]
     },
     {
-      "name": "Management",
-      "item": [
-        {
-          "name": "Managers",
-          "item": [
-            {
-              "name": "Login",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n\t\"username\": \"admin\",\n\t\"password\": \"clearGDPR\"\n}"
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/users/login",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "users", "login"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Register",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"admin2\",\n  \"password\": \"clearGDPR\"\n}"
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/users",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "users"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Delete",
-              "request": {
-                "method": "DELETE",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"username\": \"joe\",\n  \"password\": \"clearGDPR\"\n}"
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/users/:userId",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "users", ":userId"],
-                  "variable": [
-                    {
-                      "key": "userId",
-                      "value": ""
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Change password",
-              "request": {
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n\t\"password\": \"clearGDPR\"\n}"
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/users/:id",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "users", ":id"],
-                  "variable": [
-                    {
-                      "key": "id",
-                      "value": "1"
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "List users",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/users",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "users"]
-                }
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "name": "Contract",
-          "item": [
-            {
-              "name": "Deploy contract",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw":
-                    "{\n\t\"contractByteCode\": \"0x6060604052341561000f57600080fd5b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506111fa8061005e6000396000f3006060604052600436106100c4576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168062091988146100c95780630c1e947f1461011a5780634c3e99721461018457806352843d51146102035780636017cf4c1461026b57806362b8b300146102c9578063785779d01461033b57806391bd72231461037a578063a3514e4a146103eb578063ae0ef4b41461045d578063bd92ccee146104cf578063c24b846f1461050e578063f77c47911461058a575b600080fd5b34156100d457600080fd5b610100600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506105df565b604051808215151515815260200191505060405180910390f35b341561012557600080fd5b61016a60048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803560ff16906020019091905050610683565b604051808215151515815260200191505060405180910390f35b341561018f57600080fd5b6101e96004808035600019169060200190919080359060200190820180359060200190808060200260200160405190810160405280939291908181526020018383602002808284378201915050505050509190505061070c565b604051808215151515815260200191505060405180910390f35b341561020e57600080fd5b61024760048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a0d565b6040518082600281111561025757fe5b60ff16815260200191505060405180910390f35b341561027657600080fd5b6102af60048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a80565b604051808215151515815260200191505060405180910390f35b34156102d457600080fd5b610321600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610b13565b604051808215151515815260200191505060405180910390f35b341561034657600080fd5b610360600480803560001916906020019091905050610c05565b604051808215151515815260200191505060405180910390f35b341561038557600080fd5b61038d610d21565b6040518080602001838152602001828103825284818151815260200191508051906020019060200280838360005b838110156103d65780820151818401526020810190506103bb565b50505050905001935050505060405180910390f35b34156103f657600080fd5b610443600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610dc2565b604051808215151515815260200191505060405180910390f35b341561046857600080fd5b6104b5600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610e1a565b604051808215151515815260200191505060405180910390f35b34156104da57600080fd5b6104f4600480803560001916906020019091905050610e6d565b604051808215151515815260200191505060405180910390f35b341561051957600080fd5b610533600480803560001916906020019091905050610ea2565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b8381101561057657808201518184015260208101905061055b565b505050509050019250505060405180910390f35b341561059557600080fd5b61059d6110b4565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600080600090505b600180549050811015610678578273ffffffffffffffffffffffffffffffffffffffff1660018281548110151561061a57fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16141561066b576001915061067d565b80806001019150506105e7565b600091505b50919050565b60008160026000866000191660001916815260200190815260200160002060010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908360028111156106fc57fe5b0217905550600190509392505050565b6000806000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561076a57600080fd5b836000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff1615151415156107a957600080fd5b6107b284610e1a565b15156107bd57600080fd5b600091505b600180549050821015610893576000600260008760001916600019168152602001908152602001600020600101600060018581548110151561080057fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083600281111561088157fe5b021790555081806001019250506107c2565b600091505b8351821015610942576001600260008760001916600019168152602001908152602001600020600101600086858151811015156108d157fe5b9060200190602002015173ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083600281111561093057fe5b02179055508180600101925050610898565b600060026000876000191660001916815260200190815260200160002060000160006101000a81548160ff0219169083151502179055507f17b46fe72172b70500853bedb3b5ba16a452a4734c92f74d2aed8a260c8e5392858560405180836000191660001916815260200180602001828103825283818151815260200191508051906020019060200280838360005b838110156109ed5780820151818401526020810190506109d2565b50505050905001935050505060405180910390a160019250505092915050565b600060026000846000191660001916815260200190815260200160002060010160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6000610a8b336105df565b1515610a9657600080fd5b7f7adbefd4047a6b3fc04baed7453752b4eceb772d9036d0006014fc9cfa9af75683836040518083600019166000191681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390a16001905092915050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610b7057600080fd5b610b7982610dc2565b1515610b8457600080fd5b7fa5ce10be54b4ef0d5b03c912f8855709209175079c70907491e4ab39606cc7b6826040518080602001828103825283818151815260200191508051906020019060200280838360005b83811015610be9578082015181840152602081019050610bce565b505050509050019250505060405180910390a160019050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610c6257600080fd5b816000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff161515141515610ca157600080fd5b600160026000856000191660001916815260200190815260200160002060000160006101000a81548160ff0219169083151502179055507f6035499ce5e80742180c62be06aea6c0cce9f0df624f498b9709a79adc8fb9968360405180826000191660001916815260200191505060405180910390a16001915050919050565b610d296110d9565b60006001808054905081805480602002602001604051908101604052809291908181526020018280548015610db357602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019060010190808311610d69575b50505050509150915091509091565b60008151604051805910610dd35750595b908082528060200260200182016040525060019080519060200190610df99291906110ed565b508160019080519060200190610e109291906110ed565b5060019050919050565b600080600090505b8251811015610e6357610e4b8382815181101515610e3c57fe5b906020019060200201516105df565b1515610e5657600080fd5b8080600101915050610e22565b6001915050919050565b600060026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff169050919050565b610eaa611177565b610eb2611177565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610f0f57600080fd5b836000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff161515141515610f4e57600080fd5b600180549050604051805910610f615750595b90808252806020026020018201604052509250600091505b60018054905082101561106a576002600086600019166000191681526020019081526020016000206001016000600184815481101515610fb557fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16838381518110151561103757fe5b90602001906020020190600281111561104c57fe5b9081600281111561105957fe5b815250508180600101925050610f79565b7f5cee2268933cd873c783419e5be7668e121517767fe669a5a703b09426b138158560405180826000191660001916815260200191505060405180910390a1829350505050919050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b602060405190810160405280600081525090565b828054828255906000526020600020908101928215611166579160200282015b828111156111655782518260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055509160200191906001019061110d565b5b509050611173919061118b565b5090565b602060405190810160405280600081525090565b6111cb91905b808211156111c757600081816101000a81549073ffffffffffffffffffffffffffffffffffffffff021916905550600101611191565b5090565b905600a165627a7a72305820d6b89a0fa0e422a07ff6c1b1dea2a6d418303a07dcafd0028421aa3832c2c7110029\",\n\t\"contractAbiJson\": \"[{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"isProcessor\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorIdHash\\\",\\\"type\\\":\\\"address\\\"},{\\\"name\\\":\\\"_state\\\",\\\"type\\\":\\\"uint8\\\"}],\\\"name\\\":\\\"setSubjectDataState\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorsWhiteListedBySubject\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"recordConsentGivenTo\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorIdHash\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"getSubjectDataState\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint8\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"recordErasureByProcessor\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"recordProcessorsUpdate\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"recordErasureByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[],\\\"name\\\":\\\"getProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address[]\\\"},{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"setProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_processors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"areAllValidProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"getIsErased\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"recordAccessByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint8[]\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[],\\\"name\\\":\\\"controller\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"constructor\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"Controller_ProcessorsUpdated\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"newProcessorsWhiteListed\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"Controller_ConsentGivenTo\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"Controller_SubjectDataAccessed\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"Controller_SubjectDataErased\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"processorIdHash\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"Processor_SubjectDataErased\\\",\\\"type\\\":\\\"event\\\"}]\"\n}"
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/contract/deploy",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "contract", "deploy"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Contract details",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/contract/details",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "contract", "details"]
-                }
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "name": "Subjects",
-          "item": [
-            {
-              "name": "List subjects",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/subjects?page=1",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "subjects"],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "1"
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Access subject data",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw":
-                    "{{og_base_url}}/api/management/subjects/0x2a80e1ef1d7842f27f2e6be0972bb708b9a135c38860dbe73c27c3486c34f4de/data",
-                  "host": ["{{og_base_url}}"],
-                  "path": [
-                    "api",
-                    "management",
-                    "subjects",
-                    "0x2a80e1ef1d7842f27f2e6be0972bb708b9a135c38860dbe73c27c3486c34f4de",
-                    "data"
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "List rectification request",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/subjects/rectification-requests?page=1",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "subjects", "rectification-requests"],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "1"
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Rectification request archive",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw":
-                    "{{og_base_url}}/api/management/subjects/rectification-requests/archive?page=1",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "subjects", "rectification-requests", "archive"],
-                  "query": [
-                    {
-                      "key": "page",
-                      "value": "1"
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Rectification request details",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw":
-                    "{{og_base_url}}/api/management/subjects/rectification-requests/:rectificationRequestId",
-                  "host": ["{{og_base_url}}"],
-                  "path": [
-                    "api",
-                    "management",
-                    "subjects",
-                    "rectification-requests",
-                    ":rectificationRequestId"
-                  ],
-                  "variable": [
-                    {
-                      "key": "rectificationRequestId",
-                      "value": ""
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Approve rectification request",
-              "request": {
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"status\": \"APPROVED\"\n}"
-                },
-                "url": {
-                  "raw":
-                    "{{og_base_url}}/api/management/subjects/rectification-requests/:rectificationRequestId",
-                  "host": ["{{og_base_url}}"],
-                  "path": [
-                    "api",
-                    "management",
-                    "subjects",
-                    "rectification-requests",
-                    ":rectificationRequestId"
-                  ],
-                  "variable": [
-                    {
-                      "key": "rectificationRequestId",
-                      "value": ""
-                    }
-                  ]
-                }
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "name": "Processors",
-          "item": [
-            {
-              "name": "List processors",
-              "request": {
-                "method": "GET",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": ""
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/processors",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "processors"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Add processor",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw":
-                    "{\n\t\"name\": \"Nielsen2\",\n\t\"logoUrl\": \"https://upload.wikimedia.org/wikipedia/commons/8/Nielsen_logo.svg\",\n\t\"description\": \"Nielsen2, a leading global information & measurement company, provides market research, insights & data about what people watch, listen to & buy.\",\n\t\"scopes\": [\"email\", \"first name\", \"purchase history\"],\n    \"address\": \"0x1bd66fac5b1e6da807fa8ff2f64abaaaf58b4c4f\"\n}"
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/processors",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "processors"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Update processor",
-              "request": {
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw":
-                    "{\n    \"id\": 1,\n\t\"name\": \"Nielsen\",\n\t\"logoUrl\": \"https://upload.wikimedia.org/wikipedia/commons/8/82/Nielsen_logo.svg\",\n\t\"description\": \"Nielsen, a leading global information & measurement company, provides market research, insights & data about what people watch, listen to & buy.\",\n\t\"scopes\": [\"email\", \"first name\", \"purchase history\"]\n}"
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/processors",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "processors"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Delete processor",
-              "request": {
-                "method": "DELETE",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n\t\"processorIds\": [1]\n}"
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/processors",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "processors"]
-                }
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "name": "Stats",
-          "item": [
-            {
-              "name": "Get stats",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "body": {},
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/stats",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "stats"]
-                }
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "name": "Events",
-          "item": [
-            {
-              "name": "Get events",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value":
-                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTM0MzMxMjQ2LCJleHAiOjE1MzQzMzE4NTB9.6aYRo3UAVlm55HtG3adIvNF3OuITJukvMLsLqERDAC0",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "body": {},
-                "url": {
-                  "raw":
-                    "{{og_base_url}}/api/management/events?eventType=Controller_SubjectDataAccessed&fromBlock=0&toBlock=latest&filter={\"subjectId\": \"0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6\"}",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "events"],
-                  "query": [
-                    {
-                      "key": "eventType",
-                      "value": "Controller_SubjectDataAccessed"
-                    },
-                    {
-                      "key": "fromBlock",
-                      "value": "0"
-                    },
-                    {
-                      "key": "toBlock",
-                      "value": "latest"
-                    },
-                    {
-                      "key": "filter",
-                      "value":
-                        "{\"subjectId\": \"0xc89efdaa54c0f20c7adf612882df0950f5a951637e0307cdcb4c672f298b8bc6\"}"
-                    }
-                  ]
-                },
-                "description": "Get past blockchain events"
-              },
-              "response": []
-            }
-          ],
-          "_postman_isSubFolder": true
-        },
-        {
-          "name": "Data",
-          "item": [
-            {
-              "name": "Get data attributes config",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value":
-                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTM0MzQ0NjY0LCJleHAiOjE1MzQzNDUyNjh9.LjhgHtUcd6cW_Gs7ZD_sN9T1yCwbRDv0Wj8ggHYJznM",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "GET",
-                "header": [],
-                "body": {},
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/data/attributes-config",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "data", "attributes-config"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Update data attributes config",
-              "request": {
-                "auth": {
-                  "type": "bearer",
-                  "bearer": [
-                    {
-                      "key": "token",
-                      "value":
-                        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNTM0NDE3MDA5LCJleHAiOjE1MzQ0MTc2MTN9.8ULayq8UjzIJc_CyaoSY_QioErpb1lc5J4RAW2sl1WE",
-                      "type": "string"
-                    }
-                  ]
-                },
-                "method": "PUT",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw":
-                    "{\n\t\"email\": {\n\t    \"type\": \"email\",\n\t    \"required\": true,\n\t    \"placeholder\": \"Provide your email\"\n\t},\n\t\"name\": {\n\t    \"type\": \"string\",\n\t    \"required\": true,\n\t    \"placeholder\": \"Provide your name\"\n\t}\n}"
-                },
-                "url": {
-                  "raw": "{{og_base_url}}/api/management/data/attributes-config",
-                  "host": ["{{og_base_url}}"],
-                  "path": ["api", "management", "data", "attributes-config"]
-                }
-              },
-              "response": []
-            }
-          ],
-          "event": [
-            {
-              "listen": "prerequest",
-              "script": {
-                "id": "5887d02f-8729-45d7-88df-41f1eb076707",
-                "type": "text/javascript",
-                "exec": [""]
-              }
-            },
-            {
-              "listen": "test",
-              "script": {
-                "id": "5abab404-cdbf-436d-91ec-1c01192652cd",
-                "type": "text/javascript",
-                "exec": [""]
-              }
-            }
-          ],
-          "_postman_isSubFolder": true
-        }
-      ],
-      "auth": {
-        "type": "bearer",
-        "bearer": [
-          {
-            "key": "token",
-            "value": "{{management_jwt}}",
-            "type": "string"
-          }
-        ]
-      },
-      "event": [
-        {
-          "listen": "prerequest",
-          "script": {
-            "id": "2a23c2e7-8805-416a-89eb-39d6202683f8",
-            "type": "text/javascript",
-            "exec": [""]
-          }
-        },
-        {
-          "listen": "test",
-          "script": {
-            "id": "2c319e51-b178-491d-b8c8-b6f49ba6c5fd",
-            "type": "text/javascript",
-            "exec": [""]
-          }
-        }
-      ]
-    },
-    {
       "name": "Processors",
+      "description": null,
       "item": [
         {
-          "name": "List subjects",
+          "name": "Get contract details",
           "request": {
             "method": "GET",
             "header": [
@@ -1060,8 +1030,31 @@
                 "{\n\t\"compiledData\": \"0x6060604052341561000f57600080fd5b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506111fa8061005e6000396000f3006060604052600436106100c4576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168062091988146100c95780630c1e947f1461011a5780634c3e99721461018457806352843d51146102035780636017cf4c1461026b57806362b8b300146102c9578063785779d01461033b57806391bd72231461037a578063a3514e4a146103eb578063ae0ef4b41461045d578063bd92ccee146104cf578063c24b846f1461050e578063f77c47911461058a575b600080fd5b34156100d457600080fd5b610100600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506105df565b604051808215151515815260200191505060405180910390f35b341561012557600080fd5b61016a60048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803560ff16906020019091905050610683565b604051808215151515815260200191505060405180910390f35b341561018f57600080fd5b6101e96004808035600019169060200190919080359060200190820180359060200190808060200260200160405190810160405280939291908181526020018383602002808284378201915050505050509190505061070c565b604051808215151515815260200191505060405180910390f35b341561020e57600080fd5b61024760048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a0d565b6040518082600281111561025757fe5b60ff16815260200191505060405180910390f35b341561027657600080fd5b6102af60048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a80565b604051808215151515815260200191505060405180910390f35b34156102d457600080fd5b610321600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610b13565b604051808215151515815260200191505060405180910390f35b341561034657600080fd5b610360600480803560001916906020019091905050610c05565b604051808215151515815260200191505060405180910390f35b341561038557600080fd5b61038d610d21565b6040518080602001838152602001828103825284818151815260200191508051906020019060200280838360005b838110156103d65780820151818401526020810190506103bb565b50505050905001935050505060405180910390f35b34156103f657600080fd5b610443600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610dc2565b604051808215151515815260200191505060405180910390f35b341561046857600080fd5b6104b5600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610e1a565b604051808215151515815260200191505060405180910390f35b34156104da57600080fd5b6104f4600480803560001916906020019091905050610e6d565b604051808215151515815260200191505060405180910390f35b341561051957600080fd5b610533600480803560001916906020019091905050610ea2565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b8381101561057657808201518184015260208101905061055b565b505050509050019250505060405180910390f35b341561059557600080fd5b61059d6110b4565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600080600090505b600180549050811015610678578273ffffffffffffffffffffffffffffffffffffffff1660018281548110151561061a57fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16141561066b576001915061067d565b80806001019150506105e7565b600091505b50919050565b60008160026000866000191660001916815260200190815260200160002060010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908360028111156106fc57fe5b0217905550600190509392505050565b6000806000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561076a57600080fd5b836000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff1615151415156107a957600080fd5b6107b284610e1a565b15156107bd57600080fd5b600091505b600180549050821015610893576000600260008760001916600019168152602001908152602001600020600101600060018581548110151561080057fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083600281111561088157fe5b021790555081806001019250506107c2565b600091505b8351821015610942576001600260008760001916600019168152602001908152602001600020600101600086858151811015156108d157fe5b9060200190602002015173ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083600281111561093057fe5b02179055508180600101925050610898565b600060026000876000191660001916815260200190815260200160002060000160006101000a81548160ff0219169083151502179055507f17b46fe72172b70500853bedb3b5ba16a452a4734c92f74d2aed8a260c8e5392858560405180836000191660001916815260200180602001828103825283818151815260200191508051906020019060200280838360005b838110156109ed5780820151818401526020810190506109d2565b50505050905001935050505060405180910390a160019250505092915050565b600060026000846000191660001916815260200190815260200160002060010160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6000610a8b336105df565b1515610a9657600080fd5b7f7adbefd4047a6b3fc04baed7453752b4eceb772d9036d0006014fc9cfa9af75683836040518083600019166000191681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390a16001905092915050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610b7057600080fd5b610b7982610dc2565b1515610b8457600080fd5b7fa5ce10be54b4ef0d5b03c912f8855709209175079c70907491e4ab39606cc7b6826040518080602001828103825283818151815260200191508051906020019060200280838360005b83811015610be9578082015181840152602081019050610bce565b505050509050019250505060405180910390a160019050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610c6257600080fd5b816000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff161515141515610ca157600080fd5b600160026000856000191660001916815260200190815260200160002060000160006101000a81548160ff0219169083151502179055507f6035499ce5e80742180c62be06aea6c0cce9f0df624f498b9709a79adc8fb9968360405180826000191660001916815260200191505060405180910390a16001915050919050565b610d296110d9565b60006001808054905081805480602002602001604051908101604052809291908181526020018280548015610db357602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019060010190808311610d69575b50505050509150915091509091565b60008151604051805910610dd35750595b908082528060200260200182016040525060019080519060200190610df99291906110ed565b508160019080519060200190610e109291906110ed565b5060019050919050565b600080600090505b8251811015610e6357610e4b8382815181101515610e3c57fe5b906020019060200201516105df565b1515610e5657600080fd5b8080600101915050610e22565b6001915050919050565b600060026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff169050919050565b610eaa611177565b610eb2611177565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610f0f57600080fd5b836000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff161515141515610f4e57600080fd5b600180549050604051805910610f615750595b90808252806020026020018201604052509250600091505b60018054905082101561106a576002600086600019166000191681526020019081526020016000206001016000600184815481101515610fb557fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16838381518110151561103757fe5b90602001906020020190600281111561104c57fe5b9081600281111561105957fe5b815250508180600101925050610f79565b7f5cee2268933cd873c783419e5be7668e121517767fe669a5a703b09426b138158560405180826000191660001916815260200191505060405180910390a1829350505050919050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b602060405190810160405280600081525090565b828054828255906000526020600020908101928215611166579160200282015b828111156111655782518260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055509160200191906001019061110d565b5b509050611173919061118b565b5090565b602060405190810160405280600081525090565b6111cb91905b808211156111c757600081816101000a81549073ffffffffffffffffffffffffffffffffffffffff021916905550600101611191565b5090565b905600a165627a7a72305820d6b89a0fa0e422a07ff6c1b1dea2a6d418303a07dcafd0028421aa3832c2c7110029\",\n\t\"abiJson\": \"[{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"isProcessor\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorIdHash\\\",\\\"type\\\":\\\"address\\\"},{\\\"name\\\":\\\"_state\\\",\\\"type\\\":\\\"uint8\\\"}],\\\"name\\\":\\\"setSubjectDataState\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorsWhiteListedBySubject\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"recordConsentGivenTo\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorIdHash\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"getSubjectDataState\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint8\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"recordErasureByProcessor\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"recordProcessorsUpdate\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"recordErasureByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[],\\\"name\\\":\\\"getProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address[]\\\"},{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"setProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_processors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"areAllValidProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"getIsErased\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"recordAccessByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint8[]\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[],\\\"name\\\":\\\"controller\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"constructor\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"Controller_ProcessorsUpdated\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"newProcessorsWhiteListed\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"Controller_ConsentGivenTo\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"Controller_SubjectDataAccessed\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"Controller_SubjectDataErased\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"processorIdHash\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"Processor_SubjectDataErased\\\",\\\"type\\\":\\\"event\\\"}]\"\n}"
             },
             "url": {
-              "raw": "{{og_base_url}}/api/processors/subjects",
-              "host": ["{{og_base_url}}"],
+              "raw": "{{cg_base_url}}/api/processors/contract/details",
+              "host": ["{{cg_base_url}}"],
+              "path": ["api", "processors", "contract", "details"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get subjects",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw":
+                "{\n\t\"compiledData\": \"0x6060604052341561000f57600080fd5b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506111fa8061005e6000396000f3006060604052600436106100c4576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168062091988146100c95780630c1e947f1461011a5780634c3e99721461018457806352843d51146102035780636017cf4c1461026b57806362b8b300146102c9578063785779d01461033b57806391bd72231461037a578063a3514e4a146103eb578063ae0ef4b41461045d578063bd92ccee146104cf578063c24b846f1461050e578063f77c47911461058a575b600080fd5b34156100d457600080fd5b610100600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506105df565b604051808215151515815260200191505060405180910390f35b341561012557600080fd5b61016a60048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803560ff16906020019091905050610683565b604051808215151515815260200191505060405180910390f35b341561018f57600080fd5b6101e96004808035600019169060200190919080359060200190820180359060200190808060200260200160405190810160405280939291908181526020018383602002808284378201915050505050509190505061070c565b604051808215151515815260200191505060405180910390f35b341561020e57600080fd5b61024760048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a0d565b6040518082600281111561025757fe5b60ff16815260200191505060405180910390f35b341561027657600080fd5b6102af60048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a80565b604051808215151515815260200191505060405180910390f35b34156102d457600080fd5b610321600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610b13565b604051808215151515815260200191505060405180910390f35b341561034657600080fd5b610360600480803560001916906020019091905050610c05565b604051808215151515815260200191505060405180910390f35b341561038557600080fd5b61038d610d21565b6040518080602001838152602001828103825284818151815260200191508051906020019060200280838360005b838110156103d65780820151818401526020810190506103bb565b50505050905001935050505060405180910390f35b34156103f657600080fd5b610443600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610dc2565b604051808215151515815260200191505060405180910390f35b341561046857600080fd5b6104b5600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610e1a565b604051808215151515815260200191505060405180910390f35b34156104da57600080fd5b6104f4600480803560001916906020019091905050610e6d565b604051808215151515815260200191505060405180910390f35b341561051957600080fd5b610533600480803560001916906020019091905050610ea2565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b8381101561057657808201518184015260208101905061055b565b505050509050019250505060405180910390f35b341561059557600080fd5b61059d6110b4565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600080600090505b600180549050811015610678578273ffffffffffffffffffffffffffffffffffffffff1660018281548110151561061a57fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16141561066b576001915061067d565b80806001019150506105e7565b600091505b50919050565b60008160026000866000191660001916815260200190815260200160002060010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908360028111156106fc57fe5b0217905550600190509392505050565b6000806000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561076a57600080fd5b836000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff1615151415156107a957600080fd5b6107b284610e1a565b15156107bd57600080fd5b600091505b600180549050821015610893576000600260008760001916600019168152602001908152602001600020600101600060018581548110151561080057fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083600281111561088157fe5b021790555081806001019250506107c2565b600091505b8351821015610942576001600260008760001916600019168152602001908152602001600020600101600086858151811015156108d157fe5b9060200190602002015173ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083600281111561093057fe5b02179055508180600101925050610898565b600060026000876000191660001916815260200190815260200160002060000160006101000a81548160ff0219169083151502179055507f17b46fe72172b70500853bedb3b5ba16a452a4734c92f74d2aed8a260c8e5392858560405180836000191660001916815260200180602001828103825283818151815260200191508051906020019060200280838360005b838110156109ed5780820151818401526020810190506109d2565b50505050905001935050505060405180910390a160019250505092915050565b600060026000846000191660001916815260200190815260200160002060010160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6000610a8b336105df565b1515610a9657600080fd5b7f7adbefd4047a6b3fc04baed7453752b4eceb772d9036d0006014fc9cfa9af75683836040518083600019166000191681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390a16001905092915050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610b7057600080fd5b610b7982610dc2565b1515610b8457600080fd5b7fa5ce10be54b4ef0d5b03c912f8855709209175079c70907491e4ab39606cc7b6826040518080602001828103825283818151815260200191508051906020019060200280838360005b83811015610be9578082015181840152602081019050610bce565b505050509050019250505060405180910390a160019050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610c6257600080fd5b816000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff161515141515610ca157600080fd5b600160026000856000191660001916815260200190815260200160002060000160006101000a81548160ff0219169083151502179055507f6035499ce5e80742180c62be06aea6c0cce9f0df624f498b9709a79adc8fb9968360405180826000191660001916815260200191505060405180910390a16001915050919050565b610d296110d9565b60006001808054905081805480602002602001604051908101604052809291908181526020018280548015610db357602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019060010190808311610d69575b50505050509150915091509091565b60008151604051805910610dd35750595b908082528060200260200182016040525060019080519060200190610df99291906110ed565b508160019080519060200190610e109291906110ed565b5060019050919050565b600080600090505b8251811015610e6357610e4b8382815181101515610e3c57fe5b906020019060200201516105df565b1515610e5657600080fd5b8080600101915050610e22565b6001915050919050565b600060026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff169050919050565b610eaa611177565b610eb2611177565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610f0f57600080fd5b836000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff161515141515610f4e57600080fd5b600180549050604051805910610f615750595b90808252806020026020018201604052509250600091505b60018054905082101561106a576002600086600019166000191681526020019081526020016000206001016000600184815481101515610fb557fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16838381518110151561103757fe5b90602001906020020190600281111561104c57fe5b9081600281111561105957fe5b815250508180600101925050610f79565b7f5cee2268933cd873c783419e5be7668e121517767fe669a5a703b09426b138158560405180826000191660001916815260200191505060405180910390a1829350505050919050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b602060405190810160405280600081525090565b828054828255906000526020600020908101928215611166579160200282015b828111156111655782518260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055509160200191906001019061110d565b5b509050611173919061118b565b5090565b602060405190810160405280600081525090565b6111cb91905b808211156111c757600081816101000a81549073ffffffffffffffffffffffffffffffffffffffff021916905550600101611191565b5090565b905600a165627a7a72305820d6b89a0fa0e422a07ff6c1b1dea2a6d418303a07dcafd0028421aa3832c2c7110029\",\n\t\"abiJson\": \"[{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"isProcessor\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorIdHash\\\",\\\"type\\\":\\\"address\\\"},{\\\"name\\\":\\\"_state\\\",\\\"type\\\":\\\"uint8\\\"}],\\\"name\\\":\\\"setSubjectDataState\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorsWhiteListedBySubject\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"recordConsentGivenTo\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorIdHash\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"getSubjectDataState\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint8\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"recordErasureByProcessor\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"recordProcessorsUpdate\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"recordErasureByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[],\\\"name\\\":\\\"getProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address[]\\\"},{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"setProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_processors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"areAllValidProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"getIsErased\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"recordAccessByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint8[]\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[],\\\"name\\\":\\\"controller\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"constructor\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"Controller_ProcessorsUpdated\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"newProcessorsWhiteListed\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"Controller_ConsentGivenTo\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"Controller_SubjectDataAccessed\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"Controller_SubjectDataErased\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"processorIdHash\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"Processor_SubjectDataErased\\\",\\\"type\\\":\\\"event\\\"}]\"\n}"
+            },
+            "url": {
+              "raw": "{{cg_base_url}}/api/processors/subjects",
+              "host": ["{{cg_base_url}}"],
               "path": ["api", "processors", "subjects"]
             }
           },
@@ -1084,13 +1077,13 @@
             },
             "url": {
               "raw":
-                "{{og_base_url}}/api/processors/subject/0xceebf77a833b30520287ddd9478ff51abbdffa30aa90a8d655dba0e8a79ce0c1/data",
-              "host": ["{{og_base_url}}"],
+                "{{cg_base_url}}/api/processors/subjects/0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5/data",
+              "host": ["{{cg_base_url}}"],
               "path": [
                 "api",
                 "processors",
-                "subject",
-                "0xceebf77a833b30520287ddd9478ff51abbdffa30aa90a8d655dba0e8a79ce0c1",
+                "subjects",
+                "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5",
                 "data"
               ]
             }
@@ -1114,13 +1107,13 @@
             },
             "url": {
               "raw":
-                "{{og_base_url}}/api/processors/subject/0xe455bf8ea6e7463a1046a0b52804526e119b4bf5136279614e0b1e8e296a4e2d/restrictions",
-              "host": ["{{og_base_url}}"],
+                "{{cg_base_url}}/api/processors/subjects/0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5/restrictions",
+              "host": ["{{cg_base_url}}"],
               "path": [
                 "api",
                 "processors",
-                "subject",
-                "0xe455bf8ea6e7463a1046a0b52804526e119b4bf5136279614e0b1e8e296a4e2d",
+                "subjects",
+                "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5",
                 "restrictions"
               ]
             }
@@ -1128,7 +1121,7 @@
           "response": []
         },
         {
-          "name": "Get contract details",
+          "name": "Get subject objection",
           "request": {
             "method": "GET",
             "header": [
@@ -1143,9 +1136,42 @@
                 "{\n\t\"compiledData\": \"0x6060604052341561000f57600080fd5b336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506111fa8061005e6000396000f3006060604052600436106100c4576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168062091988146100c95780630c1e947f1461011a5780634c3e99721461018457806352843d51146102035780636017cf4c1461026b57806362b8b300146102c9578063785779d01461033b57806391bd72231461037a578063a3514e4a146103eb578063ae0ef4b41461045d578063bd92ccee146104cf578063c24b846f1461050e578063f77c47911461058a575b600080fd5b34156100d457600080fd5b610100600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506105df565b604051808215151515815260200191505060405180910390f35b341561012557600080fd5b61016a60048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff1690602001909190803560ff16906020019091905050610683565b604051808215151515815260200191505060405180910390f35b341561018f57600080fd5b6101e96004808035600019169060200190919080359060200190820180359060200190808060200260200160405190810160405280939291908181526020018383602002808284378201915050505050509190505061070c565b604051808215151515815260200191505060405180910390f35b341561020e57600080fd5b61024760048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a0d565b6040518082600281111561025757fe5b60ff16815260200191505060405180910390f35b341561027657600080fd5b6102af60048080356000191690602001909190803573ffffffffffffffffffffffffffffffffffffffff16906020019091905050610a80565b604051808215151515815260200191505060405180910390f35b34156102d457600080fd5b610321600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610b13565b604051808215151515815260200191505060405180910390f35b341561034657600080fd5b610360600480803560001916906020019091905050610c05565b604051808215151515815260200191505060405180910390f35b341561038557600080fd5b61038d610d21565b6040518080602001838152602001828103825284818151815260200191508051906020019060200280838360005b838110156103d65780820151818401526020810190506103bb565b50505050905001935050505060405180910390f35b34156103f657600080fd5b610443600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610dc2565b604051808215151515815260200191505060405180910390f35b341561046857600080fd5b6104b5600480803590602001908201803590602001908080602002602001604051908101604052809392919081815260200183836020028082843782019150505050505091905050610e1a565b604051808215151515815260200191505060405180910390f35b34156104da57600080fd5b6104f4600480803560001916906020019091905050610e6d565b604051808215151515815260200191505060405180910390f35b341561051957600080fd5b610533600480803560001916906020019091905050610ea2565b6040518080602001828103825283818151815260200191508051906020019060200280838360005b8381101561057657808201518184015260208101905061055b565b505050509050019250505060405180910390f35b341561059557600080fd5b61059d6110b4565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b600080600090505b600180549050811015610678578273ffffffffffffffffffffffffffffffffffffffff1660018281548110151561061a57fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16141561066b576001915061067d565b80806001019150506105e7565b600091505b50919050565b60008160026000866000191660001916815260200190815260200160002060010160008573ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff021916908360028111156106fc57fe5b0217905550600190509392505050565b6000806000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614151561076a57600080fd5b836000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff1615151415156107a957600080fd5b6107b284610e1a565b15156107bd57600080fd5b600091505b600180549050821015610893576000600260008760001916600019168152602001908152602001600020600101600060018581548110151561080057fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083600281111561088157fe5b021790555081806001019250506107c2565b600091505b8351821015610942576001600260008760001916600019168152602001908152602001600020600101600086858151811015156108d157fe5b9060200190602002015173ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083600281111561093057fe5b02179055508180600101925050610898565b600060026000876000191660001916815260200190815260200160002060000160006101000a81548160ff0219169083151502179055507f17b46fe72172b70500853bedb3b5ba16a452a4734c92f74d2aed8a260c8e5392858560405180836000191660001916815260200180602001828103825283818151815260200191508051906020019060200280838360005b838110156109ed5780820151818401526020810190506109d2565b50505050905001935050505060405180910390a160019250505092915050565b600060026000846000191660001916815260200190815260200160002060010160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b6000610a8b336105df565b1515610a9657600080fd5b7f7adbefd4047a6b3fc04baed7453752b4eceb772d9036d0006014fc9cfa9af75683836040518083600019166000191681526020018273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019250505060405180910390a16001905092915050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610b7057600080fd5b610b7982610dc2565b1515610b8457600080fd5b7fa5ce10be54b4ef0d5b03c912f8855709209175079c70907491e4ab39606cc7b6826040518080602001828103825283818151815260200191508051906020019060200280838360005b83811015610be9578082015181840152602081019050610bce565b505050509050019250505060405180910390a160019050919050565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610c6257600080fd5b816000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff161515141515610ca157600080fd5b600160026000856000191660001916815260200190815260200160002060000160006101000a81548160ff0219169083151502179055507f6035499ce5e80742180c62be06aea6c0cce9f0df624f498b9709a79adc8fb9968360405180826000191660001916815260200191505060405180910390a16001915050919050565b610d296110d9565b60006001808054905081805480602002602001604051908101604052809291908181526020018280548015610db357602002820191906000526020600020905b8160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1681526020019060010190808311610d69575b50505050509150915091509091565b60008151604051805910610dd35750595b908082528060200260200182016040525060019080519060200190610df99291906110ed565b508160019080519060200190610e109291906110ed565b5060019050919050565b600080600090505b8251811015610e6357610e4b8382815181101515610e3c57fe5b906020019060200201516105df565b1515610e5657600080fd5b8080600101915050610e22565b6001915050919050565b600060026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff169050919050565b610eaa611177565b610eb2611177565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16141515610f0f57600080fd5b836000151560026000836000191660001916815260200190815260200160002060000160009054906101000a900460ff161515141515610f4e57600080fd5b600180549050604051805910610f615750595b90808252806020026020018201604052509250600091505b60018054905082101561106a576002600086600019166000191681526020019081526020016000206001016000600184815481101515610fb557fe5b906000526020600020900160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16838381518110151561103757fe5b90602001906020020190600281111561104c57fe5b9081600281111561105957fe5b815250508180600101925050610f79565b7f5cee2268933cd873c783419e5be7668e121517767fe669a5a703b09426b138158560405180826000191660001916815260200191505060405180910390a1829350505050919050565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b602060405190810160405280600081525090565b828054828255906000526020600020908101928215611166579160200282015b828111156111655782518260006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055509160200191906001019061110d565b5b509050611173919061118b565b5090565b602060405190810160405280600081525090565b6111cb91905b808211156111c757600081816101000a81549073ffffffffffffffffffffffffffffffffffffffff021916905550600101611191565b5090565b905600a165627a7a72305820d6b89a0fa0e422a07ff6c1b1dea2a6d418303a07dcafd0028421aa3832c2c7110029\",\n\t\"abiJson\": \"[{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"isProcessor\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorIdHash\\\",\\\"type\\\":\\\"address\\\"},{\\\"name\\\":\\\"_state\\\",\\\"type\\\":\\\"uint8\\\"}],\\\"name\\\":\\\"setSubjectDataState\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorsWhiteListedBySubject\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"recordConsentGivenTo\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processorIdHash\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"getSubjectDataState\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint8\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"name\\\":\\\"_processor\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"recordErasureByProcessor\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"recordProcessorsUpdate\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"recordErasureByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[],\\\"name\\\":\\\"getProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address[]\\\"},{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"setProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_processors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"areAllValidProcessors\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"getIsErased\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":false,\\\"inputs\\\":[{\\\"name\\\":\\\"_subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"recordAccessByController\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint8[]\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"constant\\\":true,\\\"inputs\\\":[],\\\"name\\\":\\\"controller\\\",\\\"outputs\\\":[{\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address\\\"}],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[],\\\"payable\\\":false,\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"constructor\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"newProcessors\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"Controller_ProcessorsUpdated\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"newProcessorsWhiteListed\\\",\\\"type\\\":\\\"address[]\\\"}],\\\"name\\\":\\\"Controller_ConsentGivenTo\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"Controller_SubjectDataAccessed\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"}],\\\"name\\\":\\\"Controller_SubjectDataErased\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":false,\\\"name\\\":\\\"subjectIdHash\\\",\\\"type\\\":\\\"bytes32\\\"},{\\\"indexed\\\":false,\\\"name\\\":\\\"processorIdHash\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"Processor_SubjectDataErased\\\",\\\"type\\\":\\\"event\\\"}]\"\n}"
             },
             "url": {
-              "raw": "{{og_base_url}}/api/processors/contract/details",
-              "host": ["{{og_base_url}}"],
-              "path": ["api", "processors", "contract", "details"]
+              "raw":
+                "{{cg_base_url}}/api/processors/subjects/0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5/objection",
+              "host": ["{{cg_base_url}}"],
+              "path": [
+                "api",
+                "processors",
+                "subjects",
+                "0xad7c5bef027816a800da1736444fb58a807ef4c9603b7848673f7e3a68eb14a5",
+                "objection"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TEST - Join Controller Network",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw":
+                "{\n\t\"name\": \"BigData3\",\n\t\"logoUrl\": \"https://upload.wikimedia.org/wikipedia/commons/8/Nielsen_logo.svg\",\n\t\"description\": \"Nielsen2, a leading global information & measurement company, provides market research, insights & data about what people watch, listen to & buy.\",\n\t\"scopes\": {\n\t\t\"directMarketing\": true,\n\t\t\"emailCommunication\": true,\n\t\t\"research\": true\n\t},\n\t\"accountPassword\": \"processorAccountPassword\"\n}"
+            },
+            "url": {
+              "raw": "{{cg_base_url}}/api/processors/join/TEST",
+              "host": ["{{cg_base_url}}"],
+              "path": ["api", "processors", "join", "TEST"]
             }
           },
           "response": []
@@ -1190,8 +1216,8 @@
           "raw": ""
         },
         "url": {
-          "raw": "{{og_base_url}}/healthz/long/e61e4d31115633397270",
-          "host": ["{{og_base_url}}"],
+          "raw": "{{cg_base_url}}/healthz/long/e61e4d31115633397270",
+          "host": ["{{cg_base_url}}"],
           "path": ["healthz", "long", "e61e4d31115633397270"]
         }
       },
