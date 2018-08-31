@@ -16,15 +16,16 @@
     "add-processor": "bnr add-processor"
   },
   "betterScripts": {
-    "start": "knex migrate:latest && node src/index.js",
-    "start-dev": "node src/wait-for-db.js && knex migrate:latest && nodemon --inspect=0.0.0.0:9230",
+    "start": "knex migrate:latest && node --max-old-space-size=4096 src/index.js",
+    "start-dev": "node --max-old-space-size=4096 src/wait-for-db.js && knex migrate:latest && nodemon --inspect=0.0.0.0:9230",
     "knex": "knex",
     "test": {
       "command": "jest --forceExit",
       "env": {
         "DB_POOL_MIN": "0",
         "PORT": "0",
-        "DB_DATABASE": "clear_gdpr_test"
+        "DB_DATABASE": "clear_gdpr_test",
+        "NODE_OPTIONS": "--max-old-space-size=4096"
       }
     },
     "test:debug": {
@@ -70,6 +71,8 @@
     "pg": "7.4.1",
     "pg-escape": "0.2.0",
     "raven": "^2.2.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
     "solc": "0.4.21",
     "underscore": "^1.9.0",
     "web3": "1.0.0-beta.34",

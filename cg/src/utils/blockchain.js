@@ -54,6 +54,23 @@ async function deployContract(contractAbiJson, contractByteCode) {
   return quorumContract.address;
 }
 
+async function isContractDeployed() {
+  const contractConfig = await getConfig(CONTRACT_CONFIG_KEY);
+  if (contractConfig) return true;
+  return false;
+}
+
+async function createAccount(accountPassword) {
+  const accountAddress = await web3.eth.personal.newAccount(accountPassword);
+  return accountAddress;
+}
+
+async function transferFunds(accountAddressToFund) {
+  const quorumContract = await getContract();
+  const receipt = await quorumContract.transferFunds(accountAddressToFund);
+  return receipt;
+}
+
 // SMART CONTRACT AUXILIARY FUNCTIONS
 
 async function getRectificationCount(subjectId) {
@@ -69,7 +86,7 @@ async function getIsErased(subjectId) {
 async function getSubjectDataState(subjectId, processor = controllerAddress) {
   const quorumContract = await getContract();
   let result = await quorumContract.methods.getSubjectDataState(subjectId, processor).call();
-  return +result; //'+' coerces the returned value to a string
+  return +result; //'+' coerces the returned value to a number?
 }
 
 async function getSubjectRestrictions(subjectId) {
@@ -188,12 +205,10 @@ async function listenerForConsentEvent(callback) {
       winston.error(`Error handling consent given to ${error.toString()}`);
       return;
     }
-    if (
+    if (data.returnValues.processorsConsented) {
+      data.returnValues.processorsConsented.map(address => address.toLowerCase());
       // we need to downcase the addresses so they are in a consistent format. One was coming in with capitals and one was not.
-      data.returnValues.processorsConsented
-        .map(address => address.toLowerCase())
-        .includes(getMyAddress().toLowerCase())
-    ) {
+
       callback(data.returnValues.subjectId);
     }
   });
@@ -307,6 +322,9 @@ async function allEvents(callback) {
 module.exports = {
   deployContract,
   getContract,
+  isContractDeployed,
+  createAccount,
+  transferFunds,
   sha3: web3.utils.sha3,
   getRectificationCount,
   getIsErased,

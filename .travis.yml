@@ -18,12 +18,11 @@ services:
   - docker
 env:
   - VERSION: $TRAVIS_TAG
-
+  - NODE_OPTIONS: "–max_old_space_size=4096"
 stages:
   - test
   - publish
   - deploy
-  
 jobs:
   include:
     - stage: test
