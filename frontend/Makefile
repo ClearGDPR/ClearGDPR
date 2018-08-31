@@ -11,7 +11,7 @@ ENV = \
 .PHONY: build build-dev push shell test tag-latest run start stop rm release dist
 
 dist:
-	yarn && yarn run build
+	yarn --ignore-scripts && yarn run build
 
 build-dev:
 	docker build -t $(NS)/$(REPO):$(VERSION) .
