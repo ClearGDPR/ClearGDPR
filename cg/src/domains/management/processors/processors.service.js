@@ -1,5 +1,5 @@
 const { db } = require('../../../db');
-// const requestPromise = require('request-promise');
+const requestPromise = require('request-promise');
 const _ = require('underscore');
 const { NotFound, BadRequest } = require('../../../utils/errors');
 const {
