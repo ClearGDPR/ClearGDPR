@@ -1,4 +1,5 @@
 const { db } = require('../../../db');
+const fetch = require('node-fetch');
 // const requestPromise = require('request-promise');
 const _ = require('underscore');
 const { NotFound, BadRequest } = require('../../../utils/errors');
@@ -44,6 +45,21 @@ class ProcessorsService {
   }
 
   async addProcessor(processorInformation) {
+    const res = await fetch(`http://quorum1:8545`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json-rpc'
+      },
+      body: JSON.stringify({
+        jsonrpc: '2.0',
+        method: 'raft_addPeer',
+        params: [processorInformation.enode],
+        id: 1 // This is the request Id, not the raftId
+      })
+    });
+
+    console.log(await res.json());
+
     // const contractDeployed = await isContractDeployed();
     // if (!contractDeployed) throw new NotFound('No contract deployed');
     // const [processorExists] = await this.db('processors').where('name', processorInformation.name);
