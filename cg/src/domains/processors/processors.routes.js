@@ -13,7 +13,7 @@ module.exports = app => {
   app.use('/processors', router);
 
   router.post(
-    '/join',
+    '/join/TEST',
     controllerOnly,
     joinProcessorsValidator,
     asyncHandler(async (req, res) => processorsController.join(req, res))
@@ -27,28 +27,28 @@ module.exports = app => {
   );
 
   router.get(
-    '/subject/:subjectId/data',
+    '/subjects',
+    asyncHandler(async (req, res) => processorsController.getSubjects(req, res))
+  );
+
+  router.get(
+    '/subjects/:subjectId/data',
     controllerOnly,
     asyncHandler(ensureProcessorAccessToSubject),
     asyncHandler(async (req, res) => processorsController.getSubjectData(req, res))
   );
 
   router.get(
-    '/subject/:subjectId/restrictions',
+    '/subjects/:subjectId/restrictions',
     controllerOnly,
     asyncHandler(ensureProcessorAccessToSubject),
     asyncHandler(async (req, res) => processorsController.getSubjectRestrictions(req, res))
   );
 
   router.get(
-    '/subject/:subjectId/objection',
+    '/subjects/:subjectId/objection',
     controllerOnly,
     asyncHandler(ensureProcessorAccessToSubject),
     asyncHandler(async (req, res) => processorsController.getSubjectObjection(req, res))
-  );
-
-  router.get(
-    '/subjects',
-    asyncHandler(async (req, res) => processorsController.getSubjects(req, res))
   );
 };

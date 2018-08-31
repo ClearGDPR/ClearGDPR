@@ -69,15 +69,15 @@ module.exports = app => {
 
   router.use(verifyJWT);
 
+  router.get(
+    '/contract/details',
+    asyncHandler(async (req, res) => contractController.getContractDetails(req, res))
+  );
+
   router.post(
     '/contract/deploy',
     contractDeployValidator,
     asyncHandler(async (req, res) => contractController.deployContract(req, res))
-  );
-
-  router.get(
-    '/contract/details',
-    asyncHandler(async (req, res) => contractController.getContractDetails(req, res))
   );
 
   router.get(
@@ -148,27 +148,27 @@ module.exports = app => {
     asyncHandler(async (req, res) => usersController.register(req, res))
   );
 
-  router.delete(
-    '/users/:userId',
-    usersRemovalValidator,
-    asyncHandler(async (req, res) => usersController.remove(req, res))
-  );
-
   router.post(
     '/users/:userId/update-password',
     usersUpdatePasswordValidator,
     asyncHandler(async (req, res) => usersController.updatePassword(req, res))
   );
 
-  router.put(
-    '/data/attributes-config',
-    updateAttributesConfigValidator,
-    asyncHandler(async (req, res) => dataController.updateAttributesConfig(req, res))
+  router.delete(
+    '/users/:userId',
+    usersRemovalValidator,
+    asyncHandler(async (req, res) => usersController.remove(req, res))
   );
 
   router.get(
     '/data/attributes-config',
     asyncHandler(async (req, res) => dataController.getAttributesConfig(req, res))
+  );
+
+  router.put(
+    '/data/attributes-config',
+    updateAttributesConfigValidator,
+    asyncHandler(async (req, res) => dataController.updateAttributesConfig(req, res))
   );
 
   router.get('/stats', asyncHandler(async (req, res) => statsController.stats(req, res)));

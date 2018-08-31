@@ -45,7 +45,7 @@ module.exports = app => {
     asyncHandler(processorsController.getProcessors.bind(processorsController))
   );
 
-  // SHOULDN'T THIS BE SECURE?
+  // Shouldn't this be secure?
   router.get(
     '/data-shares/share',
     shareDataShareValidator,
@@ -77,6 +77,12 @@ module.exports = app => {
     asyncHandler(async (req, res) => subjectsController.requestDataAccess(req, res))
   );
 
+  router.delete(
+    '/data',
+    controllerOnly,
+    asyncHandler(async (req, res) => subjectsController.eraseData(req, res))
+  );
+
   router.get(
     '/data/status',
     asyncHandler(async (req, res) => subjectsController.getPersonalDataStatus(req, res))
@@ -88,6 +94,11 @@ module.exports = app => {
     asyncHandler(async (req, res) => subjectsController.initiateRectification(req, res))
   );
 
+  router.get(
+    '/restrictions',
+    asyncHandler(async (req, res) => subjectsController.getRestrictions(req, res))
+  );
+
   router.post(
     '/restrictions',
     controllerOnly,
@@ -96,8 +107,8 @@ module.exports = app => {
   );
 
   router.get(
-    '/restrictions',
-    asyncHandler(async (req, res) => subjectsController.getRestrictions(req, res))
+    '/objection',
+    asyncHandler(async (req, res) => subjectsController.getObjection(req, res))
   );
 
   router.post(
@@ -108,8 +119,8 @@ module.exports = app => {
   );
 
   router.get(
-    '/objection',
-    asyncHandler(async (req, res) => subjectsController.getObjection(req, res))
+    '/data-shares',
+    asyncHandler(async (req, res) => dataShareController.getDataShares(req, res))
   );
 
   router.post(
@@ -118,20 +129,9 @@ module.exports = app => {
     asyncHandler(async (req, res) => dataShareController.createDataShare(req, res))
   );
 
-  router.get(
-    '/data-shares',
-    asyncHandler(async (req, res) => dataShareController.getDataShares(req, res))
-  );
-
   router.delete(
     '/data-shares/:dataShareId',
     removeDataShareValidator,
     asyncHandler(async (req, res) => dataShareController.removeDataShare(req, res))
-  );
-
-  router.delete(
-    '/data',
-    controllerOnly,
-    asyncHandler(async (req, res) => subjectsController.eraseData(req, res))
   );
 };

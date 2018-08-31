@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List subjects that have given consent should not allow a page query with the zero page number 1`] = `
+Object {
+  "error": "Minimum page number is 1",
+}
+`;

@@ -297,7 +297,7 @@ describe('Processor requesting data', () => {
     helpers.inControllerMode.mockImplementation(() => true);
   });
   it('should not allow the processor to request data without a token', async () => {
-    const res = await fetch(`/api/processors/subject/${hash('p1')}/data`, {
+    const res = await fetch(`/api/processors/subjects/${hash('p1')}/data`, {
       method: 'GET'
     });
 
@@ -307,7 +307,7 @@ describe('Processor requesting data', () => {
 
   it('should not allow access if token payload does not have id', async () => {
     const token = await processorJWT.sign({ somethingElse: 1201 });
-    const res = await fetch('/api/processors/subject/1000000/data', {
+    const res = await fetch('/api/processors/subjects/1000000/data', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`
@@ -320,7 +320,7 @@ describe('Processor requesting data', () => {
 
   it("should not allow the processor to request data for a subject they don't have access to", async () => {
     const token = await processorJWT.sign({ id: 1201 });
-    const res = await fetch('/api/processors/subject/1000000/data', {
+    const res = await fetch('/api/processors/subjects/1000000/data', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`
@@ -358,7 +358,7 @@ describe('Processor requesting data', () => {
     const token = await processorJWT.sign({ id: 1201 });
 
     // When
-    const res = await fetch(`/api/processors/subject/${subjectId}/data`, {
+    const res = await fetch(`/api/processors/subjects/${subjectId}/data`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`
@@ -387,7 +387,7 @@ describe('Processor requesting data', () => {
     });
 
     const token = await processorJWT.sign({ id: 1201 });
-    const res = await fetch(`/api/processors/subject/${hash('p2')}/data`, {
+    const res = await fetch(`/api/processors/subjects/${hash('p2')}/data`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${token}`
