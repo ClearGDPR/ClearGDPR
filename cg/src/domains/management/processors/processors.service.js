@@ -1,5 +1,5 @@
 const { db } = require('../../../db');
-const requestPromise = require('request-promise');
+// const requestPromise = require('request-promise');
 const _ = require('underscore');
 const { NotFound, BadRequest } = require('../../../utils/errors');
 const {
@@ -44,65 +44,65 @@ class ProcessorsService {
   }
 
   async addProcessor(processorInformation) {
-    const contractDeployed = await isContractDeployed();
-    if (!contractDeployed) throw new NotFound('No contract deployed');
-    const [processorExists] = await this.db('processors').where('name', processorInformation.name);
-    if (processorExists) throw new BadRequest('Processor already added to the network');
+    // const contractDeployed = await isContractDeployed();
+    // if (!contractDeployed) throw new NotFound('No contract deployed');
+    // const [processorExists] = await this.db('processors').where('name', processorInformation.name);
+    // if (processorExists) throw new BadRequest('Processor already added to the network');
 
-    const requestOptions = {
-      url: 'http://quorum1:8545',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json-rpc'
-      },
-      body: JSON.stringify({
-        jsonrpc: '2.0',
-        method: 'raft_addPeer',
-        params: [processorInformation.enode],
-        id: 1 // This is the request Id, not the raftId
-      })
-    };
-    let response;
-    try {
-      response = await requestPromise(requestOptions);
-    } catch (e) {
-      throw new Error(`Something went wrong with the HTTP request to the Quorum RPC API: ${e}`);
-    }
-    const responseObject = JSON.parse(response);
-    const raftError = responseObject.error;
-    if (raftError)
-      throw new BadRequest(
-        `Something went wrong when executing raft.addPeer: ${raftError.message}`
-      );
-    const raftId = responseObject.result;
+    // const requestOptions = {
+    //   url: 'http://quorum1:8545',
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json-rpc'
+    //   },
+    //   body: JSON.stringify({
+    //     jsonrpc: '2.0',
+    //     method: 'raft_addPeer',
+    //     params: [processorInformation.enode],
+    //     id: 1 // This is the request Id, not the raftId
+    //   })
+    // };
+    // let response;
+    // try {
+    //   response = await requestPromise(requestOptions);
+    // } catch (e) {
+    //   throw new Error(`Something went wrong with the HTTP request to the Quorum RPC API: ${e}`);
+    // }
+    // const responseObject = JSON.parse(response);
+    // const raftError = responseObject.error;
+    // if (raftError)
+    //   throw new BadRequest(
+    //     `Something went wrong when executing raft.addPeer: ${raftError.message}`
+    //   );
+    // const raftId = responseObject.result;
 
-    await this.db.transaction(async trx => {
-      const processorInformationCopy = _.clone(processorInformation);
-      delete processorInformationCopy.accountAddress;
-      delete processorInformationCopy.enode;
-      if (processorInformationCopy.scopes) {
-        processorInformationCopy.scopes = JSON.stringify(processorInformationCopy.scopes);
-      }
-      const [processorId] = await db('processors')
-        .transacting(trx)
-        .insert(processorInformationCopy)
-        .returning('id');
+    // await this.db.transaction(async trx => {
+    //   const processorInformationCopy = _.clone(processorInformation);
+    //   delete processorInformationCopy.accountAddress;
+    //   delete processorInformationCopy.enode;
+    //   if (processorInformationCopy.scopes) {
+    //     processorInformationCopy.scopes = JSON.stringify(processorInformationCopy.scopes);
+    //   }
+    //   const [processorId] = await db('processors')
+    //     .transacting(trx)
+    //     .insert(processorInformationCopy)
+    //     .returning('id');
 
-      if (processorInformation.accountAddress) {
-        await db('processor_address')
-          .transacting(trx)
-          .insert({
-            processor_id: processorId,
-            address: processorInformation.accountAddress
-          });
-      }
-      await this._recordProcessorsUpdate(trx);
-    });
-    // Send funds to the processor account. The processor account needs funds to be able to execute transactions, even thugh the funds won't be spent in a Quorum network
-    await transferFunds(processorInformation.accountAddress);
-    return {
-      raftId
-    };
+    //   if (processorInformation.accountAddress) {
+    //     await db('processor_address')
+    //       .transacting(trx)
+    //       .insert({
+    //         processor_id: processorId,
+    //         address: processorInformation.accountAddress
+    //       });
+    //   }
+    //   await this._recordProcessorsUpdate(trx);
+    // });
+    // // Send funds to the processor account. The processor account needs funds to be able to execute transactions, even thugh the funds won't be spent in a Quorum network
+    // await transferFunds(processorInformation.accountAddress);
+    // return {
+    //   raftId
+    // };
   }
 
   // Currently the Quorum project does not support dynamic node removal. There's ongoing work on it, so for now please don't use this endpoint
