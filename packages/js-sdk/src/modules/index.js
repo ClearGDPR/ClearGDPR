@@ -1,9 +1,9 @@
 import Subject from './subject';
-import Processors from './processors';
+import Processor from './processor';
 
 const Modules = {
   Subject,
-  Processors
+  Processor
 };
 
 export default Modules;
