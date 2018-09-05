@@ -142,6 +142,10 @@ Each part of the project has additional README documentation in its subfolder:
 * [Demo frontend README](frontend/README.md)
 * [Updating Travis Configuration](TRAVIS.md)
 
+# Troubleshooting
+
+See the [Troubleshooting guide](TROUBLESHOOTING.md)
+
 # Roadmap
 
 * ~~Development deploy~~  
@@ -166,10 +170,6 @@ Each part of the project has additional README documentation in its subfolder:
 * Drop in wordpress plugin
 * Commercial middleware plugin(s)
 * Stage/Production deploy
-
-# Troubleshooting
-
-See the [Troubleshooting guide](TROUBLESHOOTING.md)
 
 # License
 
