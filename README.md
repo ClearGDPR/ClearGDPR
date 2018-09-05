@@ -6,8 +6,11 @@
 ## Introduction
 
 ClearGDPR is a backend framework that allows web applications to comply with the new **General Data Protection Regulation - GDPR**. 
+
 ClearGDPR focuses on data privacy, transparency, integrity and availability for the users of a web application, and applies Blockchain technology to achieve those at a high level.
+
 ClearGDPR was built on top of Quorum, a Blockchain that extends Ethereum and is focused in privacy. In ClearGDPR, Blockchain technology is used as an immutable audit log.
+
 ClearGDPR offers a front-end SDK and an HTTP API in order to allow your web application to manage personal user data according to the GDPR articles.
 
 ClearGDPR can be implemented in 2 different ways:
