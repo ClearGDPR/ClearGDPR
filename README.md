@@ -88,7 +88,7 @@ The wizard will setup all the dependencies and demo website for you. Please foll
 node setup.js
 ``` 
 
-Once the setup done, you will have access to:
+Once the setup is done, you will have access to:
 - http://localhost:3000 - Demo Website
 - http://localhost:4000 - ClearGDPR Admin (pwd admin/clearGDPR)
 - http://localhost:8082 - ClearGDPR API
@@ -100,10 +100,8 @@ docker/run
 ```
 Please make sure you ran `node setup` before.
 
-## Troubleshooting
-If you have issues getting up and running, be sure to check out our [troubleshooting guide](TROUBLESHOOTING.md).
-
 # Integrations
+
 ## Element SDK
 
 ### Demo
@@ -115,9 +113,10 @@ Coming soon.
 ### Code Example
 Coming soon.
 
-## API
+## HTTP API
 ### Example
-The API use authentification with Bearer Authentication. In internal we use JWT to generate and manage API tokens. Depending of the context (subject, processor or management), the token name can change.
+The API uses Bearer Authentication. Internally the API uses Jason Web Tokens - JWT, to generate and manage API tokens. Depending of the context (subject, processor or management), the token name can change.
+
 ```
 curl -X GET \
   <ClearGDPR_API_URL>/api/subject/access-data \
@@ -143,31 +142,34 @@ Each part of the project has additional README documentation in its subfolder:
 * [Demo frontend README](frontend/README.md)
 * [Updating Travis Configuration](TRAVIS.md)
 
+# Roadmap
+
+* ~~Development deploy~~  
+* ~~HTTP API support for the right to consent and right to be forgotten(complete erasure)~~
+* ~~All events related to user data are written to the blockchain~~
+* ~~Quorum smart contract that stores the state of processors and controllers~~
+* ~~Processor run mode and controller run mode, with events propagated between nodes through the blockchain smart contract~~
+* ~~Example UI with registration/consent and erasure abilities~~
+* ~~Encryption of all personal data on CG nodes~~
+* ~~Robust integration test suite of CG nodes for both processor and controller mode~~
+* ~~Admin dashboard design + front-end code (configuration, subject & processor status)~~
+* ~~Automataic Quick Start script~~
+* ~~Interactive Quick Start wizard~~
+* ~~Admin dashboard hooked up to controller state via the CG api~~
+* ~~HTTP API support for the remaining GDPR article actions/rights~~
+* ~~More granular controls of consent/revoking of data (ie. which data can be shared specifically)~~
+* Evolving functionalities, upgradability and security in the smart contract
+* ~~End-2-End test suite of controller/processor interactions via blockchain~~
+* Usage of Quorum’s custom privateFor method to whitelist nodes that are privy to specific events
+* ~~SDK for implementing ClearGDPR from your frontend~~
+* ~~Complete documentation~~
+* Drop in wordpress plugin
+* Commercial middleware plugin(s)
+* Stage/Production deploy
+
 # Troubleshooting
 
 See the [Troubleshooting guide](TROUBLESHOOTING.md)
-
-# Roadmap
-
-* ~~CG API supports giving consent and revoking consent(erasure)~~
-* ~~All events are written to the blockchain~~
-* ~~Quorum smart contract that stores client state of processors and controllers~~
-* ~~Processor mode and controller mode is working, with events propagated between nodes through the blockchain smart contract~~
-* ~~A example UI with registration/consent and erasure abilities~~
-* ~~Encryption of all data on CG nodes~~
-* ~~Robust integration test suite of CG nodes for both processor and controller mode~~
-* ~~Admin dashboard design + front-end code (configuration, subject & processor status)~~
-* Automate Quick Start script
-* Interactive Quick Start wizard
-* Admin dashboard hooked up to controller state via the CG api
-* Adding the remaining GDPR article actions/rights
-* More granular controls of consent/revoking of data (ie. which data can be shared specifically)
-* Evolving functionalities, upgradability and security in the smart contract
-* E2E test suite of controller/processor interaction via blockchain
-* Usage of Quorum’s custom privateFor method for whitelisting of nodes that are privy to specific events
-* Fleshing out an SDK for implementing CG interaction from your frontend
-* Drop in wordpress plugin
-* Commercial middleware plugin(s)
 
 # License
 
