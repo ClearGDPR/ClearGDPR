@@ -4,11 +4,17 @@
 
 
 ## Introduction
-ClearGDPR offers front-end SDK and HTTP API to allow your website to manage user personal data according to the GDPR articles. Blockchain technology is used as an immutable audit log.
 
-ClearGDPR can be implemented by 2 different ways:
+ClearGDPR is a backend framework that allows web applications to comply with the new **General Data Protection Regulation - GDPR**. 
+ClearGDPR focuses on data privacy, transparency, integrity and availability for the users of a web application, and applies Blockchain technology to achieve those at a high level.
+ClearGDPR was built on top of Quorum, a Blockchain that extends Ethereum and is focused in privacy. In ClearGDPR, Blockchain technology is used as an immutable audit log.
+ClearGDPR offers a front-end SDK and an HTTP API in order to allow your web application to manage personal user data according to the GDPR articles.
+
+ClearGDPR can be implemented in 2 different ways:
 - ElementSDK (set of ReactJS component - recommended - easiest).
-- API (HTTP API).
+- API (HTTP API). There's a Postman collection to facilitate the initial interaction with the HTTP API.
+
+Finally, ClearGDPR is a containerized solution, applying Docker containers, images, services, volumes and networks.
 
 # Table of contents
 
