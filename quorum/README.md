@@ -12,26 +12,45 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# CG Quorum – The docker image and configuration for Quorum docker containers
+# CG Quorum – The docker image and configuration for Quorum Docker containers
 
 [![Build Status](https://travis-ci.org/ClearGDPR/ClearGDPR.svg?branch=master)](https://travis-ci.org/ClearGDPR/ClearGDPR)
 
+ClearGDPR's Quorum containerized nodes  were based on this project: https://github.com/ConsenSys/quorum-docker-Nnodes/pull/5/files
+
 ## Setting up the environment
 
-The .env.example file contains settings and keys for local development. Some of the values are base64 encoded.
-If you want to update the IPs in `static-nodes.json` (ex. for Kube deployment) you can change the file in templates and then run:
+In the root directory, run:
 
 ```bash
-base64 -i quorum/templates/static-nodes.json
+node setup.js
+```
+As mentioned in the Quick Start guide, this will set a development environment for you.
+
+## Helper commands (used internally)
+
+Usage is described when running the scripts without parameters:
+
+### Creating a Quorum node
+```bash
+$ quorum/scripts/create_node.sh
+Usage of the command:
+quorum/scripts/create_node.sh target_directory constallation_ip geth_ip constellation_port eth_port raft_port rpc_port websocket_port [password]
+   target_directory: subdir under quorum/generated_configs/
+   password: password used to lock / unlock the geth account (optional)
 ```
 
-Before you run `docker/run` make sure you copy the `.env.example` to `.env` in both `quorum/node_1` and `quorum/node_2` directories.
+### Generating environment for a Quorum node
+```bash
+$ quorum/scripts/generate_env_vars.sh
+Usage of the command:
+    quorum/scripts/generate_env_vars.sh target_directory [[target_directory2] ...]
 
-## Maintenance tasks
+Example:
+    quorum/scripts/generate_env_vars.sh node1 node2
+```
 
-### Generating configs:
-
-Resource: https://github.com/ConsenSys/quorum-docker-Nnodes/pull/5/files
+## Generating complete configurations for Quorum nodes
 
 Example commands to generate configs for 2 nodes for AWS/Kubernetes deploy:
 
@@ -49,36 +68,7 @@ quorum/scripts/create_node.sh node1 172.13.0.2 172.13.0.4 9000 30303 50400 8545 
   quorum/scripts/generate_env_vars.sh node1 node2
 ```
 
-### Helper commands docs:
-
-Usage is described when running the scripts without parameter:
-
-```bash
-$ quorum/scripts/create_node.sh
-Usage of the command:
-quorum/scripts/create_node.sh target_directory constallation_ip geth_ip constellation_port eth_port raft_port rpc_port websocket_port [password]
-   target_directory: subdir under quorum/generated_configs/
-   password: password used to lock / unlock the geth account (optional)
-```
-
-```bash
-$ quorum/scripts/generate_env_vars.sh
-Usage of the command:
-    quorum/scripts/generate_env_vars.sh target_directory [[target_directory2] ...]
-
-Example:
-    quorum/scripts/generate_env_vars.sh node1 node2
-```
-
-### Resetting the blockchain
-
-Run:
-
-```bash
-docker/compose down -v
-```
-
-### Getting account private key:
+## Getting account private key:
 
 You can use the command below to get the private key of a node:
 
@@ -93,3 +83,11 @@ docker/compose exec cg node scripts/get-wallet-pk.js test-key.temp.json [PASSWOR
 ```
 
 Then remove the key file.
+
+## Resetting the blockchain
+
+Run:
+
+```bash
+docker/compose down -v
+```
