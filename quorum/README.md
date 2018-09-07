@@ -13,7 +13,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# CG Quorum – The Docker image and configuration for Quorum Docker containers
+# Configuration for the containerized Quorum nodes
 
 [![Build Status](https://travis-ci.org/ClearGDPR/ClearGDPR.svg?branch=master)](https://travis-ci.org/ClearGDPR/ClearGDPR)
 
@@ -51,7 +51,10 @@ Example:
     quorum/scripts/generate_env_vars.sh node1 node2
 ```
 
-## Generating complete configurations for Quorum nodes
+### Starting a Quorum node container
+TODO
+
+## Generating complete configurations (node + environment) for Quorum nodes
 
 Example commands to generate configs for 2 nodes for AWS/Kubernetes deploy:
 
