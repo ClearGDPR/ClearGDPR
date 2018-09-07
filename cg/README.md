@@ -5,6 +5,7 @@
 - [CG – the ClearGDPR framework implementation](#cg--the-cleargdpr-framework-implementation)
   - [Directory structure](#directory-structure)
   - [Initial setup](#initial-setup)
+  - [Build the HTML documentation](#build-the-html-documentation)
     - [Deploy the contract:](#deploy-the-contract)
     - [Create initial processor:](#create-initial-processor)
     - [Seed the processors:](#seed-the-processors)

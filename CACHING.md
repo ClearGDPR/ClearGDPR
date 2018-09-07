@@ -1,3 +1,13 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Caching](#caching)
+  - [Docker cache](#docker-cache)
+  - [Yarn caching](#yarn-caching)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 ## Caching
 
 There are several caching mechanism. They are essential to achieve faster build and execution times.

@@ -1,3 +1,14 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Frontend](#frontend)
+  - [Demo](#demo)
+  - [JS-SDK](#js-sdk)
+  - [Elements SDK](#elements-sdk)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # Frontend 
 
 This package has 3 main sub-packages. We are trying to build a SDK of usable and simple to integrate components. Since different the approaches of implementing and solving the way a Subject request right to control of his own data, strategy followed is to figure out the best flow and then adding the recyclable components to the main SDK.
