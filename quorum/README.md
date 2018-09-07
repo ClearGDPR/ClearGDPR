@@ -13,7 +13,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# CG Quorum – The docker image and configuration for Quorum Docker containers
+# CG Quorum – The Docker image and configuration for Quorum Docker containers
 
 [![Build Status](https://travis-ci.org/ClearGDPR/ClearGDPR.svg?branch=master)](https://travis-ci.org/ClearGDPR/ClearGDPR)
 
