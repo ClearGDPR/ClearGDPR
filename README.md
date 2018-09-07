@@ -9,13 +9,13 @@ ClearGDPR is a backend framework that allows web applications to comply with the
 
 ClearGDPR focuses on data privacy, transparency, integrity and availability for the users of a web application, and applies Blockchain technology to achieve those at a high level.
 
-ClearGDPR was built on top of Quorum, a Blockchain that extends Ethereum and is focused in privacy. In ClearGDPR, Blockchain technology is used as an immutable audit log.
+ClearGDPR was built on top of Quorum, a Blockchain that extends Ethereum and is focused in privacy and transparency. In ClearGDPR, Blockchain technology is used as an immutable audit log.
 
 ClearGDPR offers a front-end SDK and an HTTP API in order to allow your web application to manage personal user data according to the GDPR articles.
 
 ClearGDPR can be implemented in 2 different ways:
-- ElementSDK (set of ReactJS component - recommended - easiest).
-- API (HTTP API). There's a Postman collection to facilitate the initial interaction with the HTTP API.
+- ElementSDK - set of ReactJS component, recommended, simplest.
+- HTTP API - There's a Postman HTTP requests collection to facilitate the initial interaction with the HTTP API.
 
 Finally, ClearGDPR is a containerized solution, applying Docker containers, images, services, volumes and networks.
 
@@ -115,11 +115,16 @@ Coming soon.
 
 ## HTTP API
 ### Example
-The API uses Bearer Authentication. Internally the API uses Jason Web Tokens - JWT, to generate and manage API tokens. Depending of the context (subject, processor or management), the token name can change.
+The API uses "Bearer Authentication", in which the users must bear a valid Jason Web Token - JWT, in order to access the HTTP API.
+The system considers 3 types of users:
+- subject. A user of your website/app who will store his personal data into the website/app.
+- manager. A management user who has admin access to the system in you company.
+- processor. A management user who has admin access to the system in a 3rd party data partner.
 
+Here's an example HTTP request to list all the companies who are 3rd party data partners (a.k.a processors) with your company:
 ```
 curl -X GET \
-  <ClearGDPR_API_URL>/api/subject/access-data \
+  <ClearGDPR_API_URL>/api/subject/processors \
   -H 'Authorization: Bearer <JWT>' \
   -H 'Cache-Control: no-cache' \
   -H 'Content-Type: application/json'
@@ -150,7 +155,7 @@ See the [Troubleshooting guide](TROUBLESHOOTING.md)
 
 * ~~Development deploy~~  
 * ~~HTTP API support for the right to consent and right to be forgotten(complete erasure)~~
-* ~~All events related to user data are written to the blockchain~~
+* ~~All events related to users data are written succesfully to the blockchain~~
 * ~~Quorum smart contract that stores the state of processors and controllers~~
 * ~~Processor run mode and controller run mode, with events propagated between nodes through the blockchain smart contract~~
 * ~~Example UI with registration/consent and erasure abilities~~
@@ -162,14 +167,14 @@ See the [Troubleshooting guide](TROUBLESHOOTING.md)
 * ~~Admin dashboard hooked up to controller state via the CG api~~
 * ~~HTTP API support for the remaining GDPR article actions/rights~~
 * ~~More granular controls of consent/revoking of data (ie. which data can be shared specifically)~~
-* Evolving functionalities, upgradability and security in the smart contract
 * ~~End-2-End test suite of controller/processor interactions via blockchain~~
-* Usage of Quorum’s custom privateFor method to whitelist nodes that are privy to specific events
 * ~~SDK for implementing ClearGDPR from your frontend~~
-* ~~Complete documentation~~
+* Evolving functionalities, upgradability and security in the smart contract
+* Stage/Production deploy
+* Usage of Quorum’s custom privateFor method to whitelist nodes that are privy to specific events
+* Complete documentation
 * Drop in wordpress plugin
 * Commercial middleware plugin(s)
-* Stage/Production deploy
 
 # License
 
