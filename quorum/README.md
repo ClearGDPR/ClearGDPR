@@ -73,13 +73,13 @@ quorum/scripts/create_node.sh node1 172.13.0.2 172.13.0.4 9000 30303 50400 8545 
 You can use the command below to get the private key of a node:
 
 ```bash
-docker/compose exec geth1 /bin/sh -c "cat /qdata/dd/keystore/*"
+docker-compose exec geth1 /bin/sh -c "cat /qdata/dd/keystore/*"
 ```
 
 Save the output to a file in `cg/` subdirector, ex. `cg/test-key.temp.json`, and then run:
 
 ```bash
-docker/compose exec cg node scripts/get-wallet-pk.js test-key.temp.json [PASSWORD FROM .env - default is empty]
+docker-compose exec cg node scripts/get-wallet-pk.js test-key.temp.json [PASSWORD FROM .env - default is empty]
 ```
 
 Then remove the key file.
@@ -89,5 +89,5 @@ Then remove the key file.
 Run:
 
 ```bash
-docker/compose down -v
+docker-compose down -v
 ```
