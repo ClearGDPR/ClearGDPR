@@ -75,8 +75,11 @@ project root
 
 # Requirements
 - NodeJS v7.6+
+- Yarn
 - Docker
-- Docker-compose
+- Docker-Compose
+
+Before proceeding, follow the [installation guide](https://github.com/ClearGDPR/ClearGDPR/blob/master/INSTALL.md) to install all requirements.
 
 # Quick Start
 The `docker-compose.yml` contains configuration for a reference development environment of one Data Controller and one Data Processor and all required dependencies.
