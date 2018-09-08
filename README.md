@@ -139,7 +139,7 @@ Soon.
 # Further reading
 
 Each part of the project has additional README documentation in its subfolder:
-* [Quorum image and tools README](quorum/README.md)
+* [Quorum nodes README](quorum/README.md)
 * [ClearGDPR (CG) API README](cg/README.md)
 * [Docker definitions README](docker/README.md)
 * [Demo backend README](api/README.md)
