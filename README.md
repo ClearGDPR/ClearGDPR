@@ -100,7 +100,7 @@ Docker is used for each part of the project, you can run all of them in watch (w
 ```
 docker/run
 ```
-Please make sure you ran `node setup` before.
+Please make sure you ran `node setup.js` before.
 
 # Integrations
 
