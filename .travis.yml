@@ -26,19 +26,19 @@ stages:
   
 jobs:
   include:
-    - stage: test
+    - stage: test # Run the tests
       script: 
         - make -C admin dist || travis_terminate 1
         - make -C frontend dist || travis_terminate 1
         - docker/test
-    - stage: publish
+    - stage: publish # Publish images to Docker Hub
       if: tag =~ ^(\d*\.)+\d*$
       script:
         - touch cg/.yarn-cache.tgz admin/.yarn-cache.tgz api/.yarn-cache.tgz frontend/.yarn-cache.tgz
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - echo "Building and pushing docker images v$VERSION"
         - travis/publish.sh || travis_terminate 1
-    - stage: deploy
+    - stage: deploy # Creates a kubeDef.json file and deploys it using kubernetes
       if: tag =~ ^(\d*\.)+\d*$
       script:
         - cd website && yarn && NODE_ENV=production yarn build && cd ..

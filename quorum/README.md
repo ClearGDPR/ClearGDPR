@@ -2,22 +2,24 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [CG Quorum – The docker image and configuration for Quorum Docker containers](#cg-quorum--the-docker-image-and-configuration-for-quorum-docker-containers)
+- [Configuration for the Quorum nodes](#configuration-for-the-quorum-nodes)
   - [Setting up the environment](#setting-up-the-environment)
   - [Helper commands (used internally)](#helper-commands-used-internally)
     - [Creating a Quorum node](#creating-a-quorum-node)
     - [Generating environment for a Quorum node](#generating-environment-for-a-quorum-node)
-  - [Generating complete configurations for Quorum nodes](#generating-complete-configurations-for-quorum-nodes)
-  - [Getting account private key:](#getting-account-private-key)
+  - [Generating complete configurations (node + environment) for Quorum nodes](#generating-complete-configurations-node--environment-for-quorum-nodes)
+  - [Getting account private key](#getting-account-private-key)
   - [Resetting the blockchain](#resetting-the-blockchain)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-# Configuration for the containerized Quorum nodes
+# Configuration for the Quorum nodes
 
 [![Build Status](https://travis-ci.org/ClearGDPR/ClearGDPR.svg?branch=master)](https://travis-ci.org/ClearGDPR/ClearGDPR)
 
-ClearGDPR's Quorum containerized nodes  were based on this project: https://github.com/ConsenSys/quorum-docker-Nnodes/pull/5/files
+ClearGDPR's Quorum nodes are containerized with Docker containers. 
+The Quorum node Docker containers were based on this project:
+https://github.com/ConsenSys/quorum-docker-Nnodes/pull/5/files
 
 ## Setting up the environment
 
@@ -50,9 +52,6 @@ Usage of the command:
 Example:
     quorum/scripts/generate_env_vars.sh node1 node2
 ```
-
-### Starting a Quorum node container
-TODO
 
 ## Generating complete configurations (node + environment) for Quorum nodes
 
