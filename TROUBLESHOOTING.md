@@ -25,16 +25,17 @@ Also, have [Docker](https://docs.docker.com/install/) and [Docker Compose](https
 * `docker volume ls`: To see all volumes.
 * `docker inspect $CONTAINER_NAME`: Provide details on the container configuration, including the mounted volumes (See `Mounts` section).
 * `docker exec -it $CONTAINER_NAME bash`: Get a shell (command line interface) in the container.
+* `docker-compose exec $SERVICE_NAME bash`: Get a shell (command line interface) in a service's container.
 
-Here's a [complete list of Docker commands](https://docs.docker.com/engine/reference/commandline/docker/#child-commands).
+Here's a [complete list of Docker commands](https://docs.docker.com/engine/reference/commandline/docker/#child-commands) and a [complete list of Docker-Compose commands](https://docs.docker.com/compose/reference/).
 
 ## IMPORTANT NOTE
 
 Most issues are fixed by resetting the containers environment. In order to do that, remove the project's containers, images, volumes and networks with the following command:
 
-* `docker-compose down -v --rmi all`: Stops all running services, and also removes their containers, images, networks and volumes.
+* `docker-compose down -v --rmi`: Stops all running services, and also removes their containers, images, networks and volumes.
 
-You can check if all containers, images, networks and volumes were succesfully removed with these commands:
+You can check if all containers, images, networks and volumes related to ClearGDPR were succesfully removed with these commands:
 
 * `docker container ls --all`: To see all containers, both running and not running.
 * `docker image ls --all`: To see all images.
@@ -48,13 +49,6 @@ If any of those was not removed properly, then try forcing the removal with the 
 * `docker network rm $NETWORK_NAME`: Removes one or more networks. There's no need to force the removal of networks. Note that there are 3 default networks that can't be removed.
 * `docker volume rm $VOLUME_NAME --force`: Forcefully removes one or more volumes.
 
-Or remove all dangling Docker artifacts with:
-
-* `docker container rm $(docker container ls --all --quiet --filter "status=exited")`: Removes exited Docker containers.
-* `docker image rm $(docker image ls --all --quiet --filter "dangling=true")`: Removes all dangling images.
-* `docker network prune`: Removes all dangling networks.
-* `docker volume rm $(docker volume ls --quiet --filter "dangling=true")`: Removes all dangling volumes.
-
 Or yet, forcefully remove all of them at once with:
 
 * `docker container rm $(docker container ls --all --quiet) --force`: Forcefully removes all containers.
@@ -62,10 +56,11 @@ Or yet, forcefully remove all of them at once with:
 * `docker network rm $(docker network ls --quiet)`: Removes all networks. There's no need to forcefully remove networks.
 * `docker volume rm $(docker volume ls --quiet) --force`: Forcefully removes all volumes.
 
-After all containers, images, networks and volumes related to the project were succesfully removed, reinitiate the system with:
+After all containers, images, networks and volumes related to ClearGDPR were succesfully removed, reinitiate the system with:
 
 * `docker/run`
 
+The above command will pull all images and rebuild the containers, networks and volumes required for ClearGDPR.
 If an error persists, proceed to the next section.
 
 ## COMMON ISSUES
@@ -78,21 +73,7 @@ Try resetting to factory defaults in the Docker menu (settings).
 
 **ERROR: No such file or directory**
 
-Don't try to run the command `docker-compose up`, instead always run: `docker/run` from the project root directory.
-
-**Docker-compose not working properly**
-
-If your Docker-compose is not finding a running service or not executing a command properly, then try prepending the following into your Docker-compose command:
-
-`COMPOSE_PROJECT_NAME=cleargdpr`
-
-Example Docker-compose command with the above prepended:
-
-`COMPOSE_PROJECT_NAME=cleargdpr docker-compose ps`
-
-This specifies the current target project for Docker-compose.
-
-If the error persists, try changing the version of your Docker-compose. 
+Don't try to run the command `docker-compose up`, instead always run: `docker/run` from the project root directory. 
 
 **Problems with dependencies**
 
@@ -103,14 +84,15 @@ If the issue persists, start the servers with `docker/run`, open another termina
 
 Try running `yarn install` in the root directory. This is a dependecy issue.
 
-**ERROR: Couldn't find env file**
-
-Copy the .env.example files into .env files in the following drectories: /api, /og, /quorum/node_1, /quorum/node_2. 
-Note that there are 3 .env.example files in /og, copy all of them with the same name, removing the .example in the end.
 
 **ERROR: An HTTP request took too long to complete**
 
-Simply try tunning `docker-run` again. This error means building the system took too long.
+Try running `docker-run` again. This error means building the system took too long.
+You can also increase the building time for the system through the COMPOSE_HTTP_TIMEOUT environment variable. You can set the variable in your preferred terminal. If using bash:
+
+`export COMPOSE_HTTP_TIMEOUT=300`
+
+Or put that line in you terminal configuration file, which is `~/.bashrc` for a user's bash.
 
 ## IF NOTHING WORKS
 

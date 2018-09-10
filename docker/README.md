@@ -8,7 +8,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Docker Configuration
+## Docker configuration
 
 This project is based on Docker/Docker-Compose for local development.
 
@@ -21,3 +21,14 @@ Scripts `docker/run` are meant to be called directly during local development fr
 Contains Dockerfiles and accessory file for Docker images that are not built by us at ClearGDPR
 
 * `postgres` is used during local development. Databases for server environments are usually not on Docker.
+
+## Removing unused Docker artifacts
+
+You can remove all dangling, a.k.a. unused, Docker artifacts with:
+
+* `docker container rm $(docker container ls --all --quiet --filter "status=exited")`: Removes exited Docker containers.
+* `docker image rm $(docker image ls --all --quiet --filter "dangling=true")`: Removes all dangling images.
+* `docker network prune`: Removes all dangling networks.
+* `docker volume rm $(docker volume ls --quiet --filter "dangling=true")`: Removes all dangling volumes.
+
+These commands are useful running on setups with low storage memory.

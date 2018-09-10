@@ -3,7 +3,7 @@ const fs = require('fs');
 let [deploymentType] = process.argv.slice(2);
 
 const REPO = 'cleargdpr';
-const QUORUM_VERSION = '0.0.1';
+const QUORUM_VERSION = '0.0.2';
 
 const VERSION = process.env.VERSION || 'latest';
 

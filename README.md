@@ -57,26 +57,26 @@ Finally, ClearGDPR is a containerized solution, applying Docker containers, imag
 
 ```
 project root
-├─ lib
-  ├─ api (cg)                 # Code for the ClearGDPR API implementation
+├─ admin                      # Admin UI to manage the controller
+├─ api                        # Code for the ClearGDPR API implementation
+├─ cg                         # Code for the ClearGDPR API implementation
+├─ docker                     # Helpers for docker run, stop, start.
+├─ frontend                   # demo front-end integrating ClearGDPR ElementSDK
+├─ packages
   ├─ js-sdk                   # Code for the ClearGDPR JS SDK implementation
   └─ element-sdk              # Code for the ClearGDPR ElementSDK implementation
-├─ ui
-  └─ admin                    # Admin UI to manage the controller
-├─ tools
-  ├─ quorum                   # Blockchain related docker images and helper tools
-  ├─ docker                   # Helpers for docker run, stop, start.
-├─ demo
-  ├─ back-end                 # demo back-end integrating ClearGDPR API
-  └─ front-end                # demo front-end integrating ClearGDPR ElementSDK
-├─ website                    # ClearGDPR public website
+├─ quorum                     # Blockchain related docker images and helper tools
 ├─ travis                     # Scripts used on the CI server
+├─ website                    # ClearGDPR public website
 ```
 
 # Requirements
 - NodeJS v7.6+
+- Yarn
 - Docker
-- Docker-compose
+- Docker-Compose
+
+Before proceeding, follow the [installation guide](https://github.com/ClearGDPR/ClearGDPR/blob/master/INSTALL.md) to install all requirements.
 
 # Quick Start
 The `docker-compose.yml` contains configuration for a reference development environment of one Data Controller and one Data Processor and all required dependencies.
@@ -97,7 +97,7 @@ Docker is used for each part of the project, you can run all of them in watch (w
 ```
 docker/run
 ```
-Please make sure you ran `node setup` before.
+Please make sure you ran `node setup.js` before.
 
 # Integrations
 
@@ -139,7 +139,7 @@ Soon.
 # Further reading
 
 Each part of the project has additional README documentation in its subfolder:
-* [Quorum image and tools README](quorum/README.md)
+* [Quorum nodes README](quorum/README.md)
 * [ClearGDPR (CG) API README](cg/README.md)
 * [Docker definitions README](docker/README.md)
 * [Demo backend README](api/README.md)
