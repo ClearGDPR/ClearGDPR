@@ -2,6 +2,10 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+- [A brief introduction to the Quorum architecture](#a-brief-introduction-to-the-quorum-architecture)
+- [Interacting with the Quorum nodes](#interacting-with-the-quorum-nodes)
+  - [Opening bash shells in the Geth and Constellation containers](#opening-bash-shells-in-the-geth-and-constellation-containers)
+  - [Opening a JavaScript interactive console in the Geth nodes](#opening-a-javascript-interactive-console-in-the-geth-nodes)
 - [Configuration for the Quorum nodes](#configuration-for-the-quorum-nodes)
   - [Setting up the environment](#setting-up-the-environment)
   - [Helper commands (used internally)](#helper-commands-used-internally)
@@ -12,6 +16,63 @@
   - [Resetting the blockchain](#resetting-the-blockchain)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# A brief introduction to the Quorum architecture
+
+Each Quorum node is composed of a Geth node and a Contellation node. The Geth node is an Ethereum node implemented in Go and slightly modified in Quorum to support privacy features. The Constellation node is a message broker/manager that encrypts and routes messages to other Constellation nodes. The Constellation node is itself composed of the transaction manager, which routes the transactions to its proper recipients, and the Enclave, responsible for holding cryptographic keys and encrypting the transactions. 
+So the Quorum architecture in ClearGDPR looks like this:
+
+  - Quorum node
+    - Geth node
+    - Constellation node
+      - Transaction manager
+      - Enclave
+
+# Interacting with the Quorum nodes
+
+## Opening bash shells in the Geth and Constellation containers 
+
+Both the Geth node and the Constellation node run inside their own Docker containers. It is possible to interact with the Geth and Constellation containers by opening a bash shell in them:
+
+```bash
+docker-compose exec geth1 bash
+```
+
+Switch ```geth1``` for ```constellation1``` to open a bash in the constellation container instead.
+Inside a Geth or Constellation shell, it's possible to see which files are on the container. Remembering that these containers are Ubuntu 16.04 Linux with only the dependencies required for Geth or Constellation to run in them. 
+In particular, the directories ```/scripts``` and ```/qdata``` are important, as they contain the changes made on top of the basic Ubuntu 16.04 filesystem. You should take a look around these directories to get familiarized with them.
+
+## Opening a JavaScript interactive console in the Geth nodes
+
+Furthermore, you can open an interactive JS console in a Geth node with the command bellow if you are already inside a Geth's bash:
+
+```bash
+geth attach ws://quorum1:8546
+``` 
+
+The command above opens a JS interactive console in Quorum node 1 via a websocket port.
+Or if you are not inside a Geth's bash:
+
+```bash
+docker-compose exec geth1 geth attach ws://quorum1:8546
+```
+
+When inside the JS interactive console, you should see the management Application Programming Interfaces - APIs, available:
+
+  - admin
+  - db
+  - eth
+  - debug
+  - miner 
+  - net
+  - shh
+  - txpool
+  - personal
+  - web3
+  - raft
+
+All of the management APIs are set to be available in ClearGDPR. 
+More information on the management APIs, except raft which is Quorum only, can be found in the [Ethereum's Github repo wiki](https://github.com/ethereum/go-ethereum/wiki/Management-APIs). About the raft API, more can be found in the [Quorum's Github repo docs](https://github.com/jpmorganchase/quorum/blob/master/raft/doc.md).
 
 # Configuration for the Quorum nodes
 
