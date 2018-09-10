@@ -57,20 +57,17 @@ Finally, ClearGDPR is a containerized solution, applying Docker containers, imag
 
 ```
 project root
-├─ lib
-  ├─ api (cg)                 # Code for the ClearGDPR API implementation
+├─ admin                      # Admin UI to manage the controller
+├─ api                        # Code for the ClearGDPR API implementation
+├─ cg                         # Code for the ClearGDPR API implementation
+├─ docker                     # Helpers for docker run, stop, start.
+├─ frontend                   # demo front-end integrating ClearGDPR ElementSDK
+├─ packages
   ├─ js-sdk                   # Code for the ClearGDPR JS SDK implementation
   └─ element-sdk              # Code for the ClearGDPR ElementSDK implementation
-├─ ui
-  └─ admin                    # Admin UI to manage the controller
-├─ tools
-  ├─ quorum                   # Blockchain related docker images and helper tools
-  ├─ docker                   # Helpers for docker run, stop, start.
-├─ demo
-  ├─ back-end                 # demo back-end integrating ClearGDPR API
-  └─ front-end                # demo front-end integrating ClearGDPR ElementSDK
-├─ website                    # ClearGDPR public website
+├─ quorum                     # Blockchain related docker images and helper tools
 ├─ travis                     # Scripts used on the CI server
+├─ website                    # ClearGDPR public website
 ```
 
 # Requirements
