@@ -8,7 +8,7 @@ pwd=`pwd`
 
 if [ "$1" = "" ] || [ "$2" = "" ] || [ "$3" = "" ] || [ "$4" = "" ] || [ "$5" = "" ] || [ "$6" = "" ] || [ "$7" = "" ] || [ "$8" = "" ] ; then
     echo "Usage of the command:"
-    echo "    quorum/scripts/create_node.sh target_directory constellation_ip geth_ip constellation_port eth_port raft_port websocket_port [password]"
+    echo "    quorum/scripts/create_node.sh target_directory constellation_ip geth_ip constellation_port eth_port raft_port rpc_port websocket_port [password]"
     echo "    target_directory: subdir under quorum/generated_configs/"
     echo ""
     echo "Example:"
