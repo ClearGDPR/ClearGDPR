@@ -1,5 +1,5 @@
-// this version creates the environment for our Kubernetes pods in AWS.
-// That is required to deploy the demo websites
+// This version creates the environment for our Kubernetes pods in AWS.
+// The environment is required to deploy the demo websites
 
 const crypto = require('crypto');
 const exec = require('child_process').execSync;

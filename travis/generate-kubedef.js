@@ -14,8 +14,10 @@ const KUBE_NS = 'open-gdpr-dev';
 const QUORUM_IMAGE = 'quorum';
 const KUBE_QUORUM_DEPLOYMENT = 'open-gdpr-quorum-dev';
 const KUBE_CONSTELLATION1_CONTAINER = 'constellation1';
-const KUBE_CONSTELLATION2_CONTAINER = 'constellation2';
 const KUBE_GETH1_CONTAINER = 'geth1';
+
+const QUORUM_IMAGE_PROCESSOR = 'quorum_processor';
+const KUBE_CONSTELLATION2_CONTAINER = 'constellation2';
 const KUBE_GETH2_CONTAINER = 'geth2';
 
 const CG_IMAGE = 'cg';
@@ -58,14 +60,14 @@ const quorum2Modules = [
     ns: KUBE_NS,
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_CONSTELLATION2_CONTAINER,
-    image: `${REPO}/${QUORUM_IMAGE}`,
+    image: `${REPO}/${QUORUM_IMAGE_PROCESSOR}`,
     tag: QUORUM_VERSION
   },
   {
     ns: KUBE_NS,
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_GETH2_CONTAINER,
-    image: `${REPO}/${QUORUM_IMAGE}`,
+    image: `${REPO}/${QUORUM_IMAGE_PROCESSOR}`,
     tag: QUORUM_VERSION
   }
 ];
