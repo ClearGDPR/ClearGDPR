@@ -1,7 +1,7 @@
 {
   "name": "@cleargdpr/js-sdk",
   "description": "ClearGDPR JS SDK",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "scripts": {
     "build": "node scripts/build.js",
     "test": "echo \"Error: no test specified\" && exit 1"
