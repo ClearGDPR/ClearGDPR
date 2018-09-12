@@ -1,7 +1,7 @@
 {
   "name": "@cleargdpr/elements",
   "description": "ClearGDPR Elements SDK",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
@@ -13,7 +13,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@cleargdpr/js-sdk": "^1.0.0",
+    "@cleargdpr/js-sdk": "^1.1.5",
     "autoprefixer": "7.1.2",
     "cache-loader": "^1.2.2",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
