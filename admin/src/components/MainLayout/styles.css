@@ -315,6 +315,7 @@ td:before {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  flex-grow: 12;
 }
 
 .col-2 {

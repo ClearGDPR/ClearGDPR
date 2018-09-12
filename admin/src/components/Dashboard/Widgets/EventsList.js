@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import format from 'helpers/date-formatter';
+import Card from 'components/core/cards/dashboard/Card';
 import TableCard from 'components/core/cards/dashboard/TableCard';
 import Event from './Event';
 
@@ -24,7 +25,15 @@ const EventsList = ({ events, connected, errorState }) => {
     tag = <span className="tag is-light">Disconnected</span>;
   }
 
-  return <TableCard columns={columns} rows={rows} title={<p>Events {tag}</p>} />;
+  return events.length > 0 ? (
+    <TableCard columns={columns} rows={rows} title={<p>Events {tag}</p>} />
+  ) : (
+    <Card title={<p>Events {tag}</p>}>
+      <div className="content">
+        <i>No events where registered</i>
+      </div>
+    </Card>
+  );
 };
 
 EventsList.propTypes = {
