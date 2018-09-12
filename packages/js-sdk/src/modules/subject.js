@@ -19,7 +19,7 @@ export default class Subject extends ResourceBase {
 
   updateObjection(restrictProcessing) {
     const method = 'POST';
-    return this.request(`${SUBJECT}/object`, {
+    return this.request(`${SUBJECT}/objection`, {
       method,
       payload: { objection: restrictProcessing }
     });
