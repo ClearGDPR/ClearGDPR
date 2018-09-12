@@ -15,9 +15,9 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@cleargdpr/elements@^1.0.0":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@cleargdpr/elements/-/elements-1.0.3.tgz#62c0bee4e9be2b1e37c62989b0365f6e5d2f6491"
+"@cleargdpr/elements@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@cleargdpr/elements/-/elements-1.0.4.tgz#4cd1088f9b33b989120a59969921a413fe25bc09"
   dependencies:
     "@cleargdpr/js-sdk" "^1.0.0"
     autoprefixer "7.1.2"
@@ -66,9 +66,43 @@
     webpack-manifest-plugin "1.2.1"
     whatwg-fetch "2.0.3"
 
-"@cleargdpr/js-sdk@^1.0.0", "@cleargdpr/js-sdk@^1.1.3":
+"@cleargdpr/js-sdk@^1.0.0":
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/@cleargdpr/js-sdk/-/js-sdk-1.1.4.tgz#df83f07bda3a60a36f3be36855798974f884aa68"
+  dependencies:
+    babel-core "6.25.0"
+    babel-eslint "7.2.3"
+    babel-jest "20.0.3"
+    babel-loader "7.1.1"
+    babel-runtime "6.26.0"
+    chalk "1.1.3"
+    es6-promises "^1.0.10"
+    eslint "4.4.1"
+    eslint-config-prettier "^2.8.0"
+    eslint-loader "1.9.0"
+    eslint-plugin-flowtype "2.35.0"
+    eslint-plugin-import "2.7.0"
+    eslint-plugin-jsx-a11y "5.1.1"
+    eslint-plugin-prettier "^2.4.0"
+    extract-text-webpack-plugin "3.0.0"
+    file-loader "0.11.2"
+    file-saver "^1.3.8"
+    fs-extra "3.0.1"
+    isomorphic-fetch "^2.2.1"
+    jest "20.0.4"
+    lodash "^4.17.10"
+    object-assign "4.1.1"
+    prettier "^1.8.2"
+    promise "8.0.1"
+    raf "^3.4.0"
+    react-dev-utils "^4.1.0"
+    webpack "^4.17.1"
+    webpack-manifest-plugin "1.2.1"
+    whatwg-fetch "2.0.3"
+
+"@cleargdpr/js-sdk@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@cleargdpr/js-sdk/-/js-sdk-1.1.5.tgz#37a5dd65e77e93651cbd33d085fdae3ef1895d46"
   dependencies:
     babel-core "6.25.0"
     babel-eslint "7.2.3"

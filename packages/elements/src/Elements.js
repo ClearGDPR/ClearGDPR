@@ -40,7 +40,7 @@ export default class Elements {
   /**
    * Return a new Element
    */
-  element(elementOptions) {
+  static element(elementOptions) {
     return Element.create({ ...elementOptions });
   }
 }
