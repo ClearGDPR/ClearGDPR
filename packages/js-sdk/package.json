@@ -46,5 +46,6 @@
     "eslint-import-resolver-babel-module": "4.0.0",
     "eslint-plugin-jest": "^21.17.0",
     "uglifyjs-webpack-plugin": "^1.3.0"
-  }
+  },
+  "gitHead": "86657c3970f16fede20abeeac6093f8727ecff1c"
 }
