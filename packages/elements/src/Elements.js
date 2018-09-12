@@ -45,4 +45,4 @@ export class Elements {
   }
 }
 
-export default Elements();
+export default new Elements();

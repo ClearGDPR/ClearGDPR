@@ -15,9 +15,9 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@cleargdpr/elements@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@cleargdpr/elements/-/elements-1.0.5.tgz#579acc8e0ff72940170ebe40623cf673d8bc16ee"
+"@cleargdpr/elements@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@cleargdpr/elements/-/elements-1.0.6.tgz#962f1bf497f1dcb414b97bf634eee216e292fcf7"
   dependencies:
     "@cleargdpr/js-sdk" "^1.1.6"
     autoprefixer "7.1.2"
