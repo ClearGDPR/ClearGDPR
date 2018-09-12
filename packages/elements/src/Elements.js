@@ -21,7 +21,7 @@ export default class Elements {
     }
     if (document.readyState === 'complete') {
       doRender();
-      } else {
+    } else {
       window.addEventListener('load', () => {
         doRender();
       });
@@ -44,5 +44,3 @@ export default class Elements {
     return Element.create({ ...elementOptions });
   }
 }
-
-export default new Elements();
