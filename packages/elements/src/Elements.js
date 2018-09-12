@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Element from './Element';
 import ElementsContainer from './containers/Elements';
 
-export default class Elements {
+export class Elements {
   static el;
 
   static mount() {
@@ -40,7 +40,9 @@ export default class Elements {
   /**
    * Return a new Element
    */
-  static element(elementOptions) {
+  element(elementOptions) {
     return Element.create({ ...elementOptions });
   }
 }
+
+export default Elements();
