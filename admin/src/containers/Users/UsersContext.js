@@ -62,7 +62,7 @@ export class UsersProvider extends Component {
   };
 
   _getUsers() {
-    return internalFetch(`${config.API_URL}/api/management/users/list`);
+    return internalFetch(`${config.API_URL}/api/management/users`);
   }
 
   _registerUser(username, password) {

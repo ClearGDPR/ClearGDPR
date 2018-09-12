@@ -67,7 +67,11 @@ const Rectifications = ({
     return (
       <React.Fragment>
         <div className="content">
-          <Table rows={data} columns={columns()} actions={actions({ onDetailsClick })} />
+          {data.length > 0 ? (
+            <Table rows={data} columns={columns()} actions={actions({ onDetailsClick })} />
+          ) : (
+            <i>No Pending Requests Registered</i>
+          )}
         </div>
         <div className="content">{renderPagination()}</div>
       </React.Fragment>
@@ -78,11 +82,15 @@ const Rectifications = ({
     return (
       <React.Fragment>
         <div className="content">
-          <Table
-            rows={data}
-            columns={columns({ showStatus: true })}
-            actions={actions({ onDetailsClick })}
-          />
+          {data.length > 0 ? (
+            <Table
+              rows={data}
+              columns={columns({ showStatus: true })}
+              actions={actions({ onDetailsClick })}
+            />
+          ) : (
+            <i>No Requests Archieved</i>
+          )}
         </div>
         <div className="content">{renderPagination()}</div>
       </React.Fragment>

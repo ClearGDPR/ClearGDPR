@@ -22,4 +22,8 @@ Card.propTypes = {
   children: PropTypes.element
 };
 
+Card.defaultProps = {
+  cols: 12
+};
+
 export default Card;

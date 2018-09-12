@@ -4,15 +4,15 @@ exports[`(Container) Dashboard Should render without an error 1`] = `
 <section
   className="cards"
 >
-  <SubjectsListContainer />
-  <EventsListContainer
-    pageSize={20}
-    webSocketUrl="ws://localhost:8082/api/management/events/feed"
-  />
   <div
     className="row"
   >
     <[object Object] />
   </div>
+  <SubjectsListContainer />
+  <EventsListContainer
+    pageSize={20}
+    webSocketUrl="ws://localhost:8082/api/management/events/feed"
+  />
 </section>
 `;
