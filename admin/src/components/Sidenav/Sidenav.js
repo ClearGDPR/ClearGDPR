@@ -28,16 +28,23 @@ const Sidenav = props => {
         <Icon name="processors" src={IconProcessors} />Processors
       </NavLink>
       <NavLink to="/rectifications">
-        <i className="material-icons">done_all</i>Rectifications
+        <i style={{ marginRight: '1rem', fontSize: 16 }} className="ui-action icon material-icons">
+          done_all
+        </i>Rectifications
       </NavLink>
       {/* <NavLink to="/data-attributes">Data attributes</NavLink> */}
       <NavLink to="/users">
-        <i className="material-icons">supervised_user_circle</i>Users
+        <i style={{ marginRight: '1rem', fontSize: 16 }} className="material-icons">
+          supervised_user_circle
+        </i>Users
       </NavLink>
       <p>
         <small className="label">Account</small>
       </p>
       <a href={'#logout'} onClick={handleLogoutClick}>
+        <i style={{ marginRight: '1rem', fontSize: 16 }} className="ui-action icon material-icons">
+          keyboard_backspace
+        </i>
         Logout
       </a>
     </nav>
