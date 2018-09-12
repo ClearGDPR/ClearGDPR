@@ -58,7 +58,8 @@ class Stats extends Component {
 Stats.propTypes = {
   stats: PropTypes.object,
   fetchStats: PropTypes.func,
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
+  onClick: PropTypes.func
 };
 
 export default class Dashboard extends Component {
