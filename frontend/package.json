@@ -1,9 +1,9 @@
 {
   "name": "@cleargdpr/demo-frontend",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "dependencies": {
-    "@cleargdpr/elements": "^1.0.6",
+    "@cleargdpr/elements": "^1.0.7",
     "@cleargdpr/js-sdk": "^1.1.6",
     "autoprefixer": "7.1.2",
     "babel-core": "6.25.0",
