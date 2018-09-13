@@ -22,7 +22,9 @@ class Processor extends React.PureComponent {
         </div>
         <div className={styles.description}>{processor.description}</div>
         <ul className={styles.scopes}>
-          {processor.scopes.map((scope, index) => <li key={index}>{scope}</li>)}
+          {processor.scopes.map((scope, index) => (
+            <li key={index}>{scope}</li>
+          ))}
         </ul>
       </div>
     );
