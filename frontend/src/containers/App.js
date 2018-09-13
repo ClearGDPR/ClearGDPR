@@ -8,6 +8,7 @@ class App extends Component {
   render() {
     const { props } = this;
     const isGuest = !localStorage.getItem('cgToken');
+
     return (
       <SubjectProvider>
         <nav className="navbar is-white" aria-label="main navigation">
@@ -18,25 +19,25 @@ class App extends Component {
           </div>
           <div className="navbar-menu">
             <div className="navbar-start">
-              {isGuest
-                ? [
-                    <div className="navbar-item" key="login">
-                      <Link to="/login" className="navbar-item">
-                        Login
-                      </Link>
-                    </div>,
-                    <div className="navbar-item" key="signup">
-                      <Link to="/sign-up" className="navbar-item">
-                        Sign up
-                      </Link>
-                    </div>
-                  ]
-                : null}
-              <div className="navbar-item">
-                <Link to="/shares" className="navbar-item">
-                  Shares
-                </Link>
-              </div>
+              {isGuest && [
+                <div className="navbar-item" key="login">
+                  <Link to="/login" className="navbar-item">
+                    Login
+                  </Link>
+                </div>,
+                <div className="navbar-item" key="signup">
+                  <Link to="/sign-up" className="navbar-item">
+                    Sign up
+                  </Link>
+                </div>
+              ]}
+              {!isGuest && (
+                <div className="navbar-item">
+                  <Link to="/shares" className="navbar-item">
+                    Shares
+                  </Link>
+                </div>
+              )}
             </div>
             <div className="navbar-end">
               <div className="navbar-item">
@@ -57,15 +58,16 @@ class App extends Component {
                     </p>
                   </div>
                 )}
-                {!props.user && (
-                  <div className="field is-grouped">
-                    <p className="control">
-                      <Link to="/profile" className="navbar-item button is-primary">
-                        Your data
-                      </Link>
-                    </p>
-                  </div>
-                )}
+                {!isGuest &&
+                  props.user && (
+                    <div className="field is-grouped">
+                      <p className="control">
+                        <Link to="/profile" className="navbar-item button is-primary">
+                          Your data
+                        </Link>
+                      </p>
+                    </div>
+                  )}
               </div>
             </div>
           </div>
