@@ -2,21 +2,30 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-- [Docker Configuration](#docker-configuration)
+- [Docker configuration](#docker-configuration)
   - [Entry points](#entry-points)
   - [Directory `definitions`](#directory-definitions)
+  - [Removing unused Docker artifacts](#removing-unused-docker-artifacts)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Docker configuration
+# Docker configuration
 
 This project is based on Docker/Docker-Compose for local development.
+All the Docker images used in ClearGDPR can be found in Docker Hub, in [ClearGDPR's organization repository](https://hub.docker.com/u/cleargdpr/). For reference, here's a list of the Docker images present in the project:
 
-### Entry points
+  - cleargdpr/quorum (data controller image)
+  - cleargdpr/quorum_processor (data processor image)
+  - cleargdpr/cg (HTTP server, which hosts the HTTP API, image)
+  - cleargdpr/demo-api (image for a ClearGDPR example client web application)
+  - cleargdpr/demo-frontend (image for the data subjects web application)
+  - cleargdpr/admin (image for the management web application)
+
+## Entry points
 
 Scripts `docker/run` are meant to be called directly during local development from the root directory.
 
-### Directory `definitions`
+## Directory `definitions`
 
 Contains Dockerfiles and accessory file for Docker images that are not built by us at ClearGDPR
 

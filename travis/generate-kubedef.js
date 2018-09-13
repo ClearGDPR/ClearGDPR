@@ -4,6 +4,7 @@ let [deploymentType] = process.argv.slice(2);
 
 const REPO = 'cleargdpr';
 const QUORUM_VERSION = '0.0.2';
+const QUORUM_PROCESSOR_VERSION = '0.0.2';
 
 const VERSION = process.env.VERSION || 'latest';
 
@@ -61,14 +62,14 @@ const quorum2Modules = [
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_CONSTELLATION2_CONTAINER,
     image: `${REPO}/${QUORUM_IMAGE_PROCESSOR}`,
-    tag: QUORUM_VERSION
+    tag: QUORUM_PROCESSOR_VERSION
   },
   {
     ns: KUBE_NS,
     deployment: KUBE_QUORUM_DEPLOYMENT,
     container: KUBE_GETH2_CONTAINER,
     image: `${REPO}/${QUORUM_IMAGE_PROCESSOR}`,
-    tag: QUORUM_VERSION
+    tag: QUORUM_PROCESSOR_VERSION
   }
 ];
 
