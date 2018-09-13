@@ -67,8 +67,8 @@ class SignUp extends Component {
         <div className="container">
           <div className="columns">
             <div className="column is-two-fifths">
-              <h1 className="title">Give Consent →</h1>
-              <p>Article 13 GDPR Right to restriction of processing</p>
+              <h1 className="title">Right to consent processing →</h1>
+              <p>GDPR Article 13</p>
               <a target="_blank" rel="noopener noreferrer" href="https://gdpr-info.eu/art-13-gdpr/">
                 Go to GDPR article →
               </a>

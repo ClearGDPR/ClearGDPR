@@ -7,7 +7,7 @@ import { SubjectProvider } from '../Elements';
 class App extends Component {
   render() {
     const { props } = this;
-    const isGuest = !localStorage.getItem('cgToken');
+    const isLoggedIn = !!localStorage.getItem('cgToken');
 
     return (
       <SubjectProvider>
@@ -19,7 +19,7 @@ class App extends Component {
           </div>
           <div className="navbar-menu">
             <div className="navbar-start">
-              {!props.user && [
+              {!isLoggedIn && [
                 <div className="navbar-item" key="login">
                   <Link to="/login" className="navbar-item">
                     Sign in
@@ -31,45 +31,29 @@ class App extends Component {
                   </Link>
                 </div>
               ]}
-              {!isGuest &&
-                props.user && (
-                  <div className="navbar-item">
-                    <Link to="/shares" className="navbar-item">
-                      Your shared data
-                    </Link>
-                  </div>
-                )}
             </div>
             <div className="navbar-end">
-              <div className="navbar-item">
-                {props.user && (
-                  <div className="field is-grouped">
-                    <p className="control">
-                      <a className="navbar-item">Hi {props.user.username}</a>
-                    </p>
-                    <p className="control">
-                      <Link to="/account" className="navbar-item button is-primary">
-                        Account
-                      </Link>
-                    </p>
-                    <p>
-                      <a onClick={props.logout} className="navbar-item button">
-                        Log Out
-                      </a>
-                    </p>
+              {isLoggedIn && (
+                <React.Fragment>
+                  <div className="navbar-item">
+                    <Link to="/shares" className="navbar-item">
+                      Your shares
+                    </Link>
                   </div>
-                )}
-                {!isGuest &&
-                  props.user && (
-                    <div className="field is-grouped">
-                      <p className="control">
-                        <Link to="/profile" className="navbar-item button is-primary">
-                          Your data settings
-                        </Link>
-                      </p>
-                    </div>
-                  )}
-              </div>
+
+                  <div className="navbar-item">
+                    <Link to="/profile" className="navbar-item button is-primary">
+                      Your data settings
+                    </Link>
+                  </div>
+
+                  <div className="navbar-item">
+                    <a onClick={props.logout} className="navbar-item button">
+                      Log Out
+                    </a>
+                  </div>
+                </React.Fragment>
+              )}
             </div>
           </div>
         </nav>

@@ -17,7 +17,7 @@ class Share extends React.Component {
             <div className="columns">
               <div className="column is-one-fifth">
                 <h1 className="title">Share your data →</h1>
-                <p>Article 20 GDPR Right to data portability</p>
+                <p>GDPR Article 20</p>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
