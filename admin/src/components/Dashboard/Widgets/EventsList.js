@@ -16,21 +16,24 @@ const EventsList = ({ events, connected, errorState }) => {
     date: format(eventData.time)
   }));
 
-  let tag;
-  if (connected) {
-    tag = <span className="tag is-info">Connected</span>;
-  } else if (errorState) {
-    tag = <span className="tag is-danger">Connection error</span>;
-  } else {
-    tag = <span className="tag is-light">Disconnected</span>;
-  }
+  // TODO: this should be shown as a badge of status
+  // let tag;
+  // if (connected) {
+  //   tag = <span className="tag is-info">Connected</span>;
+  // } else if (errorState) {
+  //   tag = <span className="tag is-danger">Connection error</span>;
+  // } else {
+  //   tag = <span className="tag is-light">Disconnected</span>;
+  // }
+
+  const panelTitle = 'Blockchain Events';
 
   return events.length > 0 ? (
-    <TableCard columns={columns} rows={rows} title={<p>Events {tag}</p>} />
+    <TableCard columns={columns} rows={rows} title={<p>{panelTitle}</p>} />
   ) : (
-    <Card title={<p>Events {tag}</p>}>
+    <Card title={<p>{panelTitle}</p>}>
       <div className="content">
-        <i>No events where registered</i>
+        <i>No events were registered</i>
       </div>
     </Card>
   );
