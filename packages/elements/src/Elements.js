@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Element from './Element';
 import ElementsContainer from './containers/Elements';
 
-export default class Elements {
+export class Elements {
   static el;
 
   static mount() {
@@ -21,7 +21,7 @@ export default class Elements {
     }
     if (document.readyState === 'complete') {
       doRender();
-      } else {
+    } else {
       window.addEventListener('load', () => {
         doRender();
       });
