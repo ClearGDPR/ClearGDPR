@@ -5,6 +5,21 @@ import { Link } from 'react-router-dom';
 import { SubjectProvider } from '../Elements';
 
 class App extends Component {
+  state = {
+    isLoggedIn: false
+  };
+
+  componentDidMount() {
+    const isLoggedIn = !!localStorage.getItem('cgToken');
+    this.setState({ isLoggedIn });
+  }
+
+  onClickLogout = () => {
+    localStorage.removeItem('cgToken');
+    window.location.assign('/login');
+    this.setState({ isLoggedIn: false });
+  };
+
   render() {
     const { props } = this;
     const isLoggedIn = !!localStorage.getItem('cgToken');
@@ -48,7 +63,7 @@ class App extends Component {
                   </div>
 
                   <div className="navbar-item">
-                    <a onClick={props.logout} className="navbar-item button">
+                    <a onClick={this.onClickLogout} className="navbar-item button">
                       Log Out
                     </a>
                   </div>
