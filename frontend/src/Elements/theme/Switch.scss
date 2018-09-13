@@ -1,0 +1,34 @@
+@import 'variables';
+
+.switch {
+  border: 1px solid #ccc;
+  width: 50px;
+  height: 26px;
+  border-radius: 13px;
+  cursor: pointer;
+  display: inline-block;
+
+  &On {
+    background: $green;
+
+    .switchToggle {
+      left: 23px;
+    }
+  }
+
+  &Disabled {
+    cursor: not-allowed;
+  }
+}
+
+.switchToggle {
+  border: 1px solid #999;
+  box-shadow: 1px 1px 1px #ccc;
+  width: 25px;
+  height: 24px;
+  left: 0;
+  border-radius: 12px;
+  background: white;
+  position: relative;
+  transition: left 0.2s ease-in-out;
+}

@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url(/border.svg) center bottom no-repeat;
+  background-color: white;
+  background-size: auto;
+}
+
+.success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  padding: 60px 40px;
+  background: white;
+  min-width: 480px;
+  min-height: 480px;
+  text-align: center;
+
+  .title {
+    color: #9cf0dc;
+    font-size: 36px;
+    font-weight: bold;
+  }
+
+  .about {
+    margin: 40px 0;
+    width: 75%;
+  }
+}
