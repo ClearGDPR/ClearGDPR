@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Switch from 'components/Common/Switch';
 import styles from 'theme/Processor.scss';
+import logo from '../../../assets/logo.png';
 
 class Processor extends React.PureComponent {
   onChange(status) {
@@ -17,14 +18,12 @@ class Processor extends React.PureComponent {
     return (
       <div className={styles.container}>
         <div className={styles.processor}>
-          <img className={styles.logo} src={processor.logoUrl} alt={processor.name} />
+          <img className={styles.logo} src={processor.logoUrl || logo} alt={processor.name} />
           <Switch value={processor.enabled} onChange={this.onChange.bind(this)} />
         </div>
         <div className={styles.description}>{processor.description}</div>
         <ul className={styles.scopes}>
-          {processor.scopes.map((scope, index) => (
-            <li key={index}>{scope}</li>
-          ))}
+          {processor.scopes.map((scope, index) => <li key={index}>{scope}</li>)}
         </ul>
       </div>
     );
