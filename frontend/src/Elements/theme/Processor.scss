@@ -1,0 +1,51 @@
+.container {
+  padding: 10px 20px;
+  margin: 10px 0;
+}
+
+.name {
+  // background: red;
+}
+
+.processor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  // background: red;
+  display: block;
+  width: 100px;
+}
+
+.switch {
+}
+
+.description {
+  padding: 10px 0;
+  font-size: 14px;
+  color: #4a4a4a;
+}
+
+.scopes {
+  text-align: center;
+
+  li {
+    display: inline;
+    margin-right: 8px;
+    font-size: 12px;
+    font-style: italic;
+
+    &:before {
+      content: '‧';
+      margin-right: 2px;
+    }
+  }
+}
+
+.purposes {
+  li {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+  }
+}

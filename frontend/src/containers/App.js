@@ -2,8 +2,7 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { SubjectProvider } from '@cleargdpr/elements';
-import '@cleargdpr/elements/dist/elements.css';
+import { SubjectProvider } from '../Elements';
 
 class App extends Component {
   render() {

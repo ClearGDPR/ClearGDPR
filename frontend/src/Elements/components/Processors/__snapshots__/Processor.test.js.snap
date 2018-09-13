@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Processor should render correctly 1`] = `
+<div>
+  <div>
+    <img
+      alt="Test"
+      src="http://logo.com/test.png"
+    />
+    <Switch
+      onChange={[Function]}
+      value={true}
+    />
+  </div>
+  <div>
+    This is a test processor
+  </div>
+  <ul>
+    <li
+      key="0"
+    >
+      email
+    </li>
+    <li
+      key="1"
+    >
+      name
+    </li>
+  </ul>
+</div>
+`;
