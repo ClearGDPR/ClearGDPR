@@ -38,12 +38,31 @@ class Profile extends React.Component {
 
     return (
       <React.Fragment>
+        <section className="section" id="export-data">
+          <div className="container">
+            <div className="columns">
+              <div className="column is-two-fifths">
+                <h1 className="title">Right to data accessibility →</h1>
+                <p>GDPR Article 15</p>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://gdpr-info.eu/art-15-gdpr/"
+                >
+                  Go to GDPR article →
+                </a>
+              </div>
+              <div className="column is-one-third">{UserDataStatus}</div>
+            </div>
+          </div>
+        </section>
+
         <section className="section" id="erase-data">
           <div className="container">
             <div className="columns">
               <div className="column is-two-fifths">
-                <h1 className="title">Right to rectification →</h1>
-                <p>Article 16 GDPR Right to rectification</p>
+                <h1 className="title">Right to rectification of data →</h1>
+                <p>GDPR Article 17</p>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
@@ -55,11 +74,69 @@ class Profile extends React.Component {
               <div className="column is-one-third">{Rectification}</div>
             </div>
           </div>
+
+          <section className="section" id="export-data">
+            <div className="container">
+              <div className="columns">
+                <div className="column is-two-fifths">
+                  <h1 className="title">Right to data portability →</h1>
+                  <p>GDPR Article 20</p>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://gdpr-info.eu/art-20-gdpr/"
+                  >
+                    Go to GDPR article →
+                  </a>
+                </div>
+                <div className="column is-one-third">{ExportDataButton}</div>
+              </div>
+            </div>
+          </section>
+
+          <section className="section" id="restrict-data-processing">
+            <div className="container">
+              <div className="columns">
+                <div className="column is-two-fifths">
+                  <h1 className="title">Right to restriction of processing →</h1>
+                  <p>GDPR Article 18</p>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://gdpr-info.eu/art-18-gdpr/"
+                  >
+                    Go to GDPR article →
+                  </a>
+                </div>
+                <div className="column is-one-third">{Restriction}</div>
+              </div>
+            </div>
+          </section>
+
+          <section className="section" id="object-data-processing">
+            <div className="container">
+              <div className="columns">
+                <div className="column is-two-fifths">
+                  <h1 className="title">Right to objection of processing →</h1>
+                  <p>GDPR Article 21</p>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://gdpr-info.eu/art-21-gdpr/"
+                  >
+                    Go to GDPR article →
+                  </a>
+                </div>
+                <div className="column is-one-third">{Objection}</div>
+              </div>
+            </div>
+          </section>
+
           <div className="container">
             <div className="columns">
               <div className="column is-two-fifths">
                 <h1 className="title">Right to be forgotten →</h1>
-                <p>Article 17 GDPR Right to erasure (‘right to be forgotten’)</p>
+                <p>GDPR Article 17</p>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
@@ -69,78 +146,6 @@ class Profile extends React.Component {
                 </a>
               </div>
               <div className="column is-one-third">{ForgottenRequestButton}</div>
-            </div>
-          </div>
-        </section>
-        <section className="section" id="object-data-processing">
-          <div className="container">
-            <div className="columns">
-              <div className="column is-two-fifths">
-                <h1 className="title">Right to object →</h1>
-                <p>Article 21 GDPR Right to object</p>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://gdpr-info.eu/art-21-gdpr/"
-                >
-                  Go to GDPR article →
-                </a>
-              </div>
-              <div className="column is-one-third">{Objection}</div>
-            </div>
-          </div>
-        </section>
-        <section className="section" id="export-data">
-          <div className="container">
-            <div className="columns">
-              <div className="column is-two-fifths">
-                <h1 className="title">Right to portability →</h1>
-                <p>Article 20 GDPR Right to portability (‘right to export’)</p>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://gdpr-info.eu/art-20-gdpr/"
-                >
-                  Go to GDPR article →
-                </a>
-              </div>
-              <div className="column is-one-third">{ExportDataButton}</div>
-            </div>
-          </div>
-        </section>
-        <section className="section" id="restrict-data-processing">
-          <div className="container">
-            <div className="columns">
-              <div className="column is-two-fifths">
-                <h1 className="title">Right to restriction of processing →</h1>
-                <p>https://gdpr-info.eu/art-18-gdpr/</p>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://gdpr-info.eu/art-18-gdpr/"
-                >
-                  Go to GDPR article →
-                </a>
-              </div>
-              <div className="column is-one-third">{Restriction}</div>
-            </div>
-          </div>
-        </section>
-        <section className="section" id="export-data">
-          <div className="container">
-            <div className="columns">
-              <div className="column is-two-fifths">
-                <h1 className="title">Right to access your data →</h1>
-                <p>Art. 15 GDPR Right of access by the data subject</p>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://gdpr-info.eu/art-15-gdpr/"
-                >
-                  Go to GDPR article →
-                </a>
-              </div>
-              <div className="column is-one-third">{UserDataStatus}</div>
             </div>
           </div>
         </section>

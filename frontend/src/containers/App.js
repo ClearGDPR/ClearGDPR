@@ -19,10 +19,10 @@ class App extends Component {
           </div>
           <div className="navbar-menu">
             <div className="navbar-start">
-              {isGuest && [
+              {!props.user && [
                 <div className="navbar-item" key="login">
                   <Link to="/login" className="navbar-item">
-                    Login
+                    Sign in
                   </Link>
                 </div>,
                 <div className="navbar-item" key="signup">
@@ -31,13 +31,14 @@ class App extends Component {
                   </Link>
                 </div>
               ]}
-              {!isGuest && (
-                <div className="navbar-item">
-                  <Link to="/shares" className="navbar-item">
-                    Shares
-                  </Link>
-                </div>
-              )}
+              {!isGuest &&
+                props.user && (
+                  <div className="navbar-item">
+                    <Link to="/shares" className="navbar-item">
+                      Your shared data
+                    </Link>
+                  </div>
+                )}
             </div>
             <div className="navbar-end">
               <div className="navbar-item">
@@ -63,7 +64,7 @@ class App extends Component {
                     <div className="field is-grouped">
                       <p className="control">
                         <Link to="/profile" className="navbar-item button is-primary">
-                          Your data
+                          Your data settings
                         </Link>
                       </p>
                     </div>
