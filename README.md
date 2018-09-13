@@ -142,7 +142,7 @@ Each part of the project has additional README documentation in its subfolder:
 * [Quorum nodes README](quorum/README.md)
 * [ClearGDPR (CG) API README](cg/README.md)
 * [Docker definitions README](docker/README.md)
-* [Demo backend README](api/README.md)
+* [Backend README](api/README.md)
 * [Demo frontend README](frontend/README.md)
 * [Updating Travis Configuration](TRAVIS.md)
 
