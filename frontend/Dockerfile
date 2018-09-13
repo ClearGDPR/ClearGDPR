@@ -25,7 +25,7 @@ ADD .yarn-cache.tgz /
 # Install packages + Prepare cache file
 RUN cd /cache \
   && yarn config set cache-folder /usr/local/share/.cache/yarn \
-  && yarn install --force \
+  && yarn \
   && cd /opt/app && ln -s /cache/node_modules node_modules \
   && tar czf /.yarn-cache.tgz /usr/local/share/.cache/yarn
 
