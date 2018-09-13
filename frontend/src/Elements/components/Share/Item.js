@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import styles from 'theme/ShareData.scss';
-import clipboardSvg from 'assets/graph_clipboard.svg';
+import clipboardSvg from '../../assets/graph_clipboard.svg';
 
 import EditForm from './Edit';
 import Delete from './Delete';
