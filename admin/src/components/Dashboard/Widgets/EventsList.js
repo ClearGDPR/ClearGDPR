@@ -16,7 +16,6 @@ const EventsList = ({ events, connected, errorState }) => {
     date: format(eventData.time)
   }));
 
-  // TODO: this should be shown as a badge of status
   // let tag;
   // if (connected) {
   //   tag = <span className="tag is-info">Connected</span>;
