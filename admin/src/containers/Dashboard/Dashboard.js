@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import config from 'config';
+// import config from 'config';
 import SubjectsList from './Widgets/SubjectsList';
-import EventsList from './Widgets/EventsList';
+// import EventsList from './Widgets/EventsList';
 import ControllerConsentDial from 'components/Dashboard/Widgets/ControllerConsentDial';
 import ConsentByProcessor from 'components/Dashboard/Widgets/ConsentByProcessor';
 import { StatsConsumer } from './StatsContext';
@@ -70,9 +70,9 @@ export default class Dashboard extends Component {
           <StatsConsumer>{statsState => <Stats {...statsState} />}</StatsConsumer>
         </div>
         <SubjectsList />
-        <EventsList
+        {/* <EventsList
           webSocketUrl={config.API_URL.replace('http://', 'ws://') + '/api/management/events/feed'}
-        />
+        /> */}
       </section>
     );
   }
