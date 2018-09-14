@@ -83,7 +83,7 @@ export class ProcessorsProvider extends Component {
   }
 
   _addProcessor(processor) {
-    return internalFetch(`${config.API_URL}/api/management/processors`, {
+    return internalFetch(`${config.API_URL}/api/management/processors/TEST`, {
       method: 'POST',
       body: JSON.stringify(processor)
     });
@@ -97,7 +97,7 @@ export class ProcessorsProvider extends Component {
   }
 
   async _deleteProcessor(processorId) {
-    await internalFetch(`${config.API_URL}/api/management/processors`, {
+    await internalFetch(`${config.API_URL}/api/management/processors/TEST`, {
       method: 'DELETE',
       body: JSON.stringify({
         processorIds: [processorId]
