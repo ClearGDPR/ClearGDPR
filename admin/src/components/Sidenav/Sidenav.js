@@ -15,7 +15,7 @@ const Sidenav = props => {
 
   return (
     <nav className={props.isSidenavOpen ? 'sidenav' : 'sidenav closed'}>
-      <NavLink to="/kitchen-sink/overview">
+      <NavLink to="/">
         <img className="dash-logo" src={dashLogo} alt="Clear logo" />
       </NavLink>
       <p>
