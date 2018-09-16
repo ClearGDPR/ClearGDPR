@@ -466,8 +466,7 @@ describe('TEST - Add processor used for development', () => {
       name: 'Processor 123ABC unique name',
       logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/52/Free_logo.svg',
       description: `some description`,
-      scopes: ['email', 'first name'],
-      accountAddress: '0x00000000000000000000000000000000000000A5'
+      scopes: ['email', 'first name']
     };
 
     // When
@@ -495,8 +494,7 @@ describe('TEST - Add processor used for development', () => {
     );
     const [processorAddress] = await db('processor_address').where({ processor_id: processor.id });
     expect(processorAddress).toBeDefined();
-    expect(processorAddress.address).toEqual(payload.accountAddress);
-    expect(await isProcessor('0x00000000000000000000000000000000000000A5')).toBeTruthy();
+    expect(await isProcessor(processorAddress.address)).toBeTruthy();
   });
 });
 
