@@ -24,7 +24,7 @@ class ProcessorsController {
     res.send({ success: true });
   }
 
-  // TEST FUNCTIONS USED ONLY FOR DEVELOPMENT
+  // TEST FUNCTIONS USED FOR DEMOS AND DEVELOPMENT
 
   async testAddProcessor(req, res) {
     await this.processorsService.testAddProcessor(req.body);

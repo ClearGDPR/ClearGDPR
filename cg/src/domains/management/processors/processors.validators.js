@@ -40,8 +40,8 @@ const testAddProcessorValidator = celebrate({
       .max(255),
     logoUrl: Joi.string().max(255),
     description: Joi.string(),
-    scopes: Joi.array().items(Joi.string()),
-    accountAddress: Joi.string().regex(/^0x[\da-fA-F]{40}$/) // Blockchain account address
+    scopes: Joi.array().items(Joi.string())
+    //accountAddress: Joi.string().regex(/^0x[\da-fA-F]{40}$/) // Blockchain account address
   })
 });
 

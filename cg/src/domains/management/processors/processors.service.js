@@ -5,7 +5,7 @@ const { NotFound, BadRequest } = require('../../../utils/errors');
 const {
   isContractDeployed,
   recordProcessorsUpdate,
-  transferFunds
+  createAccount
 } = require('../../../utils/blockchain');
 
 class ProcessorsService {
@@ -157,15 +157,16 @@ class ProcessorsService {
     return await recordProcessorsUpdate(remainingProcessors.map(p => p.address));
   }
 
-  // TEST FUNCTIONS USED ONLY FOR DEVELOPMENT
+  // TEST FUNCTIONS USED FOR DEMOS AND DEVELOPMENT
 
   // This function will mock the addition of a processor to the database and the smart-contract state
   async testAddProcessor(processorInformation) {
     const [processorExists] = await this.db('processors').where('name', processorInformation.name);
     if (processorExists) throw new BadRequest('Processor already added to the network');
     const contractDeployed = await isContractDeployed();
-    if (!contractDeployed) throw new NotFound('No contract deployed');
+    if (!contractDeployed) throw new NotFound('No smart-contract deployed');
 
+    let processorAccountAddress;
     await this.db.transaction(async trx => {
       const processorInformationCopy = _.clone(processorInformation);
       delete processorInformationCopy.accountAddress;
@@ -178,14 +179,18 @@ class ProcessorsService {
         .insert(processorInformationCopy)
         .returning('id');
 
-      if (processorInformation.accountAddress) {
-        await db('processor_address')
-          .transacting(trx)
-          .insert({
-            processor_id: processorId,
-            address: processorInformation.accountAddress
-          });
+      try {
+        processorAccountAddress = await createAccount('mocked_account_password');
+      } catch (e) {
+        throw new Error(`Error creating blockchain account for processor: ${e}`);
       }
+      await db('processor_address')
+        .transacting(trx)
+        .insert({
+          processor_id: processorId,
+          address: processorAccountAddress
+        });
+
       await this._recordProcessorsUpdate(trx);
     });
   }
@@ -194,13 +199,18 @@ class ProcessorsService {
   async testRemoveProcessors(processorsIds) {
     const contractDeployed = await isContractDeployed();
     if (!contractDeployed) throw new NotFound('No contract deployed');
+
     await this.db.transaction(async trx => {
+      await db('subject_processors')
+        .whereIn('processor_id', processorsIds)
+        .del();
+
       const processorsDeleted = await db('processors')
         .whereIn('id', processorsIds)
         .del();
 
       if (!processorsDeleted) throw new NotFound('Processors not found');
-      return await this._recordProcessorsUpdate(trx);
+      await this._recordProcessorsUpdate(trx);
     });
   }
 }
