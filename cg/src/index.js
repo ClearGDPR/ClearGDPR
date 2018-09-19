@@ -3,7 +3,7 @@ const app = require('./app');
 const port = +process.env.PORT;
 const startupRoutines = require('./startup-routines');
 
-const { waitForGeth } = require('./utils/blockchain');
+const { waitForGeth, isGethListening } = require('./utils/blockchain');
 
 require('./error-tracking');
 
@@ -18,3 +18,10 @@ waitForGeth()
   .catch(err => {
     winston.error(err);
   });
+
+setInterval(() => {
+  if (!isGethListening()) {
+    winston.info('Reconnecting to geth node');
+    waitForGeth();
+  }
+}, 5000);

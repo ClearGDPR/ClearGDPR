@@ -19,7 +19,7 @@ services:
     volumes:
       - './cg/.:/opt/app'
       - /opt/app/node_modules
-
+    restart: on-failure
   cg_processor:
     build: cg/.
     image: cleargdpr/cg:latest
@@ -39,6 +39,7 @@ services:
     volumes:
       - './cg/.:/opt/app'
       - /opt/app/node_modules
+    restart: on-failure
   demo-api:
     image: cleargdpr/demo-api:latest
     build: api/.
@@ -136,6 +137,7 @@ services:
     ports:
       - 22001:8545
       - 33001:8546
+    mem_limit: 2g
   geth2:
     image: cleargdpr/quorum_processor:0.0.2
     env_file: quorum/node_2/.env
@@ -154,6 +156,7 @@ services:
     ports:
       - 22002:8545
       - 33002:8546
+    mem_limit: 2g
 
 networks:
   quorum_net:

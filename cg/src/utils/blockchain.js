@@ -71,6 +71,16 @@ async function transferFunds(accountAddressToFund) {
   return receipt;
 }
 
+async function isGethListening() {
+  let gethConnection;
+  try {
+    gethConnection = await web3.eth.net.isListening();
+  } catch (e) {
+    throw new Error(`Geth connection error: ${e}`);
+  }
+  return gethConnection;
+}
+
 // SMART CONTRACT AUXILIARY FUNCTIONS
 
 async function getRectificationCount(subjectId) {
@@ -284,7 +294,7 @@ async function waitForGeth() {
   while (!gethIsListening) {
     try {
       newWeb3 = new Web3(providerFactory());
-      gethIsListening = await newWeb3.eth.net.isListening();
+      gethIsListening = await isGethListening();
     } catch (e) {
       winston.info('Geth node is not listening');
     }
@@ -325,6 +335,7 @@ module.exports = {
   isContractDeployed,
   createAccount,
   transferFunds,
+  isGethListening,
   sha3: web3.utils.sha3,
   getRectificationCount,
   getIsErased,
