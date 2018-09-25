@@ -58,8 +58,8 @@ const Users = ({
   return (
     <React.Fragment>
       <section className="cards">
-        <ActionBar title="Users" desc="Manage users that can access the administrative panel">
-          <DefaultButton onClick={onRegisterUserClickHandler} text="+ Register user" />
+        <ActionBar title="Users" desc="Manage users that have administrative privileges.">
+          <DefaultButton onClick={onRegisterUserClickHandler} text="Add user" />
         </ActionBar>
         <div className="row">
           <Card cols={8}>

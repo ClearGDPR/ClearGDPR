@@ -11,12 +11,12 @@ import NumberCard from 'components/core/cards/dashboard/NumberCard';
 import ChartCard from 'components/core/cards/dashboard/ChartCard';
 
 const activeUsers = {
-  title: 'Active Users',
+  title: 'Active users',
   number: 12.676,
   change: 14
 };
 const erasedUsers = {
-  title: 'Erased Users',
+  title: 'Erased users',
   number: 1.164,
   change: -10
 };

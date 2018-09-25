@@ -15,12 +15,12 @@ export const processors = ProcessorsDataFactory.getAll();
 
 export const users = [
   {
-    title: 'Active Users',
+    title: 'Active users',
     number: 12.676,
     change: 14
   },
   {
-    title: 'Erased Users',
+    title: 'Erased users',
     number: 1.164,
     change: -10
   }

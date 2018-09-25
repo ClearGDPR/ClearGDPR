@@ -29,9 +29,9 @@ class UserData extends React.PureComponent {
         </ul>
         <br />
         <b>Your data is shared with: </b>
-        <div>Controller: {status.controller}</div>
+        <div>The Sports Times: {status.controller}</div>
         <br />
-        <b>Processors</b>
+        <b>Partners</b>
         {processors.map(p => (
           <div key={p.id} className={styles.processor}>
             <div>

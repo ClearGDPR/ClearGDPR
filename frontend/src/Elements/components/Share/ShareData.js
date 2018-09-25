@@ -72,7 +72,7 @@ class ShareData extends React.Component {
             {!isNew ? (
               <div className={styles.newCardContent} onClick={this.showOnNew}>
                 <img src={clipboardSvg} alt="Add new" style={{ width: 62 }} />
-                <p>New Share URL</p>
+                <p>New shareable URL</p>
               </div>
             ) : (
               <NewForm

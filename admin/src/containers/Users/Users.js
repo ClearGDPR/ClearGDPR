@@ -32,7 +32,7 @@ export class UsersContainer extends React.Component {
   };
 
   openRegisterUserForm = () => {
-    this.props.openPanel(Register, 'Register user');
+    this.props.openPanel(Register, 'Add user');
   };
 
   openDeleteConfirmationModal = userId => {

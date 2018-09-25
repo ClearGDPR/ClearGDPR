@@ -7,10 +7,10 @@ const ConsentDial = ({ consented, unconsented }) => {
   const consentedPercent = total ? Math.round((consented / total) * 100) : 100;
   return (
     <GraphCard
-      title={'Consented vs Not Consented Subjects'}
+      title={'Consented VS not consented subjects'}
       text={`${consentedPercent}% of subjects have consented`}
       cols={2}
-      data={[{ y: consented, x: 'Consented' }, { y: unconsented, x: 'Not Consented' }]}
+      data={[{ y: consented, x: 'Consented' }, { y: unconsented, x: 'Not consented' }]}
       labelFontSize={3}
     />
   );

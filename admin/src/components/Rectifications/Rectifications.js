@@ -70,7 +70,7 @@ const Rectifications = ({
           {data.length > 0 ? (
             <Table rows={data} columns={columns()} actions={actions({ onDetailsClick })} />
           ) : (
-            <i>No Pending Requests Registered</i>
+            <i>No pending requests registered</i>
           )}
         </div>
         <div className="content">{renderPagination()}</div>
@@ -89,7 +89,7 @@ const Rectifications = ({
               actions={actions({ onDetailsClick })}
             />
           ) : (
-            <i>No Requests Archieved</i>
+            <i>No requests archieved</i>
           )}
         </div>
         <div className="content">{renderPagination()}</div>
@@ -109,7 +109,7 @@ const Rectifications = ({
     <section className="cards">
       <ActionBar
         title="Rectification requests"
-        desc="Here you can manage requests from users who want to execute their right to rectify the
+        desc="Manage requests from users who want to execute their right to rectify the
             data stored about them."
       />
       <Tabs selectedIndex={selectedTab} onSelect={onTabSelect}>

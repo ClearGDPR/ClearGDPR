@@ -19,7 +19,7 @@ const setupShallow = propOverrides => {
   return { props, component };
 };
 
-describe('(Container) Add Processor', () => {
+describe('(Container) Add processor', () => {
   it('should render correctly when default props provided', async () => {
     const { component } = setupShallow();
     expect(component).toMatchSnapshot();

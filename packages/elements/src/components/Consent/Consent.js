@@ -92,7 +92,7 @@ class Consent extends React.PureComponent {
             <span role="img" aria-labelledby="lock">
               🔒
             </span>
-            Config Processors
+            Choose partners
           </button>
           {this.state.showProcessors ? (
             <PopoverView open={this.state.showProcessors} onClose={this.toggleProcessors}>

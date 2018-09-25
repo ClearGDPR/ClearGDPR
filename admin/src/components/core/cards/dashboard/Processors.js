@@ -10,7 +10,7 @@ const Processors = props => {
     <React.Fragment>
       <section className="cards">
         <ActionBar title={props.title} desc={props.desc} handleClick={props.onClick} dialog>
-          <DefaultButton text="+ Add Processor" onClick={props.onClick} />
+          <DefaultButton text="Add processor" onClick={props.onClick} />
         </ActionBar>
         <div className="row">
           {props.processors.map((processor, id) => {

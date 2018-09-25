@@ -50,12 +50,13 @@ const Processors = ({
           title="Processors"
           desc={
             <React.Fragment>
-              A processor is a third-party with access to your users data.<br />You can manage from
-              here which are enabled or not, and which actions are allowed to access.
+              A processor is a third-party data partner with access to your users data.<br />
+              You can manage which processors are enabled, which actions are allowed to each
+              processor, and other information pertaining the processors.
             </React.Fragment>
           }
         >
-          <DefaultButton text="+ Add Processor" onClick={onCreateProcessorHandler} />
+          <DefaultButton text="Add processor" onClick={onCreateProcessorHandler} />
         </ActionBar>
         {isLoading ? (
           <div className="content">

@@ -26,7 +26,7 @@ const Overview = props => {
           />
         </div>
         <div className="row">
-          <GraphCard cols={3} data={[{ y: 10, x: 'Consented' }, { y: 21, x: 'Not Consented' }]} />
+          <GraphCard cols={3} data={[{ y: 10, x: 'Consented' }, { y: 21, x: 'Not consented' }]} />
           <ChartCard cols={5} data={{ title: 'Requests - Last 7 days' }} />
         </div>
         <div className="row">

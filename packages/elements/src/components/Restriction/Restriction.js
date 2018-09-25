@@ -7,7 +7,7 @@ import Subject from '../../contexts/Subject';
 const RESTRICTION_LABELS = {
   directMarketing: 'Direct marketing',
   emailCommunication: 'Email communication',
-  research: 'Research and Analytics'
+  research: 'Research and analytics'
 };
 
 class Restriction extends React.PureComponent {

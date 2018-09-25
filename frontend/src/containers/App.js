@@ -52,19 +52,19 @@ class App extends Component {
                 <React.Fragment>
                   <div className="navbar-item">
                     <Link to="/shares" className="navbar-item">
-                      Your shares
+                      Share your data
                     </Link>
                   </div>
 
                   <div className="navbar-item">
                     <Link to="/profile" className="navbar-item button is-primary">
-                      Your data settings
+                      Your data
                     </Link>
                   </div>
 
                   <div className="navbar-item">
                     <a onClick={this.onClickLogout} className="navbar-item button">
-                      Log Out
+                      Log out
                     </a>
                   </div>
                 </React.Fragment>

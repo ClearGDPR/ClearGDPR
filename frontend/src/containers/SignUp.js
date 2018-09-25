@@ -46,10 +46,11 @@ class SignUp extends Component {
   render() {
     const ConsentFormController = Elements.element({
       source: 'consent',
-      label: `The Sport Times would like to 
-      keep you informed about other offers, promotions and
-      services that might interest you by email. Let us know if you would
-      like to hear from us by ticking the box.`,
+      label: `The Sport Times would like to share your data with our partners.
+      Let us know if you would like to have your data shared with partners by ticking the box and choosing which partners have your consent to access your data.
+      You can choose how your data is used in your account area.
+      `,
+
       styles: {
         label: {
           fontSize: '12px'
@@ -75,12 +76,12 @@ class SignUp extends Component {
             </div>
             <div className="column is-one-third">
               <h3 className="title"> Create your account </h3>
-              <p>{`To create your Account simply fill the short form below`}</p>
+              <p>{`To create your account simply fill the short form below:`}</p>
               <hr />
               <form onSubmit={e => this.onSignUpHandler(e)}>
                 {error && <div className="notification is-danger">{error}</div>}
                 <div className="field">
-                  <label className="label">First Name</label>
+                  <label className="label">First name</label>
                   <div className="control">
                     <input
                       className="input"
@@ -129,18 +130,18 @@ class SignUp extends Component {
                   </div>
                 </div>
                 <div className="field">
-                  <label className="label">Your Password</label>
+                  <label className="label">Your password</label>
                   <div className="control">
                     <input className="input" ref="password" name="password" type="password" />
                     <small>
                       {`It's important to use a secure password. You can create this with
-                      any combination of 8 or more mixed letterS, numbers or special
+                      any combination of 8 or more mixed letters, numbers or special
                       characters (*?£, etc).`}
                     </small>
                   </div>
                 </div>
                 <div className="field">
-                  <label className="label">Confirm Password</label>
+                  <label className="label">Confirm password</label>
                   <div className="control">
                     <input className="input" name="repeatpassword" type="password" />
                   </div>
@@ -158,7 +159,7 @@ class SignUp extends Component {
                   type="submit"
                   className={`button is-primary ${this.state.isLoading ? 'is-loading' : ''}`}
                 >
-                  Save my details
+                  Register
                 </button>
               </form>
             </div>

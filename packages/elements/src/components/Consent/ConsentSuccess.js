@@ -10,7 +10,7 @@ const ConsentSuccess = () => {
       <div className={styles.success}>
         <h2 className={styles.title}>You're GDPR protected!</h2>
         <p className={styles.about}>{`
-          Now you can manage your data and which processors access to it from the ClearGDPR
+          Now you can manage your data and which processors have access to it from your account
         `}</p>
         <Link to="/profile">
           <button className="button is-primary is-medium">Manage your data</button>
