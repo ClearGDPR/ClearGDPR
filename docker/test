@@ -24,9 +24,9 @@ COMPOSE_PROJECT_NAME=cleargdpr
 # Linux fix
 CONFIG_FILE=docker-compose.yml
 
-TEST_CMD="docker-compose -f $CONFIG_FILE exec cg yarn test -u"
-ADMIN_TEST_CMD="docker-compose -f $CONFIG_FILE exec admin yarn test -u"
-FRONTEND_TEST_CMD="docker-compose -f $CONFIG_FILE exec demo-frontend yarn test -u"
+TEST_CMD="docker-compose -f $CONFIG_FILE exec cg yarn test"
+ADMIN_TEST_CMD="docker-compose -f $CONFIG_FILE exec admin yarn test"
+FRONTEND_TEST_CMD="docker-compose -f $CONFIG_FILE exec demo-frontend yarn test"
 
 COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME $TEST_CMD
 COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME $ADMIN_TEST_CMD
