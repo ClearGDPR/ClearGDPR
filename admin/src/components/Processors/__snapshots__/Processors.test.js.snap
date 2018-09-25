@@ -17,7 +17,7 @@ exports[`(Component) Processors should render when loading correctly 1`] = `
     >
       <DefaultButton
         onClick={[Function]}
-        text="+ Add Processor"
+        text="Add processor"
       />
     </ActionBar>
     <div
@@ -46,7 +46,7 @@ exports[`(Component) Processors should render when not loading correctly 1`] = `
     >
       <DefaultButton
         onClick={[Function]}
-        text="+ Add Processor"
+        text="Add processor"
       />
     </ActionBar>
     <div
