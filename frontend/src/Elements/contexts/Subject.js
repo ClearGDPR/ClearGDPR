@@ -122,8 +122,8 @@ export default class Subject {
   }
 
   async updateObjection(value) {
-    await this.cg.Subject.updateObjection(value);
     this.objection = value;
+    await this.cg.Subject.updateObjection(value);
     this._propagateMutation();
   }
 
