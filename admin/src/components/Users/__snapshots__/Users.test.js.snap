@@ -6,12 +6,12 @@ exports[`(Component) Users should render when loading correctly 1`] = `
     className="cards"
   >
     <ActionBar
-      desc="Manage users that can access the administrative panel"
+      desc="Manage users that have administrative privileges."
       title="Users"
     >
       <DefaultButton
         onClick={[Function]}
-        text="+ Register user"
+        text="Add user"
       />
     </ActionBar>
     <div
@@ -37,12 +37,12 @@ exports[`(Component) Users should render when not loading correctly 1`] = `
     className="cards"
   >
     <ActionBar
-      desc="Manage users that can access the administrative panel"
+      desc="Manage users that have administrative privileges."
       title="Users"
     >
       <DefaultButton
         onClick={[Function]}
-        text="+ Register user"
+        text="Add user"
       />
     </ActionBar>
     <div

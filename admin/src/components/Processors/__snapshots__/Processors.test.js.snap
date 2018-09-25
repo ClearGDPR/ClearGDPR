@@ -8,9 +8,9 @@ exports[`(Component) Processors should render when loading correctly 1`] = `
     <ActionBar
       desc={
         <React.Fragment>
-          A processor is a third-party with access to your users data.
+          A processor is a third-party data partner with access to your users data.
           <br />
-          You can manage from here which are enabled or not, and which actions are allowed to access.
+          You can manage which processors are enabled, which actions are allowed to each processor, and other information pertaining the processors.
         </React.Fragment>
       }
       title="Processors"
@@ -37,9 +37,9 @@ exports[`(Component) Processors should render when not loading correctly 1`] = `
     <ActionBar
       desc={
         <React.Fragment>
-          A processor is a third-party with access to your users data.
+          A processor is a third-party data partner with access to your users data.
           <br />
-          You can manage from here which are enabled or not, and which actions are allowed to access.
+          You can manage which processors are enabled, which actions are allowed to each processor, and other information pertaining the processors.
         </React.Fragment>
       }
       title="Processors"

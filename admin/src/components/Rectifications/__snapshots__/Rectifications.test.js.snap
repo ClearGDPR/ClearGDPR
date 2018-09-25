@@ -6,7 +6,7 @@ Object {
     className="cards"
   >
     <ActionBar
-      desc="Here you can manage requests from users who want to execute their right to rectify the data stored about them."
+      desc="Manage requests from users who want to execute their right to rectify the data stored about them."
       title="Rectification requests"
     />
     <Tabs
@@ -125,7 +125,7 @@ exports[`(Component) Rectifications should render when not loading correctly 1`]
   className="cards"
 >
   <ActionBar
-    desc="Here you can manage requests from users who want to execute their right to rectify the data stored about them."
+    desc="Manage requests from users who want to execute their right to rectify the data stored about them."
     title="Rectification requests"
   />
   <Tabs
