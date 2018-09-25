@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`(Container) Add Processor should populate errors on submit when create rejects with error 1`] = `
+exports[`(Container) Add processor should populate errors on submit when create rejects with error 1`] = `
 Object {
   "errors": Object {
     "processor": "Error: Test error",
@@ -9,7 +9,7 @@ Object {
 }
 `;
 
-exports[`(Container) Add Processor should render correctly when default props provided 1`] = `
+exports[`(Container) Add processor should render correctly when default props provided 1`] = `
 <EditProcessorForm
   errors={Object {}}
   isLoading={false}
