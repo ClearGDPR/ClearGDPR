@@ -26,13 +26,23 @@ class Login extends Component {
         password: password.value
       })
     })
+      .then(res => {
+        if (res.ok) return res;
+        throw new Error(`Invalid credentials`);
+      })
       .then(res => res.json())
       .then(token => {
         this.setState({ isLoading: false });
         localStorage.setItem('cgToken', token.cgToken);
         this.props.history.push('/profile');
       })
-      .catch(console.log);
+      .catch(e => {
+        console.log('e', e);
+        this.setState({
+          isLoading: false,
+          error: 'Invalid Credentials'
+        });
+      });
   };
 
   render() {
@@ -44,6 +54,7 @@ class Login extends Component {
               <h3 className="title"> Sign in to your account </h3>
               <hr />
               <form onSubmit={this.onLoginHandler}>
+                {this.state.error && <label style={{ color: 'red' }}>{this.state.error}</label>}
                 <div className="field">
                   <label className="label">Email</label>
                   <div className="control">
